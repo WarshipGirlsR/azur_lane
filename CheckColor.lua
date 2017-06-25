@@ -1,0 +1,40 @@
+init(1)
+require 'console'
+mSleep(6000)
+
+keepScreen(false)
+keepScreen(true)
+local sideLength = 1080
+
+local list = {
+  { 139, 30, 0x101010 }, { 625, 24, 0x212021 },
+  { 963, 16, 0x292d3a }, { 1033, 67, 0x3a3d3a },
+  { 1058, 31, 0xe6efef }, { 1339, 47, 0xefba42 },
+  { 1369, 32, 0xefebef }, { 1652, 39, 0xf74163 },
+  { 1675, 65, 0xefefef }, { 1775, 184, 0xa4cede },
+  { 1162, 179, 0xa4cade }, { 1276, 189, 0xa4cade },
+  { 1201, 582, 0x109eef }, { 1383, 582, 0x199ae6 },
+  { 1290, 571, 0xffffff }, { 1498, 585, 0xdeae10 },
+  { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },
+  { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },
+}
+
+local resultStr = ''
+
+for key, value in ipairs(list) do
+  local color = getColor(value[1], value[2])
+  local oldColor = value[3]
+  local colorStr = string.format('0x%06x', color)
+  local oldColorStr = string.format('0x%06x', oldColor)
+  value[3] = oldColorStr
+  if (color == oldColor) then
+    resultStr = resultStr .. '\n' .. console.getJsStr(value)
+  else
+    value[3] = colorStr
+    resultStr = resultStr .. '\n' .. console.getJsStr(value) .. '  old Color: ' .. oldColorStr
+  end
+end
+
+console.log(resultStr)
+mSleep(6000)
+keepScreen(false)
