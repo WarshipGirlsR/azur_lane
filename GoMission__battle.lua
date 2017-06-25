@@ -54,14 +54,12 @@ local battleOnce = function(action, state)
       stepLabel.setStepLabelContent('2-6.移动到章节' .. state.battle.battleChapter)
       map.battle.moveToChapter(state.battle.battleChapter)
       c.yield(sleepPromise(1000))
-      console.log('asdfg')
 
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel },
         { 'BATTLE_SELECT_FLEET_PANEL', 'missionsGroup', map.battle.isSelectFleetPanel },
       }))
-      console.log(newstateTypes)
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_CHAPTER_INFO_PANEL') then
