@@ -107,6 +107,8 @@ table.isArray = table.isArray or function(tab)
   return true
 end
 
+table.unpack = table.unpack or unpack
+
 table.slice = table.slice or function(tab, startIndex, endIndex)
   local length = table.length(tab)
   if ((type(endIndex) == 'nil') or (endIndex == 0)) then
@@ -177,8 +179,16 @@ table.filter = table.filter or function(target, func)
     if (func(value, key, target)) then
       table.insert(result, value)
     end
+    for k2, value in pairs(tabelement) do
+      if ((type(k2) == 'number') and (k2 <= length)) then
+      elseif (type(k2) == 'number') then
+        tab[tostring(k2)] = value
+      else
+        tab[k2] = value
+      end
+    end
   end
-  return result
+  return tab
 end
 
 table.unique = table.unique or function(target, path)

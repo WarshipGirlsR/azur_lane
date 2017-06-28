@@ -355,7 +355,7 @@ co(c.create(function()
     table.insert(theMissionsQuery, { isBase = true, isStart = true })
     -- 是否运行出征
     if (settings.battleEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_START' })
+      table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_MAP_PAGE' })
     end
     -- 插入一个特殊任务表示这是队列的结尾
     table.insert(theMissionsQuery, { isBase = true, isEnd = true })
