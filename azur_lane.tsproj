@@ -1,6 +1,7 @@
 [res]
 [lib]
 [file]
+StringLib.lua
 BaseOperate__ImgInfo.lua
 azur_lane_test.lua
 GoMission__battle.lua
