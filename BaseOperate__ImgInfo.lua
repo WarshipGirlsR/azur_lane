@@ -36,17 +36,17 @@ return {
       topLine = (function()
         local leftTop = { 185, 155, }
         local rightBotton = { 1899, 1022, }
-        local basePoint = { 694, 407, 0x193542 }
+        local basePoint = { 567, 237, 0x314152 }
         local posandcolor = transColorListToString(transRelativePoint({
-          { 697, 407, 0x213d42 },
-          { 700, 407, 0x193142 },
-          { 703, 407, 0x213d42 },
-          { 706, 407, 0x193542 },
-          { 706, 410, 0x31a6e6 },
-          { 703, 410, 0x31a2de },
-          { 700, 410, 0x31a2de },
-          { 697, 410, 0x299ede },
-          { 694, 410, 0x31a2e6 },
+          { 572, 237, 0x293942 },
+          { 577, 237, 0x314152 },
+          { 582, 237, 0x213942 },
+          { 587, 237, 0x294152 },
+          { 589, 238, 0x31aede },
+          { 584, 238, 0x31aede },
+          { 579, 238, 0x31aede },
+          { 574, 238, 0x31aede },
+          { 569, 238, 0x31aede },
         }, basePoint))
         return {
           leftTop = leftTop,
@@ -84,16 +84,16 @@ return {
       -- 地图左边界
       leftLine = (function()
         local leftTop = { 185, 155, }
-        local rightBotton = { 1899, 1022, }
-        local basePoint = { 365, 487, 0x000000 }
+        local rightBotton = { 1020, 1022, }
+        local basePoint = { 285, 362, 0x000000 }
         local posandcolor = transColorListToString(transRelativePoint({
-          { 366, 487, 0x29aade },
-          { 365, 488, 0x000000 },
-          { 366, 488, 0x31aede },
-          { 364, 489, 0x000000 },
-          { 365, 489, 0x31aede },
-          { 364, 490, 0x000000 },
-          { 365, 490, 0x29aede },
+          { 286, 362, 0x31b6de },
+          { 285, 363, 0x000000 },
+          { 286, 363, 0x31b2d6 },
+          { 284, 364, 0x000000 },
+          { 285, 364, 0x31b2de },
+          { 284, 365, 0x000000 },
+          { 285, 365, 0x31b6de },
         }, basePoint))
         return {
           leftTop = leftTop,
@@ -105,17 +105,17 @@ return {
       end)(),
       -- 地图右边界
       rightLine = (function()
-        local leftTop = { 185, 155, }
+        local leftTop = { 950, 155, }
         local rightBotton = { 1899, 1022, }
-        local basePoint = { 1855, 403, 0x31aede }
+        local basePoint = { 1800, 297, 0x299ade }
         local posandcolor = transColorListToString(transRelativePoint({
-          { 1856, 403, 0x000000 },
-          { 1855, 404, 0x31aede },
-          { 1856, 404, 0x000000 },
-          { 1856, 405, 0x31aede },
-          { 1857, 405, 0x000000 },
-          { 1856, 406, 0x31b2de },
-          { 1857, 406, 0x000000 },
+          { 1801, 297, 0x000000 },
+          { 1800, 298, 0x299ee6 },
+          { 1801, 298, 0x000000 },
+          { 1801, 299, 0x299ae6 },
+          { 1802, 299, 0x000000 },
+          { 1801, 300, 0x299ae6 },
+          { 1802, 300, 0x000408 },
         }, basePoint))
         return {
           leftTop = leftTop,

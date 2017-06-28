@@ -179,16 +179,8 @@ table.filter = table.filter or function(target, func)
     if (func(value, key, target)) then
       table.insert(result, value)
     end
-    for k2, value in pairs(tabelement) do
-      if ((type(k2) == 'number') and (k2 <= length)) then
-      elseif (type(k2) == 'number') then
-        tab[tostring(k2)] = value
-      else
-        tab[k2] = value
-      end
-    end
   end
-  return tab
+  return target
 end
 
 table.unique = table.unique or function(target, path)

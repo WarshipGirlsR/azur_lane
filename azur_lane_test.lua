@@ -16,6 +16,7 @@ initLog('azur_lane', 1)
 
 require 'TableLib'
 require 'StringLib'
+require 'MathLib'
 require 'console'
 require 'KeepScreenHock'
 require 'DeviceOrientHock'

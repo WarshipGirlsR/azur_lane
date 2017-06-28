@@ -1,6 +1,8 @@
 [res]
 [lib]
 [file]
+MathLib.lua
+lfs.lua
 StringLib.lua
 BaseOperate__ImgInfo.lua
 azur_lane_test.lua
