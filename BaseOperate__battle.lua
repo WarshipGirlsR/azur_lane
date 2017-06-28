@@ -1,3 +1,5 @@
+local ImgInfo = require 'BaseOperate__ImgInfo'
+
 local battle = {}
 
 
@@ -209,6 +211,16 @@ battle.isMapPage = function()
   local result = multiColor(list)
   if (not __keepScreenState) then keepScreen(false) end
   return result
+end
+
+battle.scanMap = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine.findColorParam)) }
+  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bottonLine.findColorParam)) }
+  local leftLinePoint = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.leftLine.findColorParam)))
+  local rightLinePoint = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.rightLine.findColorParam)))
+  if (not __keepScreenState) then keepScreen(false) end
 end
 
 return battle

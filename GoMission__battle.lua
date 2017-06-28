@@ -133,7 +133,8 @@ local battleOnce = function(action, state)
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_MAP_PAGE') then
-      console.log('map page');
+      c.yield(sleepPromise(2000))
+      map.battle.scanMap()
     end
 
     return nil, state

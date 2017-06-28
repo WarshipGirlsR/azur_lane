@@ -1,6 +1,8 @@
 [res]
 [lib]
 [file]
+BaseOperate__ImgInfo.lua
+azur_lane_test.lua
 GoMission__battle.lua
 azur_lane.min.lua
 azur_lane.lua
