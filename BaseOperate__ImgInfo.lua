@@ -125,6 +125,24 @@ return {
           findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
         }
       end)(),
+      -- 我方舰队位置第一行
+      myFleet = (function()
+        local leftTop = { 185, 156, }
+        local rightBotton = { 1898, 791, }
+        local basePoint = { 818, 370, 0xe68e4a }
+        local posandcolor = transColorListToString(transRelativePoint({
+          { 829, 362, 0xde8a42 },
+          { 841, 352, 0xde8e4a },
+          { 853, 329, 0xd67573 },
+        }, basePoint))
+        return {
+          leftTop = leftTop,
+          rightBotton = rightBotton,
+          basePoint = basePoint,
+          posandcolor = posandcolor,
+          findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
+        }
+      end)(),
     },
   },
 }

@@ -213,57 +213,66 @@ battle.isMapPage = function()
   return result
 end
 
-battle.scanMap = function()
+-- 将地图移动到中心
+battle.moveMapToCenter = function()
   local __keepScreenState = keepScreenState
   if (not __keepScreenState) then keepScreen(true) end
 
-  while (true) do
-    keepScreen(true)
-    local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine.findColorParam)) }
-    local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bottonLine.findColorParam)) }
-    local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.leftLine.findColorParam)))
-    local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.rightLine.findColorParam)))
+  local isCenter = false
+  -- 扫描边界
+  keepScreen(true)
+  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine.findColorParam)) }
+  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bottonLine.findColorParam)) }
+  local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.leftLine.findColorParam)))
+  local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.rightLine.findColorParam)))
 
-    function getCenterPoint(topLinePoint, bottonLinePoint, pointList)
-      -- 获取左右边界的中间点
-      local Y = (topLinePoint[2] + bottonLinePoint[2]) / 2
-      Y = math.floor(Y)
-      local point1 = pointList[1] or { -1, -1 }
-      local point2 = pointList[#pointList] or { -1, -1 }
-      local X = (Y - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
-      X = math.tureNumber(X) or -1
-      X = math.floor(X)
-      return { X, Y }
-    end
-
-    local leftLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, leftLinePointList)
-    local rightLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, rightLinePointList)
-
-    -- 将地图移动到中心
-    -- 计算偏差
-    local moveVector = { 0, 0 }
-    if (topLinePoint[2] ~= -1) then
-      moveVector[2] = 379 - topLinePoint[2]
-    elseif (bottonLinePoint[2] ~= -1) then
-      moveVector[2] = 979 - bottonLinePoint[2]
-    end
-    if (leftLinePoint[1] ~= -1) then
-      moveVector[1] = 208 - leftLinePoint[1]
-    elseif (rightLinePoint[1] ~= -1) then
-      moveVector[1] = 1826 - rightLinePoint[1]
-    end
-    -- 移动地图
-    if ((math.abs(moveVector[1]) > 10) or (math.abs(moveVector[2]) > 10)) then
-      moveTo(540, 960, 540 + moveVector[1], 960 + moveVector[2], 10, 100)
-      mSleep(100)
-    else
-      break
-    end
+  function getCenterPoint(topLinePoint, bottonLinePoint, pointList)
+    -- 获取左右边界的中间点
+    local Y = (topLinePoint[2] + bottonLinePoint[2]) / 2
+    Y = math.floor(Y)
+    local point1 = pointList[1] or { -1, -1 }
+    local point2 = pointList[#pointList] or { -1, -1 }
+    local X = (Y - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
+    X = math.tureNumber(X) or -1
+    X = math.floor(X)
+    return { X, Y }
   end
 
+  local leftLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, leftLinePointList)
+  local rightLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, rightLinePointList)
 
+  -- 计算偏差
+  local moveVector = { 0, 0 }
+  if (topLinePoint[2] ~= -1) then
+    moveVector[2] = 379 - topLinePoint[2]
+  elseif (bottonLinePoint[2] ~= -1) then
+    moveVector[2] = 979 - bottonLinePoint[2]
+  end
+  if (leftLinePoint[1] ~= -1) then
+    moveVector[1] = 228 - leftLinePoint[1]
+  elseif (rightLinePoint[1] ~= -1) then
+    moveVector[1] = 1846 - rightLinePoint[1]
+  end
+  -- 将地图移动到中心
+  if ((math.abs(moveVector[1]) > 10) or (math.abs(moveVector[2]) > 10)) then
+    local moveMax = math.min(40, math.abs(moveVector[1]), math.abs(moveVector[2]))
+    moveTo(540, 960, 540 + moveVector[1], 960 + moveVector[2], moveMax, 100)
+  else
+    isCenter = true
+  end
+  if (not __keepScreenState) then keepScreen(false) end
+  return isCenter
+end
 
-  console.log('ok')
+-- 扫描我方舰队
+battle.scanMapScanMyFleet = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+
+  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
+
+  console.log(myFleetList)
+
   if (not __keepScreenState) then keepScreen(false) end
 end
 

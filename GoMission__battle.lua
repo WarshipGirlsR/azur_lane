@@ -104,7 +104,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
         { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel, 2000 },
-        { 'BATTLE_MAP_PAGE', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
@@ -132,9 +132,25 @@ local battleOnce = function(action, state)
       }))
       return makeAction(newstateTypes), state
 
-    elseif (action.type == 'BATTLE_MAP_PAGE') then
-      c.yield(sleepPromise(2000))
-      map.battle.scanMap()
+    elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_TO_CENTER') then
+
+      local isCenter = map.battle.moveMapToCenter()
+
+      if (isCenter) then
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'BATTLE_MAP_PAGE_SCAN_MAP', 'missionsGroup', map.battle.isMapPage },
+        }))
+        return makeAction(newstateTypes), state
+      end
+
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_MAP_PAGE_SCAN_MAP') then
+
+      map.battle.scanMapScanMyFleet()
     end
 
     return nil, state
