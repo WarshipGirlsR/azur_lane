@@ -457,7 +457,16 @@ battle.isVictoryPanel = function()
     { 901, 430, 0xf7c64a }, { 1082, 478, 0xffff5a },
     { 1350, 533, 0xef9e3a }, { 926, 864, 0xd6ced6 },
   }
-  local result = multiColor(list)
+  local list2 = {
+    { 559, 447, 0xe6a273 }, { 674, 451, 0xe6ae84 },
+    { 848, 469, 0xe6965a }, { 1092, 448, 0x6b2819 },
+    { 1179, 451, 0xefcaad }, { 1356, 467, 0x521c08 },
+    { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
+  }
+  local result = false
+  if (multiColor(list) or multiColor(list2)) then
+    result = true
+  end
   if (not __keepScreenState) then keepScreen(false) end
   return result
 end
