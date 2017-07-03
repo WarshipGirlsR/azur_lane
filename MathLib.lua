@@ -12,7 +12,7 @@ math.isInf = math.isInf or function(num)
   return false
 end
 
-math.tureNumber = math.tureNumber or function(num)
+math.trueNumber = math.trueNumber or function(num)
   if (type(num) ~= 'number') then
     return nil
   end

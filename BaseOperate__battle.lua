@@ -8,18 +8,11 @@ battle.isBattlePage = function()
   local __keepScreenState = keepScreenState
   if (not __keepScreenState) then keepScreen(true) end
   local list = {
-    { 14, 14, 0xe6e3ef },
-    { 184, 21, 0xf7ebbd },
-    { 213, 27, 0x292829 },
-    { 311, 12, 0x424142 },
-    { 797, 15, 0xeff3f7 },
-    { 262, 1008, 0xce1021 },
-    { 1080, 1018, 0xa4c6ef },
-    { 1165, 1009, 0x424552 },
-    { 1435, 920, 0x9496b5 },
-    { 1569, 1017, 0x292831 },
-    { 1722, 935, 0xffebde },
-    { 1812, 1022, 0x312d31 },
+    { 97, 17, 0xe6e3e6 }, { 560, 19, 0xeff3f7 },
+    { 772, 14, 0xeff3f7 }, { 1022, 44, 0x3a393a },
+    { 1334, 44, 0xffff9c }, { 1643, 46, 0xf792b5 },
+    { 180, 1009, 0xd62021 }, { 264, 1038, 0x6b1c21 },
+    { 1208, 1020, 0xf7f3f7 }, { 1569, 1037, 0x212431 },
   }
   local result = multiColor(list)
   if (not __keepScreenState) then keepScreen(false) end
@@ -199,14 +192,11 @@ battle.isMapPage = function()
   local __keepScreenState = keepScreenState
   if (not __keepScreenState) then keepScreen(true) end
   local list = {
-    { 97, 38, 0xd6dbd6 }, { 421, 43, 0x000000 },
-    { 428, 47, 0xdeebf7 }, { 458, 44, 0xf7f3ff },
-    { 557, 44, 0xefefff }, { 794, 36, 0xdedfde },
-    { 1051, 990, 0xc51019 }, { 1178, 1026, 0x631010 },
-    { 1088, 1015, 0xf7f7f7 }, { 1279, 997, 0x424142 },
-    { 1374, 1009, 0xf7fbf7 }, { 1425, 1011, 0x292829 },
-    { 1526, 1013, 0x212829 }, { 1611, 966, 0xc58142 },
-    { 1739, 995, 0xe6e7e6 }, { 1843, 1017, 0x6b4110 },
+    { 98, 48, 0xd6d7d6 }, { 748, 12, 0xeff3f7 },
+    { 1025, 49, 0x8c868c }, { 1342, 48, 0xefb64a },
+    { 1654, 45, 0xd62452 }, { 1058, 995, 0xbd0810 },
+    { 1184, 1032, 0x6b1019 }, { 1294, 990, 0x4a454a },
+    { 1683, 972, 0xde7910 }, { 1344, 989, 0xf7fbf7 },
   }
   local result = multiColor(list)
   if (not __keepScreenState) then keepScreen(false) end
@@ -233,7 +223,7 @@ battle.moveMapToCenter = function()
     local point1 = pointList[1] or { -1, -1 }
     local point2 = pointList[#pointList] or { -1, -1 }
     local X = (Y - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
-    X = math.tureNumber(X) or -1
+    X = math.trueNumber(X) or -1
     X = math.floor(X)
     return { X, Y }
   end
@@ -271,9 +261,278 @@ battle.scanMapScanMyFleet = function()
 
   local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
 
-  console.log(myFleetList)
+  if (not __keepScreenState) then keepScreen(false) end
+end
+
+-- 扫描终点
+battle.scanMapScanEndPoint = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+
+  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
 
   if (not __keepScreenState) then keepScreen(false) end
 end
 
+-- 检测是第几队
+battle.scanMapCheckFleetNum = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 304, 141, 0x4a5d52 },
+    { 319, 148, 0xefaa10 },
+    { 335, 138, 0x5a695a },
+    { 322, 96, 0xffefb5 },
+    { 305, 104, 0xffe7a4 },
+    { 335, 114, 0x637163 },
+  }
+  local result1 = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  if (result1) then
+    return 1
+  end
+  return 2
+end
+
+-- 点击到右下角位置（在boss没出现时）
+battle.clickToMapRightBotton = function()
+  tap(1777, 741, 100)
+end
+
+-- 检查是否在右下角位置
+battle.isFleetOnRightBotton = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+
+  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
+
+  local result = false
+  for _, value in ipairs(myFleetList) do
+    if (ImgInfo.inArea(value, { 1746, 430 }, { 1897, 686 })) then
+      result = true
+      break
+    end
+  end
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 寻找最近的敌人
+battle.findNearEnemyPointList = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+
+  local bossPointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)))
+  local enemyPoint = {}
+
+  if (#bossPointList > 0) then
+    enemyPoint = bossPointList[1]
+  else
+    local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
+    local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList1.findColorParam)))
+    local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
+    local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
+    local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
+    local myFleetListFirstPoint = myFleetList[1] or {}
+    local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
+    local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 167
+    local myFleetPoint = { myFleetPointX, myFleetPointY }
+    local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
+    enemyPoint = e
+  end
+
+  if (not __keepScreenState) then keepScreen(false) end
+  return enemyPoint
+end
+
+-- 检测敌方伏击面板
+battle.isAmbushedPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 369, 678, 0x527119 }, { 399, 671, 0x527521 },
+    { 428, 680, 0xfffbf7 }, { 803, 562, 0xf7ca3a },
+    { 955, 565, 0xffffff }, { 1055, 597, 0xffa619 },
+    { 1237, 540, 0xe6e7e6 }, { 1349, 568, 0xffffff },
+    { 1485, 593, 0xc5bebd }, { 1200, 685, 0x5a595a },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+battle.ambushedPanelClickAvoidBtn = function()
+  tap(1351, 564)
+end
+
+battle.moveToEnemy = function(point)
+  tap(point[1], point[2])
+end
+
+-- 检测敌方伏击面板
+battle.isReadyBattlePage = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 49, 103, 0x3a4552 }, { 1395, 198, 0xf7f3f7 },
+    { 1369, 523, 0xe6e7e6 }, { 1389, 901, 0xd6f3f7 },
+    { 1781, 998, 0x8ccece }, { 1613, 935, 0xffefbd },
+    { 1272, 361, 0x212429 }, { 135, 844, 0xefefef },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+battle.readyBattlePageClickBattle = function()
+  tap(1592, 952)
+end
+
+-- 检测是否在战斗中
+battle.isInBattlePage = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 91, 78, 0x313942 }, { 131, 51, 0x4a5963 },
+    { 307, 61, 0x4a5963 }, { 344, 47, 0xbdced6 },
+    { 312, 109, 0x313d42 }, { 1818, 40, 0xdedfde },
+    { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },
+    { 1860, 56, 0x292d29 },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 检测是否自动战斗
+battle.isAutoBattle = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 139, 70, 0x4a5963 }, { 146, 72, 0x424952 },
+    { 146, 79, 0x212d31 }, { 152, 87, 0x313d42 },
+    { 164, 92, 0xefebef }, { 167, 76, 0xf7f7f7 },
+    { 163, 67, 0xffffff }, { 158, 65, 0x4a555a },
+    { 155, 81, 0x314142 }, { 155, 83, 0xe6ebe6 },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return not result
+end
+
+-- 检测是否自动战斗确认面板
+battle.isAutoBattleConfirmPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 492, 239, 0xffe7ad }, { 542, 247, 0x212821 },
+    { 548, 249, 0xefc652 }, { 585, 265, 0xf7b208 },
+    { 600, 262, 0x424142 }, { 1164, 226, 0xeff3f7 },
+    { 849, 760, 0xffd24a }, { 946, 795, 0xffffff },
+    { 1004, 778, 0xffca3a }, { 1021, 775, 0xffffff },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 自动战斗确认面板点击知道了
+battle.isAutoBattleConfirmPanelClickOk = function()
+  tap(949, 779)
+end
+
+-- 战斗页面点击自动战斗
+battle.inBattlePageClickAutoBattle = function()
+  tap(208, 75)
+end
+
+-- 检测是否胜利界面
+battle.isVictoryPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 538, 403, 0xf7eb94 }, { 555, 445, 0xffdb52 },
+    { 679, 450, 0xf7df52 }, { 598, 468, 0x84818c },
+    { 592, 553, 0xe67d31 }, { 680, 540, 0xf79e42 },
+    { 901, 430, 0xf7c64a }, { 1082, 478, 0xffff5a },
+    { 1350, 533, 0xef9e3a }, { 926, 864, 0xd6ced6 },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 胜利面板点击继续
+battle.victoryPanelClickNext = function()
+  tap(952, 840)
+end
+
+-- 检测是否获得道具面板
+battle.isGetPropsPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 763, 212, 0xf7ae63 }, { 854, 168, 0xffffff },
+    { 958, 174, 0x845131 }, { 1054, 167, 0xf7f384 },
+    { 764, 242, 0xffaa42 }, { 861, 232, 0x7b2408 },
+    { 944, 240, 0xffffff }, { 1006, 268, 0xffdf3a },
+    { 1098, 277, 0xf7b629 }, { 969, 809, 0xffffff },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 获得道具面板点击继续
+battle.getPropsPanelClickNext = function()
+  tap(952, 840)
+end
+
+-- 检测是否获得船面板
+battle.isGetNewShipPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 64, 504, 0xefefff }, { 108, 539, 0x7b7d8c },
+    { 86, 658, 0xe6c2c5 }, { 91, 787, 0xe6d7ce },
+    { 83, 906, 0x3acee6 }, { 88, 948, 0xcecece },
+    { 1496, 852, 0xefefef }, { 1572, 909, 0xc5c2bd },
+    { 1543, 938, 0xeff3ef },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 获得船面板点击继续
+battle.getNewShipPanelClickNext = function()
+  tap(952, 840)
+end
+
+-- 检测是否获得经验面板
+battle.isGetExpPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 548, 297, 0x63656b }, { 658, 277, 0x63656b },
+    { 984, 274, 0x6b696b }, { 1260, 278, 0x6b696b },
+    { 1374, 289, 0x636563 }, { 248, 734, 0x424142 },
+    { 1294, 922, 0xbdbabd }, { 1363, 911, 0x4a494a },
+    { 1533, 912, 0xd6d2d6 }, { 1681, 926, 0xbdbab5 },
+    { 1587, 884, 0xe6ebe6 }, { 1599, 916, 0xffffff },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 获得道具面板点击继续
+battle.getExpPanelClickNext = function()
+  tap(1671, 914)
+end
+
+-- 点击返回主页
+battle.battlePageClickBackToHome = function()
+  tap(46, 37)
+end
 return battle

@@ -28,6 +28,44 @@ return {
     end
     return newTab
   end,
+  -- 检测点是否在两个点围围成的区域里
+  inArea = function(point, areaPoint1, areaPoint2)
+    local leftTop = {}
+    local rightBotton = {}
+    leftTop[1] = math.min(areaPoint1[1], areaPoint2[1])
+    leftTop[2] = math.min(areaPoint1[2], areaPoint2[2])
+    rightBotton[1] = math.max(areaPoint1[1], areaPoint2[1])
+    rightBotton[2] = math.max(areaPoint1[2], areaPoint2[2])
+    if ((point[1] < leftTop[1]) or (point[1] > rightBotton[1])) then
+      return false
+    end
+    if ((point[2] < leftTop[2]) or (point[2] > rightBotton[2])) then
+      return false
+    end
+    return true
+  end,
+  -- 寻找最近的两个点
+  findNearestPoint = function(pointList1, pointList2)
+    local nearPoint1
+    local nearPoint2
+    local distance = 0
+
+    function getDistance(point1, point2)
+      return math.sqrt(math.pow((point1[1] - point2[1]), 2) + math.pow((point1[1] - point2[1]), 2))
+    end
+
+    for _, value in ipairs(pointList1) do
+      for _, value2 in ipairs(pointList2) do
+        local newDistance = getDistance(value, value2)
+        if ((distance == 0) or (newDistance < distance)) then
+          nearPoint1 = value
+          nearPoint2 = value2
+          distance = newDistance
+        end
+      end
+    end
+    return nearPoint1, nearPoint2, distance
+  end,
   -- 图片数据
   battle = {
     -- 地图扫描
@@ -125,7 +163,7 @@ return {
           findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
         }
       end)(),
-      -- 我方舰队位置第一行
+      -- 我方舰队位置
       myFleet = (function()
         local leftTop = { 185, 156, }
         local rightBotton = { 1898, 791, }
@@ -134,6 +172,80 @@ return {
           { 829, 362, 0xde8a42 },
           { 841, 352, 0xde8e4a },
           { 853, 329, 0xd67573 },
+        }, basePoint))
+        return {
+          leftTop = leftTop,
+          rightBotton = rightBotton,
+          basePoint = basePoint,
+          posandcolor = posandcolor,
+          findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
+        }
+      end)(),
+      -- 敌方舰队位置(1星)
+      enemyList1 = (function()
+        local leftTop = { 185, 156 }
+        local rightBotton = { 1898, 855 }
+        local basePoint = { 849, 393, 0xe6b200 }
+        local posandcolor = transColorListToString(transRelativePoint({
+          { 858, 402, 0xd6c219 },
+          { 869, 402, 0xcebe19 },
+          { 877, 402, 0xcebe19 },
+        }, basePoint))
+        return {
+          leftTop = leftTop,
+          rightBotton = rightBotton,
+          basePoint = basePoint,
+          posandcolor = posandcolor,
+          findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
+        }
+      end)(),
+      -- 敌方舰队位置(2星)
+      enemyList2 = (function()
+        local leftTop = { 185, 156 }
+        local rightBotton = { 1898, 855 }
+        local basePoint = { 1248, 673, 0xe6a208 }
+        local posandcolor = transColorListToString(transRelativePoint({
+          { 1256, 679, 0xd6aa00 },
+          { 1271, 679, 0xe6a610 },
+          { 1288, 679, 0xdea208 },
+        }, basePoint))
+        return {
+          leftTop = leftTop,
+          rightBotton = rightBotton,
+          basePoint = basePoint,
+          posandcolor = posandcolor,
+          findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
+        }
+      end)(),
+      -- 敌方舰队位置(3星)
+      enemyList3 = (function()
+        local leftTop = { 185, 156 }
+        local rightBotton = { 1898, 855 }
+        local basePoint = { 834, 837, 0xbd3500 }
+        local posandcolor = transColorListToString(transRelativePoint({
+          { 841, 849, 0xb54110 },
+          { 853, 849, 0xbd3900 },
+          { 863, 849, 0xbd3900 },
+        }, basePoint))
+        return {
+          leftTop = leftTop,
+          rightBotton = rightBotton,
+          basePoint = basePoint,
+          posandcolor = posandcolor,
+          findColorParam = { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] },
+        }
+      end)(),
+      -- boss位置
+      bossPoint = (function()
+        local leftTop = { 281, 370 }
+        local rightBotton = { 1885, 925 }
+        local basePoint = { 1744, 872, 0xff4d52 }
+        local posandcolor = transColorListToString(transRelativePoint({
+          { 1803, 875, 0xff4d52 },
+          { 1769, 833, 0x313531 },
+          { 1775, 898, 0x6b0810 },
+          { 1807, 842, 0x292429 },
+          { 1743, 840, 0x313531 },
         }, basePoint))
         return {
           leftTop = leftTop,

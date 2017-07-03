@@ -5,7 +5,7 @@ local StepLable = {
   prefix = '',
 }
 
-fwShowWnd('steplabel', 300, 50, 300, 100, 0)
+fwShowWnd('steplabel', 350, 50, 300, 100, 0)
 
 StepLable.init = function(labelId)
   StepLable.labelId = labelId

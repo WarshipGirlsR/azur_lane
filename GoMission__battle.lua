@@ -18,6 +18,9 @@ local battleOnce = function(action, state)
     if (action.type == 'BATTLE_START') then
 
       state.battle.selectFleedCount = 0
+      -- 现在是否向右下角移动
+      state.battle.isMoveToRightBotton = true
+      state.battle.battleNum = 0
 
       if (#settings.battleChapter < 1) then
         stepLabel.setStepLabelContent('2-1.没有选中章节')
@@ -36,7 +39,7 @@ local battleOnce = function(action, state)
       map.home.clickBattleBtn()
       stepLabel.setStepLabelContent('2-3.等待出征页面')
 
-      local newstateTypes = c.yield(setScreenListeners(getComListener(), {
+      local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage },
       }))
@@ -134,11 +137,13 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_TO_CENTER') then
 
+      c.yield(sleepPromise(3000))
+      stepLabel.setStepLabelContent('2-11.移动地图到屏幕中心')
       local isCenter = map.battle.moveMapToCenter()
 
       if (isCenter) then
         local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_SCAN_MAP', 'missionsGroup', map.battle.isMapPage },
+          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage },
         }))
         return makeAction(newstateTypes), state
       end
@@ -148,9 +153,161 @@ local battleOnce = function(action, state)
       }))
       return makeAction(newstateTypes), state
 
-    elseif (action.type == 'BATTLE_MAP_PAGE_SCAN_MAP') then
+    elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_A_STEP') then
 
-      map.battle.scanMapScanMyFleet()
+      stepLabel.setStepLabelContent('2-12.移动一步')
+      if (map.battle.isFleetOnRightBotton() or (not state.battle.isMoveToRightBotton)) then
+
+        state.battle.isMoveToRightBotton = false
+
+        stepLabel.setStepLabelContent('2-13.寻找最近的敌人')
+        local enemyPoint = map.battle.findNearEnemyPointList()
+        if (enemyPoint) then
+          stepLabel.setStepLabelContent('2-13.移动到附近的敌人 ' .. table.join(enemyPoint, ', ') .. ' ')
+          map.battle.moveToEnemy(enemyPoint)
+          local newstateTypes = c.yield(setScreenListeners({
+            { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
+            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
+          }))
+          return makeAction(newstateTypes), state
+        end
+
+        return makeAction('BATTLE_MAP_PAGE_MOVE_A_STEP'), state
+      else
+        stepLabel.setStepLabelContent('2-13.移动到右下角')
+        map.battle.clickToMapRightBotton()
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
+          { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
+        }))
+        return makeAction(newstateTypes), state
+      end
+
+    elseif (action.type == 'BATTLE_MAP_PAGE_AMBUSHED_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.伏击面板')
+      map.battle.ambushedPanelClickAvoidBtn()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE') then
+
+      state.battle.battleNum = state.battle.battleNum + 1
+      stepLabel.setStepLabelContent('2-14.准备战斗页面')
+      map.battle.readyBattlePageClickBattle()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_IN_BATTLE_PAGE') then
+
+      stepLabel.setStepLabelContent('2-14.进入战斗页面')
+      stepLabel.setStepLabelContent('2-14.检测是否自动战斗')
+      local isAutoBattle = map.battle.isAutoBattle()
+      if (not isAutoBattle) then
+        map.battle.inBattlePageClickAutoBattle()
+      end
+      stepLabel.setStepLabelContent('2-14.等待胜利界面')
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.自动战斗确认面板点击确定')
+      map.battle.isAutoBattleConfirmPanelClickOk()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_VICTORY_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.胜利面板点击继续')
+      map.battle.victoryPanelClickNext()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_GET_PROPS_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.获得道具面板')
+      map.battle.getNewShipPanelClickNext()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_GET_NEW_SHIP_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.获得新船面板')
+      map.battle.getNewShipPanelClickNext()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_GET_EXP_PANEL') then
+
+      stepLabel.setStepLabelContent('2-14.获得经验面板')
+      map.battle.getExpPanelClickNext()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage },
+        { '', 'missionsGroup', map.home.isHome },
+      }))
+
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_CHAPTER_BACK_TO_HOME') then
+
+      stepLabel.setStepLabelContent('2-14.返回HOME')
+      map.battle.battlePageClickBackToHome()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 2000 },
+        { '', 'missionsGroup', map.home.isHome },
+      }))
+      return makeAction(newstateTypes), state
     end
 
     return nil, state
