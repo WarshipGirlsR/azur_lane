@@ -152,12 +152,14 @@ local battleOnce = function(action, state)
       if (isCenter) then
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage },
+          { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
         }))
         return makeAction(newstateTypes), state
       end
 
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
       }))
       return makeAction(newstateTypes), state
 
