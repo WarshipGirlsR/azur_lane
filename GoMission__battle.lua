@@ -181,7 +181,12 @@ local battleOnce = function(action, state)
           return makeAction(newstateTypes), state
         end
 
-        return makeAction('BATTLE_MAP_PAGE_MOVE_A_STEP'), state
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
+          { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
+        }))
+        return makeAction(newstateTypes), state
       else
         stepLabel.setStepLabelContent('2-15.移动到右下角')
         map.battle.clickToMapRightBotton()
