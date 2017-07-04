@@ -544,4 +544,26 @@ end
 battle.battlePageClickBackToHome = function()
   tap(46, 37)
 end
+
+-- 检测是否紧急委托面板
+battle.isUrgentEntrustmentPanel = function()
+  local __keepScreenState = keepScreenState
+  if (not __keepScreenState) then keepScreen(true) end
+  local list = {
+    { 482, 289, 0x212821 }, { 493, 288, 0xffce3a },
+    { 534, 293, 0x080808 }, { 567, 292, 0xf7c23a },
+    { 752, 302, 0x000000 }, { 1047, 301, 0xdedfde },
+    { 835, 737, 0xffca3a }, { 919, 740, 0xffffff },
+    { 977, 745, 0xefb231 }, { 1002, 736, 0xfff7f7 },
+  }
+  local result = multiColor(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 获得道具面板点击继续
+battle.urgentEntrustmentPanelClickOk = function()
+  tap(957, 739)
+end
+
 return battle

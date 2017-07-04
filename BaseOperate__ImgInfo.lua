@@ -22,9 +22,12 @@ end
 return {
   -- 基本方法
   toPoint = function(tab)
+    -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽
     local newTab = {}
-    for _, value in ipairs(tab) do
-      table.insert(newTab, { value.x, value.y })
+    local tabLength = #tab
+    for key = 1, tabLength do
+      newTab[key] = { tab[key].x, tab[key].y }
+      tab[key] = nil
     end
     return newTab
   end,
