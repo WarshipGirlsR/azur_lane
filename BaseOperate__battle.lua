@@ -109,8 +109,8 @@ battle.isSelectFleetPanel = function()
     { 508, 183, 0xf7ce5a }, { 547, 173, 0xefd29c },
     { 565, 195, 0xffba08 }, { 588, 197, 0x424542 },
     { 661, 200, 0x000000 }, { 1086, 198, 0xdedfe6 },
-    { 345, 243, 0x42414a }, { 1570, 237, 0x3a414a },
-    { 344, 909, 0x31353a }, { 1571, 911, 0x4a494a },
+    { 345, 243, 0x4a454a }, { 1570, 237, 0x3a4142 },
+    { 344, 909, 0x313942 }, { 1571, 911, 0x423d42 },
     { 1274, 816, 0xffdb52 }, { 1409, 837, 0xfffbf7 },
     { 1523, 873, 0xffa610 },
   }
@@ -124,25 +124,35 @@ battle.checkSelectedFleet = function(selectFleet)
   local __keepScreenState = keepScreenState
   if (not __keepScreenState) then keepScreen(true) end
 
-  local needFleet = {}
+  local needFleet = { false, false, false, false }
   for _, v in ipairs(selectFleet) do
     needFleet[v] = true
   end
 
   local list1 = {
-    { 371, 275, 0xffdf00 },
-    { 371, 337, 0xffdf00 },
-    { 371, 436, 0xffdf00 },
+    { 553, 835, 0xf7a23a },
   }
   local list2 = {
-    { 371, 582, 0xffdf00 },
-    { 371, 644, 0xffdf00 },
-    { 371, 719, 0xffdf00 },
+    { 760, 838, 0xf7a242 },
   }
-  local result1 = multiColor(list1)
-  local result2 = multiColor(list2)
+  local list3 = {
+    { 987, 839, 0xf7a242 },
+  }
+  local list4 = {
+    { 1203, 840, 0xefa23a },
+  }
+  local result = {
+    multiColor(list1) and true or false,
+    multiColor(list2) and true or false,
+    multiColor(list3) and true or false,
+    multiColor(list4) and true or false,
+  }
 
   local needChange = ''
+  for key, _ in ipairs(result) do
+    if (result[key]) then
+    end
+  end
   if (((needFleet[1]) and (not result1)) or ((needFleet[2]) and (not result2))) then
     -- 需要的舰队没选中
     needChange = 'selectedNeed'
