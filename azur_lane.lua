@@ -194,7 +194,7 @@ local settingTable = {
       {
         ['id'] = 'battleFleet',
         ['type'] = 'CheckBoxGroup',
-        ['list'] = '1队,2队',
+        ['list'] = '1队,2队,3队,4队',
         ['select'] = '0@1',
       },
       {
@@ -306,7 +306,7 @@ local __tmp = (function(settings)
   -- 选择舰队
   settings.battleFleet = (function(battleFleet)
     local tempArr = strSplit(battleFleet, '@')
-    local list = transStrToTable({ 1, 2 })
+    local list = transStrToTable({ 1, 2, 3, 4 })
     local result = {}
     for _, v in ipairs(tempArr) do
       if (type(list[v]) == 'number') then

@@ -91,55 +91,26 @@ local battleOnce = function(action, state)
       state.battle.selectFleedCount = state.battle.selectFleedCount + 1
 
       stepLabel.setStepLabelContent('2-8.检测已经选择的舰队')
-      local selectedFleet, needChange = map.battle.checkSelectedFleet(settings.battleFleet)
-      state.selectedFleet = selectedFleet
-
-      if ((needChange == 'selectedNeed') and (state.battle.selectFleedCount < 3)) then
+      local res, selectList, unselectList = map.battle.checkSelectedFleet(settings.battleFleet)
+      if not res then
+        stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ','))
+        map.battle.clickFleet(selectList)
+        map.battle.clickFleet(unselectList)
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
           { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
-          { 'BATTLE_SELECT_FLEET_PANEL_SELECT_NEED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel }
-        }))
-        return makeAction(newstateTypes), state
-      elseif ((needChange == 'unSelectedNoNeed') and (state.battle.selectFleedCount < 3)) then
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-          { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
-          { 'BATTLE_SELECT_FLEET_PANEL_UNSELECT_NONEED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel }
+          { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel },
         }))
         return makeAction(newstateTypes), state
       end
 
+      stepLabel.setStepLabelContent('2-10.已选择舰队' .. table.concat(settings.battleFleet, ','))
       map.battle.clickGotoMapBtn()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
         { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel, 2000 },
         { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
-      }))
-      return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_SELECT_FLEET_PANEL_SELECT_NEED_FLEET') then
-
-      stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ',') .. ' 队')
-      map.battle.selectNeedFleet(settings.battleFleet, state.selectedFleet)
-
-      local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-        { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
-        { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel },
-      }))
-      return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_SELECT_FLEET_PANEL_UNSELECT_NONEED_FLEET') then
-
-      stepLabel.setStepLabelContent('2-10.选择舰队 ' .. table.concat(settings.battleFleet, ',') .. ' 队')
-      map.battle.unselectNoNeedFleet(settings.battleFleet, state.selectedFleet)
-
-      local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-        { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
-        { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel },
       }))
       return makeAction(newstateTypes), state
 
