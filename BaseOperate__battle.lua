@@ -368,10 +368,10 @@ battle.findNearEnemyPointList = function()
     local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
     local myFleetListFirstPoint = myFleetList[1] or {}
     local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
-    local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 167
+    local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
     local myFleetPoint = { myFleetPointX, myFleetPointY }
     local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
-    enemyPoint = e
+    enemyPoint = { e[1] + 100, e[2] + 30 }
   end
 
   if not __keepScreenState then keepScreen(false) end
