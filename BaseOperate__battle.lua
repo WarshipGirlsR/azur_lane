@@ -356,7 +356,7 @@ battle.findNearEnemyPointList = function()
   if not __keepScreenState then keepScreen(true) end
 
   local bossPointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)))
-  local enemyPoint = {}
+  local enemyPoint
 
   if (#bossPointList > 0) then
     enemyPoint = bossPointList[1]
@@ -371,7 +371,9 @@ battle.findNearEnemyPointList = function()
     local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
     local myFleetPoint = { myFleetPointX, myFleetPointY }
     local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
-    enemyPoint = { e[1] + 100, e[2] + 30 }
+    if e then
+      enemyPoint = { (math.trueNumber(e[1]) or 0) + 100, (math.trueNumber(e[2]) or 0) + 30 }
+    end
   end
 
   if not __keepScreenState then keepScreen(false) end
