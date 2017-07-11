@@ -165,7 +165,7 @@ local settingTable = {
     {
       {
         ['type'] = 'Label',
-        ['text'] = '出征设置',
+        ['text'] = '出击设置',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
@@ -186,16 +186,29 @@ local settingTable = {
       },
       {
         ['type'] = 'Label',
-        ['text'] = '舰队',
+        ['text'] = 'boss舰队',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
       },
       {
-        ['id'] = 'battleFleet',
-        ['type'] = 'CheckBoxGroup',
+        ['id'] = 'battleFleetBoss',
+        ['type'] = 'RadioGroup',
         ['list'] = '1队,2队,3队,4队',
-        ['select'] = '0@1',
+        ['select'] = '0',
+      },
+      {
+        ['type'] = 'Label',
+        ['text'] = '小兵舰队',
+        ['size'] = 15,
+        ['align'] = 'left',
+        ['color'] = '0,0,0',
+      },
+      {
+        ['id'] = 'battleFleetSoldier',
+        ['type'] = 'RadioGroup',
+        ['list'] = '无,1队,2队,3队,4队',
+        ['select'] = '0',
       },
       {
         ['type'] = 'Label',
@@ -303,18 +316,25 @@ local __tmp = (function(settings)
     end
     return result
   end)(settings.battleChapter)
-  -- 选择舰队
-  settings.battleFleet = (function(battleFleet)
-    local tempArr = strSplit(battleFleet, '@')
+  -- 选择Boss舰队
+  settings.battleFleet = {}
+  settings.battleFleetBoss = (function(battleFleetBoss)
     local list = transStrToTable({ 1, 2, 3, 4 })
-    local result = {}
-    for _, v in ipairs(tempArr) do
-      if (type(list[v]) == 'number') then
-        table.insert(result, list[v])
-      end
+    return list[battleFleetBoss] or 1
+  end)(settings.battleFleetBoss)
+  settings.battleFleet = { settings.battleFleetBoss }
+  -- 选择小兵舰队
+  settings.battleFleetSoldier = (function(battleFleetSoldier)
+    local list = transStrToTable({ 0, 1, 2, 3, 4 })
+    local result = list[battleFleetSoldier] or 0
+    if settings.battleFleetBoss == result then
+      result = 0
     end
     return result
-  end)(settings.battleFleet)
+  end)(settings.battleFleetSoldier)
+  if settings.battleFleetSoldier > 0 then
+    settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetSoldier }
+  end
   -- 迂回战术
   settings.battleRoundabout = (function(battleRoundabout)
     local list = transStrToTable({ true, false, })
