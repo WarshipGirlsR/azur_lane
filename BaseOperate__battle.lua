@@ -327,13 +327,13 @@ battle.scanMapCheckFleetNum = function()
   return 2
 end
 
--- 点击到右下角位置（在boss没出现时）
-battle.clickToMapRightBotton = function()
+-- 点击到boss出现区域
+battle.clickToMapBossArea = function()
   tap(1777, 741, 100)
 end
 
 -- 检查是否在右下角位置
-battle.isFleetOnRightBotton = function()
+battle.isFleetOnBossArea = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
@@ -348,6 +348,48 @@ battle.isFleetOnRightBotton = function()
   end
   if not __keepScreenState then keepScreen(false) end
   return result
+end
+
+battle.isSelectedFleed = function(fleet)
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list
+  if fleet == 1 then
+    list = {
+      { 301, 101, 0x424542 }, { 322, 96, 0xffefbd },
+      { 311, 119, 0x424142 }, { 321, 132, 0xf7be21 },
+      { 328, 145, 0x5a4d3a }, { 310, 144, 0x4a494a },
+      { 320, 146, 0xf7ba08 }, { 321, 125, 0xf7c642 },
+    }
+  elseif fleet == 2 then
+    list = {
+      { 305, 108, 0xffe39c }, { 320, 103, 0x635142 },
+      { 331, 108, 0xf7df9c }, { 338, 108, 0x424142 },
+      { 318, 126, 0xefce4a }, { 323, 137, 0x6b5131 },
+      { 307, 147, 0xf7b608 }, { 330, 147, 0xf7b600 },
+    }
+  elseif fleet == 3 then
+    list = {
+      { 306, 107, 0xf7e39c }, { 309, 133, 0xf7be21 },
+      { 318, 119, 0xefc663 }, { 313, 117, 0x525142 },
+      { 302, 113, 0x524131 }, { 303, 127, 0x52514a },
+      { 331, 146, 0xefba00 }, { 335, 103, 0xf7e7a4 },
+    }
+  elseif fleet == 4 then
+    list = {
+      { 321, 98, 0xf7e7ad }, { 333, 135, 0xffba10 },
+      { 327, 147, 0xefba21 }, { 303, 136, 0xffba10 },
+      { 314, 126, 0x4a453a }, { 298, 130, 0x524529 },
+      { 338, 135, 0x42413a }, { 322, 90, 0x424142 },
+    }
+  end
+  local result = multiColor(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+battle.clickSwitchFleetBtn = function()
+  tap(1426, 1003, 100)
 end
 
 -- 寻找最近的敌人
@@ -366,7 +408,7 @@ battle.findNearEnemyPointList = function()
     local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
     local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
     local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-    local myFleetListFirstPoint = myFleetList[1] or {}
+    local myFleetListFirstPoint = myFleetList[#myFleetList] or {}
     local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
     local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
     local myFleetPoint = { myFleetPointX, myFleetPointY }
