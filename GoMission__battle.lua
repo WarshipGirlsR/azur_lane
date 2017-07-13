@@ -23,6 +23,8 @@ local battleOnce = function(action, state)
       state.battle.battleNum = 0
       state.battle.battleWithConvoyNum = 0
       state.battle.battleFromState = ''
+      -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
+      state.battle.changeFleetNum = 0
 
       if (#settings.battleChapter < 1) then
         stepLabel.setStepLabelContent('2-1.没有选中章节')
@@ -142,20 +144,42 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_A_STEP') then
 
-      stepLabel.setStepLabelContent('2-12.移动一步')
-      if state.battle.isBossFleetInBossArea or map.battle.isFleetOnBossArea() then
+      if map.battle.isBossOnMap() then
+        stepLabel.setStepLabelContent('2-12.移动到Boss')
+        local res = map.battle.isSelectedFleed(settings.battleFleet[1])
+        if (not res) and (state.battle.changeFleetNum < 4) then
+          local newstateTypes = c.yield(setScreenListeners({
+            { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
+          }))
+          return makeAction(newstateTypes), state
+        end
+        stepLabel.setStepLabelContent('2-13.寻找boss')
+        local bossPoint = map.battle.findBossPoint()
+        if (bossPoint) then
+          stepLabel.setStepLabelContent('2-14.移动到附近的敌人 ' .. table.join(bossPoint, ', ') .. ' ')
+          map.battle.moveToEnemy(bossPoint)
+          local newstateTypes = c.yield(setScreenListeners({
+            { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 3000 },
+            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
+            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
+          }))
+          return makeAction(newstateTypes), state
+        end
+
+      elseif state.battle.isBossFleetInBossArea or map.battle.isFleetOnBossArea() then
+
         state.battle.isBossFleetInBossArea = true
-        if settings.battleFleet[2] and (not map.battle.isSelectedFleed(settings.battleFleet[2])) then
+        if settings.battleFleet[2] and (not map.battle.isSelectedFleed(settings.battleFleet[2])) and (state.battle.changeFleetNum < 4) then
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET', 'missionsGroup', map.battle.isMapPage },
           }))
           return makeAction(newstateTypes), state
         end
 
-        stepLabel.setStepLabelContent('2-13.寻找最近的敌人')
+        stepLabel.setStepLabelContent('2-15.寻找最近的敌人')
         local enemyPoint = map.battle.findNearEnemyPointList()
         if (enemyPoint) then
-          stepLabel.setStepLabelContent('2-14.移动到附近的敌人 ' .. table.join(enemyPoint, ', ') .. ' ')
+          stepLabel.setStepLabelContent('2-16.移动到附近的敌人 ' .. table.join(enemyPoint, ', ') .. ' ')
           map.battle.moveToEnemy(enemyPoint)
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 3000 },
@@ -171,10 +195,12 @@ local battleOnce = function(action, state)
           { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage },
         }))
         return makeAction(newstateTypes), state
+
       else
-        stepLabel.setStepLabelContent('2-15.移动到Boss区域')
+
+        stepLabel.setStepLabelContent('2-17移动到Boss区域')
         local res = map.battle.isSelectedFleed(settings.battleFleet[1])
-        if not res then
+        if (not res) and (state.battle.changeFleetNum < 4) then
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
           }))
@@ -191,11 +217,12 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET') then
 
-      stepLabel.setStepLabelContent('2-15.选择boss舰队' .. settings.battleFleet[1])
+      stepLabel.setStepLabelContent('2-18.选择boss舰队' .. settings.battleFleet[1])
       map.battle.clickSwitchFleetBtn()
       local res = map.battle.isSelectedFleed(settings.battleFleet[1])
-      if not res then
-        stepLabel.setStepLabelContent('2-15.选择boss舰队失败，再来一次')
+      if (not res) and (state.battle.changeFleetNum < 4) then
+        state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+        stepLabel.setStepLabelContent('2-19.选择boss舰队失败，再来一次')
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
         }))
@@ -208,13 +235,14 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET') then
 
-      stepLabel.setStepLabelContent('2-15.选择小兵舰队' .. settings.battleFleet[2])
+      stepLabel.setStepLabelContent('2-20.选择小兵舰队' .. settings.battleFleet[2])
       map.battle.clickSwitchFleetBtn()
       local res = map.battle.isSelectedFleed(settings.battleFleet[2])
-      if not res then
-        stepLabel.setStepLabelContent('2-15.选择小兵舰队失败，再来一次')
+      if (not res) and (state.battle.changeFleetNum < 4) then
+        state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+        stepLabel.setStepLabelContent('2-21.选择小兵舰队失败，再来一次')
         local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+          { 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET', 'missionsGroup', map.battle.isMapPage },
         }))
         return makeAction(newstateTypes), state
       end
@@ -226,7 +254,7 @@ local battleOnce = function(action, state)
     elseif (action.type == 'BATTLE_MAP_PAGE_AMBUSHED_PANEL') then
 
       state.battle.battleFromState = 'BATTLE_MAP_PAGE_AMBUSHED_PANEL'
-      stepLabel.setStepLabelContent('2-16.伏击面板')
+      stepLabel.setStepLabelContent('2-22.伏击面板')
       map.battle.ambushedPanelClickAvoidBtn()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
@@ -242,12 +270,28 @@ local battleOnce = function(action, state)
         state.battle.battleWithConvoyNum = state.battle.battleWithConvoyNum + 1
       end
       state.battle.battleNum = state.battle.battleNum + 1
-      stepLabel.setStepLabelContent('2-17.准备战斗页面')
+      stepLabel.setStepLabelContent('2-23.准备战斗页面')
       map.battle.readyBattlePageClickBattle()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
         { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage, 2000 },
+        { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isAutoBattle, 2000 },
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
+        { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_AUTO_BATTLE_PANEL') then
+
+      stepLabel.setStepLabelContent('2-24.自动战斗提示面板')
+      map.battle.inBattlePageClickAutoBattle()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
+        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage },
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
@@ -257,13 +301,13 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_IN_BATTLE_PAGE') then
 
-      stepLabel.setStepLabelContent('2-18.进入战斗页面')
-      stepLabel.setStepLabelContent('2-19.检测是否自动战斗')
+      stepLabel.setStepLabelContent('2-25.进入战斗页面')
+      stepLabel.setStepLabelContent('2-26.检测是否自动战斗')
       local isAutoBattle = map.battle.isAutoBattle()
       if (not isAutoBattle) then
         map.battle.inBattlePageClickAutoBattle()
       end
-      stepLabel.setStepLabelContent('2-20.等待胜利界面')
+      stepLabel.setStepLabelContent('2-27.等待胜利界面')
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel },
@@ -277,7 +321,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL') then
 
-      stepLabel.setStepLabelContent('2-21.自动战斗确认面板点击确定')
+      stepLabel.setStepLabelContent('2-28.自动战斗确认面板点击确定')
       map.battle.isAutoBattleConfirmPanelClickOk()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
@@ -307,7 +351,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_GET_PROPS_PANEL') then
 
-      stepLabel.setStepLabelContent('2-23.获得道具面板')
+      stepLabel.setStepLabelContent('2-29.获得道具面板')
       map.battle.getNewShipPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
@@ -322,7 +366,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_GET_NEW_SHIP_PANEL') then
 
-      stepLabel.setStepLabelContent('2-24.获得新船面板')
+      stepLabel.setStepLabelContent('2-30.获得新船面板')
       map.battle.getNewShipPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
@@ -337,7 +381,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_GET_EXP_PANEL') then
 
-      stepLabel.setStepLabelContent('2-25.获得经验面板')
+      stepLabel.setStepLabelContent('2-31.获得经验面板')
       map.battle.getExpPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
@@ -354,7 +398,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_URGENT_ENTRUSTMENT_PANEL') then
 
-      stepLabel.setStepLabelContent('2-26.紧急委托通知')
+      stepLabel.setStepLabelContent('2-32.紧急委托通知')
       map.battle.urgentEntrustmentPanelClickOk()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
@@ -366,7 +410,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_CHAPTER_BACK_TO_HOME') then
 
-      stepLabel.setStepLabelContent('2-27.返回HOME')
+      stepLabel.setStepLabelContent('2-33.返回HOME')
       map.battle.battlePageClickBackToHome()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 2000 },

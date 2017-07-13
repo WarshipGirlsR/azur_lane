@@ -396,30 +396,41 @@ end
 battle.findNearEnemyPointList = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-
-  local bossPointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)))
   local enemyPoint
-
-  if (#bossPointList > 0) then
-    enemyPoint = bossPointList[1]
-  else
-    local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
-    local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList1.findColorParam)))
-    local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
-    local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
-    local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-    local myFleetListFirstPoint = myFleetList[#myFleetList] or {}
-    local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
-    local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
-    local myFleetPoint = { myFleetPointX, myFleetPointY }
-    local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
-    if e then
-      enemyPoint = { (math.trueNumber(e[1]) or 0) + 100, (math.trueNumber(e[2]) or 0) + 30 }
-    end
+  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
+  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList1.findColorParam)))
+  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
+  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
+  local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
+  local myFleetListFirstPoint = myFleetList[#myFleetList] or {}
+  local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
+  local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
+  local myFleetPoint = { myFleetPointX, myFleetPointY }
+  local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
+  if e then
+    enemyPoint = { (math.trueNumber(e[1]) or 0) + 100, (math.trueNumber(e[2]) or 0) + 30 }
   end
 
   if not __keepScreenState then keepScreen(false) end
   return enemyPoint
+end
+
+-- 检测boss是否在地图上
+battle.isBossOnMap = function()
+  local bossPointList = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)) }
+  if (bossPointList[1] > -1) and (bossPointList[2] > -1) then
+    return true
+  end
+  return false
+end
+
+-- 检测boss位置
+battle.findBossPoint = function()
+  local bossPointList = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)) }
+  if (bossPointList[1] > -1) and (bossPointList[2] > -1) then
+    return bossPointList
+  end
+  return nil
 end
 
 -- 检测敌方伏击面板
