@@ -276,9 +276,12 @@ battle.moveMapToCenter = function()
   elseif (rightLinePoint[1] ~= -1) then
     moveVector[1] = 1846 - rightLinePoint[1]
   end
+
   -- 将地图移动到中心
   if ((math.abs(moveVector[1]) > 10) or (math.abs(moveVector[2]) > 10)) then
     local moveMax = math.min(40, math.abs(moveVector[1]), math.abs(moveVector[2]))
+    moveMax = math.abs(moveMax)
+    moveMax = math.max(1, moveMax)
     moveTo(540, 960, 540 + moveVector[1], 960 + moveVector[2], moveMax, 100)
   else
     isCenter = true
