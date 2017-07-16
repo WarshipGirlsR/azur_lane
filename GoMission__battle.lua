@@ -169,7 +169,7 @@ local battleOnce = function(action, state)
 
         state.battle.isBossFleetInBossArea = true
         stepLabel.setStepLabelContent('2-15.切换小兵舰队')
-        if (settings.battleFleet[2] > 0) and (not map.battle.isSelectedFleed(settings.battleFleet[2])) and (state.battle.changeFleetNum < 4) then
+        if (settings.battleFleet[2]) and (settings.battleFleet[2] > 0) and (not map.battle.isSelectedFleed(settings.battleFleet[2])) and (state.battle.changeFleetNum < 4) then
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET', 'missionsGroup', map.battle.isMapPage },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
