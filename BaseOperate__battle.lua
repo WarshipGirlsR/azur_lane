@@ -12,8 +12,7 @@ battle.isBattlePage = function()
     { 307, 12, 0x424542 }, { 1024, 38, 0x313131 },
     { 1333, 40, 0xffef63 }, { 1645, 37, 0xff4573 },
     { 21, 144, 0xf7f7f7 }, { 31, 162, 0xf7fbf7 },
-    { 114, 151, 0xf7f7f7 }, { 1185, 1022, 0xf7f3f7 },
-    { 1493, 1017, 0xf7f7f7 }, { 1797, 1017, 0xf7f3f7 },
+    { 114, 151, 0xf7f7f7 },
     { 182, 20, 0xfff3c5 }, { 178, 35, 0xffc642 },
     { 210, 28, 0x3a393a }, { 219, 32, 0xffd25a },
     { 255, 30, 0xffdb73 }, { 244, 42, 0x3a393a },
@@ -314,20 +313,46 @@ end
 battle.scanMapCheckFleetNum = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-  local list = {
-    { 304, 141, 0x4a5d52 },
-    { 319, 148, 0xefaa10 },
-    { 335, 138, 0x5a695a },
-    { 322, 96, 0xffefb5 },
-    { 305, 104, 0xffe7a4 },
-    { 335, 114, 0x637163 },
+  local list1 = {
+    { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },
+    { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },
+    { 311, 139, 0x424142 }, { 319, 152, 0x424142 },
+    { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },
+    { 312, 109, 0xf7e39c },
   }
-  local result1 = multiColor(list)
-  if not __keepScreenState then keepScreen(false) end
-  if (result1) then
-    return 1
+  local list2 = {
+    { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },
+    { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },
+    { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },
+    { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },
+    { 324, 138, 0x424142 }, { 337, 144, 0x424142 },
+  }
+  local list3 = {
+    { 302, 110, 0x524531 }, { 320, 106, 0x424542 },
+    { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },
+    { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },
+    { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },
+    { 320, 140, 0x424542 }, { 338, 139, 0x424142 },
+  }
+  local list4 = {
+    { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },
+    { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },
+    { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },
+    { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },
+    { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },
+  }
+  local result = 1
+  if multiColor(list1) then
+    result = 1
+  elseif multiColor(list2) then
+    result = 2
+  elseif multiColor(list3) then
+    result = 3
+  elseif multiColor(list4) then
+    result = 4
   end
-  return 2
+  if not __keepScreenState then keepScreen(false) end
+  return result
 end
 
 -- 点击到boss出现区域
@@ -359,31 +384,35 @@ battle.isSelectedFleed = function(fleet)
   local list
   if fleet == 1 then
     list = {
-      { 301, 101, 0x424542 }, { 322, 96, 0xffefbd },
-      { 311, 119, 0x424142 }, { 321, 132, 0xf7be21 },
-      { 328, 145, 0x5a4d3a }, { 310, 144, 0x4a494a },
-      { 320, 146, 0xf7ba08 }, { 321, 125, 0xf7c642 },
+      { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },
+      { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },
+      { 311, 139, 0x424142 }, { 319, 152, 0x424142 },
+      { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },
+      { 312, 109, 0xf7e39c },
     }
   elseif fleet == 2 then
     list = {
-      { 305, 108, 0xffe39c }, { 320, 103, 0x635142 },
-      { 331, 108, 0xf7df9c }, { 338, 108, 0x424142 },
-      { 318, 126, 0xefce4a }, { 323, 137, 0x6b5131 },
-      { 307, 147, 0xf7b608 }, { 330, 147, 0xf7b600 },
+      { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },
+      { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },
+      { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },
+      { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },
+      { 324, 138, 0x424142 }, { 337, 144, 0x424142 },
     }
   elseif fleet == 3 then
     list = {
-      { 306, 107, 0xf7e39c }, { 309, 133, 0xf7be21 },
-      { 318, 119, 0xefc663 }, { 313, 117, 0x525142 },
-      { 302, 113, 0x524131 }, { 303, 127, 0x52514a },
-      { 331, 146, 0xefba00 }, { 335, 103, 0xf7e7a4 },
+      { 302, 110, 0x524531 }, { 320, 106, 0x424542 },
+      { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },
+      { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },
+      { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },
+      { 320, 140, 0x424542 }, { 338, 139, 0x424142 },
     }
   elseif fleet == 4 then
     list = {
-      { 321, 98, 0xf7e7ad }, { 333, 135, 0xffba10 },
-      { 327, 147, 0xefba21 }, { 303, 136, 0xffba10 },
-      { 314, 126, 0x4a453a }, { 298, 130, 0x524529 },
-      { 338, 135, 0x42413a }, { 322, 90, 0x424142 },
+      { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },
+      { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },
+      { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },
+      { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },
+      { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },
     }
   end
   local result = multiColor(list)
