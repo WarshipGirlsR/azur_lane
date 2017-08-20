@@ -1,6 +1,7 @@
 [res]
 [lib]
 [file]
+BaseOperate__maps__utils.lua
 GetColor.lua
 CheckColor.lua
 azur_lane_test.lua
@@ -25,7 +26,7 @@ EventQuery.lua
 DeviceOrientHock.lua
 console.lua
 Co.lua
-BaseOperate__maps3-4.lua
+BaseOperate__maps__map3-4.lua
 BaseOperate__ImgInfo.lua
 BaseOperate__home.lua
 BaseOperate__battle.lua
