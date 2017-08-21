@@ -43,17 +43,11 @@ baseMap.enemyPosition = {};
 baseMap.positionToPointMap = mapUtils.getPositionToPointMap(baseMap)
 -- 输入一个格子转换成屏幕坐标
 baseMap.positionToPoint = function(position)
-  mapUtils.positionToPoint(position, baseMap.positionToPointMap)
+  return mapUtils.positionToPoint(position, baseMap.positionToPointMap)
 end
--- 每个格子的左上角坐标与格子的映射
--- 格式
--- crossingsPointMap = {
---   { position = { 1, 1 }, point = { 300, 350 } },
--- }
-baseMap.crossingsPointMap = mapUtils.getCrossingsPointMap()
 -- 输入一个坐标转换成位置
 baseMap.pointToPosition = function(point)
-  mapUtils.pointToPosition(point, baseMap.crossingsPointMap)
+  return mapUtils.pointToPosition(point, baseMap.crossingsPointMap)
 end
 
 function copyMap()
@@ -70,10 +64,7 @@ function copyMap()
 end
 
 function scanMap()
+  return mapUtils.scanMap(baseMap)
 end
 
-return {
-  height = 4,
-  width = 8,
-  baseMap = baseMap,
-}
+return baseMap
