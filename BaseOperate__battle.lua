@@ -29,6 +29,37 @@ battle.clickBackToHomeBtn = function()
   tap(98, 1016, 100)
 end
 
+--  是否不在困难模式
+battle.isNotHardMode = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 179, 1004, 0xbd0c10 },
+    { 274, 1028, 0x631419 },
+  }
+  local result = multiColor(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+--  是否在困难模式
+battle.isHardMode = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 182, 1009, 0x082d73 },
+    { 277, 1036, 0x102042 },
+  }
+  local result = multiColor(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+-- 切换困难模式按钮
+battle.clickSwitchHardModeBtn = function()
+  tap(202, 1010, 100)
+end
+
 -- 移动到m章节
 battle.moveToChapter = function(chapter)
   local chapterArr = strSplit(chapter, "-")
@@ -41,9 +72,9 @@ battle.moveToChapter = function(chapter)
     { 109, 577, 0xdedbde },
   }
   -- 先移到第一章
-  for i = 1, 8 do
+  for i = 1, 9 do
     tap(90, 540, 100)
-    mSleep(200)
+    mSleep(500)
     if not multiColor(leftButton) then
       break
     end
@@ -53,6 +84,7 @@ battle.moveToChapter = function(chapter)
     tap(1826, 540, 100)
     mSleep(200)
   end
+  mSleep(200)
 
   if (chapter == '1-1') then
     tap(227, 687, 100)
@@ -79,11 +111,45 @@ battle.moveToChapter = function(chapter)
   elseif (chapter == '3-4') then
     tap(923, 540, 100)
   elseif (chapter == '4-1') then
-    tap(356, 454, 100)
+    tap(1173, 432, 100)
   elseif (chapter == '4-2') then
     tap(632, 705, 100)
   elseif (chapter == '4-3') then
     tap(1235, 822, 100)
+  elseif (chapter == '4-4') then
+    tap(1235, 822, 100)
+  elseif (chapter == '5-1') then
+    tap(363, 544, 100)
+  elseif (chapter == '5-2') then
+    tap(1285, 803, 100)
+  elseif (chapter == '5-3') then
+    tap(1104, 549, 100)
+  elseif (chapter == '5-4') then
+    tap(884, 318, 100)
+  elseif (chapter == '6-1') then
+    tap(1373, 746, 100)
+  elseif (chapter == '6-2') then
+    tap(1055, 515, 100)
+  elseif (chapter == '6-3') then
+    tap(632, 317, 100)
+  elseif (chapter == '6-4') then
+    tap(443, 643, 100)
+  elseif (chapter == '7-1') then
+    tap(308, 725, 100)
+  elseif (chapter == '7-2') then
+    tap(688, 270, 100)
+  elseif (chapter == '7-3') then
+    tap(1234, 425, 100)
+  elseif (chapter == '7-4') then
+    tap(1416, 674, 100)
+  elseif (chapter == '8-1') then
+    tap(476, 343, 100)
+  elseif (chapter == '8-2') then
+    tap(309, 604, 100)
+  elseif (chapter == '8-3') then
+    tap(662, 852, 100)
+  elseif (chapter == '8-4') then
+    tap(1353, 733, 100)
   end
 end
 
@@ -133,6 +199,35 @@ battle.isSelectFleetPanel = function()
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
   return result
+end
+
+--  是否在困难选择舰队面板
+battle.isHardSelectFleetPanel = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 439, 165, 0x525552 }, { 1556, 174, 0xeff3f7 },
+    { 1721, 188, 0xadaaad }, { 1720, 901, 0x3a3531 },
+    { 185, 908, 0x312d31 }, { 167, 161, 0x292429 },
+
+    { 1415, 826, 0xf7df4a }, { 1489, 855, 0xffca3a },
+    { 1515, 853, 0xc5be9c }, { 1549, 855, 0xffffff },
+    { 1604, 860, 0x9c814a }, { 1646, 864, 0xffb221 },
+    { 1654, 838, 0xffd74a }, { 1574, 847, 0x947d42 },
+
+    { 199, 178, 0xffdb7b }, { 226, 179, 0xf7db84 },
+    { 260, 182, 0x292010 }, { 295, 185, 0x293529 },
+    { 340, 190, 0xffc219 }, { 396, 193, 0xffbe10 },
+    { 420, 184, 0x525152 },
+  }
+  local result = multiColor(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+-- 困难进入战斗
+battle.clickHardGotoSelectFleedPanelBtn = function()
+  tap(1535, 860, 100)
 end
 
 -- 检查已经选择的舰队
@@ -494,10 +589,10 @@ battle.isReadyBattlePage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 49, 103, 0x3a4552 }, { 1395, 198, 0xf7f3f7 },
+    { 49, 103, 0x312421 }, { 1395, 198, 0xeff3ef },
     { 1369, 523, 0xe6e7e6 }, { 1389, 901, 0xd6f3f7 },
     { 1781, 998, 0x8ccece }, { 1613, 935, 0xffefbd },
-    { 1272, 361, 0x212429 }, { 135, 844, 0xefefef },
+    { 1272, 361, 0x212021 }, { 135, 844, 0xefefef },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -525,19 +620,19 @@ battle.isInBattlePage = function()
 end
 
 -- 检测是否自动战斗
-battle.isAutoBattle = function()
+battle.isNotAutoBattle = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 139, 70, 0x4a5963 }, { 146, 72, 0x424952 },
-    { 146, 79, 0x212d31 }, { 152, 87, 0x313d42 },
-    { 164, 92, 0xefebef }, { 167, 76, 0xf7f7f7 },
-    { 163, 67, 0xffffff }, { 158, 65, 0x4a555a },
-    { 155, 81, 0x314142 }, { 155, 83, 0xe6ebe6 },
+    { 132, 57, 0x5a5142 }, { 146, 76, 0xe6e2e6 },
+    { 171, 83, 0x4a3d31 }, { 205, 82, 0xb5b2ad },
+    { 244, 84, 0x4a3d31 }, { 264, 78, 0xfffbff },
+    { 209, 66, 0x5a5142 }, { 183, 63, 0xcec2bd },
+    { 275, 87, 0xefefef }, { 298, 88, 0xd6d2ce },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
-  return not result
+  return result
 end
 
 -- 检测是否自动战斗确认面板

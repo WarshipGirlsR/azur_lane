@@ -180,8 +180,33 @@ local settingTable = {
       {
         ['id'] = 'battleChapter',
         ['type'] = 'CheckBoxGroup',
-        --        ['list'] = '1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3',
-        ['list'] = '3-4',
+        ['list'] = '1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4',
+        ['select'] = '0',
+      },
+      {
+        ['type'] = 'Label',
+        ['text'] = 'boss舰队',
+        ['size'] = 15,
+        ['align'] = 'left',
+        ['color'] = '0,0,0',
+      },
+      {
+        ['id'] = 'battleMode',
+        ['type'] = 'RadioGroup',
+        ['list'] = '普通,困难',
+        ['select'] = '0',
+      },
+      {
+        ['type'] = 'Label',
+        ['text'] = 'boss舰队',
+        ['size'] = 15,
+        ['align'] = 'left',
+        ['color'] = '0,0,0',
+      },
+      {
+        ['id'] = 'battleAssistantMode',
+        ['type'] = 'RadioGroup',
+        ['list'] = '手动过地图,3-4自动过地图',
         ['select'] = '0',
       },
       {
@@ -299,14 +324,15 @@ local __tmp = (function(settings)
   -- 选择关卡
   settings.battleChapter = (function(battleChapter)
     local tempArr = strSplit(battleChapter, '@')
-    --    local list = transStrToTable({
-    --      '1-1', '1-2', '1-3', '1-4',
-    --      '2-1', '2-2', '2-3', '2-4',
-    --      '3-1', '3-2', '3-3', '3-4',
-    --      '4-1', '4-2', '4-3',
-    --    })
     local list = transStrToTable({
-      '3-4',
+      '1-1', '1-2', '1-3', '1-4',
+      '2-1', '2-2', '2-3', '2-4',
+      '3-1', '3-2', '3-3', '3-4',
+      '4-1', '4-2', '4-3', '4-4',
+      '5-1', '5-2', '5-3', '5-4',
+      '6-1', '6-2', '6-3', '6-4',
+      '7-1', '7-2', '7-3', '7-4',
+      '8-1', '8-2', '8-3', '8-4',
     })
     local result = {}
     for _, v in ipairs(tempArr) do
@@ -316,6 +342,20 @@ local __tmp = (function(settings)
     end
     return result
   end)(settings.battleChapter)
+  -- 选择模式
+  settings.battleMode = (function(battleMode)
+    local list = transStrToTable({
+      'normal', 'hard',
+    })
+    return list[battleMode] or 'normal'
+  end)(settings.battleMode)
+  -- 选择辅助模式
+  settings.battleAssistantMode = (function(battleAssistantMode)
+    local list = transStrToTable({
+      'manual', 'auto',
+    })
+    return list[battleAssistantMode] or 'manual'
+  end)(settings.battleAssistantMode)
   -- 选择Boss舰队
   settings.battleFleet = {}
   settings.battleFleetBoss = (function(battleFleetBoss)
