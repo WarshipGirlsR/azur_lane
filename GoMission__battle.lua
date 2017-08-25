@@ -200,7 +200,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel, 2000 },
         { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-        { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
+        { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 1000 },
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
       }))
       return makeAction(newstateTypes), state
@@ -350,7 +350,7 @@ local battleOnce = function(action, state)
       map.battle.ambushedPanelClickAvoidBtn()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
       }))
       return makeAction(newstateTypes), state
@@ -366,7 +366,7 @@ local battleOnce = function(action, state)
       map.battle.readyBattlePageClickBattle()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage, 2000 },
         { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
@@ -382,7 +382,7 @@ local battleOnce = function(action, state)
       map.battle.inBattlePageClickAutoBattle()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage },
         { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
@@ -398,7 +398,7 @@ local battleOnce = function(action, state)
       stepLabel.setStepLabelContent('2-35.检测是否自动战斗')
       stepLabel.setStepLabelContent('2-36.等待胜利界面')
       local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
+        { 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE', 'missionsGroup', map.battle.isNotAutoBattle, 1000 },
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
         { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel },
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
@@ -407,6 +407,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
       }))
+      console.log(newstateTypes);
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE') then
@@ -421,7 +422,7 @@ local battleOnce = function(action, state)
       map.battle.isAutoBattleConfirmPanelClickOk()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
-        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel },
+        { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 1000 },
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
