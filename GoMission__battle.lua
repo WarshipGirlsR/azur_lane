@@ -96,15 +96,8 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_BATTLE_PAGE') then
 
-      if (#settings.battleChapter > 1) then
-        state.battle.battleChapter = table.remove(settings.battleChapter, 1)
-        table.insert(settings.battleChapter, state.battle.battleChapter)
-      else
-        state.battle.battleChapter = settings.battleChapter[1]
-      end
-
-      stepLabel.setStepLabelContent('2-10.移动到章节' .. state.battle.battleChapter)
-      map.battle.moveToChapter(state.battle.battleChapter)
+      stepLabel.setStepLabelContent('2-10.移动到章节' .. settings.battleChapter)
+      map.battle.moveToChapter(settings.battleChapter)
       c.yield(sleepPromise(1000))
 
       local newstateTypes = c.yield(setScreenListeners({
@@ -177,7 +170,7 @@ local battleOnce = function(action, state)
     elseif (action.type == 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE') then
 
       stepLabel.setStepLabelContent('2-16.检测是自动模式还是辅助模式')
-      if state.battle.battleChapter == '3-4' and state.battle.battleAssistantMode == 'auto' then
+      if settings.battleChapter == '3-4' and state.battle.battleAssistantMode == 'auto' then
         return makeAction('BATTLE_MAP_PAGE_MOVE_TO_CENTER'), state
       end
       return makeAction('BATTLE_MAP_PAGE_WAIT_FOR_MOVE'), state

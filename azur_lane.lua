@@ -179,7 +179,7 @@ local settingTable = {
       },
       {
         ['id'] = 'battleChapter',
-        ['type'] = 'CheckBoxGroup',
+        ['type'] = 'RadioGroup',
         ['list'] = '1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4',
         ['select'] = '0',
       },
@@ -334,13 +334,7 @@ local __tmp = (function(settings)
       '7-1', '7-2', '7-3', '7-4',
       '8-1', '8-2', '8-3', '8-4',
     })
-    local result = {}
-    for _, v in ipairs(tempArr) do
-      if (type(list[v]) == 'string') then
-        table.insert(result, list[v])
-      end
-    end
-    return result
+    return list[battleChapter] or '1-1'
   end)(settings.battleChapter)
   -- 选择模式
   settings.battleMode = (function(battleMode)

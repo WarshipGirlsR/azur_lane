@@ -589,10 +589,19 @@ battle.isReadyBattlePage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 49, 103, 0x312421 }, { 1395, 198, 0xeff3ef },
-    { 1369, 523, 0xe6e7e6 }, { 1389, 901, 0xd6f3f7 },
-    { 1781, 998, 0x8ccece }, { 1613, 935, 0xffefbd },
-    { 1272, 361, 0x212021 }, { 135, 844, 0xefefef },
+    { 41, 34, 0xf7d242 }, { 14, 13, 0xdee3de },
+    { 169, 27, 0x293129 }, { 204, 29, 0x63593a },
+    { 244, 32, 0xb59e52 }, { 292, 39, 0x313531 },
+    { 330, 44, 0x94929c }, { 359, 49, 0x191c21 },
+    { 527, 13, 0xeff3f7 }, { 738, 16, 0xeff3f7 },
+    { 1305, 208, 0x080808 }, { 1269, 209, 0xefefef },
+    { 1893, 217, 0xefebef }, { 1267, 509, 0xefefef },
+    { 1284, 507, 0xdeebde }, { 1319, 506, 0xd6dbd6 },
+    { 1336, 510, 0x100c10 }, { 1389, 889, 0xd6f3f7 },
+    { 1752, 903, 0xceeff7 }, { 1589, 929, 0xfff794 },
+    { 1025, 31, 0x3a3d3a }, { 1070, 35, 0xd6d7d6 },
+    { 1333, 28, 0xfff363 }, { 1393, 30, 0xdedfde },
+    { 1644, 30, 0xff4973 }, { 1701, 31, 0xdedbde },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
