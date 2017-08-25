@@ -407,7 +407,6 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
       }))
-      console.log(newstateTypes);
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE') then
