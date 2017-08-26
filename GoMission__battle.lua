@@ -170,7 +170,7 @@ local battleOnce = function(action, state)
     elseif (action.type == 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE') then
 
       stepLabel.setStepLabelContent('2-16.检测是自动模式还是辅助模式')
-      if state.battle.battleAssistantMode == 'auto' then
+      if settings.battleAssistantMode == 'auto' then
         return makeAction('BATTLE_MAP_PAGE_MOVE_TO_CENTER'), state
       end
       return makeAction('BATTLE_MAP_PAGE_WAIT_FOR_MOVE'), state
