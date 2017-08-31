@@ -241,7 +241,7 @@ local battleOnce = function(action, state)
         stepLabel.setStepLabelContent('2-20.寻找boss')
         local bossPoint = map.battle.findBossPoint()
         if (bossPoint) then
-          stepLabel.setStepLabelContent('2-21.移动到附近的敌人 ' .. table.join(bossPoint, ', ') .. ' ')
+          stepLabel.setStepLabelContent('2-21.移动到附近的boss ' .. table.join(bossPoint, ', ') .. ' ')
           map.battle.moveToEnemy(bossPoint)
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 3000 },

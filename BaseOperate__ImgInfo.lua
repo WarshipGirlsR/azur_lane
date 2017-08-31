@@ -242,13 +242,13 @@ return {
       bossPoint = (function()
         local leftTop = { 281, 370 }
         local rightBotton = { 1885, 925 }
-        local basePoint = { 1744, 872, 0xff4d52 }
+        local basePoint = { 1718, 591, 0x312831 }
         local posandcolor = transColorListToString(transRelativePoint({
-          { 1803, 875, 0xff4d52 },
-          { 1769, 833, 0x313531 },
-          { 1775, 898, 0x6b0810 },
-          { 1807, 842, 0x292429 },
-          { 1743, 840, 0x313531 },
+          { 1680, 588, 0x3a393a },
+          { 1749, 588, 0x292429 },
+          { 1744, 560, 0x211010 },
+          { 1687, 561, 0x291419 },
+          { 1711, 565, 0x842029 },
         }, basePoint))
         return {
           leftTop = leftTop,
