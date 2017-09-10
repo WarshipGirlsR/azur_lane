@@ -1,7 +1,8 @@
 local co = require 'Co'
 local pauseFactory = require 'GoMission__pause'
-local battleFactory = require 'GoMission__battle'
 local homeFactory = require 'GoMission__home'
+local battleFactory = require 'GoMission__battle'
+local mapFactory = require 'GoMission__maps__map'
 
 -- 运行时的变量，全局共享
 local stateTree = require 'GoMission__stateTree'
@@ -17,8 +18,9 @@ local c = coroutine
 
 -- 将分散在各个文件的任务集合到一起
 local missions = {
-  battle = battleFactory(stateTree),
   home = homeFactory(stateTree),
+  battle = battleFactory(stateTree),
+  map = mapFactory(stateTree),
 }
 
 return {

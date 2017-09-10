@@ -62,7 +62,7 @@ local battleOnce = function(action, state)
 
       if settings.battleMode == 'normal' then
         stepLabel.setStepLabelContent('2-5.检查是否是普通模式')
-        if not map.battle.isNotHardMode() then
+        if map.battle.isHardMode() then
           stepLabel.setStepLabelContent('2-6.在困难模式，切换到普通模式')
           map.battle.clickSwitchHardModeBtn()
           local newstateTypes = c.yield(setScreenListeners({
@@ -74,8 +74,8 @@ local battleOnce = function(action, state)
         end
       else
         stepLabel.setStepLabelContent('2-7.检查是否是困难模式')
-        if not map.battle.isHardMode() then
-          stepLabel.setStepLabelContent('2-8在普通模式，切换到普通模式')
+        if map.battle.isNotHardMode() then
+          stepLabel.setStepLabelContent('2-8在普通模式，切换到困难模式')
           map.battle.clickSwitchHardModeBtn()
           local newstateTypes = c.yield(setScreenListeners({
             { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
@@ -160,7 +160,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
         { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel, 2000 },
         { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
         { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
@@ -171,9 +171,15 @@ local battleOnce = function(action, state)
 
       stepLabel.setStepLabelContent('2-16.检测是自动模式还是辅助模式')
       if settings.battleAssistantMode == 'auto' then
-        return makeAction('BATTLE_MAP_PAGE_MOVE_TO_CENTER'), state
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
+        }))
+        return makeAction(newstateTypes), state
       end
-      return makeAction('BATTLE_MAP_PAGE_WAIT_FOR_MOVE'), state
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE') then
 
@@ -203,108 +209,6 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
       }))
       return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_TO_CENTER') then
-
-      c.yield(sleepPromise(500))
-      stepLabel.setStepLabelContent('2-18.移动地图到屏幕中心')
-      local isCenter = map.battle.moveMapToCenter()
-      if (isCenter) then
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage },
-          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-          { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-          { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
-        }))
-        return makeAction(newstateTypes), state
-      end
-
-      local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
-        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-        { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-        { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
-      }))
-      return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_MAP_PAGE_MOVE_A_STEP') then
-
-      if map.battle.isBossOnMap() then
-        stepLabel.setStepLabelContent('2-19.移动到Boss')
-        local res = map.battle.isSelectedFleed(settings.battleFleet[1])
-        if (not res) and (state.battle.changeFleetNum < 4) then
-          local newstateTypes = c.yield(setScreenListeners({
-            { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
-          }))
-          return makeAction(newstateTypes), state
-        end
-        stepLabel.setStepLabelContent('2-20.寻找boss')
-        local bossPoint = map.battle.findBossPoint()
-        if (bossPoint) then
-          stepLabel.setStepLabelContent('2-21.移动到附近的boss ' .. table.join(bossPoint, ', ') .. ' ')
-          map.battle.moveToEnemy(bossPoint)
-          local newstateTypes = c.yield(setScreenListeners({
-            { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 3000 },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-          }))
-          return makeAction(newstateTypes), state
-        end
-
-      elseif state.battle.isBossFleetInBossArea or map.battle.isFleetOnBossArea() then
-
-        state.battle.isBossFleetInBossArea = true
-        stepLabel.setStepLabelContent('2-22.切换小兵舰队')
-        if (settings.battleFleet[2]) and (settings.battleFleet[2] > 0) and (not map.battle.isSelectedFleed(settings.battleFleet[2])) and (state.battle.changeFleetNum < 4) then
-          local newstateTypes = c.yield(setScreenListeners({
-            { 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET', 'missionsGroup', map.battle.isMapPage },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-          }))
-          return makeAction(newstateTypes), state
-        end
-
-        stepLabel.setStepLabelContent('2-23.寻找最近的敌人')
-        local enemyPoint = map.battle.findNearEnemyPointList()
-        if (enemyPoint) then
-          stepLabel.setStepLabelContent('2-24.移动到附近的敌人 ' .. table.join(enemyPoint, ', ') .. ' ')
-          map.battle.moveToEnemy(enemyPoint)
-          local newstateTypes = c.yield(setScreenListeners({
-            { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 3000 },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-          }))
-          return makeAction(newstateTypes), state
-        end
-
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
-          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-          { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-        }))
-        return makeAction(newstateTypes), state
-
-      else
-
-        stepLabel.setStepLabelContent('2-25.切换boss舰队')
-        local res = map.battle.isSelectedFleed(settings.battleFleet[1])
-        if (not res) and (state.battle.changeFleetNum < 4) then
-          local newstateTypes = c.yield(setScreenListeners({
-            { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-            { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-          }))
-          return makeAction(newstateTypes), state
-        end
-        stepLabel.setStepLabelContent('2-26.移动到Boss区域')
-        map.battle.clickToMapBossArea()
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 2000 },
-          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
-          { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 2000 },
-        }))
-        return makeAction(newstateTypes), state
-      end
 
     elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET') then
 
@@ -338,7 +242,7 @@ local battleOnce = function(action, state)
         return makeAction(newstateTypes), state
       end
       local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
@@ -403,7 +307,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
       }))
       return makeAction(newstateTypes), state
@@ -438,7 +342,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 4000 },
       }))
@@ -453,7 +357,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 4000 },
       }))
@@ -468,7 +372,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 4000 },
       }))
@@ -483,7 +387,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage, 4000 },
         { '', 'missionsGroup', map.home.isHome },
@@ -497,7 +401,7 @@ local battleOnce = function(action, state)
       map.battle.urgentEntrustmentPanelClickOk()
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_URGENT_ENTRUSTMENT_PANEL', 'missionsGroup', map.battle.isUrgentEntrustmentPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 4000 },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_CHAPTER_BACK_TO_HOME', 'missionsGroup', map.battle.isBattlePage },
         { '', 'missionsGroup', map.home.isHome },
       }))

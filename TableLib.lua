@@ -280,6 +280,74 @@ table.sortByKey = table.sortByKey or function(tab, call)
   return newTable
 end
 
+table.findIndex = table.findIndex or function(tab, call)
+  local index = -1
+  if type(call) == 'function' then
+    if table.isArray(tab) then
+      for key, value in ipairs(tab) do
+        if call(value) then
+          index = key
+        end
+      end
+    else
+      for key, value in pairs(tab) do
+        if call(value) then
+          index = key
+        end
+      end
+    end
+  else
+    if table.isArray(tab) then
+      for key, value in pairs(tab) do
+        if value == call then
+          index = key
+        end
+      end
+    else
+      for key, value in ipairs(tab) do
+        if value == call then
+          index = key
+        end
+      end
+    end
+  end
+  return index
+end
+
+table.find = table.find or function(tab, call)
+  local result
+  if type(call) == 'function' then
+    if table.isArray(tab) then
+      for _, value in ipairs(tab) do
+        if call(value) then
+          result = value
+        end
+      end
+    else
+      for _, value in pairs(tab) do
+        if call(value) then
+          result = value
+        end
+      end
+    end
+  else
+    if table.isArray(tab) then
+      for _, value in pairs(tab) do
+        if value == call then
+          result = tab[call]
+        end
+      end
+    else
+      for _, value in ipairs(tab) do
+        if value == call then
+          result = tab[call]
+        end
+      end
+    end
+  end
+  return result
+end
+
 table.toString = table.toString or function(tab)
   return table.concat(runTable(tab), '')
 end

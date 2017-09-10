@@ -408,19 +408,19 @@ co(c.create(function()
 
     -- 插入一个特殊的任务表示这是队列的开头
     table.insert(theMissionsQuery, { isBase = true, isStart = true })
+    --    table.insert(theMissionsQuery, { isBase = true, type = 'MAPS_MAP1_1_START' })
     -- 是否运行出征
     if (settings.battleEnable) then
       table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_START' })
     end
     -- 插入一个特殊任务表示这是队列的结尾
     table.insert(theMissionsQuery, { isBase = true, isEnd = true })
-
     runCount = 1
     local runStartTime = socket.gettime() * 1000
     while (true) do
       -- 任务队列里没有任务则停止运行
       local action = theMissionsQuery[1]
-      if ((#theMissionsQuery == 0) or (not action)) then
+      if #theMissionsQuery == 0 or not action then
         break
       end
 

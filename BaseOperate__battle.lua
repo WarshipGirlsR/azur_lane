@@ -34,8 +34,8 @@ battle.isNotHardMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 179, 1004, 0xbd0c10 },
-    { 274, 1028, 0x631419 },
+    { 170, 1008, 0xc51021 },
+    { 281, 1031, 0x631419 },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -47,8 +47,8 @@ battle.isHardMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 182, 1009, 0x082d73 },
-    { 277, 1036, 0x102042 },
+    { 182, 1007, 0x083173 },
+    { 281, 1010, 0x083173 },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -206,19 +206,16 @@ battle.isHardSelectFleetPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 439, 165, 0x525552 }, { 1556, 174, 0xeff3f7 },
-    { 1721, 188, 0xadaaad }, { 1720, 901, 0x3a3531 },
-    { 185, 908, 0x312d31 }, { 167, 161, 0x292429 },
-
-    { 1415, 826, 0xf7df4a }, { 1489, 855, 0xffca3a },
-    { 1515, 853, 0xc5be9c }, { 1549, 855, 0xffffff },
-    { 1604, 860, 0x9c814a }, { 1646, 864, 0xffb221 },
-    { 1654, 838, 0xffd74a }, { 1574, 847, 0x947d42 },
-
-    { 199, 178, 0xffdb7b }, { 226, 179, 0xf7db84 },
-    { 260, 182, 0x292010 }, { 295, 185, 0x293529 },
-    { 340, 190, 0xffc219 }, { 396, 193, 0xffbe10 },
-    { 420, 184, 0x525152 },
+    { 165, 159, 0x293129 }, { 1723, 163, 0xadaaad },
+    { 170, 179, 0x292829 }, { 198, 183, 0xffca4a },
+    { 246, 185, 0xdebe42 }, { 298, 188, 0x3a353a },
+    { 343, 188, 0xf7c23a }, { 379, 188, 0x100c08 },
+    { 405, 180, 0x211808 }, { 428, 173, 0x4a494a },
+    { 1421, 825, 0xffdf52 }, { 1462, 839, 0xd6cab5 },
+    { 1494, 856, 0xd6caad }, { 1511, 860, 0x8c793a },
+    { 1531, 862, 0xfffbf7 }, { 1549, 864, 0xffffff },
+    { 1573, 866, 0xffffff }, { 1584, 864, 0xf7ebe6 },
+    { 1618, 864, 0xf7f3ef }, { 1645, 856, 0xffca3a },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -633,11 +630,11 @@ battle.isNotAutoBattle = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 132, 57, 0x5a5142 }, { 146, 76, 0xe6e2e6 },
-    { 171, 83, 0x4a3d31 }, { 205, 82, 0xb5b2ad },
-    { 244, 84, 0x4a3d31 }, { 264, 78, 0xfffbff },
-    { 209, 66, 0x5a5142 }, { 183, 63, 0xcec2bd },
-    { 275, 87, 0xefefef }, { 298, 88, 0xd6d2ce },
+    { 144, 68, 0xffffff }, { 154, 67, 0xffffff },
+    { 154, 76, 0xe6e6e6 }, { 161, 84, 0xffffff },
+    { 168, 91, 0xffffff }, { 180, 68, 0xffffff },
+    { 180, 86, 0xffffff }, { 195, 78, 0xffffff },
+    { 207, 88, 0xffffff }, { 205, 71, 0xffffff },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -649,11 +646,11 @@ battle.isAutoBattleConfirmPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 492, 239, 0xffe7ad }, { 542, 247, 0x212821 },
-    { 548, 249, 0xefc652 }, { 585, 265, 0xf7b208 },
-    { 600, 262, 0x424142 }, { 1164, 226, 0xeff3f7 },
-    { 849, 760, 0xffd24a }, { 946, 795, 0xffffff },
-    { 1004, 778, 0xffca3a }, { 1021, 775, 0xffffff },
+    { 477, 232, 0x292829 }, { 1437, 227, 0xadaaad },
+    { 688, 329, 0xf7f7f7 }, { 785, 343, 0xe6e7e6 },
+    { 904, 346, 0xfffbff }, { 998, 337, 0xdeebde },
+    { 1127, 344, 0xeff3ef }, { 1206, 333, 0xeff3ef },
+    { 862, 754, 0xffdb4a }, { 928, 775, 0xffffff },
   }
   local result = multiColor(list)
   if not __keepScreenState then keepScreen(false) end
@@ -689,13 +686,20 @@ battle.isVictoryPanel = function()
     { 271, 719, 0x424142 }, { 1651, 728, 0x424142 },
   }
   local list3 = {
+    { 554, 439, 0x73cade }, { 678, 442, 0x84d7e6 },
+    { 675, 483, 0xb5f7ff }, { 614, 552, 0x31b2c5 },
+    { 856, 471, 0xb5efff }, { 949, 431, 0x6bcade },
+    { 1022, 438, 0x8cd7e6 }, { 1161, 458, 0xa4ebf7 },
+    { 1237, 489, 0xb5f3ff }, { 1410, 434, 0x7bd7e6 },
+  }
+  local list4 = {
     { 559, 447, 0xe6a273 }, { 674, 451, 0xe6ae84 },
     { 848, 469, 0xe6965a }, { 1092, 448, 0x6b2819 },
     { 1179, 451, 0xefcaad }, { 1356, 467, 0x521c08 },
     { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
   }
   local result = false
-  if (multiColor(list) or multiColor(list2) or multiColor(list3)) then
+  if multiColor(list) or multiColor(list2) or multiColor(list3) or multiColor(list4) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
