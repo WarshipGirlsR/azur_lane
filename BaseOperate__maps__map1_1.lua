@@ -1,3 +1,5 @@
+local mapBase = require 'BaseOperate__maps__map'
+local img1_1 = require 'BaseOperate__maps__img1_1'
 local map1_1 = {}
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
@@ -6,9 +8,9 @@ local map1_1 = {}
 map1_1.getCheckpositionList = function()
   return {
     {
-      leftTop = { 377, 540 },
+      leftTop = nil,
       rightTop = nil,
-      leftBotton = nil,
+      leftBotton = { 352, 676 },
       rightBotton = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
@@ -30,6 +32,26 @@ map1_1.getMapChessboard = function()
     myFleetList = {},
     enemyPositionList = {},
   }
+end
+
+map1_1.getMapPosition = function()
+  return mapBase.getMapPosition(img1_1)
+end
+
+map1_1.moveMapToCheckPosition = function(currentPosition, targetPosition)
+  return mapBase.moveMapToCheckPosition(img1_1, currentPosition, targetPosition)
+end
+
+map1_1.scanMap = function(targetPosition, mapChessboard)
+  return mapBase.scanMap(img1_1, targetPosition, mapChessboard)
+end
+
+map1_1.moveToPoint = function(targetPosition, point)
+  return mapBase.moveToPoint(img1_1, targetPosition, point)
+end
+
+map1_1.findClosestEnemy = function(mapChessboard)
+  return mapBase.findClosestEnemy(img1_1, mapChessboard)
 end
 
 return map1_1

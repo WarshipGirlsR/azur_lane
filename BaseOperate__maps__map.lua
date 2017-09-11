@@ -1,5 +1,3 @@
-local ImgInfo = require 'BaseOperate__ImgInfo'
-
 local sWidth, sHeight = getScreenSize();
 
 local map = {}
@@ -111,29 +109,17 @@ end
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
-map.getCheckpositionList = function(chapter)
-  if chapter == '1-1' then
-    return (require 'BaseOperate__maps__data__map1_1').getCheckpositionList()
-  elseif chapter == '1-2' then
-    return (require 'BaseOperate__maps__data__map1_2').getCheckpositionList()
-  elseif chapter == '3-4' then
-    return (require 'BaseOperate__maps__data__map3_4').getCheckpositionList()
-  end
+map.getCheckpositionList = function()
+  return {}
 end
 
 -- 获取地图棋盘和相关数据
-map.getMapChessboard = function(chapter)
-  if chapter == '1-1' then
-    return (require 'BaseOperate__maps__data__map1_1').getMapChessboard()
-  elseif chapter == '1-2' then
-    return (require 'BaseOperate__maps__data__map1_2').getMapChessboard()
-  elseif chapter == '3-4' then
-    return (require 'BaseOperate__maps__data__map3_4').getMapChessboard()
-  end
+map.getMapChessboard = function()
+  return {}
 end
 
 -- 检查地图在屏幕中的位置，返回地图四个角的坐标
-map.getMapPosition = function()
+map.getMapPosition = function(ImgInfo)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
@@ -141,13 +127,10 @@ map.getMapPosition = function()
   -- 扫描边界
   keepScreen(true)
   -- 地图上边界2，由于上边界颜色并不清晰，所以准备2个上边界扫描工具
-  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine.findColorParam)) }
-  if topLinePoint[1] == -1 then
-    topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine2.findColorParam)) }
-  end
-  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bottonLine.findColorParam)) }
-  local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.leftLine.findColorParam)))
-  local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.rightLine.findColorParam)))
+  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.map.topLine)) }
+  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.map.bottonLine)) }
+  local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.leftLine)))
+  local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.rightLine)))
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)
     -- 这个函数求一条斜边的上点和下点，需要2次才能计算出四个角
@@ -188,11 +171,8 @@ map.getMapPosition = function()
   }
 end
 
--- 记录上一次移动的向量，用于确认是不是因为距离太短无法再划动屏幕
-local lastMoveVector = { 0, 0 }
-local lastMoveCount = 0
 -- 将地图移动到指定位置
-map.moveMapToCheckPosition = function(currentPosition, targetPosition)
+map.moveMapToCheckPosition = function(ImgInfo, currentPosition, targetPosition)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
@@ -231,31 +211,24 @@ map.moveMapToCheckPosition = function(currentPosition, targetPosition)
   end
   -- 将地图移动到中心
   -- 如果滑动距离太短或者滑动到同样距离的次数太多，则不再滑动
-  if lastMoveCount < 2 and (math.abs(moveVector[1]) > 3) or (math.abs(moveVector[2]) > 3) then
+  local moveStep
+  if (math.abs(moveVector[1]) > 4) or (math.abs(moveVector[2]) > 4) then
     -- 因为屏幕滑动和画面滚动不一致，所以需要减少移动幅度
-    local moveStep = math.max(math.abs(moveVector[1]), math.abs(moveVector[2]))
+    moveStep = math.max(math.abs(moveVector[1]), math.abs(moveVector[2]))
     moveStep = math.min(10, moveStep)
     moveStep = math.abs(moveStep)
     moveStep = math.floor(moveStep)
     moveStep = math.max(1, moveStep)
     moveTo(sWidth / 2, sHeight / 2, sWidth / 2 + moveVector[1], sHeight / 2 + moveVector[2], moveStep, 100)
     -- 如果moveStep总是相同说明是移动距离太小滑动屏幕失效。
-    if lastMoveVector[1] == moveVector[1] and lastMoveVector[2] == moveVector[2] then
-      lastMoveCount = lastMoveCount + 1
-    else
-      lastMoveCount = 0
-    end
-    lastMoveVector = moveVector
   else
     isCenter = true
-    lastMoveVector = { 0, 0 }
-    lastMoveCount = 0
   end
   if not __keepScreenState then keepScreen(false) end
-  return isCenter
+  return isCenter, moveStep
 end
 
-map.scanMap = function(targetPosition, mapChessboard)
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local positionMap = targetPosition.positionMap
 
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
@@ -268,19 +241,19 @@ map.scanMap = function(targetPosition, mapChessboard)
   end
 
   -- 扫描屏幕上的对象
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
+  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.myFleet)))
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
-  local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.selectedArrow.findColorParam)))
+  local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
-  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList1.findColorParam)))
+  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList1)))
   enemyList1 = corrected(enemyList1, enemyListCorrectionValue)
-  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
+  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList2)))
   enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
-  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
+  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList3)))
   enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
   local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-  local bossList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.bossPoint1.findColorParam)))
-  local bossList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.bossPoint2.findColorParam)))
+  local bossList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint1)))
+  local bossList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint2)))
   local bossList = table.merge(bossList1, bossList2)
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.myFleetList = table.merge(selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetList))
@@ -302,13 +275,13 @@ map.scanMap = function(targetPosition, mapChessboard)
   return mapChessboard
 end
 
-map.moveToPoint = function(targetPosition, point)
+map.moveToPoint = function(ImgInfo, targetPosition, point)
   local positionMap = targetPosition.positionMap
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })
   tap(tapPointList[1][1], tapPointList[1][2], 100)
 end
 
-map.findClosestEnemy = function(mapChessboard)
+map.findClosestEnemy = function(ImgInfo, mapChessboard)
   function calCoast(currentPoint, targetPoint)
     return math.abs(targetPoint[1] - currentPoint[1]) + math.abs(targetPoint[2] - currentPoint[2])
   end
@@ -327,10 +300,6 @@ map.findClosestEnemy = function(mapChessboard)
   end
 
   return minCoastEnemy
-end
-
-map.moveToBoss = function()
-  tap(1590, 606, 100)
 end
 
 return map

@@ -13,6 +13,10 @@ local getComListener = (require 'GoMission__commonListener').getComListener
 local map = function(action, state)
   local map = allOptions.map
   local settings = allOptions.settings
+  local chapterArr = strSplit(settings.battleChapter, "-")
+  local m = tonumber(chapterArr[1]) or 1
+  local n = tonumber(chapterArr[2]) or 1
+  local mapProxy = map['map' .. m .. '_' .. n]
 
   local battleMap = {
     { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
@@ -33,8 +37,8 @@ local map = function(action, state)
 
   return co(c.create(function()
     if action.type == 'MAPS_MAP_START' then
-      state.map.checkpositionList = map.map.getCheckpositionList(settings.battleChapter)
-      state.map.mapChessboard = map.map.getMapChessboard(settings.battleChapter)
+      state.map.checkpositionList = mapProxy.getCheckpositionList(settings.battleChapter)
+      state.map.mapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
       state.map.currentPosition = nil
       state.map.isMoveToWaitForBossPosition = true
 
@@ -47,7 +51,7 @@ local map = function(action, state)
     elseif action.type == 'MAPS_MAP_GET_MAP_POSITION' then
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
-      state.map.currentPosition = map.map.getMapPosition()
+      state.map.currentPosition = mapProxy.getMapPosition()
       console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
@@ -71,7 +75,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-3.将地图移动到第1个扫面位置')
       local targetPosition = state.map.checkpositionList[1]
-      local isCenter = map.map.moveMapToCheckPosition(state.map.currentPosition, targetPosition)
+      local isCenter = mapProxy.moveMapToCheckPosition(state.map.currentPosition, targetPosition)
 
       if isCenter then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
@@ -89,7 +93,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-4.扫描地图')
       local targetPosition = state.map.checkpositionList[1]
-      state.map.mapChessboard = map.map.scanMap(targetPosition, state.map.mapChessboard)
+      state.map.mapChessboard = mapProxy.scanMap(targetPosition, state.map.mapChessboard)
 
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage, 500 },
@@ -107,16 +111,16 @@ local map = function(action, state)
       end
       if #mapChessboard.bossPosition > 0 then
         state.map.isMoveToWaitForBossPosition = false
-        map.map.moveToPoint(targetPosition, mapChessboard.bossPosition[1])
+        mapProxy.moveToPoint(targetPosition, mapChessboard.bossPosition[1])
       elseif state.map.isMoveToWaitForBossPosition and myFleetList1[1] == waitForBossPosition[1] and myFleetList1[2] == waitForBossPosition[2] then
         state.map.isMoveToWaitForBossPosition = false
       elseif state.map.isMoveToWaitForBossPosition then
         stepLabel.setStepLabelContent('3-4.移动到boss可能出现的位置')
-        map.map.moveToPoint(targetPosition, mapChessboard.waitForBossPosition[1])
+        mapProxy.moveToPoint(targetPosition, mapChessboard.waitForBossPosition[1])
       else
         stepLabel.setStepLabelContent('3-4.移动到最近的敌人')
-        local closestEnemy = map.map.findClosestEnemy(mapChessboard)
-        map.map.moveToPoint(targetPosition, closestEnemy)
+        local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
+        mapProxy.moveToPoint(targetPosition, closestEnemy)
       end
 
       local newstateTypes = c.yield(setScreenListeners(battleMap))

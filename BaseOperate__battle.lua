@@ -1,5 +1,3 @@
-local ImgInfo = require 'BaseOperate__ImgInfo'
-
 local battle = {}
 
 
@@ -327,80 +325,6 @@ battle.isMapPage = function()
   return result
 end
 
--- 将地图移动到中心
-battle.moveMapToCenter = function()
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-
-  local isCenter = false
-  -- 扫描边界
-  keepScreen(true)
-  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.topLine.findColorParam)) }
-  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bottonLine.findColorParam)) }
-  local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.leftLine.findColorParam)))
-  local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.rightLine.findColorParam)))
-
-  function getCenterPoint(topLinePoint, bottonLinePoint, pointList)
-    -- 获取左右边界的中间点
-    local Y = (topLinePoint[2] + bottonLinePoint[2]) / 2
-    Y = math.floor(Y)
-    local point1 = pointList[1] or { -1, -1 }
-    local point2 = pointList[#pointList] or { -1, -1 }
-    local X = (Y - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
-    X = math.trueNumber(X) or -1
-    X = math.floor(X)
-    return { X, Y }
-  end
-
-  local leftLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, leftLinePointList)
-  local rightLinePoint = getCenterPoint(topLinePoint, bottonLinePoint, rightLinePointList)
-
-  -- 计算偏差
-  local moveVector = { 0, 0 }
-  if (topLinePoint[2] ~= -1) then
-    moveVector[2] = 379 - topLinePoint[2]
-  elseif (bottonLinePoint[2] ~= -1) then
-    moveVector[2] = 979 - bottonLinePoint[2]
-  end
-  if (leftLinePoint[1] ~= -1) then
-    moveVector[1] = 228 - leftLinePoint[1]
-  elseif (rightLinePoint[1] ~= -1) then
-    moveVector[1] = 1846 - rightLinePoint[1]
-  end
-
-  -- 将地图移动到中心
-  if ((math.abs(moveVector[1]) > 10) or (math.abs(moveVector[2]) > 10)) then
-    local moveMax = math.min(40, math.abs(moveVector[1]), math.abs(moveVector[2]))
-    moveMax = math.abs(moveMax)
-    moveMax = math.max(1, moveMax)
-    moveTo(540, 960, 540 + moveVector[1], 960 + moveVector[2], moveMax, 100)
-  else
-    isCenter = true
-  end
-  if not __keepScreenState then keepScreen(false) end
-  return isCenter
-end
-
--- 扫描我方舰队
-battle.scanMapScanMyFleet = function()
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
-
-  if not __keepScreenState then keepScreen(false) end
-end
-
--- 扫描终点
-battle.scanMapScanEndPoint = function()
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
-
-  if not __keepScreenState then keepScreen(false) end
-end
-
 -- 检测是第几队
 battle.scanMapCheckFleetNum = function()
   local __keepScreenState = keepScreenState
@@ -452,24 +376,6 @@ battle.clickToMapBossArea = function()
   tap(1777, 741, 100)
 end
 
--- 检查是否在右下角位置
-battle.isFleetOnBossArea = function()
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
-
-  local result = false
-  for _, value in ipairs(myFleetList) do
-    if (ImgInfo.inArea(value, { 1746, 430 }, { 1897, 686 })) then
-      result = true
-      break
-    end
-  end
-  if not __keepScreenState then keepScreen(false) end
-  return result
-end
-
 battle.isSelectedFleed = function(fleet)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
@@ -514,47 +420,6 @@ end
 
 battle.clickSwitchFleetBtn = function()
   tap(1426, 1003, 100)
-end
-
--- 寻找最近的敌人
-battle.findNearEnemyPointList = function()
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-  local enemyPoint
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.myFleet.findColorParam)))
-  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList1.findColorParam)))
-  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList2.findColorParam)))
-  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.battle.map.enemyList3.findColorParam)))
-  local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-  local myFleetListFirstPoint = myFleetList[#myFleetList] or {}
-  local myFleetPointX = (math.trueNumber(myFleetListFirstPoint[1]) or 0) - 60
-  local myFleetPointY = (math.trueNumber(myFleetListFirstPoint[2]) or 0) + 230
-  local myFleetPoint = { myFleetPointX, myFleetPointY }
-  local _, e = ImgInfo.findNearestPoint({ myFleetPoint }, enemyList)
-  if e then
-    enemyPoint = { (math.trueNumber(e[1]) or 0) + 100, (math.trueNumber(e[2]) or 0) + 30 }
-  end
-
-  if not __keepScreenState then keepScreen(false) end
-  return enemyPoint
-end
-
--- 检测boss是否在地图上
-battle.isBossOnMap = function()
-  local bossPointList = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)) }
-  if (bossPointList[1] > -1) and (bossPointList[2] > -1) then
-    return true
-  end
-  return false
-end
-
--- 检测boss位置
-battle.findBossPoint = function()
-  local bossPointList = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.battle.map.bossPoint.findColorParam)) }
-  if (bossPointList[1] > -1) and (bossPointList[2] > -1) then
-    return bossPointList
-  end
-  return nil
 end
 
 -- 检测敌方伏击面板
