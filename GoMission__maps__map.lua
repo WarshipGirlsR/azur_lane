@@ -96,6 +96,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_GET_NEXT_STEP' then
 
+      stepLabel.setStepLabelContent('3-4.计算下一步往哪走')
       local mapChessboard = state.map.mapChessboard
       local myFleetList1 = mapChessboard.myFleetList[1]
       local waitForBossPosition = mapChessboard.waitForBossPosition[1]
@@ -106,8 +107,12 @@ local map = function(action, state)
         stepLabel.setStepLabelContent('3-4.移动到boss位置')
         state.map.isMoveToWaitForBossPosition = false
         state.map.nextStepPoint = mapChessboard.bossPosition[1]
-      elseif state.map.isMoveToWaitForBossPosition and myFleetList1[1] == waitForBossPosition[1] and myFleetList1[2] == waitForBossPosition[2] then
+      elseif state.map.isMoveToWaitForBossPosition and table.findIndex(mapChessboard.myFleetList, function(ele) return ele[1] == waitForBossPosition[1] and ele[2] == waitForBossPosition[2] end) > -1 then
         state.map.isMoveToWaitForBossPosition = false
+        local newstateTypes = c.yield(setScreenListeners(battleMap, {
+          { 'MAPS_MAP_GET_NEXT_STEP', 'missionsGroup', map.battle.isMapPage },
+        }))
+        return makeAction(newstateTypes), state
       elseif state.map.isMoveToWaitForBossPosition then
         stepLabel.setStepLabelContent('3-5.移动待命位置')
         state.map.nextStepPoint = mapChessboard.waitForBossPosition[1]

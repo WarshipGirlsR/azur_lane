@@ -247,6 +247,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 扫描屏幕上的对象
   local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.myFleet)))
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
+  console.log(myFleetList)
   local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
   local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList1)))
