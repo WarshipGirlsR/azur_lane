@@ -35,6 +35,7 @@ map3_4.getCheckpositionList = function()
           { 1279, 981, 0x424142 }, { 1503, 981, 0x101010 }, { 1720, 981, 0x6b3500 }, { 1950, 981, 0x6b3500 },
         }
       },
+      pointMap = {},
     },
   }
   for key, value in ipairs(list) do
