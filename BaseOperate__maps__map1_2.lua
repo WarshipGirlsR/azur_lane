@@ -6,7 +6,7 @@ local map1_2 = {}
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
 map1_2.getCheckpositionList = function()
-  return {
+  local list = {
     {
       leftTop = nil,
       rightTop = nil,
@@ -21,6 +21,17 @@ map1_2.getCheckpositionList = function()
       },
     },
   }
+  for key, value in ipairs(list) do
+    local positionMap = list[key].positionMap
+    for rowNum, rol in ipairs(positionMap) do
+      for colNum, col in ipairs(positionMap[rowNum]) do
+        if col then
+          list[key].pointMap[rowNum .. '-' .. colNum] = col
+        end
+      end
+    end
+  end
+  return list
 end
 
 -- 获取地图棋盘和相关数据

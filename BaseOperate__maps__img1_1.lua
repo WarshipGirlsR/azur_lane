@@ -14,9 +14,29 @@ return {
   -- 地图扫描
   map = {
     -- 地图上边界
-    topLine = imgBase.map.topLine,
+    topLine = (function()
+      local leftTop = { 185, 155 }
+      local rightBotton = { 1899, 1022, }
+      local basePoint, posandcolor = transRelativePoint({
+        { 953, 525, 0x294152 }, { 974, 525, 0x193942 },
+        { 998, 525, 0x193942 }, { 1020, 525, 0x213942 },
+        { 1014, 526, 0x31bee6 }, { 983, 526, 0x31bade },
+        { 950, 526, 0x3abae6 }, { 923, 526, 0x31b2de },
+      })
+      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+    end)(),
     -- 地图下边界
-    bottonLine = imgBase.map.bottonLine,
+    bottonLine = (function()
+      local leftTop = { 185, 155 }
+      local rightBotton = { 1899, 1022 }
+      local basePoint, posandcolor = transRelativePoint({
+        { 777, 660, 0x000000 }, { 801, 660, 0x000000 },
+        { 835, 660, 0x000000 }, { 874, 660, 0x000000 },
+        { 889, 659, 0x105194 }, { 864, 659, 0x105184 },
+        { 828, 659, 0x105184 }, { 797, 659, 0x105594 },
+      })
+      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+    end)(),
     -- 地图左边界
     leftLine = (function()
       local leftTop = { 185, 155 }

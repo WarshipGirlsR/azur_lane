@@ -132,12 +132,8 @@ map.getMapPosition = function(ImgInfo)
   local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.leftLine)))
   local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.rightLine)))
 
-  local topLinePoint = topLinePointList[#topLinePointList]
-  local _topPointY = topLinePoint[2] + 10
-  bottonLinePointList = table.filter(bottonLinePointList, function(ele)
-    return ele[2] > _topPointY
-  end)
-  local bottonLinePoint = bottonLinePointList[#bottonLinePointList]
+  local topLinePoint = topLinePointList[1] or { -1, -1 }
+  local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
 
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)
