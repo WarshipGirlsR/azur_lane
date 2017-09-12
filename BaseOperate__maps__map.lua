@@ -127,10 +127,18 @@ map.getMapPosition = function(ImgInfo)
   -- 扫描边界
   keepScreen(true)
   -- 地图上边界2，由于上边界颜色并不清晰，所以准备2个上边界扫描工具
-  local topLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.map.topLine)) }
-  local bottonLinePoint = { findMultiColorInRegionFuzzy(table.unpack(ImgInfo.map.bottonLine)) }
+  local topLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.topLine)))
+  local bottonLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bottonLine)))
   local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.leftLine)))
   local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.rightLine)))
+
+  local topLinePoint = topLinePointList[#topLinePointList]
+  local _topPointY = topLinePoint[2] + 10
+  bottonLinePointList = table.filter(bottonLinePointList, function(ele)
+    return ele[2] > _topPointY
+  end)
+  local bottonLinePoint = bottonLinePointList[#bottonLinePointList]
+
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)
     -- 这个函数求一条斜边的上点和下点，需要2次才能计算出四个角

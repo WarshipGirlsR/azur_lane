@@ -206,7 +206,7 @@ local settingTable = {
       {
         ['id'] = 'battleAssistantMode',
         ['type'] = 'RadioGroup',
-        ['list'] = '手动过地图,3-4自动过地图',
+        ['list'] = '手动过地图,自动过地图',
         ['select'] = '0',
       },
       {

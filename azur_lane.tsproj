@@ -11,10 +11,12 @@ BaseOperate__home.lua
 BaseOperate__maps__img.lua
 BaseOperate__maps__img1_1.lua
 BaseOperate__maps__img1_2.lua
+BaseOperate__maps__img2_4.lua
 BaseOperate__maps__img3_4.lua
 BaseOperate__maps__map.lua
 BaseOperate__maps__map1_1.lua
 BaseOperate__maps__map1_2.lua
+BaseOperate__maps__map2_4.lua
 BaseOperate__maps__map3_4.lua
 BaseOperate__maps__utils.lua
 CheckColor.lua

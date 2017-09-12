@@ -8,9 +8,9 @@ local map3_4 = {}
 map3_4.getCheckpositionList = function()
   return {
     {
-      leftTop = nil,
+      leftTop = { 309, 386 },
       rightTop = nil,
-      leftBotton = { 176, 981 },
+      leftBotton = nil,
       rightBotton = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
