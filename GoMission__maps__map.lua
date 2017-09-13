@@ -69,7 +69,6 @@ local map = function(action, state)
       stepLabel.setStepLabelContent('3-2.计算移动向量')
       local targetPosition = state.map.checkpositionListForCheck[1]
       local newMoveVector = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
-      console.log(newMoveVector)
       if comparePoints(state.map.moveVectorForCheck, newMoveVector) then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_SCAN_MAP', 'missionsGroup', map.battle.isMapPage },
@@ -121,7 +120,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-4.计算下一步往哪走')
       local mapChessboard = state.map.mapChessboard
-      local myFleetList1 = mapChessboard.myFleetList[1]
+      local myFleetList = mapChessboard.myFleetList
       local waitForBossPosition = mapChessboard.waitForBossPosition[1]
       if not waitForBossPosition then
         state.map.isMoveToWaitForBossPosition = false
@@ -130,7 +129,7 @@ local map = function(action, state)
         stepLabel.setStepLabelContent('3-4.移动到boss位置')
         state.map.isMoveToWaitForBossPosition = false
         state.map.nextStepPoint = mapChessboard.bossPosition[1]
-      elseif state.map.isMoveToWaitForBossPosition and table.findIndex(mapChessboard.myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
+      elseif state.map.isMoveToWaitForBossPosition and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
         state.map.isMoveToWaitForBossPosition = false
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_GET_NEXT_STEP', 'missionsGroup', map.battle.isMapPage },
@@ -141,6 +140,7 @@ local map = function(action, state)
         state.map.nextStepPoint = mapChessboard.waitForBossPosition[1]
       else
         stepLabel.setStepLabelContent('3-6.移动到最近的敌人')
+        state.map.isMoveToWaitForBossPosition = false
         local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
         state.map.nextStepPoint = closestEnemy
       end
