@@ -23,9 +23,11 @@ map1_1.getCheckpositionList = function()
   for key, value in ipairs(list) do
     local positionMap = list[key].positionMap
     for rowNum, rol in ipairs(positionMap) do
-      for colNum, col in ipairs(positionMap[rowNum]) do
-        if col then
-          list[key].pointMap[rowNum .. '-' .. colNum] = col
+      if rol and positionMap[rowNum + 1] then
+        for colNum, col in ipairs(rol) do
+          if col and rol[colNum + 1] then
+            list[key].pointMap[rowNum .. '-' .. colNum] = col
+          end
         end
       end
     end

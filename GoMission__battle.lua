@@ -26,6 +26,8 @@ local battleOnce = function(action, state)
       state.battle.lastVibratorTime = os.time()
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
       state.battle.changeFleetNum = 0
+      -- 舰队是否需要移动到等待boss位置，这个值在关卡开始时才会重置一次
+      state.map.isMoveToWaitForBossPosition = true
 
       if (#settings.battleChapter < 1) then
         stepLabel.setStepLabelContent('2-1.没有选中章节')
@@ -105,6 +107,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel },
         { 'BATTLE_SELECT_FLEET_PANEL', 'missionsGroup', map.battle.isSelectFleetPanel },
         { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
@@ -119,6 +122,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
         { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel },
         { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
@@ -137,6 +141,7 @@ local battleOnce = function(action, state)
           { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
           { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel },
           { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel },
+          { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
         }))
         return makeAction(newstateTypes), state
       end

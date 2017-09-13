@@ -299,6 +299,7 @@ function run()
           hasDropEvent = true
         end
       end
+      keepScreen(false);
 
       if (hasDropEvent) then
         local newScreenListenerQuery = {}
@@ -309,7 +310,6 @@ function run()
         end
         screenListenerQuery = newScreenListenerQuery
       end
-      keepScreen(false);
     end
 
     -- buttonListenerQuery

@@ -5,6 +5,7 @@ local map1_1 = require 'BaseOperate__maps__map1_1'
 local map1_2 = require 'BaseOperate__maps__map1_2'
 local map2_4 = require 'BaseOperate__maps__map2_4'
 local map3_4 = require 'BaseOperate__maps__map3_4'
+local map4_2 = require 'BaseOperate__maps__map4_2'
 
 
 -- 原子操作列表
@@ -17,6 +18,7 @@ local map = {
   map1_2 = map1_2, -- 地图1_2
   map2_4 = map2_4, -- 地图2_4
   map3_4 = map3_4, -- 地图3_4
+  map4_2 = map4_2, -- 地图4_2
 }
 
 

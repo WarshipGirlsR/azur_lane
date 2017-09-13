@@ -21,8 +21,8 @@ end)()
 -- 敌人坐标修正向量
 local enemyListCorrectionValue = (function()
   local point = {
-    { 1029, 632, 0xde9a00 },
-    { 1097, 714, 0xef796b },
+    { 1054, 566, 0xde9a00 },
+    { 1123, 642, 0x312831 },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -68,23 +68,58 @@ end
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
 function transPointListToChessboardPointList(positionMap, positionList)
   local result = {}
+  -- 因为有可能有空的坐标，所以需要处理
+  -- 计算出地图棋盘的宽度
+  local width = 0
+  local height = #positionMap
+  for _, row in ipairs(positionMap) do
+    if row then
+      width = math.max(width, #row)
+    end
+  end
+
   for i = 1, #positionList do
     local theRow = -1
     local theCol = -1
     local item = positionList[i]
-    for row = 1, #positionMap do
-      if positionMap[row][1][2] > item[2] then
-        theRow = row - 1
-        break
+    -- 匹配点在第几行
+    for rowNum, row in ipairs(positionMap) do
+      if row then
+        for _, col in ipairs(row) do
+          if col and col[2] > item[2] then
+            theRow = rowNum - 1
+            break
+          end
+        end
+        if theRow > -1 then
+          break
+        end
       end
     end
-    for col = 1, #positionMap[1] do
-      if checkPointPosition(item, positionMap[1][col], positionMap[#positionMap][col]) <= 0 then
-        theCol = col - 1
-        break
+    if theRow > 0 then
+      -- 匹配点在第几列
+      for col = 1, width do
+        -- 寻找这一列最高和最低的两个点，做直线
+        local topPoint
+        local bottonPoint
+        for row = 1, height do
+          if not topPoint and positionMap[row] and positionMap[row][col] then
+            topPoint = positionMap[row][col]
+          end
+          if positionMap[row] and positionMap[row][col] then
+            bottonPoint = positionMap[row][col]
+          end
+        end
+
+        if topPoint and bottonPoint and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
+          theCol = col - 1
+          break
+        end
+      end
+      if theCol > 0 then
+        table.insert(result, { theRow, theCol })
       end
     end
-    table.insert(result, { theRow, theCol })
   end
   return result
 end
@@ -209,10 +244,13 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     if not currentPosition.rightBotton then
       moveVector = { (0 - sWidth) / 10, (0 - sHeight) / 10 }
     else
-      moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1];
-      moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2];
+      moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]
+      moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2]
     end
   end
+
+  moveVector[1] = math.floor(moveVector[1] * 0.8)
+  moveVector[2] = math.floor(moveVector[2] * 0.8)
 
   if not __keepScreenState then keepScreen(false) end
   return moveVector
@@ -244,6 +282,8 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
 end
 
 map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
   local positionMap = targetPosition.positionMap
 
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
@@ -271,7 +311,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local bossList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint2)))
   local bossList = table.merge(bossList1, bossList2)
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
-  mapChessboard.myFleetList = table.merge(selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetList))
+  mapChessboard.myFleetList = table.merge(selectedArrowList, mapChessboard.myFleetList, transPointListToChessboardPointList(positionMap, myFleetList))
   mapChessboard.myFleetList = table.unique(mapChessboard.myFleetList, function(item)
     return item[1] .. '-' .. item[2]
   end)
@@ -287,6 +327,9 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
     return item[1] .. '-' .. item[2]
   end)
   console.log(mapChessboard)
+
+
+  if not __keepScreenState then keepScreen(false) end
   return mapChessboard
 end
 
@@ -301,12 +344,19 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
     return math.abs(targetPoint[1] - currentPoint[1]) + math.abs(targetPoint[2] - currentPoint[2])
   end
 
+  -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
+  local waitForPossPosition = mapChessboard.waitForBossPosition[1]
+
   local myField = mapChessboard.myFleetList[1]
   local enemyPositionList = mapChessboard.enemyPositionList
   local minCoast = 100000
   local minCoastEnemy
   for _, enemy in ipairs(enemyPositionList) do
     local theCoast = calCoast(myField, enemy)
+    -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
+    if waitForPossPosition then
+      theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.5
+    end
     if minCoast > theCoast then
       minCoast = theCoast
       minCoastEnemy = enemy

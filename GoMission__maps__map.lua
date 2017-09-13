@@ -25,12 +25,9 @@ local map = function(action, state)
   local battleMap = {
     { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
     { 'BATTLE_CHAPTER_INFO_PANEL', 'missionsGroup', map.battle.isChapterInfoPanel, 2000 },
-    { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isSelectFleetPanel, 2000 },
-    { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', 'missionsGroup', map.battle.isHardSelectFleetPanel, 2000 },
-    { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel },
+    { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
     { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', 'missionsGroup', map.battle.isReadyBattlePage, 1000 },
-    { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', 'missionsGroup', map.battle.isAutoBattleConfirmPanel },
-    { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage },
+    { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage, 2000 },
     { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
     { 'BATTLE_VICTORY_PANEL', 'missionsGroup', map.battle.isVictoryPanel, 2000 },
     { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
@@ -44,7 +41,7 @@ local map = function(action, state)
       state.map.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)
       state.map.mapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
       state.map.currentPosition = nil
-      state.map.isMoveToWaitForBossPosition = true
+      -- state.map.isMoveToWaitForBossPosition 在battle里初始化，因为每个关卡才会重置一次这个状态
       state.map.nextStepPoint = nil
       state.map.moveVectorForCheck = { -1, -1 }
       state.map.moveVectorForAStep = { -1, -1 }
@@ -145,7 +142,17 @@ local map = function(action, state)
         state.map.nextStepPoint = closestEnemy
       end
 
+      -- 查找目标点在哪个界面
       state.map.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)
+      for _, targetPosition in ipairs(state.map.checkpositionListForMove) do
+        local nextRowNum = state.map.nextStepPoint[1]
+        local nextColNum = state.map.nextStepPoint[2]
+        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
+          state.map.checkpositionListForMove = { targetPosition }
+          break;
+        end
+      end
+
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
       }))
@@ -198,18 +205,20 @@ local map = function(action, state)
     elseif action.type == 'MAPS_MAP_MOVE_A_STEP' then
 
       stepLabel.setStepLabelContent('3-9.移动地图位置')
-      local targetPosition = state.map.checkpositionListForCheck[1]
+      local targetPosition = state.map.checkpositionListForMove[1]
       local nextRowNum = state.map.nextStepPoint[1]
       local nextColNum = state.map.nextStepPoint[2]
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, state.map.nextStepPoint)
-      elseif #state.map.checkpositionListForCheck > 0 then
-        table.remove(state.map.checkpositionListForCheck, 1)
+      elseif #state.map.checkpositionListForMove > 0 then
+        table.remove(state.map.checkpositionListForMove, 1)
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
         }))
         return makeAction(newstateTypes), state
       end
+
+      state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', 'missionsGroup', map.battle.isMapPage, 3000 }
       }))

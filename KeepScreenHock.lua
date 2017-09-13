@@ -5,7 +5,8 @@ local __tmp = (function()
   keepScreen = nil
   keepScreenState = false
   keepScreen = function(...)
-    keepScreenState = select(1, ...)
+    local arr = { ... }
+    keepScreenState = arr[1] or false
     return __keepScreen(...)
   end
 end)()
