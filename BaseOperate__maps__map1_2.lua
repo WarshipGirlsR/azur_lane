@@ -52,8 +52,12 @@ map1_2.getMapPosition = function()
   return mapBase.getMapPosition(img1_2)
 end
 
-map1_2.moveMapToCheckPosition = function(currentPosition, targetPosition)
-  return mapBase.moveMapToCheckPosition(img1_2, currentPosition, targetPosition)
+map1_2.getMoveVector = function(currentPosition, targetPosition)
+  return mapBase.getMoveVector(img1_1, currentPosition, targetPosition)
+end
+
+map1_2.moveMapToCheckPosition = function(moveVector)
+  return mapBase.moveMapToCheckPosition(img1_1, moveVector)
 end
 
 map1_2.scanMap = function(targetPosition, mapChessboard)

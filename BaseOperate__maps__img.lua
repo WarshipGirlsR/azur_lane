@@ -128,8 +128,9 @@ return {
       local leftTop = { 185, 155 }
       local rightBotton = { 1899, 1022, }
       local basePoint, posandcolor = transRelativePoint({
-        { 818, 370, 0xe68e4a }, { 829, 362, 0xde8a42 },
-        { 841, 352, 0xde8e4a }, { 853, 329, 0xd67573 },
+        { 1205, 482, 0xffffde }, { 1222, 472, 0xde9a4a },
+        { 1202, 515, 0xd68a42 }, { 1238, 470, 0xde7d84 },
+        { 1262, 509, 0x191819 },
       })
       return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
     end)(),

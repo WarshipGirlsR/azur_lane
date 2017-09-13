@@ -175,8 +175,8 @@ map.getMapPosition = function(ImgInfo)
   }
 end
 
--- 将地图移动到指定位置
-map.moveMapToCheckPosition = function(ImgInfo, currentPosition, targetPosition)
+-- 检查地图位置与预设位置的偏差
+map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
@@ -213,8 +213,19 @@ map.moveMapToCheckPosition = function(ImgInfo, currentPosition, targetPosition)
       moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2];
     end
   end
+
+  if not __keepScreenState then keepScreen(false) end
+  return moveVector
+end
+
+-- 将地图移动到指定位置
+map.moveMapToCheckPosition = function(ImgInfo, moveVector)
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+
+  local isCenter = false;
+
   -- 将地图移动到中心
-  -- 如果滑动距离太短或者滑动到同样距离的次数太多，则不再滑动
   local moveStep
   if (math.abs(moveVector[1]) > 4) or (math.abs(moveVector[2]) > 4) then
     -- 因为屏幕滑动和画面滚动不一致，所以需要减少移动幅度
@@ -247,7 +258,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 扫描屏幕上的对象
   local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.myFleet)))
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
-  console.log(myFleetList)
   local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
   local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList1)))
