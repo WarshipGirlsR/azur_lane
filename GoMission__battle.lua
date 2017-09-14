@@ -26,8 +26,11 @@ local battleOnce = function(action, state)
       state.battle.lastVibratorTime = os.time()
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
       state.battle.changeFleetNum = 0
-      -- 舰队是否需要移动到等待boss位置，这个值在关卡开始时才会重置一次
-      state.map.isMoveToWaitForBossPosition = true
+      -- 舰队移动的状态。一次关卡走地图会有3种状态
+      -- moveToWaitBoss : 移动到待命区
+      -- moveToClosestEnemy : 移动到最近的敌人
+      -- moveToBoss : 移动到 boss
+      state.battle.moveState = 'moveToWaitBoss'
 
       if (#settings.battleChapter < 1) then
         stepLabel.setStepLabelContent('2-1.没有选中章节')
@@ -178,13 +181,47 @@ local battleOnce = function(action, state)
       if settings.battleAssistantMode == 'auto' then
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-          { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
+          { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage, 2000 },
         }))
         return makeAction(newstateTypes), state
       end
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
+
+    elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_FLEET') then
+
+      if 1 or settings.battleFleet[2] then
+        stepLabel.setStepLabelContent('2-28.检查舰队')
+        if state.battle.moveState == 'moveToWaitBoss' or state.battle.moveState == 'moveToBoss' then
+          local res = map.battle.isSelectedFleed(settings.battleFleet[1])
+          if (not res) and (state.battle.changeFleetNum < 2) then
+            state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+            stepLabel.setStepLabelContent('2-28.选择boss舰队')
+            local newstateTypes = c.yield(setScreenListeners({
+              { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
+            }))
+            return makeAction(newstateTypes), state
+          end
+        elseif state.battle.moveState == 'moveToClosestEnemy' then
+          local res = map.battle.isSelectedFleed(settings.battleFleet[2])
+          if (not res) and (state.battle.changeFleetNum < 2) then
+            state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+            stepLabel.setStepLabelContent('2-28.选择道中舰队')
+            local newstateTypes = c.yield(setScreenListeners({
+              { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
+            }))
+            return makeAction(newstateTypes), state
+          end
+        end
+      end
+
+      state.battle.changeFleetNum = 0
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
+        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
@@ -214,42 +251,6 @@ local battleOnce = function(action, state)
         { 'BATTLE_GET_PROPS_PANEL', 'missionsGroup', map.battle.isGetPropsPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', 'missionsGroup', map.battle.isGetNewShipPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', 'missionsGroup', map.battle.isGetExpPanel, 2000 },
-      }))
-      return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET') then
-
-      stepLabel.setStepLabelContent('2-27.选择boss舰队' .. settings.battleFleet[1])
-      map.battle.clickSwitchFleetBtn()
-      local res = map.battle.isSelectedFleed(settings.battleFleet[1])
-      if (not res) and (state.battle.changeFleetNum < 4) then
-        state.battle.changeFleetNum = state.battle.changeFleetNum + 1
-        stepLabel.setStepLabelContent('2-28.选择boss舰队失败，再来一次')
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_SELECT_BOSS_FLEET', 'missionsGroup', map.battle.isMapPage },
-        }))
-        return makeAction(newstateTypes), state
-      end
-      local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_MAP_PAGE_MOVE_TO_CENTER', 'missionsGroup', map.battle.isMapPage },
-      }))
-      return makeAction(newstateTypes), state
-
-    elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET') then
-
-      stepLabel.setStepLabelContent('2-29.选择小兵舰队' .. settings.battleFleet[2])
-      map.battle.clickSwitchFleetBtn()
-      local res = map.battle.isSelectedFleed(settings.battleFleet[2])
-      if (not res) and (state.battle.changeFleetNum < 4) then
-        state.battle.changeFleetNum = state.battle.changeFleetNum + 1
-        stepLabel.setStepLabelContent('2-30.选择小兵舰队失败，再来一次')
-        local newstateTypes = c.yield(setScreenListeners({
-          { 'BATTLE_MAP_PAGE_SELECT_SOLDIER_FLEET', 'missionsGroup', map.battle.isMapPage },
-        }))
-        return makeAction(newstateTypes), state
-      end
-      local newstateTypes = c.yield(setScreenListeners({
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 

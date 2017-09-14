@@ -41,7 +41,6 @@ local map = function(action, state)
       state.map.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)
       state.map.mapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
       state.map.currentPosition = nil
-      -- state.map.isMoveToWaitForBossPosition 在battle里初始化，因为每个关卡才会重置一次这个状态
       state.map.nextStepPoint = nil
       state.map.moveVectorForCheck = { -1, -1 }
       state.map.moveVectorForAStep = { -1, -1 }
@@ -56,6 +55,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       state.map.currentPosition = mapProxy.getMapPosition()
+      console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', 'missionsGroup', map.battle.isMapPage },
       }))
@@ -120,24 +120,24 @@ local map = function(action, state)
       local myFleetList = mapChessboard.myFleetList
       local waitForBossPosition = mapChessboard.waitForBossPosition[1]
       if not waitForBossPosition then
-        state.map.isMoveToWaitForBossPosition = false
+        state.battle.moveState = 'moveToClosestEnemy'
       end
       if #mapChessboard.bossPosition > 0 then
         stepLabel.setStepLabelContent('3-4.移动到boss位置')
-        state.map.isMoveToWaitForBossPosition = false
+        state.battle.moveState = 'moveToBoss'
         state.map.nextStepPoint = mapChessboard.bossPosition[1]
-      elseif state.map.isMoveToWaitForBossPosition and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
-        state.map.isMoveToWaitForBossPosition = false
+      elseif state.battle.moveState == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
+        state.battle.moveState = 'moveToClosestEnemy'
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_GET_NEXT_STEP', 'missionsGroup', map.battle.isMapPage },
         }))
         return makeAction(newstateTypes), state
-      elseif state.map.isMoveToWaitForBossPosition then
+      elseif state.battle.moveState == 'moveToWaitBoss' then
         stepLabel.setStepLabelContent('3-5.移动待命位置')
         state.map.nextStepPoint = mapChessboard.waitForBossPosition[1]
       else
         stepLabel.setStepLabelContent('3-6.移动到最近的敌人')
-        state.map.isMoveToWaitForBossPosition = false
+        state.battle.moveState = 'moveToClosestEnemy'
         local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
         state.map.nextStepPoint = closestEnemy
       end
@@ -227,7 +227,7 @@ local map = function(action, state)
 
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 3000 }
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 3000 }
       }))
       return makeAction(newstateTypes), state
     end

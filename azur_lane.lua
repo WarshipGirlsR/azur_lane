@@ -225,13 +225,13 @@ local settingTable = {
       },
       {
         ['type'] = 'Label',
-        ['text'] = '小兵舰队',
+        ['text'] = '道中舰队',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
       },
       {
-        ['id'] = 'battleFleetSoldier',
+        ['id'] = 'battleFleetOnWay',
         ['type'] = 'RadioGroup',
         ['list'] = '无,1队,2队,3队,4队',
         ['select'] = '0',
@@ -358,17 +358,17 @@ local __tmp = (function(settings)
     return list[battleFleetBoss] or 1
   end)(settings.battleFleetBoss)
   settings.battleFleet = { settings.battleFleetBoss }
-  -- 选择小兵舰队
-  settings.battleFleetSoldier = (function(battleFleetSoldier)
+  -- 选择道中舰队
+  settings.battleFleetOnWay = (function(battleFleetOnWay)
     local list = transStrToTable({ 0, 1, 2, 3, 4 })
-    local result = list[battleFleetSoldier] or 0
+    local result = list[battleFleetOnWay] or 0
     if settings.battleFleetBoss == result then
       result = 0
     end
     return result
-  end)(settings.battleFleetSoldier)
-  if settings.battleFleetSoldier > 0 then
-    settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetSoldier }
+  end)(settings.battleFleetOnWay)
+  if settings.battleFleetOnWay > 0 then
+    settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetOnWay }
   end
   -- 迂回战术
   settings.battleRoundabout = (function(battleRoundabout)

@@ -373,12 +373,11 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
     local theCoast = calCoast(myField, enemy)
     -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
     if waitForPossPosition then
-      theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.5
+      theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.1
     end
     if minCoast > theCoast then
       minCoast = theCoast
       minCoastEnemy = enemy
-      break
     end
   end
 
