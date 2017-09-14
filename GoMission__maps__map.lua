@@ -142,6 +142,13 @@ local map = function(action, state)
         state.map.nextStepPoint = closestEnemy
       end
 
+      if not state.map.nextStepPoint then
+        local newstateTypes = c.yield(setScreenListeners(battleMap, {
+          { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage },
+        }))
+        return makeAction(newstateTypes), state
+      end
+
       -- 查找目标点在哪个界面
       state.map.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)
       for _, targetPosition in ipairs(state.map.checkpositionListForMove) do
@@ -220,7 +227,7 @@ local map = function(action, state)
 
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', 'missionsGroup', map.battle.isMapPage, 3000 }
+        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 3000 }
       }))
       return makeAction(newstateTypes), state
     end
