@@ -21,8 +21,8 @@ end)()
 -- 敌人坐标修正向量
 local enemyListCorrectionValue = (function()
   local point = {
-    { 1054, 566, 0xde9a00 },
-    { 1123, 642, 0x312831 },
+    { 1082, 528, 0xa43d10 },
+    { 1152, 619, 0xf7f7ef },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -70,8 +70,8 @@ function transPointListToChessboardPointList(positionMap, positionList)
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
-  local width = 0
   local height = #positionMap
+  local width = 0
   for _, row in ipairs(positionMap) do
     if row then
       width = math.max(width, #row)
@@ -82,12 +82,19 @@ function transPointListToChessboardPointList(positionMap, positionList)
     local theRow = -1
     local theCol = -1
     local item = positionList[i]
-    -- 匹配点在第几行
+    -- 匹配点在第几行。对比第一行和第n行，如果点在这两行之间点就在n-1行
+    -- 第一次遇到的点作为第一行，第二次之后的点才参与之后的对比
+    -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘
+    local firstColInRow = nil
     for rowNum, row in ipairs(positionMap) do
       if row then
         for _, col in ipairs(row) do
-          if col and col[2] > item[2] then
-            theRow = rowNum - 1
+          if col then
+            if not firstColInRow then
+              firstColInRow = col
+            elseif col[2] > item[2] and firstColInRow[2] < item[2] then
+              theRow = rowNum - 1
+            end
             break
           end
         end
@@ -98,22 +105,31 @@ function transPointListToChessboardPointList(positionMap, positionList)
     end
     if theRow > 0 then
       -- 匹配点在第几列
+      -- 保存最左边那条线的两个点，匹配目標必須在第1条线和第n条线的中间
+      -- 避免匹配到第1条线左边的点
+      local firstTopPoint = nil
+      local firstBottonPoint = nil
       for col = 1, width do
         -- 寻找这一列最高和最低的两个点，做直线
         local topPoint
         local bottonPoint
         for row = 1, height do
-          if not topPoint and positionMap[row] and positionMap[row][col] then
-            topPoint = positionMap[row][col]
-          end
           if positionMap[row] and positionMap[row][col] then
-            bottonPoint = positionMap[row][col]
+            if not topPoint then
+              topPoint = positionMap[row][col]
+            else
+              bottonPoint = positionMap[row][col]
+            end
           end
         end
-
-        if topPoint and bottonPoint and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
-          theCol = col - 1
-          break
+        if topPoint and bottonPoint then
+          if (not firstTopPoint) or (not firstBottonPoint) then
+            firstTopPoint = topPoint
+            firstBottonPoint = bottonPoint
+          elseif checkPointPosition(item, firstTopPoint, firstBottonPoint) > 0 and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
+            theCol = col - 1
+            break
+          end
         end
       end
       if theCol > 0 then
