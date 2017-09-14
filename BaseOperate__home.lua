@@ -3,7 +3,7 @@ local home = {}
 -- 检测主页
 home.isHome = function()
   local __keepScreenState = keepScreenState
-  if (not __keepScreenState) then keepScreen(true) end
+  if not __keepScreenState then keepScreen(true) end
   local list = {
     { 139, 30, 0x101010 }, { 625, 24, 0x212021 },
     { 963, 16, 0x292d3a }, { 1033, 67, 0x3a3d3a },
@@ -16,7 +16,7 @@ home.isHome = function()
     { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },
     { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if (not __keepScreenState) then keepScreen(false) end
   return result
 end

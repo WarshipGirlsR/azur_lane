@@ -289,27 +289,31 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
   function corrected(list, correctionValue)
     local res = {}
-    for _, item in ipairs(list) do
+    for key = 1, #list do
+      local item = list[key]
       table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })
     end
     return res
   end
 
+  -- 查找一个颜色列表
+  function findMultiColorList(list)
+    local res = {}
+    for key = 1, #list do
+      local myFleet = list[key]
+      res = table.merge(res, ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(myFleet))))
+    end
+    return res
+  end
+
   -- 扫描屏幕上的对象
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.myFleet)))
+  local myFleetList = findMultiColorList(ImgInfo.map.myFleetList)
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
   local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
-  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList1)))
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue)
-  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList2)))
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
-  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList3)))
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
-  local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-  local bossList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint1)))
-  local bossList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint2)))
-  local bossList = table.merge(bossList1, bossList2)
+  local enemyList = findMultiColorList(ImgInfo.map.enemyList)
+  enemyList = corrected(enemyList, enemyListCorrectionValue)
+  local bossList = findMultiColorList(ImgInfo.map.bossPointList)
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.myFleetList = table.merge(selectedArrowList, mapChessboard.myFleetList, transPointListToChessboardPointList(positionMap, myFleetList))
   mapChessboard.myFleetList = table.unique(mapChessboard.myFleetList, function(item)
@@ -321,13 +325,11 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   end)
   -- 假如舰队和敌方重合了，我方标记会向下移动一格，导致扫描结果有偏差。
   -- 目前无法区分是舰队与敌方重合还是舰队在地方下面。
-
   mapChessboard.bossPosition = table.merge(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
   mapChessboard.bossPosition = table.unique(mapChessboard.bossPosition, function(item)
     return item[1] .. '-' .. item[2]
   end)
   console.log(mapChessboard)
-
 
   if not __keepScreenState then keepScreen(false) end
   return mapChessboard

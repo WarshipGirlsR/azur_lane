@@ -62,18 +62,12 @@ return {
       return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
     end)(),
     -- 我方舰队位置
-    myFleet = imgBase.map.myFleet,
+    myFleetList = imgBase.map.myFleetList,
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = imgBase.map.selectedArrow,
-    -- 敌方舰队位置(1星)
-    enemyList1 = imgBase.map.enemyList1,
-    -- 敌方舰队位置(2星)
-    enemyList2 = imgBase.map.enemyList2,
-    -- 敌方舰队位置(3星)
-    enemyList3 = imgBase.map.enemyList3,
+    -- 敌方舰队位置
+    enemyList = imgBase.map.enemyList,
     -- boss位置
-    bossPoint1 = imgBase.map.bossPoint1,
-    -- boss位置第二种形态
-    bossPoint2 = imgBase.map.bossPoint2,
+    bossPointList = imgBase.map.bossPointList,
   },
 }
