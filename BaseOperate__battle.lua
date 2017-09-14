@@ -17,7 +17,7 @@ battle.isBattlePage = function()
     { 267, 42, 0x3a393a }, { 273, 51, 0xf7c652 },
     { 259, 17, 0xfff7de }, { 266, 25, 0x101010 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -35,7 +35,7 @@ battle.isNotHardMode = function()
     { 170, 1008, 0xc51021 },
     { 281, 1031, 0x631419 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -48,7 +48,7 @@ battle.isHardMode = function()
     { 182, 1007, 0x083173 },
     { 281, 1010, 0x083173 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -73,7 +73,7 @@ battle.moveToChapter = function(chapter)
   for i = 1, 9 do
     tap(90, 540, 100)
     mSleep(500)
-    if not multiColor(leftButton) then
+    if not multiColorS(leftButton) then
       break
     end
   end
@@ -167,7 +167,7 @@ battle.isChapterInfoPanel = function()
     { 1268, 624, 0x3a3d42 }, { 1286, 623, 0xf7f7f7 },
     { 1327, 627, 0x424142 }, { 1526, 499, 0x292d29 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -194,7 +194,7 @@ battle.isSelectFleetPanel = function()
     { 405, 188, 0x101010 }, { 426, 177, 0xf7db7b },
     { 418, 194, 0x080808 }, { 451, 194, 0xffba10 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -215,7 +215,7 @@ battle.isHardSelectFleetPanel = function()
     { 1573, 866, 0xffffff }, { 1584, 864, 0xf7ebe6 },
     { 1618, 864, 0xf7f3ef }, { 1645, 856, 0xffca3a },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -241,10 +241,10 @@ battle.checkSelectedFleet = function(needFleetList)
   local list4 = { { 1203, 840, 0xefa23a } }
   -- 已经选中的舰队索引
   local nowSelectedFeeld = {
-    multiColor(list1) and true or false,
-    multiColor(list2) and true or false,
-    multiColor(list3) and true or false,
-    multiColor(list4) and true or false,
+    multiColorS(list1) and true or false,
+    multiColorS(list2) and true or false,
+    multiColorS(list3) and true or false,
+    multiColorS(list4) and true or false,
   }
   -- 已经选中的舰队
   local nowSelectedFeeldList = {}
@@ -323,7 +323,7 @@ battle.isMapPage = function()
     { 459, 44, 0xefefff }, { 516, 50, 0xefebff },
     { 556, 44, 0xf7f3ff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -361,13 +361,13 @@ battle.scanMapCheckFleetNum = function()
     { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },
   }
   local result = 1
-  if multiColor(list1) then
+  if multiColorS(list1) then
     result = 1
-  elseif multiColor(list2) then
+  elseif multiColorS(list2) then
     result = 2
-  elseif multiColor(list3) then
+  elseif multiColorS(list3) then
     result = 3
-  elseif multiColor(list4) then
+  elseif multiColorS(list4) then
     result = 4
   end
   if not __keepScreenState then keepScreen(false) end
@@ -416,7 +416,7 @@ battle.isSelectedFleed = function(fleet)
       { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },
     }
   end
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -436,7 +436,7 @@ battle.isAmbushedPanel = function()
     { 1237, 540, 0xe6e7e6 }, { 1349, 568, 0xffffff },
     { 1485, 593, 0xc5bebd }, { 1200, 685, 0x5a595a },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -468,7 +468,7 @@ battle.isReadyBattlePage = function()
     { 1333, 28, 0xfff363 }, { 1393, 30, 0xdedfde },
     { 1644, 30, 0xff4973 }, { 1701, 31, 0xdedbde },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -488,7 +488,7 @@ battle.isInBattlePage = function()
     { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },
     { 1860, 56, 0x292d29 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -504,7 +504,7 @@ battle.isNotAutoBattle = function()
     { 180, 86, 0xffffff }, { 195, 78, 0xffffff },
     { 207, 88, 0xffffff }, { 205, 71, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -520,7 +520,7 @@ battle.isAutoBattleConfirmPanel = function()
     { 1127, 344, 0xeff3ef }, { 1206, 333, 0xeff3ef },
     { 862, 754, 0xffdb4a }, { 928, 775, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -567,7 +567,7 @@ battle.isVictoryPanel = function()
     { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
   }
   local result = false
-  if multiColor(list) or multiColor(list2) or multiColor(list3) or multiColor(list4) then
+  if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
@@ -590,7 +590,7 @@ battle.isGetPropsPanel = function()
     { 944, 240, 0xffffff }, { 1006, 268, 0xffdf3a },
     { 1098, 277, 0xf7b629 }, { 969, 809, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -611,7 +611,7 @@ battle.isGetNewShipPanel = function()
     { 1496, 852, 0xefefef }, { 1572, 909, 0xc5c2bd },
     { 1543, 938, 0xeff3ef },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -633,7 +633,7 @@ battle.isGetExpPanel = function()
     { 1533, 912, 0xd6d2d6 }, { 1681, 926, 0xbdbab5 },
     { 1587, 884, 0xe6ebe6 }, { 1599, 916, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -659,7 +659,7 @@ battle.isUrgentEntrustmentPanel = function()
     { 835, 737, 0xffca3a }, { 919, 740, 0xffffff },
     { 977, 745, 0xefb231 }, { 1002, 736, 0xfff7f7 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end

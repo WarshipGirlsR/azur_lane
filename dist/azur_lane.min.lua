@@ -317,7 +317,7 @@ battle.isBattlePage = function()
     { 267, 42, 0x3a393a }, { 273, 51, 0xf7c652 },
     { 259, 17, 0xfff7de }, { 266, 25, 0x101010 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -342,7 +342,7 @@ battle.moveToChapter = function(chapter)
   for i = 1, 8 do
     tap(90, 540, 100)
     mSleep(200)
-    if not multiColor(leftButton) then
+    if not multiColorS(leftButton) then
       break
     end
   end
@@ -401,7 +401,7 @@ battle.isChapterInfoPanel = function()
     { 1268, 624, 0x3a3d42 }, { 1286, 623, 0xf7f7f7 },
     { 1327, 627, 0x424142 }, { 1526, 499, 0x292d29 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -428,7 +428,7 @@ battle.isSelectFleetPanel = function()
     { 405, 188, 0x101010 }, { 426, 177, 0xf7db7b },
     { 418, 194, 0x080808 }, { 451, 194, 0xffba10 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -449,10 +449,10 @@ battle.checkSelectedFleet = function(needFleetList)
   local list4 = { { 1203, 840, 0xefa23a } }
   -- 已经选中的舰队索引
   local nowSelectedFeeld = {
-    multiColor(list1) and true or false,
-    multiColor(list2) and true or false,
-    multiColor(list3) and true or false,
-    multiColor(list4) and true or false,
+    multiColorS(list1) and true or false,
+    multiColorS(list2) and true or false,
+    multiColorS(list3) and true or false,
+    multiColorS(list4) and true or false,
   }
   -- 已经选中的舰队
   local nowSelectedFeeldList = {}
@@ -528,7 +528,7 @@ battle.isMapPage = function()
     { 1184, 1032, 0x6b1019 }, { 1294, 990, 0x4a454a },
     { 1683, 972, 0xde7910 }, { 1344, 989, 0xf7fbf7 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -619,7 +619,7 @@ battle.scanMapCheckFleetNum = function()
     { 305, 104, 0xffe7a4 },
     { 335, 114, 0x637163 },
   }
-  local result1 = multiColor(list)
+  local result1 = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   if (result1) then
     return 1
@@ -683,7 +683,7 @@ battle.isSelectedFleed = function(fleet)
       { 338, 135, 0x42413a }, { 322, 90, 0x424142 },
     }
   end
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -744,7 +744,7 @@ battle.isAmbushedPanel = function()
     { 1237, 540, 0xe6e7e6 }, { 1349, 568, 0xffffff },
     { 1485, 593, 0xc5bebd }, { 1200, 685, 0x5a595a },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -767,7 +767,7 @@ battle.isReadyBattlePage = function()
     { 1781, 998, 0x8ccece }, { 1613, 935, 0xffefbd },
     { 1272, 361, 0x212429 }, { 135, 844, 0xefefef },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -787,7 +787,7 @@ battle.isInBattlePage = function()
     { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },
     { 1860, 56, 0x292d29 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -803,7 +803,7 @@ battle.isAutoBattle = function()
     { 163, 67, 0xffffff }, { 158, 65, 0x4a555a },
     { 155, 81, 0x314142 }, { 155, 83, 0xe6ebe6 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return not result
 end
@@ -819,7 +819,7 @@ battle.isAutoBattleConfirmPanel = function()
     { 849, 760, 0xffd24a }, { 946, 795, 0xffffff },
     { 1004, 778, 0xffca3a }, { 1021, 775, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -859,7 +859,7 @@ battle.isVictoryPanel = function()
     { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
   }
   local result = false
-  if (multiColor(list) or multiColor(list2) or multiColor(list3)) then
+  if (multiColorS(list) or multiColorS(list2) or multiColorS(list3)) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
@@ -882,7 +882,7 @@ battle.isGetPropsPanel = function()
     { 944, 240, 0xffffff }, { 1006, 268, 0xffdf3a },
     { 1098, 277, 0xf7b629 }, { 969, 809, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -903,7 +903,7 @@ battle.isGetNewShipPanel = function()
     { 1496, 852, 0xefefef }, { 1572, 909, 0xc5c2bd },
     { 1543, 938, 0xeff3ef },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -925,7 +925,7 @@ battle.isGetExpPanel = function()
     { 1533, 912, 0xd6d2d6 }, { 1681, 926, 0xbdbab5 },
     { 1587, 884, 0xe6ebe6 }, { 1599, 916, 0xffffff },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -951,7 +951,7 @@ battle.isUrgentEntrustmentPanel = function()
     { 835, 737, 0xffca3a }, { 919, 740, 0xffffff },
     { 977, 745, 0xefb231 }, { 1002, 736, 0xfff7f7 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -986,7 +986,7 @@ home.isHome = function()
     { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },
     { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },
   }
-  local result = multiColor(list)
+  local result = multiColorS(list)
   if (not __keepScreenState) then keepScreen(false) end
   return result
 end
@@ -1309,13 +1309,13 @@ function calOrient(_orient)
   }
 
   -- 如果方向没变则不旋转
-  if (multiColor(checkPointList)) then
+  if (multiColorS(checkPointList)) then
     return _orient
   end
   -- 如果方向变了则旋转
   for k, v in ipairs(checkOrder) do
     __init(v)
-    if (multiColor(checkPointList)) then
+    if (multiColorS(checkPointList)) then
       return v
     end
   end

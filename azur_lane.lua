@@ -13,12 +13,13 @@ if (deviceIsLock() ~= 0) then
 end
 
 initLog('azur_lane', 1)
-
+require "TSLib"
 require 'TableLib'
 require 'StringLib'
 require 'MathLib'
 require 'console'
 require 'KeepScreenHock'
+require 'MultiColorHock'
 require 'DeviceOrientHock'
 local eq = require 'EventQuery'
 local co = require 'Co'

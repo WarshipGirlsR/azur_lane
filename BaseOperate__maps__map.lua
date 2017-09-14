@@ -21,8 +21,8 @@ end)()
 -- 敌人坐标修正向量
 local enemyListCorrectionValue = (function()
   local point = {
-    { 1054, 566, 0xde9a00 },
-    { 1123, 642, 0x312831 },
+    { 1082, 528, 0xa43d10 },
+    { 1152, 619, 0xf7f7ef },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -70,8 +70,8 @@ function transPointListToChessboardPointList(positionMap, positionList)
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
-  local width = 0
   local height = #positionMap
+  local width = 0
   for _, row in ipairs(positionMap) do
     if row then
       width = math.max(width, #row)
@@ -82,12 +82,19 @@ function transPointListToChessboardPointList(positionMap, positionList)
     local theRow = -1
     local theCol = -1
     local item = positionList[i]
-    -- 匹配点在第几行
+    -- 匹配点在第几行。对比第一行和第n行，如果点在这两行之间点就在n-1行
+    -- 第一次遇到的点作为第一行，第二次之后的点才参与之后的对比
+    -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘
+    local firstColInRow = nil
     for rowNum, row in ipairs(positionMap) do
       if row then
         for _, col in ipairs(row) do
-          if col and col[2] > item[2] then
-            theRow = rowNum - 1
+          if col then
+            if not firstColInRow then
+              firstColInRow = col
+            elseif col[2] > item[2] and firstColInRow[2] < item[2] then
+              theRow = rowNum - 1
+            end
             break
           end
         end
@@ -98,22 +105,31 @@ function transPointListToChessboardPointList(positionMap, positionList)
     end
     if theRow > 0 then
       -- 匹配点在第几列
+      -- 保存最左边那条线的两个点，匹配目標必須在第1条线和第n条线的中间
+      -- 避免匹配到第1条线左边的点
+      local firstTopPoint = nil
+      local firstBottonPoint = nil
       for col = 1, width do
         -- 寻找这一列最高和最低的两个点，做直线
         local topPoint
         local bottonPoint
         for row = 1, height do
-          if not topPoint and positionMap[row] and positionMap[row][col] then
-            topPoint = positionMap[row][col]
-          end
           if positionMap[row] and positionMap[row][col] then
-            bottonPoint = positionMap[row][col]
+            if not topPoint then
+              topPoint = positionMap[row][col]
+            else
+              bottonPoint = positionMap[row][col]
+            end
           end
         end
-
-        if topPoint and bottonPoint and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
-          theCol = col - 1
-          break
+        if topPoint and bottonPoint then
+          if (not firstTopPoint) or (not firstBottonPoint) then
+            firstTopPoint = topPoint
+            firstBottonPoint = bottonPoint
+          elseif checkPointPosition(item, firstTopPoint, firstBottonPoint) > 0 and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
+            theCol = col - 1
+            break
+          end
         end
       end
       if theCol > 0 then
@@ -289,27 +305,31 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
   function corrected(list, correctionValue)
     local res = {}
-    for _, item in ipairs(list) do
+    for key = 1, #list do
+      local item = list[key]
       table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })
     end
     return res
   end
 
+  -- 查找一个颜色列表
+  function findMultiColorList(list)
+    local res = {}
+    for key = 1, #list do
+      local myFleet = list[key]
+      res = table.merge(res, ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(myFleet))))
+    end
+    return res
+  end
+
   -- 扫描屏幕上的对象
-  local myFleetList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.myFleet)))
+  local myFleetList = findMultiColorList(ImgInfo.map.myFleetList)
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
   local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
-  local enemyList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList1)))
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue)
-  local enemyList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList2)))
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
-  local enemyList3 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.enemyList3)))
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
-  local enemyList = table.merge(enemyList1, enemyList2, enemyList3)
-  local bossList1 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint1)))
-  local bossList2 = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bossPoint2)))
-  local bossList = table.merge(bossList1, bossList2)
+  local enemyList = findMultiColorList(ImgInfo.map.enemyList)
+  enemyList = corrected(enemyList, enemyListCorrectionValue)
+  local bossList = findMultiColorList(ImgInfo.map.bossPointList)
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.myFleetList = table.merge(selectedArrowList, mapChessboard.myFleetList, transPointListToChessboardPointList(positionMap, myFleetList))
   mapChessboard.myFleetList = table.unique(mapChessboard.myFleetList, function(item)
@@ -321,13 +341,11 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   end)
   -- 假如舰队和敌方重合了，我方标记会向下移动一格，导致扫描结果有偏差。
   -- 目前无法区分是舰队与敌方重合还是舰队在地方下面。
-
   mapChessboard.bossPosition = table.merge(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
   mapChessboard.bossPosition = table.unique(mapChessboard.bossPosition, function(item)
     return item[1] .. '-' .. item[2]
   end)
   console.log(mapChessboard)
-
 
   if not __keepScreenState then keepScreen(false) end
   return mapChessboard
