@@ -565,6 +565,14 @@ battle.isVictoryPanel = function()
     { 1179, 451, 0xefcaad }, { 1356, 467, 0x521c08 },
     { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
   }
+  -- d 全军覆没
+  local list4 = {
+    { 544, 437, 0xe69a63 }, { 619, 435, 0xefcaad },
+    { 695, 496, 0xe6a673 }, { 848, 473, 0xde6931 },
+    { 1028, 467, 0xdebe94 }, { 1162, 474, 0xefceb5 },
+    { 1265, 473, 0xe6a273 }, { 1414, 494, 0xe6a273 },
+    { 1320, 476, 0xefb694 }, { 1316, 536, 0xefb694 },
+  }
   local result = false
   if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) then
     result = true

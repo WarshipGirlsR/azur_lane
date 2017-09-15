@@ -38,12 +38,33 @@ local map = function(action, state)
   return co(c.create(function()
     if action.type == 'MAPS_MAP_START' then
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
-      state.map.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)
+      state.map.checkpositionListForMove = state.map.checkpositionListForMove or {}
       state.map.mapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
       state.map.currentPosition = nil
       state.map.nextStepPoint = nil
       state.map.moveVectorForCheck = { -1, -1 }
       state.map.moveVectorForAStep = { -1, -1 }
+
+      -- 检查上次移动舰队时所在的位置，并将其提前。有利于提高扫描速度
+      if #state.map.checkpositionListForMove > 0 then
+        local cForMove = state.map.checkpositionListForMove[1]
+        local index = table.findIndex(state.map.checkpositionListForCheck, function(cForCheck)
+          if cForMove.leftTop and cForCheck.leftTop then
+            return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]
+          elseif cForMove.rightTop and cForCheck.rightTop then
+            return cForMove.rightTop[1] == cForCheck.rightTop[1] and cForMove.rightTop[2] == cForCheck.rightTop[2]
+          elseif cForMove.leftBotton and cForCheck.leftBotton then
+            return cForMove.leftBotton[1] == cForCheck.leftBotton[1] and cForMove.leftBotton[2] == cForCheck.leftBotton[2]
+          elseif cForMove.rightBotton and cForCheck.rightBotton then
+            return cForMove.rightBotton[1] == cForCheck.rightBotton[1] and cForMove.rightBotton[2] == cForCheck.rightBotton[2]
+          end
+        end)
+        if index > 0 then
+          local cfm = state.map.checkpositionListForCheck[index]
+          table.remove(state.map.checkpositionListForCheck, index)
+          table.insert(state.map.checkpositionListForCheck, 1, cfm)
+        end
+      end
 
       stepLabel.setStepLabelContent('3-1.开始移动地图')
       local newstateTypes = c.yield(setScreenListeners({
@@ -56,6 +77,7 @@ local map = function(action, state)
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       state.map.currentPosition = mapProxy.getMapPosition()
       console.log(state.map.currentPosition)
+
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', 'missionsGroup', map.battle.isMapPage },
       }))
@@ -178,9 +200,9 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-8.计算移动向量')
       local targetPosition = state.map.checkpositionListForMove[1]
-      local newMoveVector = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
+      local newMoveVector, effectiveStep = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
 
-      if state.map.moveVectorForAStep[1] == newMoveVector[1] and state.map.moveVectorForAStep[2] == newMoveVector[2] then
+      if effectiveStep and state.map.moveVectorForAStep[1] == newMoveVector[1] and state.map.moveVectorForAStep[2] == newMoveVector[2] then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_MOVE_A_STEP', 'missionsGroup', map.battle.isMapPage },
         }))
@@ -219,7 +241,6 @@ local map = function(action, state)
         mapProxy.moveToPoint(targetPosition, state.map.nextStepPoint)
         map.battle.clickAttackBtn()
       elseif #state.map.checkpositionListForMove > 0 then
-        table.remove(state.map.checkpositionListForMove, 1)
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
         }))
