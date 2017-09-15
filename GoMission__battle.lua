@@ -181,12 +181,14 @@ local battleOnce = function(action, state)
       if settings.battleAssistantMode == 'auto' then
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 1000 },
           { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
         }))
         return makeAction(newstateTypes), state
       end
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 1000 },
         { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage, 2000 },
       }))
       return makeAction(newstateTypes), state
