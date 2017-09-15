@@ -420,6 +420,10 @@ battle.clickSwitchFleetBtn = function()
   tap(1426, 1003, 100)
 end
 
+battle.clickAttackBtn = function()
+  tap(1740, 1005, 100)
+end
+
 -- 检测敌方伏击面板
 battle.isAmbushedPanel = function()
   local __keepScreenState = keepScreenState

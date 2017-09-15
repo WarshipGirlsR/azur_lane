@@ -217,6 +217,7 @@ local map = function(action, state)
       local nextColNum = state.map.nextStepPoint[2]
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, state.map.nextStepPoint)
+        map.battle.clickAttackBtn()
       elseif #state.map.checkpositionListForMove > 0 then
         table.remove(state.map.checkpositionListForMove, 1)
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
