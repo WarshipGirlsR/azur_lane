@@ -195,7 +195,6 @@ local battleOnce = function(action, state)
 
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('2-28.检查舰队')
-        console.log(state.battle.moveState)
         if state.battle.moveState == 'moveToWaitBoss' or state.battle.moveState == 'moveToBoss' then
           local res = map.battle.isSelectedFleed(settings.battleFleet[1])
           if (not res) and (state.battle.changeFleetNum < 2) then

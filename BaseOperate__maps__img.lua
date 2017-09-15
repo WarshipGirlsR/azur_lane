@@ -264,6 +264,18 @@ return {
         })
         return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 我方舰队和boss重叠 3-4关3-8位置
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1551, 553, 0x313531 }, { 1520, 566, 0x3a353a },
+          { 1553, 566, 0x312d31 }, { 1585, 567, 0x292429 },
+          { 1529, 581, 0xe66d63 }, { 1555, 580, 0xde695a },
+          { 1577, 581, 0xe66963 },
+        })
+        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
   },
 }
