@@ -65,8 +65,8 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-2.计算移动向量')
       local targetPosition = state.map.checkpositionListForCheck[1]
-      local newMoveVector = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
-      if comparePoints(state.map.moveVectorForCheck, newMoveVector) then
+      local newMoveVector, effectiveStep = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
+      if effectiveStep and comparePoints(state.map.moveVectorForCheck, newMoveVector) then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_SCAN_MAP', 'missionsGroup', map.battle.isMapPage },
         }))

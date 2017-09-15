@@ -157,6 +157,20 @@ function transChessboardPointListToPositionList(positionMap, pointList)
   return result
 end
 
+
+-- 搜索一个颜色列表
+function findMultiColorList(list, simpleMode)
+  local res = {}
+  for key = 1, #list do
+    local myFleet = list[key]
+    res = table.merge(res, findMultiColorInRegionFuzzyExt(table.unpack(myFleet)))
+    if simpleMode and #res > 0 then
+      break
+    end
+  end
+  return res
+end
+
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
@@ -177,11 +191,10 @@ map.getMapPosition = function(ImgInfo)
   local isCenter = false
   -- 扫描边界
   keepScreen(true)
-  -- 地图上边界2，由于上边界颜色并不清晰，所以准备2个上边界扫描工具
-  local topLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.topLine)))
-  local bottonLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.bottonLine)))
-  local leftLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.leftLine)))
-  local rightLinePointList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.rightLine)))
+  local topLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.topLineList, true))
+  local bottonLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bottonLineList, true))
+  local leftLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.leftLineList, true))
+  local rightLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.rightLineList, true))
 
   local topLinePoint = topLinePointList[1] or { -1, -1 }
   local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
@@ -232,17 +245,16 @@ end
 
 -- 检查地图位置与预设位置的偏差
 map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
 
-  local isCenter = false;
 
   -- 计算偏差
   local moveVector = { 0, 0 }
+  local effectiveStep = false
   if targetPosition.leftTop then
     if not currentPosition.leftTop then
       moveVector = { sWidth / 10, sHeight / 10 }
     else
+      effectiveStep = true
       moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1];
       moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2];
     end
@@ -250,6 +262,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     if not currentPosition.rightTop then
       moveVector = { (0 - sWidth) / 10, sHeight / 10 }
     else
+      effectiveStep = true
       moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1];
       moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2];
     end
@@ -257,6 +270,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     if not currentPosition.leftBotton then
       moveVector = { sWidth / 10, (0 - sHeight) / 10 }
     else
+      effectiveStep = true
       moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1];
       moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2];
     end
@@ -264,6 +278,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     if not currentPosition.rightBotton then
       moveVector = { (0 - sWidth) / 10, (0 - sHeight) / 10 }
     else
+      effectiveStep = true
       moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]
       moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2]
     end
@@ -272,15 +287,11 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   moveVector[1] = math.floor(moveVector[1] * 0.8)
   moveVector[2] = math.floor(moveVector[2] * 0.8)
 
-  if not __keepScreenState then keepScreen(false) end
-  return moveVector
+  return moveVector, effectiveStep
 end
 
 -- 将地图移动到指定位置
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)
-  local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
-
   local isCenter = false;
 
   -- 将地图移动到中心
@@ -297,7 +308,6 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   else
     isCenter = true
   end
-  if not __keepScreenState then keepScreen(false) end
   return isCenter, moveStep
 end
 
@@ -316,24 +326,15 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
     return res
   end
 
-  -- 查找一个颜色列表
-  function findMultiColorList(list)
-    local res = {}
-    for key = 1, #list do
-      local myFleet = list[key]
-      res = table.merge(res, ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(myFleet))))
-    end
-    return res
-  end
 
   -- 扫描屏幕上的对象
-  local myFleetList = findMultiColorList(ImgInfo.map.myFleetList)
+  local myFleetList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.myFleetList))
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
   local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
-  local enemyList = findMultiColorList(ImgInfo.map.enemyList)
+  local enemyList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.enemyList))
   enemyList = corrected(enemyList, enemyListCorrectionValue)
-  local bossList = findMultiColorList(ImgInfo.map.bossPointList)
+  local bossList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bossPointList))
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.myFleetList = table.merge(selectedArrowList, mapChessboard.myFleetList, transPointListToChessboardPointList(positionMap, myFleetList))
   mapChessboard.myFleetList = table.unique(mapChessboard.myFleetList, function(item)

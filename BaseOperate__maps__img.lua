@@ -76,64 +76,61 @@ return {
   -- 地图扫描
   map = {
     -- 地图上边界
-    topLine = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022, }
-      local basePoint, posandcolor = transRelativePoint({
-        { 651, 407, 0x21354a }, { 683, 409, 0x193542 },
-        { 737, 407, 0x193542 }, { 799, 409, 0x213542 },
-        { 847, 407, 0x213542 }, { 906, 409, 0x193142 },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
+    topLineList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 651, 407, 0x21354a }, { 683, 409, 0x193542 },
+          { 737, 407, 0x193542 }, { 799, 409, 0x213542 },
+          { 847, 407, 0x213542 }, { 906, 409, 0x193142 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 地图下边界
-    bottonLine = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022 }
-      local basePoint, posandcolor = transRelativePoint({
-        { 420, 540, 0x000000 }, { 431, 543, 0x000000 },
-        { 457, 540, 0x000000 }, { 492, 543, 0x000000 },
-        { 544, 540, 0x000000 }, { 575, 543, 0x000000 },
-        { 621, 540, 0x000000 }, { 677, 543, 0x000000 },
-        { 719, 540, 0x000000 }, { 789, 543, 0x000000 },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
+    bottonLine = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022 }
+        local basePoint, posandcolor = transRelativePoint({
+          { 420, 540, 0x000000 }, { 431, 543, 0x000000 },
+          { 457, 540, 0x000000 }, { 492, 543, 0x000000 },
+          { 544, 540, 0x000000 }, { 575, 543, 0x000000 },
+          { 621, 540, 0x000000 }, { 677, 543, 0x000000 },
+          { 719, 540, 0x000000 }, { 789, 543, 0x000000 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 地图左边界
-    leftLine = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022, }
-      local basePoint, posandcolor = transRelativePoint({
-        { 285, 362, 0x000000 }, { 286, 362, 0x31b6de },
-        { 285, 363, 0x000000 }, { 286, 363, 0x31b2d6 },
-        { 284, 364, 0x000000 }, { 285, 364, 0x31b2de },
-        { 284, 365, 0x000000 }, { 285, 365, 0x31b6de },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
+    leftLineList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 285, 362, 0x000000 }, { 286, 362, 0x31b6de },
+          { 285, 363, 0x000000 }, { 286, 363, 0x31b2d6 },
+          { 284, 364, 0x000000 }, { 285, 364, 0x31b2de },
+          { 284, 365, 0x000000 }, { 285, 365, 0x31b6de },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 地图右边界
-    rightLine = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022, }
-      local basePoint, posandcolor = transRelativePoint({
-        { 1800, 297, 0x299ade }, { 1801, 297, 0x000000 },
-        { 1800, 298, 0x299ee6 }, { 1801, 298, 0x000000 },
-        { 1801, 299, 0x299ae6 }, { 1802, 299, 0x000000 },
-        { 1801, 300, 0x299ae6 }, { 1802, 300, 0x000408 },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
-    -- 我方舰队位置
-    myFleet = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022, }
-      local basePoint, posandcolor = transRelativePoint({
-        { 1205, 482, 0xffffde }, { 1222, 472, 0xde9a4a },
-        { 1202, 515, 0xd68a42 }, { 1238, 470, 0xde7d84 },
-        { 1262, 509, 0x191819 },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
+    rightLineList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1800, 297, 0x299ade }, { 1801, 297, 0x000000 },
+          { 1800, 298, 0x299ee6 }, { 1801, 298, 0x000000 },
+          { 1801, 299, 0x299ae6 }, { 1802, 299, 0x000000 },
+          { 1801, 300, 0x299ae6 }, { 1802, 300, 0x000408 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 我方舰队位置列表
     myFleetList = {
       --  采集位置1-2关1-1位
