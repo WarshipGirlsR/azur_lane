@@ -374,11 +374,6 @@ battle.scanMapCheckFleetNum = function()
   return result
 end
 
--- 点击到boss出现区域
-battle.clickToMapBossArea = function()
-  tap(1777, 741, 100)
-end
-
 battle.isSelectedFleed = function(fleet)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end

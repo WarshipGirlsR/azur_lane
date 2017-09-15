@@ -181,25 +181,27 @@ local battleOnce = function(action, state)
       if settings.battleAssistantMode == 'auto' then
         local newstateTypes = c.yield(setScreenListeners({
           { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-          { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage, 2000 },
+          { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
         }))
         return makeAction(newstateTypes), state
       end
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage, 2000 },
+        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', 'missionsGroup', map.battle.isMapPage, 2000 },
       }))
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_MAP_PAGE_SELECT_FLEET') then
 
-      if 1 or settings.battleFleet[2] then
+      if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('2-28.检查舰队')
+        console.log(state.battle.moveState)
         if state.battle.moveState == 'moveToWaitBoss' or state.battle.moveState == 'moveToBoss' then
           local res = map.battle.isSelectedFleed(settings.battleFleet[1])
           if (not res) and (state.battle.changeFleetNum < 2) then
             state.battle.changeFleetNum = state.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-28.选择boss舰队')
+            map.battle.clickSwitchFleetBtn()
             local newstateTypes = c.yield(setScreenListeners({
               { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
             }))
@@ -210,6 +212,7 @@ local battleOnce = function(action, state)
           if (not res) and (state.battle.changeFleetNum < 2) then
             state.battle.changeFleetNum = state.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-28.选择道中舰队')
+            map.battle.clickSwitchFleetBtn()
             local newstateTypes = c.yield(setScreenListeners({
               { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
             }))
@@ -221,7 +224,7 @@ local battleOnce = function(action, state)
       state.battle.changeFleetNum = 0
       local newstateTypes = c.yield(setScreenListeners({
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
-        { 'MAPS_MAP_START', 'missionsGroup', map.battle.isMapPage },
+        { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 

@@ -161,7 +161,7 @@ local map = function(action, state)
       end
 
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 

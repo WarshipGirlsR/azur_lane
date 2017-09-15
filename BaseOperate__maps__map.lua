@@ -199,7 +199,9 @@ map.getMapPosition = function(ImgInfo)
         local X1 = (Y1 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
         X1 = math.trueNumber(X1) or -1
         X1 = math.floor(X1)
-        result[1] = { X1, Y1 }
+        if X1 > 0 then
+          result[1] = { X1, Y1 }
+        end
       end
       if bottonLinePoint and bottonLinePoint[1] > 0 then
         local Y2 = math.floor(bottonLinePoint[2])
@@ -208,7 +210,9 @@ map.getMapPosition = function(ImgInfo)
         local X2 = (Y2 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
         X2 = math.trueNumber(X2) or -1
         X2 = math.floor(X2)
-        result[2] = { X2, Y2 }
+        if X2 > 0 then
+          result[2] = { X2, Y2 }
+        end
       end
     end
     return result

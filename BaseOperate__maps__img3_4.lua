@@ -38,9 +38,29 @@ return {
       return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
     end)(),
     -- 地图左边界
-    leftLine = imgBase.map.leftLine,
+    leftLine = (function()
+      local leftTop = { 185, 155 }
+      local rightBotton = { 1899, 1022 }
+      local basePoint, posandcolor = transRelativePoint({
+        { 455, 458, 0x000000 }, { 456, 458, 0x31bade },
+        { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },
+        { 454, 459, 0x000000 }, { 455, 459, 0x31bade },
+        { 454, 460, 0x000000 }, { 455, 460, 0x31bade },
+      })
+      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+    end)(),
     -- 地图右边界
-    rightLine = imgBase.map.rightLine,
+    rightLine = (function()
+      local leftTop = { 185, 155 }
+      local rightBotton = { 1899, 1022 }
+      local basePoint, posandcolor = transRelativePoint({
+        { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },
+        { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },
+        { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },
+        { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },
+      })
+      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+    end)(),
     -- 我方舰队位置
     myFleetList = imgBase.map.myFleetList,
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
