@@ -1,4 +1,6 @@
-local sWidth, sHeight = getScreenSize();
+local _sWidth, _sHeight = getScreenSize();
+local sWidth = math.max(_sWidth, _sHeight)
+local sHeight = math.min(_sWidth, _sHeight)
 
 local map = {}
 
@@ -299,7 +301,7 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   if (math.abs(moveVector[1]) > 4) or (math.abs(moveVector[2]) > 4) then
     -- 因为屏幕滑动和画面滚动不一致，所以需要减少移动幅度
     moveStep = math.max(math.abs(moveVector[1]), math.abs(moveVector[2]))
-    moveStep = math.min(10, moveStep)
+    moveStep = math.min(20, moveStep)
     moveStep = math.abs(moveStep)
     moveStep = math.floor(moveStep)
     moveStep = math.max(1, moveStep)

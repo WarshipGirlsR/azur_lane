@@ -42,7 +42,7 @@ map1_2.getMapChessboard = function()
   return {
     width = 4,
     height = 3,
-    obstacle = {},
+    obstacle = { { 2, 2 }, { 2, 5 }, { 3, 5 } },
     waitForBossPosition = {},
     bossPosition = {},
     myFleetList = {},
