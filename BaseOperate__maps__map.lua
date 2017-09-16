@@ -352,6 +352,16 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   mapChessboard.bossPosition = table.unique(mapChessboard.bossPosition, function(item)
     return item[1] .. '-' .. item[2]
   end)
+  -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
+  local enemyPositionListMap = {}
+  for key = 1, #mapChessboard.enemyPositionList do
+    local point = mapChessboard.enemyPositionList[key]
+    enemyPositionListMap[point[1] .. '-' .. point[2]] = point
+  end
+  mapChessboard.bossPosition = table.filter(mapChessboard.bossPosition, function(point)
+    console.log(enemyPositionListMap[point[1] .. '-' .. point[2]])
+    return not enemyPositionListMap[point[1] .. '-' .. point[2]]
+  end)
   console.log(mapChessboard)
 
   if not __keepScreenState then keepScreen(false) end

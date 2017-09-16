@@ -203,6 +203,8 @@ local battleOnce = function(action, state)
             state.battle.changeFleetNum = state.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-28.选择boss舰队')
             map.battle.clickSwitchFleetBtn()
+            c.yield(sleepPromise(100))
+            map.battle.clickAttackBtn()
             local newstateTypes = c.yield(setScreenListeners({
               { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
             }))
@@ -214,6 +216,8 @@ local battleOnce = function(action, state)
             state.battle.changeFleetNum = state.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-28.选择道中舰队')
             map.battle.clickSwitchFleetBtn()
+            c.yield(sleepPromise(100))
+            map.battle.clickAttackBtn()
             local newstateTypes = c.yield(setScreenListeners({
               { 'BATTLE_MAP_PAGE_SELECT_FLEET', 'missionsGroup', map.battle.isMapPage },
             }))

@@ -192,7 +192,7 @@ table.filter = table.filter or function(target, func)
       table.insert(result, value)
     end
   end
-  return target
+  return result
 end
 
 table.unique = table.unique or function(target, path)

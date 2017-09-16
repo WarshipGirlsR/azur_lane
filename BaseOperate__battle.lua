@@ -420,6 +420,7 @@ battle.clickSwitchFleetBtn = function()
   tap(1426, 1003, 100)
 end
 
+-- 地图点击迎击
 battle.clickAttackBtn = function()
   tap(1740, 1005, 100)
 end
