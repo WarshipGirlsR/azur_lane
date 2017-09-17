@@ -53,5 +53,7 @@ return {
     enemyList = imgBase.map.enemyList,
     -- boss位置
     bossPointList = imgBase.map.bossPointList,
+    -- 战斗中的位置
+    inBattleList = imgBase.map.inBattleList,
   },
 }

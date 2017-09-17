@@ -234,6 +234,17 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 大型 3-4 的1-4 截取
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 854, 522, 0xa44119 }, { 866, 522, 0xa43d10 },
+          { 879, 522, 0x844121 }, { 849, 529, 0xa44110 },
+          { 849, 542, 0x844121 }, { 849, 554, 0xb53500 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- boss位置
     bossPointList = {
@@ -247,7 +258,7 @@ return {
           { 1257, 440, 0xe66963 }, { 1265, 458, 0xffffff },
           { 1302, 461, 0xf7efee }, { 1321, 461, 0xf7ebe6 },
         })
-        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 我方舰队不和boss重叠
       (function()
@@ -259,7 +270,7 @@ return {
           { 1257, 440, 0xe66963 }, { 1265, 458, 0xffffff },
           { 1302, 461, 0xf7efee }, { 1321, 461, 0xf7ebe6 },
         })
-        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 我方舰队不和boss重叠 1-2关1-5位置
       (function()
@@ -270,7 +281,32 @@ return {
           { 1301, 424, 0x292429 }, { 1257, 455, 0xf74d52 },
           { 1300, 453, 0xf74d4a }, { 1275, 471, 0x313131 },
         })
-        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 我方舰队和boss重叠 3-4关3-8位置
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1582, 554, 0x3a3131 }, { 1557, 554, 0x313531 },
+          { 1578, 542, 0x3a353a }, { 1606, 552, 0x312831 },
+          { 1560, 569, 0xde695a }, { 1598, 569, 0xde695a },
+          { 1580, 571, 0xde695a },
+        })
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
+    inBattleList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 538, 757, 0xf77d6b }, { 515, 735, 0xf78173 },
+          { 471, 727, 0xfff7f7 }, { 519, 727, 0xfff7f7 },
+          { 558, 727, 0xf7f7f7 }, { 592, 727, 0xf7f7ef },
+          { 581, 751, 0xfffbf7 }, { 581, 762, 0xfffbff },
+        })
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
   },

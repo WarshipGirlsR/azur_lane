@@ -328,6 +328,21 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
     return res
   end
 
+  function makePointMap(list)
+    local theMap = {}
+    for key = 1, #list do
+      local point = list[key]
+      theMap[point[1] .. '-' .. point[2]] = point
+    end
+    return theMap
+  end
+
+  -- 将重复的位置去除
+  function uniqueList(tab)
+    return table.unique(tab, function(item)
+      return item[1] .. '-' .. item[2]
+    end)
+  end
 
   -- 扫描屏幕上的对象
   local myFleetList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.myFleetList))
@@ -337,31 +352,34 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local enemyList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.enemyList))
   enemyList = corrected(enemyList, enemyListCorrectionValue)
   local bossList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bossPointList))
+  local inBattleList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.inBattleList))
+
+  mapChessboard.inBattleList = table.merge(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
+  mapChessboard.inBattleList = uniqueList(mapChessboard.inBattleList)
   local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
-  mapChessboard.myFleetList = table.merge(selectedArrowList, mapChessboard.myFleetList, transPointListToChessboardPointList(positionMap, myFleetList))
-  mapChessboard.myFleetList = table.unique(mapChessboard.myFleetList, function(item)
-    return item[1] .. '-' .. item[2]
-  end)
-  mapChessboard.enemyPositionList = table.merge(mapChessboard.enemyPositionList, transPointListToChessboardPointList(positionMap, enemyList))
-  mapChessboard.enemyPositionList = table.unique(mapChessboard.enemyPositionList, function(item)
-    return item[1] .. '-' .. item[2]
-  end)
-  -- 假如舰队和敌方重合了，我方标记会向下移动一格，导致扫描结果有偏差。
-  -- 目前无法区分是舰队与敌方重合还是舰队在地方下面。
-  mapChessboard.bossPosition = table.merge(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
-  mapChessboard.bossPosition = table.unique(mapChessboard.bossPosition, function(item)
-    return item[1] .. '-' .. item[2]
-  end)
-  -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
-  local enemyPositionListMap = {}
-  for key = 1, #mapChessboard.enemyPositionList do
-    local point = mapChessboard.enemyPositionList[key]
-    enemyPositionListMap[point[1] .. '-' .. point[2]] = point
+  local myFleetList = transPointListToChessboardPointList(positionMap, myFleetList)
+  myFleetList = table.merge(selectedArrowList, myFleetList)
+  myFleetList = uniqueList(myFleetList)
+  -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
+  local inBattleMap = makePointMap(mapChessboard.inBattleList)
+  for key = 1, #myFleetList do
+    local point = myFleetList[key]
+    if inBattleMap[(point[1] - 1) .. '-' .. point[2]] then
+      myFleetList[key][1] = point[1] - 1
+    end
   end
+  mapChessboard.myFleetList = table.merge(myFleetList, mapChessboard.myFleetList)
+  mapChessboard.myFleetList = uniqueList(mapChessboard.myFleetList)
+  mapChessboard.enemyPositionList = table.merge(mapChessboard.enemyPositionList, transPointListToChessboardPointList(positionMap, enemyList))
+  mapChessboard.enemyPositionList = uniqueList(mapChessboard.enemyPositionList)
+  mapChessboard.bossPosition = table.merge(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
+  mapChessboard.bossPosition = uniqueList(mapChessboard.bossPosition)
+  -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
+  local enemyPositionMap = makePointMap(mapChessboard.enemyPositionList)
   mapChessboard.bossPosition = table.filter(mapChessboard.bossPosition, function(point)
-    console.log(enemyPositionListMap[point[1] .. '-' .. point[2]])
-    return not enemyPositionListMap[point[1] .. '-' .. point[2]]
+    return not enemyPositionMap[point[1] .. '-' .. point[2]]
   end)
+
   console.log(mapChessboard)
 
   if not __keepScreenState then keepScreen(false) end
@@ -379,22 +397,34 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
     return math.abs(targetPoint[1] - currentPoint[1]) + math.abs(targetPoint[2] - currentPoint[2])
   end
 
+  function makePointMap(list)
+    local theMap = {}
+    for key = 1, #list do
+      local point = list[key]
+      theMap[point[1] .. '-' .. point[2]] = point
+    end
+    return theMap
+  end
+
   -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
   local waitForPossPosition = mapChessboard.waitForBossPosition[1]
 
   local myField = mapChessboard.myFleetList[1]
+  local myField2 = mapChessboard.myFleetList[2]
   local enemyPositionList = mapChessboard.enemyPositionList
   local minCoast = 100000
   local minCoastEnemy
   for _, enemy in ipairs(enemyPositionList) do
-    local theCoast = calCoast(myField, enemy)
-    -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
-    if waitForPossPosition then
-      theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.1
-    end
-    if minCoast > theCoast then
-      minCoast = theCoast
-      minCoastEnemy = enemy
+    if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
+      local theCoast = calCoast(myField, enemy)
+      -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
+      if waitForPossPosition then
+        theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.1
+      end
+      if minCoast > theCoast then
+        minCoast = theCoast
+        minCoastEnemy = enemy
+      end
     end
   end
 

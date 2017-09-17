@@ -28,7 +28,7 @@ battle.clickBackToHomeBtn = function()
 end
 
 --  是否不在困难模式
-battle.isNotHardMode = function()
+battle.isNormalMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
@@ -60,6 +60,8 @@ end
 
 -- 移动到m章节
 battle.moveToChapter = function(chapter)
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
   local chapterArr = strSplit(chapter, "-")
   local m = tonumber(chapterArr[1]) or 1
   local n = tonumber(chapterArr[2]) or 1
@@ -73,6 +75,7 @@ battle.moveToChapter = function(chapter)
   for i = 1, 9 do
     tap(90, 540, 100)
     mSleep(500)
+    keepScreen(true)
     if not multiColorS(leftButton) then
       break
     end
@@ -149,6 +152,7 @@ battle.moveToChapter = function(chapter)
   elseif (chapter == '8-4') then
     tap(1353, 733, 100)
   end
+  if not __keepScreenState then keepScreen(false) end
 end
 
 --  是否在章节信息面板
@@ -228,7 +232,7 @@ end
 -- 检查已经选择的舰队
 battle.checkSelectedFleet = function(needFleetList)
   local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
+  keepScreen(true)
   -- 需要选中的舰队，转换成索引
   local needFleet = { false, false, false, false }
   for _, v in ipairs(needFleetList) do
@@ -331,7 +335,7 @@ end
 -- 检测是第几队
 battle.scanMapCheckFleetNum = function()
   local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
+  keepScreen(true)
   local list1 = {
     { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },
     { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },

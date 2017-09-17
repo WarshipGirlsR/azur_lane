@@ -46,7 +46,8 @@ local setScreenListeners = function(theArr, ...)
   theArr = table.merge(theArr, ...)
 
   local theArrUnique = table.uniqueLast(theArr, 3)
-  for key, value in ipairs(theArrUnique) do
+  for key = 1, #theArrUnique do
+    local value = theArrUnique[key]
     value.isOnce = true
   end
   return co(c.create(function()

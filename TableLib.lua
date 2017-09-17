@@ -228,7 +228,7 @@ table.unique = table.unique or function(target, path)
 end
 
 -- 后覆盖前的unique
-table.uniqueLast = table.uniqueOf or function(target, path)
+table.uniqueLast = table.uniqueLast or function(target, path)
   local theMap = {}
   local result = {}
   local pathType = type(path)

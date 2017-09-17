@@ -26,6 +26,18 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 1-6 上方
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1229, 559, 0x212431 }, { 1277, 559, 0x212431 },
+          { 1314, 559, 0x192429 }, { 1344, 559, 0x192421 },
+          { 1362, 560, 0x42cade }, { 1329, 560, 0x3ac2de },
+          { 1292, 560, 0x3ac2de }, { 1248, 560, 0x3abede },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 地图下边界
     bottonLineList = {
@@ -47,10 +59,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 455, 458, 0x000000 }, { 456, 458, 0x31bade },
-          { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },
-          { 454, 459, 0x000000 }, { 455, 459, 0x31bade },
-          { 454, 460, 0x000000 }, { 455, 460, 0x31bade },
+          { 271, 652, 0x000000 }, { 272, 652, 0x3ab2e6 },
+          { 271, 651, 0x000000 }, { 272, 651, 0x31aad6 },
+          { 270, 653, 0x000000 }, { 271, 653, 0x31aede },
+          { 270, 654, 0x000000 }, { 271, 654, 0x31aede },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -77,5 +89,7 @@ return {
     enemyList = imgBase.map.enemyList,
     -- boss位置
     bossPointList = imgBase.map.bossPointList,
+    -- 战斗中的位置
+    inBattleList = imgBase.map.inBattleList,
   },
 }

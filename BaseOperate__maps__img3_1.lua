@@ -19,10 +19,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 929, 437, 0x424552 }, { 957, 437, 0x52494a },
-          { 978, 437, 0x3a4531 }, { 993, 437, 0x31454a },
-          { 1005, 438, 0x29bade }, { 974, 438, 0x31bade },
-          { 943, 438, 0x31b6de }, { 916, 438, 0x31b6de },
+          { 398, 334, 0x314152 }, { 429, 334, 0x293d4a },
+          { 471, 334, 0x293d4a }, { 501, 334, 0x213d4a },
+          { 485, 335, 0x31aade }, { 463, 335, 0x31a6de },
+          { 439, 335, 0x319ede }, { 409, 335, 0x29a2de },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -33,18 +33,42 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 703, 870, 0x000000 }, { 732, 870, 0x000000 },
-          { 777, 870, 0x000000 }, { 812, 870, 0x000000 },
-          { 830, 869, 0x1965ad }, { 799, 869, 0x1969b5 },
-          { 771, 869, 0x196db5 }, { 745, 869, 0x2171b5 },
+          { 482, 918, 0x000000 }, { 554, 918, 0x000000 },
+          { 615, 918, 0x000000 }, { 658, 918, 0x000000 },
+          { 636, 917, 0x1971b4 }, { 596, 917, 0x2171b4 },
+          { 560, 917, 0x2171b4 }, { 518, 917, 0x1971ac },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图左边界
-    leftLineList = imgBase.map.leftLineList,
+    leftLineList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022 }
+        local basePoint, posandcolor = transRelativePoint({
+          { 455, 458, 0x000000 }, { 456, 458, 0x31bade },
+          { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },
+          { 454, 459, 0x000000 }, { 455, 459, 0x31bade },
+          { 454, 460, 0x000000 }, { 455, 460, 0x31bade },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 地图右边界
-    rightLineList = imgBase.map.rightLineList,
+    rightLineList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022 }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },
+          { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },
+          { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },
+          { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 我方舰队位置
     myFleetList = imgBase.map.myFleetList,
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置

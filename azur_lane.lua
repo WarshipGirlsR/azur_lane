@@ -13,7 +13,7 @@ if (deviceIsLock() ~= 0) then
 end
 
 initLog('azur_lane', 1)
-require "TSLib"
+require 'TSLib'
 require 'TableLib'
 require 'StringLib'
 require 'MathLib'
@@ -90,7 +90,7 @@ local settingTable = {
   ['style'] = 'default',
   ['width'] = height,
   ['height'] = height,
-  ['config'] = 'save_warship-girls-r-script.dat',
+  ['config'] = 'save_azur_lane.dat',
   ['timer'] = 5,
   ['orient'] = 1,
   ['pagetype'] = 'multi',
@@ -186,7 +186,7 @@ local settingTable = {
       },
       {
         ['type'] = 'Label',
-        ['text'] = 'boss舰队',
+        ['text'] = '难度',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
@@ -199,7 +199,7 @@ local settingTable = {
       },
       {
         ['type'] = 'Label',
-        ['text'] = 'boss舰队',
+        ['text'] = '自动(可以自动的关卡看最底下)',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
@@ -274,6 +274,19 @@ local settingTable = {
         ['type'] = 'RadioGroup',
         ['list'] = '单纵,复纵,轮型,梯形,单横',
         ['select'] = '1',
+      },
+      {
+        ['type'] = 'Label',
+        ['text'] = '可以自动过的关卡',
+        ['size'] = 15,
+        ['align'] = 'left',
+        ['color'] = '0,0,0',
+      },
+      {
+        ['type'] = 'Label',
+        ['text'] = ' 1-1, 1-2, 1-3, 1-4, \n2-4, \n3-1, 3-2, 3-3, 3-4, \n4-2, \n5-1, 5-2, 5-3, 5-4, \n6-1, 6-2, 6-3, \n7-1',
+        ['align'] = 'left',
+        ['color'] = '0,0,0',
       },
       {
         ['type'] = 'Label',
@@ -491,7 +504,7 @@ co(c.create(function()
     end
   end
 end)).catch(function(err)
-  wLog("warship-girls-r-script", "[DATE] " .. err);
+  wLog('azur_lane', '[DATE] ' .. err);
   eq.setImmediate(function() error(err) end)
 end)
 

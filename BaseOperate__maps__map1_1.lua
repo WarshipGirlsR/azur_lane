@@ -45,6 +45,7 @@ map1_1.getMapChessboard = function()
     bossPosition = {},
     myFleetList = {},
     enemyPositionList = {},
+    inBattleList = {},
   }
 end
 
