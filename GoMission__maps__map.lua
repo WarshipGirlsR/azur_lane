@@ -76,7 +76,6 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       state.map.currentPosition = mapProxy.getMapPosition()
-      console.log(state.map.currentPosition)
 
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', 'missionsGroup', map.battle.isMapPage },

@@ -254,7 +254,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   local effectiveStep = false
   if targetPosition.leftTop then
     if not currentPosition.leftTop then
-      moveVector = { sWidth / 10, sHeight / 10 }
+      moveVector = { sWidth / 4, sHeight / 4 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1];
@@ -262,7 +262,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.rightTop then
     if not currentPosition.rightTop then
-      moveVector = { (0 - sWidth) / 10, sHeight / 10 }
+      moveVector = { (0 - sWidth) / 4, sHeight / 4 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1];
@@ -270,7 +270,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.leftBotton then
     if not currentPosition.leftBotton then
-      moveVector = { sWidth / 10, (0 - sHeight) / 10 }
+      moveVector = { sWidth / 4, (0 - sHeight) / 4 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1];
@@ -278,7 +278,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.rightBotton then
     if not currentPosition.rightBotton then
-      moveVector = { (0 - sWidth) / 10, (0 - sHeight) / 10 }
+      moveVector = { (0 - sWidth) / 4, (0 - sHeight) / 4 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]
@@ -379,8 +379,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   mapChessboard.bossPosition = table.filter(mapChessboard.bossPosition, function(point)
     return not enemyPositionMap[point[1] .. '-' .. point[2]]
   end)
-
-  console.log(mapChessboard)
 
   if not __keepScreenState then keepScreen(false) end
   return mapChessboard
