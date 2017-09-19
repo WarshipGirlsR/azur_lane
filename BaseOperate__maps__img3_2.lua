@@ -26,6 +26,30 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 1-5上方
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1040, 378, 0x3a3d42 }, { 1086, 378, 0x3a3942 },
+          { 1133, 378, 0x31393a }, { 1168, 378, 0x313942 },
+          { 1190, 379, 0x29bade }, { 1148, 379, 0x29b2d6 },
+          { 1107, 379, 0x31b6de }, { 1067, 379, 0x31bade },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 1-8上方
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1572, 378, 0x42454a }, { 1616, 378, 0x31393a },
+          { 1666, 378, 0x292831 }, { 1695, 378, 0x212429 },
+          { 1720, 379, 0x29b2d6 }, { 1688, 379, 0x31bade },
+          { 1634, 379, 0x31bade }, { 1590, 379, 0x31bed6 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 地图下边界
     bottonLineList = {

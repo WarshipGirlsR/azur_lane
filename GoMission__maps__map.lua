@@ -76,7 +76,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       state.map.currentPosition = mapProxy.getMapPosition()
-
+      console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', 'missionsGroup', map.battle.isMapPage },
       }))
@@ -121,7 +121,7 @@ local map = function(action, state)
       stepLabel.setStepLabelContent('3-4.扫描地图')
       local targetPosition = state.map.checkpositionListForCheck[1]
       state.map.mapChessboard = mapProxy.scanMap(targetPosition, state.map.mapChessboard)
-
+      console.log(state.map.mapChessboard)
       if #state.map.checkpositionListForCheck > 1 then
         table.remove(state.map.checkpositionListForCheck, 1)
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
