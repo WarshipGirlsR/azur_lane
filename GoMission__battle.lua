@@ -285,21 +285,21 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage, 2000 },
-        { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
+        { 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
       }))
       return makeAction(newstateTypes), state
 
-    elseif (action.type == 'BATTLE_AUTO_BATTLE_PANEL') then
-
-      stepLabel.setStepLabelContent('2-33.自动战斗提示面板')
-      map.battle.inBattlePageClickAutoBattle()
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
-        { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage },
-        { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 2000 },
-      }))
-      return makeAction(newstateTypes), state
+      --    elseif (action.type == 'BATTLE_AUTO_BATTLE_PANEL') then
+      --
+      --      stepLabel.setStepLabelContent('2-33.自动战斗提示面板')
+      --      map.battle.inBattlePageClickAutoBattle()
+      --      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+      --        { 'BATTLE_AUTO_BATTLE_PANEL', 'missionsGroup', map.battle.isNotAutoBattle, 1000 },
+      --        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', 'missionsGroup', map.battle.isAmbushedPanel, 2000 },
+      --        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
+      --        { 'BATTLE_IN_BATTLE_PAGE', 'missionsGroup', map.battle.isInBattlePage },
+      --      }))
+      --      return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_IN_BATTLE_PAGE') then
 
