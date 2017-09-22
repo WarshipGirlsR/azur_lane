@@ -193,13 +193,23 @@ map.getMapPosition = function(ImgInfo)
   local isCenter = false
   -- 扫描边界
   keepScreen(true)
-  local topLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.topLineList, true))
-  local bottonLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bottonLineList, true))
-  local leftLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.leftLineList, true))
-  local rightLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.rightLineList, true))
+  local topLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.topLineList))
+  local bottonLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bottonLineList))
+  local leftLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.leftLineList))
+  local rightLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.rightLineList))
 
-  local topLinePoint = topLinePointList[1] or { -1, -1 }
-  local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
+  function findMostYPointList(pointList)
+    local mostPointMap = {}
+    for key = 1, #pointList do
+      local point = pointList[key]
+      mostPointMap[point[2]] = mostPointMap[point[2]] or {}
+      table.insert(mostPointMap[point[2]], point)
+    end
+    return math.maxTable(mostPointMap, function(item) return #item end) or {}
+  end
+
+  local topLinePoint = findMostYPointList(topLinePointList)[1] or { -1, -1 }
+  local bottonLinePoint = findMostYPointList(bottonLinePointList)[1] or { -1, -1 }
 
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)
@@ -207,10 +217,10 @@ map.getMapPosition = function(ImgInfo)
     -- 结果第一个是上点，第二个是下点
     local result = { false, false }
     if pointList and #pointList > 0 then
+      local point1 = math.minTable(pointList, 2) or { -1, -1 }
+      local point2 = math.maxTable(pointList, 2) or { -1, -1 }
       if topLinePoint and topLinePoint[1] > 0 then
         local Y1 = math.floor(topLinePoint[2])
-        local point1 = pointList[1] or { -1, -1 }
-        local point2 = pointList[#pointList] or { -1, -1 }
         local X1 = (Y1 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
         X1 = math.trueNumber(X1) or -1
         X1 = math.floor(X1)
@@ -220,8 +230,6 @@ map.getMapPosition = function(ImgInfo)
       end
       if bottonLinePoint and bottonLinePoint[1] > 0 then
         local Y2 = math.floor(bottonLinePoint[2])
-        local point1 = pointList[1] or { -1, -1 }
-        local point2 = pointList[#pointList] or { -1, -1 }
         local X2 = (Y2 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
         X2 = math.trueNumber(X2) or -1
         X2 = math.floor(X2)
@@ -247,7 +255,6 @@ end
 
 -- 检查地图位置与预设位置的偏差
 map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
-
 
   -- 计算偏差
   local moveVector = { 0, 0 }

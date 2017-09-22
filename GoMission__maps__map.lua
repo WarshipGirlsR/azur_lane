@@ -17,10 +17,7 @@ end
 local map = function(action, state)
   local map = allOptions.map
   local settings = allOptions.settings
-  local chapterArr = strSplit(settings.battleChapter, "-")
-  local m = tonumber(chapterArr[1]) or 1
-  local n = tonumber(chapterArr[2]) or 1
-  local mapProxy = map['map' .. m .. '_' .. n]
+  local mapProxy = map['map' .. string.gsub(settings.battleChapter, '-', '_')]
 
   local battleMap = {
     { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 2000 },
@@ -84,7 +81,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK' then
 
-      stepLabel.setStepLabelContent('3-2.计算移动向量')
+      stepLabel.setStepLabelContent('3-3.计算移动向量')
       local targetPosition = state.map.checkpositionListForCheck[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
       if effectiveStep and comparePoints(state.map.moveVectorForCheck, newMoveVector) then
@@ -101,7 +98,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
 
-      stepLabel.setStepLabelContent('3-3.将地图移动到扫描位置')
+      stepLabel.setStepLabelContent('3-4.将地图移动到扫描位置')
       local isCenter = mapProxy.moveMapToCheckPosition(state.map.moveVectorForCheck)
 
       if isCenter then
@@ -118,7 +115,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_SCAN_MAP' then
 
-      stepLabel.setStepLabelContent('3-4.扫描地图')
+      stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = state.map.checkpositionListForCheck[1]
       state.map.mapChessboard = mapProxy.scanMap(targetPosition, state.map.mapChessboard)
       console.log(state.map.mapChessboard)
@@ -136,7 +133,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_GET_NEXT_STEP' then
 
-      stepLabel.setStepLabelContent('3-4.计算下一步往哪走')
+      stepLabel.setStepLabelContent('3-6.计算下一步往哪走')
       local mapChessboard = state.map.mapChessboard
       local myFleetList = mapChessboard.myFleetList
       local inBattleList = mapChessboard.inBattleList
@@ -145,11 +142,11 @@ local map = function(action, state)
         state.battle.moveState = 'moveToClosestEnemy'
       end
       if #mapChessboard.bossPosition > 0 then
-        stepLabel.setStepLabelContent('3-4.移动到boss位置')
+        stepLabel.setStepLabelContent('3-7.移动到boss位置')
         state.battle.moveState = 'moveToBoss'
         state.map.nextStepPoint = mapChessboard.bossPosition[1]
       elseif table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
-        stepLabel.setStepLabelContent('3-4.开始战斗')
+        stepLabel.setStepLabelContent('3-8.开始战斗')
         map.battle.clickAttackBtn()
       elseif state.battle.moveState == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
         state.battle.moveState = 'moveToClosestEnemy'
@@ -158,10 +155,10 @@ local map = function(action, state)
         }))
         return makeAction(newstateTypes), state
       elseif state.battle.moveState == 'moveToWaitBoss' then
-        stepLabel.setStepLabelContent('3-5.移动待命位置')
+        stepLabel.setStepLabelContent('3-9.移动待命位置')
         state.map.nextStepPoint = mapChessboard.waitForBossPosition[1]
       else
-        stepLabel.setStepLabelContent('3-6.移动到最近的敌人')
+        stepLabel.setStepLabelContent('3-10.移动到最近的敌人')
         state.battle.moveState = 'moveToClosestEnemy'
         local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
         state.map.nextStepPoint = closestEnemy
@@ -192,7 +189,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP' then
 
-      stepLabel.setStepLabelContent('3-7.获取地图位置参数')
+      stepLabel.setStepLabelContent('3-11.获取地图位置参数')
       state.map.currentPosition = mapProxy.getMapPosition()
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
@@ -201,7 +198,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP' then
 
-      stepLabel.setStepLabelContent('3-8.计算移动向量')
+      stepLabel.setStepLabelContent('3-12.计算移动向量')
       local targetPosition = state.map.checkpositionListForMove[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
 
@@ -219,7 +216,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
 
-      stepLabel.setStepLabelContent('3-8.将地图移动到移动位置')
+      stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')
       local isCenter = mapProxy.moveMapToCheckPosition(state.map.moveVectorForAStep)
 
       if isCenter then
@@ -236,7 +233,7 @@ local map = function(action, state)
 
     elseif action.type == 'MAPS_MAP_MOVE_A_STEP' then
 
-      stepLabel.setStepLabelContent('3-9.移动地图位置')
+      stepLabel.setStepLabelContent('3-14.移动地图位置')
       local targetPosition = state.map.checkpositionListForMove[1]
       local nextRowNum = state.map.nextStepPoint[1]
       local nextColNum = state.map.nextStepPoint[2]

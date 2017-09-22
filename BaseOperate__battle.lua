@@ -9,8 +9,6 @@ battle.isBattlePage = function()
     { 8, 10, 0xe6e7ef }, { 201, 21, 0xffefc5 },
     { 307, 12, 0x424542 }, { 1024, 38, 0x313131 },
     { 1333, 40, 0xffef63 }, { 1645, 37, 0xff4573 },
-    { 21, 144, 0xf7f7f7 }, { 31, 162, 0xf7fbf7 },
-    { 114, 151, 0xf7f7f7 },
     { 182, 20, 0xfff3c5 }, { 178, 35, 0xffc642 },
     { 210, 28, 0x3a393a }, { 219, 32, 0xffd25a },
     { 255, 30, 0xffdb73 }, { 244, 42, 0x3a393a },
@@ -60,11 +58,19 @@ end
 
 -- 移动到m章节
 battle.moveToChapter = function(chapter)
+  local chapter = chapter
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
+
   local chapterArr = strSplit(chapter, "-")
   local m = tonumber(chapterArr[1]) or 1
-  local n = tonumber(chapterArr[2]) or 1
+
+  if string.sub(chapter, 1, 5) == 'event' then
+    m = tonumber(chapterArr[2]) or 1
+  end
+
+  local chapterArr = strSplit(chapter, "-")
+  local m = tonumber(chapterArr[1]) or 1
 
   local leftButton = {
     { 97, 526, 0xe6e7e6 },
@@ -151,6 +157,24 @@ battle.moveToChapter = function(chapter)
     tap(662, 852, 100)
   elseif (chapter == '8-4') then
     tap(1353, 733, 100)
+  elseif (chapter == '9-1') then
+    tap(368, 435, 100)
+  elseif (chapter == '9-2') then
+    tap(646, 806, 100)
+  elseif (chapter == '9-3') then
+    tap(1079, 309, 100)
+  elseif (chapter == '9-4') then
+    tap(1329, 608, 100)
+  elseif (chapter == 'event4-1-sp1') then
+    tap(834, 312, 100)
+  elseif (chapter == 'event4-1-sp2') then
+    tap(834, 312, 100)
+  elseif (chapter == 'event4-1-sp1') then
+    tap(834, 312, 100)
+  elseif (chapter == 'event4-1-sp2') then
+    tap(417, 542, 100)
+  elseif (chapter == 'event4-1-sp3') then
+    tap(1392, 473, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end

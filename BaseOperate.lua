@@ -19,6 +19,7 @@ local map6_1 = require 'BaseOperate__maps__map6_1'
 local map6_2 = require 'BaseOperate__maps__map6_2'
 local map6_3 = require 'BaseOperate__maps__map6_3'
 local map7_1 = require 'BaseOperate__maps__map7_1'
+local mapevent4_1_sp3 = require 'BaseOperate__maps__mapevent4_1_sp3'
 
 
 -- 原子操作列表
@@ -45,6 +46,7 @@ local map = {
   map6_2 = map6_2, -- 地图6_2
   map6_3 = map6_3, -- 地图6_3
   map7_1 = map7_1, -- 地图7_1
+  mapevent4_1_sp3 = mapevent4_1_sp3, -- 活动sp3
 }
 
 

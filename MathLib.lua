@@ -24,3 +24,51 @@ math.trueNumber = math.trueNumber or function(num)
   end
   return num
 end
+
+math.maxTable = math.maxTable or function(tab, path)
+  local maxNum
+  local maxTab
+  if not path then
+    return math.max(table.unpack(tab))
+  elseif type(path) == 'string' or type(path) == 'number' then
+    for key, item in pairs(tab) do
+      if not maxNum or maxNum < item[path] then
+        maxNum = item[path]
+        maxTab = item
+      end
+    end
+  elseif type(path) == 'function' then
+    for key, item in pairs(tab) do
+      local theNum = path(item, key, tab)
+      if not maxNum or maxNum < theNum then
+        maxNum = theNum
+        maxTab = item
+      end
+    end
+  end
+  return maxTab
+end
+
+math.minTable = math.minTable or function(tab, path)
+  local maxNum
+  local maxTab
+  if not path then
+    return math.max(table.unpack(tab))
+  elseif type(path) == 'string' or type(path) == 'number' then
+    for key, item in pairs(tab) do
+      if not maxNum or maxNum > item[path] then
+        maxNum = item[path]
+        maxTab = item
+      end
+    end
+  elseif type(path) == 'function' then
+    for key, item in pairs(tab) do
+      local theNum = path(item, key, tab)
+      if not maxNum or maxNum > theNum then
+        maxNum = theNum
+        maxTab = item
+      end
+    end
+  end
+  return maxTab
+end
