@@ -8,8 +8,8 @@ return {
   transRelativePoint = transRelativePoint,
   -- 基本方法
   toPoint = imgBase.toPoint,
-  -- 检测点是否在两个点围围成的区域里
-  inArea = imgBase.inArea,
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆
+  filterNoUsePoint = imgBase.filterNoUsePoint,
   -- 图片数据
   -- 地图扫描
   map = {

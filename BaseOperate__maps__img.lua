@@ -2,7 +2,7 @@
 
 require 'TableLib'
 
-local transRelativePoint = function(tab, base)
+local function transRelativePoint(tab, base)
   if not base then
     base = tab[1]
     table.remove(tab, 1)
@@ -34,43 +34,16 @@ return {
     end
     return newTab
   end,
-  -- 检测点是否在两个点围围成的区域里
-  inArea = function(point, areaPoint1, areaPoint2)
-    local leftTop = {}
-    local rightBotton = {}
-    leftTop[1] = math.min(areaPoint1[1], areaPoint2[1])
-    leftTop[2] = math.min(areaPoint1[2], areaPoint2[2])
-    rightBotton[1] = math.max(areaPoint1[1], areaPoint2[1])
-    rightBotton[2] = math.max(areaPoint1[2], areaPoint2[2])
-    if ((point[1] < leftTop[1]) or (point[1] > rightBotton[1])) then
-      return false
-    end
-    if ((point[2] < leftTop[2]) or (point[2] > rightBotton[2])) then
-      return false
-    end
-    return true
-  end,
-  -- 寻找最近的两个点
-  findNearestPoint = function(pointList1, pointList2)
-    local nearPoint1
-    local nearPoint2
-    local distance = 0
-
-    function getDistance(point1, point2)
-      return math.sqrt(math.pow((point1[1] - point2[1]), 2) + math.pow((point1[1] - point2[1]), 2))
-    end
-
-    for _, value in ipairs(pointList1) do
-      for _, value2 in ipairs(pointList2) do
-        local newDistance = getDistance(value, value2)
-        if ((distance == 0) or (newDistance < distance)) then
-          nearPoint1 = value
-          nearPoint2 = value2
-          distance = newDistance
-        end
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆
+  filterNoUsePoint = function(list)
+    local newList = {}
+    for key = 1, #list do
+      local point = list[key]
+      if point[1] < 940 or point[2] < 910 then
+        table.insert(newList, point)
       end
     end
-    return nearPoint1, nearPoint2, distance
+    return newList
   end,
   -- 图片数据
   -- 地图扫描
@@ -190,15 +163,17 @@ return {
       end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
-    selectedArrow = (function()
-      local leftTop = { 185, 155 }
-      local rightBotton = { 1899, 1022, }
-      local basePoint, posandcolor = transRelativePoint({
-        { 454, 303, 0x3aff84 }, { 474, 303, 0x7bffad },
-        { 452, 288, 0x005d21 }, { 472, 289, 0x00be4a },
-      })
-      return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-    end)(),
+    selectedArrow = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 454, 303, 0x3aff84 }, { 474, 303, 0x7bffad },
+          { 452, 288, 0x005d21 }, { 472, 289, 0x00be4a },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
     -- 敌方舰队位置，右上角的难度标志
     enemyList = {
       -- 小型

@@ -161,7 +161,7 @@ end
 
 
 -- 搜索一个颜色列表
-function findMultiColorList(list, simpleMode)
+function findMultiColorList(ImgInfo, list, simpleMode)
   local res = {}
   for key = 1, #list do
     local myFleet = list[key]
@@ -170,7 +170,7 @@ function findMultiColorList(list, simpleMode)
       break
     end
   end
-  return res
+  return ImgInfo.toPoint(res)
 end
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
@@ -193,10 +193,10 @@ map.getMapPosition = function(ImgInfo)
   local isCenter = false
   -- 扫描边界
   keepScreen(true)
-  local topLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.topLineList))
-  local bottonLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bottonLineList))
-  local leftLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.leftLineList))
-  local rightLinePointList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.rightLineList))
+  local topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList))
+  local bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList))
+  local leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
+  local rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
 
   function findMostYPointList(pointList)
     local mostPointMap = {}
@@ -352,14 +352,14 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   end
 
   -- 扫描屏幕上的对象
-  local myFleetList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.myFleetList))
+  local myFleetList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
   myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
-  local selectedArrowList = ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(table.unpack(ImgInfo.map.selectedArrow)))
+  local selectedArrowList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
   selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
-  local enemyList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.enemyList))
+  local enemyList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList))
   enemyList = corrected(enemyList, enemyListCorrectionValue)
-  local bossList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.bossPointList))
-  local inBattleList = ImgInfo.toPoint(findMultiColorList(ImgInfo.map.inBattleList))
+  local bossList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
+  local inBattleList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
 
   mapChessboard.inBattleList = table.merge(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
   mapChessboard.inBattleList = uniqueList(mapChessboard.inBattleList)
