@@ -49,61 +49,13 @@ return {
   -- 地图扫描
   map = {
     -- 地图上边界
-    topLineList = {
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 651, 407, 0x21354a }, { 683, 409, 0x193542 },
-          { 737, 407, 0x193542 }, { 799, 409, 0x213542 },
-          { 847, 407, 0x213542 }, { 906, 409, 0x193142 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-    },
+    topLineList = {},
     -- 地图下边界
-    bottonLine = {
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022 }
-        local basePoint, posandcolor = transRelativePoint({
-          { 420, 540, 0x000000 }, { 431, 543, 0x000000 },
-          { 457, 540, 0x000000 }, { 492, 543, 0x000000 },
-          { 544, 540, 0x000000 }, { 575, 543, 0x000000 },
-          { 621, 540, 0x000000 }, { 677, 543, 0x000000 },
-          { 719, 540, 0x000000 }, { 789, 543, 0x000000 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-    },
+    bottonLine = {},
     -- 地图左边界
-    leftLineList = {
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 285, 362, 0x000000 }, { 286, 362, 0x31b6de },
-          { 285, 363, 0x000000 }, { 286, 363, 0x31b2d6 },
-          { 284, 364, 0x000000 }, { 285, 364, 0x31b2de },
-          { 284, 365, 0x000000 }, { 285, 365, 0x31b6de },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-    },
+    leftLineList = {},
     -- 地图右边界
-    rightLineList = {
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1800, 297, 0x299ade }, { 1801, 297, 0x000000 },
-          { 1800, 298, 0x299ee6 }, { 1801, 298, 0x000000 },
-          { 1801, 299, 0x299ae6 }, { 1802, 299, 0x000000 },
-          { 1801, 300, 0x299ae6 }, { 1802, 300, 0x000408 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-    },
+    rightLineList = {},
     -- 我方舰队位置列表
     myFleetList = {
       --  采集位置1-2关1-1位
@@ -158,6 +110,17 @@ return {
           { 1644, 394, 0xde9a4a }, { 1651, 379, 0xde8a4a },
           { 1659, 364, 0xd68142 }, { 1660, 349, 0xce7973 },
           { 1684, 385, 0x191c19 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      --  采集位置2-2关3-3位
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1016, 508, 0xde9a00 }, { 1029, 508, 0xdeaa00 },
+          { 1038, 508, 0xdeaa00 }, { 1011, 513, 0xe6ae08 },
+          { 1011, 524, 0xe6a200 }, { 1011, 535, 0xe6a600 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -223,50 +186,36 @@ return {
     },
     -- boss位置
     bossPointList = {
-      -- 我方舰队和boss重叠
+      -- 我方舰队和boss重叠 3-3 的 4-1
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1278, 426, 0x3a3131 }, { 1277, 412, 0x292021 },
-          { 1252, 424, 0x3a353a }, { 1304, 427, 0x292421 },
-          { 1257, 440, 0xe66963 }, { 1265, 458, 0xffffff },
-          { 1302, 461, 0xf7efee }, { 1321, 461, 0xf7ebe6 },
+          { 702, 600, 0x313131 }, { 685, 600, 0x31353a },
+          { 677, 600, 0x31353a }, { 669, 600, 0x313131 },
+          { 714, 600, 0x312831 }, { 721, 600, 0x312429 },
+          { 722, 600, 0x312829 }, { 726, 595, 0x211819 },
+          { 714, 595, 0x292829 }, { 703, 594, 0x312d31 },
+          { 683, 596, 0x313531 }, { 674, 595, 0x313131 },
+          { 701, 590, 0x312d31 }, { 697, 609, 0xfff7f7 },
+          { 678, 616, 0xe66d63 }, { 689, 616, 0xe66963 },
+          { 705, 618, 0xde695a },
         })
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 我方舰队不和boss重叠
+      -- 我方舰队不和boss重叠 1-1 的 1-7
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1278, 426, 0x3a3131 }, { 1277, 412, 0x292021 },
-          { 1252, 424, 0x3a353a }, { 1304, 427, 0x292421 },
-          { 1257, 440, 0xe66963 }, { 1265, 458, 0xffffff },
-          { 1302, 461, 0xf7efee }, { 1321, 461, 0xf7ebe6 },
-        })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 我方舰队不和boss重叠 1-2关1-5位置
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1276, 432, 0x4a2429 }, { 1250, 426, 0x3a353a },
-          { 1301, 424, 0x292429 }, { 1257, 455, 0xf74d52 },
-          { 1300, 453, 0xf74d4a }, { 1275, 471, 0x313131 },
-        })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 我方舰队和boss重叠 3-4关3-8位置
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1582, 554, 0x3a3131 }, { 1557, 554, 0x313531 },
-          { 1578, 542, 0x3a353a }, { 1606, 552, 0x312831 },
-          { 1560, 569, 0xde695a }, { 1598, 569, 0xde695a },
-          { 1580, 571, 0xde695a },
+          { 1462, 426, 0x313131 }, { 1451, 426, 0x31313a },
+          { 1439, 426, 0x31353a }, { 1472, 426, 0x312d31 },
+          { 1488, 426, 0x312429 }, { 1483, 423, 0x312831 },
+          { 1471, 423, 0x313131 }, { 1459, 423, 0x423542 },
+          { 1446, 423, 0x313131 }, { 1464, 417, 0x312d31 },
+          { 1435, 452, 0xf74d52 }, { 1445, 459, 0xff4d52 },
+          { 1482, 459, 0xf74d4a }, { 1492, 452, 0xff4d52 },
+          { 1464, 468, 0x3a2d31 },
         })
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
