@@ -51,6 +51,18 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 1-7的上边 (右上角被舰队挡住的时候)
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1834, 542, 0x100808 }, { 1845, 542, 0x100800 },
+          { 1855, 542, 0x080808 }, { 1864, 542, 0x191010 },
+          { 1859, 543, 0xd6a25a }, { 1852, 543, 0xd69e5a },
+          { 1839, 543, 0xd6a263 }, { 1834, 543, 0xd69e5a },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 地图下边界
     bottonLineList = {
