@@ -186,17 +186,33 @@ map.getMapChessboard = function()
 end
 
 -- 检查地图在屏幕中的位置，返回地图四个角的坐标
-map.getMapPosition = function(ImgInfo)
+map.getMapPosition = function(ImgInfo, targetPosition)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-
   local isCenter = false
   -- 扫描边界
   keepScreen(true)
-  local topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList))
-  local bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList))
-  local leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
-  local rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
+  -- 需要扫描哪几个角，不需要扫描的角就跳过以加快扫描速度
+  local topLinePointList = {}
+  local bottonLinePointList = {}
+  local leftLinePointList = {}
+  local rightLinePointList = {}
+  if targetPosition.leftTop then
+    topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
+    leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
+  end
+  if targetPosition.rightTop then
+    topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
+    rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
+  end
+  if targetPosition.leftBotton then
+    bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList, true))
+    leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
+  end
+  if targetPosition.rightBotton then
+    bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList, true))
+    rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
+  end
 
   function findMostYPointList(pointList)
     local mostPointMap = {}
@@ -293,8 +309,16 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   end
 
-  moveVector[1] = math.floor(moveVector[1] * 0.8)
-  moveVector[2] = math.floor(moveVector[2] * 0.8)
+  if moveVector[1] > 25 then
+    moveVector[1] = math.floor(moveVector[1] * 0.85)
+  else
+    moveVector[1] = math.floor(moveVector[1] * 0.8)
+  end
+  if moveVector[2] > 25 then
+    moveVector[2] = math.floor(moveVector[2] * 0.85)
+  else
+    moveVector[2] = math.floor(moveVector[2] * 0.8)
+  end
 
   return moveVector, effectiveStep
 end
@@ -308,10 +332,11 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   if (math.abs(moveVector[1]) > 4) or (math.abs(moveVector[2]) > 4) then
     -- 因为屏幕滑动和画面滚动不一致，所以需要减少移动幅度
     moveStep = math.max(math.abs(moveVector[1]), math.abs(moveVector[2]))
-    moveStep = math.min(20, moveStep)
     moveStep = math.abs(moveStep)
-    moveStep = math.floor(moveStep)
+    moveStep = moveStep / 8
+    moveStep = math.min(25, moveStep)
     moveStep = math.max(1, moveStep)
+    moveStep = math.floor(moveStep)
     moveTo(sWidth / 2, sHeight / 2, sWidth / 2 + moveVector[1], sHeight / 2 + moveVector[2], moveStep, 100)
     -- 如果moveStep总是相同说明是移动距离太小滑动屏幕失效。
   else

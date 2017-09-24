@@ -72,7 +72,8 @@ local map = function(action, state)
     elseif action.type == 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK' then
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
-      state.map.currentPosition = mapProxy.getMapPosition()
+      local targetPosition = state.map.checkpositionListForCheck[1]
+      state.map.currentPosition = mapProxy.getMapPosition(targetPosition)
       console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', 'missionsGroup', map.battle.isMapPage },
@@ -190,7 +191,8 @@ local map = function(action, state)
     elseif action.type == 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP' then
 
       stepLabel.setStepLabelContent('3-11.获取地图位置参数')
-      state.map.currentPosition = mapProxy.getMapPosition()
+      local targetPosition = state.map.checkpositionListForMove[1]
+      state.map.currentPosition = mapProxy.getMapPosition(targetPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
         { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP', 'missionsGroup', map.battle.isMapPage },
       }))

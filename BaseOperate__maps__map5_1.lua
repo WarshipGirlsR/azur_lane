@@ -83,8 +83,8 @@ end
 
 
 
-map5_1.getMapPosition = function()
-  return mapBase.getMapPosition(img5_1)
+map5_1.getMapPosition = function(currentPosition)
+  return mapBase.getMapPosition(img5_1, currentPosition)
 end
 
 map5_1.getMoveVector = function(currentPosition, targetPosition)

@@ -30,6 +30,7 @@ BaseOperate__maps__img6_1.lua
 BaseOperate__maps__img6_2.lua
 BaseOperate__maps__img6_3.lua
 BaseOperate__maps__img7_1.lua
+BaseOperate__maps__imgevent4_1_sp1.lua
 BaseOperate__maps__imgevent4_1_sp2.lua
 BaseOperate__maps__imgevent4_1_sp3.lua
 BaseOperate__maps__map.lua
@@ -54,6 +55,7 @@ BaseOperate__maps__map6_1.lua
 BaseOperate__maps__map6_2.lua
 BaseOperate__maps__map6_3.lua
 BaseOperate__maps__map7_1.lua
+BaseOperate__maps__mapevent4_1_sp1.lua
 BaseOperate__maps__mapevent4_1_sp2.lua
 BaseOperate__maps__mapevent4_1_sp3.lua
 BaseOperate__maps__utils.lua

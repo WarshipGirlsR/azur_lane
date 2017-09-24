@@ -58,7 +58,15 @@ local battleOnce = function(action, state)
         state.battle.battleAssistantMode = 'manual'
       end
 
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome },
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes), state
 
+    elseif (action.type == 'BATTLE_HOME_CHECK_IS_EVENT') then
+
+      stepLabel.setStepLabelContent('2-3.检查是否活动章节')
       if string.sub(settings.battleChapter, 1, 5) == 'event' then
         stepLabel.setStepLabelContent('2-3.等待HOME')
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -82,7 +90,7 @@ local battleOnce = function(action, state)
       stepLabel.setStepLabelContent('2-6.等待出征页面')
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
+        { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome, 2000 },
         { 'BATTLE_BATTLE_PAGE_CHANGE_HARD_MODE', 'missionsGroup', map.battle.isBattlePage },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
       }))
@@ -109,7 +117,7 @@ local battleOnce = function(action, state)
           stepLabel.setStepLabelContent('2-6.在困难模式，切换到普通模式')
           map.battle.clickSwitchHardModeBtn()
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
+            { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome, 2000 },
             { 'BATTLE_BATTLE_PAGE_CHANGE_HARD_MODE', 'missionsGroup', map.battle.isBattlePage, 1000 },
             { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
           }))
@@ -121,7 +129,7 @@ local battleOnce = function(action, state)
           stepLabel.setStepLabelContent('2-11.在普通模式，切换到困难模式')
           map.battle.clickSwitchHardModeBtn()
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
+            { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome, 2000 },
             { 'BATTLE_BATTLE_PAGE_CHANGE_HARD_MODE', 'missionsGroup', map.battle.isBattlePage, 1000 },
             { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
           }))
@@ -131,7 +139,7 @@ local battleOnce = function(action, state)
 
       stepLabel.setStepLabelContent('2-12.准备移动章节')
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_HOME_CLICK_BATTLE', 'missionsGroup', map.home.isHome, 2000 },
+        { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome, 2000 },
         { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
       }))

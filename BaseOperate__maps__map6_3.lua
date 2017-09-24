@@ -79,8 +79,8 @@ map6_3.getMapChessboard = function()
   }
 end
 
-map6_3.getMapPosition = function()
-  return mapBase.getMapPosition(img6_3)
+map6_3.getMapPosition = function(currentPosition)
+  return mapBase.getMapPosition(img6_3, currentPosition)
 end
 
 map6_3.getMoveVector = function(currentPosition, targetPosition)

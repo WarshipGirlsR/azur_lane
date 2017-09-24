@@ -70,8 +70,8 @@ end
 
 
 
-map2_2.getMapPosition = function()
-  return mapBase.getMapPosition(img2_2)
+map2_2.getMapPosition = function(currentPosition)
+  return mapBase.getMapPosition(img2_2, currentPosition)
 end
 
 map2_2.getMoveVector = function(currentPosition, targetPosition)

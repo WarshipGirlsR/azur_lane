@@ -58,69 +58,42 @@ return {
     rightLineList = {},
     -- 我方舰队位置列表
     myFleetList = {
-      --  采集位置1-2关1-1位
+      --  采集位置event4-1-sp3关8-1位
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 874, 353, 0xde8a42 }, { 863, 363, 0xe6924a },
-          { 841, 379, 0xd68a42 }, { 877, 342, 0xc5716b },
-          { 898, 369, 0x212021 },
+          { 564, 486, 0xce7573 }, { 558, 496, 0xde864a },
+          { 553, 497, 0xffebc5 }, { 548, 511, 0xde8a42 },
+          { 542, 514, 0xffffde }, { 535, 525, 0xde8a42 },
+          { 529, 528, 0xffffde }, { 510, 537, 0x9c4d4a },
+          { 588, 516, 0x292429 }, { 590, 534, 0x191819 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      --  采集位置1-2关3-1位
+      --  采集位置event4-1-sp3关1-4位
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 869, 629, 0xde8e52 }, { 856, 637, 0xe69252 },
-          { 819, 642, 0xd68e3a }, { 871, 617, 0xce7173 },
-          { 891, 648, 0x191819 },
+          { 1044, 395, 0xbd6d6b }, { 1039, 402, 0xd67d3a },
+          { 1033, 402, 0xffffde }, { 1030, 412, 0xde8a4a },
+          { 1025, 411, 0xffffde }, { 1020, 419, 0xd68642 },
+          { 1015, 421, 0xffffde }, { 1002, 428, 0xa44d52 },
+          { 1059, 409, 0x293529 }, { 1059, 420, 0x191819 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      --  采集位置4-2关1-5位
+      --  采集位置event4-1-sp3关4-4位
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1389, 284, 0xd6797b }, { 1388, 296, 0xde8642 },
-          { 1380, 305, 0xe6924a }, { 1369, 314, 0xde8e4a },
-          { 1407, 315, 0x211c21 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置4-2关6-5位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1328, 440, 0xe69252 }, { 1315, 452, 0xde8a42 },
-          { 1301, 463, 0xd69242 }, { 1327, 424, 0xce7573 },
-          { 1350, 461, 0x191819 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置3-4关3-8位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1644, 394, 0xde9a4a }, { 1651, 379, 0xde8a4a },
-          { 1659, 364, 0xd68142 }, { 1660, 349, 0xce7973 },
-          { 1684, 385, 0x191c19 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置2-2关3-3位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1016, 508, 0xde9a00 }, { 1029, 508, 0xdeaa00 },
-          { 1038, 508, 0xdeaa00 }, { 1011, 513, 0xe6ae08 },
-          { 1011, 524, 0xe6a200 }, { 1011, 535, 0xe6a600 },
+          { 1001, 305, 0xce7173 }, { 994, 312, 0xce7d42 },
+          { 989, 314, 0xffffde }, { 983, 322, 0xd68142 },
+          { 979, 327, 0xffffde }, { 974, 334, 0xde8642 },
+          { 970, 337, 0xffffd6 }, { 955, 346, 0xa44d4a },
+          { 1018, 326, 0x292829 }, { 1018, 342, 0x211c21 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
