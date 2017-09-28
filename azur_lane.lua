@@ -173,7 +173,7 @@ local settingTable = {
       },
       {
         ['type'] = 'Label',
-        ['text'] = '章节',
+        ['text'] = '章节(0章节表示不自动进入地图)',
         ['size'] = 15,
         ['align'] = 'left',
         ['color'] = '0,0,0',
@@ -181,7 +181,9 @@ local settingTable = {
       {
         ['id'] = 'battleChapter',
         ['type'] = 'RadioGroup',
-        ['list'] = '1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,event4-1-sp1,event4-1-sp2,event4-1-sp3',
+        ['list'] = '0,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
+          .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
+          .. 'event5-1-a1(c1),event5-1-a2(c1),event5-1-a3(c3)',
         ['select'] = '0',
       },
       {
@@ -338,6 +340,7 @@ local __tmp = (function(settings)
   -- 选择关卡
   settings.battleChapter = (function(battleChapter)
     local list = transStrToTable({
+      '0',
       '1-1', '1-2', '1-3', '1-4',
       '2-1', '2-2', '2-3', '2-4',
       '3-1', '3-2', '3-3', '3-4',
@@ -347,7 +350,9 @@ local __tmp = (function(settings)
       '7-1', '7-2', '7-3', '7-4',
       '8-1', '8-2', '8-3', '8-4',
       '9-1', '9-2', '9-3', '9-4',
-      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
+      --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
+      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',
+      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',
     })
     return list[battleChapter] or '1-1'
   end)(settings.battleChapter)

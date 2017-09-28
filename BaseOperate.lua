@@ -25,6 +25,8 @@ local map7_1 = require 'BaseOperate__maps__map7_1'
 local mapevent4_1_sp1 = require 'BaseOperate__maps__mapevent4_1_sp1'
 local mapevent4_1_sp2 = require 'BaseOperate__maps__mapevent4_1_sp2'
 local mapevent4_1_sp3 = require 'BaseOperate__maps__mapevent4_1_sp3'
+local mapevent5_1_a1 = require 'BaseOperate__maps__mapevent5_1_a1'
+local mapevent5_1_a3 = require 'BaseOperate__maps__mapevent5_1_a3'
 
 
 -- 原子操作列表
@@ -54,9 +56,11 @@ local map = {
   map6_2 = map6_2, -- 地图6_2
   map6_3 = map6_3, -- 地图6_3
   map7_1 = map7_1, -- 地图7_1
-  mapevent4_1_sp1 = mapevent4_1_sp1, -- 活动sp1
-  mapevent4_1_sp2 = mapevent4_1_sp2, -- 活动sp2
-  mapevent4_1_sp3 = mapevent4_1_sp3, -- 活动sp3
+  mapevent4_1_sp1 = mapevent4_1_sp1, -- 东皇活动sp1
+  mapevent4_1_sp2 = mapevent4_1_sp2, -- 东皇活动sp2
+  mapevent4_1_sp3 = mapevent4_1_sp3, -- 东皇活动sp3
+  mapevent5_1_a1 = mapevent5_1_a1, -- 秋季活动a1
+  mapevent5_1_a3 = mapevent5_1_a3, -- 秋季活动a3
 }
 
 

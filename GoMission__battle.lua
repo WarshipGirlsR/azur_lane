@@ -58,6 +58,15 @@ local battleOnce = function(action, state)
         state.battle.battleAssistantMode = 'manual'
       end
 
+      -- 对于未知章节，只辅助略过战斗中间步骤，不自动进入章节
+      if settings.battleChapter == '0' then
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_START', 'missionsGroup', map.home.isHome, 3600 },
+          { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
+        }))
+        return makeAction(newstateTypes), state
+      end
+
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CHECK_IS_EVENT', 'missionsGroup', map.home.isHome },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', 'missionsGroup', map.battle.isMapPage, 2000 },
@@ -146,6 +155,13 @@ local battleOnce = function(action, state)
       return makeAction(newstateTypes), state
 
     elseif (action.type == 'BATTLE_BATTLE_PAGE') then
+
+      if settings.battleChapter == '0' then
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_BATTLE_PAGE', 'missionsGroup', map.battle.isBattlePage, 3600 },
+        }))
+        return makeAction(newstateTypes), state
+      end
 
       stepLabel.setStepLabelContent('2-13.移动到章节' .. settings.battleChapter)
       map.battle.moveToChapter(settings.battleChapter)

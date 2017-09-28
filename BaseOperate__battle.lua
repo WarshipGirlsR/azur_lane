@@ -171,6 +171,18 @@ battle.moveToChapter = function(chapter)
     tap(417, 542, 100)
   elseif (chapter == 'event4-1-sp3') then
     tap(1392, 473, 100)
+  elseif (chapter == 'event5-1-a1') then
+    tap(655, 268, 100)
+  elseif (chapter == 'event5-1-a2') then
+    tap(1100, 781, 100)
+  elseif (chapter == 'event5-1-a3') then
+    tap(1340, 381, 100)
+  elseif (chapter == 'event5-2-b1') then
+    tap(527, 773, 100)
+  elseif (chapter == 'event5-2-b2') then
+    tap(527, 773, 100)
+  elseif (chapter == 'event5-2-b3') then
+    tap(527, 773, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -597,6 +609,7 @@ battle.isVictoryPanel = function()
     { 1028, 467, 0xdebe94 }, { 1162, 474, 0xefceb5 },
     { 1265, 473, 0xe6a273 }, { 1414, 494, 0xe6a273 },
     { 1320, 476, 0xefb694 }, { 1316, 536, 0xefb694 },
+    { 289, 722, 0x3a3d42 }, { 1627, 727, 0x424142 },
   }
   local result = false
   if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) or multiColorS(list5) then
