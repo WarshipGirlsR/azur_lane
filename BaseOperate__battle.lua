@@ -580,7 +580,9 @@ battle.isVictoryPanel = function()
     { 679, 450, 0xf7df52 }, { 598, 468, 0x84818c },
     { 592, 553, 0xe67d31 }, { 680, 540, 0xf79e42 },
     { 901, 430, 0xf7c64a }, { 1082, 478, 0xffff5a },
-    { 1350, 533, 0xef9e3a },
+    { 1350, 533, 0xef9e3a }, { 357, 699, 0x424142 },
+    { 755, 695, 0x424142 }, { 1183, 701, 0x424142 },
+    { 1536, 703, 0x3a3d3a },
   }
   local list2 = {
     { 618, 434, 0xf7ce52 }, { 543, 550, 0xef813a },
@@ -588,6 +590,8 @@ battle.isVictoryPanel = function()
     { 1238, 552, 0xef813a }, { 1395, 548, 0xef813a },
     { 1390, 480, 0xffff5a }, { 1424, 427, 0xf7be4a },
     { 271, 719, 0x424142 }, { 1651, 728, 0x424142 },
+    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
+    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
   }
   local list3 = {
     { 554, 439, 0x73cade }, { 678, 442, 0x84d7e6 },
@@ -595,12 +599,17 @@ battle.isVictoryPanel = function()
     { 856, 471, 0xb5efff }, { 949, 431, 0x6bcade },
     { 1022, 438, 0x8cd7e6 }, { 1161, 458, 0xa4ebf7 },
     { 1237, 489, 0xb5f3ff }, { 1410, 434, 0x7bd7e6 },
+    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
+    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
   }
   local list4 = {
     { 559, 447, 0xe6a273 }, { 674, 451, 0xe6ae84 },
     { 848, 469, 0xe6965a }, { 1092, 448, 0x6b2819 },
     { 1179, 451, 0xefcaad }, { 1356, 467, 0x521c08 },
     { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
+    { 289, 722, 0x3a3d42 }, { 1627, 727, 0x424142 },
+    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
+    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
   }
   -- d 全军覆没
   local list5 = {
@@ -610,8 +619,16 @@ battle.isVictoryPanel = function()
     { 1265, 473, 0xe6a273 }, { 1414, 494, 0xe6a273 },
     { 1320, 476, 0xefb694 }, { 1316, 536, 0xefb694 },
     { 289, 722, 0x3a3d42 }, { 1627, 727, 0x424142 },
+    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
+    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
   }
   local result = false
+  console.log('-----------')
+  console.log(multiColorS(list))
+  console.log(multiColorS(list2))
+  console.log(multiColorS(list3))
+  console.log(multiColorS(list4))
+  console.log(multiColorS(list5))
   if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) or multiColorS(list5) then
     result = true
   end
