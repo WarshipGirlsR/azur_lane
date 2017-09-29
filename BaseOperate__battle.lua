@@ -69,9 +69,6 @@ battle.moveToChapter = function(chapter)
     m = tonumber(chapterArr[2]) or 1
   end
 
-  local chapterArr = strSplit(chapter, "-")
-  local m = tonumber(chapterArr[1]) or 1
-
   local leftButton = {
     { 97, 526, 0xe6e7e6 },
     { 86, 539, 0xd6d7d6 },
@@ -178,11 +175,11 @@ battle.moveToChapter = function(chapter)
   elseif (chapter == 'event5-1-a3') then
     tap(1340, 381, 100)
   elseif (chapter == 'event5-2-b1') then
-    tap(527, 773, 100)
+    tap(532, 778, 100)
   elseif (chapter == 'event5-2-b2') then
-    tap(527, 773, 100)
+    tap(1305, 744, 100)
   elseif (chapter == 'event5-2-b3') then
-    tap(527, 773, 100)
+    tap(1058, 333, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -575,61 +572,57 @@ end
 battle.isVictoryPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
+  -- 大获全胜
   local list = {
-    { 538, 403, 0xf7eb94 }, { 555, 445, 0xffdb52 },
-    { 679, 450, 0xf7df52 }, { 598, 468, 0x84818c },
-    { 592, 553, 0xe67d31 }, { 680, 540, 0xf79e42 },
-    { 901, 430, 0xf7c64a }, { 1082, 478, 0xffff5a },
-    { 1350, 533, 0xef9e3a }, { 357, 699, 0x424142 },
-    { 755, 695, 0x424142 }, { 1183, 701, 0x424142 },
-    { 1536, 703, 0x3a3d3a },
+    { 557, 442, 0xf7d24a }, { 614, 492, 0xfffb5a },
+    { 674, 555, 0xe67d31 }, { 853, 543, 0xef8a3a },
+    { 1076, 484, 0xffff5a }, { 1211, 539, 0xef9242 },
+    { 1350, 476, 0xffff5a }, { 523, 474, 0xffef9c },
+    { 699, 441, 0x5a1c10 }, { 961, 439, 0x632410 },
+    { 1132, 455, 0x632819 }, { 1299, 456, 0x5a2410 },
+    { 1386, 481, 0x521c10 },
+    { 257, 696, 0x423d42 }, { 563, 696, 0x423d42 },
+    { 976, 699, 0x3a3d3a }, { 1398, 698, 0x424142 },
+    { 1658, 698, 0x424142 },
+    { 932, 474, 0x8c8183 }, { 1187, 492, 0x8c8a84 },
   }
+  -- 战术碾压
   local list2 = {
-    { 618, 434, 0xf7ce52 }, { 543, 550, 0xef813a },
-    { 629, 522, 0xf7c64a }, { 859, 484, 0xfffb5a },
-    { 1238, 552, 0xef813a }, { 1395, 548, 0xef813a },
-    { 1390, 480, 0xffff5a }, { 1424, 427, 0xf7be4a },
-    { 271, 719, 0x424142 }, { 1651, 728, 0x424142 },
-    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
-    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
+    { 611, 440, 0xf7d74a }, { 666, 500, 0xfff35a },
+    { 855, 479, 0xffff5a }, { 1110, 432, 0xffce52 },
+    { 1218, 529, 0xefa63a }, { 1395, 482, 0xfffb5a },
+    { 568, 468, 0x632419 }, { 902, 441, 0x5a2010 },
+    { 987, 448, 0x632010 }, { 1234, 442, 0x6b2819 },
+    { 537, 429, 0xfff394 }, { 1253, 565, 0x6b2410 },
+
+    { 294, 702, 0x424142 }, { 523, 697, 0x424142 },
+    { 967, 698, 0x423d42 }, { 1424, 697, 0x3a3d3a },
   }
-  local list3 = {
-    { 554, 439, 0x73cade }, { 678, 442, 0x84d7e6 },
-    { 675, 483, 0xb5f7ff }, { 614, 552, 0x31b2c5 },
-    { 856, 471, 0xb5efff }, { 949, 431, 0x6bcade },
-    { 1022, 438, 0x8cd7e6 }, { 1161, 458, 0xa4ebf7 },
-    { 1237, 489, 0xb5f3ff }, { 1410, 434, 0x7bd7e6 },
-    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
-    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
-  }
+  -- 旗舰大破
   local list4 = {
-    { 559, 447, 0xe6a273 }, { 674, 451, 0xe6ae84 },
-    { 848, 469, 0xe6965a }, { 1092, 448, 0x6b2819 },
-    { 1179, 451, 0xefcaad }, { 1356, 467, 0x521c08 },
-    { 1430, 492, 0xe69e6b }, { 1423, 541, 0xe69e6b },
-    { 289, 722, 0x3a3d42 }, { 1627, 727, 0x424142 },
-    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
-    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
+    { 563, 438, 0xe6a273 }, { 844, 495, 0xde965a },
+    { 1046, 479, 0xe6be9c }, { 1212, 461, 0xefc2a4 },
+    { 1370, 471, 0xe6aa7b }, { 536, 454, 0x521810 },
+    { 522, 467, 0xffebd6 }, { 863, 487, 0x5a1c10 },
+    { 1088, 447, 0x632819 }, { 1386, 457, 0x521c08 },
+    { 249, 698, 0x423d42 }, { 527, 696, 0x424142 },
+    { 907, 697, 0x424142 }, { 1389, 697, 0x424142 },
+    { 1636, 698, 0x424142 },
   }
   -- d 全军覆没
   local list5 = {
-    { 544, 437, 0xe69a63 }, { 619, 435, 0xefcaad },
-    { 695, 496, 0xe6a673 }, { 848, 473, 0xde6931 },
-    { 1028, 467, 0xdebe94 }, { 1162, 474, 0xefceb5 },
-    { 1265, 473, 0xe6a273 }, { 1414, 494, 0xe6a273 },
-    { 1320, 476, 0xefb694 }, { 1316, 536, 0xefb694 },
-    { 289, 722, 0x3a3d42 }, { 1627, 727, 0x424142 },
-    { 357, 699, 0x424142 }, { 755, 695, 0x424142 },
-    { 1183, 701, 0x424142 }, { 1536, 703, 0x3a3d3a },
+    { 550, 445, 0xde9e63 }, { 899, 476, 0xe6a273 },
+    { 1088, 466, 0xefc6ad }, { 1219, 489, 0xdea673 },
+    { 1420, 497, 0xe69e63 }, { 543, 422, 0x521808 },
+    { 855, 458, 0x5a1c08 }, { 1012, 455, 0x632819 },
+    { 1276, 463, 0x5a2410 }, { 1368, 480, 0x5a2010 },
+
+    { 279, 726, 0x423d42 }, { 525, 700, 0x423d42 },
+    { 955, 698, 0x423d42 }, { 1366, 698, 0x424142 },
+    { 1687, 734, 0x424142 },
   }
   local result = false
-  console.log('-----------')
-  console.log(multiColorS(list))
-  console.log(multiColorS(list2))
-  console.log(multiColorS(list3))
-  console.log(multiColorS(list4))
-  console.log(multiColorS(list5))
-  if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) or multiColorS(list5) then
+  if multiColorS(list) or multiColorS(list2) or multiColorS(list4) or multiColorS(list5) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end

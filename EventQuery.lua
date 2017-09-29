@@ -290,6 +290,7 @@ function run()
       local hasDropEvent = false
       continue = continue + 1
       sleepTime = math.min(sleepTime, 200)
+      keepScreen(false);
       keepScreen(true);
       for key = 1, #screenListenerQuery do
         local value = screenListenerQuery[key]

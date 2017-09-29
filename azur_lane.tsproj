@@ -34,6 +34,7 @@ BaseOperate__maps__imgevent4_1_sp1.lua
 BaseOperate__maps__imgevent4_1_sp2.lua
 BaseOperate__maps__imgevent4_1_sp3.lua
 BaseOperate__maps__imgevent5_1_a1.lua
+BaseOperate__maps__imgevent5_1_a2.lua
 BaseOperate__maps__imgevent5_1_a3.lua
 BaseOperate__maps__map.lua
 BaseOperate__maps__map1_1.lua
@@ -61,6 +62,7 @@ BaseOperate__maps__mapevent4_1_sp1.lua
 BaseOperate__maps__mapevent4_1_sp2.lua
 BaseOperate__maps__mapevent4_1_sp3.lua
 BaseOperate__maps__mapevent5_1_a1.lua
+BaseOperate__maps__mapevent5_1_a2.lua
 BaseOperate__maps__mapevent5_1_a3.lua
 BaseOperate__maps__utils.lua
 CheckColor.lua
