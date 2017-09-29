@@ -123,6 +123,17 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 小型 红色c3 5-7
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1437, 345, 0xdeba10 }, { 1449, 345, 0xdeba10 },
+          { 1468, 345, 0xdeba10 }, { 1432, 354, 0xdebe10 },
+          { 1432, 368, 0xdebe19 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
       -- 中型
       (function()
         local leftTop = { 185, 155 }
@@ -153,6 +164,17 @@ return {
           { 854, 522, 0xa44119 }, { 866, 522, 0xa43d10 },
           { 879, 522, 0x844121 }, { 849, 529, 0xa44110 },
           { 849, 542, 0x844121 }, { 849, 554, 0xb53500 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 大型 红色c3 的2-3 截取
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 695, 615, 0xbd3900 }, { 703, 615, 0xbd3900 },
+          { 716, 615, 0xbd3500 }, { 688, 631, 0xbd3500 },
+          { 688, 640, 0xbd3908 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
