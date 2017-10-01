@@ -90,3 +90,4 @@ StepLabel.lua
 StringLib.lua
 TableLib.lua
 test.lua
+TSLib.lua

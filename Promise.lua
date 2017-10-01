@@ -101,8 +101,8 @@ function Promise.all(args)
       end
     end
 
-    for k, value in ipairs(args) do
-      getRes(k, value)
+    for k = 1, #args do
+      getRes(k, args[k])
     end
   end)
 end
@@ -110,8 +110,9 @@ end
 function Promise.race(args)
   if (type(args) ~= 'table') then args = {} end
   return Promise.new(function(resolve, reject)
-    for k, v in ipairs(args) do
-      Promise.resolve(v).andThen(resolve, reject)
+    for k = 1, #args do
+      local value = args[k]
+      Promise.resolve(value).andThen(resolve, reject)
     end
   end)
 end
@@ -224,8 +225,8 @@ end
 -- 移动到链表的下一个promise
 function finale(self)
   local theDef = self.deferreds
-  for k, v in ipairs(self.deferreds) do
-    handle(self, v);
+  for k = 1, #theDef do
+    handle(self, theDef[k]);
   end
   self.deferreds = {};
   if ((self.PromiseStatus == REJECTED) and (#theDef == 0)) then
