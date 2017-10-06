@@ -15,7 +15,7 @@ local battleOnce = function(action, state)
   local settings = allOptions.settings
 
   local battleListenerList = {
-    { 'BATTLE_HOME_CLICK_BATTLE', map.home.isHome, 2000 },
+    { 'BATTLE_HOME_CHECK_IS_EVENT', map.home.isHome, 2000 },
     { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', map.battle.isReadyBattlePage, 1000 },
     { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
     { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage, 2000 },
@@ -94,6 +94,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_HOME_CLICK_BATTLE') then
 
+      
       stepLabel.setStepLabelContent('2-5.点击出征')
       map.home.clickBattleBtn()
       stepLabel.setStepLabelContent('2-6.等待出征页面')

@@ -338,7 +338,6 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
     moveStep = math.max(1, moveStep)
     moveStep = math.floor(moveStep)
     moveTo(sWidth / 2, sHeight / 2, sWidth / 2 + moveVector[1], sHeight / 2 + moveVector[2], moveStep, 100)
-    -- 如果moveStep总是相同说明是移动距离太小滑动屏幕失效。
   else
     isCenter = true
   end
