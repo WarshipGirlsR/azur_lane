@@ -60,7 +60,7 @@ map3_2.getMapChessboard = function()
       { 2, 6 }, { 2, 7 }, { 2, 8 },
       { 3, 7 }, { 3, 8 }, { 4, 8 },
     },
-    waitForBossPosition = { { 1, 7 } },
+    waitForBossPosition = { { 1, 8 } },
     bossPosition = {},
     myFleetList = {},
     enemyPositionList = {},
