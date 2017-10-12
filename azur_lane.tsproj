@@ -86,6 +86,7 @@ main.lua
 MathLib.lua
 MultiColorHock.lua
 Promise.lua
+sendMessageToTasker.lua
 StepLabel.lua
 StringLib.lua
 TableLib.lua

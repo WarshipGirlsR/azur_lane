@@ -3,9 +3,9 @@ isPause = false
 luaExisted = false
 function beforeUserExit()
   luaExisted = true
-  vibrator(500)
-  mSleep(500)
-  vibrator(500)
+  --  vibrator(500)
+  --  mSleep(500)
+  --  vibrator(500)
 end
 
 if (deviceIsLock() ~= 0) then
