@@ -75,9 +75,9 @@ battle.moveToChapter = function(chapter)
     { 109, 577, 0xdedbde },
   }
   -- 先移到第一章
-  for i = 1, 9 do
+  for i = 1, 12 do
     tap(90, 540, 100)
-    mSleep(500)
+    mSleep(80)
     keepScreen(true)
     if not multiColorS(leftButton) then
       break
@@ -594,9 +594,21 @@ battle.isVictoryPanel = function()
     { 568, 468, 0x632419 }, { 902, 441, 0x5a2010 },
     { 987, 448, 0x632010 }, { 1234, 442, 0x6b2819 },
     { 537, 429, 0xfff394 }, { 1253, 565, 0x6b2410 },
+    { 1295, 426, 0x632010 }, { 1080, 495, 0x632819 },
 
     { 294, 702, 0x424142 }, { 523, 697, 0x424142 },
     { 967, 698, 0x423d42 }, { 1424, 697, 0x3a3d3a },
+  }
+  -- 完成任务
+  local list3 = {
+    { 556, 437, 0x6bc6de }, { 615, 438, 0x6bcede },
+    { 676, 472, 0xb5f3ff }, { 855, 472, 0xb5f3ff },
+    { 1092, 546, 0x31b2c5 }, { 1163, 508, 0x94e3ef },
+    { 1384, 430, 0x6bc6de }, { 647, 477, 0x10595a },
+    { 845, 488, 0x104552 }, { 1052, 459, 0x10555a },
+
+    { 309, 698, 0x424142 }, { 711, 701, 0x424142 },
+    { 1189, 698, 0x424142 }, { 1584, 701, 0x423d3a },
   }
   -- 旗舰大破
   local list4 = {
@@ -622,7 +634,7 @@ battle.isVictoryPanel = function()
     { 1687, 734, 0x424142 },
   }
   local result = false
-  if multiColorS(list) or multiColorS(list2) or multiColorS(list4) or multiColorS(list5) then
+  if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) or multiColorS(list5) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
