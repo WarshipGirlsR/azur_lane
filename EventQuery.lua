@@ -115,7 +115,7 @@ end
 function setImmediate(func)
   if (type(func) ~= 'function') then return 0 end
   local eventObj = getEventObj(func)
-  table.insert(eventQuery, eventObj)
+  table.insert(timerQuery, eventObj)
   return eventObj.id
 end
 
@@ -203,11 +203,13 @@ function run()
     sleepTime = 3600000
 
     -- run eventQuery
-    for key = 1, #eventQuery do
-      local value = eventQuery[key]
-      value.func()
+    if #eventQuery > 0 then
+      for key = 1, #eventQuery do
+        local value = eventQuery[key]
+        value.func()
+      end
+      eventQuery = {}
     end
-    eventQuery = {}
 
 
     -- read event from other Query
@@ -338,7 +340,6 @@ function run()
     if (luaExisted) then
       break
     end
-
     if (#eventQuery <= 0) then
       mSleep(sleepTime)
     end

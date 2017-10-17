@@ -3,13 +3,27 @@
 
 --------------------------------------------------------------------------------------
 
+-- 字符串分割
+string.split = string.split or function(str, delimiter)
+  if str == nil or str == '' or delimiter == nil then
+    return nil
+  end
+
+  local result = {}
+  for match in (str .. delimiter):gmatch("(.-)" .. delimiter) do
+    table.insert(result, match)
+  end
+  return result
+end
+
+
 local PENDING = 0
 local RESOLVED = 1
 local REJECTED = 2
 
 -- 是否需要显示stack traceback里的错误信息
 -- stack traceback错误信息很长，所以这个功能作为可选项
-local stackTraceback = true
+local stackTraceback = false
 -- 封装了xpcall方法
 function tryCatch(cb)
   return xpcall(cb, function(e)
@@ -169,6 +183,7 @@ function handle(self, deferred)
     table.insert(self.deferreds, deferred)
     return
   end
+
   asap(function()
     local cb
     if (self.PromiseStatus == RESOLVED) then
@@ -229,8 +244,18 @@ function finale(self)
     handle(self, theDef[k]);
   end
   self.deferreds = {};
-  if ((self.PromiseStatus == REJECTED) and (#theDef == 0)) then
-    error('Uncatch error in Promise \n' .. tostring(self.PromiseValue))
+  if self.PromiseStatus == REJECTED and #theDef == 0 then
+    local errStr = 'Uncatch error in Promise '
+    local resErr = tostring(self.PromiseValue)
+    if not stackTraceback then
+      local errStrTab = string.split(resErr, '\n')
+      if errStrTab and #errStrTab > 1 then
+        if string.sub(errStrTab[1], 0 - #errStr) == errStr then
+          resErr = errStrTab[#errStrTab]
+        end
+      end
+    end
+    error(errStr .. '\n' .. resErr)
   end
 end
 

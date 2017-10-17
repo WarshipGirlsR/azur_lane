@@ -34,11 +34,14 @@ return {
   next = function(action, state)
     state = table.assign(stateTree, state)
     return co(c.create(function()
-      for key, item in pairs(missions) do
-        local newAction, newState = c.yield(item(action, state))
-        if (newAction) then
-          return newAction, newState
+      if action.type and action.type ~= '' then
+        for key, item in pairs(missions) do
+          local newAction, newState = c.yield(item(action, state))
+          if (newAction) then
+            return newAction, newState
+          end
         end
+        error('Action "' .. action.type .. '" not found')
       end
     end))
   end
