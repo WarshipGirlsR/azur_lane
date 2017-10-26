@@ -17,7 +17,6 @@ local battleOnce = function(action, state)
   local battleListenerList = {
     { 'BATTLE_HOME_CHECK_IS_EVENT', map.home.isHome, 2000 },
     { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', map.battle.isReadyBattlePage, 1000 },
-    { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
     { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage, 2000 },
     { 'BATTLE_VICTORY_PANEL', map.battle.isVictoryPanel, 2000 },
     { 'BATTLE_GET_PROPS_PANEL', map.battle.isGetPropsPanel, 2000 },
@@ -312,6 +311,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', map.battle.isAutoBattleConfirmPanel },
         { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage },
         { 'BATTLE_AUTO_BATTLE_PANEL', map.battle.isNotAutoBattle, 2000 },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
       }))
       return makeAction(newstateTypes), state
 
@@ -324,6 +324,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', map.battle.isAmbushedPanel, 2000 },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
         { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', map.battle.isReadyBattlePage, 2000 },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
       }))
       return makeAction(newstateTypes), state
 
@@ -342,6 +343,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE', map.battle.isNotAutoBattle, 2000 },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
       }))
       return makeAction(newstateTypes), state
 
@@ -352,6 +354,7 @@ local battleOnce = function(action, state)
       stepLabel.setStepLabelContent('2-28.等待胜利界面')
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage, 180000 },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE_SWITCH_TO_AUTO_BATTLE', map.battle.isNotAutoBattle, 1000 },
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', map.battle.isAutoBattleConfirmPanel },
         { 'BATTLE_VICTORY_PANEL', map.battle.isVictoryPanel },
@@ -371,6 +374,7 @@ local battleOnce = function(action, state)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', map.battle.isAutoBattleConfirmPanel },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
+        { 'BATTLE_CHAPTER_BACK_TO_HOME', map.battle.isBattlePage, 2000 },
       }))
       return makeAction(newstateTypes), state
 
