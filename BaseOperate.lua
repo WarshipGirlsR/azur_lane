@@ -30,6 +30,7 @@ local mapevent4_1_sp3 = require 'BaseOperate__maps__mapevent4_1_sp3'
 local mapevent5_1_a1 = require 'BaseOperate__maps__mapevent5_1_a1'
 local mapevent5_1_a2 = require 'BaseOperate__maps__mapevent5_1_a2'
 local mapevent5_1_a3 = require 'BaseOperate__maps__mapevent5_1_a3'
+local mapevent6_1_sp3 = require 'BaseOperate__maps__mapevent6_1_sp3'
 
 
 -- 原子操作列表
@@ -67,6 +68,7 @@ local map = {
   mapevent5_1_a1 = mapevent5_1_a1, -- 红染活动a1
   mapevent5_1_a2 = mapevent5_1_a2, -- 红染活动a1
   mapevent5_1_a3 = mapevent5_1_a3, -- 红染活动a3
+  mapevent6_1_sp3 = mapevent6_1_sp3, -- 红染活动sp3
 }
 
 
