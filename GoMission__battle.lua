@@ -93,7 +93,7 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_HOME_CLICK_BATTLE') then
 
-      
+
       stepLabel.setStepLabelContent('2-5.点击出征')
       map.home.clickBattleBtn()
       stepLabel.setStepLabelContent('2-6.等待出征页面')
@@ -207,6 +207,10 @@ local battleOnce = function(action, state)
 
       stepLabel.setStepLabelContent('2-18.已选择舰队' .. table.concat(settings.battleFleet, ','))
       map.battle.clickGotoMapBtn()
+
+      -- 清空棋盘信息。到了这个步骤说明这是一局新的关卡
+      state.map.mapChessboard = nil
+
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_PAGE', map.battle.isBattlePage, 2000 },
         { 'BATTLE_CHAPTER_INFO_PANEL', map.battle.isChapterInfoPanel, 2000 },
@@ -218,7 +222,12 @@ local battleOnce = function(action, state)
 
     elseif (action.type == 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET') then
 
+      stepLabel.setStepLabelContent('2-18.困难面板，点击出征')
       map.battle.clickHardGotoSelectFleedPanelBtn()
+
+      -- 清空棋盘信息。到了这个步骤说明这是一局新的关卡
+      state.map.mapChessboard = nil
+
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_PAGE', map.battle.isBattlePage, 2000 },
         { 'BATTLE_CHAPTER_INFO_PANEL', map.battle.isChapterInfoPanel, 2000 },

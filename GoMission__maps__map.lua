@@ -36,7 +36,14 @@ local map = function(action, state)
     if action.type == 'MAPS_MAP_START' then
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       state.map.checkpositionListForMove = state.map.checkpositionListForMove or {}
-      state.map.mapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
+      -- 获取地图信息。如果上次扫描结果还在，就把敌人列表保留下来
+      -- 因为敌人容易被我方舰队覆盖住导致扫描不到
+      -- 所以敌人列表在关卡中都不清除，其他列表在每次开始扫描棋盘前会清除。
+      state.map.mapChessboard = state.map.mapChessboard or {}
+      local newMapChessBoard = mapProxy.getMapChessboard(settings.battleChapter)
+      newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
+      state.map.mapChessboard = newMapChessBoard
+
       state.map.currentPosition = nil
       state.map.nextStepPoint = nil
       state.map.moveVectorForCheck = { -1, -1 }
@@ -87,7 +94,7 @@ local map = function(action, state)
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(state.map.currentPosition, targetPosition)
       if effectiveStep and comparePoints(state.map.moveVectorForCheck, newMoveVector) then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage },
+          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes), state
       end
@@ -104,7 +111,7 @@ local map = function(action, state)
 
       if isCenter then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage },
+          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes), state
       else
@@ -206,7 +213,7 @@ local map = function(action, state)
 
       if effectiveStep and state.map.moveVectorForAStep[1] == newMoveVector[1] and state.map.moveVectorForAStep[2] == newMoveVector[2] then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage },
+          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes), state
       end

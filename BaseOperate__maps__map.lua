@@ -1,3 +1,4 @@
+local AStart = require 'AStart'
 local _sWidth, _sHeight = getScreenSize();
 local sWidth = math.max(_sWidth, _sHeight)
 local sHeight = math.min(_sWidth, _sHeight)
@@ -387,9 +388,10 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
 
   mapChessboard.inBattleList = table.merge(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
   mapChessboard.inBattleList = uniqueList(mapChessboard.inBattleList)
-  local selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
-  local myFleetList = transPointListToChessboardPointList(positionMap, myFleetList)
-  myFleetList = table.merge(selectedArrowList, myFleetList)
+  selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
+  mapChessboard.selectedArrowList = table.merge(mapChessboard.selectedArrowList, selectedArrowList)
+  mapChessboard.selectedArrowList = uniqueList(mapChessboard.selectedArrowList)
+  myFleetList = table.merge({}, mapChessboard.selectedArrowList, myFleetList)
   myFleetList = uniqueList(myFleetList)
   -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
   local inBattleMap = makePointMap(mapChessboard.inBattleList)
@@ -410,7 +412,20 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   mapChessboard.bossPosition = table.filter(mapChessboard.bossPosition, function(point)
     return not enemyPositionMap[point[1] .. '-' .. point[2]]
   end)
-
+  -- 如果我方舰队在敌人列表里但是不在战斗中列表里，说明这个位置的敌人已经消灭了
+  -- 因为敌人列表在整场战斗中都不清除，其他列表在每次开始扫描棋盘前会清除。
+  -- 因为敌人容易被我方舰队覆盖住导致扫描不到
+  for key = 1, #mapChessboard.myFleetList do
+    local point = myFleetList[key]
+    if not inBattleMap[point[1] .. '-' .. point[2]] then
+      if enemyPositionMap[point[1] .. '-' .. point[2]] then
+        enemyPositionMap[point[1] .. '-' .. point[2]] = nil
+        mapChessboard.enemyPositionList = table.filter(mapChessboard.enemyPositionList, function(v)
+          return v[1] ~= point[1] or v[2] ~= point[2]
+        end)
+      end
+    end
+  end
   if not __keepScreenState then keepScreen(false) end
   return mapChessboard
 end
@@ -419,6 +434,15 @@ map.moveToPoint = function(ImgInfo, targetPosition, point)
   local positionMap = targetPosition.positionMap
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })
   tap(tapPointList[1][1], tapPointList[1][2], 100)
+end
+
+map.canMoveToPoint = function(ImgInfo, targetPosition, point)
+  local theObstacle = table.merge({}, mapChessboard.obstacle, enemyPositionListExceptTarget)
+  local thePath = AStart(myField, enemy, {
+    width = mapChessboard.width,
+    height = mapChessboard.height,
+    obstacle = theObstacle,
+  })
 end
 
 map.findClosestEnemy = function(ImgInfo, mapChessboard)
@@ -441,22 +465,42 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   local myField = mapChessboard.myFleetList[1]
   local myField2 = mapChessboard.myFleetList[2]
   local enemyPositionList = mapChessboard.enemyPositionList
-  local minCoast = 100000
+  local inBattleList = mapChessboard.inBattleList
+  local minCoast
   local minCoastEnemy
   for _, enemy in ipairs(enemyPositionList) do
     if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
-      local theCoast = calCoast(myField, enemy)
-      -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
-      if waitForPossPosition then
-        theCoast = theCoast + calCoast(waitForPossPosition, enemy) * 0.1
-      end
-      if minCoast > theCoast then
-        minCoast = theCoast
-        minCoastEnemy = enemy
+      local enemyPositionListExceptTarget = table.filter(enemyPositionList, function(v)
+        return v[1] ~= enemy[1] or v[2] ~= enemy[2]
+      end)
+      local theObstacle = table.merge({}, mapChessboard.obstacle, enemyPositionListExceptTarget)
+      local thePath = AStart(myField, enemy, {
+        width = mapChessboard.width,
+        height = mapChessboard.height,
+        obstacle = theObstacle,
+      })
+      if thePath and #thePath > 0 then
+        local theCoast = thePath[#thePath].G
+        -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
+        if waitForPossPosition then
+          -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
+          -- 这里将敌人视为障碍物但是目标敌人要去掉，否则就永远走不到目标。
+          local boosPath = AStart(waitForPossPosition, enemy, {
+            width = mapChessboard.width,
+            height = mapChessboard.height,
+            obstacle = theObstacle,
+          })
+          if boosPath and #boosPath > 0 then
+            theCoast = theCoast + boosPath[#boosPath].G * 0.1
+          end
+        end
+        if not minCoast or minCoast > theCoast then
+          minCoast = theCoast
+          minCoastEnemy = enemy
+        end
       end
     end
   end
-
   return minCoastEnemy
 end
 

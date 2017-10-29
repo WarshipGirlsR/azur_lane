@@ -97,6 +97,19 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      --  采集位置event6-1-sp3关7-6位
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 979, 613, 0xa4454a }, { 983, 604, 0xde9652 },
+          { 995, 594, 0xde924a }, { 1005, 577, 0xe69652 },
+          { 1019, 568, 0xe69a4a }, { 1019, 552, 0xd67d7b },
+          { 1039, 603, 0x211821 }, { 960, 569, 0x948a94 },
+          { 997, 553, 0xffffde }, { 975, 583, 0xfffbd6 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = {

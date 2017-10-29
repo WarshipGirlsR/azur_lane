@@ -1,7 +1,7 @@
 [res]
 [lib]
 [file]
-amalg.lua
+AStart.lua
 azur_lane.lua
 azur_lane_test.lua
 azur_lane.min.lua
@@ -79,6 +79,7 @@ console.lua
 DeviceOrientHock.lua
 EventQuery.lua
 GetColor.lua
+GetTime.lua
 GoMission.lua
 GoMission__battle.lua
 GoMission__home.lua

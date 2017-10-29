@@ -106,6 +106,7 @@ mapevent4_1_sp3.getMapChessboard = function()
     myFleetList = {},
     enemyPositionList = {},
     inBattleList = {},
+    selectedArrowList = {},
   }
 end
 
