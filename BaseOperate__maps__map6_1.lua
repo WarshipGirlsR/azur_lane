@@ -100,6 +100,10 @@ map6_1.moveToPoint = function(targetPosition, point)
   return mapBase.moveToPoint(img6_1, targetPosition, point)
 end
 
+map6_1.checkMoveToPointPath = function(mapChessboard, start, target)
+  return mapBase.checkMoveToPointPath(map6_1, mapChessboard, start, target)
+end
+
 map6_1.findClosestEnemy = function(mapChessboard)
   return mapBase.findClosestEnemy(img6_1, mapChessboard)
 end

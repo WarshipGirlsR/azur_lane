@@ -41,7 +41,7 @@ end)()
 --   ['1-2'] = { 1, 2 }
 --   ['3-4'] = { 3, 4 }
 -- }
-function transListToMap(list)
+local function transListToMap(list)
   local result = {}
   for _, item in pairs(list) do
     result[item[1] .. '-' .. item[2]] = item
@@ -50,7 +50,7 @@ function transListToMap(list)
 end
 
 -- 检查坐标点在直线的左边还是右边，直线用两点表示
-function checkPointPosition(checkPoint, topPoint, bottonPoint)
+local function checkPointPosition(checkPoint, topPoint, bottonPoint)
   if topPoint[2] == bottonPoint[2] then
     if checkPoint[1] < topPoint[1] then
       return -1
@@ -69,7 +69,7 @@ function checkPointPosition(checkPoint, topPoint, bottonPoint)
 end
 
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
-function transPointListToChessboardPointList(positionMap, positionList)
+local function transPointListToChessboardPointList(positionMap, positionList)
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
@@ -144,7 +144,7 @@ function transPointListToChessboardPointList(positionMap, positionList)
 end
 
 -- 将地图棋盘坐标列表转换为屏幕坐标列表
-function transChessboardPointListToPositionList(positionMap, pointList)
+local function transChessboardPointListToPositionList(positionMap, pointList)
   local result = {}
   for _, item in pairs(pointList) do
     local leftTop = positionMap[item[1]][item[2]]
@@ -162,7 +162,7 @@ end
 
 
 -- 搜索一个颜色列表
-function findMultiColorList(ImgInfo, list, simpleMode)
+local function findMultiColorList(ImgInfo, list, simpleMode)
   local res = {}
   for key = 1, #list do
     local myFleet = list[key]
@@ -172,6 +172,16 @@ function findMultiColorList(ImgInfo, list, simpleMode)
     end
   end
   return ImgInfo.toPoint(res)
+end
+
+-- 将列表转换成索引方便查询
+local function makePointMap(list)
+  local theMap = {}
+  for key = 1, #list do
+    local point = list[key]
+    theMap[point[1] .. '-' .. point[2]] = point
+  end
+  return theMap
 end
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
@@ -360,15 +370,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
     return res
   end
 
-  function makePointMap(list)
-    local theMap = {}
-    for key = 1, #list do
-      local point = list[key]
-      theMap[point[1] .. '-' .. point[2]] = point
-    end
-    return theMap
-  end
-
   -- 将重复的位置去除
   function uniqueList(tab)
     return table.unique(tab, function(item)
@@ -436,27 +437,40 @@ map.moveToPoint = function(ImgInfo, targetPosition, point)
   tap(tapPointList[1][1], tapPointList[1][2], 100)
 end
 
-map.canMoveToPoint = function(ImgInfo, targetPosition, point)
+map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
+  local enemyPositionListExceptTarget = table.filter(mapChessboard.enemyPositionList, function(v)
+    return v[1] ~= target[1] or v[2] ~= target[2]
+  end)
   local theObstacle = table.merge({}, mapChessboard.obstacle, enemyPositionListExceptTarget)
-  local thePath = AStart(myField, enemy, {
+  local thePath = AStart(start, target, {
     width = mapChessboard.width,
     height = mapChessboard.height,
     obstacle = theObstacle,
   })
+
+  if not thePath or #thePath == 0 then
+    thePath = AStart(start, target, {
+      width = mapChessboard.width,
+      height = mapChessboard.height,
+      obstacle = mapChessboard.obstacle,
+    })
+  end
+
+  if thePath and #thePath > 0 then
+    local enemyPositionMap = transListToMap(apChessboard.enemyPositionList)
+    for key = 1, #thePath do
+      local p = thePath[key]
+      if enemyPositionMap[p[1] .. '-' .. p[2]] then
+        return p
+      end
+    end
+  end
+  return thePath and thePath[#thePath]
 end
 
 map.findClosestEnemy = function(ImgInfo, mapChessboard)
   function calCoast(currentPoint, targetPoint)
     return math.abs(targetPoint[1] - currentPoint[1]) + math.abs(targetPoint[2] - currentPoint[2])
-  end
-
-  function makePointMap(list)
-    local theMap = {}
-    for key = 1, #list do
-      local point = list[key]
-      theMap[point[1] .. '-' .. point[2]] = point
-    end
-    return theMap
   end
 
   -- 取得等待boss位置，因为清除boss附近的小怪会更有效率

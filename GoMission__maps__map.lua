@@ -152,7 +152,7 @@ local map = function(action, state)
       if #mapChessboard.bossPosition > 0 then
         stepLabel.setStepLabelContent('3-7.移动到boss位置')
         state.battle.moveState = 'moveToBoss'
-        state.map.nextStepPoint = mapChessboard.bossPosition[1]
+        state.map.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
       elseif table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
         stepLabel.setStepLabelContent('3-8.开始战斗')
         map.battle.clickAttackBtn()
@@ -164,7 +164,7 @@ local map = function(action, state)
         return makeAction(newstateTypes), state
       elseif state.battle.moveState == 'moveToWaitBoss' then
         stepLabel.setStepLabelContent('3-9.移动待命位置')
-        state.map.nextStepPoint = mapChessboard.waitForBossPosition[1]
+        state.map.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.waitForBossPosition[1])
       else
         stepLabel.setStepLabelContent('3-10.移动到最近的敌人')
         state.battle.moveState = 'moveToClosestEnemy'
