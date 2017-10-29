@@ -457,7 +457,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
   end
 
   if thePath and #thePath > 0 then
-    local enemyPositionMap = transListToMap(apChessboard.enemyPositionList)
+    local enemyPositionMap = transListToMap(mapChessboard.enemyPositionList)
     for key = 1, #thePath do
       local p = thePath[key]
       if enemyPositionMap[p[1] .. '-' .. p[2]] then
