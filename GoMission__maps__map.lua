@@ -42,6 +42,7 @@ local map = function(action, state)
       state.map.mapChessboard = state.map.mapChessboard or {}
       local newMapChessBoard = mapProxy.getMapChessboard(settings.battleChapter)
       newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
+      newMapChessBoard.bossPosition = state.map.mapChessboard.bossPosition or newMapChessBoard.bossPosition
       state.map.mapChessboard = newMapChessBoard
 
       state.map.currentPosition = nil
