@@ -144,6 +144,18 @@ return {
         })
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 1-8 的右边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1358, 736, 0x000000 }, { 1357, 736, 0x6b71ad },
+          { 1358, 735, 0x000000 }, { 1357, 735, 0x6b71ad },
+          { 1359, 737, 0x000000 }, { 1358, 737, 0x636d9c },
+          { 1359, 738, 0x000000 }, { 1358, 738, 0x6b71b5 },
+        })
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
       -- 3-8 的右边
       (function()
         local leftTop = { 185, 155 }
