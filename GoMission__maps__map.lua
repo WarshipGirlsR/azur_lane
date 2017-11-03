@@ -41,8 +41,9 @@ local map = function(action, state)
       -- 所以敌人列表在关卡中都不清除，其他列表在每次开始扫描棋盘前会清除。
       state.map.mapChessboard = state.map.mapChessboard or {}
       local newMapChessBoard = mapProxy.getMapChessboard(settings.battleChapter)
-      newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
-      newMapChessBoard.bossPosition = state.map.mapChessboard.bossPosition or newMapChessBoard.bossPosition
+      --      newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
+      --      newMapChessBoard.bossPosition = state.map.mapChessboard.bossPosition or newMapChessBoard.bossPosition
+      newMapChessBoard.bossPosition = newMapChessBoard
       state.map.mapChessboard = newMapChessBoard
 
       state.map.currentPosition = nil
