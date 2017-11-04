@@ -392,7 +392,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.selectedArrowList = table.merge(mapChessboard.selectedArrowList, selectedArrowList)
   mapChessboard.selectedArrowList = uniqueList(mapChessboard.selectedArrowList)
-  myFleetList = table.merge({}, mapChessboard.selectedArrowList, myFleetList)
+  myFleetList = table.merge({}, mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetList))
   myFleetList = uniqueList(myFleetList)
   -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
   local inBattleMap = makePointMap(mapChessboard.inBattleList)
@@ -469,10 +469,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
 end
 
 map.findClosestEnemy = function(ImgInfo, mapChessboard)
-  function calCoast(currentPoint, targetPoint)
-    return math.abs(targetPoint[1] - currentPoint[1]) + math.abs(targetPoint[2] - currentPoint[2])
-  end
-
   -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
   local waitForPossPosition = mapChessboard.waitForBossPosition[1]
 
@@ -487,6 +483,8 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
       local enemyPositionListExceptTarget = table.filter(enemyPositionList, function(v)
         return v[1] ~= enemy[1] or v[2] ~= enemy[2]
       end)
+      -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
+      -- 这里将敌人视为障碍物但是目标敌人要去掉，否则就永远走不到目标。
       local theObstacle = table.merge({}, mapChessboard.obstacle, enemyPositionListExceptTarget)
       local thePath = AStart(myField, enemy, {
         width = mapChessboard.width,

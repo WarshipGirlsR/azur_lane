@@ -68,9 +68,13 @@ end
 -- 获取地图棋盘和相关数据
 map5_2.getMapChessboard = function()
   return {
-    width = 6,
-    height = 6,
-    obstacle = {},
+    width = 8,
+    height = 5,
+    obstacle = {
+      { 1, 1 }, { 1, 2 }, { 1, 3 },
+      { 2, 5 }, { 2, 6 },
+      { 3, 6 },
+    },
     waitForBossPosition = { { 3, 5 } },
     bossPosition = {},
     myFleetList = {},
