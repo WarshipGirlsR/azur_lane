@@ -30,6 +30,14 @@ local enemyListCorrectionValue = (function()
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
+-- 奖励点坐标修正向量
+local rewardBoxListCorrectionValue = (function()
+  local point = {
+    { 1126, 859, 0x8cffef },
+    { 1122, 939, 0x000810 },
+  }
+  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
+end)()
 
 -- 将数组形式的棋盘坐标列表转换为索引形式的，为了方便去重和查找
 -- 例如：
@@ -383,6 +391,8 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))
   enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
+  local rewardBoxList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
+  rewardBoxList = corrected(rewardBoxList, rewardBoxListCorrectionValue)
   local bossList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattleList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
 
@@ -402,6 +412,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   mapChessboard.enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
   mapChessboard.enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
   mapChessboard.enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
+  mapChessboard.rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxList))
   local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
   mapChessboard.bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
   -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
@@ -459,16 +470,23 @@ end
 map.findClosestEnemy = function(ImgInfo, mapChessboard)
   -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
   local waitForBossPosition = mapChessboard.waitForBossPosition[1]
-
+  -- 除了3种敌人的位置，还会考虑奖励点的位置，方便获取额外奖励
   local myField = mapChessboard.myFleetList[1]
   local myField2 = mapChessboard.myFleetList[2]
-  local enemyPositionListGroup = { mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3 }
+  -- 权重越小优先级越高，取小数是因为避免其他权重相加后相同的情况
+  local enemyPositionListGroup = {
+    { weight = 0.11, list = mapChessboard.rewardBoxList, },
+    { weight = 1.11, list = mapChessboard.enemyPositionList1, },
+    { weight = 2.11, list = mapChessboard.enemyPositionList2, },
+    { weight = 3.11, list = mapChessboard.enemyPositionList3, },
+  }
   local inBattleList = mapChessboard.inBattleList
   local minCoast
   local minCoastEnemy
 
   for key = 1, #enemyPositionListGroup do
-    local enemyPositionList = enemyPositionListGroup[key]
+    local enemyPositionList = enemyPositionListGroup[key].list
+    local weight = enemyPositionListGroup[key].weight
     for key2 = 1, #enemyPositionList do
       local enemy = enemyPositionList[key2]
       if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
@@ -483,7 +501,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
         })
         if thePath and #thePath > 0 then
           -- key为1,2,3对应小型、中型、大型舰队，将权重也加入到coast里以便让结果倾向选择小型舰队
-          local theCoast = thePath[#thePath].G + (key - 1) * 1.11
+          local theCoast = thePath[#thePath].G + weight
           -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
           if waitForBossPosition then
             -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。

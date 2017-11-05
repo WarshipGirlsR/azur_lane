@@ -100,6 +100,7 @@ mapevent6_1_sp1.getMapChessboard = function()
     enemyPositionList3 = {},
     inBattleList = {},
     selectedArrowList = {},
+    rewardBoxList = {},
   }
 end
 

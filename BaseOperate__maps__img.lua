@@ -125,73 +125,74 @@ local imgs = {
     },
     -- 敌方舰队位置，右上角的难度标志
     enemyList1 = {
-      -- 小型
+      -- 小型 左上框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1445, 668, 0xe6b200 }, { 1459, 668, 0xe6b600 },
-          { 1474, 668, 0xe6b600 }, { 1439, 675, 0xcebe29 },
-          { 1439, 687, 0xd6c221 }, { 1439, 703, 0xd6c221 },
+          { 846, 573, 0xd6ba10 }, { 851, 573, 0xdeba10 },
+          { 859, 573, 0xdeba10 }, { 868, 573, 0xdeba10 },
+          { 840, 578, 0xdebe10 }, { 840, 588, 0xdebe19 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 小型 红色c3 5-7
+      -- 小型 右下框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1437, 345, 0xdeba10 }, { 1449, 345, 0xdeba10 },
-          { 1468, 345, 0xdeba10 }, { 1432, 354, 0xdebe10 },
-          { 1432, 368, 0xdebe19 },
+          { 855, 616, 0xdeba10 }, { 862, 616, 0xdebe10 },
+          { 867, 616, 0xdeba10 }, { 876, 616, 0xdebe19 },
+          { 884, 610, 0xd6ba10 }, { 884, 602, 0xdebe10 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList2 = {
-      -- 中型
+      -- 中型 左上框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1027, 392, 0xd69600 }, { 1041, 392, 0xdeaa00 },
-          { 1057, 392, 0xdeaa00 }, { 1023, 397, 0xdeae08 },
-          { 1023, 410, 0xe6a200 }, { 1023, 427, 0xe6b208 },
+          { 1272, 432, 0xeeaa10 }, { 1280, 432, 0xefa600 },
+          { 1286, 432, 0xefa600 }, { 1293, 432, 0xe6a200 },
+          { 1299, 432, 0xe6a200 }, { 1266, 438, 0xe6a208 },
+          { 1266, 445, 0xdea200 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 中型 右下框
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1281, 477, 0xe6a600 }, { 1287, 477, 0xe6a600 },
+          { 1293, 477, 0xe6a600 }, { 1298, 477, 0xdea200 },
+          { 1311, 472, 0xefaa10 }, { 1311, 466, 0xdeaa00 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList3 = {
-      -- 大型
+      -- 大型 左上框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 803, 707, 0x9c4121 }, { 816, 707, 0x9c3d10 },
-          { 832, 707, 0x844121 }, { 798, 713, 0xb53500 },
-          { 798, 729, 0x844121 }, { 798, 744, 0xb53908 },
+          { 1394, 475, 0xbd3500 }, { 1400, 475, 0xbd3500 },
+          { 1407, 475, 0xbd3900 }, { 1411, 475, 0xbd3900 },
+          { 1388, 480, 0xbd3908 }, { 1388, 487, 0xbd3500 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 大型 3-4 的1-4 截取
+      -- 大型 右下框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 854, 522, 0xa44119 }, { 866, 522, 0xa43d10 },
-          { 879, 522, 0x844121 }, { 849, 529, 0xa44110 },
-          { 849, 542, 0x844121 }, { 849, 554, 0xb53500 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 大型 红色c3 的2-3 截取
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 695, 615, 0xbd3900 }, { 703, 615, 0xbd3900 },
-          { 716, 615, 0xbd3500 }, { 688, 631, 0xbd3500 },
-          { 688, 640, 0xbd3908 },
+          { 1400, 517, 0xbd3500 }, { 1409, 517, 0xbd3900 },
+          { 1413, 517, 0xbd3900 }, { 1420, 517, 0xb53100 },
+          { 1429, 509, 0xbd3900 }, { 1429, 502, 0xbd3500 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -232,6 +233,7 @@ local imgs = {
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
+    -- 战斗中的点
     inBattleList = {
       (function()
         local leftTop = { 185, 155 }
@@ -241,6 +243,19 @@ local imgs = {
           { 471, 727, 0xfff7f7 }, { 519, 727, 0xfff7f7 },
           { 558, 727, 0xf7f7f7 }, { 592, 727, 0xf7f7ef },
           { 581, 751, 0xfffbf7 }, { 581, 762, 0xfffbff },
+        })
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+    },
+    -- 奖励点
+    rewardBoxList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1125, 860, 0x94fff7 }, { 1126, 847, 0x292d29 },
+          { 1125, 839, 0x292829 }, { 1125, 827, 0x94fff7 },
+          { 1125, 812, 0x292829 }, { 1128, 781, 0x84ffef },
         })
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),

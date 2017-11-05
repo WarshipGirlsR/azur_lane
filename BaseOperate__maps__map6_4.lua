@@ -81,6 +81,7 @@ map6_4.getMapChessboard = function()
     enemyPositionList3 = {},
     inBattleList = {},
     selectedArrowList = {},
+    rewardBoxList = {},
   }
 end
 

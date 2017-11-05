@@ -195,5 +195,7 @@ return {
     bossPointList = imgBase.map.bossPointList,
     -- 战斗中的位置
     inBattleList = imgBase.map.inBattleList,
+    -- 奖励箱的位置
+    rewardBoxList = imgBase.map.rewardBoxList,
   },
 }
