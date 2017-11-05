@@ -464,6 +464,27 @@ battle.clickAttackBtn = function()
   tap(1740, 1005, 100)
 end
 
+-- 检测阵型面板是否打开
+battle.isFormationPanel = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 1606, 461, 0xffe731 }, { 1605, 482, 0xffe73a },
+    { 1711, 367, 0x08ebbd }, { 1713, 418, 0x00e7b5 },
+    { 1828, 373, 0x00e7b5 }, { 1868, 435, 0x00e7b5 },
+    { 1711, 544, 0x08ebbd }, { 1833, 541, 0x21bea4 },
+    { 1865, 548, 0x19b694 },
+  }
+  local result = multiColorS(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+-- 关闭阵型面板
+battle.closeFormationPanel = function()
+  tap(1608, 479, 100)
+end
+
 -- 检测敌方伏击面板
 battle.isAmbushedPanel = function()
   local __keepScreenState = keepScreenState
