@@ -113,8 +113,12 @@ return {
     myFleetList = imgBase.map.myFleetList,
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = imgBase.map.selectedArrow,
-    -- 敌方舰队位置
-    enemyList = imgBase.map.enemyList,
+    -- 敌方舰队位置(小型舰队)
+    enemyList1 = imgBase.map.enemyList1,
+    -- 敌方舰队位置(中型舰队)
+    enemyList2 = imgBase.map.enemyList2,
+    -- 敌方舰队位置(大型舰队)
+    enemyList3 = imgBase.map.enemyList3,
     -- boss位置
     bossPointList = imgBase.map.bossPointList,
     -- 战斗中的位置

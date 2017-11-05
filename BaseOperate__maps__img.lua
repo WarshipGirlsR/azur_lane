@@ -21,7 +21,7 @@ local function transRelativePoint(tab, base)
   return base, table.concat(tmp, ',')
 end
 
-return {
+local imgs = {
   transRelativePoint = transRelativePoint,
   -- 基本方法
   toPoint = function(tab)
@@ -124,7 +124,7 @@ return {
       end)(),
     },
     -- 敌方舰队位置，右上角的难度标志
-    enemyList = {
+    enemyList1 = {
       -- 小型
       (function()
         local leftTop = { 185, 155 }
@@ -147,6 +147,8 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+    },
+    enemyList2 = {
       -- 中型
       (function()
         local leftTop = { 185, 155 }
@@ -158,6 +160,8 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+    },
+    enemyList3 = {
       -- 大型
       (function()
         local leftTop = { 185, 155 }
@@ -243,3 +247,5 @@ return {
     },
   },
 }
+
+return imgs

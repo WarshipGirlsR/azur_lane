@@ -64,7 +64,7 @@ mapevent5_1_a3.getCheckpositionList = function()
       pointMap = {},
     },
   }
-  for key, value in ipairs(list) do
+  for key = 1, #list do
     local positionMap = list[key].positionMap
     for rowNum, rol in ipairs(positionMap) do
       if rol and positionMap[rowNum + 1] then
@@ -88,7 +88,9 @@ mapevent5_1_a3.getMapChessboard = function()
     waitForBossPosition = { { 3, 7 } },
     bossPosition = {},
     myFleetList = {},
-    enemyPositionList = {},
+    enemyPositionList1 = {},
+    enemyPositionList2 = {},
+    enemyPositionList3 = {},
     inBattleList = {},
     selectedArrowList = {},
   }

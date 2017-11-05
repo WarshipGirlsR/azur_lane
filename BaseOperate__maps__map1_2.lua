@@ -22,7 +22,7 @@ map1_2.getCheckpositionList = function()
       pointMap = {},
     },
   }
-  for key, value in ipairs(list) do
+  for key = 1, #list do
     local positionMap = list[key].positionMap
     for rowNum, rol in ipairs(positionMap) do
       if rol and positionMap[rowNum + 1] then
@@ -46,7 +46,9 @@ map1_2.getMapChessboard = function()
     waitForBossPosition = {},
     bossPosition = {},
     myFleetList = {},
-    enemyPositionList = {},
+    enemyPositionList1 = {},
+    enemyPositionList2 = {},
+    enemyPositionList3 = {},
     inBattleList = {},
     selectedArrowList = {},
   }
