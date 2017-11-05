@@ -473,6 +473,8 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   -- 除了3种敌人的位置，还会考虑奖励点的位置，方便获取额外奖励
   local myField = mapChessboard.myFleetList[1]
   local myField2 = mapChessboard.myFleetList[2]
+  -- 所有敌人的列表
+  local allEnemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
   -- 权重越小优先级越高，取小数是因为避免其他权重相加后相同的情况
   local enemyPositionListGroup = {
     { weight = 0.11, list = mapChessboard.rewardBoxList, },
@@ -490,7 +492,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
     for key2 = 1, #enemyPositionList do
       local enemy = enemyPositionList[key2]
       if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
-        local enemyPositionListExceptTarget = utils.subtractionList(enemyPositionList, { enemy })
+        local enemyPositionListExceptTarget = utils.subtractionList(allEnemyPositionList, { enemy })
         -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
         -- 这里将敌人视为障碍物但是目标敌人不是障碍物，避免出现永远走不到目标的情况。
         local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionListExceptTarget)
@@ -500,7 +502,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
           obstacle = theObstacle,
         })
         if thePath and #thePath > 0 then
-          -- key为1,2,3对应小型、中型、大型舰队，将权重也加入到coast里以便让结果倾向选择小型舰队
+          -- 将权重也加入到coast里以便让结果倾向选择小型舰队
           local theCoast = thePath[#thePath].G + weight
           -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
           if waitForBossPosition then
