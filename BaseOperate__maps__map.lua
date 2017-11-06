@@ -415,6 +415,8 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   mapChessboard.rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxList))
   local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
   mapChessboard.bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
+  -- 只有一个boss，如果出现多个boss的情况取最后一个
+  mapChessboard.bossPosition = #mapChessboard.bossPosition > 1 and { mapChessboard.bossPosition[#mapChessboard.bossPosition] } or mapChessboard.bossPosition
   -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
   local enemyPositionMap = makePointMap(enemyPositionList)
   mapChessboard.bossPosition = utils.subtractionList(mapChessboard.bossPosition, enemyPositionList)
