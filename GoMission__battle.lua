@@ -23,7 +23,7 @@ local battleOnce = function(action, state)
     { 'BATTLE_GET_NEW_SHIP_PANEL', map.battle.isGetNewShipPanel, 2000 },
     { 'BATTLE_GET_EXP_PANEL', map.battle.isGetExpPanel, 2000 },
     { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
-    { 'BATTLE_MAP_PAGE_FORMATION_PANEL', map.battle.isFormationPanel },
+    { { type = 'BATTLE_MAP_PAGE_FORMATION_PANEL', addToStart = true }, map.battle.isFormationPanel },
     { { type = 'BATTLE_URGENT_ENTRUSTMENT_PANEL', addToStart = true }, map.battle.isUrgentEntrustmentPanel, 2000 },
   }
 
