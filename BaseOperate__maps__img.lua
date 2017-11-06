@@ -257,7 +257,17 @@ local imgs = {
           { 1125, 839, 0x292829 }, { 1125, 827, 0x94fff7 },
           { 1125, 812, 0x292829 }, { 1128, 781, 0x84ffef },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 573, 304, 0x94fff7 }, { 573, 296, 0x292d29 },
+          { 573, 289, 0x292829 }, { 573, 277, 0x9cfff7 },
+          { 576, 242, 0x83fff7 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
   },

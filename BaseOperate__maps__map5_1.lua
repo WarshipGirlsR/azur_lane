@@ -70,7 +70,7 @@ end
 -- 获取地图棋盘和相关数据
 map5_1.getMapChessboard = function()
   return {
-    width = 6,
+    width = 8,
     height = 6,
     obstacle = {},
     waitForBossPosition = { { 3, 5 } },
