@@ -34,11 +34,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 693, 902, 0x000000 }, { 723, 902, 0x000000 },
-          { 761, 902, 0x000000 }, { 797, 902, 0x000000 },
-          { 836, 902, 0x000000 }, { 871, 901, 0x1961b5 },
-          { 818, 901, 0x1961ad }, { 778, 901, 0x1969b5 },
-          { 742, 901, 0x1965ad }, { 708, 901, 0x1965b5 },
+          { 285, 897, 0x000000 }, { 301, 897, 0x000000 },
+          { 313, 897, 0x000000 }, { 326, 897, 0x000000 },
+          { 339, 896, 0x1981c5 }, { 322, 896, 0x2083c2 },
+          { 307, 896, 0x2080c2 }, { 297, 896, 0x2181c5 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -49,10 +48,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 301, 706, 0x000000 }, { 302, 706, 0x3a96de },
-          { 301, 705, 0x000000 }, { 302, 705, 0x3192ce },
-          { 300, 707, 0x000000 }, { 301, 707, 0x3196d6 },
-          { 300, 708, 0x000000 }, { 301, 708, 0x3196d6 },
+          { 275, 796, 0x000000 }, { 276, 796, 0x288bca },
+          { 275, 795, 0x000000 }, { 276, 795, 0x2087ba },
+          { 274, 797, 0x000000 }, { 275, 797, 0x298ec5 },
+          { 274, 798, 0x000000 }, { 275, 798, 0x298ac5 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
