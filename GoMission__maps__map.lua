@@ -30,6 +30,7 @@ local map = function(action, state)
     { 'BATTLE_GET_PROPS_PANEL', map.battle.isGetPropsPanel, 2000 },
     { 'BATTLE_GET_NEW_SHIP_PANEL', map.battle.isGetNewShipPanel, 2000 },
     { 'BATTLE_GET_EXP_PANEL', map.battle.isGetExpPanel, 2000 },
+    { { type = 'BATTLE_MAP_PAGE_FORMATION_PANEL', addToStart = true }, map.battle.isFormationPanel },
   }
 
   return co(c.create(function()
