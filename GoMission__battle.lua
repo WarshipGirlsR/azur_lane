@@ -101,7 +101,7 @@ local battleOnce = function(action, state)
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CHECK_IS_EVENT', map.home.isHome, 2000 },
-        { 'BATTLE_BATTLE_PAGE_CHANGE_HARD_MODE', map.battle.isBattlePage },
+        { 'BATTLE_BATTLE_PAGE_CHANGE_HARD_MODE', map.battle.isBattlePage, 1000 },
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
       }))
       return makeAction(newstateTypes), state
