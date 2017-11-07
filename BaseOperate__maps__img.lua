@@ -122,6 +122,15 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 904, 627, 0x19ff6b }, { 928, 627, 0x7cff9d },
+          { 907, 577, 0x3aff84 }, { 926, 574, 0x83ffb5 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 敌方舰队位置，右上角的难度标志
     enemyList1 = {

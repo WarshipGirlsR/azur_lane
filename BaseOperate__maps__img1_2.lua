@@ -55,42 +55,30 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 3-5 下边
+      -- 3-1 下边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 1260, 837, 0x000000 }, { 1285, 837, 0x000000 },
-          { 1305, 837, 0x000000 }, { 1326, 837, 0x000000 },
-          { 1341, 836, 0x3169bd }, { 1316, 836, 0x3169bd },
-          { 1295, 836, 0x2965b5 }, { 1269, 836, 0x2965b5 },
+          { 836, 627, 0x000000 }, { 848, 627, 0x000000 },
+          { 859, 627, 0x000000 }, { 871, 627, 0x000000 },
+          { 880, 626, 0x207cc2 }, { 866, 626, 0x2080c2 },
+          { 852, 626, 0x2181c5 }, { 841, 626, 0x187cba },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图左边界
     leftLineList = {
-      -- 2-1 左边
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022 }
-        local basePoint, posandcolor = transRelativePoint({
-          { 436, 561, 0x000000 }, { 437, 561, 0x29bade },
-          { 436, 560, 0x000000 }, { 437, 560, 0x29bade },
-          { 435, 562, 0x000000 }, { 436, 562, 0x29bade },
-          { 435, 563, 0x000000 }, { 436, 563, 0x29b6d6 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
       -- 3-1 左边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 410, 714, 0x000000 }, { 411, 714, 0x218ac5 },
-          { 410, 713, 0x000000 }, { 411, 713, 0x298ac5 },
-          { 409, 715, 0x000000 }, { 410, 715, 0x218ec5 },
-          { 409, 716, 0x000000 }, { 410, 716, 0x298ec5 },
+          { 402, 772, 0x000400 }, { 403, 772, 0x298ec5 },
+          { 402, 771, 0x000000 }, { 403, 771, 0x298ec5 },
+          { 401, 773, 0x000000 }, { 402, 773, 0x218ac6 },
+          { 401, 774, 0x000000 }, { 402, 774, 0x298ece },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),

@@ -395,7 +395,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   rewardBoxList = corrected(rewardBoxList, rewardBoxListCorrectionValue)
   local bossList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattleList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
-
+  mapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
   mapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
   selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
   mapChessboard.selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, selectedArrowList)
@@ -445,7 +445,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     height = mapChessboard.height,
     obstacle = theObstacle,
   })
-
   -- 如果到达不了目标，说明道路被其他敌人堵死了，
   -- 那么就不考虑敌人，只寻找到目标的路径，然后在寻找路径上的敌人一路打过去
   if not thePath or #thePath == 0 then
