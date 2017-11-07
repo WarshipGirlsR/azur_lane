@@ -44,10 +44,10 @@ map6_4.getCheckpositionList = function()
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false,
-        { false, false, false, false, false, false, { 1137, 491, 0x211c31 }, { 1321, 491, 0x29203a }, { 1504, 491, 0x191c31 }, { 1690, 491, 0x000000 }, },
-        { false, false, false, false, false, false, { 1145, 625, 0x211c31 }, { 1337, 625, 0x211c42 }, { 1529, 625, 0x292042 }, { 1723, 625, 0x000000 }, },
-        { false, false, false, false, false, false, { 1153, 769, 0x211831 }, { 1354, 769, 0x191829 }, { 1554, 769, 0x191829 }, { 1757, 769, 0x000000 }, },
-        { false, false, false, false, false, false, { 1163, 931, 0x000000 }, { 1374, 931, 0x080c08 }, { 1583, 931, 0x100c10 }, { 1800, 931, 0x7b7d7b }, },
+        { false, false, false, false, false, { 1137, 491, 0x211c31 }, { 1321, 491, 0x29203a }, { 1504, 491, 0x191c31 }, { 1690, 491, 0x000000 }, },
+        { false, false, false, false, false, { 1145, 625, 0x211c31 }, { 1337, 625, 0x211c42 }, { 1529, 625, 0x292042 }, { 1723, 625, 0x000000 }, },
+        { false, false, false, false, false, { 1153, 769, 0x211831 }, { 1354, 769, 0x191829 }, { 1554, 769, 0x191829 }, { 1757, 769, 0x000000 }, },
+        { false, false, false, false, false, { 1163, 931, 0x000000 }, { 1374, 931, 0x080c08 }, { 1583, 931, 0x100c10 }, { 1800, 931, 0x7b7d7b }, },
       },
       pointMap = {},
     },
