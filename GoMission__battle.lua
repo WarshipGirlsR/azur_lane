@@ -23,7 +23,6 @@ local battleOnce = function(action, state)
     { 'BATTLE_GET_NEW_SHIP_PANEL', map.battle.isGetNewShipPanel, 2000 },
     { 'BATTLE_GET_EXP_PANEL', map.battle.isGetExpPanel, 2000 },
     { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 2000 },
-    { { type = 'BATTLE_MAP_PAGE_FORMATION_PANEL', addToStart = true }, map.battle.isFormationPanel },
     { { type = 'BATTLE_URGENT_ENTRUSTMENT_PANEL', addToStart = true }, map.battle.isUrgentEntrustmentPanel, 2000 },
   }
 
@@ -237,6 +236,7 @@ local battleOnce = function(action, state)
         { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', map.battle.isAmbushedPanel },
         { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', map.battle.isReadyBattlePage, 2000 },
+        { { type = 'BATTLE_MAP_PAGE_FORMATION_PANEL', addToStart = true }, map.battle.isFormationPanel },
         { 'BATTLE_IS_AUTO_BATTLE_CONFIRM_PANEL', map.battle.isAutoBattleConfirmPanel },
       }))
       return makeAction(newstateTypes), state
@@ -246,11 +246,11 @@ local battleOnce = function(action, state)
 
       stepLabel.setStepLabelContent('2-23.阵型面板关闭')
       map.battle.closeFormationPanel()
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_BATTLE_PAGE', map.battle.isBattlePage, 2000 },
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage },
-      }))
-      return makeAction(newstateTypes), state
+      c.yield(sleepPromise(1000))
+      if map.battle.isFormationPanel() then
+        return makeAction('BATTLE_MAP_PAGE_FORMATION_PANEL'), state
+      end
+      return makeAction(''), state
 
     elseif (action.type == 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE') then
 
