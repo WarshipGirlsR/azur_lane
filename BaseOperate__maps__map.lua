@@ -480,9 +480,9 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   -- 权重越小优先级越高，取小数是因为避免其他权重相加后相同的情况
   local enemyPositionListGroup = {
     { weight = 0.11, list = mapChessboard.rewardBoxList, },
-    { weight = 1.11, list = mapChessboard.enemyPositionList1, },
-    { weight = 2.11, list = mapChessboard.enemyPositionList2, },
-    { weight = 3.11, list = mapChessboard.enemyPositionList3, },
+    { weight = 3.33, list = mapChessboard.enemyPositionList1, },
+    { weight = 5.55, list = mapChessboard.enemyPositionList2, },
+    { weight = 7.77, list = mapChessboard.enemyPositionList3, },
   }
   local inBattleList = mapChessboard.inBattleList
   local minCoast

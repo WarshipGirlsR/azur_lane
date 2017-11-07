@@ -157,7 +157,6 @@ local map = function(action, state)
         stepLabel.setStepLabelContent('3-8.移动到boss位置')
         state.battle.moveState = 'moveToBoss'
         state.map.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
-        console.log(state.map.nextStepPoint)
       elseif state.battle.moveState == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
         state.battle.moveState = 'moveToClosestEnemy'
         local newstateTypes = c.yield(setScreenListeners(battleMap, {

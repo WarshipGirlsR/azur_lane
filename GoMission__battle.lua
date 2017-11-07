@@ -296,7 +296,7 @@ local battleOnce = function(action, state)
             c.yield(sleepPromise(100))
             map.battle.clickAttackBtn()
             local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-              { 'BATTLE_MAP_PAGE_SELECT_FLEET', map.battle.isMapPage },
+              { 'BATTLE_MAP_PAGE_SELECT_FLEET', map.battle.isMapPage, 2000 },
             }))
             return makeAction(newstateTypes), state
           end
