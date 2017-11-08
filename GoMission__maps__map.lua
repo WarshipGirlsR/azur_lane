@@ -174,6 +174,14 @@ local map = function(action, state)
         state.map.nextStepPoint = closestEnemy
       end
 
+      -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步
+      -- 尽可能避开敌人
+      if not state.map.nextStepPoint then
+        stepLabel.setStepLabelContent('3-11.随机移动一步')
+        state.map.nextStepPoint = mapProxy.getRandomMoveAStep(mapChessboard)
+      end
+
+      -- 如果还是没有移动目标，只好重新扫描
       if not state.map.nextStepPoint then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
           { 'MAPS_MAP_START', map.battle.isMapPage },

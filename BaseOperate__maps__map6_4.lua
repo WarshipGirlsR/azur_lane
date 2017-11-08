@@ -113,4 +113,8 @@ map6_4.findClosestEnemy = function(mapChessboard)
   return mapBase.findClosestEnemy(img6_4, mapChessboard)
 end
 
+map6_4.getRandomMoveAStep = function(mapChessboard)
+  return mapBase.getRandomMoveAStep(img6_4, mapChessboard)
+end
+
 return map6_4

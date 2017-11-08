@@ -424,7 +424,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 只有一个boss，如果出现多个boss的情况取最后一个
   mapChessboard.bossPosition = #mapChessboard.bossPosition > 1 and { mapChessboard.bossPosition[#mapChessboard.bossPosition] } or mapChessboard.bossPosition
   -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
-  local enemyPositionMap = makePointMap(enemyPositionList)
   mapChessboard.bossPosition = utils.subtractionList(mapChessboard.bossPosition, enemyPositionList)
   -- 如果我方舰队在敌人列表里但是不在战斗中列表里，说明这个位置的敌人已经消灭了
   local myFleetListNotInBattle = utils.subtractionList(mapChessboard.myFleetList, mapChessboard.inBattleList)
@@ -534,6 +533,52 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   end
 
   return minCoastEnemy
+end
+
+-- 向四周随意移动一步
+map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
+  local myFleet = mapChessboard.myFleetList[1]
+  local width = mapChessboard.width
+  local height = mapChessboard.height
+  -- 尽可能选择空地
+  local enemyList1Map = transListToMap(mapChessboard.enemyList1)
+  local enemyList2Map = transListToMap(mapChessboard.enemyList2)
+  local enemyList3Map = transListToMap(mapChessboard.enemyList3)
+  local obstacleMap = transListToMap(mapChessboard.obstacle)
+  local checkList = {
+    { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint
+    { myFleet[1] + 1, myFleet[2], coast = nil }, -- bottonPoint
+    { myFleet[1], myFleet[2] - 1, coast = nil }, -- leftPoint
+    { myFleet[1], myFleet[2] + 1, coast = nil }, -- rightPoint
+  }
+  local canUseList = {}
+  for key, point in ipairs(checkList) do
+    if point[1] >= 1 and not obstacleMap[point[1] .. '-' .. point[2]] then
+      if enemyList3Map[point[1] .. '-' .. point[2]] then
+        checkList[key].coast = 3
+      elseif enemyList2Map[point[1] .. '-' .. point[2]] then
+        checkList[key].coast = 2
+      elseif enemyList1Map[point[1] .. '-' .. point[2]] then
+        checkList[key].coast = 1
+      end
+      table.insert(canUseList, checkList[key])
+    end
+  end
+
+  local minCoast
+  for _, point in ipairs(canUseList) do
+    if not minCoast then
+      minCoast = point.coast
+    elseif point.coast then
+      minCoast = math.min(minCoast, point.coast)
+    end
+  end
+
+  local resultPoint = table.find(canUseList, function(point)
+    return point.coast == minCoast
+  end)
+
+  return resultPoint and { resultPoint[1], resultPoint[2] } or nil
 end
 
 return map
