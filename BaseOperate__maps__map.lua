@@ -209,7 +209,8 @@ end
 -- 检查地图在屏幕中的位置，返回地图四个角的坐标
 map.getMapPosition = function(ImgInfo, targetPosition)
   local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
+  if __keepScreenState then keepScreen(false) end
+  keepScreen(true)
   local isCenter = false
   -- 扫描边界
   keepScreen(true)
@@ -292,6 +293,9 @@ end
 
 -- 检查地图位置与预设位置的偏差
 map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
+  local __keepScreenState = keepScreenState
+  if __keepScreenState then keepScreen(false) end
+  keepScreen(true)
 
   -- 计算偏差
   local moveVector = { 0, 0 }
@@ -341,6 +345,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     moveVector[2] = math.floor(moveVector[2] * 0.8)
   end
 
+  if not __keepScreenState then keepScreen(false) end
   return moveVector, effectiveStep
 end
 
@@ -367,7 +372,8 @@ end
 
 map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local __keepScreenState = keepScreenState
-  if not __keepScreenState then keepScreen(true) end
+  if __keepScreenState then keepScreen(false) end
+  keepScreen(true)
   local positionMap = targetPosition.positionMap
 
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
