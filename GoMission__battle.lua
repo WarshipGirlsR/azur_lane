@@ -196,8 +196,11 @@ local battleOnce = function(action, state)
       local res, selectList, unselectList = map.battle.checkSelectedFleet(settings.battleFleet)
       if not res then
         stepLabel.setStepLabelContent('2-17.选择舰队 ' .. table.concat(settings.battleFleet, ','))
-        map.battle.clickFleet(selectList)
-        map.battle.clickFleet(unselectList)
+        if #selectList > 0 then
+          map.battle.clickFleet(selectList)
+        else
+          map.battle.clickFleet(unselectList)
+        end
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', map.battle.isSelectFleetPanel, 500 },
           { 'BATTLE_HARD_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET', map.battle.isHardSelectFleetPanel },
