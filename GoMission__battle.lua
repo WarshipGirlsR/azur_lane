@@ -193,10 +193,10 @@ local battleOnce = function(action, state)
       state.battle.selectFleedCount = state.battle.selectFleedCount + 1
 
       stepLabel.setStepLabelContent('2-16.检测已经选择的舰队')
-      local res, selectList, unselectList = map.battle.checkSelectedFleet(settings.battleFleet)
+      local res, selectList, unselectList, selectedFeeldList = map.battle.checkSelectedFleet(settings.battleFleet)
       if not res then
         stepLabel.setStepLabelContent('2-17.选择舰队 ' .. table.concat(settings.battleFleet, ','))
-        if #selectList > 0 and #unselectList < 2 then
+        if #selectedFeeldList <= 1 then
           map.battle.clickFleet(selectList)
         else
           map.battle.clickFleet(unselectList)
