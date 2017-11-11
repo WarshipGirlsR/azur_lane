@@ -1,11 +1,21 @@
 local mapBase = require 'BaseOperate__maps__map'
-local img7_3 = require 'BaseOperate__maps__img7_3'
-local map7_3 = {}
+local imgEvent = require 'BaseOperate__maps__img7_3'
+local mapEvent = {}
+
+-- 从mapBase继承方法
+mapEvent = table.assign(mapEvent, mapBase)
+for key, value in pairs(mapBase) do
+  if type(value) == 'function' then
+    mapEvent[key] = function(...)
+      return value(imgEvent, ...)
+    end
+  end
+end
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
-map7_3.getCheckpositionList = function()
+mapEvent.getCheckpositionList = function()
   local list = {
     {
       leftTop = nil,
@@ -79,7 +89,7 @@ map7_3.getCheckpositionList = function()
 end
 
 -- 获取地图棋盘和相关数据
-map7_3.getMapChessboard = function()
+mapEvent.getMapChessboard = function()
   return {
     width = 8,
     height = 6,
@@ -102,36 +112,4 @@ map7_3.getMapChessboard = function()
   }
 end
 
-map7_3.getMapPosition = function(currentPosition)
-  return mapBase.getMapPosition(img7_3, currentPosition)
-end
-
-map7_3.getMoveVector = function(currentPosition, targetPosition)
-  return mapBase.getMoveVector(img7_3, currentPosition, targetPosition)
-end
-
-map7_3.moveMapToCheckPosition = function(moveVector)
-  return mapBase.moveMapToCheckPosition(img7_3, moveVector)
-end
-
-map7_3.scanMap = function(targetPosition, mapChessboard)
-  return mapBase.scanMap(img7_3, targetPosition, mapChessboard)
-end
-
-map7_3.moveToPoint = function(targetPosition, point)
-  return mapBase.moveToPoint(img7_3, targetPosition, point)
-end
-
-map7_3.checkMoveToPointPath = function(mapChessboard, start, target)
-  return mapBase.checkMoveToPointPath(map7_3, mapChessboard, start, target)
-end
-
-map7_3.findClosestEnemy = function(mapChessboard)
-  return mapBase.findClosestEnemy(img7_3, mapChessboard)
-end
-
-map7_3.getRandomMoveAStep = function(mapChessboard)
-  return mapBase.getRandomMoveAStep(img7_3, mapChessboard)
-end
-
-return map7_3
+return mapEvent

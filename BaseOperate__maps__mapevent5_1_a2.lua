@@ -1,11 +1,21 @@
 local mapBase = require 'BaseOperate__maps__map'
-local imgevent5_1_a2 = require 'BaseOperate__maps__imgevent5_1_a2'
-local mapevent5_1_a2 = {}
+local imgEvent = require 'BaseOperate__maps__imgevent5_1_a2'
+local mapEvent = {}
+
+-- 从mapBase继承方法
+mapEvent = table.assign(mapEvent, mapBase)
+for key, value in pairs(mapBase) do
+  if type(value) == 'function' then
+    mapEvent[key] = function(...)
+      return value(imgEvent, ...)
+    end
+  end
+end
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
-mapevent5_1_a2.getCheckpositionList = function()
+mapEvent.getCheckpositionList = function()
   local list = {
     {
       leftTop = { 338, 522 },
@@ -79,7 +89,7 @@ mapevent5_1_a2.getCheckpositionList = function()
 end
 
 -- 获取地图棋盘和相关数据
-mapevent5_1_a2.getMapChessboard = function()
+mapEvent.getMapChessboard = function()
   return {
     width = 10,
     height = 6,
@@ -96,36 +106,4 @@ mapevent5_1_a2.getMapChessboard = function()
   }
 end
 
-mapevent5_1_a2.getMapPosition = function(currentPosition)
-  return mapBase.getMapPosition(imgevent5_1_a2, currentPosition)
-end
-
-mapevent5_1_a2.getMoveVector = function(currentPosition, targetPosition)
-  return mapBase.getMoveVector(imgevent5_1_a2, currentPosition, targetPosition)
-end
-
-mapevent5_1_a2.moveMapToCheckPosition = function(moveVector)
-  return mapBase.moveMapToCheckPosition(imgevent5_1_a2, moveVector)
-end
-
-mapevent5_1_a2.scanMap = function(targetPosition, mapChessboard)
-  return mapBase.scanMap(imgevent5_1_a2, targetPosition, mapChessboard)
-end
-
-mapevent5_1_a2.moveToPoint = function(targetPosition, point)
-  return mapBase.moveToPoint(imgevent5_1_a2, targetPosition, point)
-end
-
-mapevent5_1_a2.checkMoveToPointPath = function(mapChessboard, start, target)
-  return mapBase.checkMoveToPointPath(mapevent5_1_a2, mapChessboard, start, target)
-end
-
-mapevent5_1_a2.findClosestEnemy = function(mapChessboard)
-  return mapBase.findClosestEnemy(imgevent5_1_a2, mapChessboard)
-end
-
-mapevent5_1_a2.getRandomMoveAStep = function(mapChessboard)
-  return mapBase.getRandomMoveAStep(imgevent5_1_a2, mapChessboard)
-end
-
-return mapevent5_1_a2
+return mapEvent

@@ -40,9 +40,10 @@ local map = function(action, state)
       -- 获取地图信息。如果上次扫描结果还在，就把敌人列表保留下来
       -- 因为敌人容易被我方舰队覆盖住导致扫描不到
       -- 所以敌人列表在关卡中都不清除，其他列表在每次开始扫描棋盘前会清除。
+      state.map.oldMapChessboard = state.map.mapChessboard
       state.map.mapChessboard = state.map.mapChessboard or {}
       local newMapChessBoard = mapProxy.getMapChessboard(settings.battleChapter)
-      --      newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
+      -- newMapChessBoard.enemyPositionList = state.map.mapChessboard.enemyPositionList or newMapChessBoard.enemyPositionList
       newMapChessBoard.bossPosition = state.map.mapChessboard.bossPosition or newMapChessBoard.bossPosition
       state.map.mapChessboard = newMapChessBoard
 
@@ -127,7 +128,7 @@ local map = function(action, state)
 
       stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = state.map.checkpositionListForCheck[1]
-      state.map.mapChessboard = mapProxy.scanMap(targetPosition, state.map.mapChessboard)
+      state.map.mapChessboard = mapProxy.scanMap(targetPosition, state.map.mapChessboard, state.map.oldMapChessboard)
       console.log(state.map.mapChessboard)
       if #state.map.checkpositionListForCheck > 1 then
         table.remove(state.map.checkpositionListForCheck, 1)
@@ -278,6 +279,15 @@ local map = function(action, state)
 end
 
 return function(state)
-  state.map = {}
+  state.map = {
+    checkpositionListForCheck = nil,
+    checkpositionListForMove = {},
+    oldMapChessboard = nil,
+    mapChessboard = {},
+    currentPosition = nil,
+    nextStepPoint = nil,
+    moveVectorForCheck = { -1, -1 },
+    moveVectorForAStep = { -1, -1 },
+  }
   return map
 end

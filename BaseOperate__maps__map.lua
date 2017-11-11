@@ -370,11 +370,12 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   return isCenter, moveStep
 end
 
-map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
   keepScreen(true)
   local positionMap = targetPosition.positionMap
+  local newMapChessboard = table.assign({}, mapChessboard)
 
   -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
   function corrected(list, correctionValue)
@@ -401,10 +402,10 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   rewardBoxList = corrected(rewardBoxList, rewardBoxListCorrectionValue)
   local bossList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattleList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
-  mapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
-  mapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
+  newMapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
+  newMapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
   selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
-  mapChessboard.selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, selectedArrowList)
+  newMapChessboard.selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, selectedArrowList)
   myFleetList = utils.unionList({}, mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetList))
   -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
   local inBattleMap = makePointMap(mapChessboard.inBattleList)
@@ -414,25 +415,25 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
       myFleetList[key][1] = point[1] - 1
     end
   end
-  mapChessboard.myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
-  mapChessboard.enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
-  mapChessboard.enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
-  mapChessboard.enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
-  mapChessboard.rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxList))
+  newMapChessboard.myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
+  newMapChessboard.enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
+  newMapChessboard.enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
+  newMapChessboard.enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
+  newMapChessboard.rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxList))
   local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
-  mapChessboard.bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
+  newMapChessboard.bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
   -- 只有一个boss，如果出现多个boss的情况取最后一个
-  mapChessboard.bossPosition = #mapChessboard.bossPosition > 1 and { mapChessboard.bossPosition[#mapChessboard.bossPosition] } or mapChessboard.bossPosition
+  newMapChessboard.bossPosition = #mapChessboard.bossPosition > 1 and { mapChessboard.bossPosition[#mapChessboard.bossPosition] } or mapChessboard.bossPosition
   -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
-  mapChessboard.bossPosition = utils.subtractionList(mapChessboard.bossPosition, enemyPositionList)
+  newMapChessboard.bossPosition = utils.subtractionList(mapChessboard.bossPosition, enemyPositionList)
   -- 如果我方舰队在敌人列表里但是不在战斗中列表里，说明这个位置的敌人已经消灭了
   local myFleetListNotInBattle = utils.subtractionList(mapChessboard.myFleetList, mapChessboard.inBattleList)
-  mapChessboard.enemyPositionList1 = utils.subtractionList(mapChessboard.enemyPositionList1, myFleetListNotInBattle)
-  mapChessboard.enemyPositionList2 = utils.subtractionList(mapChessboard.enemyPositionList2, myFleetListNotInBattle)
-  mapChessboard.enemyPositionList3 = utils.subtractionList(mapChessboard.enemyPositionList3, myFleetListNotInBattle)
+  newMapChessboard.enemyPositionList1 = utils.subtractionList(mapChessboard.enemyPositionList1, myFleetListNotInBattle)
+  newMapChessboard.enemyPositionList2 = utils.subtractionList(mapChessboard.enemyPositionList2, myFleetListNotInBattle)
+  newMapChessboard.enemyPositionList3 = utils.subtractionList(mapChessboard.enemyPositionList3, myFleetListNotInBattle)
 
   if not __keepScreenState then keepScreen(false) end
-  return mapChessboard
+  return newMapChessboard
 end
 
 map.moveToPoint = function(ImgInfo, targetPosition, point)
@@ -540,10 +541,12 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local myFleet = mapChessboard.myFleetList[1]
   local width = mapChessboard.width
   local height = mapChessboard.height
+  console.log('------------')
+  console.log(mapChessboard)
   -- 尽可能选择空地
-  local enemyList1Map = transListToMap(mapChessboard.enemyList1)
-  local enemyList2Map = transListToMap(mapChessboard.enemyList2)
-  local enemyList3Map = transListToMap(mapChessboard.enemyList3)
+  local enemyList1Map = transListToMap(mapChessboard.enemyPositionList1)
+  local enemyList2Map = transListToMap(mapChessboard.enemyPositionList2)
+  local enemyList3Map = transListToMap(mapChessboard.enemyPositionList3)
   local obstacleMap = transListToMap(mapChessboard.obstacle)
   local checkList = {
     { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint
