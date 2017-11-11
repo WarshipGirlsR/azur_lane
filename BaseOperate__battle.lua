@@ -267,6 +267,7 @@ end
 -- 检查已经选择的舰队
 battle.checkSelectedFleet = function(needFleetList)
   local __keepScreenState = keepScreenState
+  if __keepScreenState then keepScreen(false) end
   keepScreen(true)
   -- 需要选中的舰队，转换成索引
   local needFleet = { false, false, false, false }
@@ -287,8 +288,10 @@ battle.checkSelectedFleet = function(needFleetList)
   }
   -- 已经选中的舰队
   local nowSelectedFeeldList = {}
-  for key, _ in ipairs(nowSelectedFeeld) do
-    table.insert(nowSelectedFeeldList, key)
+  for key, value in ipairs(nowSelectedFeeld) do
+    if value then
+      table.insert(nowSelectedFeeldList, key)
+    end
   end
   -- 需要改变的舰队索引
   local needChange = { false, false, false, false }
@@ -320,7 +323,7 @@ battle.checkSelectedFleet = function(needFleetList)
   end
 
   if not __keepScreenState then keepScreen(false) end
-  return #needChangeList == 0, selectChangeList, unSelectChangeList
+  return #needChangeList == 0, selectChangeList, unSelectChangeList, nowSelectedFeeldList
 end
 
 -- 点击舰队
