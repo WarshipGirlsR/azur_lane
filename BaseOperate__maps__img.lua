@@ -58,55 +58,15 @@ local imgs = {
     rightLineList = {},
     -- 我方舰队位置列表
     myFleetList = {
-      --  采集位置event4-1-sp3关8-1位
+      --  采集位置5-2
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 564, 486, 0xce7573 }, { 558, 496, 0xde864a },
-          { 553, 497, 0xffebc5 }, { 548, 511, 0xde8a42 },
-          { 542, 514, 0xffffde }, { 535, 525, 0xde8a42 },
-          { 529, 528, 0xffffde }, { 510, 537, 0x9c4d4a },
-          { 588, 516, 0x292429 }, { 590, 534, 0x191819 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置event4-1-sp3关1-4位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1044, 395, 0xbd6d6b }, { 1039, 402, 0xd67d3a },
-          { 1033, 402, 0xffffde }, { 1030, 412, 0xde8a4a },
-          { 1025, 411, 0xffffde }, { 1020, 419, 0xd68642 },
-          { 1015, 421, 0xffffde }, { 1002, 428, 0xa44d52 },
-          { 1059, 409, 0x293529 }, { 1059, 420, 0x191819 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置event4-1-sp3关4-4位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1001, 305, 0xce7173 }, { 994, 312, 0xce7d42 },
-          { 989, 314, 0xffffde }, { 983, 322, 0xd68142 },
-          { 979, 327, 0xffffde }, { 974, 334, 0xde8642 },
-          { 970, 337, 0xffffd6 }, { 955, 346, 0xa44d4a },
-          { 1018, 326, 0x292829 }, { 1018, 342, 0x211c21 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      --  采集位置event6-1-sp3关7-6位
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 979, 613, 0xa4454a }, { 983, 604, 0xde9652 },
-          { 995, 594, 0xde924a }, { 1005, 577, 0xe69652 },
-          { 1019, 568, 0xe69a4a }, { 1019, 552, 0xd67d7b },
-          { 1039, 603, 0x211821 }, { 960, 569, 0x948a94 },
-          { 997, 553, 0xffffde }, { 975, 583, 0xfffbd6 },
+          { 1356, 430, 0xa4494a }, { 1353, 411, 0xde8a42 },
+          { 1363, 403, 0xe69e5a }, { 1388, 404, 0xef9652 },
+          { 1396, 389, 0xe69652 }, { 1397, 378, 0xce7973 },
+          { 1416, 423, 0x101410 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
