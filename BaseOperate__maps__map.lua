@@ -388,49 +388,79 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
   end
 
   -- 扫描屏幕上的对象
-  local myFleetList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
-  myFleetList = corrected(myFleetList, myFleetListCorrectionValue)
-  local selectedArrowList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
-  selectedArrowList = corrected(selectedArrowList, selectedArrowCorrectionValue)
+  local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
+  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue)
+  local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
+  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue)
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))
   enemyList1 = corrected(enemyList1, enemyListCorrectionValue)
   local enemyList2 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList2))
   enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))
   enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
-  local rewardBoxList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
-  rewardBoxList = corrected(rewardBoxList, rewardBoxListCorrectionValue)
-  local bossList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
-  local inBattleList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
-  newMapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
-  newMapChessboard.inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattleList))
-  selectedArrowList = transPointListToChessboardPointList(positionMap, selectedArrowList)
-  newMapChessboard.selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, selectedArrowList)
-  myFleetList = utils.unionList({}, mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetList))
+  local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
+  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue)
+  local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
+  local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
+
+
+  local inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattlePointList))
+  local selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, selectedArrowPositionList))
+  local myFleetList = utils.unionList(mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetPositionList))
   -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
-  local inBattleMap = makePointMap(mapChessboard.inBattleList)
+  local inBattleMap = makePointMap(inBattleList)
   for key = 1, #myFleetList do
     local point = myFleetList[key]
     if inBattleMap[(point[1] - 1) .. '-' .. point[2]] then
       myFleetList[key][1] = point[1] - 1
     end
   end
-  newMapChessboard.myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
-  newMapChessboard.enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
-  newMapChessboard.enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
-  newMapChessboard.enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
-  newMapChessboard.rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxList))
-  local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
-  newMapChessboard.bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossList))
+  myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
+  local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
+  local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
+  local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
+  local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))
+  local enemyPositionList = utils.unionList(enemyPositionList1, enemyPositionList2, enemyPositionList3)
+  local bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossPointList))
   -- 只有一个boss，如果出现多个boss的情况取最后一个
-  newMapChessboard.bossPosition = #mapChessboard.bossPosition > 1 and { mapChessboard.bossPosition[#mapChessboard.bossPosition] } or mapChessboard.bossPosition
+  bossPosition = #bossPosition > 1 and { bossPosition[#bossPosition] } or bossPosition
   -- 如果boss出现在敌人列表里，那么说明这个位置不是boss
-  newMapChessboard.bossPosition = utils.subtractionList(mapChessboard.bossPosition, enemyPositionList)
+  bossPosition = utils.subtractionList(bossPosition, enemyPositionList)
   -- 如果我方舰队在敌人列表里但是不在战斗中列表里，说明这个位置的敌人已经消灭了
-  local myFleetListNotInBattle = utils.subtractionList(mapChessboard.myFleetList, mapChessboard.inBattleList)
-  newMapChessboard.enemyPositionList1 = utils.subtractionList(mapChessboard.enemyPositionList1, myFleetListNotInBattle)
-  newMapChessboard.enemyPositionList2 = utils.subtractionList(mapChessboard.enemyPositionList2, myFleetListNotInBattle)
-  newMapChessboard.enemyPositionList3 = utils.subtractionList(mapChessboard.enemyPositionList3, myFleetListNotInBattle)
+  local myFleetListNotInBattle = utils.subtractionList(myFleetList, inBattleList)
+  enemyPositionList1 = utils.subtractionList(enemyPositionList1, myFleetListNotInBattle)
+  enemyPositionList2 = utils.subtractionList(enemyPositionList2, myFleetListNotInBattle)
+  enemyPositionList3 = utils.subtractionList(enemyPositionList3, myFleetListNotInBattle)
+
+  -- 将我方舰队上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
+  if oldMapChessboard
+    and oldMapChessboard.enemyPositionList1
+    and oldMapChessboard.enemyPositionList2
+    and oldMapChessboard.enemyPositionList3 then
+    local checkMyFleetList = utils.subtractionList(myFleetList, inBattleList)
+    local checkMyFleetMap = makePointMap(checkMyFleetList)
+    function findMyFleetTopEnemy(myFleetMap, el)
+      local res = {}
+      for key, enemy in ipairs(el) do
+        if myFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] then
+          table.insert(res, enemy)
+        end
+      end
+      return res
+    end
+
+    enemyPositionList1 = utils.unionList(enemyPositionList1, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList1))
+    enemyPositionList2 = utils.unionList(enemyPositionList2, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList2))
+    enemyPositionList3 = utils.unionList(enemyPositionList3, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList3))
+  end
+
+  newMapChessboard.inBattleList = inBattleList
+  newMapChessboard.selectedArrowList = selectedArrowList
+  newMapChessboard.myFleetList = myFleetList
+  newMapChessboard.enemyPositionList1 = enemyPositionList1
+  newMapChessboard.enemyPositionList2 = enemyPositionList2
+  newMapChessboard.enemyPositionList3 = enemyPositionList3
+  newMapChessboard.bossPosition = bossPosition
 
   if not __keepScreenState then keepScreen(false) end
   return newMapChessboard
@@ -451,6 +481,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     height = mapChessboard.height,
     obstacle = theObstacle,
   })
+  console.log(mapChessboard) console.log(start) console.log(target)
   -- 如果到达不了目标，说明道路被其他敌人堵死了，
   -- 那么就不考虑敌人，只寻找到目标的路径，然后在寻找路径上的敌人一路打过去
   if not thePath or #thePath == 0 then
@@ -541,8 +572,6 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local myFleet = mapChessboard.myFleetList[1]
   local width = mapChessboard.width
   local height = mapChessboard.height
-  console.log('------------')
-  console.log(mapChessboard)
   -- 尽可能选择空地
   local enemyList1Map = transListToMap(mapChessboard.enemyPositionList1)
   local enemyList2Map = transListToMap(mapChessboard.enemyPositionList2)
@@ -556,7 +585,8 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   }
   local canUseList = {}
   for key, point in ipairs(checkList) do
-    if point[1] >= 1 and not obstacleMap[point[1] .. '-' .. point[2]] then
+    if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
+      and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then

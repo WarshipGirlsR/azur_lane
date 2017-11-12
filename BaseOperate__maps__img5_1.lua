@@ -105,6 +105,18 @@ return {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 6-1 的左边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 611, 246, 0x010203 }, { 612, 246, 0x3197d2 },
+          { 611, 245, 0x000000 }, { 612, 245, 0x3193c2 },
+          { 610, 247, 0x000000 }, { 611, 247, 0x319ad6 },
+          { 610, 248, 0x000000 }, { 611, 248, 0x3197d3 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 地图右边界
     rightLineList = {
