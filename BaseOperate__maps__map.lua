@@ -406,7 +406,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
 
   local inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattlePointList))
   local selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, selectedArrowPositionList))
-  local myFleetList = utils.unionList(mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetPositionList))
+  local myFleetList = utils.unionList(selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetPositionList))
   -- 假如舰队和敌方重合了，我方标记会偏下一格，导致扫描结果有偏差。进行修正
   local inBattleMap = makePointMap(inBattleList)
   for key = 1, #myFleetList do
@@ -482,7 +482,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     height = mapChessboard.height,
     obstacle = theObstacle,
   })
-  console.log(mapChessboard) console.log(start) console.log(target)
   -- 如果到达不了目标，说明道路被其他敌人堵死了，
   -- 那么就不考虑敌人，只寻找到目标的路径，然后在寻找路径上的敌人一路打过去
   if not thePath or #thePath == 0 then
@@ -491,14 +490,15 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
       height = mapChessboard.height,
       obstacle = mapChessboard.obstacle,
     })
-    -- 检查路径上是否有其他敌方舰队，如果有就点击
-    if thePath and #thePath > 0 then
-      local enemyPositionMap = transListToMap(enemyPositionList)
-      for key = 1, #thePath do
-        local p = thePath[key]
-        if enemyPositionMap[p[1] .. '-' .. p[2]] then
-          return p
-        end
+  end
+
+  -- 检查路径上是否有其他敌方舰队，如果有就点击
+  if thePath and #thePath > 0 then
+    local enemyPositionMap = transListToMap(enemyPositionList)
+    for key = 1, #thePath do
+      local p = thePath[key]
+      if enemyPositionMap[p[1] .. '-' .. p[2]] then
+        return p
       end
     end
   end
