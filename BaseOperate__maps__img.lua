@@ -70,6 +70,18 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      --  采集位置5-3
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 752, 438, 0xad4d52 }, { 751, 421, 0xde8642 },
+          { 763, 417, 0xe69663 }, { 771, 404, 0xde9e52 },
+          { 795, 402, 0x422d29 }, { 798, 400, 0xce7173 },
+          { 816, 430, 0x211c21 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = {

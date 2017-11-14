@@ -20,10 +20,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 695, 688, 0x213d29 }, { 709, 688, 0x214131 },
-          { 725, 688, 0x31413a }, { 737, 688, 0x31494a },
-          { 745, 689, 0x31a8e4 }, { 733, 689, 0x31a2de },
-          { 720, 689, 0x299cdc }, { 710, 689, 0x299ddc },
+          { 474, 477, 0x193d21 }, { 483, 477, 0x214531 },
+          { 495, 477, 0x214131 }, { 505, 477, 0x29493a },
+          { 513, 478, 0x299ede }, { 500, 478, 0x319edd },
+          { 489, 478, 0x299ede }, { 478, 478, 0x319ee6 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -66,6 +66,18 @@ return {
           { 652, 738, 0x000000 }, { 653, 738, 0x299ede },
           { 651, 740, 0x000000 }, { 652, 740, 0x31a2e6 },
           { 651, 741, 0x000000 }, { 652, 741, 0x299ede },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 1-1 的左边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 451, 492, 0x000000 }, { 452, 492, 0x31a2de },
+          { 451, 491, 0x000000 }, { 452, 491, 0x29a2de },
+          { 450, 493, 0x000000 }, { 451, 493, 0x31a2de },
+          { 450, 494, 0x000000 }, { 451, 494, 0x29a2de },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
