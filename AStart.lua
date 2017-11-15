@@ -43,9 +43,16 @@ local AStart = function(startPoint, endPoint, mapObj)
   local height = mapObj.height
   -- 障碍物列表
   local obstacleMap = {}
+  local cellMap = {}
   for key = 1, #mapObj.obstacle do
-    setPointInMap(mapObj.obstacle[key], obstacleMap)
+    local value = mapObj.obstacle[key]
+    if value.weight then
+      setPointInMap(value, cellMap)
+    else
+      setPointInMap(value, obstacleMap)
+    end
   end
+
 
   -- 开列表和关列表
   local openList = {}
@@ -69,16 +76,17 @@ local AStart = function(startPoint, endPoint, mapObj)
     -- 左边
     local leftPoint = { thePoint[1], thePoint[2] - 1 }
     if leftPoint[2] >= 1
-        and not getPointInMap(leftPoint, closeListMap)
-        and not getPointInMap(leftPoint, obstacleMap) then
+      and not getPointInMap(leftPoint, closeListMap)
+      and not getPointInMap(leftPoint, obstacleMap) then
       local oldOpenPoint = getPointInMap(leftPoint, openListMap)
-      local newPoint = pointGenerator(leftPoint, endPoint, 1, thePoint)
-      if oldPoint and oldOpenPoint.F > newPoint.F then
+      local weight = (getPointInMap(leftPoint, cellMap) or {}).weight or 0
+      local newPoint = pointGenerator(leftPoint, endPoint, weight + 1, thePoint)
+      if oldOpenPoint and oldOpenPoint.F > newPoint.F then
         oldOpenPoint.isClosed = true
         openList = table.filter(openList, function(e) return not e.isClosed end)
         deletePointInMap(oldOpenPoint, openListMap)
       end
-      if not oldPoint or oldOpenPoint.F > newPoint.F then
+      if not oldOpenPoint or oldOpenPoint.F > newPoint.F then
         table.insert(openList, newPoint)
         setPointInMap(newPoint, openListMap)
         if newPoint.H == 0 then
@@ -89,16 +97,17 @@ local AStart = function(startPoint, endPoint, mapObj)
     -- 右边
     local rightPoint = { thePoint[1], thePoint[2] + 1 }
     if rightPoint[2] <= width
-        and not getPointInMap(rightPoint, closeListMap)
-        and not getPointInMap(rightPoint, obstacleMap) then
+      and not getPointInMap(rightPoint, closeListMap)
+      and not getPointInMap(rightPoint, obstacleMap) then
       local oldOpenPoint = getPointInMap(rightPoint, openListMap)
-      local newPoint = pointGenerator(rightPoint, endPoint, 1, thePoint)
-      if oldPoint and oldOpenPoint.F > newPoint.F then
+      local weight = (getPointInMap(rightPoint, cellMap) or {}).weight or 0
+      local newPoint = pointGenerator(rightPoint, endPoint, weight + 1, thePoint)
+      if oldOpenPoint and oldOpenPoint.F > newPoint.F then
         oldOpenPoint.isClosed = true
         openList = table.filter(openList, function(e) return not e.isClosed end)
         deletePointInMap(oldOpenPoint, openListMap)
       end
-      if not oldPoint or oldOpenPoint.F > newPoint.F then
+      if not oldOpenPoint or oldOpenPoint.F > newPoint.F then
         table.insert(openList, newPoint)
         setPointInMap(newPoint, openListMap)
         if newPoint.H == 0 then
@@ -109,16 +118,17 @@ local AStart = function(startPoint, endPoint, mapObj)
     -- 上边
     local upPoint = { thePoint[1] - 1, thePoint[2] }
     if upPoint[1] >= 1
-        and not getPointInMap(upPoint, closeListMap)
-        and not getPointInMap(upPoint, obstacleMap) then
+      and not getPointInMap(upPoint, closeListMap)
+      and not getPointInMap(upPoint, obstacleMap) then
       local oldOpenPoint = getPointInMap(upPoint, openListMap)
-      local newPoint = pointGenerator(upPoint, endPoint, 1, thePoint)
-      if oldPoint and oldOpenPoint.F > newPoint.F then
+      local weight = (getPointInMap(upPoint, cellMap) or {}).weight or 0
+      local newPoint = pointGenerator(upPoint, endPoint, weight + 1, thePoint)
+      if oldOpenPoint and oldOpenPoint.F > newPoint.F then
         oldOpenPoint.isClosed = true
         openList = table.filter(openList, function(e) return not e.isClosed end)
         deletePointInMap(oldOpenPoint, openListMap)
       end
-      if not oldPoint or oldOpenPoint.F > newPoint.F then
+      if not oldOpenPoint or oldOpenPoint.F > newPoint.F then
         table.insert(openList, newPoint)
         setPointInMap(newPoint, openListMap)
         if newPoint.H == 0 then
@@ -129,16 +139,17 @@ local AStart = function(startPoint, endPoint, mapObj)
     -- 下边
     local downPoint = { thePoint[1] + 1, thePoint[2] }
     if downPoint[1] <= height
-        and not getPointInMap(downPoint, closeListMap)
-        and not getPointInMap(downPoint, obstacleMap) then
-      local oldOpenPoint = getPointInMap(upPoint, openListMap)
-      local newPoint = pointGenerator(upPoint, endPoint, 1, thePoint)
-      if oldPoint and oldOpenPoint.F > newPoint.F then
+      and not getPointInMap(downPoint, closeListMap)
+      and not getPointInMap(downPoint, obstacleMap) then
+      local oldOpenPoint = getPointInMap(downPoint, openListMap)
+      local weight = (getPointInMap(downPoint, cellMap) or {}).weight or 0
+      local newPoint = pointGenerator(downPoint, endPoint, weight + 1, thePoint)
+      if oldOpenPoint and oldOpenPoint.F > newPoint.F then
         oldOpenPoint.isClosed = true
         openList = table.filter(openList, function(e) return not e.isClosed end)
         deletePointInMap(oldOpenPoint, openListMap)
       end
-      if not oldPoint or oldOpenPoint.F > newPoint.F then
+      if not oldOpenPoint or oldOpenPoint.F > newPoint.F then
         table.insert(openList, newPoint)
         setPointInMap(newPoint, openListMap)
         if newPoint.H == 0 then

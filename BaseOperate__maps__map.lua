@@ -434,9 +434,9 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
 
   -- 将我方舰队上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
   if oldMapChessboard
-      and oldMapChessboard.enemyPositionList1
-      and oldMapChessboard.enemyPositionList2
-      and oldMapChessboard.enemyPositionList3 then
+    and oldMapChessboard.enemyPositionList1
+    and oldMapChessboard.enemyPositionList2
+    and oldMapChessboard.enemyPositionList3 then
     local checkMyFleetList = utils.subtractionList(myFleetList, inBattleList)
     local checkMyFleetMap = makePointMap(checkMyFleetList)
     function findMyFleetTopEnemy(myFleetMap, el)
@@ -512,54 +512,65 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   -- 除了3种敌人的位置，还会考虑奖励点的位置，方便获取额外奖励
   local myField = mapChessboard.myFleetList[1]
   local myField2 = mapChessboard.myFleetList[2]
+  local rewardBoxList = table.map(mapChessboard.rewardBoxList, function(enemy)
+    return table.assign({}, enemy, { weight = 0 })
+  end)
+  local enemyPositionList1 = table.map(mapChessboard.enemyPositionList1, function(enemy)
+    return table.assign({}, enemy, { weight = 5 })
+  end)
+  local enemyPositionList2 = table.map(mapChessboard.enemyPositionList2, function(enemy)
+    return table.assign({}, enemy, { weight = 10 })
+  end)
+  local enemyPositionList3 = table.map(mapChessboard.enemyPositionList3, function(enemy)
+    return table.assign({}, enemy, { weight = 20 })
+  end)
   -- 所有敌人的列表
-  local allEnemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
+  local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3)
+  local enemyPositionMap = {}
+  for key = 1, #enemyPositionList do
+    local value = enemyPositionList[key]
+    enemyPositionMap[value[1] .. '-' .. value[2]] = value
+  end
+  local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
-
-  -- 权重越小优先级越高，取小数是因为避免其他权重相加后相同的情况
-  local enemyPositionListGroup = {
-    { weight = 0.11, list = mapChessboard.rewardBoxList, },
-    { weight = 3.33, list = mapChessboard.enemyPositionList1, },
-    { weight = 5.55, list = mapChessboard.enemyPositionList2, },
-    { weight = 7.77, list = mapChessboard.enemyPositionList3, },
-  }
   local inBattleList = mapChessboard.inBattleList
   local minCoast
   local minCoastEnemy
 
-  for key = 1, #enemyPositionListGroup do
-    local enemyPositionList = enemyPositionListGroup[key].list
-    local weight = enemyPositionListGroup[key].weight
-    for key2 = 1, #enemyPositionList do
-      local enemy = enemyPositionList[key2]
-      if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
-        -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
-        -- 这里将敌人视为高权重方块
-        local theObstacle = utils.unionList(mapChessboard.obstacle, allEnemyPositionList)
-        local thePath = AStart(myField, enemy, {
-          width = mapChessboard.width,
-          height = mapChessboard.height,
-          obstacle = theObstacle,
-        })
-        if thePath and #thePath > 0 then
-          -- 将权重也加入到coast里以便让结果倾向选择小型舰队
-          local theCoast = thePath[#thePath].G + weight
-          -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
-          if waitForBossPosition then
-            -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
-            -- 这里将敌人视为障碍物但是目标敌人要去掉，否则就永远走不到目标。
-            local boosPath = AStart(waitForBossPosition, enemy, {
-              width = mapChessboard.width,
-              height = mapChessboard.height,
-              obstacle = theObstacle,
-            })
-            if boosPath and #boosPath > 0 then
-              theCoast = theCoast + boosPath[#boosPath].G * 0.1
-            end
+  for key = 1, #enemyPositionList do
+    local enemy = enemyPositionList[key]
+    if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
+      -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
+      local thePath = AStart(myField, enemy, {
+        width = mapChessboard.width,
+        height = mapChessboard.height,
+        obstacle = theObstacle,
+      })
+      if thePath and #thePath > 0 then
+        -- 将权重也加入到coast里以便让结果倾向选择小型舰队
+        local weight = enemy.weight or 0
+        local theCoast = thePath[#thePath].G + weight
+        -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
+        if waitForBossPosition then
+          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
+          local boosPath = AStart(waitForBossPosition, enemy, {
+            width = mapChessboard.width,
+            height = mapChessboard.height,
+            obstacle = theObstacle,
+          })
+          if boosPath and #boosPath > 0 then
+            theCoast = theCoast + boosPath[#boosPath].G * 0.1
           end
-          if not minCoast or minCoast > theCoast then
-            minCoast = theCoast
-            minCoastEnemy = enemy
+        end
+        if not minCoast or minCoast > theCoast then
+          minCoast = theCoast
+          minCoastEnemy = enemy
+          -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上
+          for key = 1, #thePath do
+            local value = thePath[key]
+            if enemyPositionMap[value[1] .. '-' .. value[2]] then
+              minCoastEnemy = value
+            end
           end
         end
       end
@@ -588,7 +599,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-        and not obstacleMap[point[1] .. '-' .. point[2]] then
+      and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then

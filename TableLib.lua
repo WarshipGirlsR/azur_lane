@@ -270,6 +270,14 @@ table.uniqueLast = table.uniqueLast or function(target, path)
   return result
 end
 
+table.map = table.map or function(tab, callback)
+  local values = {}
+  for k, v in ipairs(tab) do
+    table.insert(values, callback(v, k, tab))
+  end
+  return values
+end
+
 table.values = table.values or function(tab)
   local values = {}
   for k, v in pairs(tab) do
