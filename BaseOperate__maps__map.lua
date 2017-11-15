@@ -514,6 +514,8 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   local myField2 = mapChessboard.myFleetList[2]
   -- 所有敌人的列表
   local allEnemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
+
+
   -- 权重越小优先级越高，取小数是因为避免其他权重相加后相同的情况
   local enemyPositionListGroup = {
     { weight = 0.11, list = mapChessboard.rewardBoxList, },
@@ -531,10 +533,9 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
     for key2 = 1, #enemyPositionList do
       local enemy = enemyPositionList[key2]
       if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
-        local enemyPositionListExceptTarget = utils.subtractionList(allEnemyPositionList, { enemy })
         -- 将已存在的敌人也看作障碍物，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
-        -- 这里将敌人视为障碍物但是目标敌人不是障碍物，避免出现永远走不到目标的情况。
-        local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionListExceptTarget)
+        -- 这里将敌人视为高权重方块
+        local theObstacle = utils.unionList(mapChessboard.obstacle, allEnemyPositionList)
         local thePath = AStart(myField, enemy, {
           width = mapChessboard.width,
           height = mapChessboard.height,

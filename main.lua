@@ -1,3 +1,3 @@
 useNlog = true
-setStackTraceback = false
+setStackTraceback = true
 require "azur_lane"
