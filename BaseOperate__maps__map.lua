@@ -432,26 +432,26 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
   enemyPositionList2 = utils.subtractionList(enemyPositionList2, myFleetListNotInBattle)
   enemyPositionList3 = utils.subtractionList(enemyPositionList3, myFleetListNotInBattle)
 
-  -- 将我方舰队上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
+  -- 将我方舰队上方和右上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
   if oldMapChessboard
     and oldMapChessboard.enemyPositionList1
     and oldMapChessboard.enemyPositionList2
     and oldMapChessboard.enemyPositionList3 then
     local checkMyFleetList = utils.subtractionList(myFleetList, inBattleList)
     local checkMyFleetMap = makePointMap(checkMyFleetList)
-    function findMyFleetTopEnemy(myFleetMap, el)
+    function findMyFleetTopRightEnemy(myFleetMap, el)
       local res = {}
       for key, enemy in ipairs(el) do
-        if myFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] then
+        if myFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] or myFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)] then
           table.insert(res, enemy)
         end
       end
       return res
     end
 
-    enemyPositionList1 = utils.unionList(enemyPositionList1, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList1))
-    enemyPositionList2 = utils.unionList(enemyPositionList2, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList2))
-    enemyPositionList3 = utils.unionList(enemyPositionList3, findMyFleetTopEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList3))
+    enemyPositionList1 = utils.unionList(enemyPositionList1, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList1))
+    enemyPositionList2 = utils.unionList(enemyPositionList2, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList2))
+    enemyPositionList3 = utils.unionList(enemyPositionList3, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList3))
   end
 
   newMapChessboard.inBattleList = inBattleList
@@ -534,8 +534,8 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
   local inBattleList = mapChessboard.inBattleList
-  local minCoast
-  local minCoastEnemy
+  local minCoast = nil
+  local minCoastEnemy = nil
 
   for key = 1, #enemyPositionList do
     local enemy = enemyPositionList[key]
@@ -570,6 +570,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard)
             local value = thePath[key]
             if enemyPositionMap[value[1] .. '-' .. value[2]] then
               minCoastEnemy = value
+              break;
             end
           end
         end

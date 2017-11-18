@@ -181,6 +181,7 @@ local map = function(action, state)
         stepLabel.setStepLabelContent('3-11.随机移动一步')
         state.map.nextStepPoint = mapProxy.getRandomMoveAStep(mapChessboard)
       end
+      console.log(state.map.nextStepPoint)
       -- 如果还是没有移动目标，只好重新扫描
       if not state.map.nextStepPoint then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {

@@ -67,9 +67,9 @@ mapEvent.getMapChessboard = function()
     width = 6,
     height = 5,
     obstacle = {
-      { 1, 5 },
-      { 2, 4 }, { 2, 5 },
-      { 3, 5 },
+      { 1, 6 },
+      { 2, 5 }, { 2, 6 },
+      { 3, 6 },
       { 5, 1 }, { 5, 2 }, { 5, 3 },
     },
     waitForBossPosition = { { 1, 5 } },
