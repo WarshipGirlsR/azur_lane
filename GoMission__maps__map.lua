@@ -111,7 +111,7 @@ local map = function(action, state)
     elseif action.type == 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
 
       stepLabel.setStepLabelContent('3-4.将地图移动到扫描位置')
-      local isCenter = mapProxy.moveMapToCheckPosition(state.map.moveVectorForCheck)
+      local isCenter = mapProxy.moveMapToCheckPosition( state.map.moveVectorForCheck)
 
       if isCenter then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {

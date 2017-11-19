@@ -335,12 +335,12 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   end
 
   if moveVector[1] > 25 then
-    moveVector[1] = math.floor(moveVector[1] * 0.85)
+    moveVector[1] = math.floor(moveVector[1] * 0.6)
   else
     moveVector[1] = math.floor(moveVector[1] * 0.8)
   end
   if moveVector[2] > 25 then
-    moveVector[2] = math.floor(moveVector[2] * 0.85)
+    moveVector[2] = math.floor(moveVector[2] * 0.6)
   else
     moveVector[2] = math.floor(moveVector[2] * 0.8)
   end
