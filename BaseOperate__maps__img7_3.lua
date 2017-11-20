@@ -20,10 +20,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1528, 364, 0x21283a }, { 1548, 364, 0x21283a },
-          { 1560, 364, 0x21283a }, { 1576, 364, 0x29283a },
-          { 1588, 365, 0x6371ad }, { 1575, 365, 0x6b71ad },
-          { 1560, 365, 0x6371ad }, { 1544, 365, 0x6371ad },
+          { 1614, 451, 0x192431 }, { 1621, 451, 0x21283a },
+          { 1632, 451, 0x192431 }, { 1643, 451, 0x212842 },
+          { 1655, 452, 0x6b71ad }, { 1642, 452, 0x6b71b5 },
+          { 1630, 452, 0x6b71b5 }, { 1620, 452, 0x6b71b5 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -32,10 +32,10 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1358, 364, 0x21283a }, { 1376, 364, 0x21283a },
-          { 1386, 364, 0x21283a }, { 1400, 364, 0x21243a },
-          { 1412, 365, 0x5a69a4 }, { 1394, 365, 0x52659c },
-          { 1378, 365, 0x5a619c }, { 1361, 365, 0x525d9c },
+          { 1448, 451, 0x192431 }, { 1459, 451, 0x21283a },
+          { 1473, 451, 0x21283a }, { 1487, 451, 0x21283a },
+          { 1501, 452, 0x5a65a4 }, { 1485, 452, 0x5a619c },
+          { 1473, 452, 0x5a619c }, { 1463, 452, 0x52619c },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -44,49 +44,37 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 767, 364, 0x192829 }, { 784, 364, 0x212d3a },
-          { 804, 364, 0x29353a }, { 824, 364, 0x29353a },
-          { 835, 365, 0x3a3563 }, { 815, 365, 0x3a3563 },
-          { 798, 365, 0x31315a }, { 783, 365, 0x3a3563 },
+          { 860, 451, 0x102429 }, { 874, 451, 0x102429 },
+          { 886, 451, 0x192429 }, { 897, 451, 0x192831 },
+          { 909, 452, 0x3a3163 }, { 893, 452, 0x3a3163 },
+          { 882, 452, 0x3a3963 }, { 870, 452, 0x3a3563 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图下边界
     bottonLineList = {
-      -- 5-1 的下面
+      -- 6-2 的下面
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 487, 888, 0x000000 }, { 501, 888, 0x000000 },
-          { 514, 888, 0x000000 }, { 528, 888, 0x000000 },
-          { 542, 887, 0x211c42 }, { 528, 887, 0x212042 },
-          { 513, 887, 0x212042 }, { 495, 887, 0x29204a },
+          { 666, 869, 0x000000 }, { 680, 869, 0x000000 },
+          { 695, 869, 0x000000 }, { 707, 869, 0x000000 },
+          { 719, 868, 0x29204a }, { 707, 868, 0x29204a },
+          { 696, 868, 0x312452 }, { 675, 868, 0x29204a },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 5-3 的下面
+      -- 6-6 的下面
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 893, 888, 0x000000 }, { 917, 888, 0x000000 },
-          { 937, 888, 0x000000 }, { 957, 888, 0x000000 },
-          { 974, 887, 0x29244a }, { 956, 887, 0x29204a },
-          { 934, 887, 0x31244a }, { 913, 887, 0x312852 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 5-5 的下面
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022 }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1317, 888, 0x000000 }, { 1333, 888, 0x000000 },
-          { 1346, 888, 0x000000 }, { 1359, 888, 0x000000 },
-          { 1372, 887, 0x29244a }, { 1353, 887, 0x31244a },
-          { 1335, 887, 0x312452 }, { 1312, 887, 0x29244a },
+          { 1072, 880, 0x000000 }, { 1082, 880, 0x000000 },
+          { 1092, 880, 0x000000 }, { 1110, 880, 0x000000 },
+          { 1120, 879, 0x29244a }, { 1106, 879, 0x29244a },
+          { 1096, 879, 0x292442 }, { 1088, 879, 0x292442 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),

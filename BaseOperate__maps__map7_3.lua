@@ -1,4 +1,3 @@
-
 local mapBase = require 'BaseOperate__maps__map'
 local imgEvent = require 'BaseOperate__maps__img7_3'
 local mapEvent = {}
@@ -62,8 +61,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBotton = { 516, 900 },
-      rightBotton = nil,
+      leftBotton = nil,
+      rightBotton = { 1772, 903 },
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false, false,
