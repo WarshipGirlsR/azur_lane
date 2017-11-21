@@ -117,12 +117,9 @@ co(c.create(function()
     table.insert(theMissionsQuery, { isBase = true, isEnd = true })
     runCount = 1
     local runStartTime = socket.gettime() * 1000
-    while (true) do
-      -- 任务队列里没有任务则停止运行
+    -- 任务队列里没有任务则停止运行
+    while (#theMissionsQuery > 0) do
       local action = theMissionsQuery[1]
-      if #theMissionsQuery == 0 or not action then
-        break
-      end
 
       if (action.isStart) then
         runStartTime = socket.gettime() * 1000
