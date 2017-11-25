@@ -149,11 +149,11 @@ battle.moveToChapter = function(chapter)
   elseif (chapter == '8-1') then
     tap(824, 280, 100)
   elseif (chapter == '8-2') then
-    tap(309, 604, 100)
+    tap(411, 535, 100)
   elseif (chapter == '8-3') then
-    tap(662, 852, 100)
+    tap(507, 849, 100)
   elseif (chapter == '8-4') then
-    tap(1353, 733, 100)
+    tap(1168, 686, 100)
   elseif (chapter == '9-1') then
     tap(360, 359, 100)
   elseif (chapter == '9-2') then
