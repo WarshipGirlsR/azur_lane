@@ -7,6 +7,7 @@ if type(lua_exit) == 'function' and not lua_exit_added then
   end
 end
 
+
 return function()
   local result = debug.getinfo(2, 'S')
   if string.match(result.short_src, '%[string') then
@@ -14,8 +15,6 @@ return function()
     package.preload[newMain] = nil
     package.loaded[newMain] = nil
     require(newMain)
-    console.log(package.preload[newMain])
-    console.log(os);
     os.exit()
     return
   end

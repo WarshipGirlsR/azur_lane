@@ -1,9 +1,12 @@
-useNlog = true
-runCount = 0
+local a, b, c = ...
 
-local StepLabel = require 'StepLabel'
+console.log(debug.getinfo(1))
 
-while true do
-  StepLabel.setStepLabelContent('这是测试')
-  mSleep(1000)
-end
+
+console.log(a)
+
+error('test')
+
+console.log(b)
+console.log(c)
+console.log(123)

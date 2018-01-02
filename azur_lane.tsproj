@@ -126,4 +126,5 @@ StepLabel.lua
 StringLib.lua
 TableLib.lua
 test.lua
+test3.lua
 TSLib.lua
