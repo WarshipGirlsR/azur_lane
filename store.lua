@@ -1,4 +1,4 @@
 return {
+  battle = {},
   map = {},
-  settings = {},
 }

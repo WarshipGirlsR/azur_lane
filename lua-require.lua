@@ -4,6 +4,7 @@ local _ENV = _ENV
 local options = {
   basePath = '',
   osExit = os.exit,
+  extensions = { '', '.lua', '/index.lua' },
 }
 
 do
@@ -60,6 +61,9 @@ local path = (function()
     local resultPathArray = {}
     for key = 1, #pathArray do
       if pathArray[key] ~= '' then
+        if type(pathArray[key]) ~= 'string' then
+          error('bad argument #' .. key .. ' to \'path.join\' (string expected, got ' .. type(pathArray[key]) .. ')', 2)
+        end
         local thePath = string.gsub(pathArray[key], '\\', '/')
         local thePathArray = string.split(thePath, '/')
         for key2 = 1, #thePathArray do
@@ -112,28 +116,63 @@ local path = (function()
 end)()
 
 local requireFactory
-requireFactory = function(filePath)
+requireFactory = function(dirPath)
   return function(loadpath)
     if type(loadpath) ~= 'string' then
       error('bad argument #1 to \'require\' (string expected, got ' .. type(loadpath) .. ')', 2)
     end
 
     if string.match(loadpath, '^%.%/') or string.match(loadpath, '^%.%.%/') or string.match(loadpath, '^%/') then
-      local requirePath = path.resolve(filePath, loadpath)
-      local absolutePath = path.join(options.basePath, requirePath)
+      local requirePath
+      local absolutePath
 
-      if not package.loaded[requirePath] then
-        if not package.preload[requirePath] then
-          local errList = {}
-          local requireSource
-
-          local file, err = io.open(absolutePath, 'r')
-          if not file then
+      -- 遍历扩展名列表并尝试在 package.loaded 里寻找已加载的模块
+      for key = 1, #options.extensions do
+        local rp = path.resolve(dirPath, loadpath .. options.extensions[key])
+        if package.loaded[rp] then
+          requirePath = rp
+          absolutePath = path.join(options.basePath, rp)
+          break
+        end
+      end
+      -- 如果 package.loaded 中没有需要的模块
+      if not requirePath or not package.loaded[requirePath] then
+        -- 遍历扩展名列表并尝试在 package.preload 里寻找已加载的模块
+        for key = 1, #options.extensions do
+          local rp = path.resolve(dirPath, loadpath .. options.extensions[key])
+          if package.preload[rp] then
+            requirePath = rp
+            absolutePath = path.join(options.basePath, rp)
+            break
           end
-          requireSource = file:read('*a')
-
-          if not res then
-            error('file \'' .. absolutePath .. '\' not exist', 2)
+        end
+        -- 如果 package.preload 中没有需要的模块
+        if not requirePath or not package.preload[requirePath] then
+          local requireSource
+          local file
+          local errArr = {}
+          -- 遍历扩展名列表并尝试从文件中寻找模块
+          for key = 1, #options.extensions do
+            local rp = path.resolve(dirPath, loadpath .. options.extensions[key])
+            local ap = path.join(options.basePath, rp)
+            local res, err = pcall(function()
+              local theFile = assert(io.open(ap, 'r'))
+              file = theFile
+              requireSource = file:read('*a')
+            end)
+            if not res then
+              table.insert(errArr, err)
+            end
+            -- 成功读取文件，返回项目路径和系统路径
+            if requireSource then
+              requirePath = rp
+              absolutePath = ap
+              break
+            end
+          end
+          -- 如果都没找到能执行的文件，则抛出错误
+          if not requireSource then
+            error(table.concat(errArr, '\r\n'), 2)
           end
           if file then
             file.close()
@@ -142,16 +181,26 @@ requireFactory = function(filePath)
           package.preload[requirePath] = assert(load(requireSource, '@' .. absolutePath, 'bt', _ENV))
         end
         package.loaded[requirePath] = package.preload[requirePath](requireFactory(path.dirname(requirePath)), requirePath) or true
+        -- 载入完成以后删除 package.preloaded 里的内容
+        package.preload[requirePath] = nil
       end
       return package.loaded[requirePath]
     else
-      return originRequire(loadpath)
+      local requireRes
+      local res, err = pcall(function()
+        requireRes = originRequire(loadpath)
+      end)
+      if not res then
+        error(err, 2)
+      end
+      return requireRes
     end
   end
 end
 
 return function(optionParam)
   options.osExit = optionParam.osExit or options.osExit
+  options.basePath = optionParam.basePath or options.basePath
 
   local result = debug.getinfo(2, 'S')
   if string.match(result.short_src, '%[string') then
@@ -166,7 +215,8 @@ return function(optionParam)
     _require = originRequire
     local filePath = string.gsub(result.source, '^@', '')
 
-    options.basePath = path.dirname(filePath)
+    options.basePath = optionParam.basePath or path.dirname(filePath)
+    options.extensions = optionParam.extensions or options.extensions
 
     require = requireFactory('/')
   end

@@ -1,8 +1,0 @@
-[res]
-[lib]
-[file]
-azur_lane.lua
-console.lua
-lua-require.lua
-lib/console.lua
-lib/string-polyfill.lua

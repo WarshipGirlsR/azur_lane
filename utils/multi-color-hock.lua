@@ -1,5 +1,3 @@
-require 'KeepScreenHock'
-
 multiColorS = multiColorS or function(array, s)
   s = s or 90
 

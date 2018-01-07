@@ -2,21 +2,6 @@
 -- es2015 Promise for lua 5.1 and 5.2
 
 --------------------------------------------------------------------------------------
-
--- 字符串分割
-string.split = string.split or function(str, delimiter)
-  if str == nil or str == '' or delimiter == nil then
-    return nil
-  end
-
-  local result = {}
-  for match in (str .. delimiter):gmatch("(.-)" .. delimiter) do
-    table.insert(result, match)
-  end
-  return result
-end
-
-
 local PENDING = 0
 local RESOLVED = 1
 local REJECTED = 2
@@ -28,8 +13,8 @@ local stackTraceback = false
 function tryCatch(cb)
   return xpcall(cb, function(e)
     return stackTraceback and
-        (e .. '\n' .. debug.traceback())
-        or (e)
+      (e .. '\n' .. debug.traceback())
+      or (e)
   end)
 end
 

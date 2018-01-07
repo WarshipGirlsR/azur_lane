@@ -1,6 +1,5 @@
 local sz = require 'sz'
 local json = sz.json
-local stepLabel = require 'StepLabel'
 
 local width, height = getScreenSize()
 -- 设置
@@ -229,14 +228,7 @@ return function()
   }
 
   local settingTableStr = json.encode(settingTable);
-  closeStepLabel()
   local ret, settings = showUI(settingTableStr);
-  if (ret ~= 1) then
-    stepLabel.setStepLabelContent('取消运行')
-    mSleep(100000)
-    lua_exit()
-  end
-  stepLabel.setStepLabelContent('正在载入...')
   -- --转换settings结果
   function transStrToTable(str)
     local list = {}

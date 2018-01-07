@@ -22,7 +22,11 @@
 -----------------------------------------------------------------------------
 
 
-local Promise = Promise or require './promise'
+local Promise = Promise
+
+if type(Promise) ~= 'table' then
+  error('Co need Promise module to work. Please add \'Promise\' and require it.', 2)
+end
 
 local unpack = unpack or table.unpack
 local isArray = table.isArray or function(tab)

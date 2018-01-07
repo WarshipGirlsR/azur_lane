@@ -1,7 +1,5 @@
-local eq = require 'EventQuery'
-local co = require 'Co'
-local Promise = require 'Promise'
-local gettimeFunc = require 'GetTime'
+local eq = require '../lib/event-query'
+local co = require '../lib/co'
 local c = coroutine
 
 local combineListener = function(target, ...)
@@ -27,12 +25,6 @@ local combineListener = function(target, ...)
 
   local resultReverse = table.reverse(result)
   return resultReverse
-end
-
-local sleepPromise = function(ms)
-  return Promise.new(function(resolve)
-    eq.setTimeout(resolve, ms)
-  end)
 end
 
 local setScreenListeners = function(theArr, ...)
@@ -93,7 +85,6 @@ end
 
 return {
   combineListener = combineListener,
-  sleepPromise = sleepPromise,
   setScreenListeners = setScreenListeners,
   makeAction = makeAction,
 }
