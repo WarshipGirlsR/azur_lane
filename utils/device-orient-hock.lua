@@ -1,5 +1,3 @@
-require "TSLib"
-
 local __init = init
 
 -- 0=竖屏，1=右旋（home键在右边），2=左旋（home键在左边），3=倒立

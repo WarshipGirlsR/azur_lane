@@ -1,20 +1,22 @@
-runCount = 1
-isPause = false
+-- 载入 lua-require
+require('lua-require')()
+----------------------------------
+-- 退出时的 flag
 luaExisted = false
 function beforeUserExit()
   luaExisted = true
-  --  vibrator(500)
-  --  mSleep(500)
-  --  vibrator(500)
 end
 
+-- 解锁手机屏幕
 if (deviceIsLock() ~= 0) then
   unlockDevice()
 end
 
+-- 开启日志
 initLog('azur_lane', 1)
+require './lib/console.lua'
 require 'TSLib'
-require 'TableLib'
+require './lib/string-polyfill.lua'
 require 'StringLib'
 require 'MathLib'
 require 'console'
@@ -33,34 +35,9 @@ local stepLabel = (require 'StepLabel').init('stopbtn')
 
 Promise.setStackTraceback(false)
 
-local lfs = require 'lfs'
 
 Promise.setStackTraceback(false)
 
--- 删除大于7天并且大于50条的log，避免日志过大
-local _ = (function()
-  local logPath = userPath() .. '/log'
-  local dirs = lfs.dir(logPath)
-  local sevenDayBeforeTime = os.time() - (7 * 24 * 60 * 60)
-  local theTime = os.time()
-
-  local dirsLen = #dirs
-
-  dirs = table.filter(dirs, function(e, index)
-    if (string.startWith(e, 'azur_lane_')) then
-      local res = string.match(e, 'azur_lane_(%d+)')
-      res = tonumber(res) or theTime
-      if ((index < (dirsLen - 50)) and (res < sevenDayBeforeTime)) then
-        return true
-      end
-    end
-    return false
-  end)
-
-  for k, v in ipairs(dirs) do
-    lfs.rm(logPath .. '/' .. v)
-  end
-end)()
 
 local width, height = getScreenSize()
 

@@ -22,7 +22,7 @@
 -----------------------------------------------------------------------------
 
 
-local Promise = Promise or require 'Promise'
+local Promise = Promise or require './promise'
 
 local unpack = unpack or table.unpack
 local isArray = table.isArray or function(tab)

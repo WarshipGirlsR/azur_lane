@@ -92,14 +92,6 @@ local function runTable(tab, space)
   return resultStrList
 end
 
-table.length = table.length or function(target)
-  local length = 0
-  for key = 1, #target do
-    length = key
-  end
-  return length
-end
-
 table.isArray = table.isArray or function(tab)
   if (type(tab) ~= 'table') then
     return false
@@ -130,11 +122,6 @@ table.slice = table.slice or function(tab, startIndex, endIndex)
   end
 
   return newTab
-end
-
-table.join = table.join or function(tab, exp)
-  if (type(exp) == 'nil') then exp = ',' end
-  return table.concat(tab, exp)
 end
 
 table.merge = table.merge or function(tab, ...)
