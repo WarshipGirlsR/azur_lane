@@ -6,11 +6,13 @@ local sleepPromise = require '../utils/sleep-promise'
 local moBattle = require '../meta-operation/battle'
 local setScreenListeners = (require './utils').setScreenListeners
 
-local state = require '../store'
-state.battle = state.battle or {}
+local store = require '../store'
+store.battle = store.battle or {}
 
 
 local battle = function(action)
+  local settings = store.settings;
+
   local battleListenerList = {
     { 'BATTLE_HOME_CHECK_IS_EVENT', map.home.isHome, 2000 },
     { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', moBattle.isReadyBattlePage, 1000 },
@@ -26,24 +28,24 @@ local battle = function(action)
   return co(c.create(function()
     if (action.type == 'BATTLE_START') then
 
-      state.battle.selectFleedCount = 0
+      store.battle.selectFleedCount = 0
       -- boss舰队是否在boss区域
-      state.battle.isBossFleetInBossArea = false
-      state.battle.battleNum = 0
-      state.battle.battleWithConvoyNum = 0
-      state.battle.battleFromState = ''
-      state.battle.lastVibratorTime = os.time()
+      store.battle.isBossFleetInBossArea = false
+      store.battle.battleNum = 0
+      store.battle.battleWithConvoyNum = 0
+      store.battle.battleFromState = ''
+      store.battle.lastVibratorTime = os.time()
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
-      state.battle.changeFleetNum = 0
+      store.battle.changeFleetNum = 0
       -- 舰队移动的状态。一次关卡走地图会有3种状态
       -- moveToWaitBoss : 移动到待命区
       -- moveToClosestEnemy : 移动到最近的敌人
       -- moveToBoss : 移动到 boss
-      state.battle.moveState = 'moveToWaitBoss'
+      store.battle.moveState = 'moveToWaitBoss'
       -- 是否自动模式，如果没有相应配置的话会自动从自动切换到手动
-      state.battle.battleAssistantMode = settings.battleAssistantMode
+      store.battle.battleAssistantMode = settings.battleAssistantMode
 
-      if (settings.battleChapter == '') then
+      if (not settings.battleChapter or settings.battleChapter == '') then
         stepLabel.setStepLabelContent('2-1.没有选中章节')
         return nil
       end
@@ -51,7 +53,7 @@ local battle = function(action)
       -- 如果没有相应配置的话会自动从自动切换到手动
       if (not map['map' .. string.gsub(settings.battleChapter, '-', '_')] and settings.battleAssistantMode == 'auto') then
         stepLabel.setStepLabelContent('2-2.没有章节配置，切换为手动')
-        state.battle.battleAssistantMode = 'manual'
+        store.battle.battleAssistantMode = 'manual'
       end
 
       -- 对于未知章节，只辅助略过战斗中间步骤，不自动进入章节
@@ -187,7 +189,7 @@ local battle = function(action)
 
     elseif (action.type == 'BATTLE_SELECT_FLEET_PANEL_CHECKE_SELECTED_FLEET') then
 
-      state.battle.selectFleedCount = state.battle.selectFleedCount + 1
+      store.battle.selectFleedCount = store.battle.selectFleedCount + 1
 
       stepLabel.setStepLabelContent('2-16.检测已经选择的舰队')
       local res, selectList, unselectList, selectedFeeldList = moBattle.checkSelectedFleet(settings.battleFleet)
@@ -209,7 +211,7 @@ local battle = function(action)
       moBattle.clickGotoMapBtn()
 
       -- 清空棋盘信息。到了这个步骤说明这是一局新的关卡
-      state.map.mapChessboard = nil
+      store.map.mapChessboard = nil
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_PAGE', moBattle.isBattlePage, 2000 },
@@ -226,7 +228,7 @@ local battle = function(action)
       moBattle.clickHardGotoSelectFleedPanelBtn()
 
       -- 清空棋盘信息。到了这个步骤说明这是一局新的关卡
-      state.map.mapChessboard = nil
+      store.map.mapChessboard = nil
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_PAGE', moBattle.isBattlePage, 2000 },
@@ -255,7 +257,7 @@ local battle = function(action)
     elseif (action.type == 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE') then
 
       stepLabel.setStepLabelContent('2-19.检测是自动模式还是辅助模式')
-      if state.battle.battleAssistantMode == 'auto' then
+      if store.battle.battleAssistantMode == 'auto' then
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_CHAPTER_BACK_TO_HOME', moBattle.isBattlePage, 2000 },
           { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', moBattle.isAmbushedPanel, 1000 },
@@ -274,10 +276,10 @@ local battle = function(action)
 
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('2-20.检查舰队')
-        if state.battle.moveState == 'moveToWaitBoss' or state.battle.moveState == 'moveToBoss' then
+        if store.battle.moveState == 'moveToWaitBoss' or store.battle.moveState == 'moveToBoss' then
           local res = moBattle.isSelectedFleed(settings.battleFleet[1])
-          if (not res) and (state.battle.changeFleetNum < 2) then
-            state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+          if (not res) and (store.battle.changeFleetNum < 2) then
+            store.battle.changeFleetNum = store.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-21.选择boss舰队')
             moBattle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
@@ -287,10 +289,10 @@ local battle = function(action)
             }))
             return makeAction(newstateTypes), state
           end
-        elseif state.battle.moveState == 'moveToClosestEnemy' then
+        elseif store.battle.moveState == 'moveToClosestEnemy' then
           local res = moBattle.isSelectedFleed(settings.battleFleet[2])
-          if (not res) and (state.battle.changeFleetNum < 2) then
-            state.battle.changeFleetNum = state.battle.changeFleetNum + 1
+          if (not res) and (store.battle.changeFleetNum < 2) then
+            store.battle.changeFleetNum = store.battle.changeFleetNum + 1
             stepLabel.setStepLabelContent('2-22.选择道中舰队')
             moBattle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
@@ -303,7 +305,7 @@ local battle = function(action)
         end
       end
 
-      state.battle.changeFleetNum = 0
+      store.battle.changeFleetNum = 0
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_PAGE', moBattle.isBattlePage, 2000 },
         { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', moBattle.isMapPage },
@@ -314,8 +316,8 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2-23.等待用户移动')
       c.yield(sleepPromise(1000))
-      if state.battle.lastVibratorTime < os.time() then
-        state.battle.lastVibratorTime = os.time() + 10
+      if store.battle.lastVibratorTime < os.time() then
+        store.battle.lastVibratorTime = os.time() + 10
         for var = 1, 2 do
           vibrator();
           c.yield(sleepPromise(500))
@@ -338,7 +340,7 @@ local battle = function(action)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_AMBUSHED_PANEL') then
 
-      state.battle.battleFromState = 'BATTLE_MAP_PAGE_AMBUSHED_PANEL'
+      store.battle.battleFromState = 'BATTLE_MAP_PAGE_AMBUSHED_PANEL'
       stepLabel.setStepLabelContent('2-24.伏击面板')
       moBattle.ambushedPanelClickAvoidBtn()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -351,11 +353,11 @@ local battle = function(action)
 
     elseif (action.type == 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE') then
 
-      if state.battle.battleFromState ~= 'BATTLE_MAP_PAGE_AMBUSHED_PANEL' then
-        state.battle.battleFromState = ''
-        state.battle.battleWithConvoyNum = state.battle.battleWithConvoyNum + 1
+      if store.battle.battleFromState ~= 'BATTLE_MAP_PAGE_AMBUSHED_PANEL' then
+        store.battle.battleFromState = ''
+        store.battle.battleWithConvoyNum = store.battle.battleWithConvoyNum + 1
       end
-      state.battle.battleNum = state.battle.battleNum + 1
+      store.battle.battleNum = store.battle.battleNum + 1
       stepLabel.setStepLabelContent('2-25.准备战斗页面')
       moBattle.readyBattlePageClickBattle()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {

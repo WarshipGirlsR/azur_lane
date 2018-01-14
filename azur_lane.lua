@@ -34,6 +34,7 @@ local socket = require 'socket'
 local createChain = require('./lib/mission-chain').createChain
 local missionsList = require './missions'
 local sleepPromise = require './utils/sleep-promise'
+local store = require '../store'
 
 local stepLabel = require './utils/step-label'
 stepLabel.init('stopbtn')
@@ -58,8 +59,8 @@ if (ret ~= 1) then
   lua_exit()
 end
 
+store.settings = settings
 
--- --转换settings结果
 
 -- 注册按钮事件，目前只有暂停按钮
 EventQuery.setButotnListener('stopbtn', function()
@@ -73,11 +74,11 @@ EventQuery.setButotnListener('stopbtn', function()
 end)
 
 
-local theMissionsQuery = {}
 
 co(c.create(function()
   if (settings.battleEnable) then
 
+    local theMissionsQuery = {}
     -- 是否运行出征
     if (settings.battleEnable) then
       table.insert(theMissionsQuery, { isBase = true, type = 'TEST_A' })
