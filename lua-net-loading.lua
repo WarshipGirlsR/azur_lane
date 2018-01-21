@@ -1,6 +1,7 @@
 useNlog = true
 local socket = require 'socket'
 local sz = require 'sz'
+local http = require 'socket.http'
 local json = sz.json
 require 'console'
 
@@ -211,19 +212,25 @@ local ret, settings = luaNetLoadingPanel()
 
 
 function download(hostBasePath, projectBasePath, filePath)
-  local f = io.open('/storage/emulated/0/TouchSprite/lua/test.html', 'w')
-  console.log('/storage/emulated/0/TouchSprite/lua/test.html')
-  local c = assert(socket.connect('blog.csdn.net', 80));
-  c:send('GET ' .. filePath .. ' HTTP/1.1\r\n\r\n')
-  while true do
-    local s, status, partial = c:receive(1024);
-    f:write(s or partial)
-    if status == 'closed' then
-      break
-    end
+
+  local request_body = ''
+  local response_body = {}
+
+  local res, code, response_headers = http.request({
+    url = "http://httpbin.org/post",
+    method = "GET",
+    sink = ltn12.sink.table(response_body),
+  })
+
+  local file = io.open(path.join(projectBasePath, filePath), w)-
+  if type(response_body) == 'table' then
+    file:write(table.concat(response_body, ''))
+  elseif type(response_body) == 'string' then
+    file:write(response_body)
+  elseif type(response_body) == 'number' then
+    file:write(tostring(response_body))
   end
-  c:close()
-  f:close()
+  file:close()
 end
 
 download(settings.serverUrl, projectBasePath, '/andrew57/article/details/9788903')
