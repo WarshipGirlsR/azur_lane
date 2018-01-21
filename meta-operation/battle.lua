@@ -1,8 +1,18 @@
 local battle = {}
 
 
---  是否在出击界面
-battle.isBattlePage = function()
+-- 点击出征
+battle.clickBattleBtn = function()
+  tap(1628, 599, 100)
+end
+
+-- 点击活动
+battle.clickEventBtn = function()
+  tap(1018, 249, 100)
+end
+
+--  是否在出击选择章节界面
+battle.isBattleChapterPage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
@@ -25,7 +35,7 @@ battle.clickBackToHomeBtn = function()
   tap(98, 1016, 100)
 end
 
---  是否不在困难模式
+--  是否在普通模式
 battle.isNormalMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end

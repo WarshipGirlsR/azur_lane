@@ -4,6 +4,14 @@ local sz = require 'sz'
 local json = sz.json
 require 'console'
 
+-- 拦截 lua-require 的加载
+do
+  package.preload['BaseOperate'] = function(...)
+    return setmetatable({}, { __call = function(self) return false end })
+  end
+end
+
+-- 字符串分割
 do
   string.split = string.split or function(str, d)
     if str == '' and d ~= '' then
@@ -111,7 +119,7 @@ end)()
 
 -- 重新载入这个脚本，以解决触动精灵使用 string 模式载入脚本导致无法获取脚本路径的问题
 -- 触动精灵启动脚本以 string 方式载入，使得 debug 库无法获取载入脚本的路径。而使用 require 载入
--- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。,,,,       ,
+-- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。
 local projectBasePath
 do
   local result = debug.getinfo(1, 'S')

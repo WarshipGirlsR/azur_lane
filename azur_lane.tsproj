@@ -11,6 +11,9 @@ lib/mission-chain.lua
 lib/promise.lua
 lib/string-polyfill.lua
 lib/table-polyfill.lua
+meta-operation/battle.lua
+meta-operation/home.lua
+meta-operation/index.lua
 missions/battle.lua
 missions/common-listener.lua
 missions/home.lua
@@ -30,5 +33,6 @@ console.lua
 clear-workspace.lua
 create-dirs.lua
 lua-require.lua
+main.lua
 options-label.lua
 store.lua

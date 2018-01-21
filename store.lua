@@ -1,4 +1,1 @@
-return {
-  battle = {},
-  map = {},
-}
+return {}

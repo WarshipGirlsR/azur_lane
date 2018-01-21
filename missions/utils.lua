@@ -27,13 +27,14 @@ local combineListener = function(target, ...)
   return resultReverse
 end
 
-local setScreenListeners = function(theArr, ...)
+local setScreenListeners = function(...)
+  local firstArr = select('1', ...)
 
-  if ((type(theArr) ~= 'table') or (#theArr == 0)) then
+  if type(firstArr) ~= 'table' then
     return Promise.resolve(nil)
   end
 
-  theArr = table.merge(theArr, ...)
+  local theArr = table.merge(...)
 
   local theArrUnique = table.uniqueLast(theArr, 2)
   for key = 1, #theArrUnique do
@@ -47,7 +48,7 @@ local setScreenListeners = function(theArr, ...)
     for key = 1, #theArrUnique do
       local listenerEvent = theArrUnique[key]
 
-      if ((type(listenerEvent[3]) == 'number') and (listenerEvent[3] > 0)) then
+      if type(listenerEvent[3]) == 'number' and listenerEvent[3] > 0 then
         table.insert(newArr, Promise.new(function(resolve)
           local id = eq.setTimeout(resolve, listenerEvent[3])
           table.insert(ids, id)

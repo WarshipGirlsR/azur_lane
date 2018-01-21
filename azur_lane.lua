@@ -34,7 +34,7 @@ local socket = require 'socket'
 local createChain = require('./lib/mission-chain').createChain
 local missionsList = require './missions'
 local sleepPromise = require './utils/sleep-promise'
-local store = require '../store'
+local store = require './store'
 
 local stepLabel = require './utils/step-label'
 stepLabel.init('stopbtn')
@@ -81,7 +81,7 @@ co(c.create(function()
     local theMissionsQuery = {}
     -- 是否运行出征
     if (settings.battleEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'TEST_A' })
+      table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })
     end
 
     local theChain = createChain(missionsList)
@@ -115,6 +115,7 @@ co(c.create(function()
   end
 end)).catch(function(err)
   wLog('azur_lane', '[DATE] ' .. err);
+  nLog(err)
   EventQuery.setImmediate(function() error(err) end)
 end)
 

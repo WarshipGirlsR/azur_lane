@@ -21,14 +21,4 @@ home.isHome = function()
   return result
 end
 
--- 点击出征
-home.clickBattleBtn = function()
-  tap(1628, 599, 100)
-end
-
--- 点击活动
-home.clickEventBtn = function()
-  tap(1018, 249, 100)
-end
-
 return home

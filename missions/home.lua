@@ -1,11 +1,9 @@
-local co = require 'Co'
+local co = require '../lib/co'
 local c = coroutine
-local stepLabel = require 'StepLabel'
-local makeAction = (require 'GoMission__utils').makeAction
-local sleepPromise = (require 'GoMission__utils').sleepPromise
-local setScreenListeners = (require 'GoMission__utils').setScreenListeners
-local allOptions = require 'GoMission__options'
-
+local stepLabel = require '../utils/step-label'
+local makeAction = (require './utils').makeAction
+local sleepPromise = require '../utils/sleep-promise'
+local setScreenListeners = (require './utils').setScreenListeners
 
 local home = function(action, state)
   local map = allOptions.map
