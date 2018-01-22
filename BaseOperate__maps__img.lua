@@ -213,6 +213,19 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 我方舰队不和boss重叠 sp3 的 1-7
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1444, 586, 0x3a2831 }, { 1428, 556, 0x423942 },
+          { 1458, 555, 0x312829 }, { 1425, 584, 0xff4d52 },
+          { 1466, 583, 0xf74952 }, { 1445, 612, 0x191010 },
+          { 1428, 545, 0x290c10 }, { 1463, 548, 0x190c08 },
+          { 1445, 546, 0x191010 },
+        })
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 战斗中的点
     inBattleList = {
