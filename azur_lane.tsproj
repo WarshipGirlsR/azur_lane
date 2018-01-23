@@ -32,6 +32,7 @@ azur_lane.lua
 console.lua
 clear-workspace.lua
 create-dirs.lua
+lua-net-loading.lua
 lua-require.lua
 main.lua
 options-label.lua

@@ -1,39 +1,62 @@
+-- 重新载入这个脚本，以解决触动精灵使用 string 模式载入脚本导致无法获取脚本路径的问题
+-- 触动精灵启动脚本以 string 方式载入，使得 debug 库无法获取载入脚本的路径。而使用 require 载入
+-- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。
+local projectBasePath
+do
+  local result = debug.getinfo(1, 'S')
+  if string.match(result.short_src, '%[string') then
+    local newMain = string.gsub(result.source, '%.lua$', '')
+    package.loaded[newMain] = nil
+    require(newMain)
+    lua_exit()
+    os.exit()
+    return
+  else
+    projectBasePath = string.gsub(result.source, '^@', '')
+  end
+end
+
+
 useNlog = true
 local socket = require 'socket'
 local sz = require 'sz'
-local http = require 'socket.http'
 local json = sz.json
 require 'console'
 
 -- 拦截 lua-require 的加载
 do
-  package.preload['BaseOperate'] = function(...)
+  package.preload['lua-require'] = function(...)
     return setmetatable({}, { __call = function(self) return false end })
   end
 end
 
 -- 字符串分割
+local myString = {}
 do
-  string.split = string.split or function(str, d)
+  for key, value in pairs(string) do
+    myString[key] = value
+  end
+
+  myString.split = myString.split or function(str, d)
     if str == '' and d ~= '' then
       return { str }
     elseif str ~= '' and d == '' then
       local lst = {}
-      for key = 1, string.len(str) do
-        table.insert(lst, string.sub(str, key, 1))
+      for key = 1, myString.len(str) do
+        table.insert(lst, myString.sub(str, key, 1))
       end
       return lst
     else
       local lst = {}
-      local n = string.len(str) --长度
+      local n = myString.len(str) --长度
       local start = 1
       while start <= n do
-        local i = string.find(str, d, start) -- find 'next' 0
+        local i = myString.find(str, d, start) -- find 'next' 0
         if i == nil then
-          table.insert(lst, string.sub(str, start, n))
+          table.insert(lst, myString.sub(str, start, n))
           break
         end
-        table.insert(lst, string.sub(str, start, i - 1))
+        table.insert(lst, myString.sub(str, start, i - 1))
         if i == n then
           table.insert(lst, "")
           break
@@ -43,20 +66,23 @@ do
       return lst
     end
   end
+  for key, value in pairs(myString) do
+    string[key] = string[key] or value
+  end
 end
 
 local path = (function()
   local path = {}
-  path.separator = string.find(package.path, '/') and '/' or '\\'
+  path.separator = myString.find(package.path, '/') and '/' or '\\'
   path.basename = function(thePath)
-    thePath = string.gsub(thePath, '\\', '/')
-    local thePathArray = string.split(thePath, '/')
+    thePath = myString.gsub(thePath, '\\', '/')
+    local thePathArray = myString.split(thePath, '/')
     local res = table.remove(thePathArray)
     return res
   end
   path.dirname = function(thePath)
-    thePath = string.gsub(thePath, '\\', '/')
-    local thePathArray = string.split(thePath, '/')
+    thePath = myString.gsub(thePath, '\\', '/')
+    local thePathArray = myString.split(thePath, '/')
     table.remove(thePathArray)
     return table.concat(thePathArray, path.separator)
   end
@@ -67,8 +93,8 @@ local path = (function()
     local resultPathArray = {}
     for key = 1, #pathArray do
       if pathArray[key] ~= '' then
-        local thePath = string.gsub(pathArray[key], '\\', '/')
-        local thePathArray = string.split(thePath, '/')
+        local thePath = myString.gsub(pathArray[key], '\\', '/')
+        local thePathArray = myString.split(thePath, '/')
         for key2 = 1, #thePathArray do
           local theName = thePathArray[key2]
           if theName == '' and #resultPathArray > 0 then
@@ -94,8 +120,8 @@ local path = (function()
     local resultPathArray = {}
     for key = 1, #pathArray do
       if pathArray[key] ~= '' then
-        local thePath = string.gsub(string.gsub(pathArray[key], '\\', '/'), '/$', '')
-        local thePathArray = string.split(thePath, '/')
+        local thePath = myString.gsub(myString.gsub(pathArray[key], '\\', '/'), '/$', '')
+        local thePathArray = myString.split(thePath, '/')
         for key2 = 1, #thePathArray do
           local theName = thePathArray[key2]
           if theName == '' and key2 == 1 then
@@ -118,23 +144,6 @@ local path = (function()
   return path
 end)()
 
--- 重新载入这个脚本，以解决触动精灵使用 string 模式载入脚本导致无法获取脚本路径的问题
--- 触动精灵启动脚本以 string 方式载入，使得 debug 库无法获取载入脚本的路径。而使用 require 载入
--- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。
-local projectBasePath
-do
-  local result = debug.getinfo(1, 'S')
-  if string.match(result.short_src, '%[string') then
-    local newMain = string.gsub(result.source, '%.lua$', '')
-    package.loaded[newMain] = nil
-    require(newMain)
-    lua_exit()
-    os.exit()
-    return
-  else
-    projectBasePath = string.gsub(result.source, '^@', '')
-  end
-end
 
 -- 弹出面板
 local function luaNetLoadingPanel()
@@ -177,7 +186,7 @@ local function luaNetLoadingPanel()
           ['id'] = 'serverUrl',
           ['type'] = 'Edit',
           ['prompt'] = '服务器地址前缀',
-          ['text'] = 'http://192.168.1.2:8080/project/',
+          ['text'] = 'http://news.163.com/18',
           ['kbtype'] = 'default',
         },
       },
@@ -211,26 +220,35 @@ end
 local ret, settings = luaNetLoadingPanel()
 
 
-function download(hostBasePath, projectBasePath, filePath)
+local function download(hostBasePath, projectBasePath, filePath)
+  local function fileExists(path)
+    local file = io.open(path, 'rb')
+    if file then file:close() end
+    return file ~= nil
+  end
 
-  local request_body = ''
-  local response_body = {}
+  local response_body, code = socket.http.request(hostBasePath .. filePath)
 
-  local res, code, response_headers = http.request({
-    url = "http://httpbin.org/post",
-    method = "GET",
-    sink = ltn12.sink.table(response_body),
-  })
+  if not fileExists(path.dirname(path.join(projectBasePath, filePath))) then
+    os.execute('mkdir -p ' .. path.dirname(path.join(projectBasePath, filePath)))
+  end
+  if not fileExists(path.join(projectBasePath, filePath)) then
+    os.execute('echo "" > ' .. path.join(projectBasePath, filePath))
+  end
+  local file, err = io.open(path.join(projectBasePath, filePath), 'w')
 
-  local file = io.open(path.join(projectBasePath, filePath), w)-
   if type(response_body) == 'table' then
     file:write(table.concat(response_body, ''))
   elseif type(response_body) == 'string' then
     file:write(response_body)
   elseif type(response_body) == 'number' then
     file:write(tostring(response_body))
+  elseif type(response_body) == 'boolean' and response_body then
+    file:write('true')
+  elseif type(response_body) == 'boolean' and not response_body then
+    file:write('false')
   end
   file:close()
 end
 
-download(settings.serverUrl, projectBasePath, '/andrew57/article/details/9788903')
+download(settings.serverUrl, path.dirname(projectBasePath), '/0123/08/D8QRDTE10001875P.html')
