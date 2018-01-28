@@ -7,29 +7,34 @@ local options = {
   extensions = { '', '.lua', '/index.lua' },
 }
 
+-- 字符串分割
+local myString = {}
 do
-  string.split = string.split or function(str, d)
+  for key, value in pairs(string) do
+    myString[key] = value
+  end
+  myString.split = myString.split or function(str, d)
     if str == '' and d ~= '' then
       return { str }
     elseif str ~= '' and d == '' then
       local lst = {}
-      for key = 1, string.len(str) do
-        table.insert(lst, string.sub(str, key, 1))
+      for key = 1, myString.len(str) do
+        table.insert(lst, myString.sub(str, key, 1))
       end
       return lst
     else
       local lst = {}
-      local n = string.len(str) --长度
+      local n = myString.len(str) --长度
       local start = 1
       while start <= n do
-        local i = string.find(str, d, start) -- find 'next' 0
+        local i = myString.find(str, d, start) -- find 'next' 0
         if i == nil then
-          table.insert(lst, string.sub(str, start, n))
+          table.insert(lst, myString.sub(str, start, n))
           break
         end
-        table.insert(lst, string.sub(str, start, i - 1))
+        table.insert(lst, myString.sub(str, start, i - 1))
         if i == n then
-          table.insert(lst, "")
+          table.insert(lst, '')
           break
         end
         start = i + 1
@@ -37,20 +42,25 @@ do
       return lst
     end
   end
+  for key, value in pairs(myString) do
+    string[key] = string[key] or value
+  end
 end
 
 local path = (function()
   local path = {}
-  path.separator = string.find(package.path, '/') and '/' or '\\'
+  path.separator = myString.find(package.path, '/') and '/' or '\\'
   path.basename = function(thePath)
-    thePath = string.gsub(thePath, '\\', '/')
-    local thePathArray = string.split(thePath, '/')
+    thePath = myString.gsub(thePath, '\\', '/')
+    thePath = myString.gsub(thePath, '//+', '/')
+    local thePathArray = myString.split(thePath, '/')
     local res = table.remove(thePathArray)
     return res
   end
   path.dirname = function(thePath)
-    thePath = string.gsub(thePath, '\\', '/')
-    local thePathArray = string.split(thePath, '/')
+    thePath = myString.gsub(thePath, '\\', '/')
+    thePath = myString.gsub(thePath, '//+', '/')
+    local thePathArray = myString.split(thePath, '/')
     table.remove(thePathArray)
     return table.concat(thePathArray, path.separator)
   end
@@ -64,8 +74,9 @@ local path = (function()
         if type(pathArray[key]) ~= 'string' then
           error('bad argument #' .. key .. ' to \'path.join\' (string expected, got ' .. type(pathArray[key]) .. ')', 2)
         end
-        local thePath = string.gsub(pathArray[key], '\\', '/')
-        local thePathArray = string.split(thePath, '/')
+        local thePath = myString.gsub(pathArray[key], '\\', '/')
+        thePath = myString.gsub(thePath, '//+', '/')
+        local thePathArray = myString.split(thePath, '/')
         for key2 = 1, #thePathArray do
           local theName = thePathArray[key2]
           if theName == '' and #resultPathArray > 0 then
@@ -91,8 +102,9 @@ local path = (function()
     local resultPathArray = {}
     for key = 1, #pathArray do
       if pathArray[key] ~= '' then
-        local thePath = string.gsub(string.gsub(pathArray[key], '\\', '/'), '/$', '')
-        local thePathArray = string.split(thePath, '/')
+        local thePath = myString.gsub(myString.gsub(pathArray[key], '\\', '/'), '/$', '')
+        thePath = myString.gsub(thePath, '//+', '/')
+        local thePathArray = myString.split(thePath, '/')
         for key2 = 1, #thePathArray do
           local theName = thePathArray[key2]
           if theName == '' and key2 == 1 then
@@ -122,7 +134,7 @@ requireFactory = function(dirPath)
       error('bad argument #1 to \'require\' (string expected, got ' .. type(loadpath) .. ')', 2)
     end
 
-    if string.match(loadpath, '^%.%/') or string.match(loadpath, '^%.%.%/') or string.match(loadpath, '^%/') then
+    if myString.match(loadpath, '^%.%/') or myString.match(loadpath, '^%.%.%/') or myString.match(loadpath, '^%/') then
       local requirePath
       local absolutePath
 
@@ -203,8 +215,8 @@ return function(optionParam)
   options.basePath = optionParam.basePath or options.basePath
 
   local result = debug.getinfo(2, 'S')
-  if string.match(result.short_src, '%[string') then
-    local newMain = string.gsub(result.source, '%.lua$', '')
+  if myString.match(result.short_src, '%[string') then
+    local newMain = myString.gsub(result.source, '%.lua$', '')
     package.loaded[newMain] = nil
     originRequire(newMain)
     options.osExit()
@@ -213,7 +225,7 @@ return function(optionParam)
 
   if not _require then
     _require = originRequire
-    local filePath = string.gsub(result.source, '^@', '')
+    local filePath = myString.gsub(result.source, '^@', '')
 
     options.basePath = optionParam.basePath or path.dirname(filePath)
     options.extensions = optionParam.extensions or options.extensions

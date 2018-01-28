@@ -2,6 +2,10 @@
 -- 触动精灵启动脚本以 string 方式载入，使得 debug 库无法获取载入脚本的路径。而使用 require 载入
 -- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。
 local projectBasePath
+local extensions = {
+  '', '.lua', '/index.lua'
+}
+
 do
   local result = debug.getinfo(1, 'S')
   if string.match(result.short_src, '%[string') then
@@ -21,7 +25,11 @@ useNlog = true
 local socket = require 'socket'
 local sz = require 'sz'
 local json = sz.json
+originRequire = require
+_require = require
 require 'console'
+
+
 
 -- 拦截 lua-require 的加载
 do
@@ -58,7 +66,7 @@ do
         end
         table.insert(lst, myString.sub(str, start, i - 1))
         if i == n then
-          table.insert(lst, "")
+          table.insert(lst, '')
           break
         end
         start = i + 1
@@ -146,7 +154,7 @@ end)()
 
 
 -- 弹出面板
-local function luaNetLoadingPanel()
+local luaNetLoadingPanel = function()
   local settingTable = {
     ['style'] = 'default',
     ['width'] = height,
@@ -186,7 +194,7 @@ local function luaNetLoadingPanel()
           ['id'] = 'serverUrl',
           ['type'] = 'Edit',
           ['prompt'] = '服务器地址前缀',
-          ['text'] = 'http://news.163.com/18',
+          ['text'] = 'http://192.168.8.82:8080',
           ['kbtype'] = 'default',
         },
       },
@@ -214,41 +222,162 @@ local function luaNetLoadingPanel()
 
     -- 服务器地址前缀
   end
+  if not ret then
+    return ret, settings
+  end
+  settings.serverUrl = (function(serverUrl)
+    return myString.gsub(serverUrl, '/$', '')
+  end)(settings.serverUrl)
   return ret, settings
 end
 
 local ret, settings = luaNetLoadingPanel()
+if not ret then
+  lua_exit()
+end
 
-
-local function download(hostBasePath, projectBasePath, filePath)
+local download = function(hostBasePath, projectDirName, filePath)
+  filePath = path.resolve('/', filePath)
   local function fileExists(path)
     local file = io.open(path, 'rb')
     if file then file:close() end
     return file ~= nil
   end
 
+  console.log(path.join(hostBasePath .. filePath))
   local response_body, code = socket.http.request(hostBasePath .. filePath)
+  if code ~= 200 then
+    return nil, code
+  end
+  if not fileExists(path.dirname(path.join(projectDirName, filePath))) then
+    os.execute('mkdir -p ' .. path.dirname(path.join(projectDirName, filePath)))
+  end
+  if not fileExists(path.join(projectDirName, filePath)) then
+    os.execute('echo "" > ' .. path.join(projectDirName, filePath))
+  end
+  local file, err = io.open(path.join(projectDirName, filePath), 'w')
+  if not file then
+    return nil, err
+  end
 
-  if not fileExists(path.dirname(path.join(projectBasePath, filePath))) then
-    os.execute('mkdir -p ' .. path.dirname(path.join(projectBasePath, filePath)))
-  end
-  if not fileExists(path.join(projectBasePath, filePath)) then
-    os.execute('echo "" > ' .. path.join(projectBasePath, filePath))
-  end
-  local file, err = io.open(path.join(projectBasePath, filePath), 'w')
+  local context = ''
 
   if type(response_body) == 'table' then
-    file:write(table.concat(response_body, ''))
+    context = table.concat(response_body, '')
   elseif type(response_body) == 'string' then
-    file:write(response_body)
+    context = response_body
   elseif type(response_body) == 'number' then
-    file:write(tostring(response_body))
+    context = tostring(response_body)
   elseif type(response_body) == 'boolean' and response_body then
-    file:write('true')
+    context = 'true'
   elseif type(response_body) == 'boolean' and not response_body then
-    file:write('false')
+    context = 'false'
   end
+  file:write(context)
   file:close()
+  return context;
 end
 
-download(settings.serverUrl, path.dirname(projectBasePath), '/0123/08/D8QRDTE10001875P.html')
+local requireFactory
+requireFactory = function(dirPath)
+  local projectDirName = path.dirname(projectBasePath)
+  return function(loadpath)
+    if type(loadpath) ~= 'string' then
+      error('bad argument #1 to \'require\' (string expected, got ' .. type(loadpath) .. ')', 2)
+    end
+
+    if myString.match(loadpath, '^%.%/') or myString.match(loadpath, '^%.%.%/') or myString.match(loadpath, '^%/') then
+      local requirePath
+      local absolutePath
+
+      -- 遍历扩展名列表并尝试在 package.loaded 里寻找已加载的模块
+      for key = 1, #extensions do
+        local rp = path.resolve(dirPath, loadpath .. extensions[key])
+        if package.loaded[rp] then
+          requirePath = rp
+          absolutePath = path.join(projectDirName, rp)
+          break
+        end
+      end
+      -- 如果 package.loaded 中没有需要的模块
+      if not requirePath or not package.loaded[requirePath] then
+        -- 遍历扩展名列表并尝试在 package.preload 里寻找已加载的模块
+        for key = 1, #extensions do
+          local rp = path.resolve(dirPath, loadpath .. extensions[key])
+          if package.preload[rp] then
+            requirePath = rp
+            absolutePath = path.join(projectDirName, rp)
+            break
+          end
+        end
+        -- 如果 package.preload 中没有需要的模块
+        if not requirePath or not package.preload[requirePath] then
+          local requireSource
+          local file
+          local errArr = {}
+          -- 遍历扩展名列表并尝试从网络中寻找模块
+          for key = 1, #extensions do
+            local rp = path.resolve(dirPath, loadpath .. extensions[key])
+            local requireSource, err = download(settings.serverUrl, projectDirName, rp)
+            console.log(err)
+            if not requireSource then
+              table.insert(errArr, err)
+            end
+            -- 成功读取文件，返回项目路径和系统路径
+            if requireSource then
+              requirePath = rp
+              absolutePath = ap
+              break
+            end
+          end
+
+          if not requireSource then
+            -- 遍历扩展名列表并尝试从文件中寻找模块
+            for key = 1, #extensions do
+              local rp = path.resolve(dirPath, loadpath .. extensions[key])
+              local ap = path.join(projectDirName, rp)
+              local res, err = pcall(function()
+                local theFile = assert(io.open(ap, 'r'))
+                file = theFile
+                requireSource = file:read('*a')
+              end)
+              if not res then
+                table.insert(errArr, err)
+              end
+              -- 成功读取文件，返回项目路径和系统路径
+              if requireSource then
+                requirePath = rp
+                absolutePath = ap
+                break
+              end
+            end
+          end
+          -- 如果都没找到能执行的文件，则抛出错误
+          if not requireSource then
+            error(table.concat(errArr, '\r\n'), 2)
+          end
+          if file then
+            file.close()
+          end
+          requireSource = 'local require, modePath = ...; ' .. requireSource
+          package.preload[requirePath] = assert(load(requireSource, '@' .. absolutePath, 'bt', _ENV))
+        end
+        package.loaded[requirePath] = package.preload[requirePath](requireFactory(path.dirname(requirePath)), requirePath) or true
+        -- 载入完成以后删除 package.preloaded 里的内容
+        package.preload[requirePath] = nil
+      end
+      return package.loaded[requirePath]
+    else
+      local requireRes
+      local res, err = pcall(function()
+        requireRes = originRequire(loadpath)
+      end)
+      if not res then
+        error(err, 2)
+      end
+      return requireRes
+    end
+  end
+end
+
+requireFactory('/')('./azur_lane')
