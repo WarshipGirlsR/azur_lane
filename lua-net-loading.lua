@@ -27,7 +27,6 @@ local sz = require 'sz'
 local json = sz.json
 originRequire = require
 _require = require
-require 'console'
 
 
 
@@ -244,7 +243,6 @@ local download = function(hostBasePath, projectDirName, filePath)
     return file ~= nil
   end
 
-  console.log(path.join(hostBasePath .. filePath))
   local response_body, code = socket.http.request(hostBasePath .. filePath)
   if code ~= 200 then
     return nil, code
@@ -319,7 +317,6 @@ requireFactory = function(dirPath)
           for key = 1, #extensions do
             local rp = path.resolve(dirPath, loadpath .. extensions[key])
             local requireSource, err = download(settings.serverUrl, projectDirName, rp)
-            console.log(err)
             if not requireSource then
               table.insert(errArr, err)
             end

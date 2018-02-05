@@ -15,11 +15,14 @@ local o = {
   battle = moBattle,
 }
 
+
+local battleListenerList = {
+  { '', o.home.isHome, 2000 },
+  { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.home.isBattleChapterPage, 2000 },
+}
+
 local battle = function(action)
   local settings = store.settings;
-
-  local battleListenerList = {}
-
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
 
@@ -29,7 +32,7 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2.1.等待桌面')
 
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
       }))
       return makeAction(newstateTypes)
@@ -38,7 +41,7 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2.1.点击出击')
       o.battle.clickBattleBtn()
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
       }))
@@ -57,13 +60,13 @@ local battle = function(action)
         or (settings.battleMode == 'hard' and not o.battle.isHardMode()) then
         o.battle.clickSwitchHardModeBtn()
 
-        local newstateTypes = c.yield(setScreenListeners({
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
         }))
         return makeAction(newstateTypes)
       end
 
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },
       }))
       return makeAction(newstateTypes)
@@ -73,7 +76,7 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.2.移动到第' .. settings.battleChapter .. '章')
       o.battle.moveToChapter(settings.battleChapter)
 
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage, 2000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel },
       }))
@@ -85,7 +88,7 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.6.点击继续')
       o.battle.clickGotoSelectFleedPanelBtn()
 
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel },
@@ -104,7 +107,7 @@ local battle = function(action)
         else
           o.battle.clickFleet(unselectList)
         end
-        local newstateTypes = c.yield(setScreenListeners({
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 500 },
           { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 }
         }))
@@ -113,7 +116,7 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2.6.点击进入章节')
       o.battle.clickGotoMapBtn()
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
@@ -125,12 +128,24 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.6.困难选择舰队面板')
       stepLabel.setStepLabelContent('2.6.点击立刻前往')
       o.battle.clickHardGotoSelectFleedPanelBtn()
-      local newstateTypes = c.yield(setScreenListeners({
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_MAP_PAGE', o.battle.isChapterInfoPanel },
       }))
       return makeAction(newstateTypes)
 
     elseif action.type == 'BATTLE_MAP_PAGE' then
+
+      if settings.battleFleet == '' then
+      else
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_MAP_PAGE', o.battle.isChapterInfoPanel },
+        }))
+        return makeAction(newstateTypes)
+      end
+
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME' then
+
+      o.battle.battlePageClickBackToHome();
     end
 
     return nil
