@@ -446,6 +446,7 @@ battle.scanMapCheckFleetNum = function()
   return result
 end
 
+-- 是否选中指定舰队
 battle.isSelectedFleed = function(fleet)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
@@ -488,6 +489,7 @@ battle.isSelectedFleed = function(fleet)
   return result
 end
 
+-- 地图点击切换舰队面板
 battle.clickSwitchFleetBtn = function()
   tap(1426, 1003, 100)
 end
@@ -534,15 +536,17 @@ battle.isAmbushedPanel = function()
   return result
 end
 
+-- 躲避伏击
 battle.ambushedPanelClickAvoidBtn = function()
   tap(1351, 564)
 end
 
+-- 移动到敌人
 battle.moveToEnemy = function(point)
   tap(point[1], point[2])
 end
 
--- 检测敌方伏击面板
+-- 检测准备战斗面板
 battle.isReadyBattlePage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
@@ -566,6 +570,7 @@ battle.isReadyBattlePage = function()
   return result
 end
 
+-- 准备战斗面板点击出击
 battle.readyBattlePageClickBattle = function()
   tap(1592, 952)
 end
@@ -619,7 +624,7 @@ battle.isAutoBattleConfirmPanel = function()
 end
 
 -- 自动战斗确认面板点击知道了
-battle.isAutoBattleConfirmPanelClickOk = function()
+battle.autoBattleConfirmPanelClickOk = function()
   tap(949, 779)
 end
 
@@ -765,7 +770,7 @@ battle.isGetExpPanel = function()
   return result
 end
 
--- 获得道具面板点击继续
+-- 获得经验面板点击继续
 battle.getExpPanelClickNext = function()
   tap(1671, 914)
 end
@@ -791,7 +796,7 @@ battle.isUrgentEntrustmentPanel = function()
   return result
 end
 
--- 获得道具面板点击继续
+-- 紧急委托面板点击继续
 battle.urgentEntrustmentPanelClickOk = function()
   tap(957, 739)
 end

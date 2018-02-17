@@ -8,34 +8,38 @@ local moHome = require '../meta-operation/home'
 local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 
+local o = {
+  home = moHome,
+  battle = moBattle,
+}
+
 local comparePoints = function(point1, point2)
   return point1[1] == point2[1] and point1[2] == point2[2]
 end
 
 
 local mapsType1 = function(action)
-  local map = allOptions.map
-  local settings = allOptions.settings
+  local settings = store.settings;
   local mapProxy = map['map' .. string.gsub(settings.battleChapter, '-', '_')]
 
   local battleMap = {
-    { 'BATTLE_BATTLE_PAGE', map.battle.isBattlePage, 2000 },
-    { 'BATTLE_CHAPTER_INFO_PANEL', map.battle.isChapterInfoPanel, 2000 },
-    { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', map.battle.isAmbushedPanel, 2000 },
-    { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', map.battle.isReadyBattlePage, 1000 },
-    { 'BATTLE_IN_BATTLE_PAGE', map.battle.isInBattlePage, 2000 },
-    { 'BATTLE_AUTO_BATTLE_PANEL', map.battle.isNotAutoBattle, 2000 },
-    { 'BATTLE_VICTORY_PANEL', map.battle.isVictoryPanel, 2000 },
-    { 'BATTLE_GET_PROPS_PANEL', map.battle.isGetPropsPanel, 2000 },
-    { 'BATTLE_GET_NEW_SHIP_PANEL', map.battle.isGetNewShipPanel, 2000 },
-    { 'BATTLE_GET_EXP_PANEL', map.battle.isGetExpPanel, 2000 },
+    { 'BATTLE_BATTLE_PAGE', o.battle.isBattlePage, 2000 },
+    { 'BATTLE_CHAPTER_INFO_PANEL', o.battle.isChapterInfoPanel, 2000 },
+    { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', o.battle.isAmbushedPanel, 2000 },
+    { 'BATTLE_MAP_PAGE_READY_BATTLE_PAGE', o.battle.isReadyBattlePage, 1000 },
+    { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },
+    { 'BATTLE_AUTO_BATTLE_PANEL', o.battle.isNotAutoBattle, 2000 },
+    { 'BATTLE_VICTORY_PANEL', o.battle.isVictoryPanel, 2000 },
+    { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },
+    { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },
+    { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
     { { type = 'BATTLE_MAP_PAGE_FORMATION_PANEL', addToStart = true }, map.battle.isFormationPanel },
   }
 
   return co(c.create(function()
     if action.type == 'MAPS_MAP_START' then
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
-      state.map.checkpositionListForMove = state.map.checkpositionListForMove or {}
+      state.map.checkpositionListForMove = state.o.checkpositionListForMove or {}
       -- 获取地图信息。如果上次扫描结果还在，就把敌人列表保留下来
       -- 因为敌人容易被我方舰队覆盖住导致扫描不到
       -- 所以敌人列表在关卡中都不清除，其他列表在每次开始扫描棋盘前会清除。
@@ -74,7 +78,7 @@ local mapsType1 = function(action)
 
       stepLabel.setStepLabelContent('3-1.开始移动地图')
       local newstateTypes = c.yield(setScreenListeners({
-        { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', map.battle.isMapPage },
+        { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -85,7 +89,7 @@ local mapsType1 = function(action)
       state.map.currentPosition = mapProxy.getMapPosition(targetPosition)
       console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', map.battle.isMapPage },
+        { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_CHECK', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -97,13 +101,13 @@ local mapsType1 = function(action)
       if effectiveStep and comparePoints(state.map.moveVectorForCheck, newMoveVector) then
         state.map.moveVectorForCheck = newMoveVector
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage, 500 },
+          { 'MAPS_MAP_SCAN_MAP', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       end
       state.map.moveVectorForCheck = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK', map.battle.isMapPage },
+        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -114,12 +118,12 @@ local mapsType1 = function(action)
 
       if isCenter then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage, 500 },
+          { 'MAPS_MAP_SCAN_MAP', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       else
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', map.battle.isMapPage },
+          { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
@@ -133,12 +137,12 @@ local mapsType1 = function(action)
       if #state.map.checkpositionListForCheck > 1 then
         table.remove(state.map.checkpositionListForCheck, 1)
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', map.battle.isMapPage },
+          { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_NEXT_STEP', map.battle.isMapPage },
+        { 'MAPS_MAP_GET_NEXT_STEP', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -154,7 +158,7 @@ local mapsType1 = function(action)
       end
       if table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
         stepLabel.setStepLabelContent('3-7.开始战斗')
-        map.battle.clickAttackBtn()
+        o.battle.clickAttackBtn()
       elseif #mapChessboard.bossPosition > 0 then
         stepLabel.setStepLabelContent('3-8.移动到boss位置')
         state.battle.moveState = 'moveToBoss'
@@ -162,7 +166,7 @@ local mapsType1 = function(action)
       elseif state.battle.moveState == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
         state.battle.moveState = 'moveToClosestEnemy'
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_NEXT_STEP', map.battle.isMapPage },
+          { 'MAPS_MAP_GET_NEXT_STEP', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       elseif state.battle.moveState == 'moveToWaitBoss' then
@@ -184,7 +188,7 @@ local mapsType1 = function(action)
       -- 如果还是没有移动目标，只好重新扫描
       if not state.map.nextStepPoint then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_START', map.battle.isMapPage },
+          { 'MAPS_MAP_START', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
@@ -201,7 +205,7 @@ local mapsType1 = function(action)
       end
 
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'BATTLE_MAP_PAGE_SELECT_FLEET', map.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_SELECT_FLEET', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -212,7 +216,7 @@ local mapsType1 = function(action)
       state.map.currentPosition = mapProxy.getMapPosition(targetPosition)
       console.log(state.map.currentPosition)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP', map.battle.isMapPage },
+        { 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -224,13 +228,13 @@ local mapsType1 = function(action)
       if effectiveStep and comparePoints(state.map.moveVectorForAStep, newMoveVector) then
         state.map.moveVectorForAStep = newMoveVector
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage, 500 },
+          { 'MAPS_MAP_MOVE_A_STEP', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       end
       state.map.moveVectorForAStep = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_A_STEP', map.battle.isMapPage },
+        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -240,12 +244,12 @@ local mapsType1 = function(action)
       local isCenter = mapProxy.moveMapToCheckPosition(state.map.moveVectorForAStep)
       if isCenter then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage, 500 },
+          { 'MAPS_MAP_MOVE_A_STEP', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       else
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', map.battle.isMapPage, 1000 },
+          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       end
@@ -258,17 +262,17 @@ local mapsType1 = function(action)
       local nextColNum = state.map.nextStepPoint[2]
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, state.map.nextStepPoint)
-        map.battle.clickAttackBtn()
+        o.battle.clickAttackBtn()
       elseif #state.map.checkpositionListForMove > 0 then
         local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', map.battle.isMapPage },
+          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
 
       state.map.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 3000 }
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', o.battle.isMapPage, 3000 }
       }))
       return makeAction(newstateTypes)
     end

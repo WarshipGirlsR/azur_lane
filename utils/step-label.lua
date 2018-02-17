@@ -12,7 +12,6 @@ local tsint = tonumber(string.sub(tsver, 1, 1) .. string.sub(tsver, 3, 3) .. str
 if tsint >= 170 then
   fontSize = 7
 end
-console.log(getTSVer())
 
 fwShowWnd('steplabel', 350, 50, 300, 100, 0)
 
@@ -38,10 +37,20 @@ StepLable.setStepLabelContent = function(text, noNLog)
   fwShowButton('steplabel', StepLable.labelId, finalText, '90333333', '90FFFFFF', '', 7, 0, 0, 300, 100)
   local dateStr = os.date('%Y-%m-%d %X')
   if not noNLog then
-    wLog('azur_lane', '[DATE] ' .. finalText);
+    local info = debug.getinfo(2, 'Sl')
+    local lineInfo = ''
+    if info.currentline then
+      lineInfo = info.source .. ': ' .. info.currentline .. ': '
+    end
+    wLog('azur_lane', '[DATE] ' .. lineInfo .. finalText);
   end
   if useNlog then
-    nLog(dateStr .. ' ' .. finalText)
+    local info = debug.getinfo(2, 'Sl')
+    local lineInfo = ''
+    if info.currentline then
+      lineInfo = info.source .. ': ' .. info.currentline .. ':\n'
+    end
+    nLog(lineInfo .. dateStr .. ' ' .. finalText .. '\n')
   end
 end
 

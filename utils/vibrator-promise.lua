@@ -10,4 +10,18 @@ local sleepPromise = function(ms)
     EventQuery.setTimeout(resolve, ms)
   end)
 end
-return sleepPromise
+
+local vibratorPromise = function(num, ms)
+  num = num or 1
+  ms = ms or 500
+  local res = Promise.resolve(1)
+  for key = 1, num do
+    res = res.andThen(function()
+      return vibrator()
+    end).andThen(function()
+      return sleepPromise(ms)
+    end)
+  end
+  return res
+end
+return vibratorPromise

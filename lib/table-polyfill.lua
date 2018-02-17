@@ -161,7 +161,9 @@ end
 
 myTable.assign = myTable.assign or function(target, ...)
   local sources = { ... }
-  if (type(target) ~= 'table') then target = {} end
+  if (type(target) ~= 'table') then
+    target = {}
+  end
   for key1 = 1, #sources do
     local source = sources[key1]
     for key2, value in pairs(source) do
@@ -245,7 +247,12 @@ myTable.uniqueLast = myTable.uniqueLast or function(target, path)
   elseif ((pathType == 'number') or (pathType == 'string')) then
     for key = 1, #target do
       local value = target[key]
-      theMap[value[path]] = { key = key, value = value }
+      local res, err = pcall(function()
+        theMap[value[path]] = { key = key, value = value }
+      end)
+      if not res then
+        error(console.log(value))
+      end
     end
     for key = 1, #target do
       local value = target[key]

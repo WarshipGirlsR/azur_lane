@@ -3,7 +3,7 @@
 -- 别的脚本后可以在别的脚本获得它的脚本路径。所以这里重新 require 一次自己以便获得脚本路径。
 local projectBasePath
 local extensions = {
-  '', '.lua', '/index.lua'
+  '.lua'
 }
 
 do

@@ -4,7 +4,9 @@ local c = coroutine
 
 local combineListener = function(target, ...)
   local sources = { ... }
-  if (type(target) ~= 'table') then target = {} end
+  if (type(target) ~= 'table') then
+    target = {}
+  end
   for k = 1, #sources do
     local source = sources[k]
     for key = 1, #source do
@@ -36,6 +38,13 @@ local setScreenListeners = function(...)
 
   local theArr = table.merge(...)
 
+  for key = 1, #theArr do
+    local value = theArr[key]
+    if not value[2] then
+      error('the function of "' .. value[1] .. '" is nil.', 2)
+    end
+  end
+
   local theArrUnique = table.uniqueLast(theArr, 2)
   for key = 1, #theArrUnique do
     local value = theArrUnique[key]
@@ -52,10 +61,12 @@ local setScreenListeners = function(...)
         table.insert(newArr, Promise.new(function(resolve)
           local id = eq.setTimeout(resolve, listenerEvent[3])
           table.insert(ids, id)
-        end).andThen(function()
+        end)                        .andThen(function()
           if (not done) then
             return Promise.new(function(resolve)
-              local id = eq.setScreenListener(listenerEvent[2], function() resolve(listenerEvent[1]) end)
+              local id = eq.setScreenListener(listenerEvent[2], function()
+                resolve(listenerEvent[1])
+              end)
               table.insert(ids, id)
             end)
           end
@@ -63,7 +74,9 @@ local setScreenListeners = function(...)
       else
         table.insert(newArr, co(c.create(function()
           return Promise.new(function(resolve)
-            local id = eq.setScreenListener(listenerEvent[2], function() resolve(listenerEvent[1]) end)
+            local id = eq.setScreenListener(listenerEvent[2], function()
+              resolve(listenerEvent[1])
+            end)
             table.insert(ids, id)
           end)
         end)))
@@ -80,7 +93,9 @@ local setScreenListeners = function(...)
 end
 
 local makeAction = function(action)
-  if (type(action) == 'table') then return action end
+  if (type(action) == 'table') then
+    return action
+  end
   return { type = action }
 end
 
