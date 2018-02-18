@@ -154,7 +154,6 @@ local battle = function(action)
           { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 10000 },
           { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
           { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
-          { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
           { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
         }))
         return makeAction(newstateTypes)
@@ -163,7 +162,6 @@ local battle = function(action)
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
-        { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
         { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
       }))
       return makeAction(newstateTypes)
@@ -173,10 +171,9 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.14.关闭阵型面板')
       o.battle.closeFormationPanel()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 2000 },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel, 2000 },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
-        { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
       }))
       return makeAction(newstateTypes)
 
@@ -188,7 +185,6 @@ local battle = function(action)
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
-        { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
       }))
       return makeAction(newstateTypes)
 

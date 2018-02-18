@@ -504,11 +504,10 @@ battle.isFormationPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 1606, 461, 0xffe731 }, { 1605, 482, 0xffe73a },
-    { 1711, 367, 0x08ebbd }, { 1713, 418, 0x00e7b5 },
-    { 1828, 373, 0x00e7b5 }, { 1868, 435, 0x00e7b5 },
-    { 1711, 544, 0x08ebbd }, { 1833, 541, 0x21bea4 },
-    { 1865, 548, 0x19b694 },
+    { 1593, 531, 0xffe739 }, { 1593, 574, 0xffe73a },
+    { 1612, 552, 0xffeb3a }, { 1827, 537, 0x08cea4 },
+    { 1834, 531, 0x08cea5 }, { 1856, 525, 0x00cfa5 },
+    { 1865, 566, 0x21a28c }, { 1834, 560, 0x21b294 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -517,7 +516,7 @@ end
 
 -- 关闭阵型面板
 battle.closeFormationPanel = function()
-  tap(1608, 479, 100)
+  tap(1603, 553, 100)
 end
 
 -- 检测敌方伏击面板
