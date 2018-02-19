@@ -1,5 +1,5 @@
-local utils = require 'BaseOperate__maps__utils'
-local AStart = require 'AStart'
+local utils = require './utils'
+local AStart = require '../../utils/a-start'
 local _sWidth, _sHeight = getScreenSize();
 local sWidth = math.max(_sWidth, _sHeight)
 local sHeight = math.min(_sWidth, _sHeight)
@@ -434,9 +434,9 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
 
   -- 将我方舰队上方和右上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
   if oldMapChessboard
-    and oldMapChessboard.enemyPositionList1
-    and oldMapChessboard.enemyPositionList2
-    and oldMapChessboard.enemyPositionList3 then
+      and oldMapChessboard.enemyPositionList1
+      and oldMapChessboard.enemyPositionList2
+      and oldMapChessboard.enemyPositionList3 then
     local checkMyFleetList = utils.subtractionList(myFleetList, inBattleList)
     local checkMyFleetMap = makePointMap(checkMyFleetList)
     function findMyFleetTopRightEnemy(myFleetMap, el)
@@ -600,7 +600,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-      and not obstacleMap[point[1] .. '-' .. point[2]] then
+        and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then

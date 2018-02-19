@@ -5,6 +5,7 @@ local makeAction = (require './utils').makeAction
 local sleepPromise = require '../utils/sleep-promise'
 local moBattle = require '../meta-operation/battle'
 local moHome = require '../meta-operation/home'
+local moMap = require '../meta-operation/maps-options/index'
 local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 local vibratorPromise = require '../utils/vibrator-promise'
@@ -14,6 +15,7 @@ store.battle = store.battle or {}
 local o = {
   home = moHome,
   battle = moBattle,
+  map = moMap,
 }
 
 local battleListenerList = {
@@ -33,6 +35,8 @@ local battleListenerList = {
 
 local battle = function(action)
   local settings = store.settings;
+  local mapProxy = o.map['map' .. settings.battleChapter]
+
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
 
@@ -78,7 +82,6 @@ local battle = function(action)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },
       }))
-      console.log(newstateTypes)
       return makeAction(newstateTypes)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER' then
@@ -145,21 +148,34 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_MAP_PAGE' then
 
-      if settings.battleAssistantMode == 'manual' then
-        stepLabel.setStepLabelContent('2-13.等待用户移动')
-
-        vibratorPromise(3)
-
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 10000 },
-          { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
-          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
-          { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
-        }))
-        return makeAction(newstateTypes)
+      if settings.battleAssistantMode == 'auto' and mapProxy then
+        local type1 = {
+          '1-1', '1-2', '1-3', '1-4',
+          '2-1', '2-2', '2-3', '2-4',
+          '3-1', '3-2', '3-3', '3-4',
+          '4-1', '4-2', '4-3', '4-4',
+          '5-1', '5-2', '5-3', '5-4',
+          '6-1', '6-2', '6-3', '6-4',
+          '7-1', '7-2', '7-3', '7-4',
+          '8-1', '8-2', '8-3', '8-4',
+          '9-2',
+        }
+        if table.findIndex(type1, settings.battleChapter) > -1 then
+          local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+            { 'MAPS_TYPE1_INIT', o.battle.isMapPage },
+            { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
+            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
+            { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
+          }))
+          return makeAction(newstateTypes)
+        end
       end
+
+      -- 如果选择的关卡没有匹配任何关卡，那么也回到手动模式。
+      stepLabel.setStepLabelContent('2-13.等待用户移动')
+      vibratorPromise(3)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 10000 },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
         { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },

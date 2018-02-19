@@ -1,7 +1,4 @@
 -- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少
-
-require 'TableLib'
-
 local function transRelativePoint(tab, base)
   if not base then
     base = tab[1]

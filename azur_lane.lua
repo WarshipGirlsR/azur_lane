@@ -32,7 +32,7 @@ local co = require './lib/co'
 local optionsLabel = require './options-label'
 local socket = require 'socket'
 local createChain = require('./lib/mission-chain').createChain
-local missionsList = require './missions'
+local missionsList = require './missions/index'
 local sleepPromise = require './utils/sleep-promise'
 local store = require './store'
 
