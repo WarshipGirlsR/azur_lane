@@ -5,17 +5,11 @@ local function transRelativePoint(tab, base)
     table.remove(tab, 1)
   end
   local newTab = {}
-  for key, value in ipairs(tab) do
-    newTab[key] = table.assign(value, { value[1] - base[1], value[2] - base[2] })
+  for key = 1, #tab do
+    local value = tab[key]
+    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])
   end
-
-  local tmp = {}
-  for _, value in ipairs(newTab) do
-    value[3] = string.format('0x%06X', value[3])
-    table.insert(tmp, table.concat(value, '|'))
-  end
-
-  return base, table.concat(tmp, ',')
+  return base, table.concat(newTab, ',')
 end
 
 local imgs = {

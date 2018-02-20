@@ -22,12 +22,6 @@ mapEvent.getCheckpositionList = function()
       rightTop = nil,
       leftBotton = { 352, 676 },
       rightBotton = nil,
-      checkPosition = {
-        {
-          type = 'leftBotton', -- 可选 'leftTop','rightTop','leftBotton','rightBotton','special'
-          point = { 352, 676 },
-        },
-      },
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         { { 377, 540, 0x192842 }, { 559, 540, 0xbdbabd }, { 744, 540, 0x21354a }, { 927, 540, 0x21394a }, { 1111, 540, 0x21394a }, { 1294, 540, 0x213952 }, { 1478, 540, 0x21354a }, { 1662, 540, 0x21354a }, },
