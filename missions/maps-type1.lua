@@ -286,10 +286,9 @@ local mapsType1 = function(action)
       }))
       return makeAction(newstateTypes), state
     end
-  end
 
-return nil
-end))
+    return nil
+  end))
 end
 
 return mapsType1
