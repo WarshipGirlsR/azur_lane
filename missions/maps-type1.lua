@@ -52,7 +52,7 @@ local mapsType1 = function(action)
   local mapProxy = o.map['map' .. settings.battleChapter]
 
   return co(c.create(function()
-    if action.type == 'MAPS_TYPE1_RE_INIT' then
+    if action.type == 'MAPS_TYPE1_PRE_INIT' then
 
       -- 这部分流程只会在每次开启新的一局时才调用一次，而不是每次寻路就调用一次
       stepLabel.setStepLabelContent('3-1.开局预备变量')
@@ -75,7 +75,7 @@ local mapsType1 = function(action)
       return makeAction('')
 
     elseif action.type == 'MAPS_TYPE1_INIT' then
-      
+
       store.mapType1.checkpositionListForCheck = mapProxy.getCheckpositionList()
       store.mapType1.checkpositionListForMove = store.mapType1.checkpositionListForMove or {}
       -- 获取地图信息。如果上次扫描结果还在，就把敌人列表保留下来

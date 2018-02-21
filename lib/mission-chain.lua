@@ -49,11 +49,18 @@ return {
             table.insert(missionsQuery, action)
           end
 
-          -- 执行一个action
-          if (action.type) then
+          -- 执行一个 action
+          if action.type then
             local nextAction = c.yield(chainObj.next(action))
-            if (type(nextAction) == 'table') then
-              if (nextAction.addToStart) then
+            if type(nextAction) == 'table' and type(nextAction[1]) == 'table' and nextAction[1].type then
+              -- 返回的是 action 列表，将列表插入到 missionsQuery 的开头
+              table.remove(missionsQuery, 1)
+              for key = #nextAction, 1, -1 do
+                table.insert(missionsQuery, 1, nextAction[key])
+              end
+            elseif type(nextAction) == 'table' and nextAction.type then
+              -- 返回的是单个 action
+              if nextAction.addToStart then
                 table.insert(missionsQuery, 1, nextAction)
               else
                 missionsQuery[1] = nextAction
@@ -67,7 +74,7 @@ return {
 
           c.yield(options.afterAction({
             action = action,
-            nextAction = nextAction,
+            nextAction = missionsQuery[1],
             missionsQuery = missionsQuery,
             runCount = options.runCount,
             runStartTime = runStartTime,

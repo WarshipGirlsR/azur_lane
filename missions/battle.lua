@@ -40,7 +40,10 @@ local battle = function(action)
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
 
-      return makeAction('BATTLE_START')
+      return {
+        makeAction('MAPS_TYPE1_PRE_INIT'),
+        makeAction('BATTLE_START'),
+      }
 
     elseif action.type == 'BATTLE_START' then
 
