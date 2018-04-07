@@ -287,16 +287,15 @@ battle.isHardSelectFleetPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 165, 159, 0x293129 }, { 1723, 163, 0xadaaad },
-    { 170, 179, 0x292829 }, { 198, 183, 0xffca4a },
-    { 246, 185, 0xdebe42 }, { 298, 188, 0x3a353a },
-    { 343, 188, 0xf7c23a }, { 379, 188, 0x100c08 },
-    { 405, 180, 0x211808 }, { 428, 173, 0x4a494a },
-    { 1421, 825, 0xffdf52 }, { 1462, 839, 0xd6cab5 },
-    { 1494, 856, 0xd6caad }, { 1511, 860, 0x8c793a },
-    { 1531, 862, 0xfffbf7 }, { 1549, 864, 0xffffff },
-    { 1573, 866, 0xffffff }, { 1584, 864, 0xf7ebe6 },
-    { 1618, 864, 0xf7f3ef }, { 1645, 856, 0xffca3a },
+    { 178, 136, 0x292829 }, { 216, 153, 0xffca4a },
+    { 277, 144, 0x312d31 }, { 343, 165, 0x3a393a },
+    { 405, 167, 0xffbe19 }, { 652, 169, 0xd6dbde },
+    { 934, 130, 0xeff3f7 }, { 1589, 128, 0xeff3f7 },
+    { 1687, 150, 0xf7ce42 }, { 1734, 154, 0xadaaad },
+    { 1428, 826, 0xffdf52 }, { 1505, 827, 0xffdf52 },
+    { 1572, 826, 0xffdb52 }, { 1669, 854, 0xf7c63a },
+    { 1487, 862, 0xffffff }, { 1545, 862, 0xffffff },
+    { 1603, 888, 0xffa610 }, { 1632, 863, 0xffffff },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end

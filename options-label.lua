@@ -243,89 +243,91 @@ return function()
     return list
   end
 
-  -- 出征
-  settings.battleEnable = (function(battleEnable)
-    local list = transStrToTable({ true, false, })
-    return list[battleEnable] or false
-  end)(settings.battleEnable)
-  -- 总循环间隔时间
-  settings.missionsInterval = tonumber(settings.missionsInterval) or 0
-  -- 多长时间界面不变则重启，最少60秒
-  settings.restartInterval = tonumber(settings.restartInterval) or 120
-  settings.restartInterval = math.max(settings.restartInterval, 60)
+  if settings then
+    -- 出征
+    settings.battleEnable = (function(battleEnable)
+      local list = transStrToTable({ true, false, })
+      return list[battleEnable] or false
+    end)(settings.battleEnable)
+    -- 总循环间隔时间
+    settings.missionsInterval = tonumber(settings.missionsInterval) or 0
+    -- 多长时间界面不变则重启，最少60秒
+    settings.restartInterval = tonumber(settings.restartInterval) or 120
+    settings.restartInterval = math.max(settings.restartInterval, 60)
 
-  -- 选择关卡
-  settings.battleChapter = (function(battleChapter)
-    local list = transStrToTable({
-      '0',
-      '1-1', '1-2', '1-3', '1-4',
-      '2-1', '2-2', '2-3', '2-4',
-      '3-1', '3-2', '3-3', '3-4',
-      '4-1', '4-2', '4-3', '4-4',
-      '5-1', '5-2', '5-3', '5-4',
-      '6-1', '6-2', '6-3', '6-4',
-      '7-1', '7-2', '7-3', '7-4',
-      '8-1', '8-2', '8-3', '8-4',
-      '9-1', '9-2', '9-3', '9-4',
-      '10-1', '10-2', '10-3', '10-4',
-      --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
-      --      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',
-      --      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',
-      --      'event6-1-sp1', 'event6-1-sp2', 'event6-1-sp3',
-      --      'event7-1-c1',
-      --      'event8-1-sp1', 'event8-1-sp2', 'event8-1-sp3',
-      --      'event9-1-sp1', 'event9-1-sp2', 'event9-1-sp3', 'event9-1-sp4',
-    })
-    return list[battleChapter] or '0'
-  end)(settings.battleChapter)
-  -- 选择模式
-  settings.battleMode = (function(battleMode)
-    local list = transStrToTable({
-      'normal', 'hard',
-    })
-    return list[battleMode] or 'normal'
-  end)(settings.battleMode)
-  -- 选择辅助模式
-  settings.battleAssistantMode = (function(battleAssistantMode)
-    local list = transStrToTable({
-      'manual', 'auto',
-    })
-    return list[battleAssistantMode] or 'manual'
-  end)(settings.battleAssistantMode)
-  -- 选择Boss舰队
-  settings.battleFleet = {}
-  settings.battleFleetBoss = (function(battleFleetBoss)
-    local list = transStrToTable({ 1, 2, 3, 4 })
-    return list[battleFleetBoss] or 1
-  end)(settings.battleFleetBoss)
-  settings.battleFleet = { settings.battleFleetBoss }
-  -- 选择道中舰队
-  settings.battleFleetOnWay = (function(battleFleetOnWay)
-    local list = transStrToTable({ 0, 1, 2, 3, 4 })
-    local result = list[battleFleetOnWay] or 0
-    if settings.battleFleetBoss == result then
-      result = 0
+    -- 选择关卡
+    settings.battleChapter = (function(battleChapter)
+      local list = transStrToTable({
+        '0',
+        '1-1', '1-2', '1-3', '1-4',
+        '2-1', '2-2', '2-3', '2-4',
+        '3-1', '3-2', '3-3', '3-4',
+        '4-1', '4-2', '4-3', '4-4',
+        '5-1', '5-2', '5-3', '5-4',
+        '6-1', '6-2', '6-3', '6-4',
+        '7-1', '7-2', '7-3', '7-4',
+        '8-1', '8-2', '8-3', '8-4',
+        '9-1', '9-2', '9-3', '9-4',
+        '10-1', '10-2', '10-3', '10-4',
+        --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
+        --      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',
+        --      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',
+        --      'event6-1-sp1', 'event6-1-sp2', 'event6-1-sp3',
+        --      'event7-1-c1',
+        --      'event8-1-sp1', 'event8-1-sp2', 'event8-1-sp3',
+        --      'event9-1-sp1', 'event9-1-sp2', 'event9-1-sp3', 'event9-1-sp4',
+      })
+      return list[battleChapter] or '0'
+    end)(settings.battleChapter)
+    -- 选择模式
+    settings.battleMode = (function(battleMode)
+      local list = transStrToTable({
+        'normal', 'hard',
+      })
+      return list[battleMode] or 'normal'
+    end)(settings.battleMode)
+    -- 选择辅助模式
+    settings.battleAssistantMode = (function(battleAssistantMode)
+      local list = transStrToTable({
+        'manual', 'auto',
+      })
+      return list[battleAssistantMode] or 'manual'
+    end)(settings.battleAssistantMode)
+    -- 选择Boss舰队
+    settings.battleFleet = {}
+    settings.battleFleetBoss = (function(battleFleetBoss)
+      local list = transStrToTable({ 1, 2, 3, 4 })
+      return list[battleFleetBoss] or 1
+    end)(settings.battleFleetBoss)
+    settings.battleFleet = { settings.battleFleetBoss }
+    -- 选择道中舰队
+    settings.battleFleetOnWay = (function(battleFleetOnWay)
+      local list = transStrToTable({ 0, 1, 2, 3, 4 })
+      local result = list[battleFleetOnWay] or 0
+      if settings.battleFleetBoss == result then
+        result = 0
+      end
+      return result
+    end)(settings.battleFleetOnWay)
+    if settings.battleFleetOnWay > 0 then
+      settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetOnWay }
     end
-    return result
-  end)(settings.battleFleetOnWay)
-  if settings.battleFleetOnWay > 0 then
-    settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetOnWay }
+    -- 迂回战术
+    settings.battleRoundabout = (function(battleRoundabout)
+      local list = transStrToTable({ true, false, })
+      return list[battleRoundabout] or false
+    end)(settings.battleRoundabout)
+    -- 当无法出征时是否跳过出征
+    settings.battleAlertWhenNoHp = (function(battleAlertWhenNoHp)
+      local list = transStrToTable({ true, false, })
+      return list[battleAlertWhenNoHp] or false
+    end)(settings.battleAlertWhenNoHp)
+    -- 阵型
+    settings.battleFormation = (function(battleFormation)
+      local list = transStrToTable({ 1, 2, 3, 4, 5 })
+      return list[battleFormation] or 2
+    end)(settings.battleFormation)
   end
-  -- 迂回战术
-  settings.battleRoundabout = (function(battleRoundabout)
-    local list = transStrToTable({ true, false, })
-    return list[battleRoundabout] or false
-  end)(settings.battleRoundabout)
-  -- 当无法出征时是否跳过出征
-  settings.battleAlertWhenNoHp = (function(battleAlertWhenNoHp)
-    local list = transStrToTable({ true, false, })
-    return list[battleAlertWhenNoHp] or false
-  end)(settings.battleAlertWhenNoHp)
-  -- 阵型
-  settings.battleFormation = (function(battleFormation)
-    local list = transStrToTable({ 1, 2, 3, 4, 5 })
-    return list[battleFormation] or 2
-  end)(settings.battleFormation)
 
   return ret, settings
 end

@@ -99,6 +99,7 @@ utils/keep-screen-hock.lua
 utils/multi-color-hock.lua
 utils/sleep-promise.lua
 utils/step-label.lua
+utils/vibrator-promise.lua
 azur_lane.lua
 console.lua
 clear-workspace.lua
