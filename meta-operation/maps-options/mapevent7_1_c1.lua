@@ -1,5 +1,5 @@
-local mapBase = require 'BaseOperate__maps__map'
-local imgEvent = require 'BaseOperate__maps__imgevent7_1_c1'
+local mapBase = require './map'
+local imgEvent = require './imgevent7_1_c1'
 local mapEvent = {}
 
 -- 从mapBase继承方法

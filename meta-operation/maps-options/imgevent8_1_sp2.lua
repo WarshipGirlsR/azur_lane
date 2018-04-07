@@ -14,80 +14,80 @@ return {
   map = {
     -- 地图上边界
     topLineList = {
+      -- 1-9的上边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1526, 523, 0x000808 }, { 1535, 523, 0x080c19 },
+          { 1543, 523, 0x080c19 }, { 1552, 523, 0x000808 },
+          { 1561, 524, 0x636db5 }, { 1556, 524, 0x6b71b5 },
+          { 1550, 524, 0x636db5 }, { 1544, 524, 0x6b71b5 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
       -- 1-8的上边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1539, 478, 0x101010 }, { 1557, 478, 0x212021 },
-          { 1585, 478, 0x212829 }, { 1609, 478, 0x212429 },
-          { 1620, 479, 0xd69a5a }, { 1596, 479, 0xd69a63 },
-          { 1576, 479, 0xd69663 }, { 1558, 479, 0xce965a },
+          { 1399, 523, 0x080c19 }, { 1408, 523, 0x000808 },
+          { 1416, 523, 0x000808 }, { 1423, 523, 0x080c19 },
+          { 1434, 524, 0x5a65a4 }, { 1425, 524, 0x5a619c },
+          { 1418, 524, 0x5a619c }, { 1408, 524, 0x5a619c },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 1-7的上边
+      -- 1-4的上边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1384, 478, 0x313131 }, { 1407, 478, 0x313531 },
-          { 1423, 478, 0x313131 }, { 1444, 478, 0x313131 },
-          { 1457, 479, 0xad7552 }, { 1430, 479, 0x9c6952 },
-          { 1405, 479, 0x8c6552 }, { 1384, 479, 0x84614a },
+          { 743, 523, 0x080c19 }, { 750, 523, 0x000808 },
+          { 757, 523, 0x080c10 }, { 765, 523, 0x080c10 },
+          { 775, 524, 0x312d5a }, { 769, 524, 0x3a2d63 },
+          { 764, 524, 0x423563 }, { 757, 524, 0x313163 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图下边界
     bottonLineList = {
-      -- 5-1 的下面
+      -- 7-2 的下面
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 451, 899, 0x000000 }, { 468, 899, 0x000000 },
-          { 485, 899, 0x000000 }, { 509, 899, 0x000000 },
-          { 521, 898, 0x42394a }, { 500, 898, 0x4a355a },
-          { 479, 898, 0x423552 }, { 455, 898, 0x4a356b },
+          { 584, 896, 0x000000 }, { 591, 896, 0x000000 },
+          { 598, 896, 0x000000 }, { 605, 896, 0x000000 },
+          { 612, 895, 0x29204a }, { 607, 895, 0x31204a },
+          { 599, 895, 0x312052 }, { 592, 895, 0x29204a },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 5-4 的下面
+      -- 7-4 的下面
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 1109, 899, 0x000000 }, { 1132, 899, 0x000000 },
-          { 1156, 899, 0x000000 }, { 1174, 899, 0x000000 },
-          { 1185, 898, 0x313142 }, { 1162, 898, 0x313542 },
-          { 1137, 898, 0x313142 }, { 1116, 898, 0x313142 },
+          { 993, 896, 0x000000 }, { 1002, 896, 0x000000 },
+          { 1010, 896, 0x000000 }, { 1019, 896, 0x000000 },
+          { 1027, 895, 0x29244a }, { 1020, 895, 0x292042 },
+          { 1012, 895, 0x292042 }, { 1004, 895, 0x292442 },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 7-6 的下面
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022 }
         local basePoint, posandcolor = transRelativePoint({
-          { 1002, 903, 0x000000 }, { 1032, 903, 0x000000 },
-          { 1063, 903, 0x000000 }, { 1092, 903, 0x000000 },
-          { 1111, 902, 0x312d42 }, { 1090, 902, 0x3a354a },
-          { 1069, 902, 0x313542 }, { 1042, 902, 0x3a3142 },
+          { 963, 896, 0x000000 }, { 973, 896, 0x000000 },
+          { 982, 896, 0x000000 }, { 990, 896, 0x000000 },
+          { 1000, 895, 0x292442 }, { 991, 895, 0x31284a },
+          { 983, 895, 0x31284a }, { 978, 895, 0x29284a },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 7-8 的下面
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022 }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1440, 903, 0x000000 }, { 1458, 903, 0x000000 },
-          { 1476, 903, 0x000000 }, { 1509, 903, 0x000000 },
-          { 1527, 902, 0x634552 }, { 1501, 902, 0x524152 },
-          { 1479, 902, 0x524152 }, { 1458, 902, 0x524552 },
-        })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图左边界
@@ -97,85 +97,73 @@ return {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 293, 508, 0x000000 }, { 294, 508, 0x424142 },
-          { 293, 507, 0x000000 }, { 294, 507, 0x3a3d42 },
-          { 292, 509, 0x000000 }, { 293, 509, 0x424142 },
-          { 292, 510, 0x000000 }, { 293, 510, 0x3a3d42 },
+          { 539, 404, 0x000000 }, { 540, 404, 0x42315a },
+          { 539, 403, 0x000000 }, { 540, 403, 0x312d5a },
+          { 538, 405, 0x000000 }, { 539, 405, 0x312d5a },
+          { 538, 406, 0x000000 }, { 539, 406, 0x312d5a },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 4-1 的左边
+      -- 3-1 的左边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 458, 654, 0x000000 }, { 459, 654, 0x3a3531 },
-          { 458, 653, 0x000000 }, { 459, 653, 0x3a3931 },
-          { 457, 655, 0x000000 }, { 458, 655, 0x3a3531 },
-          { 457, 656, 0x000000 }, { 458, 656, 0x423531 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 5-1 的左边
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 439, 774, 0x000000 }, { 440, 774, 0x423531 },
-          { 439, 773, 0x000000 }, { 440, 773, 0x3a3131 },
-          { 438, 775, 0x000000 }, { 439, 775, 0x423931 },
-          { 438, 776, 0x000000 }, { 439, 776, 0x3a3131 },
+          { 493, 724, 0x000000 }, { 494, 724, 0x31285a },
+          { 493, 723, 0x000000 }, { 494, 723, 0x312852 },
+          { 492, 725, 0x000000 }, { 493, 725, 0x31285a },
+          { 492, 726, 0x000000 }, { 493, 726, 0x312852 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图右边界
     rightLineList = {
-      -- 1-8 的右边
+      -- 1-9 的右边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1512, 231, 0x010100 }, { 1511, 231, 0xd69e63 },
-          { 1512, 230, 0x000000 }, { 1511, 230, 0xd69e5a },
-          { 1513, 232, 0x000000 }, { 1512, 232, 0xd69e63 },
-          { 1513, 233, 0x000000 }, { 1512, 233, 0xd69a5a },
+          { 1627, 426, 0x000000 }, { 1626, 426, 0x6b6db5 },
+          { 1627, 425, 0x000000 }, { 1626, 425, 0x636dad },
+          { 1628, 427, 0x000000 }, { 1627, 427, 0x636db5 },
+          { 1628, 428, 0x000000 }, { 1627, 428, 0x636dad },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 2-8 的右边
+      -- 2-9 的右边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1541, 376, 0x000000 }, { 1540, 376, 0xb5795a },
-          { 1541, 375, 0x000000 }, { 1540, 375, 0xad7552 },
-          { 1542, 377, 0x000000 }, { 1541, 377, 0xb5755a },
-          { 1542, 378, 0x000000 }, { 1541, 378, 0xad755a },
+          { 1655, 549, 0x000000 }, { 1654, 549, 0x5a55a4 },
+          { 1655, 548, 0x000000 }, { 1654, 548, 0x6359a4 },
+          { 1656, 550, 0x000000 }, { 1655, 550, 0x5a59a4 },
+          { 1656, 551, 0x000000 }, { 1655, 551, 0x6359a4 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 4-8 的右边
+      -- 3-9 的右边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1562, 480, 0x000000 }, { 1561, 480, 0x73594a },
-          { 1562, 479, 0x000000 }, { 1561, 479, 0x735952 },
-          { 1563, 481, 0x000000 }, { 1562, 481, 0x73594a },
-          { 1563, 482, 0x000000 }, { 1562, 482, 0x7b5d52 },
+          { 1686, 686, 0x000000 }, { 1685, 686, 0x52498c },
+          { 1686, 685, 0x000000 }, { 1685, 685, 0x524d8c },
+          { 1687, 687, 0x000000 }, { 1686, 687, 0x52498c },
+          { 1687, 688, 0x000000 }, { 1686, 688, 0x5a4d94 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 5-8 的右边
+      -- 5-9 的右边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1619, 764, 0x000000 }, { 1618, 764, 0x4a4142 },
-          { 1619, 763, 0x000000 }, { 1618, 763, 0x423d3a },
-          { 1620, 765, 0x000000 }, { 1619, 765, 0x424142 },
-          { 1620, 766, 0x000000 }, { 1619, 766, 0x423d3a },
+          { 1626, 520, 0x000000 }, { 1625, 520, 0x42396b },
+          { 1626, 519, 0x000000 }, { 1625, 519, 0x423d6b },
+          { 1627, 521, 0x000000 }, { 1626, 521, 0x3a396b },
+          { 1627, 522, 0x000000 }, { 1626, 522, 0x4a4173 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -184,10 +172,6 @@ return {
     myFleetList = imgBase.map.myFleetList,
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = imgBase.map.selectedArrow,
-    -- 敌方舰队位置(小型舰队)
-    enemyList1 = imgBase.map.enemyList1,
-    -- 敌方舰队位置(中型舰队)
-    enemyList2 = imgBase.map.enemyList2,
     -- 敌方舰队位置(小型舰队)
     enemyList1 = imgBase.map.enemyList1,
     -- 敌方舰队位置(中型舰队)

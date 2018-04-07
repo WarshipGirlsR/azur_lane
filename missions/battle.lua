@@ -40,6 +40,9 @@ local battle = function(action)
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
 
+      -- 自动模式还是辅助模式
+      store.battle.battleAssistantMode = settings.battleAssistantMode
+
       return {
         makeAction('MAPS_TYPE1_PRE_INIT'),
         makeAction('BATTLE_START'),
@@ -73,7 +76,7 @@ local battle = function(action)
       end
 
       if (settings.battleMode == 'normal' and o.battle.isHardMode())
-          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+        or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
         o.battle.clickSwitchHardModeBtn()
         c.yield(sleepPromise(500))
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -151,7 +154,7 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_MAP_PAGE' then
 
-      if settings.battleAssistantMode == 'auto' and mapProxy then
+      if store.battle.battleAssistantMode == 'auto' and mapProxy then
         local type1 = {
           '1-1', '1-2', '1-3', '1-4',
           '2-1', '2-2', '2-3', '2-4',
@@ -165,13 +168,15 @@ local battle = function(action)
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'MAPS_TYPE1_INIT', o.battle.isMapPage },
+            { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', o.battle.isMapPage },
             { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
             { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
           }))
           return makeAction(newstateTypes)
         end
+      else
+        store.battle.battleAssistantMode = 'manual'
       end
 
       -- 如果选择的关卡没有匹配任何关卡，那么也回到手动模式。
@@ -207,6 +212,36 @@ local battle = function(action)
       }))
       return makeAction(newstateTypes)
 
+    elseif (action.type == 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE') then
+
+      stepLabel.setStepLabelContent('2-23.等待用户移动')
+      c.yield(sleepPromise(1000))
+
+      vibratorPromise(3)
+
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', o.battle.isMapPage, 10000 },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif (action.type == 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE') then
+
+      stepLabel.setStepLabelContent('2-19.检测是自动模式还是辅助模式')
+      if store.battle.battleAssistantMode == 'auto' then
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', o.battle.isAmbushedPanel, 1000 },
+          { 'MAPS_TYPE1_INIT', o.battle.isMapPage, 2000 },
+        }))
+        return makeAction(newstateTypes)
+      end
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', o.battle.isAmbushedPanel, 1000 },
+        { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', o.battle.isMapPage, 2000 },
+      }))
+      return makeAction(newstateTypes)
+
     elseif action.type == 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE' then
 
       stepLabel.setStepLabelContent('2.16.准备战斗')
@@ -223,7 +258,7 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.17.战斗中检测是否自动战斗')
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 86400000 },
-        { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle },
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },
       }))
       return makeAction(newstateTypes)

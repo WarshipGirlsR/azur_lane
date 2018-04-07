@@ -1,6 +1,5 @@
 -- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少
-require 'TableLib'
-local imgBase = require 'BaseOperate__maps__img'
+local imgBase = require './img'
 
 local transRelativePoint = imgBase.transRelativePoint
 

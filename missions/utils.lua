@@ -33,16 +33,27 @@ local setScreenListeners = function(...)
   local firstArr = select('1', ...)
 
   if type(firstArr) ~= 'table' then
-    return Promise.resolve(nil)
+    return Promise.reject(error('the param 1 of "setScreenListeners" is nil.', 2))
   end
 
   local theArr = table.merge(...)
 
+  local errorList = {}
   for key = 1, #theArr do
     local value = theArr[key]
     if not value[2] then
-      error('the function of "' .. value[1] .. '" is nil.', 2)
+      table.insert(errorList, value)
     end
+  end
+  if #errorList > 0 then
+    local errorMsg = ''
+    for key = 1, #errorList do
+      local value = errorList[key]
+      if not value[2] then
+        errorMsg = errorMsg .. 'the function of "' .. value[1] .. '" is nil.' .. '\n'
+      end
+    end
+    error(errorMsg, 2)
   end
 
   local theArrUnique = table.uniqueLast(theArr, 2)
@@ -56,21 +67,21 @@ local setScreenListeners = function(...)
     local done = false
     for key = 1, #theArrUnique do
       local listenerEvent = theArrUnique[key]
-
       if type(listenerEvent[3]) == 'number' and listenerEvent[3] > 0 then
-        table.insert(newArr, Promise.new(function(resolve)
-          local id = eq.setTimeout(resolve, listenerEvent[3])
-          table.insert(ids, id)
-        end)                        .andThen(function()
-          if (not done) then
-            return Promise.new(function(resolve)
-              local id = eq.setScreenListener(listenerEvent[2], function()
-                resolve(listenerEvent[1])
+        table.insert(newArr,
+          Promise.new(function(resolve)
+            local id = eq.setTimeout(resolve, listenerEvent[3])
+            table.insert(ids, id)
+          end).andThen(function()
+            if (not done) then
+              return Promise.new(function(resolve)
+                local id = eq.setScreenListener(listenerEvent[2], function()
+                  resolve(listenerEvent[1])
+                end)
+                table.insert(ids, id)
               end)
-              table.insert(ids, id)
-            end)
-          end
-        end))
+            end
+          end))
       else
         table.insert(newArr, co(c.create(function()
           return Promise.new(function(resolve)

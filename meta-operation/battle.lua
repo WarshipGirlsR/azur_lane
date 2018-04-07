@@ -216,6 +216,20 @@ battle.moveToChapter = function(chapter)
     tap(748, 834, 100)
   elseif (chapter == 'event7-1-c3') then
     tap(1296, 410, 100)
+  elseif (chapter == 'event8-1-sp1') then
+    tap(1368, 453, 100)
+  elseif (chapter == 'event8-1-sp2') then
+    tap(872, 791, 100)
+  elseif (chapter == 'event8-1-sp3') then
+    tap(587, 375, 100)
+  elseif (chapter == 'event9-1-sp1') then
+    tap(366, 339, 100)
+  elseif (chapter == 'event9-1-sp2') then
+    tap(1206, 282, 100)
+  elseif (chapter == 'event9-1-sp3') then
+    tap(286, 866, 100)
+  elseif (chapter == 'event9-1-sp4') then
+    tap(1070, 744, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -489,7 +503,7 @@ battle.isSelectedFleed = function(fleet)
   return result
 end
 
--- 地图点击切换舰队面板
+-- 地图点击切换舰队按钮
 battle.clickSwitchFleetBtn = function()
   tap(1426, 1003, 100)
 end

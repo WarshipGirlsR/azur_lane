@@ -34,6 +34,7 @@ end
 
 local battleListenerList = {
   { '', o.home.isHome, 2000 },
+  { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },
@@ -116,9 +117,9 @@ local mapsType1 = function(action)
           table.insert(store.mapType1.checkpositionListForCheck, 1, cfm)
         end
       end
-      return makeAction('MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK')
+      return makeAction('MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK')
 
-    elseif action.type == 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
+    elseif action.type == 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       local targetPosition = store.mapType1.checkpositionListForCheck[1]
@@ -129,18 +130,36 @@ local mapsType1 = function(action)
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(currentPosition, targetPosition)
       if effectiveStep and comparePoints(store.mapType1.moveVectorForCheck, newMoveVector) then
         store.mapType1.moveVectorForCheck = newMoveVector
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_SCAN_MAP', map.battle.isMapPage, 500 },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_SCAN_MAP', o.battle.isMapPage, 500 },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
-      store.mapType1.moveVectorForCheck = newMoveVector
-      local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_CHECK', map.battle.isMapPage },
-      }))
-      return makeAction(newstateTypes), state
 
-    elseif action.type == 'MAPS_MAP_SCAN_MAP' then
+      stepLabel.setStepLabelContent('3-3.移动地图')
+      local isCenter = mapProxy.moveMapToCheckPosition(newMoveVector)
+      console.log(isCenter)
+      if isCenter then
+        -- 地图已经移动到位
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_SCAN_MAP', o.battle.isMapPage, 500 },
+        }))
+        return makeAction(newstateTypes)
+      else
+        -- 地图没有移动到位
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
+        }))
+        return makeAction(newstateTypes)
+      end
+
+      store.mapType1.moveVectorForCheck = newMoveVector
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE1_SCAN_MAP' then
 
       stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = store.mapType1.checkpositionListForCheck[1]
@@ -148,17 +167,17 @@ local mapsType1 = function(action)
       console.log(store.mapType1.mapChessboard)
       if #store.mapType1.checkpositionListForCheck > 1 then
         table.remove(store.mapType1.checkpositionListForCheck, 1)
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_CHECK', map.battle.isMapPage },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
-      local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_GET_NEXT_STEP', map.battle.isMapPage },
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE1_GET_NEXT_STEP', o.battle.isMapPage },
       }))
-      return makeAction(newstateTypes), state
+      return makeAction(newstateTypes)
 
-    elseif action.type == 'MAPS_MAP_GET_NEXT_STEP' then
+    elseif action.type == 'MAPS_TYPE1_GET_NEXT_STEP' then
 
       stepLabel.setStepLabelContent('3-6.计算下一步往哪走')
       local mapChessboard = store.mapType1.mapChessboard
@@ -170,17 +189,17 @@ local mapsType1 = function(action)
       end
       if table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
         stepLabel.setStepLabelContent('3-7.开始战斗')
-        map.battle.clickAttackBtn()
+        o.battle.clickAttackBtn()
       elseif #mapChessboard.bossPosition > 0 then
         stepLabel.setStepLabelContent('3-8.移动到boss位置')
         store.mapType1.moveState = 'moveToBoss'
         store.mapType1.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
       elseif store.mapType1.moveState == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
         store.mapType1.moveState = 'moveToClosestEnemy'
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_NEXT_STEP', map.battle.isMapPage },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_GET_NEXT_STEP', o.battle.isMapPage },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       elseif store.mapType1.moveState == 'moveToWaitBoss' then
         stepLabel.setStepLabelContent('3-9.移动待命位置')
         store.mapType1.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.waitForBossPosition[1])
@@ -196,13 +215,12 @@ local mapsType1 = function(action)
         stepLabel.setStepLabelContent('3-11.随机移动一步')
         store.mapType1.nextStepPoint = mapProxy.getRandomMoveAStep(mapChessboard)
       end
-      console.log(store.mapType1.nextStepPoint)
       -- 如果还是没有移动目标，只好重新扫描
       if not store.mapType1.nextStepPoint then
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_START', map.battle.isMapPage },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_START', o.battle.isMapPage },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
 
       -- 查找目标点在哪个界面
@@ -216,55 +234,93 @@ local mapsType1 = function(action)
         end
       end
 
-      local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'BATTLE_MAP_PAGE_SELECT_FLEET', map.battle.isMapPage },
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE1_PAGE_SELECT_FLEET', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE1_PAGE_SELECT_FLEET' then
+
+      if settings.battleFleet[2] then
+        stepLabel.setStepLabelContent('3-20.检查舰队')
+        if store.mapType1.moveState == 'moveToWaitBoss' or store.mapType1.moveState == 'moveToBoss' then
+          local res = o.battle.isSelectedFleed(settings.battleFleet[1])
+          if (not res) and (store.mapType1.changeFleetNum < 2) then
+            store.mapType1.changeFleetNum = store.mapType1.changeFleetNum + 1
+            stepLabel.setStepLabelContent('3-21.选择boss舰队')
+            o.battle.clickSwitchFleetBtn()
+            c.yield(sleepPromise(100))
+            o.battle.clickAttackBtn()
+            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+              { 'MAPS_TYPE1_PAGE_SELECT_FLEET', o.battle.isMapPage },
+            }))
+            return makeAction(newstateTypes)
+          end
+        elseif store.mapType1.moveState == 'moveToClosestEnemy' then
+          local res = o.battle.isSelectedFleed(settings.battleFleet[2])
+          if (not res) and (store.mapType1.changeFleetNum < 2) then
+            store.mapType1.changeFleetNum = store.mapType1.changeFleetNum + 1
+            stepLabel.setStepLabelContent('3-22.选择道中舰队')
+            o.battle.clickSwitchFleetBtn()
+            c.yield(sleepPromise(100))
+            o.battle.clickAttackBtn()
+            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+              { 'MAPS_TYPE1_PAGE_SELECT_FLEET', o.battle.isMapPage, 2000 },
+            }))
+            return makeAction(newstateTypes)
+          end
+        end
+      end
+
+      store.mapType1.changeFleetNum = 0
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE1_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes), state
 
-    elseif action.type == 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP' then
+    elseif action.type == 'MAPS_TYPE1_GET_MAP_POSITION_FOR_A_STEP' then
 
       stepLabel.setStepLabelContent('3-11.获取地图位置参数')
       local targetPosition = store.mapType1.checkpositionListForMove[1]
       local currentPosition = mapProxy.getMapPosition(targetPosition)
-      console.log(currentPosition)
 
       stepLabel.setStepLabelContent('3-12.计算移动向量')
       local targetPosition = store.mapType1.checkpositionListForMove[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(currentPosition, targetPosition)
       if effectiveStep and comparePoints(store.mapType1.moveVectorForAStep, newMoveVector) then
         store.mapType1.moveVectorForAStep = newMoveVector
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage, 500 },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_MOVE_A_STEP', o.battle.isMapPage, 500 },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
       store.mapType1.moveVectorForAStep = newMoveVector
-      local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_A_STEP', map.battle.isMapPage },
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
       }))
-      return makeAction(newstateTypes), state
+      return makeAction(newstateTypes)
 
-    elseif action.type == 'MAPS_MAP_GET_MOVE_VECTOR_FOR_A_STEP' then
+    elseif action.type == 'MAPS_TYPE1_GET_MOVE_VECTOR_FOR_A_STEP' then
 
 
 
-    elseif action.type == 'MAPS_MAP_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
+    elseif action.type == 'MAPS_TYPE1_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
 
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')
       local isCenter = mapProxy.moveMapToCheckPosition(store.mapType1.moveVectorForAStep)
       if isCenter then
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_MOVE_A_STEP', map.battle.isMapPage, 500 },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_MOVE_A_STEP', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes), state
       else
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', map.battle.isMapPage, 1000 },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
 
-    elseif action.type == 'MAPS_MAP_MOVE_A_STEP' then
+    elseif action.type == 'MAPS_TYPE1_MOVE_A_STEP' then
 
       stepLabel.setStepLabelContent('3-14.移动舰队位置')
       local targetPosition = store.mapType1.checkpositionListForMove[1]
@@ -272,19 +328,19 @@ local mapsType1 = function(action)
       local nextColNum = store.mapType1.nextStepPoint[2]
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, store.mapType1.nextStepPoint)
-        map.battle.clickAttackBtn()
+        o.battle.clickAttackBtn()
       elseif #store.mapType1.checkpositionListForMove > 0 then
-        local newstateTypes = c.yield(setScreenListeners(battleMap, {
-          { 'MAPS_MAP_GET_MAP_POSITION_FOR_A_STEP', map.battle.isMapPage },
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE1_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       end
 
       store.mapType1.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
-      local newstateTypes = c.yield(setScreenListeners(battleMap, {
-        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', map.battle.isMapPage, 3000 }
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', o.battle.isMapPage, 3000 }
       }))
-      return makeAction(newstateTypes), state
+      return makeAction(newstateTypes)
     end
 
     return nil

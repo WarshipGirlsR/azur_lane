@@ -73,6 +73,19 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      --  采集位置sp3
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1030, 346, 0xce7173 }, { 1012, 329, 0xde8184 },
+          { 1007, 338, 0xffffe6 }, { 998, 349, 0xefce8c },
+          { 989, 364, 0xd68642 }, { 981, 369, 0xad5152 },
+          { 999, 376, 0xde8e42 }, { 1016, 361, 0xce8142 },
+          { 1039, 371, 0x191819 }, { 999, 366, 0xffffd6 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = {
@@ -201,6 +214,19 @@ local imgs = {
           { 1435, 452, 0xf74d52 }, { 1445, 459, 0xff4d52 },
           { 1482, 459, 0xf74d4a }, { 1492, 452, 0xff4d52 },
           { 1464, 468, 0x3a2d31 },
+        })
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 我方舰队不和boss重叠 sp3 的 1-7
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1444, 586, 0x3a2831 }, { 1428, 556, 0x423942 },
+          { 1458, 555, 0x312829 }, { 1425, 584, 0xff4d52 },
+          { 1466, 583, 0xf74952 }, { 1445, 612, 0x191010 },
+          { 1428, 545, 0x290c10 }, { 1463, 548, 0x190c08 },
+          { 1445, 546, 0x191010 },
         })
         return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
