@@ -6,6 +6,7 @@ local sHeight = math.min(_sWidth, _sHeight)
 
 local map = {}
 
+
 -- 舰队坐标修正向量
 local myFleetListCorrectionValue = (function()
   local point = {
@@ -38,6 +39,16 @@ local rewardBoxListCorrectionValue = (function()
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
+-- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里
+local corrected = function(list, correctionValue)
+  local res = {}
+  for key = 1, #list do
+    local item = list[key]
+    table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })
+  end
+  return res
+end
+
 
 -- 将数组形式的棋盘坐标列表转换为索引形式的，为了方便去重和查找
 -- 例如：
@@ -370,22 +381,12 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   return isCenter, moveStep
 end
 
-map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
+-- 扫描地图
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
   keepScreen(true)
   local positionMap = targetPosition.positionMap
-  local newMapChessboard = table.assign({}, mapChessboard)
-
-  -- 坐标修正偏差，因为搜索的图像并不在它所在的棋盘格子里
-  function corrected(list, correctionValue)
-    local res = {}
-    for key = 1, #list do
-      local item = list[key]
-      table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })
-    end
-    return res
-  end
 
   -- 扫描屏幕上的对象
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
@@ -432,39 +433,44 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, oldMapChessboard)
   enemyPositionList2 = utils.subtractionList(enemyPositionList2, myFleetListNotInBattle)
   enemyPositionList3 = utils.subtractionList(enemyPositionList3, myFleetListNotInBattle)
 
-  -- 将我方舰队上方和右上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
-  if oldMapChessboard
-      and oldMapChessboard.enemyPositionList1
-      and oldMapChessboard.enemyPositionList2
-      and oldMapChessboard.enemyPositionList3 then
-    local checkMyFleetList = utils.subtractionList(myFleetList, inBattleList)
-    local checkMyFleetMap = makePointMap(checkMyFleetList)
-    function findMyFleetTopRightEnemy(myFleetMap, el)
-      local res = {}
-      for key, enemy in ipairs(el) do
-        if myFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] or myFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)] then
-          table.insert(res, enemy)
-        end
-      end
-      return res
-    end
-
-    enemyPositionList1 = utils.unionList(enemyPositionList1, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList1))
-    enemyPositionList2 = utils.unionList(enemyPositionList2, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList2))
-    enemyPositionList3 = utils.unionList(enemyPositionList3, findMyFleetTopRightEnemy(checkMyFleetMap, oldMapChessboard.enemyPositionList3))
-  end
-
-  newMapChessboard.inBattleList = inBattleList
-  newMapChessboard.selectedArrowList = selectedArrowList
-  newMapChessboard.myFleetList = myFleetList
-  newMapChessboard.rewardBoxList = rewardBoxList
-  newMapChessboard.enemyPositionList1 = enemyPositionList1
-  newMapChessboard.enemyPositionList2 = enemyPositionList2
-  newMapChessboard.enemyPositionList3 = enemyPositionList3
-  newMapChessboard.bossPosition = bossPosition
+  local newMapChessboard = table.assign({}, mapChessboard, {
+    inBattleList = inBattleList,
+    selectedArrowList = selectedArrowList,
+    myFleetList = myFleetList,
+    rewardBoxList = rewardBoxList,
+    enemyPositionList1 = enemyPositionList1,
+    enemyPositionList2 = enemyPositionList2,
+    enemyPositionList3 = enemyPositionList3,
+    bossPosition = bossPosition,
+  })
 
   if not __keepScreenState then keepScreen(false) end
   return newMapChessboard
+end
+
+-- 合并新老版本的地图数据
+map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
+  -- 将我方舰队上方和右上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
+  local checkMyFleetList = utils.subtractionList(newMapChessboard.myFleetList, newMapChessboard.inBattleList)
+  local checkMyFleetMap = makePointMap(checkMyFleetList)
+  function findMyFleetTopRightEnemy(el)
+    local res = {}
+    for key, enemy in ipairs(el) do
+      if checkMyFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] or checkMyFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)] then
+        table.insert(res, enemy)
+      end
+    end
+    return res
+  end
+
+  local theMapChessBoard = table.assign({}, newMapChessboard, {
+    rewardBoxList = utils.unionList(newMapChessboard.rewardBoxList, findMyFleetTopRightEnemy(mapChessboard.rewardBoxList)),
+    enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList1)),
+    enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList2)),
+    enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList3)),
+    bossPosition = utils.unionList(newMapChessboard.bossPosition, findMyFleetTopRightEnemy(mapChessboard.bossPosition)),
+  })
+  return theMapChessBoard
 end
 
 map.moveToPoint = function(ImgInfo, targetPosition, point)
@@ -600,7 +606,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-        and not obstacleMap[point[1] .. '-' .. point[2]] then
+      and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then

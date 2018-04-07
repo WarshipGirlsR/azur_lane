@@ -40,7 +40,7 @@ local battle = function(action)
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
 
-      -- 自动模式还是辅助模式
+      -- 是否自动模式，如果没有相应配置的话会自动从自动切换到手动
       store.battle.battleAssistantMode = settings.battleAssistantMode
 
       return {
