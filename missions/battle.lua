@@ -171,6 +171,7 @@ local battle = function(action)
           '7-1', '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
           '9-2',
+          'event11-1-a1',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -188,7 +189,7 @@ local battle = function(action)
       -- 如果选择的关卡没有匹配任何关卡，那么也回到手动模式。
       stepLabel.setStepLabelContent('2-13.等待用户移动')
 
-      if settings.battleFormation then
+      if settings.battleAlertWhenManual then
         vibratorPromise(3)
       end
 

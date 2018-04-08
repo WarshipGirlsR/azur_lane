@@ -9,7 +9,7 @@ local moMap = require '../meta-operation/maps-options/index'
 local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 
--- type1 的过程：先让 boss 队走到 boss 点，再让道中队清小怪，最后 boss 队打 boss
+-- type1 的过程：先让道中队走到 boss 点前，再让道中队走到 boss 队前，最后 boss 队打 boss
 
 -- 设置  store 的默认值
 store.mapType1 = store.mapType1 or {

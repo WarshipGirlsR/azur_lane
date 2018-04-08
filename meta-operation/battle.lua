@@ -230,6 +230,18 @@ battle.moveToChapter = function(chapter)
     tap(286, 866, 100)
   elseif (chapter == 'event9-1-sp4') then
     tap(1070, 744, 100)
+  elseif (chapter == 'event11-1-a1') then
+    tap(653, 265, 100)
+  elseif (chapter == 'event11-1-a2') then
+    tap(1102, 786, 100)
+  elseif (chapter == 'event11-1-a3') then
+    tap(1342, 378, 100)
+  elseif (chapter == 'event11-2 -b1') then
+    tap(537, 775, 100)
+  elseif (chapter == 'event11-2-b2') then
+    tap(1307, 727, 100)
+  elseif (chapter == 'event11-2-b3') then
+    tap(1063, 325, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
