@@ -181,7 +181,11 @@ local battle = function(action)
 
       -- 如果选择的关卡没有匹配任何关卡，那么也回到手动模式。
       stepLabel.setStepLabelContent('2-13.等待用户移动')
-      vibratorPromise(3)
+
+      if settings.battleFormation then
+        vibratorPromise(3)
+      end
+
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 10000 },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },

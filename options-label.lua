@@ -184,6 +184,19 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '手动过图时震动提示',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleAlertWhenManual',
+          ['type'] = 'RadioGroup',
+          ['list'] = '是,否',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = '阵型',
           ['size'] = 15,
           ['align'] = 'left',
@@ -322,6 +335,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleAlertWhenNoHp] or false
     end)(settings.battleAlertWhenNoHp)
+    -- 手动过图时震动提示
+    settings.battleAlertWhenManual = (function(battleAlertWhenManual)
+      local list = transStrToTable({ true, false, })
+      return list[battleAlertWhenManual] or false
+    end)(settings.battleAlertWhenManual)
     -- 阵型
     settings.battleFormation = (function(battleFormation)
       local list = transStrToTable({ 1, 2, 3, 4, 5 })
