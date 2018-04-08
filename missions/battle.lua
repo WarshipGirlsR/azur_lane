@@ -58,8 +58,10 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_HOME_CLICK_BATTLE' then
 
-      stepLabel.setStepLabelContent('2.2.点击出击')
-      o.battle.clickBattleBtn()
+      if settings.battleChapter ~= '0' then
+        stepLabel.setStepLabelContent('2.2.点击出击')
+        o.battle.clickBattleBtn()
+      end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
@@ -68,21 +70,23 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE' then
 
-      stepLabel.setStepLabelContent('2.3.选择章节界面')
-      if settings.battleMode == 'normal' and o.battle.isHardMode() then
-        stepLabel.setStepLabelContent('2.4.切换为普通模式')
-      elseif settings.battleMode == 'hard' and o.battle.isNormalMode() then
-        stepLabel.setStepLabelContent('2.5.切换为困难模式')
-      end
+      if settings.battleChapter ~= '0' then
+        stepLabel.setStepLabelContent('2.3.选择章节界面')
+        if settings.battleMode == 'normal' and o.battle.isHardMode() then
+          stepLabel.setStepLabelContent('2.4.切换为普通模式')
+        elseif settings.battleMode == 'hard' and o.battle.isNormalMode() then
+          stepLabel.setStepLabelContent('2.5.切换为困难模式')
+        end
 
-      if (settings.battleMode == 'normal' and o.battle.isHardMode())
-        or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
-        o.battle.clickSwitchHardModeBtn()
-        c.yield(sleepPromise(500))
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
-        }))
-        return makeAction(newstateTypes)
+        if (settings.battleMode == 'normal' and o.battle.isHardMode())
+          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+          o.battle.clickSwitchHardModeBtn()
+          c.yield(sleepPromise(500))
+          local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+            { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
+          }))
+          return makeAction(newstateTypes)
+        end
       end
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -92,8 +96,10 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER' then
 
-      stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')
-      o.battle.moveToChapter(settings.battleChapter)
+      if settings.battleChapter ~= '0' then
+        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')
+        o.battle.moveToChapter(settings.battleChapter)
+      end
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage, 2000 },
