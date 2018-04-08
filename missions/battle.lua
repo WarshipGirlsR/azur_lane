@@ -230,14 +230,14 @@ local battle = function(action)
       if store.battle.battleAssistantMode == 'auto' then
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
-          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', o.battle.isAmbushedPanel, 1000 },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
           { 'MAPS_TYPE1_INIT', o.battle.isMapPage, 2000 },
         }))
         return makeAction(newstateTypes)
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
-        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL', o.battle.isAmbushedPanel, 1000 },
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
         { 'BATTLE_MAP_PAGE_WAIT_FOR_MOVE', o.battle.isMapPage, 2000 },
       }))
       return makeAction(newstateTypes)
