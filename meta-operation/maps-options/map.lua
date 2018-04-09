@@ -404,7 +404,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
 
-
   local inBattleList = utils.unionList(mapChessboard.inBattleList, transPointListToChessboardPointList(positionMap, inBattlePointList))
   local selectedArrowList = utils.unionList(mapChessboard.selectedArrowList, transPointListToChessboardPointList(positionMap, selectedArrowPositionList))
   local myFleetList = utils.unionList(selectedArrowList, transPointListToChessboardPointList(positionMap, myFleetPositionList))
@@ -463,7 +462,6 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     return res
   end
 
-  console.log(mapChessboard)
   local theMapChessBoard = table.assign({}, newMapChessboard, {
     rewardBoxList = utils.unionList(newMapChessboard.rewardBoxList, findMyFleetTopRightEnemy(mapChessboard.rewardBoxList)),
     enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList1)),
@@ -513,12 +511,12 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
   return thePath and thePath[#thePath]
 end
 
-map.findClosestEnemy = function(ImgInfo, mapChessboard)
+map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
   -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
   local waitForBossPosition = mapChessboard.waitForBossPosition[1]
   -- 除了3种敌人的位置，还会考虑奖励点的位置，方便获取额外奖励
-  local myField = mapChessboard.myFleetList[1]
-  local myField2 = mapChessboard.myFleetList[2]
+  local myField = myFleed or mapChessboard.myFleetList[1]
+  local myField2 = myFleed2 or mapChessboard.myFleetList[2]
   local rewardBoxList = table.map(mapChessboard.rewardBoxList, function(enemy)
     return table.assign({}, enemy, { weight = 0 })
   end)

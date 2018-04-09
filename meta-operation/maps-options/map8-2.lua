@@ -86,7 +86,7 @@ mapEvent.getMapChessboard = function()
       { 4, 2 }, { 4, 3 }, { 4, 6 }, { 4, 7 },
       { 5, 2 }, { 5, 3 },
     },
-    waitForBossPosition = {},
+    waitForBossPosition = { { 1, 8 } },
     bossPosition = {},
     myFleetList = {},
     enemyPositionList1 = {},

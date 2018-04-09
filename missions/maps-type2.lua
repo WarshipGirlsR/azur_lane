@@ -30,14 +30,12 @@ store.mapType2 = store.mapType2 or {
 
 -- maps-type2 的行动流程
 local missionStepList = {
+  'battle',
   'onWayFleetMoveToWaitBoss',
   'onWayFleetMoveToBossFleet',
   'onWayFleetMoveToClosestEnemy',
+  'bossFleetMoveToWaitBoss',
   'bossFleetMoveToBoss',
-  onWayFleetMoveToWaitBoss = 'onWayFleetMoveToWaitBoss',
-  onWayFleetMoveToBossFleet = 'onWayFleetMoveToBossFleet',
-  onWayFleetMoveToClosestEnemy = 'onWayFleetMoveToClosestEnemy',
-  bossFleetMoveToBoss = 'bossFleetMoveToBoss',
 }
 
 local o = {
@@ -85,7 +83,7 @@ local mapsType2 = function(action)
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
       store.mapType2.changeFleetNum = 0
       -- 舰队移动的状态。
-      store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+      store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
       store.mapType2.checkpositionListForCheck = nil
       store.mapType2.checkpositionListForMove = {}
       store.mapType2.mapChessboard = mapProxy and mapProxy.getMapChessboard(settings.battleChapter) or {}
@@ -178,6 +176,7 @@ local mapsType2 = function(action)
       stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = store.mapType2.checkpositionListForCheck[1]
       store.mapType2.newMapChessboard = mapProxy.scanMap(targetPosition, store.mapType2.newMapChessboard)
+      console.log(store.mapType2.newMapChessboard)
       -- 地图没扫描完，继续扫描
       if #store.mapType2.checkpositionListForCheck > 1 then
         table.remove(store.mapType2.checkpositionListForCheck, 1)
@@ -189,6 +188,19 @@ local mapsType2 = function(action)
 
       -- 扫描完毕，将 newMapChessboard 与 mapChessboard 合并
       store.mapType2.mapChessboard = mapProxy.assignMapChessboard(store.mapType2.mapChessboard, store.mapType2.newMapChessboard)
+
+      -- 将道中队和boss队分位置别标记
+      if not store.mapType2.mapChessboard.myFleetList[2] then
+        store.mapType2.mapChessboard.bossFleet = store.mapType2.mapChessboard.myFleetList[1]
+        store.mapType2.mapChessboard.onWayFleet = store.mapType2.mapChessboard.myFleetList[1]
+      elseif o.battle.isSelectedFleed(settings.battleFleet[1]) then
+        store.mapType2.mapChessboard.bossFleet = store.mapType2.mapChessboard.myFleetList[1]
+        store.mapType2.mapChessboard.onWayFleet = store.mapType2.mapChessboard.myFleetList[2]
+      else
+        store.mapType2.mapChessboard.bossFleet = store.mapType2.mapChessboard.myFleetList[2]
+        store.mapType2.mapChessboard.onWayFleet = store.mapType2.mapChessboard.myFleetList[1]
+      end
+
       console.log(store.mapType2.mapChessboard)
       -- 如果扫描内容是空的，重新扫描
       if #store.mapType2.mapChessboard.myFleetList == 0 then
@@ -210,31 +222,85 @@ local mapsType2 = function(action)
       local myFleetList = mapChessboard.myFleetList
       local inBattleList = mapChessboard.inBattleList
       local waitForBossPosition = mapChessboard.waitForBossPosition[1]
-      if not waitForBossPosition then
+
+      local _ = (function()
+        if not waitForBossPosition then
+          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+          return
+        end
+        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, mapChessboard.bossFleet) end) > -1 then
+          stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
+          store.mapType2.missionStep = 'bossFleetMoveToBoss'
+          store.mapType2.nextStepPoint = mapChessboard.bossFleet
+          return
+        end
+        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
+          store.mapType2.missionStep = 'battle'
+          stepLabel.setStepLabelContent('3-7.开始战斗')
+          o.battle.clickAttackBtn()
+          return
+        end
+
+        if #mapChessboard.bossPosition > 0 and comparePoints(mapChessboard.bossFleet, mapChessboard.bossPosition[1]) then
+        end
+
+        if #mapChessboard.bossPosition > 0 then
+          -- 判断boss队到boss中间能否通过
+          local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
+          if not bossTo or comparePoints(bossTo, mapChessboard.bossPosition[1]) then
+            stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
+            store.mapType2.missionStep = 'bossFleetMoveToBoss'
+            store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
+            return
+          end
+
+          stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')
+          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+          store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)
+          return
+        end
+        if comparePoints(mapChessboard.onWayFleet, waitForBossPosition) then
+          stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
+          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+          return
+        end
+
+        if not comparePoints(mapChessboard.bossFleet, waitForBossPosition) and mapChessboard.myFleetList[2] then
+          local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, waitForBossPosition)
+          if comparePoints(bossTo, waitForBossPosition) then
+            stepLabel.setStepLabelContent('3-8.boss队移动到待命位置')
+            store.mapType2.missionStep = 'bossFleetMoveToWaitBoss'
+            store.mapType2.nextStepPoint = bossTo
+            return
+          else
+            stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
+            store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
+            store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, waitForBossPosition)
+            return
+          end
+        end
+
+        if not mapChessboard.myFleetList[2] then
+          stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
+          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+          return
+        end
+
+        if store.mapType2.missionStep == 'onWayFleetMoveToClosestEnemy' then
+          stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
+          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+          return
+        end
+
+        stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
         store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
-      end
-      if table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
-        stepLabel.setStepLabelContent('3-7.开始战斗')
-        o.battle.clickAttackBtn()
-      elseif #mapChessboard.bossPosition > 0 then
-        stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
-        store.mapType2.missionStep = 'bossFleetMoveToBoss'
-        store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
-      elseif store.mapType2.missionStep == 'bossFleetMoveToBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
-        store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE2_GET_NEXT_STEP', o.battle.isMapPage },
-        }))
-        return makeAction(newstateTypes)
-      elseif store.mapType2.missionStep == 'bossFleetMoveToBoss' then
-        stepLabel.setStepLabelContent('3-9.boss 队移动待命位置')
-        store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.waitForBossPosition[1])
-      else
-        stepLabel.setStepLabelContent('3-10.道中队移动到最近的敌人')
-        store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
-        local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
-        store.mapType2.nextStepPoint = closestEnemy
-      end
+        store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+        return
+      end)()
+
       -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步
       -- 尽可能避开敌人
       if not store.mapType2.nextStepPoint then
@@ -269,18 +335,24 @@ local mapsType2 = function(action)
 
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('3-20.检查舰队')
-        if store.mapType2.missionStep == 'bossFleetMoveToBoss' then
-          local res = o.battle.isSelectedFleed(settings.battleFleet[1])
-          if (not res) and (store.mapType2.changeFleetNum < 2) then
+        if store.mapType2.missionStep == 'bossFleetMoveToBoss'
+          or store.mapType2.missionStep == 'bossFleetMoveToWaitBoss' then
+          if (not o.battle.isSelectedFleed(settings.battleFleet[1])) and store.mapType2.changeFleetNum < 2 then
             store.mapType2.changeFleetNum = store.mapType2.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-21.选择boss舰队')
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
-            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-              { 'MAPS_TYPE2_PAGE_SELECT_FLEET', o.battle.isMapPage, 1000 },
-            }))
-            return makeAction(newstateTypes)
+            c.yield(sleepPromise(500))
+            if o.battle.isSelectedFleed(settings.battleFleet[1]) then
+              local myFleetList = store.mapType2.mapChessboard.myFleetList
+              store.mapType2.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
+            else
+              local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+                { 'MAPS_TYPE2_PAGE_SELECT_FLEET', o.battle.isMapPage, 1000 },
+              }))
+              return makeAction(newstateTypes)
+            end
           end
         elseif store.mapType2.missionStep == 'onWayFleetMoveToWaitBoss'
           or store.mapType2.missionStep == 'onWayFleetMoveToBossFleet'
@@ -292,10 +364,15 @@ local mapsType2 = function(action)
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
-            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-              { 'MAPS_TYPE2_PAGE_SELECT_FLEET', o.battle.isMapPage, 1000 },
-            }))
-            return makeAction(newstateTypes)
+            if o.battle.isSelectedFleed(settings.battleFleet[2]) then
+              local battleFleet = store.mapType2.mapChessboard.battleFleet
+              store.mapType2.mapChessboard.battleFleet = { battleFleet[2], battleFleet[1] }
+            else
+              local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+                { 'MAPS_TYPE2_PAGE_SELECT_FLEET', o.battle.isMapPage, 1000 },
+              }))
+              return makeAction(newstateTypes)
+            end
           end
         end
       end
@@ -304,7 +381,7 @@ local mapsType2 = function(action)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'MAPS_TYPE2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
       }))
-      return makeAction(newstateTypes), state
+      return makeAction(newstateTypes)
 
     elseif action.type == 'MAPS_TYPE2_GET_MAP_POSITION_FOR_A_STEP' then
 
@@ -336,7 +413,7 @@ local mapsType2 = function(action)
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 500 },
         }))
-        return makeAction(newstateTypes), state
+        return makeAction(newstateTypes)
       else
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'MAPS_TYPE2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
