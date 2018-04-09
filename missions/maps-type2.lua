@@ -365,8 +365,8 @@ local mapsType2 = function(action)
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
             if o.battle.isSelectedFleed(settings.battleFleet[2]) then
-              local battleFleet = store.mapType2.mapChessboard.battleFleet
-              store.mapType2.mapChessboard.battleFleet = { battleFleet[2], battleFleet[1] }
+              local myFleetList = store.mapType2.mapChessboard.myFleetList
+              store.mapType2.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
             else
               local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
                 { 'MAPS_TYPE2_PAGE_SELECT_FLEET', o.battle.isMapPage, 1000 },
