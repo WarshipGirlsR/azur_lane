@@ -45,6 +45,7 @@ local battle = function(action)
 
       return {
         makeAction('MAPS_TYPE1_PRE_INIT'),
+        makeAction('MAPS_TYPE2_PRE_INIT'),
         makeAction('BATTLE_START'),
       }
 
@@ -165,27 +166,13 @@ local battle = function(action)
     elseif action.type == 'BATTLE_MAP_PAGE' then
 
       if store.battle.battleAssistantMode == 'auto' and mapProxy then
-        local type1 = {
-          '1-1', '1-2', '1-3', '1-4',
-          '2-1', '2-2', '2-3', '2-4',
-          '3-1', '3-2', '3-3', '3-4',
-          '4-1', '4-2', '4-3', '4-4',
-          '5-1', '5-2', '5-3', '5-4',
-          '6-1', '6-2', '6-3', '6-4',
-          '7-1', '7-2', '7-3', '7-4',
-          '8-1', '8-2', '8-3', '8-4',
-          '9-2',
-          'event11-1-a1',
-        }
-        if table.findIndex(type1, settings.battleChapter) > -1 then
-          local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', o.battle.isMapPage },
-            { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
-            { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
-          }))
-          return makeAction(newstateTypes)
-        end
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_MAP_PAGE_CHECK_ASSISTANT_MODE', o.battle.isMapPage },
+          { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
+          { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel },
+          { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
+        }))
+        return makeAction(newstateTypes)
       else
         store.battle.battleAssistantMode = 'manual'
       end
@@ -250,11 +237,12 @@ local battle = function(action)
           '4-1', '4-2', '4-3', '4-4',
           '5-1', '5-2', '5-3', '5-4',
           '6-1', '6-2', '6-3', '6-4',
-          '7-1', '7-2', '7-3', '7-4',
+          '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
           '9-2',
         }
         local type2 = {
+          '7-1',
           'event11-1-a1',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then

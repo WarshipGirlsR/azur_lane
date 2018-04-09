@@ -463,6 +463,7 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     return res
   end
 
+  console.log(mapChessboard)
   local theMapChessBoard = table.assign({}, newMapChessboard, {
     rewardBoxList = utils.unionList(newMapChessboard.rewardBoxList, findMyFleetTopRightEnemy(mapChessboard.rewardBoxList)),
     enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList1)),
