@@ -9,10 +9,10 @@ local moMap = require '../meta-operation/maps-options/index'
 local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 
--- type1 的过程：先让道中队走到 boss 点前，再让道中队走到 boss 队前，最后 boss 队打 boss
+-- type2 的过程：先让道中队走到 boss 点前，再让道中队走到 boss 队前，最后 boss 队打 boss
 
 -- 设置  store 的默认值
-store.mapType1 = store.mapType1 or {
+store.mapType2 = store.mapType2 or {
   selectFleedCount = 0,
   isBossFleetInBossArea = false,
   battleNum = 0,
@@ -28,7 +28,7 @@ store.mapType1 = store.mapType1 or {
   moveVectorForAStep = { -1, -1 },
 }
 
--- maps-type1 的行动流程
+-- maps-type2 的行动流程
 local missionStepList = {
   'onWayFleetMoveToWaitBoss',
   'onWayFleetMoveToBossFleet',
@@ -67,7 +67,7 @@ local battleListenerList = {
   { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
 }
 
-local mapsType1 = function(action)
+local mapsType2 = function(action)
   local settings = store.settings;
   local mapProxy = o.map['map' .. settings.battleChapter]
 
@@ -218,7 +218,7 @@ local mapsType1 = function(action)
         stepLabel.setStepLabelContent('3-7.开始战斗')
         o.battle.clickAttackBtn()
       elseif #mapChessboard.bossPosition > 0 then
-        stepLabel.setStepLabelContent('3-8.移动到boss位置')
+        stepLabel.setStepLabelContent('3-8.道中队移动到boss位置')
         store.mapType1.missionStep = 'onWayFleetMoveToWaitBoss'
         store.mapType1.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
       elseif store.mapType1.missionStep == 'bossFleetMoveToBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
@@ -228,10 +228,10 @@ local mapsType1 = function(action)
         }))
         return makeAction(newstateTypes)
       elseif store.mapType1.missionStep == 'bossFleetMoveToBoss' then
-        stepLabel.setStepLabelContent('3-9.移动待命位置')
+        stepLabel.setStepLabelContent('3-9.boss 队移动待命位置')
         store.mapType1.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.waitForBossPosition[1])
       else
-        stepLabel.setStepLabelContent('3-10.移动到最近的敌人')
+        stepLabel.setStepLabelContent('3-10.道中队移动到最近的敌人')
         store.mapType1.missionStep = 'onWayFleetMoveToWaitBoss'
         local closestEnemy = mapProxy.findClosestEnemy(mapChessboard)
         store.mapType1.nextStepPoint = closestEnemy
@@ -329,10 +329,6 @@ local mapsType1 = function(action)
       }))
       return makeAction(newstateTypes)
 
-    elseif action.type == 'MAPS_TYPE2_GET_MOVE_VECTOR_FOR_A_STEP' then
-
-
-
     elseif action.type == 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
 
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')
@@ -376,4 +372,5 @@ local mapsType1 = function(action)
   end))
 end
 
-return mapsType1
+return mapsType2
+
