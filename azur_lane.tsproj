@@ -91,6 +91,7 @@ missions/common-listener.lua
 missions/home.lua
 missions/index.lua
 missions/maps-type1.lua
+missions/maps-type2.lua
 missions/pause.lua
 missions/test.lua
 missions/utils.lua
