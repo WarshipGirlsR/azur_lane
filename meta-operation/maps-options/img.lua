@@ -119,7 +119,7 @@ local imgs = {
           { 859, 573, 0xdeba10 }, { 868, 573, 0xdeba10 },
           { 840, 578, 0xdebe10 }, { 840, 588, 0xdebe19 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 小型 右下框
       (function()
@@ -130,7 +130,7 @@ local imgs = {
           { 867, 616, 0xdeba10 }, { 876, 616, 0xdebe19 },
           { 884, 610, 0xd6ba10 }, { 884, 602, 0xdebe10 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList2 = {
@@ -144,7 +144,7 @@ local imgs = {
           { 1299, 432, 0xe6a200 }, { 1266, 438, 0xe6a208 },
           { 1266, 445, 0xdea200 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 中型 右下框
       (function()
@@ -155,7 +155,7 @@ local imgs = {
           { 1293, 477, 0xe6a600 }, { 1298, 477, 0xdea200 },
           { 1311, 472, 0xefaa10 }, { 1311, 466, 0xdeaa00 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList3 = {
@@ -168,7 +168,7 @@ local imgs = {
           { 1407, 475, 0xbd3900 }, { 1411, 475, 0xbd3900 },
           { 1388, 480, 0xbd3908 }, { 1388, 487, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 大型 右下框
       (function()
@@ -179,7 +179,7 @@ local imgs = {
           { 1413, 517, 0xbd3900 }, { 1420, 517, 0xb53100 },
           { 1429, 509, 0xbd3900 }, { 1429, 502, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- boss位置
