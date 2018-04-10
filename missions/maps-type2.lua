@@ -144,7 +144,7 @@ local mapsType2 = function(action)
       if effectiveStep and comparePoints(store.mapType2.moveVectorForCheck, newMoveVector) then
         store.mapType2.moveVectorForCheck = newMoveVector
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE2_SCAN_MAP', o.battle.isMapPage, 500 },
+          { 'MAPS_TYPE2_SCAN_MAP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       end
@@ -154,20 +154,20 @@ local mapsType2 = function(action)
       if isCenter then
         -- 地图已经移动到位
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE2_SCAN_MAP', o.battle.isMapPage, 500 },
+          { 'MAPS_TYPE2_SCAN_MAP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       else
         -- 地图没有移动到位
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
+          { 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       end
 
       store.mapType2.moveVectorForCheck = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
+        { 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
       }))
       return makeAction(newstateTypes)
 

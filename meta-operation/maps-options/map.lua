@@ -391,6 +391,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   -- 扫描屏幕上的对象
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
   myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue)
+
   local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
   selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue)
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))
