@@ -131,7 +131,23 @@ return {
     -- 敌方舰队位置(大型舰队)
     enemyList3 = imgBase.map.enemyList3,
     -- boss位置
-    bossPointList = imgBase.map.bossPointList,
+    bossPointList = table.merge(--
+    -- 我方舰队不和boss重叠 3-8
+      {
+        (function()
+          local leftTop = { 185, 155 }
+          local rightBotton = { 1899, 1022, }
+          local basePoint, posandcolor = transRelativePoint({
+            { 1624, 752, 0x423d42 }, { 1648, 751, 0x312d31 },
+            { 1675, 755, 0x292429 }, { 1626, 784, 0xff4d52 },
+            { 1675, 785, 0xff4d52 }, { 1649, 798, 0x312831 },
+            { 1650, 812, 0x7b0410 }, { 1621, 727, 0x211010 },
+            { 1677, 730, 0x211819 },
+          })
+          return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        end)(),
+      },
+      imgBase.map.bossPointList),
     -- 战斗中的位置
     inBattleList = imgBase.map.inBattleList,
     -- 奖励箱的位置
