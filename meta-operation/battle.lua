@@ -40,8 +40,8 @@ battle.isNormalMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 170, 1008, 0xc51021 },
-    { 281, 1031, 0x631419 },
+    { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },
+    { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -53,8 +53,8 @@ battle.isHardMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 182, 1007, 0x083173 },
-    { 281, 1010, 0x083173 },
+    { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },
+    { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -242,6 +242,12 @@ battle.moveToChapter = function(chapter)
     tap(1307, 727, 100)
   elseif (chapter == 'event11-2-b3') then
     tap(1063, 325, 100)
+  elseif (chapter == 'event12-1-sp1') then
+    tap(1379, 457, 100)
+  elseif (chapter == 'event12-1-sp2') then
+    tap(875, 796, 100)
+  elseif (chapter == 'event12-1-sp3') then
+    tap(582, 370, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -563,6 +569,29 @@ end
 -- 躲避伏击
 battle.ambushedPanelClickAvoidBtn = function()
   tap(1351, 564)
+end
+
+-- 检测信息弹窗
+battle.isInfomationModal = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 463, 250, 0xeff3f7 }, { 938, 261, 0xe6f3f7 },
+    { 1447, 255, 0xadaaad }, { 1391, 282, 0xf7ce42 },
+    { 845, 709, 0xffdf52 }, { 947, 707, 0xffdb52 },
+    { 1093, 708, 0x943d00 }, { 960, 778, 0xffba21 },
+    { 840, 775, 0xf7b219 }, { 1088, 776, 0xffb221 },
+    { 920, 726, 0xffffff }, { 954, 746, 0xffffff },
+    { 984, 746, 0xffffff }, { 998, 774, 0xffb221 },
+  }
+  local result = multiColorS(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+-- 关闭信息弹窗
+battle.infomationModalClickClose = function()
+  tap(1391, 281)
 end
 
 -- 移动到敌人

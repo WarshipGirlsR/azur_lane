@@ -45,7 +45,8 @@ meta-operation/maps-options/img8-2.lua
 meta-operation/maps-options/img8-3.lua
 meta-operation/maps-options/img8-4.lua
 meta-operation/maps-options/img9-2.lua
-meta-operation/maps-options/imgevent11-1-a1.lua
+meta-operation/maps-options/img9-3.lua
+meta-operation/maps-options/imgevent12-1-sp2.lua
 meta-operation/maps-options/index.lua
 meta-operation/maps-options/map.lua
 meta-operation/maps-options/map1-1.lua
@@ -81,7 +82,8 @@ meta-operation/maps-options/map8-2.lua
 meta-operation/maps-options/map8-3.lua
 meta-operation/maps-options/map8-4.lua
 meta-operation/maps-options/map9-2.lua
-meta-operation/maps-options/mapevent11-1-a1.lua
+meta-operation/maps-options/map9-3.lua
+meta-operation/maps-options/mapevent12-1-sp2.lua
 meta-operation/maps-options/utils.lua
 meta-operation/battle.lua
 meta-operation/home.lua

@@ -86,6 +86,18 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      --  采集位置 9-3
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 383, 626, 0xde8a4a }, { 351, 622, 0xad5152 },
+          { 356, 603, 0xfffbde }, { 368, 590, 0xfffbe6 },
+          { 390, 585, 0xde9e5a }, { 397, 579, 0xd67d7b },
+          { 422, 596, 0x424542 }, { 396, 615, 0xde9652 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
     selectedArrow = {
@@ -119,7 +131,7 @@ local imgs = {
           { 859, 573, 0xdeba10 }, { 868, 573, 0xdeba10 },
           { 840, 578, 0xdebe10 }, { 840, 588, 0xdebe19 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 小型 右下框
       (function()
@@ -130,7 +142,7 @@ local imgs = {
           { 867, 616, 0xdeba10 }, { 876, 616, 0xdebe19 },
           { 884, 610, 0xd6ba10 }, { 884, 602, 0xdebe10 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList2 = {
@@ -144,7 +156,7 @@ local imgs = {
           { 1299, 432, 0xe6a200 }, { 1266, 438, 0xe6a208 },
           { 1266, 445, 0xdea200 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 中型 右下框
       (function()
@@ -155,7 +167,7 @@ local imgs = {
           { 1293, 477, 0xe6a600 }, { 1298, 477, 0xdea200 },
           { 1311, 472, 0xefaa10 }, { 1311, 466, 0xdeaa00 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList3 = {
@@ -168,7 +180,7 @@ local imgs = {
           { 1407, 475, 0xbd3900 }, { 1411, 475, 0xbd3900 },
           { 1388, 480, 0xbd3908 }, { 1388, 487, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 大型 右下框
       (function()
@@ -179,7 +191,7 @@ local imgs = {
           { 1413, 517, 0xbd3900 }, { 1420, 517, 0xb53100 },
           { 1429, 509, 0xbd3900 }, { 1429, 502, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- boss位置
@@ -199,7 +211,7 @@ local imgs = {
           { 678, 616, 0xe66d63 }, { 689, 616, 0xe66963 },
           { 705, 618, 0xde695a },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 我方舰队不和boss重叠 1-1 的 1-7
       (function()
@@ -215,7 +227,7 @@ local imgs = {
           { 1482, 459, 0xf74d4a }, { 1492, 452, 0xff4d52 },
           { 1464, 468, 0x3a2d31 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)()
     },
     -- 战斗中的点

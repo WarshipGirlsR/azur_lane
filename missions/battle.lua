@@ -24,6 +24,7 @@ local battleListenerList = {
   { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
+  { 'BATTLE_MAP_PAGE_CLOSE_INFOMATION_MODAL', o.battle.isInfomationModal, 2000 },
   { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 2000 },
   { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
   { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },
@@ -209,7 +210,18 @@ local battle = function(action)
       stepLabel.setStepLabelContent('2.15.躲避伏击')
       o.battle.ambushedPanelClickAvoidBtn()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 3000 },
+        { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
+        { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'BATTLE_MAP_PAGE_CLOSE_INFOMATION_MODAL' then
+
+      stepLabel.setStepLabelContent('2.15.关闭信息弹窗')
+      o.battle.infomationModalClickClose()
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 3000 },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
         { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
       }))
@@ -240,11 +252,11 @@ local battle = function(action)
           '6-1', '6-2', '6-3', '6-4',
           '7-1', '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
-          '9-2',
-          'event11-1-a1',
+          '9-2', '9-3',
+          'event12-1-sp2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
-          stepLabel.setStepLabelContent('2-19.type-1')
+          stepLabel.setStepLabelContent('2-19.scan-map-type-1')
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
@@ -274,11 +286,11 @@ local battle = function(action)
           '6-1', '6-2', '6-3', '6-4',
           '7-1', '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
-          '9-2',
-          'event11-1-a1',
+          '9-2', '9-3',
+          'event12-1-sp2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
-          stepLabel.setStepLabelContent('2-19.type-1')
+          stepLabel.setStepLabelContent('2-19.maps-type-1')
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
@@ -286,7 +298,7 @@ local battle = function(action)
           }))
           return makeAction(newstateTypes)
         elseif table.findIndex(type2, settings.battleChapter) > -1 then
-          stepLabel.setStepLabelContent('2-19.type-2')
+          stepLabel.setStepLabelContent('2-19.maps-type-2')
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },

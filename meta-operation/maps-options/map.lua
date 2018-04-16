@@ -313,7 +313,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   local effectiveStep = false
   if targetPosition.leftTop then
     if not currentPosition.leftTop then
-      moveVector = { sWidth / 4, sHeight / 4 }
+      moveVector = { sWidth / 3, sHeight / 3 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1];
@@ -321,7 +321,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.rightTop then
     if not currentPosition.rightTop then
-      moveVector = { (0 - sWidth) / 4, sHeight / 4 }
+      moveVector = { (0 - sWidth) / 3, sHeight / 3 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1];
@@ -329,7 +329,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.leftBotton then
     if not currentPosition.leftBotton then
-      moveVector = { sWidth / 4, (0 - sHeight) / 4 }
+      moveVector = { sWidth / 3, (0 - sHeight) / 3 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1];
@@ -337,7 +337,7 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
     end
   elseif targetPosition.rightBotton then
     if not currentPosition.rightBotton then
-      moveVector = { (0 - sWidth) / 4, (0 - sHeight) / 4 }
+      moveVector = { (0 - sWidth) / 3, (0 - sHeight) / 3 }
     else
       effectiveStep = true
       moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]
@@ -498,18 +498,22 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     })
   end
 
+  local targetPath = {}
+
   -- 检查路径上是否有其他敌方舰队，如果有就点击
   if thePath and #thePath > 0 then
     local enemyPositionMap = transListToMap(enemyPositionList)
     for key = 1, #thePath do
       local p = thePath[key]
+      table.insert(targetPath, p)
       if enemyPositionMap[p[1] .. '-' .. p[2]] then
-        return p
+        return p, targetPath, thePath
       end
     end
   end
 
-  return thePath and thePath[#thePath]
+  local target = thePath and thePath[#thePath]
+  return target, thePath, thePath
 end
 
 map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)

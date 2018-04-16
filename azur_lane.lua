@@ -26,8 +26,11 @@ require './lib/table-polyfill'
 require './utils/keep-screen-hock'
 require './utils/multi-color-hock'
 require './utils/device-orient-hock'
+require './utils/clear-log'
+
 EventQuery = require './lib/event-query'
 Promise = require './lib/promise'
+
 local co = require './lib/co'
 local optionsLabel = require './options-label'
 local socket = require 'socket'

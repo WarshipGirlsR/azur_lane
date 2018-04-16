@@ -33,7 +33,7 @@ local stepLabel = (require 'StepLabel').init('stopbtn')
 
 Promise.setStackTraceback(false)
 
-local lfs = require 'lfs'
+local lfs = require './lib/lfs'
 
 Promise.setStackTraceback(false)
 

@@ -101,8 +101,8 @@ return function()
           ['type'] = 'RadioGroup',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
-            .. '10-1,10-2,10-3,10-4,'
-            .. 'event11-1-a1,event11-1-a2,event11-1-a3,event11-2-b1,event11-2-b2,event11-2-b3,',
+            .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,'
+            .. 'event12-1-sp1,event12-1-sp2,event12-1-sp3',
           ['select'] = '0',
         },
         {
@@ -283,6 +283,7 @@ return function()
         '8-1', '8-2', '8-3', '8-4',
         '9-1', '9-2', '9-3', '9-4',
         '10-1', '10-2', '10-3', '10-4',
+        '11-1', '11-2', '11-3', '11-4',
         --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
         --      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',
         --      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',
@@ -290,8 +291,9 @@ return function()
         --      'event7-1-c1',
         --      'event8-1-sp1', 'event8-1-sp2', 'event8-1-sp3',
         --      'event9-1-sp1', 'event9-1-sp2', 'event9-1-sp3', 'event9-1-sp4',
-        'event11-1-a1', 'event11-1-a2', 'event11-1-a3',
-        'event11-1-b1', 'event11-1-b2', 'event11-1-b3',
+        --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
+        --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',
+        'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

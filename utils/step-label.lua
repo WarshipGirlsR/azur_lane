@@ -54,7 +54,6 @@ StepLable.setStepLabelContent = function(text, noNLog)
   end
 end
 
-
 StepLable.getText = function()
   return StepLable.originText
 end

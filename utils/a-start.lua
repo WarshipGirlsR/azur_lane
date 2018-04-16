@@ -38,6 +38,21 @@ end
 
 -- 主函数
 local AStart = function(startPoint, endPoint, mapObj)
+  if type(startPoint) ~= 'table' or type(endPoint) ~= 'table' then
+    local info = debug.getinfo(3, 'Sl')
+    local lineInfo = ''
+    if info.currentline then
+      lineInfo = info.source .. ': ' .. info.currentline .. ':\n'
+    end
+    if type(startPoint) ~= 'table' then
+      lineInfo = lineInfo .. '\n bad argument #1 "startPoint"(table excepted, got ' .. type(startPoint) .. ')'
+    end
+    if type(endPoint) ~= 'table' then
+      lineInfo = lineInfo .. '\n bad argument #2 "endPoint"(table excepted, got ' .. type(endPoint) .. ')'
+    end
+    error(lineInfo)
+  end
+
   -- 棋盘宽高
   local width = mapObj.width
   local height = mapObj.height
