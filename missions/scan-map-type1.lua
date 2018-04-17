@@ -120,7 +120,7 @@ local mapsType2 = function(action)
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
       local currentPosition = mapProxy.getMapPosition(targetPosition)
-
+      console.log(currentPosition)
       stepLabel.setStepLabelContent('3-3.计算移动向量')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(currentPosition, targetPosition)
@@ -147,7 +147,7 @@ local mapsType2 = function(action)
         }))
         return makeAction(newstateTypes)
       end
-
+      console.log(newMoveVector)
       store.scanMapType1.moveVectorForCheck = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },

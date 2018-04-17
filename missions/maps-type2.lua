@@ -322,7 +322,7 @@ local mapsType2 = function(action)
       stepLabel.setStepLabelContent('3-11.获取地图位置参数')
       local targetPosition = store.mapType2.checkpositionListForMove[1]
       local currentPosition = mapProxy.getMapPosition(targetPosition)
-
+      console.log(currentPosition)
       stepLabel.setStepLabelContent('3-12.计算移动向量')
       local targetPosition = store.mapType2.checkpositionListForMove[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(currentPosition, targetPosition)
@@ -333,6 +333,7 @@ local mapsType2 = function(action)
         }))
         return makeAction(newstateTypes)
       end
+      console.log(newMoveVector)
       store.mapType2.moveVectorForAStep = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'MAPS_TYPE2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
