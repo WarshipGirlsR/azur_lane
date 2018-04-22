@@ -191,7 +191,7 @@ local mapsType2 = function(action)
                 return
               end
             end
-            if #onWayFleetToBossFleetPath <= 1 or (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, mapChessboard.waitForBossPosition)) then
+            if not onWayFleetToBossFleetPath or #onWayFleetToBossFleetPath <= 1 or (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, mapChessboard.waitForBossPosition)) then
               stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
               store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
               store.mapType2.nextStepFleed = 'onWay'
@@ -374,7 +374,16 @@ local mapsType2 = function(action)
 
       store.mapType2.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_MAP_PAGE_CHECK_SCAN_MAP_MODE', o.battle.isMapPage, 3000 }
+        { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE2_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED' then
+
+      stepLabel.setStepLabelContent('3.15.躲避伏击')
+      o.battle.ambushedPanelClickAvoidBtn()
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 3000 },
       }))
       return makeAction(newstateTypes)
     end

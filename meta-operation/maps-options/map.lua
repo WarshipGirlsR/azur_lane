@@ -100,32 +100,32 @@ local function transPointListToChessboardPointList(positionMap, positionList)
       width = math.max(width, #row)
     end
   end
-
   for i = 1, #positionList do
     local theRow = -1
     local theCol = -1
     local item = positionList[i]
-    -- 匹配点在第几行。对比第一行和第n行，如果点在这两行之间点就在n-1行
-    -- 第一次遇到的点作为第一行，第二次之后的点才参与之后的对比
+    -- 匹配点在第几行。
     -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘
-    local firstColInRow = nil
     for rowNum, row in ipairs(positionMap) do
       if row then
+        local theRowPoint = nil
         for _, col in ipairs(row) do
           if col then
-            if not firstColInRow then
-              firstColInRow = col
-            elseif col[2] > item[2] and firstColInRow[2] < item[2] then
-              theRow = rowNum - 1
-            end
+            theRowPoint = col
             break
           end
         end
-        if theRow > -1 then
+        if theRowPoint[2] < item[2] then
+          theRow = rowNum
+        else
           break
         end
       end
     end
+    if theRow > #positionMap - 1 then
+      theRow = -1
+    end
+
     if theRow > 0 then
       -- 匹配点在第几列
       -- 保存最左边那条线的两个点，匹配目標必須在第1条线和第n条线的中间
@@ -146,14 +146,15 @@ local function transPointListToChessboardPointList(positionMap, positionList)
           end
         end
         if topPoint and bottonPoint then
-          if (not firstTopPoint) or (not firstBottonPoint) then
-            firstTopPoint = topPoint
-            firstBottonPoint = bottonPoint
-          elseif checkPointPosition(item, firstTopPoint, firstBottonPoint) > 0 and checkPointPosition(item, topPoint, bottonPoint) <= 0 then
-            theCol = col - 1
+          if checkPointPosition(item, topPoint, bottonPoint) > 0 then
+            theCol = col
+          else
             break
           end
         end
+      end
+      if theCol > width - 1 then
+        theCol = -1
       end
       if theCol > 0 then
         table.insert(result, { theRow, theCol })
@@ -418,6 +419,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   end
   myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
   local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
+
   local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
   local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
   local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))
@@ -450,13 +452,15 @@ end
 
 -- 合并新老版本的地图数据
 map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
-  -- 将我方舰队上方和右上方的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
+  -- 将我方舰队上方和右上方和右边的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
   local checkMyFleetList = utils.subtractionList(newMapChessboard.myFleetList, newMapChessboard.inBattleList)
   local checkMyFleetMap = makePointMap(checkMyFleetList)
   function findMyFleetTopRightEnemy(el)
     local res = {}
     for key, enemy in ipairs(el) do
-      if checkMyFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]] or checkMyFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)] then
+      if checkMyFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]]
+        or checkMyFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)]
+        or checkMyFleetMap[(enemy[1]) .. '-' .. (enemy[2] - 1)] then
         table.insert(res, enemy)
       end
     end
@@ -468,7 +472,7 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList1)),
     enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList2)),
     enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList3)),
-    bossPosition = utils.unionList(newMapChessboard.bossPosition, findMyFleetTopRightEnemy(mapChessboard.bossPosition)),
+    bossPosition = utils.unionList(newMapChessboard.bossPosition, mapChessboard.bossPosition),
   })
   return theMapChessBoard
 end

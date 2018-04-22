@@ -252,7 +252,7 @@ local battle = function(action)
           '6-1', '6-2', '6-3', '6-4',
           '7-1', '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
-          '9-2', '9-3',
+          '9-1', '9-2', '9-3', '9-4',
           'event12-1-sp2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
@@ -286,7 +286,7 @@ local battle = function(action)
           '6-1', '6-2', '6-3', '6-4',
           '7-1', '7-2', '7-3', '7-4',
           '8-1', '8-2', '8-3', '8-4',
-          '9-2', '9-3',
+          '9-1', '9-2', '9-3', '9-4',
           'event12-1-sp2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then

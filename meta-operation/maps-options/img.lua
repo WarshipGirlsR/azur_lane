@@ -127,9 +127,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 846, 573, 0xd6ba10 }, { 851, 573, 0xdeba10 },
-          { 859, 573, 0xdeba10 }, { 868, 573, 0xdeba10 },
-          { 840, 578, 0xdebe10 }, { 840, 588, 0xdebe19 },
+          { 1100, 427, 0xd6aa00 }, { 1112, 427, 0xdea208 },
+          { 1124, 427, 0xdea208 }, { 1094, 443, 0xdea608 },
+          { 1116, 446, 0xdea608 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -138,9 +138,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 855, 616, 0xdeba10 }, { 862, 616, 0xdebe10 },
-          { 867, 616, 0xdeba10 }, { 876, 616, 0xdebe19 },
-          { 884, 610, 0xd6ba10 }, { 884, 602, 0xdebe10 },
+          { 1132, 472, 0xe6aa10 }, { 1120, 472, 0xefa610 },
+          { 1109, 472, 0xe6a208 }, { 1139, 457, 0xe6a608 },
+          { 1117, 455, 0xe6a608 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -151,10 +151,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1272, 432, 0xeeaa10 }, { 1280, 432, 0xefa600 },
-          { 1286, 432, 0xefa600 }, { 1293, 432, 0xe6a200 },
-          { 1299, 432, 0xe6a200 }, { 1266, 438, 0xe6a208 },
-          { 1266, 445, 0xdea200 },
+          { 1134, 378, 0xe6a610 }, { 1143, 378, 0xe6a208 },
+          { 1156, 378, 0xe6a610 }, { 1126, 395, 0xdea608 },
+          { 1139, 400, 0xdea608 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -163,9 +162,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1281, 477, 0xe6a600 }, { 1287, 477, 0xe6a600 },
-          { 1293, 477, 0xe6a600 }, { 1298, 477, 0xdea200 },
-          { 1311, 472, 0xefaa10 }, { 1311, 466, 0xdeaa00 },
+          { 1163, 423, 0xe6a608 }, { 1153, 423, 0xe6a608 },
+          { 1139, 423, 0xe6a610 }, { 1171, 408, 0xdea608 },
+          { 1158, 407, 0xdeaa00 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -210,6 +209,17 @@ local imgs = {
           { 701, 590, 0x312d31 }, { 697, 609, 0xfff7f7 },
           { 678, 616, 0xe66d63 }, { 689, 616, 0xe66963 },
           { 705, 618, 0xde695a },
+        })
+        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 我方舰队不和boss重叠 9-4 的 6-9
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1585, 746, 0x313531 }, { 1646, 745, 0x292429 },
+          { 1618, 754, 0x313531 }, { 1589, 794, 0xf74d52 },
+          { 1644, 795, 0xf7494a }, { 1615, 806, 0x312831 },
         })
         return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
