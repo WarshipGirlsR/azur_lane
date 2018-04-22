@@ -27,6 +27,7 @@ store.mapType2 = store.mapType2 or {
   nextStepFleed = nil,
   moveVectorForCheck = { -1, -1 },
   moveVectorForAStep = { -1, -1 },
+  moveFailTimes = 0,
 }
 
 -- maps-type2 的行动流程
@@ -65,7 +66,7 @@ end
 
 local battleListenerList = {
   { '', o.home.isHome, 2000 },
-  { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
+  { 'MAPS_TYPE2_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },
   { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },
@@ -114,6 +115,7 @@ local mapsType2 = function(action)
 
       store.mapType2.moveVectorForCheck = { -1, -1 }
       store.mapType2.moveVectorForAStep = { -1, -1 }
+      store.mapType2.moveFailTimes = 0
       return makeAction('MAPS_TYPE2_START')
 
     elseif action.type == 'MAPS_TYPE2_START' then
@@ -373,8 +375,17 @@ local mapsType2 = function(action)
       end
 
       store.mapType2.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
+
+      if store.mapType2.moveFailTimes < 3 then
+        store.mapType2.moveFailTimes = store.mapType2.moveFailTimes + 1
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
+        }))
+        return makeAction(newstateTypes)
+      end
+
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
+        { 'MAPS_TYPE2_INIT', o.battle.isMapPage, 3000 } -- 重新扫描
       }))
       return makeAction(newstateTypes)
 
