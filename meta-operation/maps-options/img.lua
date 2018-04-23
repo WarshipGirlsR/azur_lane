@@ -127,9 +127,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1100, 427, 0xd6aa00 }, { 1112, 427, 0xdea208 },
-          { 1124, 427, 0xdea208 }, { 1094, 443, 0xdea608 },
-          { 1116, 446, 0xdea608 },
+          { 975, 577, 0xe6ba08 }, { 986, 577, 0xdeba08 },
+          { 997, 577, 0xe6b200 }, { 969, 596, 0xdeba10 },
+          { 991, 598, 0xd6c219 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
@@ -138,9 +138,9 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1132, 472, 0xe6aa10 }, { 1120, 472, 0xefa610 },
-          { 1109, 472, 0xe6a208 }, { 1139, 457, 0xe6a608 },
-          { 1117, 455, 0xe6a608 },
+          { 1007, 621, 0xe6b600 }, { 994, 621, 0xdeb200 },
+          { 983, 621, 0xe6b600 }, { 1013, 601, 0xdeba10 },
+          { 991, 604, 0xcebe10 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),

@@ -37,6 +37,7 @@ local missionStepList = {
   'onWayFleetMoveToClosestEnemy',
   'bossFleetMoveToWaitBoss',
   'bossFleetMoveToBoss',
+  'randomMoveAStep',
 }
 
 local o = {
@@ -148,7 +149,8 @@ local mapsType2 = function(action)
           return
         end
 
-        if #mapChessboard.bossPosition > 0 then
+        if table.findIndex(store.mapType2.missionStep, { 'randomMoveAStep' }) <= 0
+          and #mapChessboard.bossPosition > 0 then
           -- 判断boss队到boss中间能否通过
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
           if not bossTo or comparePoints(bossTo, mapChessboard.bossPosition[1]) then
@@ -167,8 +169,7 @@ local mapsType2 = function(action)
         end
 
         -- 道中队清理路线上的敌人
-        if store.mapType2.missionStep == 'onWayFleetMoveToWaitBoss'
-          or store.mapType2.missionStep == 'onWayFleetMoveToBossFleet' then
+        if table.findIndex(store.mapType2.missionStep, { 'onWayFleetMoveToWaitBoss', 'onWayFleetMoveToBossFleet' }) <= 0 then
           local bossFleetToWaitBoss = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.waitForBossPosition[1])
           local onWayFleetToBossFleet, onWayFleetToBossFleetPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
           local onWayFleetToWaitBoss, onWayFleetToWaitBossPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.waitForBossPosition[1])
@@ -229,6 +230,14 @@ local mapsType2 = function(action)
           store.mapType2.missionStep = 'bossFleetMoveToBoss'
           store.mapType2.nextStepFleed = 'boss'
           store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
+          return
+        end
+
+        if store.mapType2.missionStep == 'randomMoveAStep' then
+          stepLabel.setStepLabelContent('3-11.随机移动一步')
+          store.mapType2.missionStep = 'randomMoveAStep'
+          store.mapType2.nextStepFleed = 'onWay'
+          store.mapType2.nextStepPoint = mapProxy.getRandomMoveAStep(mapChessboard)
           return
         end
 
@@ -383,6 +392,7 @@ local mapsType2 = function(action)
         }))
         return makeAction(newstateTypes)
       end
+      store.mapType2.moveFailTimes = 0
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'MAPS_TYPE2_INIT', o.battle.isMapPage, 3000 } -- 重新扫描
