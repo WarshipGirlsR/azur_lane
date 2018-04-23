@@ -501,7 +501,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
       obstacle = mapChessboard.obstacle,
     })
   end
-
   local targetPath = {}
 
   -- 检查路径上是否有其他敌方舰队，如果有就点击

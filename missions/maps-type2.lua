@@ -153,7 +153,7 @@ local mapsType2 = function(action)
           and #mapChessboard.bossPosition > 0 then
           -- 判断boss队到boss中间能否通过
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
-          if not bossTo or comparePoints(bossTo, mapChessboard.bossPosition[1]) then
+          if bossTo and comparePoints(bossTo, mapChessboard.bossPosition[1]) then
             stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
             store.mapType2.missionStep = 'bossFleetMoveToBoss'
             store.mapType2.nextStepFleed = 'boss'
