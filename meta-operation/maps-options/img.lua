@@ -217,9 +217,10 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1585, 746, 0x313531 }, { 1646, 745, 0x292429 },
-          { 1618, 754, 0x313531 }, { 1589, 794, 0xf74d52 },
-          { 1644, 795, 0xf7494a }, { 1615, 806, 0x312831 },
+          { 1652, 777, 0x3a2429 }, { 1621, 735, 0x312829 },
+          { 1681, 736, 0x312431 }, { 1627, 785, 0xff4d52 },
+          { 1674, 788, 0xff4d52 }, { 1654, 798, 0x423531 },
+          { 1653, 744, 0x312d31 },
         })
         return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
