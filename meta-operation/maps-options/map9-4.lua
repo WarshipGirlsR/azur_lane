@@ -64,7 +64,7 @@ mapEvent.getCheckpositionList = function()
       leftTop = nil,
       rightTop = nil,
       leftBotton = nil,
-      rightBotton = { 1768, 903 },
+      rightBotton = { 1724, 933 },
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false,
