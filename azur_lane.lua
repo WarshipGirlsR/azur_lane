@@ -1,6 +1,10 @@
 -- 载入 lua-require
 require('lua-require')({
-  osExit = lua_exit,
+  osExit = function() lua_exit()
+    mSleep(10)
+    mSleep(10)
+    mSleep(10)
+  end,
 })
 ----------------------------------
 -- 退出时的 flag
