@@ -85,7 +85,7 @@ battle.moveToChapter = function(chapter)
     { 109, 577, 0xdedbde },
   }
   -- 先移到第一章
-  for i = 1, 12 do
+  for i = 1, 14 do
     tap(90, 540, 100)
     mSleep(80)
     keepScreen(true)

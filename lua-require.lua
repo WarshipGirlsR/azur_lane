@@ -190,7 +190,7 @@ requireFactory = function(dirPath)
             file.close()
           end
           requireSource = 'local require, modePath = ...; ' .. requireSource
-          package.preload[requirePath] = assert(load(requireSource, '@' .. absolutePath, 'bt', _ENV))
+          package.preload[requirePath] = assert(load(requireSource, '@' .. requirePath, 'bt', _ENV))
         end
         package.loaded[requirePath] = package.preload[requirePath](requireFactory(path.dirname(requirePath)), requirePath) or true
         -- 载入完成以后删除 package.preloaded 里的内容
