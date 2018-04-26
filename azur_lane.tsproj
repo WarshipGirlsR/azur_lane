@@ -48,6 +48,7 @@ meta-operation/maps-options/img9-1.lua
 meta-operation/maps-options/img9-2.lua
 meta-operation/maps-options/img9-3.lua
 meta-operation/maps-options/img9-4.lua
+meta-operation/maps-options/img10-4.lua
 meta-operation/maps-options/index.lua
 meta-operation/maps-options/map.lua
 meta-operation/maps-options/map1-1.lua
@@ -86,6 +87,7 @@ meta-operation/maps-options/map9-1.lua
 meta-operation/maps-options/map9-2.lua
 meta-operation/maps-options/map9-3.lua
 meta-operation/maps-options/map9-4.lua
+meta-operation/maps-options/map10-4.lua
 meta-operation/maps-options/utils.lua
 meta-operation/battle.lua
 meta-operation/home.lua
@@ -117,3 +119,4 @@ lua-require.lua
 main.lua
 options-label.lua
 store.lua
+test.lua

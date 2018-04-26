@@ -1,6 +1,7 @@
 -- 载入 lua-require
 require('lua-require')({
-  osExit = function() lua_exit()
+  osExit = function()
+    lua_exit()
     mSleep(10)
     mSleep(10)
     mSleep(10)
