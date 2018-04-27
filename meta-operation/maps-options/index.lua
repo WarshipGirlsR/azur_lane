@@ -35,6 +35,8 @@ local map9_2 = require './map9-2'
 local map9_3 = require './map9-3'
 local map9_4 = require './map9-4'
 local map10_4 = require './map10-4'
+local map11_1 = require './map11-1'
+local map11_2 = require './map11-2'
 
 return {
   ['map1-1'] = map1_1,
@@ -74,4 +76,6 @@ return {
   ['map9-3'] = map9_3,
   ['map9-4'] = map9_4,
   ['map10-4'] = map10_4,
+  ['map11-1'] = map11_1,
+  ['map11-2'] = map11_2,
 }

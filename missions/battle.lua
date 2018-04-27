@@ -254,6 +254,7 @@ local battle = function(action)
           '8-1', '8-2', '8-3', '8-4',
           '9-1', '9-2', '9-3', '9-4',
           '10-4',
+          '11-1', '11-2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')
@@ -288,6 +289,7 @@ local battle = function(action)
           '8-1', '8-2', '8-3', '8-4',
           '9-1', '9-2', '9-3', '9-4',
           '10-4',
+          '11-1', '11-2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           stepLabel.setStepLabelContent('2-19.maps-type-1')

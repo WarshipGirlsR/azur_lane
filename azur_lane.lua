@@ -15,6 +15,13 @@ function beforeUserExit()
   luaExisted = true
 end
 
+if luaExisted then
+  lua_exit()
+  mSleep(10)
+  mSleep(10)
+  mSleep(10)
+end
+
 -- 解锁手机屏幕
 if (deviceIsLock() ~= 0) then
   unlockDevice()

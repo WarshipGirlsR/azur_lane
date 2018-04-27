@@ -180,6 +180,16 @@ battle.moveToChapter = function(chapter)
     tap(971, 806, 100)
   elseif (chapter == '10-4') then
     tap(1111, 336, 100)
+  elseif (chapter == '11-1') then
+    tap(453, 348, 100)
+  elseif (chapter == '11-2') then
+    tap(643, 779, 100)
+  elseif (chapter == '11-3') then
+    tap(1077, 255, 100)
+  elseif (chapter == '11-4') then
+    tap(1335, 665, 100)
+  elseif (chapter == '12-1') then
+    tap(296, 362, 100)
   elseif (chapter == 'event4-1-sp1') then
     tap(834, 312, 100)
   elseif (chapter == 'event4-1-sp2') then
