@@ -761,8 +761,26 @@ battle.isVictoryPanel = function()
     { 955, 698, 0x423d42 }, { 1366, 698, 0x424142 },
     { 1687, 734, 0x424142 },
   }
+  -- c 作战超时
+  local list6 = {
+    { 553, 441, 0xe69e6b }, { 584, 440, 0xefba94 },
+    { 676, 439, 0xdeaa7b }, { 685, 534, 0xdea273 },
+    { 565, 549, 0xefaa7b }, { 852, 441, 0xe69663 },
+    { 844, 499, 0xde965a }, { 937, 484, 0xe6a67b },
+    { 1087, 473, 0xefc6a4 }, { 1186, 522, 0xefceb5 },
+    { 941, 533, 0xefaa7b }, { 997, 530, 0xdeb68c },
+    { 1090, 519, 0xefc2a4 }, { 1159, 542, 0xefc6ad },
+    { 1270, 507, 0xe6be9c }, { 1347, 504, 0xdeae84 },
+    { 1387, 487, 0xefa67b }, { 1416, 441, 0xe69e6b },
+    { 1423, 505, 0xe69e6b }, { 1391, 549, 0xe6a673 },
+
+    { 383, 714, 0xef5d63 }, { 755, 711, 0xef6163 },
+    { 1241, 713, 0xef6163 }, { 1327, 463, 0x632010 },
+  }
   local result = false
-  if multiColorS(list) or multiColorS(list2) or multiColorS(list3) or multiColorS(list4) or multiColorS(list5) then
+  if multiColorS(list) or multiColorS(list2)
+    or multiColorS(list3) or multiColorS(list4)
+    or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
