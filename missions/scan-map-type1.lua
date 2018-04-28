@@ -124,6 +124,7 @@ local mapsType2 = function(action)
       stepLabel.setStepLabelContent('3-3.计算移动向量')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
       local newMoveVector, effectiveStep = mapProxy.getMoveVector(currentPosition, targetPosition)
+      console.log(newMoveVector)
       if effectiveStep and comparePoints(store.scanMapType1.moveVectorForCheck, newMoveVector) then
         store.scanMapType1.moveVectorForCheck = newMoveVector
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {

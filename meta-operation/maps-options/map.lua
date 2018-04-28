@@ -364,10 +364,11 @@ end
 -- 将地图移动到指定位置
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   local isCenter = false;
+  local minLength = 5
 
   -- 将地图移动到中心
   local moveStep
-  if (math.abs(moveVector[1]) > 4) or (math.abs(moveVector[2]) > 4) then
+  if (math.abs(moveVector[1]) > minLength) or (math.abs(moveVector[2]) > minLength) then
     -- 因为屏幕滑动和画面滚动不一致，所以需要减少移动幅度
     moveStep = math.max(math.abs(moveVector[1]), math.abs(moveVector[2]))
     moveStep = math.abs(moveStep)

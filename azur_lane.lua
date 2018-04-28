@@ -131,7 +131,8 @@ co(c.create(function()
 end)).catch(function(err)
   wLog('azur_lane', '[DATE] ' .. err);
   nLog(err)
-  EventQuery.setImmediate(function() error(err) end)
+  --  EventQuery.setImmediate(function() error(err) end)
+  error(err)
 end)
 
 EventQuery.run()
