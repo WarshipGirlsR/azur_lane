@@ -1,3 +1,4 @@
+require 'console'
 -- 载入 lua-require
 require('lua-require')({
   osExit = function()
@@ -55,7 +56,7 @@ local stepLabel = require './utils/step-label'
 stepLabel.init('stopbtn')
 
 local c = coroutine
-
+console.log('version 20150501-0054')
 stepLabel.setStepLabelContent('开始')
 
 function closeStepLabel()
@@ -131,8 +132,8 @@ co(c.create(function()
 end)).catch(function(err)
   wLog('azur_lane', '[DATE] ' .. err);
   nLog(err)
-  --  EventQuery.setImmediate(function() error(err) end)
-  error(err)
+  EventQuery.setImmediate(function() error(err) end)
+  --  error(err)
 end)
 
 EventQuery.run()

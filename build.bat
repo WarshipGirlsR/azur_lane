@@ -1,2 +1,1 @@
-amalg.lua -o dist/azur_lane.min.lua -s azur_lane.lua TableLib StringLib StepLabel Promise MathLib lfs KeepScreenHock GoMission__utils GoMission__stateTree GoMission__pause GoMission__options GoMission__home GoMission__commonListener GoMission__battle GoMission EventQuery DeviceOrientHock console Co BaseOperate__maps3-4 BaseOperate__ImgInfo BaseOperate__home BaseOperate__battle BaseOperate -x
-copy dist\azur_lane.min.lua azur_lane.min.lua
+lua build.lua -e azur_lane.lua -o azur_lane.min.lua -sm

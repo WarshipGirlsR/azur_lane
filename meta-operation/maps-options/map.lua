@@ -533,10 +533,10 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
     return table.assign({}, enemy, { weight = 5 })
   end)
   local enemyPositionList2 = table.map(mapChessboard.enemyPositionList2, function(enemy)
-    return table.assign({}, enemy, { weight = 10 })
+    return table.assign({}, enemy, { weight = 7 })
   end)
   local enemyPositionList3 = table.map(mapChessboard.enemyPositionList3, function(enemy)
-    return table.assign({}, enemy, { weight = 20 })
+    return table.assign({}, enemy, { weight = 10 })
   end)
   -- 所有敌人的列表
   local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3)
@@ -545,6 +545,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
     local value = enemyPositionList[key]
     enemyPositionMap[value[1] .. '-' .. value[2]] = value
   end
+  console.log(enemyPositionMap)
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
   local inBattleList = mapChessboard.inBattleList

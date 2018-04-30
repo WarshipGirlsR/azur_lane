@@ -48,6 +48,7 @@ meta-operation/maps-options/img9-1.lua
 meta-operation/maps-options/img9-2.lua
 meta-operation/maps-options/img9-3.lua
 meta-operation/maps-options/img9-4.lua
+meta-operation/maps-options/img10-1.lua
 meta-operation/maps-options/img10-4.lua
 meta-operation/maps-options/img11-1.lua
 meta-operation/maps-options/img11-2.lua
@@ -90,6 +91,7 @@ meta-operation/maps-options/map9-1.lua
 meta-operation/maps-options/map9-2.lua
 meta-operation/maps-options/map9-3.lua
 meta-operation/maps-options/map9-4.lua
+meta-operation/maps-options/map10-1.lua
 meta-operation/maps-options/map10-4.lua
 meta-operation/maps-options/map11-1.lua
 meta-operation/maps-options/map11-2.lua
@@ -117,6 +119,7 @@ utils/sleep-promise.lua
 utils/step-label.lua
 utils/vibrator-promise.lua
 azur_lane.lua
+azur_lane.min.lua
 console.lua
 clear-workspace.lua
 create-dirs.lua

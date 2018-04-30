@@ -68,7 +68,7 @@ local function runTable(tab, space)
 
   -- 将 table 的 map 部分取出，并按照字典顺序排序
   for k, v in pairs(tab) do
-    if type(k) ~= 'number' or k > tabLength then
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then
       tabIsArray = false
       table.insert(newTabPairsKeys, k)
       if (type(v) == 'table') then

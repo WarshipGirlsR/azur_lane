@@ -218,13 +218,6 @@ local mapsType2 = function(action)
           return
         end
 
-        if store.mapType2.missionStep == 'onWayFleetMoveToClosestEnemy' then
-          stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
-          store.mapType2.nextStepFleed = 'onWay'
-          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
-          return
-        end
-
         if store.mapType2.missionStep == 'bossFleetMoveToBoss' then
           stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
           store.mapType2.missionStep = 'bossFleetMoveToBoss'
@@ -247,7 +240,7 @@ local mapsType2 = function(action)
         store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
         return
       end)()
-
+      console.log(store.mapType2.nextStepPoint)
       -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步
       -- 尽可能避开敌人
       if not store.mapType2.nextStepPoint then
