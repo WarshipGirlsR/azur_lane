@@ -169,7 +169,11 @@ local mapsType2 = function(action)
         end
 
         -- 道中队清理路线上的敌人
-        if table.findIndex(store.mapType2.missionStep, { 'onWayFleetMoveToWaitBoss', 'onWayFleetMoveToBossFleet' }) <= 0 then
+        if table.findIndex(store.mapType2.missionStep, {
+          'onWayFleetMoveToWaitBoss',
+          'onWayFleetMoveToBossFleet',
+          'onWayFleetMoveToClosestEnemy',
+        }) <= 0 then
           local bossFleetToWaitBoss = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.waitForBossPosition[1])
           local onWayFleetToBossFleet, onWayFleetToBossFleetPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
           local onWayFleetToWaitBoss, onWayFleetToWaitBossPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.waitForBossPosition[1])
@@ -381,14 +385,14 @@ local mapsType2 = function(action)
       if store.mapType2.moveFailTimes < 3 then
         store.mapType2.moveFailTimes = store.mapType2.moveFailTimes + 1
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE2_MOVE_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
+          { 'MAPS_TYPE2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
         }))
         return makeAction(newstateTypes)
       end
       store.mapType2.moveFailTimes = 0
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE2_INIT', o.battle.isMapPage, 3000 } -- 重新扫描
+        { 'SCAN_MAP_TYPE1_INIT', o.battle.isMapPage, 3000 } -- 重新扫描
       }))
       return makeAction(newstateTypes)
 
