@@ -182,8 +182,8 @@ local mapsType2 = function(action)
             if onWayFleetToBossFleet
               and onWayFleetToWaitBoss
               and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)
-              and not comparePoints(onWayFleetToWaitBoss, onWayFleetToBossFleet) then
-              if #onWayFleetToBossFleetPath > #onWayFleetToWaitBossPath then
+              and not comparePoints(onWayFleetToWaitBoss, mapChessboard.waitForBossPosition[1]) then
+              if #onWayFleetToBossFleetPath < #onWayFleetToWaitBossPath then
                 stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
                 store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
                 store.mapType2.nextStepFleed = 'onWay'
@@ -198,14 +198,19 @@ local mapsType2 = function(action)
                 return
               end
             end
-            if not onWayFleetToBossFleetPath or #onWayFleetToBossFleetPath <= 1 or (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, mapChessboard.waitForBossPosition)) then
+            if (onWayFleetToBossFleetPath
+              and comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)
+              and #onWayFleetToBossFleetPath <= 1)
+              or (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, mapChessboard.waitForBossPosition[1])) then
               stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
               store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
               store.mapType2.nextStepFleed = 'onWay'
+              console.log(mapChessboard.onWayFleet)
               store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.waitForBossPosition[1])
               return
             end
-            if not onWayFleetToWaitBoss or (onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)) then
+            if not onWayFleetToWaitBoss
+              or (onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)) then
               stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')
               store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'
               store.mapType2.nextStepFleed = 'onWay'
