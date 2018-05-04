@@ -254,7 +254,7 @@ local battle = function(action)
           '8-1', '8-2', '8-3', '8-4',
           '9-1', '9-2', '9-3', '9-4',
           '10-1', '10-2', '10-3', '10-4',
-          '11-1', '11-2',
+          '11-1', '11-2', '11-3',
           '12-1',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
@@ -290,7 +290,7 @@ local battle = function(action)
           '8-1', '8-2', '8-3', '8-4',
           '9-1', '9-2', '9-3', '9-4',
           '10-1', '10-2', '10-3', '10-4',
-          '11-1', '11-2',
+          '11-1', '11-2', '11-3',
           '12-1',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then

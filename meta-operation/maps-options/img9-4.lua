@@ -86,6 +86,18 @@ return {
         })
         return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 1-4的上边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 602, 530, 0x101421 }, { 621, 530, 0x081019 },
+          { 641, 530, 0x081019 }, { 662, 530, 0x101421 },
+          { 677, 531, 0x3a3163 }, { 661, 531, 0x3a3163 },
+          { 644, 531, 0x312d5a }, { 621, 531, 0x3a3163 },
+        })
+        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- 地图下边界
     bottonLineList = {
@@ -179,15 +191,27 @@ return {
     },
     -- 地图右边界
     rightLineList = {
-      -- 1-9 的右边
+      -- 1-8 的右边
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1602, 567, 0x000000 }, { 1601, 567, 0x636db5 },
-          { 1602, 566, 0x000000 }, { 1601, 566, 0x636dad },
-          { 1603, 568, 0x000000 }, { 1602, 568, 0x636db5 },
-          { 1603, 569, 0x000000 }, { 1602, 569, 0x5a69ad },
+          { 1597, 567, 0x000000 }, { 1596, 567, 0x5a69ad },
+          { 1597, 566, 0x000000 }, { 1596, 566, 0x636db5 },
+          { 1598, 568, 0x000000 }, { 1597, 568, 0x6369b5 },
+          { 1598, 569, 0x000000 }, { 1597, 569, 0x636db5 },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 1-8 的右边
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1611, 635, 0x000000 }, { 1610, 635, 0x5a59a4 },
+          { 1611, 634, 0x000000 }, { 1610, 634, 0x635dad },
+          { 1612, 636, 0x000000 }, { 1611, 636, 0x5a5d9c },
+          { 1612, 637, 0x000000 }, { 1611, 637, 0x5a5da4 },
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
