@@ -182,10 +182,6 @@ requireFactory = function(dirPath)
             for key = 1, #options.extensions do
               local rp = path.resolve(dirPath, loadpath .. options.extensions[key])
               local ap = path.join(options.basePath, rp)
-              console.log(options)
-              console.log(options.basePath)
-              console.log(rp)
-              console.log(ap)
               local res, err = pcall(function()
                 local theFile = assert(io.open(ap, 'r'))
                 file = theFile
