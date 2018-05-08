@@ -1,4 +1,5 @@
 [res]
 [lib]
 [file]
-azur_lane.min.lua
+azur_lane-min.lua
+debug-azur_lane.lua

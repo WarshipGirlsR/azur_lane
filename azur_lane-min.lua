@@ -14831,6 +14831,7 @@ local mapsType2 = function(action)\
       store.mapType2.nextStepFleed = nil\
       store.mapType2.moveVectorForCheck = { -1, -1 }\
       store.mapType2.moveVectorForAStep = { -1, -1 }\
+      store.mapType2.moveFailTimes = 0\
 \
       return makeAction('')\
 \
@@ -18686,12 +18687,13 @@ local function runTable(tab, space)\
   end\
 \
   local resultStrList = {}\
-\
   local newTabPairs = {}\
+  local newTabPairsKeys = {}\
   local tabIsArray = true\
   local tabLength = 0\
   local hasSubTab = false\
 \
+  -- 将 table 的数组部分取出\
   for k, v in ipairs(tab) do\
     tabLength = k\
     table.insert(newTabPairs, { k, runTable(v, space) })\
@@ -18700,14 +18702,20 @@ local function runTable(tab, space)\
     end\
   end\
 \
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\
   for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength then\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
       tabIsArray = false\
-      table.insert(newTabPairs, { k, runTable(v, space) })\
+      table.insert(newTabPairsKeys, k)\
       if (type(v) == 'table') then\
         hasSubTab = true\
       end\
     end\
+  end\
+\
+  table.sort(newTabPairsKeys)\
+  for _, k in ipairs(newTabPairsKeys) do\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
   end\
 \
   if (tabIsArray) then\
@@ -18753,7 +18761,12 @@ __console.log = __console.log or function(obj)\
   local js = table.concat(runTable(obj, 2), \"\\n\")\
   print(js)\
   if useNlog then\
-    nLog(js)\
+    local info = debug.getinfo(2, 'Sl')\
+    local lineInfo = ''\
+    if info.currentline then\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
+    end\
+    nLog(lineInfo .. js)\
   end\
   return js\
 end\
@@ -18965,10 +18978,6 @@ requireFactory = function(dirPath)\
             for key = 1, #options.extensions do\
               local rp = path.resolve(dirPath, loadpath .. options.extensions[key])\
               local ap = path.join(options.basePath, rp)\
-              console.log(options)\
-              console.log(options.basePath)\
-              console.log(rp)\
-              console.log(ap)\
               local res, err = pcall(function()\
                 local theFile = assert(io.open(ap, 'r'))\
                 file = theFile\
@@ -19214,7 +19223,6 @@ require('lua-require')({\
 })\
 ----------------------------------\
 -- 退出时的 flag\
-useNlog = true\
 luaExisted = false\
 function beforeUserExit()\
   luaExisted = true\

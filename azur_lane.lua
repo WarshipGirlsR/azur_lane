@@ -10,7 +10,6 @@ require('lua-require')({
 })
 ----------------------------------
 -- 退出时的 flag
-useNlog = true
 luaExisted = false
 function beforeUserExit()
   luaExisted = true
