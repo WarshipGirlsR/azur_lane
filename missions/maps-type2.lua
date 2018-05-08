@@ -107,6 +107,7 @@ local mapsType2 = function(action)
       store.mapType2.nextStepFleed = nil
       store.mapType2.moveVectorForCheck = { -1, -1 }
       store.mapType2.moveVectorForAStep = { -1, -1 }
+      store.mapType2.moveFailTimes = 0
 
       return makeAction('')
 
