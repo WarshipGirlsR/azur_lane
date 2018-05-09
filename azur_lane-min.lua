@@ -4928,7 +4928,7 @@ return {\
           { 1598, 152, 0x6b75b5 }, { 1586, 152, 0x6b75ad },\
           { 1565, 152, 0x6b6dad }, { 1546, 152, 0x6b71b5 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-8的上边\
       (function()\
@@ -4940,7 +4940,7 @@ return {\
           { 1317, 731, 0x6b71ad }, { 1294, 731, 0x636da4 },\
           { 1276, 731, 0x63699c }, { 1256, 731, 0x63699c },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-7的上边\
       (function()\
@@ -4952,7 +4952,7 @@ return {\
           { 1485, 491, 0x525d94 }, { 1459, 491, 0x52558c },\
           { 1437, 491, 0x4a5184 }, { 1413, 491, 0x4a5184 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-4的上边\
       (function()\
@@ -4964,7 +4964,7 @@ return {\
           { 1008, 491, 0x313563 }, { 995, 491, 0x423963 },\
           { 979, 491, 0x423563 }, { 960, 491, 0x31315a },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
     },\
     -- 地图下边界\
@@ -5329,12 +5329,12 @@ return {\
         local leftTop = { 185, 155 }\
         local rightBotton = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 1668, 513, 0x101c21 }, { 1677, 513, 0x192031 },\
-          { 1685, 513, 0x192029 }, { 1692, 513, 0x101c21 },\
-          { 1702, 514, 0x6b75b5 }, { 1692, 514, 0x6b75b5 },\
-          { 1682, 514, 0x6b75b5 }, { 1675, 514, 0x6b6db5 },\
+          { 1665, 473, 0x21313a }, { 1677, 473, 0x213542 },\
+          { 1685, 473, 0x213142 }, { 1693, 473, 0x212d42 },\
+          { 1697, 474, 0x6b75ad }, { 1687, 474, 0x6b75ad },\
+          { 1678, 474, 0x6b75b5 }, { 1671, 474, 0x6b6dad },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-7 的上边\
       (function()\
@@ -5346,7 +5346,7 @@ return {\
           { 1533, 514, 0x5a699c }, { 1521, 514, 0x5a659c },\
           { 1512, 514, 0x6369a4 }, { 1499, 514, 0x5a619c },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-6 的上边\
       (function()\
@@ -5358,7 +5358,7 @@ return {\
           { 1269, 514, 0x3a396b }, { 1257, 514, 0x3a396b },\
           { 1240, 514, 0x3a3d6b }, { 1231, 514, 0x3a3d6b },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-5 的上边\
       (function()\
@@ -5370,7 +5370,7 @@ return {\
           { 1117, 514, 0x3a4173 }, { 1103, 514, 0x42457b },\
           { 1094, 514, 0x42457b }, { 1083, 514, 0x424573 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
     },\
     -- 地图下边界\
@@ -8741,6 +8741,8 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
     height = mapChessboard.height,\
     obstacle = theObstacle,\
   })\
+  console.log(theObstacle)\
+  console.log(thePath)\
   -- 如果到达不了目标，说明道路被其他敌人堵死了，\
   -- 那么就不考虑敌人，只寻找到目标的路径，然后在寻找路径上的敌人一路打过去\
   if not thePath or #thePath == 0 then\

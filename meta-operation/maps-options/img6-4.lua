@@ -24,7 +24,7 @@ return {
           { 1598, 152, 0x6b75b5 }, { 1586, 152, 0x6b75ad },
           { 1565, 152, 0x6b6dad }, { 1546, 152, 0x6b71b5 },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-8的上边
       (function()
@@ -36,7 +36,7 @@ return {
           { 1317, 731, 0x6b71ad }, { 1294, 731, 0x636da4 },
           { 1276, 731, 0x63699c }, { 1256, 731, 0x63699c },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-7的上边
       (function()
@@ -48,7 +48,7 @@ return {
           { 1485, 491, 0x525d94 }, { 1459, 491, 0x52558c },
           { 1437, 491, 0x4a5184 }, { 1413, 491, 0x4a5184 },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-4的上边
       (function()
@@ -60,7 +60,7 @@ return {
           { 1008, 491, 0x313563 }, { 995, 491, 0x423963 },
           { 979, 491, 0x423563 }, { 960, 491, 0x31315a },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 地图下边界
