@@ -107,6 +107,18 @@ local battle = function(action)
         stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')
         o.battle.moveToChapter(settings.battleChapter)
       end
+      c.yield(sleepPromise(500))
+      -- 检查是否在所需的章节
+      if not o.battle.checkChapter(settings.battleChapter) then
+        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章失败，重新移动')
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },
+        }))
+        return makeAction(newstateTypes)
+      end
+
+      -- 点击章节
+      o.battle.clickChapter(settings.battleChapter)
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage, 2000 },

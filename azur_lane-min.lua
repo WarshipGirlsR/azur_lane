@@ -8741,8 +8741,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
     height = mapChessboard.height,\
     obstacle = theObstacle,\
   })\
-  console.log(theObstacle)\
-  console.log(thePath)\
   -- 如果到达不了目标，说明道路被其他敌人堵死了，\
   -- 那么就不考虑敌人，只寻找到目标的路径，然后在寻找路径上的敌人一路打过去\
   if not thePath or #thePath == 0 then\
@@ -13604,6 +13602,14 @@ battle.moveToChapter = function(chapter)\
     mSleep(200)\
   end\
   mSleep(200)\
+  if not __keepScreenState then keepScreen(false) end\
+  return true\
+end\
+\
+-- 点击m章节\
+battle.clickChapter = function(chapter)\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
 \
   if (chapter == '1-1') then\
     tap(227, 687, 100)\
@@ -13765,6 +13771,111 @@ battle.moveToChapter = function(chapter)\
     tap(582, 370, 100)\
   end\
   if not __keepScreenState then keepScreen(false) end\
+end\
+\
+-- 检测是第几关\
+battle.checkChapter = function(chapter)\
+  local __keepScreenState = keepScreenState\
+  if (not __keepScreenState) then keepScreen(true) end\
+\
+  local chapterArr = strSplit(chapter, \"-\")\
+  local m = tonumber(chapterArr[1]) or 1\
+\
+  if string.sub(chapter, 1, 5) == 'event' then\
+    m = tonumber(chapterArr[2]) or 1\
+  end\
+\
+  local list = {\
+    [1] = {\
+      { 73, 146, 0xf7df6b }, { 74, 159, 0xe6aa29 },\
+      { 74, 166, 0xffbe31 }, { 67, 151, 0x292419 },\
+      { 68, 143, 0x101810 }, { 79, 159, 0x212021 },\
+      { 80, 171, 0x193131 }, { 68, 171, 0x101c19 },\
+    },\
+    [2] = {\
+      { 67, 149, 0xe6be52 }, { 71, 148, 0x211808 },\
+      { 71, 142, 0xc5ba5a }, { 74, 156, 0xe6a631 },\
+      { 74, 163, 0x191808 }, { 78, 168, 0xffc629 },\
+      { 65, 168, 0xf7c229 }, { 62, 167, 0x212008 },\
+      { 80, 168, 0x292421 }, { 71, 171, 0x101010 },\
+    },\
+    [3] = {\
+      { 67, 149, 0xe6c263 }, { 72, 147, 0x212000 },\
+      { 78, 147, 0xe6ca63 }, { 72, 143, 0xefdb73 },\
+      { 71, 154, 0xd6aa42 }, { 72, 165, 0x291800 },\
+      { 72, 169, 0xf7c629 }, { 63, 164, 0x4a4521 },\
+      { 79, 164, 0xcea229 }, { 75, 171, 0x312d19 },\
+    },\
+    [4] = {\
+      { 74, 143, 0xefdf73 }, { 71, 158, 0x4a3519 },\
+      { 65, 163, 0xd6aa31 }, { 81, 162, 0xce9e31 },\
+      { 77, 169, 0xefc629 }, { 78, 152, 0xefbe52 },\
+      { 71, 166, 0x4a3d10 }, { 66, 164, 0xbd9229 },\
+      { 83, 163, 0x191410 },\
+    },\
+    [5] = {\
+      { 71, 147, 0x524921 }, { 65, 143, 0xf7e77b },\
+      { 78, 144, 0xf7e373 }, { 71, 140, 0x191c19 },\
+      { 72, 165, 0x191408 }, { 72, 154, 0x5a4119 },\
+      { 67, 161, 0xdeaa31 }, { 66, 154, 0xdeaa4a },\
+      { 72, 169, 0xe6c242 }, { 72, 171, 0x5a4900 },\
+    },\
+    [6] = {\
+      { 72, 142, 0xdebe63 }, { 77, 148, 0xe6c263 },\
+      { 72, 147, 0x291400 }, { 65, 155, 0xe6aa31 },\
+      { 72, 165, 0x191408 }, { 72, 156, 0x422021 },\
+      { 72, 170, 0xbd9629 }, { 72, 169, 0xf7c231 },\
+      { 79, 170, 0x211c10 }, { 79, 161, 0xe6aa29 },\
+    },\
+    [7] = {\
+      { 66, 144, 0xdece73 }, { 78, 144, 0xffdb7b },\
+      { 71, 169, 0xf7c229 }, { 70, 148, 0x313119 },\
+      { 66, 168, 0x101410 }, { 77, 168, 0x101419 },\
+      { 71, 171, 0x101010 }, { 71, 141, 0x423d29 },\
+      { 79, 141, 0x292819 },\
+    },\
+    [8] = {\
+      { 72, 142, 0xd6be6b }, { 72, 169, 0xefce29 },\
+      { 72, 165, 0x210c00 }, { 72, 158, 0x4a3510 },\
+      { 72, 151, 0x312400 }, { 72, 147, 0x100400 },\
+      { 64, 153, 0x3a3108 }, { 80, 154, 0x191410 },\
+      { 79, 160, 0xdeb229 }, { 65, 163, 0xe6ba29 },\
+    },\
+    [9] = {\
+      { 72, 142, 0xd6c27b }, { 72, 147, 0x101000 },\
+      { 72, 154, 0x191800 }, { 72, 165, 0x100c00 },\
+      { 65, 164, 0xe6b629 }, { 63, 164, 0x312d10 },\
+      { 66, 161, 0x292010 }, { 79, 157, 0xe6aa29 },\
+      { 79, 169, 0x3a3110 }, { 72, 169, 0xefc629 },\
+    },\
+    [10] = {\
+      { 54, 148, 0xefc663 }, { 55, 150, 0x5a4121 },\
+      { 65, 160, 0x5a4119 }, { 72, 155, 0x3a3919 },\
+      { 72, 154, 0x423d21 }, { 81, 147, 0x100c00 },\
+      { 81, 156, 0x190800 }, { 85, 168, 0xf7be29 },\
+      { 88, 159, 0xe6a621 }, { 70, 167, 0x081821 },\
+    },\
+    [11] = {\
+      { 57, 147, 0xe6c663 }, { 67, 159, 0xce9229 },\
+      { 64, 169, 0xe6c229 }, { 58, 151, 0x212010 },\
+      { 76, 151, 0x212010 }, { 73, 159, 0x19313a },\
+      { 77, 168, 0x101410 }, { 84, 169, 0xe6c229 },\
+      { 86, 156, 0x5a4d21 }, { 83, 143, 0xf7e77b },\
+    },\
+    [12] = {\
+      { 54, 148, 0xefc663 }, { 62, 143, 0xf7e373 },\
+      { 61, 169, 0xefc229 }, { 72, 168, 0x5a5529 },\
+      { 79, 167, 0xf7c629 }, { 80, 147, 0x311c10 },\
+      { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },\
+      { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },\
+    },\
+  }\
+  local result = nil\
+  if multiColorS(list[m]) then\
+    result = true\
+  end\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
 end\
 \
 --  是否在章节信息面板\
@@ -15639,6 +15750,18 @@ local battle = function(action)\
         stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')\
         o.battle.moveToChapter(settings.battleChapter)\
       end\
+      c.yield(sleepPromise(500))\
+      -- 检查是否在所需的章节\
+      if not o.battle.checkChapter(settings.battleChapter) then\
+        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章失败，重新移动')\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
+\
+      -- 点击章节\
+      o.battle.clickChapter(settings.battleChapter)\
 \
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage, 2000 },\

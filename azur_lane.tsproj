@@ -3,3 +3,5 @@
 [file]
 azur_lane-min.lua
 debug-azur_lane.lua
+test.lua
+TSLib.lua
