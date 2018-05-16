@@ -45,9 +45,11 @@ local battle = function(action)
       store.battle.battleAssistantMode = settings.battleAssistantMode
 
       return {
-        makeAction('MAPS_TYPE1_PRE_INIT'),
-        makeAction('MAPS_TYPE2_PRE_INIT'),
-        makeAction('SCAN_MAP_TYPE1_PRE_INIT'),
+        makeAction('MAPS_TYPE_1_PRE_INIT'),
+        makeAction('MAPS_TYPE_2_PRE_INIT'),
+        makeAction('MAPS_TYPE_3_PRE_INIT'),
+        makeAction('MAPS_TYPE_4_PRE_INIT'),
+        makeAction('SCAN_MAP_TYPE_1_PRE_INIT'),
         makeAction('BATTLE_START'),
       }
 
@@ -220,7 +222,11 @@ local battle = function(action)
     elseif action.type == 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED' then
 
       stepLabel.setStepLabelContent('2.15.躲避伏击')
-      o.battle.ambushedPanelClickAvoidBtn()
+      if settings.battleRoundabout then
+        o.battle.ambushedPanelClickAvoidBtn()
+      else
+        o.battle.ambushedPanelClickInterceptBtn()
+      end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 3000 },
         { 'BATTLE_MAP_PAGE_CLOSE_FORMAT_PANEL', o.battle.isFormationPanel },
@@ -274,7 +280,7 @@ local battle = function(action)
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
             { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
-            { 'SCAN_MAP_TYPE1_INIT', o.battle.isMapPage, 2000 },
+            { 'SCAN_MAP_TYPE_1_INIT', o.battle.isMapPage, 2000 },
           }))
           return makeAction(newstateTypes)
         end
@@ -286,12 +292,11 @@ local battle = function(action)
       }))
       return makeAction(newstateTypes)
 
-    elseif action.type == 'BATTLE_MAP_PAGE_CHECK_SCAN_MAP_MODE' then
+    elseif action.type == 'BATTLE_MAP_PAGE_CHECK_MAP_MODE' then
 
-      stepLabel.setStepLabelContent('2-19.检测是自动模式还是辅助模式')
+      stepLabel.setStepLabelContent('2-19.战斗模式')
       if store.battle.battleAssistantMode == 'auto' then
-        local type1 = {}
-        local type2 = {
+        local canAutoChapter = {
           '1-1', '1-2', '1-3', '1-4',
           '2-1', '2-2', '2-3', '2-4',
           '3-1', '3-2', '3-3', '3-4',
@@ -305,22 +310,32 @@ local battle = function(action)
           '11-1', '11-2', '11-3',
           '12-1',
         }
-        if table.findIndex(type1, settings.battleChapter) > -1 then
-          stepLabel.setStepLabelContent('2-19.maps-type-1')
-          local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
-            { 'MAPS_TYPE1_INIT', o.battle.isMapPage, 2000 },
-          }))
-          return makeAction(newstateTypes)
-        elseif table.findIndex(type2, settings.battleChapter) > -1 then
-          stepLabel.setStepLabelContent('2-19.maps-type-2')
-          local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-            { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
-            { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
-            { 'MAPS_TYPE2_INIT', o.battle.isMapPage, 2000 },
-          }))
-          return makeAction(newstateTypes)
+        if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then
+          if settings.mapsType == 'maps-type-2' then
+            stepLabel.setStepLabelContent('2-19.maps-type-2')
+            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+              { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
+              { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
+              { 'MAPS_TYPE_2_INIT', o.battle.isMapPage, 2000 },
+            }))
+            return makeAction(newstateTypes)
+          elseif settings.mapsType == 'maps-type-3' then
+            stepLabel.setStepLabelContent('2-19.maps-type-3')
+            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+              { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
+              { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
+              { 'MAPS_TYPE_3_INIT', o.battle.isMapPage, 2000 },
+            }))
+            return makeAction(newstateTypes)
+          elseif settings.mapsType == 'maps-type-4' then
+            stepLabel.setStepLabelContent('2-19.maps-type-4')
+            local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+              { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
+              { 'BATTLE_MAP_PAGE_AMBUSHED_PANEL_AVOID_AMBUSHED', o.battle.isAmbushedPanel, 1000 },
+              { 'MAPS_TYPE_4_INIT', o.battle.isMapPage, 2000 },
+            }))
+            return makeAction(newstateTypes)
+          end
         end
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {

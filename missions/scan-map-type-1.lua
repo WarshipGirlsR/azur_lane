@@ -60,7 +60,7 @@ local mapsType2 = function(action)
   local settings = store.settings;
   local mapProxy = o.map['map' .. settings.battleChapter]
   return co(c.create(function()
-    if action.type == 'SCAN_MAP_TYPE1_PRE_INIT' then
+    if action.type == 'SCAN_MAP_TYPE_1_PRE_INIT' then
 
       -- 这部分流程只会在每次开启新的一局时才调用一次，而不是每次寻路就调用一次
 
@@ -82,16 +82,16 @@ local mapsType2 = function(action)
 
       return makeAction('')
 
-    elseif action.type == 'SCAN_MAP_TYPE1_INIT' then
+    elseif action.type == 'SCAN_MAP_TYPE_1_INIT' then
 
       -- 每次进入地图页面时就会执行一次
 
       store.scanMapType1.checkpositionListForCheck = mapProxy.getCheckpositionList()
       -- 先用 newMapChessboard 完成扫描，然后再与 mapChessboard 合并。这样就可以做新老版本的对比，避免被挡住的问题
       store.scanMapType1.newMapChessboard = mapProxy.getMapChessboard(settings.battleChapter)
-      return makeAction('SCAN_MAP_TYPE1_START')
+      return makeAction('SCAN_MAP_TYPE_1_START')
 
-    elseif action.type == 'SCAN_MAP_TYPE1_START' then
+    elseif action.type == 'SCAN_MAP_TYPE_1_START' then
 
       -- 检查上次移动舰队时所在的位置，并将其提前。有利于提高扫描速度
       if #store.scanMapType1.checkpositionListForMove > 0 then
@@ -113,9 +113,9 @@ local mapsType2 = function(action)
           table.insert(store.scanMapType1.checkpositionListForCheck, 1, cfm)
         end
       end
-      return makeAction('SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK')
+      return makeAction('SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK')
 
-    elseif action.type == 'SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
+    elseif action.type == 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK' then
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
@@ -128,7 +128,7 @@ local mapsType2 = function(action)
       if effectiveStep and comparePoints(store.scanMapType1.moveVectorForCheck, newMoveVector) then
         store.scanMapType1.moveVectorForCheck = newMoveVector
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE1_SCAN_MAP', o.battle.isMapPage, 1000 },
+          { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       end
@@ -138,24 +138,24 @@ local mapsType2 = function(action)
       if isCenter then
         -- 地图已经移动到位
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE1_SCAN_MAP', o.battle.isMapPage, 1000 },
+          { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       else
         -- 地图没有移动到位
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
+          { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
         }))
         return makeAction(newstateTypes)
       end
       console.log(newMoveVector)
       store.scanMapType1.moveVectorForCheck = newMoveVector
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
+        { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
       }))
       return makeAction(newstateTypes)
 
-    elseif action.type == 'SCAN_MAP_TYPE1_SCAN_MAP' then
+    elseif action.type == 'SCAN_MAP_TYPE_1_SCAN_MAP' then
 
       stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
@@ -165,7 +165,7 @@ local mapsType2 = function(action)
       if #store.scanMapType1.checkpositionListForCheck > 1 then
         table.remove(store.scanMapType1.checkpositionListForCheck, 1)
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
+          { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
@@ -189,13 +189,13 @@ local mapsType2 = function(action)
       -- 如果扫描内容是空的，重新扫描
       if #store.scanMapType1.mapChessboard.myFleetList == 0 then
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE1_INIT', o.battle.isMapPage },
+          { 'SCAN_MAP_TYPE_1_INIT', o.battle.isMapPage },
         }))
       end
 
       -- 进入移动步骤
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE2_GET_NEXT_STEP', o.battle.isMapPage },
+        { 'BATTLE_MAP_PAGE_CHECK_MAP_MODE', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
     end

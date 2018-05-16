@@ -689,6 +689,11 @@ battle.isAmbushedPanel = function()
   return result
 end
 
+-- 迎击伏击
+battle.ambushedPanelClickInterceptBtn = function()
+  tap(922, 571)
+end
+
 -- 躲避伏击
 battle.ambushedPanelClickAvoidBtn = function()
   tap(1351, 564)

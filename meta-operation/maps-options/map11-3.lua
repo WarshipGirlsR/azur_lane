@@ -46,19 +46,6 @@ mapEvent.getCheckpositionList = function()
       pointMap = {},
     },
     {
-      leftTop = { 579, 372 },
-      rightTop = nil,
-      leftBotton = nil,
-      rightBotton = nil,
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
-      positionMap = {
-        false, false, false,
-        { { 529, 756, 0x000000 }, { 719, 756, 0x211831 }, { 911, 756, 0x191831 }, { 1103, 756, 0x211831 }, { 1294, 756, 0x21203a }, { 1487, 756, 0x211831 }, },
-        { { 509, 907, 0x000000 }, { 707, 907, 0xffffff }, { 906, 907, 0x31354a }, { 1109, 907, 0x211c3a }, { 1310, 907, 0x191429 }, { 1511, 907, 0x211c3a }, },
-      },
-      pointMap = {},
-    },
-    {
       leftTop = nil,
       rightTop = { 1471, 363 },
       leftBotton = nil,
@@ -68,6 +55,19 @@ mapEvent.getCheckpositionList = function()
         false, false, false,
         { false, false, false, false, false, { 770, 746, 0x292442 }, { 962, 746, 0x31244a }, { 1153, 746, 0x211c3a }, { 1345, 746, 0x212042 }, { 1539, 746, 0x000000 }, },
         { false, false, false, false, false, { 761, 897, 0x211c3a }, { 961, 897, 0x312452 }, { 1162, 897, 0x191831 }, { 1363, 897, 0x292042 }, { 1566, 897, 0x000000 }, },
+      },
+      pointMap = {},
+    },
+    {
+      leftTop = { 579, 372 },
+      rightTop = nil,
+      leftBotton = nil,
+      rightBotton = nil,
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
+      positionMap = {
+        false, false, false,
+        { { 529, 756, 0x000000 }, { 719, 756, 0x211831 }, { 911, 756, 0x191831 }, { 1103, 756, 0x211831 }, { 1294, 756, 0x21203a }, { 1487, 756, 0x211831 }, },
+        { { 509, 907, 0x000000 }, { 707, 907, 0xffffff }, { 906, 907, 0x31354a }, { 1109, 907, 0x211c3a }, { 1310, 907, 0x191429 }, { 1511, 907, 0x211c3a }, },
       },
       pointMap = {},
     },
@@ -129,7 +129,7 @@ mapEvent.getMapChessboard = function()
       { 6, 7 },
       { 7, 5 },
     },
-    waitForBossPosition = { { 4, 10 } },
+    waitForBossPosition = { { 7, 9 } },
     bossPosition = {},
     myFleetList = {},
     enemyPositionList1 = {},

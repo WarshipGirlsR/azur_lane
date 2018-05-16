@@ -171,6 +171,19 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '行动方式',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'mapsType',
+          ['type'] = 'RadioGroup',
+          ['list'] = '打boss,打全图,无限伏击',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = '不能出征则震动提示',
           ['size'] = 15,
           ['align'] = 'left',
@@ -339,6 +352,15 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleRoundabout] or false
     end)(settings.battleRoundabout)
+    -- 行动方式
+    settings.mapsType = (function(mapsType)
+      local list = transStrToTable({
+        'maps-type-2',
+        'maps-type-3',
+        'maps-type-4',
+      })
+      return list[mapsType] or 'maps-type-2'
+    end)(settings.mapsType)
     -- 当无法出征时是否跳过出征
     settings.battleAlertWhenNoHp = (function(battleAlertWhenNoHp)
       local list = transStrToTable({ true, false, })
