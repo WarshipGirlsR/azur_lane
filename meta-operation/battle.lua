@@ -266,6 +266,12 @@ battle.clickChapter = function(chapter)
     tap(875, 796, 100)
   elseif (chapter == 'event12-1-sp3') then
     tap(582, 370, 100)
+  elseif (chapter == 'event13-1-sp1') then
+    tap(407, 409, 100)
+  elseif (chapter == 'event13-1-sp2') then
+    tap(568, 804, 100)
+  elseif (chapter == 'event13-1-sp3') then
+    tap(1243, 590, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end

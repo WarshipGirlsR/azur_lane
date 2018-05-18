@@ -274,6 +274,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
+          'event13-1-sp3',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')
@@ -309,6 +310,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
+          'event13-1-sp3',
         }
         if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then
           if settings.mapsType == 'maps-type-2' then
