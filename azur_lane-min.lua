@@ -15752,7 +15752,7 @@ local mapsType2 = function(action)\
           return\
         end\
 \
-        if #mapChessboard.bossFleet > 0 then\
+        if #mapChessboard.bossPosition > 0 then\
           stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')\
           store.mapType3.missionStep = 'bossFleetMoveToBoss'\
           store.mapType3.nextStepFleed = 'boss'\
