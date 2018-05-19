@@ -282,10 +282,10 @@ battle.checkChapter = function(chapter)
   if (not __keepScreenState) then keepScreen(true) end
 
   local chapterArr = strSplit(chapter, "-")
-  local m = tonumber(chapterArr[1]) or 1
+  local m = tonumber(chapterArr[1]) or 0
 
-  if string.sub(chapter, 1, 5) == 'event' then
-    m = tonumber(chapterArr[2]) or 1
+  if string.find(chapter, 'sp') > 0 then
+    m = 'sp'
   end
 
   local list = {
@@ -372,9 +372,20 @@ battle.checkChapter = function(chapter)
       { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },
       { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },
     },
+    sp = {
+      { 48, 147, 0xffffff }, { 61, 147, 0xffffff },
+      { 55, 149, 0x10283a }, { 62, 154, 0x102031 },
+      { 47, 161, 0x082029 }, { 54, 159, 0xffffff },
+      { 55, 169, 0x082031 }, { 55, 176, 0xffffff },
+      { 62, 168, 0xffffff }, { 64, 177, 0x082029 },
+      { 72, 150, 0x102431 }, { 79, 149, 0xffffff },
+      { 86, 151, 0x19313a }, { 94, 151, 0xffffff },
+      { 88, 164, 0x102431 }, { 80, 174, 0xffffff },
+      { 89, 174, 0x082031 }, { 98, 175, 0xffffff },
+    },
   }
   local result = nil
-  if multiColorS(list[m]) then
+  if m == 0 or multiColorS(list[m]) then
     result = true
   end
   if (not __keepScreenState) then keepScreen(false) end
