@@ -14202,7 +14202,7 @@ battle.checkChapter = function(chapter)\
   local chapterArr = strSplit(chapter, \"-\")\
   local m = tonumber(chapterArr[1]) or 0\
 \
-  if string.find(chapter, 'sp') > 0 then\
+  if string.find(chapter, 'sp') then\
     m = 'sp'\
   end\
 \
