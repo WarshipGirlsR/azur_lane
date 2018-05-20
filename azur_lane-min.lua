@@ -9072,7 +9072,6 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
     local value = enemyPositionList[key]\
     enemyPositionMap[value[1] .. '-' .. value[2]] = value\
   end\
-  console.log(enemyPositionMap)\
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)\
 \
   local inBattleList = mapChessboard.inBattleList\
@@ -9093,17 +9092,18 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
         local weight = enemy.weight or 0\
         local theCoast = thePath[#thePath].G + weight\
         -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率\
-        if waitForBossPosition then\
-          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。\
-          local boosPath = AStart(waitForBossPosition, enemy, {\
-            width = mapChessboard.width,\
-            height = mapChessboard.height,\
-            obstacle = theObstacle,\
-          })\
-          if boosPath and #boosPath > 0 then\
-            theCoast = theCoast + boosPath[#boosPath].G * 0.1\
-          end\
-        end\
+        -- 现在会自动识别路上阻拦的敌人所以不需要这个功能了\
+        --        if waitForBossPosition then\
+        --          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。\
+        --          local boosPath = AStart(waitForBossPosition, enemy, {\
+        --            width = mapChessboard.width,\
+        --            height = mapChessboard.height,\
+        --            obstacle = theObstacle,\
+        --          })\
+        --          if boosPath and #boosPath > 0 then\
+        --            theCoast = theCoast + boosPath[#boosPath].G * 0.1\
+        --          end\
+        --        end\
         if not minCoast or minCoast > theCoast then\
           minCoast = theCoast\
           minCoastEnemy = enemy\
@@ -16132,7 +16132,7 @@ local mapsType2 = function(action)\
             local onWayFleetToBossFleet, onWayFleetToBossFleetPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
             local onWayFleetToWaitBoss, onWayFleetToWaitBossPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
 \
-            if not comparePoints(bossFleetToWaitBoss, waitForBossPositionItem) then\
+            if not bossFleetToWaitBoss or not comparePoints(bossFleetToWaitBoss, waitForBossPositionItem) then\
               if onWayFleetToBossFleet\
                 and onWayFleetToWaitBoss\
                 and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)\
@@ -16152,18 +16152,15 @@ local mapsType2 = function(action)\
                   return\
                 end\
               end\
-              if (onWayFleetToBossFleetPath\
-                and comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)\
-                and #onWayFleetToBossFleetPath <= 1)\
-                or (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, waitForBossPositionItem)) then\
+              if not comparePoints(mapChessboard.onWayFleet, waitForBossPositionItem)\
+                and (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, waitForBossPositionItem)) then\
                 stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')\
                 store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'\
                 store.mapType2.nextStepFleed = 'onWay'\
                 store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
                 return\
               end\
-              if not onWayFleetToWaitBoss\
-                or (onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet)) then\
+              if onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet) then\
                 stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')\
                 store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'\
                 store.mapType2.nextStepFleed = 'onWay'\

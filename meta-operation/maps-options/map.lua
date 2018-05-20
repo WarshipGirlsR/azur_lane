@@ -545,7 +545,6 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
     local value = enemyPositionList[key]
     enemyPositionMap[value[1] .. '-' .. value[2]] = value
   end
-  console.log(enemyPositionMap)
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
   local inBattleList = mapChessboard.inBattleList
@@ -566,17 +565,18 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
         local weight = enemy.weight or 0
         local theCoast = thePath[#thePath].G + weight
         -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
-        if waitForBossPosition then
-          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
-          local boosPath = AStart(waitForBossPosition, enemy, {
-            width = mapChessboard.width,
-            height = mapChessboard.height,
-            obstacle = theObstacle,
-          })
-          if boosPath and #boosPath > 0 then
-            theCoast = theCoast + boosPath[#boosPath].G * 0.1
-          end
-        end
+        -- 现在会自动识别路上阻拦的敌人所以不需要这个功能了
+        --        if waitForBossPosition then
+        --          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
+        --          local boosPath = AStart(waitForBossPosition, enemy, {
+        --            width = mapChessboard.width,
+        --            height = mapChessboard.height,
+        --            obstacle = theObstacle,
+        --          })
+        --          if boosPath and #boosPath > 0 then
+        --            theCoast = theCoast + boosPath[#boosPath].G * 0.1
+        --          end
+        --        end
         if not minCoast or minCoast > theCoast then
           minCoast = theCoast
           minCoastEnemy = enemy
