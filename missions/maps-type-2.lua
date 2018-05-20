@@ -175,7 +175,7 @@ local mapsType2 = function(action)
           'onWayFleetMoveToBossFleet',
           'onWayFleetMoveToClosestEnemy',
         }) <= 0 then
-          for _, waitForBossPositionItem in mapChessboard.waitForBossPosition do
+          for _, waitForBossPositionItem in ipairs(mapChessboard.waitForBossPosition) do
             local bossFleetToWaitBoss = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, waitForBossPositionItem)
             local onWayFleetToBossFleet, onWayFleetToBossFleetPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
             local onWayFleetToWaitBoss, onWayFleetToWaitBossPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
