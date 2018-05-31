@@ -16,14 +16,21 @@ battle.isBattleChapterPage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 8, 10, 0xe6e7ef }, { 201, 21, 0xffefc5 },
-    { 307, 12, 0x424542 }, { 1024, 38, 0x313131 },
-    { 1333, 40, 0xffef63 }, { 1645, 37, 0xff4573 },
-    { 182, 20, 0xfff3c5 }, { 178, 35, 0xffc642 },
-    { 210, 28, 0x3a393a }, { 219, 32, 0xffd25a },
-    { 255, 30, 0xffdb73 }, { 244, 42, 0x3a393a },
-    { 267, 42, 0x3a393a }, { 273, 51, 0xf7c652 },
-    { 259, 17, 0xfff7de }, { 266, 25, 0x101010 },
+    { 9, 9, 0xefebf7 }, { 130, 8, 0x292829 },
+    { 443, 11, 0x4a494a }, { 489, 7, 0xeff3f7 },
+    { 929, 8, 0xeff3f7 }, { 890, 52, 0xdedfde },
+    { 12, 52, 0xd6d2d6 }, { 176, 60, 0x423942 },
+    { 98, 50, 0xd6ced6 }, { 38, 32, 0xffd74a },
+    { 250, 22, 0xffefbd }, { 259, 22, 0x31353a },
+    { 269, 22, 0xffebbd }, { 281, 22, 0x3a3d3a },
+    { 289, 22, 0xffebbd }, { 245, 45, 0xffbe10 },
+    { 257, 45, 0x3a393a }, { 265, 45, 0xffba10 },
+    { 274, 45, 0x293129 }, { 285, 45, 0xffbe08 },
+    { 302, 43, 0xffbe10 }, { 312, 43, 0x313531 },
+    { 322, 43, 0xffbe19 }, { 332, 43, 0x3a3d3a },
+    { 343, 43, 0xffc219 }, { 325, 25, 0xffe79c },
+    { 341, 27, 0x191819 }, { 301, 24, 0x080c08 },
+    { 306, 19, 0xfff3ce }, { 339, 11, 0x3a3d3a },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -423,17 +430,27 @@ battle.isSelectFleetPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 342, 163, 0x212421 }, { 773, 161, 0xeff3f7 },
-    { 1580, 159, 0x9ca69c }, { 1274, 815, 0xf7db4a },
-    { 1522, 879, 0xffae19 }, { 1312, 834, 0xd6caad },
-    { 1325, 841, 0xffca42 }, { 1366, 844, 0xffffff },
-    { 1412, 842, 0x846921 }, { 1431, 843, 0xffffff },
-    { 1469, 840, 0xffca3a }, { 1488, 839, 0xf7c63a },
-    { 1488, 856, 0xffb221 }, { 1458, 859, 0xffffff },
-    { 1449, 856, 0xffae19 }, { 1413, 857, 0xfff7f7 },
-    { 352, 180, 0xffd76b }, { 392, 181, 0x191810 },
-    { 405, 188, 0x101010 }, { 426, 177, 0xf7db7b },
-    { 418, 194, 0x080808 }, { 451, 194, 0xffba10 },
+    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },
+    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },
+    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },
+    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },
+    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },
+    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },
+    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },
+    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },
+    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },
+    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },
+
+    { 1533, 299, 0x6b2400 }, { 1544, 300, 0x633910 },
+    { 1551, 300, 0x633510 }, { 1564, 302, 0xffd24a },
+    { 1533, 316, 0x6b2d08 }, { 1547, 321, 0xffca42 },
+    { 1559, 314, 0xffc642 }, { 1580, 304, 0xffb242 },
+    { 1570, 307, 0xffc242 }, { 1592, 308, 0x6b3d21 },
+    { 1600, 307, 0xffaa29 }, { 1584, 293, 0xffc64a },
+    { 1598, 299, 0x633110 }, { 1590, 307, 0x733110 },
+    { 1591, 323, 0x632d10 }, { 1580, 321, 0xf7a229 },
+    { 1598, 321, 0xde8e29 }, { 1580, 331, 0xf7a229 },
+    { 1570, 324, 0xffaa3a }, { 1591, 316, 0x6b2800 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -445,15 +462,27 @@ battle.isHardSelectFleetPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 178, 136, 0x292829 }, { 216, 153, 0xffca4a },
-    { 277, 144, 0x312d31 }, { 343, 165, 0x3a393a },
-    { 405, 167, 0xffbe19 }, { 652, 169, 0xd6dbde },
-    { 934, 130, 0xeff3f7 }, { 1589, 128, 0xeff3f7 },
-    { 1687, 150, 0xf7ce42 }, { 1734, 154, 0xadaaad },
-    { 1428, 826, 0xffdf52 }, { 1505, 827, 0xffdf52 },
-    { 1572, 826, 0xffdb52 }, { 1669, 854, 0xf7c63a },
-    { 1487, 862, 0xffffff }, { 1545, 862, 0xffffff },
-    { 1603, 888, 0xffa610 }, { 1632, 863, 0xffffff },
+    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },
+    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },
+    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },
+    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },
+    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },
+    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },
+    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },
+    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },
+    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },
+    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },
+
+    { 1531, 308, 0xf7db52 }, { 1536, 302, 0x633910 },
+    { 1550, 305, 0xe6be52 }, { 1560, 305, 0xffd24a },
+    { 1559, 314, 0xffc252 }, { 1555, 318, 0x633110 },
+    { 1541, 322, 0xffc652 }, { 1541, 314, 0xf7c652 },
+    { 1536, 325, 0x633100 }, { 1554, 327, 0x632400 },
+    { 1572, 300, 0x732808 }, { 1595, 300, 0x633100 },
+    { 1577, 316, 0xf7a63a }, { 1574, 326, 0x733508 },
+    { 1596, 320, 0x6b3d21 }, { 1588, 324, 0xffa631 },
+    { 1585, 316, 0xf7a231 }, { 1604, 303, 0xf7a629 },
+    { 1583, 303, 0xffae3a }, { 1584, 329, 0xffaa21 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -462,7 +491,7 @@ end
 
 -- 困难进入战斗
 battle.clickHardGotoSelectFleedPanelBtn = function()
-  tap(1535, 860, 100)
+  tap(1588, 934, 100)
 end
 
 -- 检查已经选择的舰队
@@ -549,7 +578,7 @@ end
 
 -- 前往地图
 battle.clickGotoMapBtn = function()
-  tap(1398, 845, 100)
+  tap(1588, 934, 100)
 end
 
 --  是否在地图页面

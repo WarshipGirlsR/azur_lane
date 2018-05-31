@@ -133,6 +133,13 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '1.7.19版本后选择舰队变很复杂，因此取消选择舰队功能。请使用默认的1、2舰队出击。这里的设置仅用于确定走地图时的boss舰队和道中舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = 'boss舰队',
           ['size'] = 15,
           ['align'] = 'left',
@@ -141,7 +148,8 @@ return function()
         {
           ['id'] = 'battleFleetBoss',
           ['type'] = 'RadioGroup',
-          ['list'] = '1队,2队,3队,4队',
+          --          ['list'] = '1队,2队,3队,4队',
+          ['list'] = '1队,2队',
           ['select'] = '0',
         },
         {
@@ -154,7 +162,8 @@ return function()
         {
           ['id'] = 'battleFleetOnWay',
           ['type'] = 'RadioGroup',
-          ['list'] = '无,1队,2队,3队,4队',
+          --          ['list'] = '无,1队,2队,3队,4队',
+          ['list'] = '无,1队,2队',
           ['select'] = '0',
         },
         {

@@ -142,23 +142,23 @@ local battle = function(action)
       return makeAction(newstateTypes)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET' then
-
-      stepLabel.setStepLabelContent('2.7.选择舰队面板')
-      stepLabel.setStepLabelContent('2.8.检查已选择的舰队')
-      local res, selectList, unselectList, selectedFeeldList = o.battle.checkSelectedFleet(settings.battleFleet)
-      if not res then
-        stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ','))
-        if #selectedFeeldList <= 1 then
-          o.battle.clickFleet(selectList)
-        else
-          o.battle.clickFleet(unselectList)
-        end
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 500 },
-          { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 }
-        }))
-        return makeAction(newstateTypes)
-      end
+      -- 1.7.19 版本后选择舰队方法变了，太复杂所以不做选择舰队了。
+      --      stepLabel.setStepLabelContent('2.7.选择舰队面板')
+      --      stepLabel.setStepLabelContent('2.8.检查已选择的舰队')
+      --      local res, selectList, unselectList, selectedFeeldList = o.battle.checkSelectedFleet(settings.battleFleet)
+      --      if not res then
+      --        stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ','))
+      --        if #selectedFeeldList <= 1 then
+      --          o.battle.clickFleet(selectList)
+      --        else
+      --          o.battle.clickFleet(unselectList)
+      --        end
+      --        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 500 },
+      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 }
+      --        }))
+      --        return makeAction(newstateTypes)
+      --      end
 
       stepLabel.setStepLabelContent('2.10.点击进入章节')
       o.battle.clickGotoMapBtn()
