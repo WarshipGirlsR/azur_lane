@@ -550,6 +550,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
   local inBattleList = mapChessboard.inBattleList
   local minCoast = nil
   local minCoastEnemy = nil
+  local minCoastPath = nil
 
   for key = 1, #enemyPositionList do
     local enemy = enemyPositionList[key]
@@ -580,6 +581,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
         if not minCoast or minCoast > theCoast then
           minCoast = theCoast
           minCoastEnemy = enemy
+          minCoastPath = thePath
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上
           for key = 1, #thePath do
             local value = thePath[key]
@@ -593,7 +595,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
     end
   end
 
-  return minCoastEnemy
+  return minCoastEnemy, minCoastPath
 end
 
 -- 向四周随意移动一步

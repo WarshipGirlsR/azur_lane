@@ -25,7 +25,6 @@ store.mapType4 = store.mapType4 or {
   currentPosition = nil,
   nextStepPoint = nil,
   nextStepFleed = nil,
-  moveVectorForCheck = { -1, -1 },
   moveVectorForAStep = { -1, -1 },
   moveFailTimes = 0,
 }
@@ -105,7 +104,6 @@ local mapsType2 = function(action)
       store.mapType4.nextStepPoint = nil
       -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'
       store.mapType4.nextStepFleed = nil
-      store.mapType4.moveVectorForCheck = { -1, -1 }
       store.mapType4.moveVectorForAStep = { -1, -1 }
       store.mapType4.moveFailTimes = 0
 
@@ -114,8 +112,17 @@ local mapsType2 = function(action)
     elseif action.type == 'MAPS_TYPE_4_INIT' then
 
       -- 每次进入地图页面时就会执行一次
-
-      store.mapType4.moveVectorForCheck = { -1, -1 }
+      -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
+      store.mapType3.changeFleetNum = 0
+      -- 舰队移动的状态。
+      store.mapType3.missionStep = 'onWayFleetMoveToWaitBoss'
+      store.mapType3.currentPosition = nil
+      -- 下一步行动的目标位置
+      store.mapType3.nextStepPoint = nil
+      -- 下一步行动的路径
+      store.mapType2.nextStepPath = nil
+      -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'
+      store.mapType3.nextStepFleed = nil
       store.mapType4.moveVectorForAStep = { -1, -1 }
       store.mapType4.moveFailTimes = 0
       return makeAction('MAPS_TYPE_4_START')

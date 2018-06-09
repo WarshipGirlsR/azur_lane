@@ -25,7 +25,6 @@ store.scanMapType1 = store.scanMapType1 or {
   currentPosition = nil,
   nextStepPoint = nil,
   moveVectorForCheck = { -1, -1 },
-  moveVectorForAStep = { -1, -1 },
 }
 
 local o = {

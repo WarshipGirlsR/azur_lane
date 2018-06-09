@@ -102,7 +102,7 @@ return function()
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-            .. 'event13-1-sp1,event13-1-sp2,event13-1-sp3',
+            .. 'event15-1-a1,event15-1-a2,event15-1-a3,event15-1-a4,event15-2-b1,event15-2-b2',
           ['select'] = '0',
         },
         {
@@ -220,6 +220,19 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '限制移动步长',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleStepLength',
+          ['type'] = 'RadioGroup',
+          ['list'] = '不限制,1,2,3,4,5,6,7,8',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = '阵型',
           ['size'] = 15,
           ['align'] = 'left',
@@ -228,7 +241,7 @@ return function()
         {
           ['id'] = 'battleFormation',
           ['type'] = 'RadioGroup',
-          ['list'] = '单纵,复纵,轮型,梯形,单横',
+          ['list'] = '单纵,复纵,轮型',
           ['select'] = '1',
         },
         {
@@ -321,7 +334,9 @@ return function()
         --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
         --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',
         --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
-        'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',
+        --      'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',
+        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',
+        'event15-2-b1', 'event15-2-b2',
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)
@@ -382,6 +397,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleAlertWhenManual] or false
     end)(settings.battleAlertWhenManual)
+    -- 限制步长
+    settings.battleStepLength = (function(battleStepLength)
+      local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
+      return list[battleStepLength] or false
+    end)(settings.battleStepLength)
     -- 阵型
     settings.battleFormation = (function(battleFormation)
       local list = transStrToTable({ 1, 2, 3, 4, 5 })

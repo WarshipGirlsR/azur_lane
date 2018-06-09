@@ -571,7 +571,7 @@ return utils\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imgevent13-1-sp3.lua"] = { path = "./meta-operation/maps-options/imgevent13-1-sp3.lua", name = "./meta-operation/maps-options/imgevent13-1-sp3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/imgevent15-2-b2.lua"] = { path = "./meta-operation/maps-options/imgevent15-2-b2.lua", name = "./meta-operation/maps-options/imgevent15-2-b2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -825,6 +825,245 @@ return {\
           { 1460, 626, 0x000000 }, { 1459, 626, 0x3a79c5 },\
           { 1461, 628, 0x000000 }, { 1460, 628, 0x4279ce },\
           { 1461, 629, 0x000000 }, { 1460, 629, 0x3a75c5 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+    },\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = imgBase.map.bossPointList,\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imgevent15-1-a2.lua"] = { path = "./meta-operation/maps-options/imgevent15-1-a2.lua", name = "./meta-operation/maps-options/imgevent15-1-a2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 地图上边界\
+    topLineList = {\
+      -- 1-1的上边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 579, 505, 0x19203a }, { 589, 505, 0x19243a },\
+          { 595, 505, 0x19203a }, { 602, 505, 0x102031 },\
+          { 609, 506, 0x3a496b }, { 602, 506, 0x424973 },\
+          { 592, 506, 0x3a456b }, { 584, 506, 0x3a4563 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 1-3的上边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 939, 505, 0x3a2d3a }, { 950, 505, 0x312831 },\
+          { 964, 505, 0x312831 }, { 974, 505, 0x312831 },\
+          { 983, 506, 0x3a4d73 }, { 974, 506, 0x424d73 },\
+          { 962, 506, 0x424d73 }, { 952, 506, 0x3a4d73 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 1-4的上边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1133, 505, 0x423942 }, { 1146, 505, 0x3a3131 },\
+          { 1156, 505, 0x42393a }, { 1164, 505, 0x423942 },\
+          { 1172, 506, 0x425584 }, { 1157, 506, 0x3a517b },\
+          { 1147, 506, 0x3a517b }, { 1137, 506, 0x3a517b },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 1-6的上边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1450, 505, 0x212019 }, { 1461, 505, 0x292021 },\
+          { 1472, 505, 0x291c21 }, { 1485, 505, 0x4a3131 },\
+          { 1500, 506, 0x42557b }, { 1489, 506, 0x3a557b },\
+          { 1433, 506, 0x425984 }, { 1473, 506, 0x425984 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+    },\
+    -- 地图下边界\
+    bottonLineList = {\
+      -- 7-1 的下面\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022 }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 578, 946, 0x000000 }, { 590, 946, 0x000000 },\
+          { 604, 946, 0x000000 }, { 619, 946, 0x000000 },\
+          { 630, 945, 0x29314a }, { 618, 945, 0x29314a },\
+          { 608, 945, 0x29314a }, { 597, 945, 0x29354a },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 7-3 的下面\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022 }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 992, 946, 0x000000 }, { 1005, 946, 0x000000 },\
+          { 1018, 946, 0x000000 }, { 1030, 946, 0x000000 },\
+          { 1042, 945, 0x31416b }, { 1030, 945, 0x31416b },\
+          { 1017, 945, 0x3a456b }, { 1005, 945, 0x3a456b },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+    },\
+    -- 地图左边界\
+    leftLineList = {\
+      -- 1-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 571, 537, 0x000000 }, { 572, 537, 0x314163 },\
+          { 571, 536, 0x000000 }, { 572, 536, 0x42456b },\
+          { 570, 538, 0x000000 }, { 571, 538, 0x3a456b },\
+          { 570, 539, 0x000000 }, { 571, 539, 0x3a456b },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 2-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 561, 673, 0x000000 }, { 562, 673, 0x3a4973 },\
+          { 561, 672, 0x000000 }, { 562, 672, 0x424d7b },\
+          { 560, 674, 0x000000 }, { 561, 674, 0x424d73 },\
+          { 560, 675, 0x000000 }, { 561, 675, 0x424d73 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 3-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 546, 876, 0x000000 }, { 547, 876, 0x3a4d73 },\
+          { 546, 875, 0x000000 }, { 547, 875, 0x424d73 },\
+          { 545, 877, 0x000000 }, { 546, 877, 0x3a496b },\
+          { 545, 878, 0x000000 }, { 546, 878, 0x424d73 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 4-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 569, 412, 0x000000 }, { 570, 412, 0x42517b },\
+          { 569, 411, 0x000000 }, { 570, 411, 0x424d73 },\
+          { 568, 413, 0x000000 }, { 569, 413, 0x424d73 },\
+          { 568, 414, 0x000000 }, { 569, 414, 0x424d73 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 5-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 556, 583, 0x000000 }, { 557, 583, 0x4a5984 },\
+          { 556, 582, 0x000000 }, { 557, 582, 0x4a5984 },\
+          { 555, 584, 0x000000 }, { 556, 584, 0x4a5984 },\
+          { 555, 585, 0x000000 }, { 556, 585, 0x425984 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 7-1 的左边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 533, 886, 0x000000 }, { 534, 886, 0x424163 },\
+          { 533, 885, 0x000000 }, { 534, 885, 0x313d5a },\
+          { 532, 887, 0x000000 }, { 533, 887, 0x3a4163 },\
+          { 532, 888, 0x000000 }, { 533, 888, 0x3a4163 },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+    },\
+    -- 地图右边界\
+    rightLineList = {\
+      -- 1-7 的右边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1447, 545, 0x000000 }, { 1446, 545, 0x5a7184 },\
+          { 1447, 544, 0x000000 }, { 1446, 544, 0x5a758c },\
+          { 1448, 546, 0x000000 }, { 1447, 546, 0x5a7184 },\
+          { 1448, 547, 0x000000 }, { 1447, 547, 0x5a758c },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 2-7 的右边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1460, 686, 0x000000 }, { 1459, 686, 0x5a6984 },\
+          { 1460, 685, 0x000000 }, { 1459, 685, 0x5a6984 },\
+          { 1461, 687, 0x000000 }, { 1460, 687, 0x5a6984 },\
+          { 1461, 688, 0x000000 }, { 1460, 688, 0x636d8c },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 4-7 的右边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1605, 800, 0x000000 }, { 1604, 800, 0x42496b },\
+          { 1605, 799, 0x000000 }, { 1604, 799, 0x314963 },\
+          { 1606, 801, 0x000000 }, { 1605, 801, 0x3a496b },\
+          { 1606, 802, 0x000000 }, { 1605, 802, 0x3a496b },\
+        })\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 6-7 的右边\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1497, 678, 0x000000 }, { 1496, 678, 0x4a5573 },\
+          { 1497, 677, 0x000000 }, { 1496, 677, 0x42516b },\
+          { 1498, 679, 0x000000 }, { 1497, 679, 0x4a556b },\
+          { 1498, 680, 0x000000 }, { 1497, 680, 0x4a516b },\
         })\
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
@@ -9077,6 +9316,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
   local inBattleList = mapChessboard.inBattleList\
   local minCoast = nil\
   local minCoastEnemy = nil\
+  local minCoastPath = nil\
 \
   for key = 1, #enemyPositionList do\
     local enemy = enemyPositionList[key]\
@@ -9107,6 +9347,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
         if not minCoast or minCoast > theCoast then\
           minCoast = theCoast\
           minCoastEnemy = enemy\
+          minCoastPath = thePath\
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上\
           for key = 1, #thePath do\
             local value = thePath[key]\
@@ -9120,7 +9361,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
     end\
   end\
 \
-  return minCoastEnemy\
+  return minCoastEnemy, minCoastPath\
 end\
 \
 -- 向四周随意移动一步\
@@ -9174,8 +9415,8 @@ return map" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapevent13-1-sp3.lua"] = { path = "./meta-operation/maps-options/mapevent13-1-sp3.lua", name = "./meta-operation/maps-options/mapevent13-1-sp3.lua", source = "local mapBase = require './map'\
-local imgEvent = require './imgevent13-1-sp3'\
+package.sourceCode["./meta-operation/maps-options/mapevent15-2-b2.lua"] = { path = "./meta-operation/maps-options/mapevent15-2-b2.lua", name = "./meta-operation/maps-options/mapevent15-2-b2.lua", source = "local mapBase = require './map'\
+local imgEvent = require './imgevent15-2-b2'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -9283,15 +9524,120 @@ mapEvent.getMapChessboard = function()\
     width = 9,\
     height = 7,\
     obstacle = {\
-      { 1, 4 }, { 1, 5 }, { 1, 8 },\
-      { 2, 2 },\
-      { 3, 5 }, { 3, 7 },\
-      { 4, 4 }, { 4, 8 }, { 4, 9 },\
-      { 5, 1 }, { 5, 8 }, { 5, 9 },\
-      { 6, 5 }, { 6, 6 },\
-      { 7, 3 },\
+      { 1, 2 }, { 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 8 }, { 1, 9 },\
+      { 2, 3 }, { 2, 4 }, { 2, 5 }, { 2, 8 }, { 2, 9 },\
+      { 3, 4 }, { 3, 5 },\
+      { 4, 4 }, { 4, 5 },\
+      { 7, 4 }, { 7, 5 }, { 7, 8 }, { 7, 9 },\
     },\
-    waitForBossPosition = { { 1, 1 }, { 1, 9 }, { 3, 9 }, { 7, 1 } },\
+    waitForBossPosition = { { 5, 1 } },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapevent15-1-a2.lua"] = { path = "./meta-operation/maps-options/mapevent15-1-a2.lua", name = "./meta-operation/maps-options/mapevent15-1-a2.lua", source = "local mapBase = require './map'\
+local imgEvent = require './imgevent15-1-a2'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+\
+mapEvent.getCheckpositionList = function()\
+  local list = {\
+    {\
+      leftTop = nil,\
+      rightTop = { 1564, 505 },\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 573, 505, 0x192031 }, { 738, 505, 0x212421 }, { 902, 505, 0x292431 }, { 1067, 505, 0x423542 }, { 1232, 505, 0x423d42 }, { 1397, 505, 0x3a3131 }, { 1564, 505, 0x423942 }, },\
+        { { 564, 630, 0x000000 }, { 729, 630, 0x6b6173 }, { 900, 630, 0x31415a }, { 1069, 630, 0x21314a }, { 1238, 630, 0x314163 }, { 1407, 630, 0x293d5a }, { 1578, 630, 0x000000 }, },\
+        { { 554, 760, 0xdea2bd }, { 725, 760, 0xad7db5 }, { 899, 760, 0x293d52 }, { 1072, 760, 0x42496b }, { 1245, 760, 0x313d63 }, { 1418, 760, 0x3a4163 }, { 1593, 760, 0x000000 }, },\
+        { { 544, 897, 0x000000 }, { 720, 897, 0x213552 }, { 897, 897, 0x29355a }, { 1075, 897, 0xf7f7ff }, { 1252, 897, 0xefebff }, { 1429, 897, 0x313d5a }, { 1609, 897, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 565, 377 },\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { { 536, 760, 0x000000 }, { 712, 760, 0x314163 }, { 889, 760, 0x293552 }, { 1067, 760, 0xdeebff }, { 1244, 760, 0xf7f3ff }, { 1421, 760, 0x293d52 }, { 1601, 760, 0x000000 }, },\
+        { { 525, 901, 0x000000 }, { 706, 901, 0x294563 }, { 888, 901, 0x293952 }, { 1070, 901, 0x293d5a }, { 1251, 901, 0x313d5a }, { 1433, 901, 0x3a4163 }, { 1617, 901, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBotton = { 528, 946 },\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false,\
+        { { 561, 508, 0x000000 }, { 742, 508, 0x3a4d6b }, { 923, 508, 0x293d5a }, { 1105, 508, 0x313d5a }, { 1288, 508, 0x424163 }, { 1469, 508, 0x31415a }, { 1653, 508, 0x000000 }, },\
+        { { 551, 646, 0x000000 }, { 735, 646, 0x292d29 }, { 923, 646, 0x292d29 }, { 1109, 646, 0x293d5a }, { 1296, 646, 0x3a416b }, { 1483, 646, 0x3a5973 }, { 1671, 646, 0x293152 }, },\
+        { { 540, 791, 0x000000 }, { 730, 791, 0x213142 }, { 921, 791, 0x314563 }, { 1113, 791, 0x31415a }, { 1305, 791, 0x313d5a }, { 1494, 791, 0x3a353a }, { 1691, 791, 0x000000 }, },\
+        { { 528, 946, 0x000000 }, { 724, 946, 0x000000 }, { 920, 946, 0x000000 }, { 1117, 946, 0x000000 }, { 1315, 946, 0x000000 }, { 1512, 946, 0x101010 }, { 1712, 946, 0x101010 }, },\
+      },\
+      pointMap = {},\
+    },\
+  }\
+  for key = 1, #list do\
+    local positionMap = list[key].positionMap\
+    for rowNum, rol in ipairs(positionMap) do\
+      if rol and positionMap[rowNum + 1] then\
+        for colNum, col in ipairs(rol) do\
+          if col and rol[colNum + 1] then\
+            list[key].pointMap[rowNum .. '-' .. colNum] = col\
+          end\
+        end\
+      end\
+    end\
+  end\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 6,\
+    height = 7,\
+    obstacle = {\
+      { 1, 1 }, { 1, 2 },\
+      { 2, 1 }, { 2, 2 },\
+      { 3, 1 }, { 3, 2 },\
+      { 6, 5 }, { 6, 6 },\
+      { 7, 5 }, { 7, 6 },\
+    },\
+    waitForBossPosition = { { 1, 6 }, { 5, 6 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -13836,7 +14182,8 @@ local map11_1 = require './map11-1'\
 local map11_2 = require './map11-2'\
 local map11_3 = require './map11-3'\
 local map12_1 = require './map12-1'\
-local mapevent13_1_sp3 = require './mapevent13-1-sp3'\
+local mapevent15_1_a2 = require './mapevent15-1-a2'\
+local mapevent15_2_b2 = require './mapevent15-2-b2'\
 \
 return {\
   ['map1-1'] = map1_1,\
@@ -13883,7 +14230,8 @@ return {\
   ['map11-2'] = map11_2,\
   ['map11-3'] = map11_3,\
   ['map12-1'] = map12_1,\
-  ['mapevent13-1-sp3'] = mapevent13_1_sp3,\
+  ['mapevent15-1-a2'] = mapevent15_1_a2,\
+  ['mapevent15-2-b2'] = mapevent15_2_b2,\
 }\
 " }
 
@@ -14197,6 +14545,18 @@ battle.clickChapter = function(chapter)\
     tap(568, 804, 100)\
   elseif (chapter == 'event13-1-sp3') then\
     tap(1243, 590, 100)\
+  elseif (chapter == 'event15-1-a1') then\
+    tap(387, 367, 100)\
+  elseif (chapter == 'event15-1-a2') then\
+    tap(535, 690, 100)\
+  elseif (chapter == 'event15-1-a3') then\
+    tap(1345, 769, 100)\
+  elseif (chapter == 'event15-1-a4') then\
+    tap(1190, 421, 100)\
+  elseif (chapter == 'event15-2-b1') then\
+    tap(517, 655, 100)\
+  elseif (chapter == 'event15-2-b2') then\
+    tap(1257, 544, 100)\
   end\
   if not __keepScreenState then keepScreen(false) end\
 end\
@@ -15116,7 +15476,6 @@ store.scanMapType1 = store.scanMapType1 or {\
   currentPosition = nil,\
   nextStepPoint = nil,\
   moveVectorForCheck = { -1, -1 },\
-  moveVectorForAStep = { -1, -1 },\
 }\
 \
 local o = {\
@@ -15328,7 +15687,6 @@ store.mapType4 = store.mapType4 or {\
   currentPosition = nil,\
   nextStepPoint = nil,\
   nextStepFleed = nil,\
-  moveVectorForCheck = { -1, -1 },\
   moveVectorForAStep = { -1, -1 },\
   moveFailTimes = 0,\
 }\
@@ -15408,7 +15766,6 @@ local mapsType2 = function(action)\
       store.mapType4.nextStepPoint = nil\
       -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
       store.mapType4.nextStepFleed = nil\
-      store.mapType4.moveVectorForCheck = { -1, -1 }\
       store.mapType4.moveVectorForAStep = { -1, -1 }\
       store.mapType4.moveFailTimes = 0\
 \
@@ -15417,8 +15774,17 @@ local mapsType2 = function(action)\
     elseif action.type == 'MAPS_TYPE_4_INIT' then\
 \
       -- 每次进入地图页面时就会执行一次\
-\
-      store.mapType4.moveVectorForCheck = { -1, -1 }\
+      -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。\
+      store.mapType3.changeFleetNum = 0\
+      -- 舰队移动的状态。\
+      store.mapType3.missionStep = 'onWayFleetMoveToWaitBoss'\
+      store.mapType3.currentPosition = nil\
+      -- 下一步行动的目标位置\
+      store.mapType3.nextStepPoint = nil\
+      -- 下一步行动的路径\
+      store.mapType2.nextStepPath = nil\
+      -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
+      store.mapType3.nextStepFleed = nil\
       store.mapType4.moveVectorForAStep = { -1, -1 }\
       store.mapType4.moveFailTimes = 0\
       return makeAction('MAPS_TYPE_4_START')\
@@ -15640,17 +16006,13 @@ store.mapType3 = store.mapType3 or {\
   isBossFleetInBossArea = false,\
   battleNum = 0,\
   battleWithConvoyNum = 0,\
-  battleFromState = '',\
-  checkpositionListForCheck = nil,\
   checkpositionListForMove = {},\
-  oldMapChessboard = nil,\
-  mapChessboard = {},\
   currentPosition = nil,\
   nextStepPoint = nil,\
-  nextStepFleed = nil,\
-  moveVectorForCheck = { -1, -1 },\
-  moveVectorForAStep = { -1, -1 },\
-  moveFailTimes = 0,\
+  nextStepPath = nil\
+nextStepFleed = nil,\
+moveVectorForAStep = { -1, -1 },\
+moveFailTimes = 0,\
 }\
 \
 -- maps-type2 的行动流程\
@@ -15718,7 +16080,6 @@ local mapsType2 = function(action)\
       -- boss舰队是否在boss区域\
       store.mapType3.battleNum = 0\
       store.mapType3.battleWithConvoyNum = 0\
-      store.mapType3.battleFromState = ''\
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。\
       store.mapType3.changeFleetNum = 0\
       -- 舰队移动的状态。\
@@ -15726,9 +16087,10 @@ local mapsType2 = function(action)\
       store.mapType3.currentPosition = nil\
       -- 下一步行动的目标位置\
       store.mapType3.nextStepPoint = nil\
+      -- 下一步行动的路径\
+      store.mapType2.nextStepPath = nil\
       -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
       store.mapType3.nextStepFleed = nil\
-      store.mapType3.moveVectorForCheck = { -1, -1 }\
       store.mapType3.moveVectorForAStep = { -1, -1 }\
       store.mapType3.moveFailTimes = 0\
 \
@@ -15737,8 +16099,17 @@ local mapsType2 = function(action)\
     elseif action.type == 'MAPS_TYPE_3_INIT' then\
 \
       -- 每次进入地图页面时就会执行一次\
-\
-      store.mapType3.moveVectorForCheck = { -1, -1 }\
+      -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。\
+      store.mapType3.changeFleetNum = 0\
+      -- 舰队移动的状态。\
+      store.mapType3.missionStep = 'onWayFleetMoveToWaitBoss'\
+      store.mapType3.currentPosition = nil\
+      -- 下一步行动的目标位置\
+      store.mapType3.nextStepPoint = nil\
+      -- 下一步行动的路径\
+      store.mapType2.nextStepPath = nil\
+      -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
+      store.mapType3.nextStepFleed = nil\
       store.mapType3.moveVectorForAStep = { -1, -1 }\
       store.mapType3.moveFailTimes = 0\
       return makeAction('MAPS_TYPE_3_START')\
@@ -15769,7 +16140,7 @@ local mapsType2 = function(action)\
           store.mapType3.missionStep = 'onWayFleetMoveToClosestEnemy'\
           stepLabel.setStepLabelContent('3-8.道中队移动到最近的敌人')\
           store.mapType3.nextStepFleed = 'onWay'\
-          store.mapType3.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+          store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
           return\
         end\
 \
@@ -15785,7 +16156,7 @@ local mapsType2 = function(action)\
           stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')\
           store.mapType3.missionStep = 'bossFleetMoveToBoss'\
           store.mapType3.nextStepFleed = 'boss'\
-          store.mapType3.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
+          store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
           return\
         end\
 \
@@ -15800,7 +16171,7 @@ local mapsType2 = function(action)\
         stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')\
         store.mapType3.missionStep = 'onWayFleetMoveToClosestEnemy'\
         store.mapType3.nextStepFleed = 'onWay'\
-        store.mapType3.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+        store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
         return\
       end)()\
       -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步\
@@ -15815,6 +16186,27 @@ local mapsType2 = function(action)\
           { 'MAPS_TYPE_3_START', o.battle.isMapPage },\
         }))\
         return makeAction(newstateTypes)\
+      end\
+\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION' then\
+      -- 如果限制了步长，则需要计算一步移动到哪里\
+      -- 如果限制步长，并且下一步路线不为0，並且下一步位置不是路线的终点\
+      if settings.battleStepLength > 0\
+        and store.mapType2.nextStepPath\
+        and #store.mapType2.nextStepPath > 0 then\
+        local stepNum = 0\
+        while #store.mapType2.nextStepPath > 0 do\
+          store.mapType2.nextStepPoint = table.remove(store.mapType2.nextStepPath, 1)\
+          stepNum = stepNum + 1\
+          if stepNum >= settings.battleStepLength then\
+            break\
+          end\
+        end\
       end\
 \
       -- 查找目标点在哪个界面\
@@ -15939,7 +16331,16 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       end\
 \
-      store.mapType3.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)\
+      if settings.battleStepLength > 0\
+        and store.mapType2.nextStepPath\
+        and #store.mapType2.nextStepPath > 0\
+        and not comparePoints(store.mapType2.nextStepPath[#store.mapType2.nextStepPath], store.mapType2.nextStepPoint) then\
+\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage, settings.battleStepLength * 800 + 200 }\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
 \
       if store.mapType3.moveFailTimes < 3 then\
         store.mapType3.moveFailTimes = store.mapType3.moveFailTimes + 1\
@@ -15998,15 +16399,10 @@ store.mapType2 = store.mapType2 or {\
   isBossFleetInBossArea = false,\
   battleNum = 0,\
   battleWithConvoyNum = 0,\
-  battleFromState = '',\
-  checkpositionListForCheck = nil,\
   checkpositionListForMove = {},\
-  oldMapChessboard = nil,\
-  mapChessboard = {},\
   currentPosition = nil,\
   nextStepPoint = nil,\
   nextStepFleed = nil,\
-  moveVectorForCheck = { -1, -1 },\
   moveVectorForAStep = { -1, -1 },\
   moveFailTimes = 0,\
 }\
@@ -16076,7 +16472,6 @@ local mapsType2 = function(action)\
       -- boss舰队是否在boss区域\
       store.mapType2.battleNum = 0\
       store.mapType2.battleWithConvoyNum = 0\
-      store.mapType2.battleFromState = ''\
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。\
       store.mapType2.changeFleetNum = 0\
       -- 舰队移动的状态。\
@@ -16084,9 +16479,10 @@ local mapsType2 = function(action)\
       store.mapType2.currentPosition = nil\
       -- 下一步行动的目标位置\
       store.mapType2.nextStepPoint = nil\
+      -- 下一步行动的路径\
+      store.mapType2.nextStepPath = nil\
       -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
       store.mapType2.nextStepFleed = nil\
-      store.mapType2.moveVectorForCheck = { -1, -1 }\
       store.mapType2.moveVectorForAStep = { -1, -1 }\
       store.mapType2.moveFailTimes = 0\
 \
@@ -16096,7 +16492,15 @@ local mapsType2 = function(action)\
 \
       -- 每次进入地图页面时就会执行一次\
 \
-      store.mapType2.moveVectorForCheck = { -1, -1 }\
+      -- 舰队移动的状态。\
+      store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'\
+      store.mapType2.currentPosition = nil\
+      -- 下一步行动的目标位置\
+      store.mapType2.nextStepPoint = nil\
+      -- 下一步行动的路径\
+      store.mapType2.nextStepPath = nil\
+      -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'\
+      store.mapType2.nextStepFleed = nil\
       store.mapType2.moveVectorForAStep = { -1, -1 }\
       store.mapType2.moveFailTimes = 0\
       return makeAction('MAPS_TYPE_2_START')\
@@ -16139,14 +16543,14 @@ local mapsType2 = function(action)\
             stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')\
             store.mapType2.missionStep = 'bossFleetMoveToBoss'\
             store.mapType2.nextStepFleed = 'boss'\
-            store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
+            store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
             return\
           end\
 \
           stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')\
           store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'\
           store.mapType2.nextStepFleed = 'onWay'\
-          store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)\
+          store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)\
           return\
         end\
 \
@@ -16170,14 +16574,14 @@ local mapsType2 = function(action)\
                   stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')\
                   store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'\
                   store.mapType2.nextStepFleed = 'onWay'\
-                  store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
+                  store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
                   return\
                 else\
                   stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')\
                   store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'\
                   store.mapType2.nextStepFleed = 'onWay'\
                   mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
-                  store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+                  store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
                   return\
                 end\
               end\
@@ -16186,14 +16590,14 @@ local mapsType2 = function(action)\
                 stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')\
                 store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'\
                 store.mapType2.nextStepFleed = 'onWay'\
-                store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
+                store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)\
                 return\
               end\
               if onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet) then\
                 stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')\
                 store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'\
                 store.mapType2.nextStepFleed = 'onWay'\
-                store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+                store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
                 return\
               end\
             end\
@@ -16203,7 +16607,7 @@ local mapsType2 = function(action)\
         if store.mapType2.missionStep == 'onWayFleetMoveToClosestEnemy' then\
           stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')\
           store.mapType2.nextStepFleed = 'onWay'\
-          store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+          store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
           return\
         end\
 \
@@ -16211,7 +16615,7 @@ local mapsType2 = function(action)\
           stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')\
           store.mapType2.missionStep = 'bossFleetMoveToBoss'\
           store.mapType2.nextStepFleed = 'boss'\
-          store.mapType2.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
+          store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
           return\
         end\
 \
@@ -16226,10 +16630,9 @@ local mapsType2 = function(action)\
         stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')\
         store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'\
         store.mapType2.nextStepFleed = 'onWay'\
-        store.mapType2.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
+        store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)\
         return\
       end)()\
-      console.log(store.mapType2.nextStepPoint)\
       -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步\
       -- 尽可能避开敌人\
       if not store.mapType2.nextStepPoint then\
@@ -16244,6 +16647,27 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       end\
 \
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAPS_TYPE_2_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAPS_TYPE_2_PAGE_CHECK_NEXT_STEP_POSITION' then\
+      -- 如果限制了步长，则需要计算一步移动到哪里\
+      -- 如果限制步长，并且下一步路线不为0，並且下一步位置不是路线的终点\
+      if settings.battleStepLength > 0\
+        and store.mapType2.nextStepPath\
+        and #store.mapType2.nextStepPath > 0 then\
+        local stepNum = 0\
+        while #store.mapType2.nextStepPath > 0 do\
+          store.mapType2.nextStepPoint = table.remove(store.mapType2.nextStepPath, 1)\
+          stepNum = stepNum + 1\
+          if stepNum >= settings.battleStepLength then\
+            break\
+          end\
+        end\
+      end\
+\
       -- 查找目标点在哪个界面\
       store.mapType2.checkpositionListForMove = mapProxy.getCheckpositionList(settings.battleChapter)\
       for _, targetPosition in ipairs(store.mapType2.checkpositionListForMove) do\
@@ -16254,6 +16678,7 @@ local mapsType2 = function(action)\
           break;\
         end\
       end\
+\
 \
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'MAPS_TYPE_2_PAGE_SELECT_FLEET', o.battle.isMapPage },\
@@ -16365,7 +16790,17 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       end\
 \
-      store.mapType2.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)\
+\
+      if settings.battleStepLength > 0\
+        and store.mapType2.nextStepPath\
+        and #store.mapType2.nextStepPath > 0\
+        and not comparePoints(store.mapType2.nextStepPath[#store.mapType2.nextStepPath], store.mapType2.nextStepPoint) then\
+\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { 'MAPS_TYPE_2_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage, settings.battleStepLength * 800 + 200 }\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
 \
       if store.mapType2.moveFailTimes < 3 then\
         store.mapType2.moveFailTimes = store.mapType2.moveFailTimes + 1\
@@ -16834,7 +17269,6 @@ local battle = function(action)\
       store.battle.battleAssistantMode = settings.battleAssistantMode\
 \
       return {\
-        makeAction('MAPS_TYPE_1_PRE_INIT'),\
         makeAction('MAPS_TYPE_2_PRE_INIT'),\
         makeAction('MAPS_TYPE_3_PRE_INIT'),\
         makeAction('MAPS_TYPE_4_PRE_INIT'),\
@@ -17063,7 +17497,7 @@ local battle = function(action)\
           '10-1', '10-2', '10-3', '10-4',\
           '11-1', '11-2', '11-3',\
           '12-1',\
-          'event13-1-sp3',\
+          'event15-1-a2',\
         }\
         if table.findIndex(type1, settings.battleChapter) > -1 then\
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')\
@@ -17099,7 +17533,7 @@ local battle = function(action)\
           '10-1', '10-2', '10-3', '10-4',\
           '11-1', '11-2', '11-3',\
           '12-1',\
-          'event13-1-sp3',\
+          'event15-1-a2',\
         }\
         if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then\
           if settings.mapsType == 'maps-type-2' then\
@@ -17615,7 +18049,7 @@ return function()\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'\
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-            .. 'event13-1-sp1,event13-1-sp2,event13-1-sp3',\
+            .. 'event15-1-a1,event15-1-a2,event15-1-a3,event15-1-a4,event15-2-b1,event15-2-b2',\
           ['select'] = '0',\
         },\
         {\
@@ -17733,6 +18167,19 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
+          ['text'] = '限制移动步长',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'battleStepLength',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '不限制,1,2,3,4,5,6,7,8',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
           ['text'] = '阵型',\
           ['size'] = 15,\
           ['align'] = 'left',\
@@ -17741,7 +18188,7 @@ return function()\
         {\
           ['id'] = 'battleFormation',\
           ['type'] = 'RadioGroup',\
-          ['list'] = '单纵,复纵,轮型,梯形,单横',\
+          ['list'] = '单纵,复纵,轮型',\
           ['select'] = '1',\
         },\
         {\
@@ -17834,7 +18281,9 @@ return function()\
         --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',\
         --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',\
         --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',\
-        'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',\
+        --      'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',\
+        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',\
+        'event15-2-b1', 'event15-2-b2',\
       })\
       return list[battleChapter] or '0'\
     end)(settings.battleChapter)\
@@ -17895,6 +18344,11 @@ return function()\
       local list = transStrToTable({ true, false, })\
       return list[battleAlertWhenManual] or false\
     end)(settings.battleAlertWhenManual)\
+    -- 限制步长\
+    settings.battleStepLength = (function(battleStepLength)\
+      local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })\
+      return list[battleStepLength] or false\
+    end)(settings.battleStepLength)\
     -- 阵型\
     settings.battleFormation = (function(battleFormation)\
       local list = transStrToTable({ 1, 2, 3, 4, 5 })\

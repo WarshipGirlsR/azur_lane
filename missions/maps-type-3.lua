@@ -17,17 +17,13 @@ store.mapType3 = store.mapType3 or {
   isBossFleetInBossArea = false,
   battleNum = 0,
   battleWithConvoyNum = 0,
-  battleFromState = '',
-  checkpositionListForCheck = nil,
   checkpositionListForMove = {},
-  oldMapChessboard = nil,
-  mapChessboard = {},
   currentPosition = nil,
   nextStepPoint = nil,
-  nextStepFleed = nil,
-  moveVectorForCheck = { -1, -1 },
-  moveVectorForAStep = { -1, -1 },
-  moveFailTimes = 0,
+  nextStepPath = nil
+nextStepFleed = nil,
+moveVectorForAStep = { -1, -1 },
+moveFailTimes = 0,
 }
 
 -- maps-type2 的行动流程
@@ -95,7 +91,6 @@ local mapsType2 = function(action)
       -- boss舰队是否在boss区域
       store.mapType3.battleNum = 0
       store.mapType3.battleWithConvoyNum = 0
-      store.mapType3.battleFromState = ''
       -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
       store.mapType3.changeFleetNum = 0
       -- 舰队移动的状态。
@@ -103,9 +98,10 @@ local mapsType2 = function(action)
       store.mapType3.currentPosition = nil
       -- 下一步行动的目标位置
       store.mapType3.nextStepPoint = nil
+      -- 下一步行动的路径
+      store.mapType2.nextStepPath = nil
       -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'
       store.mapType3.nextStepFleed = nil
-      store.mapType3.moveVectorForCheck = { -1, -1 }
       store.mapType3.moveVectorForAStep = { -1, -1 }
       store.mapType3.moveFailTimes = 0
 
@@ -114,8 +110,17 @@ local mapsType2 = function(action)
     elseif action.type == 'MAPS_TYPE_3_INIT' then
 
       -- 每次进入地图页面时就会执行一次
-
-      store.mapType3.moveVectorForCheck = { -1, -1 }
+      -- 切换船的次数，如果超过4次没切换成功表示舰队沉了。
+      store.mapType3.changeFleetNum = 0
+      -- 舰队移动的状态。
+      store.mapType3.missionStep = 'onWayFleetMoveToWaitBoss'
+      store.mapType3.currentPosition = nil
+      -- 下一步行动的目标位置
+      store.mapType3.nextStepPoint = nil
+      -- 下一步行动的路径
+      store.mapType2.nextStepPath = nil
+      -- 下一步行动的舰队，当前为 nil 'onWay' 或者 'boss'
+      store.mapType3.nextStepFleed = nil
       store.mapType3.moveVectorForAStep = { -1, -1 }
       store.mapType3.moveFailTimes = 0
       return makeAction('MAPS_TYPE_3_START')
@@ -146,7 +151,7 @@ local mapsType2 = function(action)
           store.mapType3.missionStep = 'onWayFleetMoveToClosestEnemy'
           stepLabel.setStepLabelContent('3-8.道中队移动到最近的敌人')
           store.mapType3.nextStepFleed = 'onWay'
-          store.mapType3.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+          store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
           return
         end
 
@@ -162,7 +167,7 @@ local mapsType2 = function(action)
           stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
           store.mapType3.missionStep = 'bossFleetMoveToBoss'
           store.mapType3.nextStepFleed = 'boss'
-          store.mapType3.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
+          store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
           return
         end
 
@@ -177,7 +182,7 @@ local mapsType2 = function(action)
         stepLabel.setStepLabelContent('3-8.道中移动到最近的敌人')
         store.mapType3.missionStep = 'onWayFleetMoveToClosestEnemy'
         store.mapType3.nextStepFleed = 'onWay'
-        store.mapType3.nextStepPoint = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+        store.mapType3.nextStepPoint, store.mapType2.nextStepPath = mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
         return
       end)()
       -- 如果还是没有移动目标，则可能是我方舰队挡住了敌人，此时需要随意移动一步
@@ -192,6 +197,27 @@ local mapsType2 = function(action)
           { 'MAPS_TYPE_3_START', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
+      end
+
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION' then
+      -- 如果限制了步长，则需要计算一步移动到哪里
+      -- 如果限制步长，并且下一步路线不为0，並且下一步位置不是路线的终点
+      if settings.battleStepLength > 0
+        and store.mapType2.nextStepPath
+        and #store.mapType2.nextStepPath > 0 then
+        local stepNum = 0
+        while #store.mapType2.nextStepPath > 0 do
+          store.mapType2.nextStepPoint = table.remove(store.mapType2.nextStepPath, 1)
+          stepNum = stepNum + 1
+          if stepNum >= settings.battleStepLength then
+            break
+          end
+        end
       end
 
       -- 查找目标点在哪个界面
@@ -316,7 +342,16 @@ local mapsType2 = function(action)
         return makeAction(newstateTypes)
       end
 
-      store.mapType3.checkpositionListForCheck = mapProxy.getCheckpositionList(settings.battleChapter)
+      if settings.battleStepLength > 0
+        and store.mapType2.nextStepPath
+        and #store.mapType2.nextStepPath > 0
+        and not comparePoints(store.mapType2.nextStepPath[#store.mapType2.nextStepPath], store.mapType2.nextStepPoint) then
+
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE_3_PAGE_CHECK_NEXT_STEP_POSITION', o.battle.isMapPage, settings.battleStepLength * 800 + 200 }
+        }))
+        return makeAction(newstateTypes)
+      end
 
       if store.mapType3.moveFailTimes < 3 then
         store.mapType3.moveFailTimes = store.mapType3.moveFailTimes + 1
