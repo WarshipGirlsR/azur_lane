@@ -20,10 +20,10 @@ store.mapType3 = store.mapType3 or {
   checkpositionListForMove = {},
   currentPosition = nil,
   nextStepPoint = nil,
-  nextStepPath = nil
-nextStepFleed = nil,
-moveVectorForAStep = { -1, -1 },
-moveFailTimes = 0,
+  nextStepPath = nil,
+  nextStepFleed = nil,
+  moveVectorForAStep = { -1, -1 },
+  moveFailTimes = 0,
 }
 
 -- maps-type2 的行动流程

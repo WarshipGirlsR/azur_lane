@@ -876,7 +876,7 @@ return {\
           { 609, 506, 0x3a496b }, { 602, 506, 0x424973 },\
           { 592, 506, 0x3a456b }, { 584, 506, 0x3a4563 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-3的上边\
       (function()\
@@ -888,7 +888,7 @@ return {\
           { 983, 506, 0x3a4d73 }, { 974, 506, 0x424d73 },\
           { 962, 506, 0x424d73 }, { 952, 506, 0x3a4d73 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-4的上边\
       (function()\
@@ -900,7 +900,7 @@ return {\
           { 1172, 506, 0x425584 }, { 1157, 506, 0x3a517b },\
           { 1147, 506, 0x3a517b }, { 1137, 506, 0x3a517b },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-6的上边\
       (function()\
@@ -912,7 +912,7 @@ return {\
           { 1500, 506, 0x42557b }, { 1489, 506, 0x3a557b },\
           { 1433, 506, 0x425984 }, { 1473, 506, 0x425984 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
     },\
     -- 地图下边界\
@@ -16009,10 +16009,10 @@ store.mapType3 = store.mapType3 or {\
   checkpositionListForMove = {},\
   currentPosition = nil,\
   nextStepPoint = nil,\
-  nextStepPath = nil\
-nextStepFleed = nil,\
-moveVectorForAStep = { -1, -1 },\
-moveFailTimes = 0,\
+  nextStepPath = nil,\
+  nextStepFleed = nil,\
+  moveVectorForAStep = { -1, -1 },\
+  moveFailTimes = 0,\
 }\
 \
 -- maps-type2 的行动流程\
