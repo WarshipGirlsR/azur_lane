@@ -273,7 +273,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
-          'event15-1-a2',
+          'event15-1-a2', 'event15-2-b2',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')
@@ -309,7 +309,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
-          'event15-1-a2',
+          'event15-1-a2', 'event15-2-b2',
         }
         if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then
           if settings.mapsType == 'maps-type-2' then
@@ -349,6 +349,7 @@ local battle = function(action)
     elseif action.type == 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE' then
 
       stepLabel.setStepLabelContent('2.16.准备战斗')
+      c.yield(sleepPromise(1000))
       o.battle.readyBattlePageClickBattle()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
