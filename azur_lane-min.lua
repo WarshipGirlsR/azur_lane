@@ -135,6 +135,17 @@ local imgs = {\
         })\
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
+      -- 小型 左上框\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 892, 552, 0xd6c221 }, { 880, 552, 0xd6c221 },\
+          { 866, 552, 0xd6c219 }, { 855, 559, 0xe6b200 },\
+          { 855, 568, 0xdeb600 }, { 878, 572, 0xdec229 },\
+        })\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
       -- 小型 右下框\
       (function()\
         local leftTop = { 185, 155 }\
@@ -143,6 +154,17 @@ local imgs = {\
           { 1007, 621, 0xe6b600 }, { 994, 621, 0xdeb200 },\
           { 983, 621, 0xe6b600 }, { 1013, 601, 0xdeba10 },\
           { 991, 604, 0xcebe10 },\
+        })\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
+      -- 小型 右下框\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 873, 600, 0xcebe19 }, { 888, 600, 0xd6c221 },\
+          { 903, 592, 0xdeb200 }, { 879, 584, 0xdec610 },\
+          { 884, 600, 0xd6c221 },\
         })\
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
@@ -16702,15 +16724,25 @@ local mapsType2 = function(action)\
     elseif action.type == 'MAPS_TYPE_2_PAGE_CHECK_NEXT_STEP_POSITION' then\
       -- 如果限制了步长，则需要计算一步移动到哪里\
       -- 如果限制步长，并且下一步路线不为0，並且下一步位置不是路线的终点\
+      local mapChessboard = store.scanMapType1.mapChessboard\
       if settings.battleStepLength > 0\
         and store.mapType2.nextStepPath\
         and #store.mapType2.nextStepPath > 0 then\
         local stepNum = 0\
         while #store.mapType2.nextStepPath > 0 do\
-          store.mapType2.nextStepPoint = table.remove(store.mapType2.nextStepPath, 1)\
           stepNum = stepNum + 1\
-          if stepNum >= settings.battleStepLength then\
+          local firstPoint = store.mapType2.nextStepPath[1]\
+          -- 如果第一步就是另外一队，则跳过本格取下一格。如果第settings.battleStepLength步遇到另外一队，则直接结束循环，取前一格\
+          if (comparePoints(firstPoint, mapChessboard.bossFleet) or comparePoints(firstPoint, mapChessboard.onWayFleet)) and stepNum == 1 then\
+            table.remove(store.mapType2.nextStepPath, 1)\
+          elseif (comparePoints(firstPoint, mapChessboard.bossFleet) or comparePoints(firstPoint, mapChessboard.onWayFleet)) and stepNum == settings.battleStepLength then\
             break\
+          else\
+            table.remove(store.mapType2.nextStepPath, 1)\
+            store.mapType2.nextStepPoint = firstPoint\
+            if stepNum >= settings.battleStepLength then\
+              break\
+            end\
           end\
         end\
       end\
@@ -18395,7 +18427,7 @@ return function()\
     -- 限制步长\
     settings.battleStepLength = (function(battleStepLength)\
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })\
-      return list[battleStepLength] or false\
+      return list[battleStepLength] or 0\
     end)(settings.battleStepLength)\
     -- 阵型\
     settings.battleFormation = (function(battleFormation)\

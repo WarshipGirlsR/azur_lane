@@ -273,15 +273,25 @@ local mapsType2 = function(action)
     elseif action.type == 'MAPS_TYPE_2_PAGE_CHECK_NEXT_STEP_POSITION' then
       -- 如果限制了步长，则需要计算一步移动到哪里
       -- 如果限制步长，并且下一步路线不为0，並且下一步位置不是路线的终点
+      local mapChessboard = store.scanMapType1.mapChessboard
       if settings.battleStepLength > 0
         and store.mapType2.nextStepPath
         and #store.mapType2.nextStepPath > 0 then
         local stepNum = 0
         while #store.mapType2.nextStepPath > 0 do
-          store.mapType2.nextStepPoint = table.remove(store.mapType2.nextStepPath, 1)
           stepNum = stepNum + 1
-          if stepNum >= settings.battleStepLength then
+          local firstPoint = store.mapType2.nextStepPath[1]
+          -- 如果第一步就是另外一队，则跳过本格取下一格。如果第settings.battleStepLength步遇到另外一队，则直接结束循环，取前一格
+          if (comparePoints(firstPoint, mapChessboard.bossFleet) or comparePoints(firstPoint, mapChessboard.onWayFleet)) and stepNum == 1 then
+            table.remove(store.mapType2.nextStepPath, 1)
+          elseif (comparePoints(firstPoint, mapChessboard.bossFleet) or comparePoints(firstPoint, mapChessboard.onWayFleet)) and stepNum == settings.battleStepLength then
             break
+          else
+            table.remove(store.mapType2.nextStepPath, 1)
+            store.mapType2.nextStepPoint = firstPoint
+            if stepNum >= settings.battleStepLength then
+              break
+            end
           end
         end
       end

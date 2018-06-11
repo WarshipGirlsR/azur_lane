@@ -133,6 +133,17 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 小型 左上框
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 892, 552, 0xd6c221 }, { 880, 552, 0xd6c221 },
+          { 866, 552, 0xd6c219 }, { 855, 559, 0xe6b200 },
+          { 855, 568, 0xdeb600 }, { 878, 572, 0xdec229 },
+        })
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
       -- 小型 右下框
       (function()
         local leftTop = { 185, 155 }
@@ -141,6 +152,17 @@ local imgs = {
           { 1007, 621, 0xe6b600 }, { 994, 621, 0xdeb200 },
           { 983, 621, 0xe6b600 }, { 1013, 601, 0xdeba10 },
           { 991, 604, 0xcebe10 },
+        })
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
+      -- 小型 右下框
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 873, 600, 0xcebe19 }, { 888, 600, 0xd6c221 },
+          { 903, 592, 0xdeb200 }, { 879, 584, 0xdec610 },
+          { 884, 600, 0xd6c221 },
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),

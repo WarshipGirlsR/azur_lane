@@ -400,7 +400,7 @@ return function()
     -- 限制步长
     settings.battleStepLength = (function(battleStepLength)
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
-      return list[battleStepLength] or false
+      return list[battleStepLength] or 0
     end)(settings.battleStepLength)
     -- 阵型
     settings.battleFormation = (function(battleFormation)
