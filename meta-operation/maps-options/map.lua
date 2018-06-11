@@ -247,7 +247,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList, true))
     rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
   end
-
   function findMostYPointList(pointList)
     local mostPointMap = {}
     for key = 1, #pointList do
