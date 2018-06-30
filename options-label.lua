@@ -102,7 +102,8 @@ return function()
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-            .. 'event15-1-a1,event15-1-a2,event15-1-a3,event15-1-a4,event15-2-b1,event15-2-b2',
+            .. 'event16-1-a1,event16-1-a2,event16-1-a3,event16-1-a4,'
+            .. 'event16-2-b1,event16-2-b2,event16-2-b3,event16-2-b4',
           ['select'] = '0',
         },
         {
@@ -335,8 +336,10 @@ return function()
         --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',
         --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
         --      'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',
-        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',
-        'event15-2-b1', 'event15-2-b2',
+        --        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',
+        --        'event15-2-b1', 'event15-2-b2',
+        'event16-1-a1', 'event16-1-a2', 'event16-1-a3', 'event16-1-a4',
+        'event16-2-b1', 'event16-2-b2', 'event16-2-b3', 'event16-2-b4',
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

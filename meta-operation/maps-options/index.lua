@@ -42,8 +42,8 @@ local map11_1 = require './map11-1'
 local map11_2 = require './map11-2'
 local map11_3 = require './map11-3'
 local map12_1 = require './map12-1'
-local mapevent15_1_a2 = require './mapevent15-1-a2'
-local mapevent15_2_b2 = require './mapevent15-2-b2'
+local mapevent16_2_b1 = require './mapevent16-2-b1'
+local mapevent16_2_b3 = require './mapevent16-2-b3'
 
 return {
   ['map1-1'] = map1_1,
@@ -90,6 +90,6 @@ return {
   ['map11-2'] = map11_2,
   ['map11-3'] = map11_3,
   ['map12-1'] = map12_1,
-  ['mapevent15-1-a2'] = mapevent15_1_a2,
-  ['mapevent15-2-b2'] = mapevent15_2_b2,
+  ['mapevent16-2-b1'] = mapevent16_2_b1,
+  ['mapevent16-2-b3'] = mapevent16_2_b3,
 }

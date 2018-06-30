@@ -291,6 +291,22 @@ battle.clickChapter = function(chapter)
     tap(517, 655, 100)
   elseif (chapter == 'event15-2-b2') then
     tap(1257, 544, 100)
+  elseif (chapter == 'event16-1-a1') then
+    tap(328, 332, 100)
+  elseif (chapter == 'event16-1-a2') then
+    tap(471, 731, 100)
+  elseif (chapter == 'event16-1-a3') then
+    tap(1210, 360, 100)
+  elseif (chapter == 'event16-1-a4') then
+    tap(1333, 757, 100)
+  elseif (chapter == 'event16-2-b1') then
+    tap(453, 353, 100)
+  elseif (chapter == 'event16-2-b2') then
+    tap(1312, 282, 100)
+  elseif (chapter == 'event16-2-b3') then
+    tap(627, 802, 100)
+  elseif (chapter == 'event16-2-b4') then
+    tap(1092, 538, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -1015,12 +1031,11 @@ battle.isGetExpPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 548, 297, 0x63656b }, { 658, 277, 0x63656b },
-    { 984, 274, 0x6b696b }, { 1260, 278, 0x6b696b },
-    { 1374, 289, 0x636563 }, { 248, 734, 0x424142 },
-    { 1294, 922, 0xbdbabd }, { 1363, 911, 0x4a494a },
-    { 1533, 912, 0xd6d2d6 }, { 1681, 926, 0xbdbab5 },
-    { 1587, 884, 0xe6ebe6 }, { 1599, 916, 0xffffff },
+    { 547, 282, 0x63656b }, { 926, 277, 0x636563 },
+    { 1376, 276, 0x6b696b }, { 1380, 305, 0x636563 },
+    { 1012, 308, 0x6b696b }, { 543, 307, 0x6b696b },
+    { 792, 308, 0x6b696b }, { 567, 269, 0x8c8e94 },
+    { 1168, 269, 0x8c8a8c }, { 1392, 295, 0x636563 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end

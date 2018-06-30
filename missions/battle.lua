@@ -273,7 +273,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
-          'event15-1-a2', 'event15-2-b2',
+          'event16-2-b1', 'event16-2-b3',
         }
         if table.findIndex(type1, settings.battleChapter) > -1 then
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')
@@ -309,7 +309,7 @@ local battle = function(action)
           '10-1', '10-2', '10-3', '10-4',
           '11-1', '11-2', '11-3',
           '12-1',
-          'event15-1-a2', 'event15-2-b2',
+          'event16-2-b1', 'event16-2-b3',
         }
         if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then
           if settings.mapsType == 'maps-type-2' then
@@ -404,6 +404,7 @@ local battle = function(action)
       o.battle.victoryPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_VICTORY_PAGE', o.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
         { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel },
       }))
       return makeAction(newstateTypes)
@@ -414,6 +415,7 @@ local battle = function(action)
       o.battle.getPropsPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel },
       }))
       return makeAction(newstateTypes)
@@ -424,6 +426,7 @@ local battle = function(action)
       o.battle.getNewShipPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel },
       }))
       return makeAction(newstateTypes)
