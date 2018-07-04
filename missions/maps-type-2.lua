@@ -156,6 +156,7 @@ local mapsType2 = function(action)
         if table.findIndex(store.mapType2.missionStep, { 'randomMoveAStep' }) <= 0
           and #mapChessboard.bossPosition > 0 then
           -- 判断boss队到boss中间能否通过
+          console.log(mapChessboard)
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
           if bossTo and comparePoints(bossTo, mapChessboard.bossPosition[1]) then
             stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
@@ -165,11 +166,13 @@ local mapsType2 = function(action)
             return
           end
 
-          stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')
-          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
-          store.mapType2.nextStepFleed = 'onWay'
-          store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)
-          return
+          if bossTo then
+            stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')
+            store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
+            store.mapType2.nextStepFleed = 'onWay'
+            store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)
+            return
+          end
         end
 
         -- 道中队清理路线上的敌人
@@ -408,6 +411,7 @@ local mapsType2 = function(action)
       local targetPosition = store.mapType2.checkpositionListForMove[1]
       local nextRowNum = store.mapType2.nextStepPoint[1]
       local nextColNum = store.mapType2.nextStepPoint[2]
+      console.log(store.mapType2.nextStepPoint)
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint)
         o.battle.clickAttackBtn()

@@ -9415,7 +9415,7 @@ mapEvent.getCheckpositionList = function()\
       positionMap = {\
         false, false, false,\
         { { 365, 649, 0x000000 }, { 547, 649, 0x211c42 }, { 731, 649, 0x211c42 }, { 914, 649, 0x101031 }, { 1098, 649, 0x190c29 }, { 1281, 649, 0x29143a }, { 1464, 649, 0x191031 }, { 1650, 649, 0x000000 }, },\
-        { { 338, 790, 0x000000 }, { 529, 790, 0x191431 }, { 721, 790, 0x21183a }, { 1104, 790, 0x21183a }, { 1296, 790, 0x29183a }, { 1487, 790, 0x21183a }, { 1681, 790, 0x000000 }, },\
+        { { 334, 791, 0x000000 }, { 524, 791, 0x191031 }, { 716, 791, 0x191431 }, { 907, 791, 0x21143a }, { 1098, 791, 0x191031 }, { 1290, 791, 0x191031 }, { 1482, 791, 0x191031 }, { 1676, 791, 0x000000 }, },\
         { { 310, 943, 0x000000 }, { 509, 943, 0x21183a }, { 710, 943, 0x191031 }, { 909, 943, 0x19143a }, { 1111, 943, 0x21143a }, { 1311, 943, 0x21183a }, { 1511, 943, 0x191421 }, { 1715, 943, 0x100c10 }, },\
       },\
       pointMap = {},\
@@ -9471,11 +9471,11 @@ mapEvent.getMapChessboard = function()\
     height = 8,\
     obstacle = {\
       { 1, 1 }, { 1, 7 },\
-      { 3, 2 }, { 3, 3 }, { 3, 4 },\
-      { 4, 2 }, { 4, 4 },\
-      { 6, 2 }, { 6, 3 }, { 6, 4 },\
+      { 3, 3 }, { 3, 4 }, { 3, 5 },\
+      { 4, 3 }, { 4, 5 },\
+      { 6, 3 }, { 6, 4 }, { 6, 5 },\
     },\
-    waitForBossPosition = { { 1, 4 } },\
+    waitForBossPosition = { { 4, 4 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -15246,6 +15246,11 @@ battle.isGetExpPanel = function()\
     { 1012, 308, 0x6b696b }, { 543, 307, 0x6b696b },\
     { 792, 308, 0x6b696b }, { 567, 269, 0x8c8e94 },\
     { 1168, 269, 0x8c8a8c }, { 1392, 295, 0x636563 },\
+    { 606, 315, 0x63656b }, { 785, 315, 0x6b696b },\
+    { 673, 316, 0x6b696b }, { 1058, 313, 0x63656b },\
+    { 1059, 319, 0x94969c }, { 1179, 310, 0x6b696b },\
+    { 1383, 311, 0x6b696b }, { 1389, 294, 0x6b696b },\
+    { 1388, 280, 0x736d73 }, { 532, 278, 0x6b696b },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -16497,6 +16502,7 @@ local mapsType2 = function(action)\
         if table.findIndex(store.mapType2.missionStep, { 'randomMoveAStep' }) <= 0\
           and #mapChessboard.bossPosition > 0 then\
           -- 判断boss队到boss中间能否通过\
+          console.log(mapChessboard)\
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])\
           if bossTo and comparePoints(bossTo, mapChessboard.bossPosition[1]) then\
             stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')\
@@ -16506,11 +16512,13 @@ local mapsType2 = function(action)\
             return\
           end\
 \
-          stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')\
-          store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'\
-          store.mapType2.nextStepFleed = 'onWay'\
-          store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)\
-          return\
+          if bossTo then\
+            stepLabel.setStepLabelContent('3-8.道中队清理阻拦的敌人')\
+            store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'\
+            store.mapType2.nextStepFleed = 'onWay'\
+            store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, bossTo)\
+            return\
+          end\
         end\
 \
         -- 道中队清理路线上的敌人\
@@ -16749,6 +16757,7 @@ local mapsType2 = function(action)\
       local targetPosition = store.mapType2.checkpositionListForMove[1]\
       local nextRowNum = store.mapType2.nextStepPoint[1]\
       local nextColNum = store.mapType2.nextStepPoint[2]\
+      console.log(store.mapType2.nextStepPoint)\
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
         mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint)\
         o.battle.clickAttackBtn()\
