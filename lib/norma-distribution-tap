@@ -8,12 +8,19 @@ end
 -- 正态区域
 local function randomNormalDistributionArea(x1, y1, x2, y2)
   math.randomseed(os.time())
-  local randX = math.random() * math.abs(x1 - x2)
-  local randY = math.random() * math.abs(y1 - y2)
-  
-  local resultX = normalDistribution(randX) + math.min(x1, x2)
-  local resultY = normalDistribution(randY) + math.min(y1, y2)
-  return resultX, resultY
+  if x2 == nil or y2 == nil then
+    local randX = math.random() * 100
+    local randY = math.random() * 100
+    local resultX = normalDistribution(randX) + x1 - 50
+    local resultY = normalDistribution(randY) + y1 - 50
+    return resultX, resultY
+  else
+    local randX = math.random() * math.abs(x1 - x2)
+    local randY = math.random() * math.abs(y1 - y2)
+    local resultX = normalDistribution(randX) + math.min(x1, x2)
+    local resultY = normalDistribution(randY) + math.min(y1, y2)
+    return resultX, resultY
+  end
 end
 
 local function normaDistributionTap(x1, y1, x2, y2)
