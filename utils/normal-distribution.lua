@@ -1,3 +1,5 @@
+-- 正态分布
+
 local function normalDistribution(x, u, q) {
   u = u or 0
   q = q or 1
