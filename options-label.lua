@@ -141,20 +141,6 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = 'boss舰队',
-          ['size'] = 15,
-          ['align'] = 'left',
-          ['color'] = '0,0,0',
-        },
-        {
-          ['id'] = 'battleFleetBoss',
-          ['type'] = 'RadioGroup',
-          --          ['list'] = '1队,2队,3队,4队',
-          ['list'] = '1队,2队',
-          ['select'] = '0',
-        },
-        {
-          ['type'] = 'Label',
           ['text'] = '道中舰队',
           ['size'] = 15,
           ['align'] = 'left',
@@ -165,6 +151,20 @@ return function()
           ['type'] = 'RadioGroup',
           --          ['list'] = '无,1队,2队,3队,4队',
           ['list'] = '无,1队,2队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = 'boss舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleFleetBoss',
+          ['type'] = 'RadioGroup',
+          --          ['list'] = '1队,2队,3队,4队',
+          ['list'] = '1队,2队',
           ['select'] = '0',
         },
         {
