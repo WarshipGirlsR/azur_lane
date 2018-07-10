@@ -3,12 +3,12 @@ local battle = {}
 
 -- 点击出征
 battle.clickBattleBtn = function()
-  tap(1628, 599, 100)
+  RTap({ 1628, 599 }, 100)
 end
 
 -- 点击活动
 battle.clickEventBtn = function()
-  tap(1018, 249, 100)
+  RTap({ 1018, 249 }, 100)
 end
 
 --  是否在出击选择章节界面
@@ -37,7 +37,7 @@ end
 
 -- 点击回港
 battle.clickBackToHomeBtn = function()
-  tap(98, 1016, 100)
+  RTap({ 98, 1016 }, 100)
 end
 
 --  是否在普通模式
@@ -48,7 +48,11 @@ battle.isNormalMode = function()
     { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },
     { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },
   }
-  local result = multiColorS(list)
+  local list2 = {
+    { 72, 973, 0xffffff }, { 152, 991, 0xbd0408 },
+    { 164, 1005, 0xbd0408 }, { 261, 1025, 0x631010 },
+  }
+  local result = multiColorS(list) or multiColorS(list2)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -61,14 +65,18 @@ battle.isHardMode = function()
     { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },
     { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },
   }
-  local result = multiColorS(list)
+  local list2 = {
+    { 109, 985, 0xdedbde }, { 189, 994, 0x001029 },
+    { 281, 1004, 0x103984 }, { 284, 1032, 0x21284a },
+  }
+  local result = multiColorS(list) or multiColorS(list2)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
 
 -- 切换困难模式按钮
 battle.clickSwitchHardModeBtn = function()
-  tap(202, 1010, 100)
+  RTap({ 202, 1010 }, 100)
 end
 
 -- 移动到m章节
@@ -91,7 +99,7 @@ battle.moveToChapter = function(chapter)
   }
   -- 先移到第一章
   for i = 1, 14 do
-    tap(90, 540, 100)
+    RTap({ 90, 540 }, 100)
     mSleep(80)
     keepScreen(true)
     if not multiColorS(leftButton) then
@@ -100,7 +108,7 @@ battle.moveToChapter = function(chapter)
   end
   -- 再移到第m章
   for i = 2, m do
-    tap(1826, 540, 100)
+    RTap({ 1826, 540 }, 100)
     mSleep(200)
   end
   mSleep(200)
@@ -114,197 +122,197 @@ battle.clickChapter = function(chapter)
   if not __keepScreenState then keepScreen(true) end
 
   if (chapter == '1-1') then
-    tap(227, 687, 100)
+    RTap({ 227, 687 }, 100)
   elseif (chapter == '1-2') then
-    tap(685, 409, 100)
+    RTap({ 685, 409 }, 100)
   elseif (chapter == '1-3') then
-    tap(984, 789, 100)
+    RTap({ 984, 789 }, 100)
   elseif (chapter == '1-4') then
-    tap(1366, 317, 100)
+    RTap({ 1366, 317 }, 100)
   elseif (chapter == '2-1') then
-    tap(1221, 685, 100)
+    RTap({ 1221, 685 }, 100)
   elseif (chapter == '2-2') then
-    tap(1121, 277, 100)
+    RTap({ 1121, 277 }, 100)
   elseif (chapter == '2-3') then
-    tap(429, 406, 100)
+    RTap({ 429, 406 }, 100)
   elseif (chapter == '2-4') then
-    tap(572, 821, 100)
+    RTap({ 572, 821 }, 100)
   elseif (chapter == '3-1') then
-    tap(603, 320, 100)
+    RTap({ 603, 320 }, 100)
   elseif (chapter == '3-2') then
-    tap(344, 750, 100)
+    RTap({ 344, 750 }, 100)
   elseif (chapter == '3-3') then
-    tap(1364, 279, 100)
+    RTap({ 1364, 279 }, 100)
   elseif (chapter == '3-4') then
-    tap(923, 540, 100)
+    RTap({ 923, 540 }, 100)
   elseif (chapter == '4-1') then
-    tap(355, 451, 100)
+    RTap({ 355, 451 }, 100)
   elseif (chapter == '4-2') then
-    tap(628, 701, 100)
+    RTap({ 628, 701 }, 100)
   elseif (chapter == '4-3') then
-    tap(1234, 818, 100)
+    RTap({ 1234, 818 }, 100)
   elseif (chapter == '4-4') then
-    tap(1167, 430, 100)
+    RTap({ 1167, 430 }, 100)
   elseif (chapter == '5-1') then
-    tap(363, 544, 100)
+    RTap({ 363, 544 }, 100)
   elseif (chapter == '5-2') then
-    tap(1285, 803, 100)
+    RTap({ 1285, 803 }, 100)
   elseif (chapter == '5-3') then
-    tap(1104, 549, 100)
+    RTap({ 1104, 549 }, 100)
   elseif (chapter == '5-4') then
-    tap(884, 318, 100)
+    RTap({ 884, 318 }, 100)
   elseif (chapter == '6-1') then
-    tap(1373, 746, 100)
+    RTap({ 1373, 746 }, 100)
   elseif (chapter == '6-2') then
-    tap(1055, 515, 100)
+    RTap({ 1055, 515 }, 100)
   elseif (chapter == '6-3') then
-    tap(632, 317, 100)
+    RTap({ 632, 317 }, 100)
   elseif (chapter == '6-4') then
-    tap(443, 643, 100)
+    RTap({ 443, 643 }, 100)
   elseif (chapter == '7-1') then
-    tap(308, 725, 100)
+    RTap({ 308, 725 }, 100)
   elseif (chapter == '7-2') then
-    tap(688, 270, 100)
+    RTap({ 688, 270 }, 100)
   elseif (chapter == '7-3') then
-    tap(1234, 425, 100)
+    RTap({ 1234, 425 }, 100)
   elseif (chapter == '7-4') then
-    tap(1416, 674, 100)
+    RTap({ 1416, 674 }, 100)
   elseif (chapter == '8-1') then
-    tap(824, 280, 100)
+    RTap({ 824, 280 }, 100)
   elseif (chapter == '8-2') then
-    tap(411, 535, 100)
+    RTap({ 411, 535 }, 100)
   elseif (chapter == '8-3') then
-    tap(507, 849, 100)
+    RTap({ 507, 849 }, 100)
   elseif (chapter == '8-4') then
-    tap(1168, 686, 100)
+    RTap({ 1168, 686 }, 100)
   elseif (chapter == '9-1') then
-    tap(360, 359, 100)
+    RTap({ 360, 359 }, 100)
   elseif (chapter == '9-2') then
-    tap(569, 729, 100)
+    RTap({ 569, 729 }, 100)
   elseif (chapter == '9-3') then
-    tap(1179, 395, 100)
+    RTap({ 1179, 395 }, 100)
   elseif (chapter == '9-4') then
-    tap(1375, 768, 100)
+    RTap({ 1375, 768 }, 100)
   elseif (chapter == '10-1') then
-    tap(301, 362, 100)
+    RTap({ 301, 362 }, 100)
   elseif (chapter == '10-2') then
-    tap(694, 571, 100)
+    RTap({ 694, 571 }, 100)
   elseif (chapter == '10-3') then
-    tap(971, 806, 100)
+    RTap({ 971, 806 }, 100)
   elseif (chapter == '10-4') then
-    tap(1111, 336, 100)
+    RTap({ 1111, 336 }, 100)
   elseif (chapter == '11-1') then
-    tap(453, 348, 100)
+    RTap({ 453, 348 }, 100)
   elseif (chapter == '11-2') then
-    tap(643, 779, 100)
+    RTap({ 643, 779 }, 100)
   elseif (chapter == '11-3') then
-    tap(1077, 255, 100)
+    RTap({ 1077, 255 }, 100)
   elseif (chapter == '11-4') then
-    tap(1335, 665, 100)
+    RTap({ 1335, 665 }, 100)
   elseif (chapter == '12-1') then
-    tap(296, 362, 100)
+    RTap({ 296, 362 }, 100)
   elseif (chapter == 'event4-1-sp1') then
-    tap(834, 312, 100)
+    RTap({ 834, 312 }, 100)
   elseif (chapter == 'event4-1-sp2') then
-    tap(417, 542, 100)
+    RTap({ 417, 542 }, 100)
   elseif (chapter == 'event4-1-sp3') then
-    tap(1392, 473, 100)
+    RTap({ 1392, 473 }, 100)
   elseif (chapter == 'event5-1-a1') then
-    tap(655, 268, 100)
+    RTap({ 655, 268 }, 100)
   elseif (chapter == 'event5-1-a2') then
-    tap(1100, 781, 100)
+    RTap({ 1100, 781 }, 100)
   elseif (chapter == 'event5-1-a3') then
-    tap(1340, 381, 100)
+    RTap({ 1340, 381 }, 100)
   elseif (chapter == 'event5-2-b1') then
-    tap(532, 778, 100)
+    RTap({ 532, 778 }, 100)
   elseif (chapter == 'event5-2-b2') then
-    tap(1305, 744, 100)
+    RTap({ 1305, 744 }, 100)
   elseif (chapter == 'event5-2-b3') then
-    tap(1058, 333, 100)
+    RTap({ 1058, 333 }, 100)
   elseif (chapter == 'event6-1-sp1') then
-    tap(404, 414, 100)
+    RTap({ 404, 414 }, 100)
   elseif (chapter == 'event6-1-sp2') then
-    tap(569, 808, 100)
+    RTap({ 569, 808 }, 100)
   elseif (chapter == 'event6-1-sp3') then
-    tap(1240, 592, 100)
+    RTap({ 1240, 592 }, 100)
   elseif (chapter == 'event7-1-a1') then
-    tap(498, 341, 100)
+    RTap({ 498, 341 }, 100)
   elseif (chapter == 'event7-1-a2') then
-    tap(748, 834, 100)
+    RTap({ 748, 834 }, 100)
   elseif (chapter == 'event7-1-a3') then
-    tap(1296, 410, 100)
+    RTap({ 1296, 410 }, 100)
   elseif (chapter == 'event7-1-c1') then
-    tap(498, 341, 100)
+    RTap({ 498, 341 }, 100)
   elseif (chapter == 'event7-1-c2') then
-    tap(748, 834, 100)
+    RTap({ 748, 834 }, 100)
   elseif (chapter == 'event7-1-c3') then
-    tap(1296, 410, 100)
+    RTap({ 1296, 410 }, 100)
   elseif (chapter == 'event8-1-sp1') then
-    tap(1368, 453, 100)
+    RTap({ 1368, 453 }, 100)
   elseif (chapter == 'event8-1-sp2') then
-    tap(872, 791, 100)
+    RTap({ 872, 791 }, 100)
   elseif (chapter == 'event8-1-sp3') then
-    tap(587, 375, 100)
+    RTap({ 587, 375 }, 100)
   elseif (chapter == 'event9-1-sp1') then
-    tap(366, 339, 100)
+    RTap({ 366, 339 }, 100)
   elseif (chapter == 'event9-1-sp2') then
-    tap(1206, 282, 100)
+    RTap({ 1206, 282 }, 100)
   elseif (chapter == 'event9-1-sp3') then
-    tap(286, 866, 100)
+    RTap({ 286, 866 }, 100)
   elseif (chapter == 'event9-1-sp4') then
-    tap(1070, 744, 100)
+    RTap({ 1070, 744 }, 100)
   elseif (chapter == 'event11-1-a1') then
-    tap(653, 265, 100)
+    RTap({ 653, 265 }, 100)
   elseif (chapter == 'event11-1-a2') then
-    tap(1102, 786, 100)
+    RTap({ 1102, 786 }, 100)
   elseif (chapter == 'event11-1-a3') then
-    tap(1342, 378, 100)
+    RTap({ 1342, 378 }, 100)
   elseif (chapter == 'event11-2 -b1') then
-    tap(537, 775, 100)
+    RTap({ 537, 775 }, 100)
   elseif (chapter == 'event11-2-b2') then
-    tap(1307, 727, 100)
+    RTap({ 1307, 727 }, 100)
   elseif (chapter == 'event11-2-b3') then
-    tap(1063, 325, 100)
+    RTap({ 1063, 325 }, 100)
   elseif (chapter == 'event12-1-sp1') then
-    tap(1379, 457, 100)
+    RTap({ 1379, 457 }, 100)
   elseif (chapter == 'event12-1-sp2') then
-    tap(875, 796, 100)
+    RTap({ 875, 796 }, 100)
   elseif (chapter == 'event12-1-sp3') then
-    tap(582, 370, 100)
+    RTap({ 582, 370 }, 100)
   elseif (chapter == 'event13-1-sp1') then
-    tap(407, 409, 100)
+    RTap({ 407, 409 }, 100)
   elseif (chapter == 'event13-1-sp2') then
-    tap(568, 804, 100)
+    RTap({ 568, 804 }, 100)
   elseif (chapter == 'event13-1-sp3') then
-    tap(1243, 590, 100)
+    RTap({ 1243, 590 }, 100)
   elseif (chapter == 'event15-1-a1') then
-    tap(387, 367, 100)
+    RTap({ 387, 367 }, 100)
   elseif (chapter == 'event15-1-a2') then
-    tap(535, 690, 100)
+    RTap({ 535, 690 }, 100)
   elseif (chapter == 'event15-1-a3') then
-    tap(1345, 769, 100)
+    RTap({ 1345, 769 }, 100)
   elseif (chapter == 'event15-1-a4') then
-    tap(1190, 421, 100)
+    RTap({ 1190, 421 }, 100)
   elseif (chapter == 'event15-2-b1') then
-    tap(517, 655, 100)
+    RTap({ 517, 655 }, 100)
   elseif (chapter == 'event15-2-b2') then
-    tap(1257, 544, 100)
+    RTap({ 1257, 544 }, 100)
   elseif (chapter == 'event16-1-a1') then
-    tap(328, 332, 100)
+    RTap({ 328, 332 }, 100)
   elseif (chapter == 'event16-1-a2') then
-    tap(471, 731, 100)
+    RTap({ 471, 731 }, 100)
   elseif (chapter == 'event16-1-a3') then
-    tap(1210, 360, 100)
+    RTap({ 1210, 360 }, 100)
   elseif (chapter == 'event16-1-a4') then
-    tap(1333, 757, 100)
+    RTap({ 1333, 757 }, 100)
   elseif (chapter == 'event16-2-b1') then
-    tap(453, 353, 100)
+    RTap({ 453, 353 }, 100)
   elseif (chapter == 'event16-2-b2') then
-    tap(1312, 282, 100)
+    RTap({ 1312, 282 }, 100)
   elseif (chapter == 'event16-2-b3') then
-    tap(627, 802, 100)
+    RTap({ 627, 802 }, 100)
   elseif (chapter == 'event16-2-b4') then
-    tap(1092, 538, 100)
+    RTap({ 1092, 538 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -448,7 +456,7 @@ end
 
 -- 前往选择舰队面板
 battle.clickGotoSelectFleedPanelBtn = function()
-  tap(1388, 720, 100)
+  RTap({ 1388, 720 }, 100)
 end
 
 --  是否在选择舰队面板
@@ -517,7 +525,7 @@ end
 
 -- 困难进入战斗
 battle.clickHardGotoSelectFleedPanelBtn = function()
-  tap(1588, 934, 100)
+  RTap({ 1588, 934 }, 100)
 end
 
 -- 检查已经选择的舰队
@@ -589,13 +597,13 @@ battle.clickFleet = function(clickFleetList)
   end
   for _, fleet in ipairs(clickFleetList) do
     if fleet == 1 then
-      tap(479, 842)
+      RTap({ 479, 842 }, 100)
     elseif fleet == 2 then
-      tap(689, 844)
+      RTap({ 689, 844 }, 100)
     elseif fleet == 3 then
-      tap(901, 843)
+      RTap({ 901, 843 }, 100)
     elseif fleet == 4 then
-      tap(1119, 845)
+      RTap({ 1119, 845 }, 100)
     end
     mSleep(50)
   end
@@ -604,7 +612,7 @@ end
 
 -- 前往地图
 battle.clickGotoMapBtn = function()
-  tap(1588, 934, 100)
+  RTap({ 1588, 934 }, 100)
 end
 
 --  是否在地图页面
@@ -717,12 +725,12 @@ end
 
 -- 地图点击切换舰队按钮
 battle.clickSwitchFleetBtn = function()
-  tap(1426, 1003, 100)
+  RTap({ 1426, 1003 }, 100)
 end
 
 -- 地图点击迎击
 battle.clickAttackBtn = function()
-  tap(1740, 1005, 100)
+  RTap({ 1740, 1005 }, 100)
 end
 
 -- 检测阵型面板是否打开
@@ -742,7 +750,7 @@ end
 
 -- 关闭阵型面板
 battle.closeFormationPanel = function()
-  tap(1603, 553, 100)
+  RTap({ 1603, 553 }, 100)
 end
 
 -- 检测敌方伏击面板
@@ -763,12 +771,12 @@ end
 
 -- 迎击伏击
 battle.ambushedPanelClickInterceptBtn = function()
-  tap(922, 571)
+  RTap({ 922, 571 }, 100)
 end
 
 -- 躲避伏击
 battle.ambushedPanelClickAvoidBtn = function()
-  tap(1351, 564)
+  RTap({ 1351, 564 }, 100)
 end
 
 -- 检测信息弹窗
@@ -791,12 +799,12 @@ end
 
 -- 关闭信息弹窗
 battle.infomationModalClickClose = function()
-  tap(1391, 281)
+  RTap({ 1391, 281 }, 100)
 end
 
 -- 移动到敌人
 battle.moveToEnemy = function(point)
-  tap(point[1], point[2])
+  RTap({ point[1], point[2] }, 100)
 end
 
 -- 检测准备战斗面板
@@ -822,7 +830,7 @@ end
 
 -- 准备战斗面板点击出击
 battle.readyBattlePageClickBattle = function()
-  tap(1592, 952)
+  RTap({ 1592, 952 }, 100)
 end
 
 -- 检测是否在战斗中
@@ -875,12 +883,12 @@ end
 
 -- 自动战斗确认面板点击知道了
 battle.autoBattleConfirmPanelClickOk = function()
-  tap(949, 779)
+  RTap({ 949, 779 }, 100)
 end
 
 -- 战斗页面点击自动战斗
 battle.inBattlePageClickAutoBattle = function()
-  tap(208, 75)
+  RTap({ 208, 75 }, 100)
 end
 
 -- 检测是否胜利界面
@@ -976,7 +984,7 @@ end
 
 -- 胜利面板点击继续
 battle.victoryPanelClickNext = function()
-  tap(952, 840)
+  RTap({ 952, 840 }, 100)
 end
 
 -- 检测是否获得道具面板
@@ -997,7 +1005,7 @@ end
 
 -- 获得道具面板点击继续
 battle.getPropsPanelClickNext = function()
-  tap(952, 840)
+  RTap({ 952, 840 }, 100)
 end
 
 -- 检测是否获得船面板
@@ -1018,7 +1026,7 @@ end
 
 -- 获得船面板点击继续
 battle.getNewShipPanelClickNext = function()
-  tap(952, 840)
+  RTap({ 952, 840 }, 100)
 end
 
 -- 检测是否获得经验面板
@@ -1039,12 +1047,12 @@ end
 
 -- 获得经验面板点击继续
 battle.getExpPanelClickNext = function()
-  tap(1671, 914)
+  RTap({ 1671, 914 }, 100)
 end
 
 -- 点击返回主页
 battle.battlePageClickBackToHome = function()
-  tap(46, 37)
+  RTap({ 46, 37 }, 100)
 end
 
 -- 检测是否紧急委托面板
@@ -1065,7 +1073,7 @@ end
 
 -- 紧急委托面板点击继续
 battle.urgentEntrustmentPanelClickOk = function()
-  tap(957, 739)
+  RTap({ 957, 739 }, 100)
 end
 
 return battle

@@ -40,6 +40,7 @@ require './utils/multi-color-hock'
 require './utils/device-orient-hock'
 require './utils/clear-log'
 
+RTap = require './lib/norma-distribution-tap'
 EventQuery = require './lib/event-query'
 Promise = require './lib/promise'
 

@@ -80,6 +80,7 @@ local battle = function(action)
 
       if settings.battleChapter ~= '0' then
         stepLabel.setStepLabelContent('2.3.选择章节界面')
+        console.log(settings.battleMode)
         if settings.battleMode == 'normal' and o.battle.isHardMode() then
           stepLabel.setStepLabelContent('2.4.切换为普通模式')
         elseif settings.battleMode == 'hard' and o.battle.isNormalMode() then

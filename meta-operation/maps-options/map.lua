@@ -375,7 +375,7 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
     moveStep = math.min(25, moveStep)
     moveStep = math.max(1, moveStep)
     moveStep = math.floor(moveStep)
-    moveTo(sWidth / 2, sHeight / 2, sWidth / 2 + moveVector[1], sHeight / 2 + moveVector[2], moveStep, 100)
+    moveTo(sWidth / 2, sHeight / 2, sWidth / 2 + moveVector[1], sHeight / 2 + moveVector[2], moveStep)
   else
     isCenter = true
   end
@@ -480,7 +480,7 @@ end
 map.moveToPoint = function(ImgInfo, targetPosition, point)
   local positionMap = targetPosition.positionMap
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })
-  tap(tapPointList[1][1], tapPointList[1][2], 100)
+  RTap({ tapPointList[1][1], tapPointList[1][2] }, 100)
 end
 
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
