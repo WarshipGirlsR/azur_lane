@@ -427,7 +427,6 @@ local battle = function(action)
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },
         { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel },
       }))
       return makeAction(newstateTypes)
 

@@ -14226,21 +14226,19 @@ battle.isBattleChapterPage = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 9, 9, 0xefebf7 }, { 130, 8, 0x292829 },\
-    { 443, 11, 0x4a494a }, { 489, 7, 0xeff3f7 },\
-    { 929, 8, 0xeff3f7 }, { 890, 52, 0xdedfde },\
-    { 12, 52, 0xd6d2d6 }, { 176, 60, 0x423942 },\
-    { 98, 50, 0xd6ced6 }, { 38, 32, 0xffd74a },\
-    { 250, 22, 0xffefbd }, { 259, 22, 0x31353a },\
-    { 269, 22, 0xffebbd }, { 281, 22, 0x3a3d3a },\
-    { 289, 22, 0xffebbd }, { 245, 45, 0xffbe10 },\
-    { 257, 45, 0x3a393a }, { 265, 45, 0xffba10 },\
-    { 274, 45, 0x293129 }, { 285, 45, 0xffbe08 },\
-    { 302, 43, 0xffbe10 }, { 312, 43, 0x313531 },\
-    { 322, 43, 0xffbe19 }, { 332, 43, 0x3a3d3a },\
-    { 343, 43, 0xffc219 }, { 325, 25, 0xffe79c },\
-    { 341, 27, 0x191819 }, { 301, 24, 0x080c08 },\
-    { 306, 19, 0xfff3ce }, { 339, 11, 0x3a3d3a },\
+    { 13, 11, 0xdedfe6 }, { 10, 54, 0xcecace },\
+    { 38, 36, 0xefce42 }, { 68, 31, 0xefce3a },\
+    { 125, 56, 0xc5c2c5 }, { 892, 51, 0xd6dbde },\
+    { 930, 7, 0xeff3f7 }, { 248, 23, 0xffe7ad },\
+    { 257, 24, 0x292829 }, { 276, 22, 0x211c21 },\
+    { 232, 45, 0x313131 }, { 256, 45, 0x313531 },\
+    { 264, 47, 0xffba00 }, { 273, 47, 0x3a353a },\
+    { 284, 47, 0xffba00 }, { 293, 45, 0x313131 },\
+    { 302, 45, 0xffba00 }, { 308, 45, 0x191819 },\
+    { 321, 43, 0xffbe10 }, { 332, 44, 0x424142 },\
+    { 426, 42, 0x000000 }, { 438, 42, 0xefefff },\
+    { 545, 42, 0xdee7f7 }, { 573, 45, 0x000000 },\
+    { 559, 45, 0xd6d2de }, { 394, 43, 0x3a393a },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -14642,16 +14640,16 @@ battle.isChapterInfoPanel = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 468, 283, 0x292d29 }, { 829, 281, 0xeff3f7 },\
-    { 1559, 277, 0xadaaad }, { 369, 786, 0x4a494a },\
-    { 1553, 782, 0x3a3d42 }, { 1267, 715, 0xffca42 },\
-    { 1310, 717, 0xffffff }, { 1344, 716, 0xffce3a },\
-    { 1363, 716, 0xb5aa84 }, { 1389, 721, 0xffffff },\
-    { 1406, 704, 0xf7f7ef }, { 1434, 718, 0xc5ae84 },\
-    { 1464, 724, 0xf7f3ef }, { 1480, 721, 0xffffff },\
-    { 1506, 719, 0xf7c231 }, { 1518, 725, 0xf7be29 },\
-    { 1268, 624, 0x3a3d42 }, { 1286, 623, 0xf7f7f7 },\
-    { 1327, 627, 0x424142 }, { 1526, 499, 0x292d29 },\
+    { 476, 271, 0xe6efe6 }, { 833, 280, 0xefefef },\
+    { 1404, 282, 0xeff3f7 }, { 1561, 283, 0xadaaad },\
+    { 375, 775, 0x3a313a }, { 1204, 770, 0x424142 },\
+    { 1522, 755, 0xffae10 }, { 1273, 691, 0xffdb52 },\
+    { 1271, 747, 0xffa619 }, { 1391, 713, 0xffffff },\
+    { 478, 338, 0x292829 }, { 854, 339, 0x4a4d4a },\
+    { 896, 342, 0xdedfde }, { 1376, 349, 0xdedbde },\
+    { 1319, 708, 0xffffff }, { 1322, 720, 0xffca3a },\
+    { 1342, 729, 0xf7b219 }, { 1355, 718, 0xffffff },\
+    { 1383, 717, 0xffffff }, { 1397, 713, 0xbd9629 },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -15016,19 +15014,16 @@ battle.isReadyBattlePage = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 41, 34, 0xf7d242 }, { 14, 13, 0xdee3de },\
-    { 169, 27, 0x293129 }, { 204, 29, 0x63593a },\
-    { 244, 32, 0xb59e52 }, { 292, 39, 0x313531 },\
-    { 330, 44, 0x94929c }, { 359, 49, 0x191c21 },\
-    { 527, 13, 0xeff3f7 }, { 738, 16, 0xeff3f7 },\
-    { 1305, 208, 0x080808 }, { 1269, 209, 0xefefef },\
-    { 1893, 217, 0xefebef }, { 1267, 509, 0xefefef },\
-    { 1284, 507, 0xdeebde }, { 1319, 506, 0xd6dbd6 },\
-    { 1336, 510, 0x100c10 }, { 1389, 889, 0xd6f3f7 },\
-    { 1752, 903, 0xceeff7 }, { 1589, 929, 0xfff794 },\
-    { 1025, 31, 0x3a3d3a }, { 1070, 35, 0xd6d7d6 },\
-    { 1333, 28, 0xfff363 }, { 1393, 30, 0xdedfde },\
-    { 1644, 30, 0xff4973 }, { 1701, 31, 0xdedbde },\
+    { 16, 10, 0xe6ebef }, { 762, 13, 0xe6f3f7 },\
+    { 1272, 190, 0xfffbff }, { 1897, 197, 0xf7f3f7 },\
+    { 1888, 499, 0xe6efe6 }, { 1266, 488, 0xfffbff },\
+    { 1394, 893, 0xd6f3f7 }, { 1761, 899, 0xd6f3f7 },\
+    { 1772, 1001, 0x8ccace }, { 1397, 985, 0x9cdbe6 },\
+    { 156, 15, 0x292829 }, { 320, 11, 0x3a4142 },\
+    { 188, 29, 0xf7db84 }, { 227, 39, 0xffca31 },\
+    { 286, 49, 0xffba00 }, { 243, 51, 0xf7b219 },\
+    { 254, 26, 0x100c10 }, { 200, 39, 0x080808 },\
+    { 235, 48, 0x080c08 }, { 292, 22, 0x42454a },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -15241,16 +15236,11 @@ battle.isGetExpPanel = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 547, 282, 0x63656b }, { 926, 277, 0x636563 },\
-    { 1376, 276, 0x6b696b }, { 1380, 305, 0x636563 },\
-    { 1012, 308, 0x6b696b }, { 543, 307, 0x6b696b },\
-    { 792, 308, 0x6b696b }, { 567, 269, 0x8c8e94 },\
-    { 1168, 269, 0x8c8a8c }, { 1392, 295, 0x636563 },\
-    { 606, 315, 0x63656b }, { 785, 315, 0x6b696b },\
-    { 673, 316, 0x6b696b }, { 1058, 313, 0x63656b },\
-    { 1059, 319, 0x94969c }, { 1179, 310, 0x6b696b },\
-    { 1383, 311, 0x6b696b }, { 1389, 294, 0x6b696b },\
-    { 1388, 280, 0x736d73 }, { 532, 278, 0x6b696b },\
+    { 543, 279, 0x6b696b }, { 744, 280, 0x6b696b },\
+    { 890, 276, 0x6b696b }, { 1247, 275, 0x6b696b },\
+    { 1374, 275, 0x636563 }, { 1381, 308, 0x63656b },\
+    { 540, 306, 0x6b696b }, { 555, 269, 0x8c8e94 },\
+    { 949, 269, 0x948e94 }, { 1324, 269, 0x8c8a8c },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -17629,7 +17619,6 @@ local battle = function(action)\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
         { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel },\
       }))\
       return makeAction(newstateTypes)\
 \
@@ -19282,6 +19271,7 @@ init = setDeviceOrient\
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./utils/multi-color-hock.lua"] = { path = "./utils/multi-color-hock.lua", name = "./utils/multi-color-hock.lua", source = "multiColorS = multiColorS or function(array, s)\
   s = s or 90\
+  local theS = math.floor(0xff * (100 - s) * 0.01)\
 \
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
@@ -19292,7 +19282,7 @@ package.sourceCode["./utils/multi-color-hock.lua"] = { path = "./utils/multi-col
     local r = math.floor(array[var][3] / 0x10000)\
     local g = math.floor(array[var][3] % 0x10000 / 0x100)\
     local b = math.floor(array[var][3] % 0x100)\
-    if math.abs(lr - r) > s or math.abs(lg - g) > s or math.abs(lb - b) > s then\
+    if math.abs(lr - r) > theS or math.abs(lg - g) > theS or math.abs(lb - b) > theS then\
       result = false\
       break\
     end\
