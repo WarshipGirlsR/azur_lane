@@ -8946,10 +8946,10 @@ end\
 map.getMapPosition = function(ImgInfo, targetPosition)\
   local __keepScreenState = keepScreenState\
   if __keepScreenState then keepScreen(false) end\
+  getColor(0, 0)\
   keepScreen(true)\
   local isCenter = false\
   -- 扫描边界\
-  keepScreen(true)\
   -- 需要扫描哪几个角，不需要扫描的角就跳过以加快扫描速度\
   local topLinePointList = {}\
   local bottonLinePointList = {}\
@@ -9030,6 +9030,7 @@ end\
 map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)\
   local __keepScreenState = keepScreenState\
   if __keepScreenState then keepScreen(false) end\
+  getColor(0, 0)\
   keepScreen(true)\
 \
   -- 计算偏差\
@@ -9110,6 +9111,7 @@ end\
 map.scanMap = function(ImgInfo, targetPosition, mapChessboard)\
   local __keepScreenState = keepScreenState\
   if __keepScreenState then keepScreen(false) end\
+  getColor(0, 0)\
   keepScreen(true)\
   local positionMap = targetPosition.positionMap\
 \
@@ -18025,12 +18027,12 @@ return function()\
         },\
         {\
           ['id'] = 'battleChapter',\
-          ['type'] = 'RadioGroup',\
+          ['type'] = 'ComboBox',\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'\
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-            .. 'event16-1-a1,event16-1-a2,event16-1-a3,event16-1-a4,'\
-            .. 'event16-2-b1,event16-2-b2,event16-2-b3,event16-2-b4',\
+            .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'\
+            .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',\
           ['select'] = '0',\
         },\
         {\

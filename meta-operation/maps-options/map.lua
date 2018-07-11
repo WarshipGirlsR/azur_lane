@@ -222,10 +222,10 @@ end
 map.getMapPosition = function(ImgInfo, targetPosition)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
+  getColor(0, 0)
   keepScreen(true)
   local isCenter = false
   -- 扫描边界
-  keepScreen(true)
   -- 需要扫描哪几个角，不需要扫描的角就跳过以加快扫描速度
   local topLinePointList = {}
   local bottonLinePointList = {}
@@ -306,6 +306,7 @@ end
 map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
+  getColor(0, 0)
   keepScreen(true)
 
   -- 计算偏差
@@ -386,6 +387,7 @@ end
 map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
+  getColor(0, 0)
   keepScreen(true)
   local positionMap = targetPosition.positionMap
 
