@@ -93,16 +93,21 @@ battle.moveToChapter = function(chapter)
   end
 
   local leftButton = {
-    { 97, 526, 0xe6e7e6 },
-    { 86, 539, 0xd6d7d6 },
-    { 109, 577, 0xdedbde },
+    { 108, 500, 0xefefef }, { 66, 537, 0xd6d7d6 },
+    { 99, 528, 0xdedfde }, { 99, 549, 0xbdbebd },
+    { 93, 565, 0xc5c6c5 },
+  }
+  local leftButton2 = {
+    { 97, 531, 0xb5b2b5 }, { 64, 538, 0xb5b2b5 },
+    { 95, 510, 0xbdbebd }, { 112, 518, 0xb5b2b5 },
+    { 102, 572, 0xadaaad }, { 101, 555, 0x9c9e9c },
   }
   -- 先移到第一章
   for i = 1, 14 do
     RTap({ 90, 540 }, 100)
     mSleep(80)
     keepScreen(true)
-    if not multiColorS(leftButton) then
+    if not multiColorS(leftButton) and not multiColorS(leftButton2) then
       break
     end
   end

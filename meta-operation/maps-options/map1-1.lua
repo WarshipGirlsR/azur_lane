@@ -16,7 +16,7 @@ end
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
 mapEvent.getCheckpositionList = function()
-  local list = {
+  local list = mapBase.calCheckpositionList({
     {
       leftTop = nil,
       rightTop = nil,
@@ -24,24 +24,12 @@ mapEvent.getCheckpositionList = function()
       rightBotton = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
-        { { 377, 540, 0x192842 }, { 559, 540, 0xbdbabd }, { 744, 540, 0x21354a }, { 927, 540, 0x21394a }, { 1111, 540, 0x21394a }, { 1294, 540, 0x213952 }, { 1478, 540, 0x21354a }, { 1662, 540, 0x21354a }, },
-        { { 352, 676, 0x000000 }, { 543, 676, 0x000000 }, { 734, 676, 0x000000 }, { 926, 676, 0x000000 }, { 1117, 676, 0x000000 }, { 1309, 676, 0x000000 }, { 1500, 676, 0x000000 }, { 1693, 676, 0x000000 }, }
+        { { 377, 540, 0x192842 }, false, false, false, false, false, false, { 1662, 540, 0x21354a }, },
+        { { 352, 676, 0x000000 }, false, false, false, false, false, false, { 1693, 676, 0x000000 }, }
       },
       pointMap = {},
     },
-  }
-  for key = 1, #list do
-    local positionMap = list[key].positionMap
-    for rowNum, rol in ipairs(positionMap) do
-      if rol and positionMap[rowNum + 1] then
-        for colNum, col in ipairs(rol) do
-          if col and rol[colNum + 1] then
-            list[key].pointMap[rowNum .. '-' .. colNum] = col
-          end
-        end
-      end
-    end
-  end
+  })
   return list
 end
 

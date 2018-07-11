@@ -17,7 +17,7 @@ end
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
 
 mapEvent.getCheckpositionList = function()
-  local list = {
+  local list = mapBase.calCheckpositionList({
     {
       leftTop = nil,
       rightTop = { 1644, 522 },
@@ -60,19 +60,7 @@ mapEvent.getCheckpositionList = function()
       },
       pointMap = {},
     },
-  }
-  for key = 1, #list do
-    local positionMap = list[key].positionMap
-    for rowNum, rol in ipairs(positionMap) do
-      if rol and positionMap[rowNum + 1] then
-        for colNum, col in ipairs(rol) do
-          if col and rol[colNum + 1] then
-            list[key].pointMap[rowNum .. '-' .. colNum] = col
-          end
-        end
-      end
-    end
-  end
+  })
   return list
 end
 

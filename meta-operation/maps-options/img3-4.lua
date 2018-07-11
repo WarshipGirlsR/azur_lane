@@ -115,7 +115,20 @@ return {
     -- 敌方舰队位置(大型舰队)
     enemyList3 = imgBase.map.enemyList3,
     -- boss位置
-    bossPointList = imgBase.map.bossPointList,
+    bossPointList = table.merge({}, imgBase.map.bossPointList,
+      {
+        (function()
+          local leftTop = { 185, 155 }
+          local rightBotton = { 1899, 1022 }
+          local basePoint, posandcolor = transRelativePoint({
+            { 1556, 712, 0x423d42 }, { 1582, 712, 0x3a3931 },
+            { 1611, 714, 0x292429 }, { 1561, 751, 0xff4d52 },
+            { 1617, 749, 0xff4d52 }, { 1586, 763, 0x312831 },
+            { 1554, 700, 0x3a413a }, { 1617, 699, 0x312829 },
+          })
+          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        end)(),
+      }),
     -- 战斗中的位置
     inBattleList = imgBase.map.inBattleList,
     -- 奖励箱的位置

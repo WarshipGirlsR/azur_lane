@@ -118,6 +118,7 @@ local mapsType2 = function(action)
 
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
+      console.log(targetPosition)
       local currentPosition = mapProxy.getMapPosition(targetPosition)
       console.log(currentPosition)
       stepLabel.setStepLabelContent('3-3.计算移动向量')

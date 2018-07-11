@@ -205,12 +205,66 @@ local function makePointMap(list)
   return theMap
 end
 
+-- ----------------------------------------------------------------------------------------------------------
 
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
 map.getCheckpositionList = function()
   return {}
+end
+
+-- 处理原始地图数据，生成程序需要的数据
+map.calCheckpositionList = function(list)
+  -- 补全列表中空余的数据
+  for key = 1, #list do
+    local positionMap = list[key].positionMap
+    for rowNum, rol in ipairs(positionMap) do
+      if rol then
+        -- 分别从左右向中间夹紧获取需要补全的范围
+        local left = 1
+        for i = 1, #rol do
+          left = i
+          if rol[i] then break end
+        end
+        local right = #rol
+        for i = #rol, left, -1 do
+          right = i
+          if rol[i] then break end
+        end
+        -- 补全坐标点
+        if left + 2 <= right then
+          local leftX = rol[left][1]
+          local leftY = rol[left][2]
+          local width = rol[right][1] - rol[left][1]
+          local itemNum = right - left
+          for i = left + 1, right - 1 do
+            positionMap[rowNum][i] = positionMap[rowNum][i] or {
+              math.floor(leftX + width / itemNum * (i - 1)),
+              leftY,
+              0x000000,
+            }
+          end
+        end
+      end
+    end
+  end
+
+  -- 获取地图每行焦点的索引
+  for key = 1, #list do
+    list[key].pointMap = list[key].pointMap or {}
+    local positionMap = list[key].positionMap or {}
+    for rowNum, rol in ipairs(positionMap) do
+      if rol and positionMap[rowNum + 1] then
+        for colNum, col in ipairs(rol) do
+          if col and rol[colNum + 1] then
+            list[key].pointMap[rowNum .. '-' .. colNum] = col
+          end
+        end
+      end
+    end
+  end
+  return list
 end
 
 -- 获取地图棋盘和相关数据
