@@ -445,10 +445,9 @@ battle.isChapterInfoPanel = function()
   local list = {
     { 476, 271, 0xe6efe6 }, { 833, 280, 0xefefef },
     { 1404, 282, 0xeff3f7 }, { 1561, 283, 0xadaaad },
-    { 375, 775, 0x3a313a }, { 1204, 770, 0x424142 },
     { 1522, 755, 0xffae10 }, { 1273, 691, 0xffdb52 },
     { 1271, 747, 0xffa619 }, { 1391, 713, 0xffffff },
-    { 478, 338, 0x292829 }, { 854, 339, 0x4a4d4a },
+    { 854, 339, 0x4a4d4a },
     { 896, 342, 0xdedfde }, { 1376, 349, 0xdedbde },
     { 1319, 708, 0xffffff }, { 1322, 720, 0xffca3a },
     { 1342, 729, 0xf7b219 }, { 1355, 718, 0xffffff },

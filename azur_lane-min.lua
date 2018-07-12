@@ -9576,10 +9576,10 @@ mapEvent.getCheckpositionList = function()\
       rightBotton = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 332, 522, 0x42414a }, { 496, 522, 0x211829 }, { 660, 522, 0x3a203a }, { 825, 522, 0x4a1829 }, { 989, 522, 0x310c10 }, { 1153, 522, 0x292829 }, { 1316, 522, 0x521c3a }, { 1478, 522, 0x421431 }, { 1644, 522, 0x211431 }, },\
-        { { 307, 641, 0x4a395a }, { 477, 641, 0x21183a }, { 648, 641, 0x310821 }, { 819, 641, 0x6b1829 }, { 990, 641, 0x520410 }, { 1160, 641, 0x520421 }, { 1331, 641, 0x6b1431 }, { 1501, 641, 0x5a1c42 }, { 1673, 641, 0x000000 }, },\
-        { { 278, 772, 0x000000 }, { 455, 772, 0x211c3a }, { 632, 772, 0x311c42 }, { 811, 772, 0x4a1021 }, { 991, 772, 0x4a0c29 }, { 1169, 772, 0x4a0c21 }, { 1347, 772, 0x4a1029 }, { 1525, 772, 0x3a1029 }, { 1706, 772, 0x000000 }, },\
-        { { 245, 915, 0x000000 }, { 428, 915, 0x424142 }, { 618, 915, 0x211c3a }, { 804, 915, 0x100c29 }, { 988, 915, 0x4a1429 }, { 1177, 915, 0x313152 }, { 1366, 915, 0x101019 }, { 1552, 915, 0x101019 }, { 1741, 915, 0x080c08 }, },\
+        { { 332, 522, 0x42414a }, false, false, false, false, false, false, false, { 1644, 522, 0x211431 }, },\
+        { { 307, 641, 0x4a395a }, false, false, false, false, false, false, false, { 1673, 641, 0x000000 }, },\
+        { { 278, 772, 0x000000 }, false, false, false, false, false, false, false, { 1706, 772, 0x000000 }, },\
+        { { 245, 915, 0x000000 }, false, false, false, false, false, false, false, { 1741, 915, 0x080c08 }, },\
       },\
       pointMap = {},\
     }, {\
@@ -9590,10 +9590,10 @@ mapEvent.getCheckpositionList = function()\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { { 504, 506, 0x000000 }, { 689, 506, 0x191819 }, { 876, 506, 0x312042 }, { 1064, 506, 0x21143a }, { 1248, 506, 0x3a243a }, },\
-        { { 478, 643, 0x7b7d7b }, { 675, 643, 0x292d29 }, { 872, 643, 0x191031 }, { 1069, 643, 0x21143a }, { 1265, 643, 0x19103a }, },\
-        { { 454, 794, 0x211829 }, { 661, 794, 0x101421 }, { 868, 794, 0x21143a }, { 1074, 794, 0x211042 }, { 1281, 794, 0x190c29 }, },\
-        { { 428, 965, 0x000000 }, { 644, 965, 0x000000 }, { 863, 965, 0x000000 }, { 1081, 965, 0x000000 }, { 1297, 965, 0x4a494a }, },\
+        { { 504, 506, 0x000000 }, false, false, false, { 1248, 506, 0x3a243a }, },\
+        { { 478, 643, 0x7b7d7b }, false, false, false, { 1265, 643, 0x19103a }, },\
+        { { 454, 794, 0x211829 }, false, false, false, { 1281, 794, 0x190c29 }, },\
+        { { 428, 965, 0x000000 }, false, false, false, { 1297, 965, 0x4a494a }, },\
       },\
       pointMap = {},\
     }, {\
@@ -9604,10 +9604,10 @@ mapEvent.getCheckpositionList = function()\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { false, false, false, false, { 845, 484, 0x3a2442 }, { 1033, 484, 0x313152 }, { 1221, 484, 0x211431 }, { 1407, 484, 0x191031 }, { 1597, 484, 0x000000 }, },\
-        { false, false, false, false, { 842, 620, 0x21143a }, { 1037, 620, 0x191031 }, { 1234, 620, 0x21183a }, { 1430, 620, 0x291c42 }, { 1629, 620, 0x000000 }, },\
-        { false, false, false, false, { 835, 770, 0x190c29 }, { 1042, 770, 0x211031 }, { 1248, 770, 0x21143a }, { 1454, 770, 0x291c42 }, { 1663, 770, 0x000000 }, },\
-        { false, false, false, false, { 827, 939, 0x000000 }, { 1045, 939, 0x000000 }, { 1265, 939, 0x000000 }, { 1483, 939, 0x101010 }, { 1703, 939, 0x101010 }, },\
+        { false, false, false, false, { 845, 484, 0x3a2442 }, false, false, false, { 1597, 484, 0x000000 }, },\
+        { false, false, false, false, { 842, 620, 0x21143a }, false, false, false, { 1629, 620, 0x000000 }, },\
+        { false, false, false, false, { 835, 770, 0x190c29 }, false, false, false, { 1663, 770, 0x000000 }, },\
+        { false, false, false, false, { 827, 939, 0x000000 }, false, false, false, { 1703, 939, 0x101010 }, },\
       },\
       pointMap = {},\
     },\
@@ -14172,10 +14172,9 @@ battle.isChapterInfoPanel = function()\
   local list = {\
     { 476, 271, 0xe6efe6 }, { 833, 280, 0xefefef },\
     { 1404, 282, 0xeff3f7 }, { 1561, 283, 0xadaaad },\
-    { 375, 775, 0x3a313a }, { 1204, 770, 0x424142 },\
     { 1522, 755, 0xffae10 }, { 1273, 691, 0xffdb52 },\
     { 1271, 747, 0xffa619 }, { 1391, 713, 0xffffff },\
-    { 478, 338, 0x292829 }, { 854, 339, 0x4a4d4a },\
+    { 854, 339, 0x4a4d4a },\
     { 896, 342, 0xdedfde }, { 1376, 349, 0xdedbde },\
     { 1319, 708, 0xffffff }, { 1322, 720, 0xffca3a },\
     { 1342, 729, 0xf7b219 }, { 1355, 718, 0xffffff },\
@@ -15053,7 +15052,6 @@ local mapsType2 = function(action)\
 \
       stepLabel.setStepLabelContent('3-2.获取地图位置参数')\
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]\
-      console.log(targetPosition)\
       local currentPosition = mapProxy.getMapPosition(targetPosition)\
       console.log(currentPosition)\
       stepLabel.setStepLabelContent('3-3.计算移动向量')\
@@ -16795,7 +16793,7 @@ local battle = function(action)\
       end\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
-        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage, 1000 },\
       }))\
       return makeAction(newstateTypes)\
 \

@@ -72,7 +72,7 @@ local battle = function(action)
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
-        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage },
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.battle.isBattleChapterPage, 1000 },
       }))
       return makeAction(newstateTypes)
 
