@@ -47,6 +47,19 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '每日挑战',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'dailyChallenges',
+          ['type'] = 'RadioGroup',
+          ['list'] = '开启,关闭',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = '每一轮的间隔时间(秒)',
           ['size'] = 15,
           ['align'] = 'left',
@@ -303,6 +316,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleEnable] or false
     end)(settings.battleEnable)
+    -- 每日挑战
+    settings.dailyChallenges = (function(dailyChallenges)
+      local list = transStrToTable({ true, false, })
+      return list[dailyChallenges] or false
+    end)(settings.dailyChallenges)
     -- 总循环间隔时间
     settings.missionsInterval = tonumber(settings.missionsInterval) or 0
     -- 多长时间界面不变则重启，最少60秒
