@@ -176,7 +176,7 @@ local mapsType2 = function(action)
       if not store.scanMapType1.mapChessboard.myFleetList[2] then
         store.scanMapType1.mapChessboard.bossFleet = store.scanMapType1.mapChessboard.myFleetList[1]
         store.scanMapType1.mapChessboard.onWayFleet = store.scanMapType1.mapChessboard.myFleetList[1]
-      elseif o.battle.isSelectedFleed(settings.battleFleet[1]) then
+      elseif o.battle.getSelectedFleed() == settings.battleFleet[1] then
         store.scanMapType1.mapChessboard.bossFleet = store.scanMapType1.mapChessboard.myFleetList[1]
         store.scanMapType1.mapChessboard.onWayFleet = store.scanMapType1.mapChessboard.myFleetList[2]
       else

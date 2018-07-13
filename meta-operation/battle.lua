@@ -687,44 +687,61 @@ battle.scanMapCheckFleetNum = function()
 end
 
 -- 是否选中指定舰队
-battle.isSelectedFleed = function(fleet)
+battle.getSelectedFleed = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-  local list
-  if fleet == 1 then
-    list = {
-      { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },
-      { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },
-      { 311, 139, 0x424142 }, { 319, 152, 0x424142 },
-      { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },
-      { 312, 109, 0xf7e39c },
-    }
-  elseif fleet == 2 then
-    list = {
-      { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },
-      { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },
-      { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },
-      { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },
-      { 324, 138, 0x424142 }, { 337, 144, 0x424142 },
-    }
-  elseif fleet == 3 then
-    list = {
-      { 302, 110, 0x524531 }, { 320, 106, 0x424542 },
-      { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },
-      { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },
-      { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },
-      { 320, 140, 0x424542 }, { 338, 139, 0x424142 },
-    }
-  elseif fleet == 4 then
-    list = {
-      { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },
-      { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },
-      { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },
-      { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },
-      { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },
-    }
+  local result
+  local list1 = {
+    { 301, 105, 0x424542 }, { 325, 90, 0x424142 }, { 318, 152, 0x424142 }, { 311, 134, 0x42453a },
+    { 329, 129, 0x4a4542 }, { 320, 146, 0xf7b210 }, { 318, 132, 0xf7c221 }, { 324, 111, 0xffe38c },
+    { 307, 107, 0xffdf9c }, { 325, 95, 0xffe3ad },
+  }
+  local list2 = {
+    { 302, 109, 0x4a4942 }, { 313, 115, 0x424542 }, { 319, 105, 0x423531 }, { 337, 147, 0x424142 },
+    { 301, 146, 0x424142 }, { 318, 153, 0x424142 }, { 313, 124, 0x42413a }, { 317, 117, 0x4a4542 },
+    { 331, 148, 0xf7ba08 }, { 309, 145, 0xf7ba08 }, { 324, 139, 0x424142 }, { 328, 139, 0x313531 },
+    { 329, 129, 0x4a393a }, { 323, 129, 0xf7c231 }, { 323, 115, 0xffdb7b }, { 323, 96, 0xffebb5 },
+    { 310, 110, 0xffe394 }, { 325, 114, 0xf7db7b },
+  }
+  local list3 = {
+    { 302, 105, 0x4a493a }, { 321, 105, 0x4a4531 }, { 313, 113, 0x524942 }, { 313, 122, 0x635142 },
+    { 320, 126, 0x4a494a }, { 320, 140, 0x4a4542 }, { 302, 134, 0x4a4542 }, { 308, 125, 0x525131 },
+    { 322, 154, 0x424542 }, { 339, 133, 0x4a493a }, { 307, 109, 0xffdf9c }, { 316, 107, 0xffe39c },
+    { 320, 94, 0xffefbd }, { 335, 108, 0xf7e78c }, { 317, 120, 0xffca5a }, { 333, 133, 0xffbe29 },
+    { 322, 149, 0xffba00 }, { 307, 137, 0xffba10 }, { 313, 132, 0xf7be21 }, { 335, 119, 0x4a453a },
+  }
+  local list4 = {
+    { 313, 90, 0x423531 }, { 331, 90, 0x424142 }, { 333, 127, 0x635129 }, { 337, 134, 0x5a4d3a },
+    { 333, 145, 0x525142 }, { 324, 151, 0x424531 }, { 315, 141, 0x4a4931 }, { 303, 141, 0x424142 },
+    { 314, 126, 0x524121 }, { 299, 129, 0x524d42 }, { 316, 93, 0xefe3ad }, { 327, 111, 0xffdb84 },
+    { 334, 134, 0xffbe21 }, { 324, 146, 0xf7ba08 }, { 303, 134, 0xf7be21 }, { 309, 124, 0xf7be42 },
+    { 320, 124, 0xffc64a }, { 314, 132, 0xf7c221 }, { 321, 102, 0xf7e79c }, { 313, 108, 0xffdf94 },
+  }
+  local list5 = {
+    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },
+    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },
+    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },
+    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },
+  }
+  local list6 = {
+    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },
+    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },
+    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },
+    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },
+  }
+  if multiColorS(list1) then
+    result = 1
+  elseif multiColorS(list2) then
+    result = 2
+  elseif multiColorS(list3) then
+    result = 3
+  elseif multiColorS(list4) then
+    result = 4
+  elseif multiColorS(list5) then
+    result = 5
+  elseif multiColorS(list6) then
+    result = 6
   end
-  local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -739,19 +756,75 @@ battle.clickAttackBtn = function()
   RTap({ 1740, 1005 }, 100)
 end
 
+battle.getFleetFormation = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local result
+  local listSingleFile = {
+    { 451, 175, 0x08ebbd }, { 451, 188, 0x08e7b5 },
+    { 452, 202, 0x08ebbd }, { 452, 216, 0x08ebbd },
+    { 452, 231, 0x00e7b5 }, { 452, 244, 0x08ebbd },
+  }
+  local listSingleFile2 = {
+    { 346, 174, 0x08ebbd }, { 347, 188, 0x08e7b5 },
+    { 347, 202, 0x08e7b5 }, { 348, 216, 0x08ebbd },
+    { 347, 230, 0x08e7b5 }, { 348, 244, 0x08ebbd },
+  }
+  local listDoubleFile = {
+    { 439, 180, 0x08e7b5 }, { 466, 180, 0x08ebbd },
+    { 437, 205, 0x08ebbd }, { 468, 203, 0x00e7b5 },
+    { 436, 230, 0x08ebbd }, { 470, 230, 0x08ebbd },
+  }
+  local listDoubleFile2 = {
+    { 334, 180, 0x08ebbd }, { 361, 179, 0x08ebbd },
+    { 332, 204, 0x08ebbd }, { 363, 203, 0x08ebbd },
+    { 332, 229, 0x00e7b5 }, { 365, 230, 0x00e7bd },
+  }
+  local listWheeledFile = {
+    { 452, 178, 0x08ebbd }, { 452, 196, 0x08ebbd },
+    { 452, 215, 0x00e7b5 }, { 452, 236, 0x08ebbd },
+    { 425, 205, 0x08ebbd }, { 478, 205, 0x00e7b5 },
+  }
+  local listWheeledFile2 = {
+    { 347, 177, 0x08ebbd }, { 347, 195, 0x08ebbd },
+    { 347, 214, 0x08e7b5 }, { 347, 235, 0x08ebbd },
+    { 320, 206, 0x08ebbd }, { 373, 205, 0x08ebbd },
+  }
+  if multiColorS(listSingleFile) or multiColorS(listSingleFile2) then
+    result = 'single file'
+  elseif multiColorS(listDoubleFile) or multiColorS(listDoubleFile2) then
+    result = 'double file'
+  elseif multiColorS(listWheeledFile) or multiColorS(listWheeledFile2) then
+    result = 'wheeled file'
+  end
+
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
 -- 检测阵型面板是否打开
 battle.isFormationPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 1593, 531, 0xffe739 }, { 1593, 574, 0xffe73a },
-    { 1612, 552, 0xffeb3a }, { 1827, 537, 0x08cea4 },
-    { 1834, 531, 0x08cea5 }, { 1856, 525, 0x00cfa5 },
-    { 1865, 566, 0x21a28c }, { 1834, 560, 0x21b294 },
+    { 1591, 527, 0xffe742 }, { 1591, 577, 0xffef31 },
+    { 1593, 553, 0xffef3a }, { 1615, 552, 0xffe73a },
+    { 1605, 542, 0xffe73a }, { 1605, 563, 0xffeb3a },
+    { 1596, 563, 0xffe731 }, { 1597, 550, 0xffe73a },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
   return result
+end
+
+-- 打开阵型面板
+battle.openFormationPanel = function()
+  RTap({ 1883, 551 }, 100)
+end
+
+-- 改变阵型
+battle.changeFormationPanelFormation = function()
+  RTap({ 1712, 549 }, 100)
 end
 
 -- 关闭阵型面板
@@ -980,8 +1053,8 @@ battle.isVictoryPanel = function()
   }
   local result = false
   if multiColorS(list) or multiColorS(list2)
-      or multiColorS(list3) or multiColorS(list4)
-      or multiColorS(list5) or multiColorS(list6) then
+    or multiColorS(list3) or multiColorS(list4)
+    or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end

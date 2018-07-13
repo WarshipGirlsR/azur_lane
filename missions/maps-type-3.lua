@@ -241,14 +241,14 @@ local mapsType2 = function(action)
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('3-20.检查舰队')
         if store.mapType3.nextStepFleed == 'boss' then
-          if (not o.battle.isSelectedFleed(settings.battleFleet[1])) and store.mapType3.changeFleetNum < 2 then
+          if (not o.battle.getSelectedFleed() == settings.battleFleet[1]) and store.mapType3.changeFleetNum < 2 then
             store.mapType3.changeFleetNum = store.mapType3.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-21.选择boss舰队')
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
             c.yield(sleepPromise(500))
-            if o.battle.isSelectedFleed(settings.battleFleet[1]) then
+            if o.battle.getSelectedFleed() == settings.battleFleet[1] then
               local myFleetList = store.scanMapType1.mapChessboard.myFleetList
               store.scanMapType1.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
             else
@@ -260,14 +260,14 @@ local mapsType2 = function(action)
           end
         elseif store.mapType3.nextStepFleed == 'onWay'
           or store.mapType3.missionStep == nil then
-          local res = o.battle.isSelectedFleed(settings.battleFleet[2])
+          local res = o.battle.getSelectedFleed() == settings.battleFleet[2]
           if (not res) and (store.mapType3.changeFleetNum < 2) then
             store.mapType3.changeFleetNum = store.mapType3.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-22.选择道中舰队')
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
-            if o.battle.isSelectedFleed(settings.battleFleet[2]) then
+            if o.battle.getSelectedFleed() == settings.battleFleet[2] then
               local myFleetList = store.scanMapType1.mapChessboard.myFleetList
               store.scanMapType1.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
             else

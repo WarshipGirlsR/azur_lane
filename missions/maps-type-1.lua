@@ -272,7 +272,7 @@ local mapsType1 = function(action)
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('3-20.检查舰队')
         if store.mapType1.missionStep == 'moveToWaitBoss' or store.mapType1.missionStep == 'moveToBoss' then
-          local res = o.battle.isSelectedFleed(settings.battleFleet[1])
+          local res = o.battle.getSelectedFleed() == settings.battleFleet[1]
           if (not res) and (store.mapType1.changeFleetNum < 2) then
             store.mapType1.changeFleetNum = store.mapType1.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-21.选择boss舰队')
@@ -285,7 +285,7 @@ local mapsType1 = function(action)
             return makeAction(newstateTypes)
           end
         elseif store.mapType1.missionStep == 'moveToClosestEnemy' then
-          local res = o.battle.isSelectedFleed(settings.battleFleet[2])
+          local res = o.battle.getSelectedFleed() == settings.battleFleet[2]
           if (not res) and (store.mapType1.changeFleetNum < 2) then
             store.mapType1.changeFleetNum = store.mapType1.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-22.选择道中舰队')

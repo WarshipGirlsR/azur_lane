@@ -113,10 +113,10 @@ return function()
           ['id'] = 'battleChapter',
           ['type'] = 'ComboBox',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
-              .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
-              .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-              .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'
-              .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',
+            .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
+            .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
+            .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'
+            .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',
           ['select'] = '0',
         },
         {
@@ -147,7 +147,7 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = '1.7.19版本后选择舰队变很复杂，因此取消选择舰队功能。请使用默认的1、2舰队出击。这里的设置仅用于确定走地图时的boss舰队和道中舰队',
+          ['text'] = '因为5队6队显示有bug，暂时禁止选用',
           ['size'] = 15,
           ['align'] = 'left',
           ['color'] = '0,0,0',
@@ -162,7 +162,20 @@ return function()
         {
           ['id'] = 'battleFleetOnWay',
           ['type'] = 'RadioGroup',
-          ['list'] = '无,1队,2队,3队,4队,5队,6队',
+          ['list'] = '无,1队,2队,3队,4队',
+          ['select'] = '2',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '道中舰队阵型',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleFleetOnWayFormation',
+          ['type'] = 'RadioGroup',
+          ['list'] = '不设置,单纵,复纵,轮型',
           ['select'] = '0',
         },
         {
@@ -175,7 +188,20 @@ return function()
         {
           ['id'] = 'battleFleetBoss',
           ['type'] = 'RadioGroup',
-          ['list'] = '1队,2队,3队,4队,5队,6队',
+          ['list'] = '1队,2队,3队,4队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = 'boss舰队阵型',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleFleetBossFormation',
+          ['type'] = 'RadioGroup',
+          ['list'] = '不设置,单纵,复纵,轮型',
           ['select'] = '0',
         },
         {
@@ -245,19 +271,6 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = '阵型',
-          ['size'] = 15,
-          ['align'] = 'left',
-          ['color'] = '0,0,0',
-        },
-        {
-          ['id'] = 'battleFormation',
-          ['type'] = 'RadioGroup',
-          ['list'] = '单纵,复纵,轮型',
-          ['select'] = '1',
-        },
-        {
-          ['type'] = 'Label',
           ['text'] = '可以自动过的关卡',
           ['size'] = 15,
           ['align'] = 'left',
@@ -266,17 +279,17 @@ return function()
         {
           ['type'] = 'Label',
           ['text'] = ' 1-1, 1-2, 1-3, 1-4, \n'
-              .. '2-1, 2-2, 2-3, 2-4, \n'
-              .. '3-1, 3-2, 3-3, 3-4, \n'
-              .. '4-1, 4-2, 4-3, 4-4, \n'
-              .. '5-1, 5-2, 5-3, 5-4, \n'
-              .. '6-1, 6-2, 6-3, 6-4, \n'
-              .. '7-1, 7-2, 7-3, 7-4, \n'
-              .. '8-1, 8-2, 8-3, 8-4, \n'
-              .. '9-1, 9-2, 9-3, 9-4, \n'
-              .. '10-1, 10-2, 10-3, 10-4, \n'
-              .. '11-1,11-2, 11-3,11-4, \n'
-              .. '12-1, 12-2, 12-3, 12-4, \n',
+            .. '2-1, 2-2, 2-3, 2-4, \n'
+            .. '3-1, 3-2, 3-3, 3-4, \n'
+            .. '4-1, 4-2, 4-3, 4-4, \n'
+            .. '5-1, 5-2, 5-3, 5-4, \n'
+            .. '6-1, 6-2, 6-3, 6-4, \n'
+            .. '7-1, 7-2, 7-3, 7-4, \n'
+            .. '8-1, 8-2, 8-3, 8-4, \n'
+            .. '9-1, 9-2, 9-3, 9-4, \n'
+            .. '10-1, 10-2, 10-3, 10-4, \n'
+            .. '11-1,11-2, 11-3,11-4, \n'
+            .. '12-1, 12-2, 12-3, 12-4, \n',
           ['align'] = 'left',
           ['color'] = '0,0,0',
         },
@@ -374,12 +387,15 @@ return function()
       return list[battleAssistantMode] or 'manual'
     end)(settings.battleAssistantMode)
     -- 选择Boss舰队
-    settings.battleFleet = {}
     settings.battleFleetBoss = (function(battleFleetBoss)
       local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
       return list[battleFleetBoss] or 1
     end)(settings.battleFleetBoss)
-    settings.battleFleet = { settings.battleFleetBoss }
+    -- 选择Boss舰队阵型
+    settings.battleFleetBossFormation = (function(battleFleetBossFormation)
+      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })
+      return list[battleFleetBossFormation] or false
+    end)(settings.battleFleetBossFormation)
     -- 选择道中舰队
     settings.battleFleetOnWay = (function(battleFleetOnWay)
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6 })
@@ -389,6 +405,13 @@ return function()
       end
       return result
     end)(settings.battleFleetOnWay)
+    -- 选择道中舰队阵型
+    settings.battleFleetOnWayFormation = (function(battleFleetOnWayFormation)
+      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })
+      return list[battleFleetOnWayFormation] or false
+    end)(settings.battleFleetOnWayFormation)
+    -- 合并两个舰队选项
+    settings.battleFleet = { settings.battleFleetBoss }
     if settings.battleFleetOnWay > 0 then
       settings.battleFleet = { settings.battleFleetBoss, settings.battleFleetOnWay }
     end
@@ -421,11 +444,6 @@ return function()
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
       return list[battleStepLength] or 0
     end)(settings.battleStepLength)
-    -- 阵型
-    settings.battleFormation = (function(battleFormation)
-      local list = transStrToTable({ 1, 2, 3, 4, 5 })
-      return list[battleFormation] or 2
-    end)(settings.battleFormation)
   end
 
   return ret, settings

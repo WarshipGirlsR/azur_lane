@@ -321,14 +321,14 @@ local mapsType2 = function(action)
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('3-20.检查舰队')
         if store.mapType2.nextStepFleed == 'boss' then
-          if (not o.battle.isSelectedFleed(settings.battleFleet[1])) and store.mapType2.changeFleetNum < 2 then
+          if o.battle.getSelectedFleed() ~= settings.battleFleet[1] and store.mapType2.changeFleetNum < 2 then
             store.mapType2.changeFleetNum = store.mapType2.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-21.选择boss舰队')
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
             c.yield(sleepPromise(500))
-            if o.battle.isSelectedFleed(settings.battleFleet[1]) then
+            if o.battle.getSelectedFleed() == settings.battleFleet[1] then
               local myFleetList = store.scanMapType1.mapChessboard.myFleetList
               store.scanMapType1.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
             else
@@ -340,14 +340,13 @@ local mapsType2 = function(action)
           end
         elseif store.mapType2.nextStepFleed == 'onWay'
           or store.mapType2.missionStep == nil then
-          local res = o.battle.isSelectedFleed(settings.battleFleet[2])
-          if (not res) and (store.mapType2.changeFleetNum < 2) then
+          if o.battle.getSelectedFleed() ~= settings.battleFleet[2] and store.mapType2.changeFleetNum < 2 then
             store.mapType2.changeFleetNum = store.mapType2.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-22.选择道中舰队')
             o.battle.clickSwitchFleetBtn()
             c.yield(sleepPromise(100))
             o.battle.clickAttackBtn()
-            if o.battle.isSelectedFleed(settings.battleFleet[2]) then
+            if o.battle.getSelectedFleed() == settings.battleFleet[2] then
               local myFleetList = store.scanMapType1.mapChessboard.myFleetList
               store.scanMapType1.mapChessboard.myFleetList = { myFleetList[2], myFleetList[1] }
             else
@@ -362,7 +361,66 @@ local mapsType2 = function(action)
 
       store.mapType2.changeFleetNum = 0
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE_2_PAGE_CHECK_FLEET_FORMATION', o.battle.isMapPage },
+        { 'MAPS_TYPE_2_PAGE_CHECK_FLEET_FORMATION', o.battle.isFormationPanel },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE_2_PAGE_CHECK_FLEET_FORMATION' then
+
+      console.log(settings.battleFleetBossFormation)
+      console.log(settings.battleFleetOnWayFormation)
+      console.log(o.battle.getFleetFormation())
+      stepLabel.setStepLabelContent('3-11.检查舰队阵型')
+      if (store.mapType2.nextStepFleed == 'boss'
+        and settings.battleFleetBossFormation
+        and o.battle.getFleetFormation() ~= settings.battleFleetBossFormation)
+        or (store.mapType2.nextStepFleed == 'onWay'
+        and settings.battleFleetOnWayFormation
+        and o.battle.getFleetFormation() ~= settings.battleFleetOnWayFormation) then
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isMapPage, 500 },
+          { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isFormationPanel, 500 },
+        }))
+        return makeAction(newstateTypes)
+      end
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION' then
+      if (store.mapType2.nextStepFleed == 'boss'
+        and settings.battleFleetBossFormation
+        and o.battle.getFleetFormation() ~= settings.battleFleetBossFormation)
+        or (store.mapType2.nextStepFleed == 'onWay'
+        and settings.battleFleetOnWayFormation
+        and o.battle.getFleetFormation() ~= settings.battleFleetOnWayFormation) then
+
+        c.yield(sleepPromise(500))
+        if not o.battle.isFormationPanel() then
+          stepLabel.setStepLabelContent('3-11.打开舰队阵型面板')
+          o.battle.openFormationPanel()
+          c.yield(sleepPromise(1000))
+        end
+
+        stepLabel.setStepLabelContent('3-11.切换舰队阵型')
+        o.battle.changeFormationPanelFormation()
+
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isMapPage, 500 },
+          { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isFormationPanel, 500 },
+        }))
+        return makeAction(newstateTypes)
+      end
+      if o.battle.isFormationPanel() then
+        stepLabel.setStepLabelContent('3-11.关闭舰队阵型面板')
+        o.battle.closeFormationPanel()
+        c.yield(sleepPromise(1000))
+      end
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 500 },
+        { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isFormationPanel, 200 },
       }))
       return makeAction(newstateTypes)
 

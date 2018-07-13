@@ -232,7 +232,7 @@ local imgs = {
           { 678, 616, 0xe66d63 }, { 689, 616, 0xe66963 },
           { 705, 618, 0xde695a },
         })
-        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 我方舰队不和boss重叠 9-4 的 6-9
       (function()
@@ -243,7 +243,7 @@ local imgs = {
           { 1645, 797, 0xff5152 }, { 1616, 752, 0x313931 },
           { 1584, 745, 0x313531 }, { 1648, 742, 0x312831 },
         })
-        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 我方舰队不和boss重叠 1-1 的 1-7
       (function()
