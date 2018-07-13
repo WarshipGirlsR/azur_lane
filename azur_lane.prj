@@ -1,0 +1,13 @@
+{
+	"plugin": [],
+	"res": [],
+	"src": [
+		"azur_lane-min.lua",
+		"console.lua",
+		"CheckColor.lua",
+		"debug-azur_lane.lua",
+		"table-polyfill.lua",
+		"test.lua",
+		"TSLib.lua"
+	]
+}

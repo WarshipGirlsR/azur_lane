@@ -17495,6 +17495,19 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
+          ['text'] = '每日挑战',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'dailyChallenges',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '开启,关闭',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
           ['text'] = '每一轮的间隔时间(秒)',\
           ['size'] = 15,\
           ['align'] = 'left',\
@@ -17751,6 +17764,11 @@ return function()\
       local list = transStrToTable({ true, false, })\
       return list[battleEnable] or false\
     end)(settings.battleEnable)\
+    -- 每日挑战\
+    settings.dailyChallenges = (function(dailyChallenges)\
+      local list = transStrToTable({ true, false, })\
+      return list[dailyChallenges] or false\
+    end)(settings.dailyChallenges)\
     -- 总循环间隔时间\
     settings.missionsInterval = tonumber(settings.missionsInterval) or 0\
     -- 多长时间界面不变则重启，最少60秒\
@@ -17866,233 +17884,233 @@ end\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\
--- ES6 co lib in lua 5.1\
--- Author: fgfg163@163.com\
--- Copyright (c) 2015.11\
---\
--- This is a lib porting from Co v4 in JavaScript\
--- It has some different before.\
--- to see https://github.com/tj/co\
--- Useage:\
--- co(coroutine.create(function()\
--- local v1 = coroutine.yield(Promise.resolve(123))\
--- local v2 = coroutine.yield({\
--- a = Promise.resolve(234),\
--- b = Promise.resolve(456),\
--- })\
--- console.log(v1)\
--- console.log(v2)\
--- end)):catch(function(err)\
--- print(err)\
--- end)\
-\
------------------------------------------------------------------------------\
-\
-\
-local Promise = Promise\
-\
-if type(Promise) ~= 'table' then\
-  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\
-end\
-\
-local unpack = unpack or table.unpack\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = #tab\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-function tryCatch(cb)\
-  return xpcall(cb, function(e)\
-    return setStackTraceback and\
-      (e .. '\\n' .. debug.traceback())\
-      or (e)\
-  end)\
-end\
-\
-----------------------------------------------------------------------\
-function new(gen, ...)\
-  return Promise.new(function(resolve, reject)\
-    if (type(gen) == 'function') then gen = coroutine.create(gen) end\
-    if (type(gen) ~= 'thread') then return resolve(gen) end\
-\
-    local onResolved, onRejected, next\
-\
-    onResolved = function(res)\
-      local done, ret\
-      local coStatus = true\
-      local xpcallRes, xpcallErr = tryCatch(function()\
-        coStatus, ret = coroutine.resume(gen, res)\
-      end)\
-      if (not xpcallRes) then\
-        return reject(xpcallErr)\
-      end\
-      if (not coStatus) then\
-        return reject(ret)\
-      end\
-      done = (coroutine.status(gen) == 'dead')\
-      next(done, ret)\
-    end\
-\
-    onRejected = function(err)\
-      local done, ret\
-      local coStatus = true\
-      local xpcallRes, xpcallErr = tryCatch(function()\
-        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\
-      end)\
-      if (not xpcallRes) then\
-        return reject(xpcallErr)\
-      end\
-      if (not coStatus) then\
-        return reject(xpcallErr)\
-      end\
-      done = (coroutine.status(gen) == 'dead')\
-      next(done, ret)\
-    end\
-\
-    next = function(done, ret)\
-      if (done) then\
-        return resolve(ret)\
-      end\
-      local value = toPromise(ret)\
-      if (value and (isPromise(value))) then\
-        return value.andThen(onResolved, onRejected)\
-      end\
-      return onResolved(value)\
-      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\
-      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\
-    end\
-\
-    onResolved();\
-  end)\
-end\
-\
-\
--- Convert a `yield`ed value into a promise.\
---\
--- @param {Mixed} obj\
--- @return {Promise}\
--- @api private\
-function toPromise(obj)\
-  if (not obj) then return obj end\
-\
-  if (isPromise(obj)) then return obj end\
-  if (isCoroutine(obj)) then return new(obj) end\
-  if (type(obj) == 'function') then return thunkToPromise(obj) end\
-\
-  if (isArray(obj)) then\
-    return arrayToPromise(obj)\
-  elseif (type(obj) == 'table') then\
-    return objectToPromise(obj)\
-  end\
-\
-  return obj\
-end\
-\
--- Check if `obj` is a promise.\
---\
--- @param {Object} obj\
--- @return {Boolean}\
--- @api private\
-function isPromise(obj)\
-  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\
-    return true\
-  end\
-  return false\
-end\
-\
--- Check if `obj` is a generator.\
---\
--- @param {Mixed} obj\
--- @return {Boolean}\
--- @api private\
-function isCoroutine(obj)\
-  if (type(obj) == 'thread') then\
-    return true\
-  end\
-  return false\
-end\
-\
-\
--- Convert a thunk to a promise.\
---\
--- @param {Function}\
--- @return {Promise}\
--- @api private\
-function thunkToPromise(fn)\
-  return Promise.new(function(resolve, reject)\
-    fn(function(err, res)\
-      if (err) then return reject(err) end\
-      if (#res > 2) then\
-        res = { res[2] }\
-      end\
-      resolve(res)\
-    end)\
-  end)\
-end\
-\
--- Convert an array of \"yieldables\" to a promise.\
--- Uses `Promise.all()` internally.\
---\
--- @param {Array} obj\
--- @return {Promise}\
--- @api private\
-function arrayToPromise(obj)\
-  local newArr = {}\
-  for k, v in ipairs(obj) do\
-    table.insert(newArr, toPromise(v))\
-  end\
-  return Promise.all(newArr);\
-end\
-\
--- Convert an object of \"yieldables\" to a promise.\
--- Uses `Promise.all()` internally.\
---\
--- @param {Object} obj\
--- @return {Promise}\
--- @api private\
-function objectToPromise(obj)\
-  local results = {}\
-  local promises = {}\
-\
-  local function defer(promise, key)\
-    results[key] = nil\
-    table.insert(promises, promise.andThen(function(res)\
-      results[key] = res\
-    end))\
-  end\
-\
-  for key, value in pairs(obj) do\
-    local promise = toPromise(value)\
-    if (promise and isPromise(promise)) then\
-      defer(promise, key)\
-    else\
-      results[key] = obj[key]\
-    end\
-  end\
-\
-  return Promise.all(promises).andThen(function()\
-    return results\
-  end)\
-end\
-\
-\
-\
-return setmetatable({\
-  new = new,\
-  Promise = Promise,\
-}, {\
-  __call = function(_, ...)\
-    return new(...)\
-  end\
-})\
+package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\13\
+-- ES6 co lib in lua 5.1\13\
+-- Author: fgfg163@163.com\13\
+-- Copyright (c) 2015.11\13\
+--\13\
+-- This is a lib porting from Co v4 in JavaScript\13\
+-- It has some different before.\13\
+-- to see https://github.com/tj/co\13\
+-- Useage:\13\
+-- co(coroutine.create(function()\13\
+-- local v1 = coroutine.yield(Promise.resolve(123))\13\
+-- local v2 = coroutine.yield({\13\
+-- a = Promise.resolve(234),\13\
+-- b = Promise.resolve(456),\13\
+-- })\13\
+-- console.log(v1)\13\
+-- console.log(v2)\13\
+-- end)):catch(function(err)\13\
+-- print(err)\13\
+-- end)\13\
+\13\
+-----------------------------------------------------------------------------\13\
+\13\
+\13\
+local Promise = Promise\13\
+\13\
+if type(Promise) ~= 'table' then\13\
+  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\13\
+end\13\
+\13\
+local unpack = unpack or table.unpack\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = #tab\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+function tryCatch(cb)\13\
+  return xpcall(cb, function(e)\13\
+    return setStackTraceback and\13\
+      (e .. '\\n' .. debug.traceback())\13\
+      or (e)\13\
+  end)\13\
+end\13\
+\13\
+----------------------------------------------------------------------\13\
+function new(gen, ...)\13\
+  return Promise.new(function(resolve, reject)\13\
+    if (type(gen) == 'function') then gen = coroutine.create(gen) end\13\
+    if (type(gen) ~= 'thread') then return resolve(gen) end\13\
+\13\
+    local onResolved, onRejected, next\13\
+\13\
+    onResolved = function(res)\13\
+      local done, ret\13\
+      local coStatus = true\13\
+      local xpcallRes, xpcallErr = tryCatch(function()\13\
+        coStatus, ret = coroutine.resume(gen, res)\13\
+      end)\13\
+      if (not xpcallRes) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      if (not coStatus) then\13\
+        return reject(ret)\13\
+      end\13\
+      done = (coroutine.status(gen) == 'dead')\13\
+      next(done, ret)\13\
+    end\13\
+\13\
+    onRejected = function(err)\13\
+      local done, ret\13\
+      local coStatus = true\13\
+      local xpcallRes, xpcallErr = tryCatch(function()\13\
+        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\13\
+      end)\13\
+      if (not xpcallRes) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      if (not coStatus) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      done = (coroutine.status(gen) == 'dead')\13\
+      next(done, ret)\13\
+    end\13\
+\13\
+    next = function(done, ret)\13\
+      if (done) then\13\
+        return resolve(ret)\13\
+      end\13\
+      local value = toPromise(ret)\13\
+      if (value and (isPromise(value))) then\13\
+        return value.andThen(onResolved, onRejected)\13\
+      end\13\
+      return onResolved(value)\13\
+      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\13\
+      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\13\
+    end\13\
+\13\
+    onResolved();\13\
+  end)\13\
+end\13\
+\13\
+\13\
+-- Convert a `yield`ed value into a promise.\13\
+--\13\
+-- @param {Mixed} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function toPromise(obj)\13\
+  if (not obj) then return obj end\13\
+\13\
+  if (isPromise(obj)) then return obj end\13\
+  if (isCoroutine(obj)) then return new(obj) end\13\
+  if (type(obj) == 'function') then return thunkToPromise(obj) end\13\
+\13\
+  if (isArray(obj)) then\13\
+    return arrayToPromise(obj)\13\
+  elseif (type(obj) == 'table') then\13\
+    return objectToPromise(obj)\13\
+  end\13\
+\13\
+  return obj\13\
+end\13\
+\13\
+-- Check if `obj` is a promise.\13\
+--\13\
+-- @param {Object} obj\13\
+-- @return {Boolean}\13\
+-- @api private\13\
+function isPromise(obj)\13\
+  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\13\
+    return true\13\
+  end\13\
+  return false\13\
+end\13\
+\13\
+-- Check if `obj` is a generator.\13\
+--\13\
+-- @param {Mixed} obj\13\
+-- @return {Boolean}\13\
+-- @api private\13\
+function isCoroutine(obj)\13\
+  if (type(obj) == 'thread') then\13\
+    return true\13\
+  end\13\
+  return false\13\
+end\13\
+\13\
+\13\
+-- Convert a thunk to a promise.\13\
+--\13\
+-- @param {Function}\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function thunkToPromise(fn)\13\
+  return Promise.new(function(resolve, reject)\13\
+    fn(function(err, res)\13\
+      if (err) then return reject(err) end\13\
+      if (#res > 2) then\13\
+        res = { res[2] }\13\
+      end\13\
+      resolve(res)\13\
+    end)\13\
+  end)\13\
+end\13\
+\13\
+-- Convert an array of \"yieldables\" to a promise.\13\
+-- Uses `Promise.all()` internally.\13\
+--\13\
+-- @param {Array} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function arrayToPromise(obj)\13\
+  local newArr = {}\13\
+  for k, v in ipairs(obj) do\13\
+    table.insert(newArr, toPromise(v))\13\
+  end\13\
+  return Promise.all(newArr);\13\
+end\13\
+\13\
+-- Convert an object of \"yieldables\" to a promise.\13\
+-- Uses `Promise.all()` internally.\13\
+--\13\
+-- @param {Object} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function objectToPromise(obj)\13\
+  local results = {}\13\
+  local promises = {}\13\
+\13\
+  local function defer(promise, key)\13\
+    results[key] = nil\13\
+    table.insert(promises, promise.andThen(function(res)\13\
+      results[key] = res\13\
+    end))\13\
+  end\13\
+\13\
+  for key, value in pairs(obj) do\13\
+    local promise = toPromise(value)\13\
+    if (promise and isPromise(promise)) then\13\
+      defer(promise, key)\13\
+    else\13\
+      results[key] = obj[key]\13\
+    end\13\
+  end\13\
+\13\
+  return Promise.all(promises).andThen(function()\13\
+    return results\13\
+  end)\13\
+end\13\
+\13\
+\13\
+\13\
+return setmetatable({\13\
+  new = new,\13\
+  Promise = Promise,\13\
+}, {\13\
+  __call = function(_, ...)\13\
+    return new(...)\13\
+  end\13\
+})\13\
 " }
 
 
@@ -18346,343 +18364,343 @@ return Promise\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\
-\
--- get the time\
-local gettimeFunc = function()\
-  return socket.gettime() * 1000\
-end\
--- sleep\
-local mSleep = mSleep or function(n)\
-  socket.select(nil, nil, n / 1000)\
-end\
-\
--- fwGetPressedButton\
--- keepScreen(true);\
-\
-local function isEmpty(tab)\
-  for _, v in pairs(tab) do\
-    return false\
-  end\
-  return true\
-end\
-\
-\
-\
-\
-\
-\
-\
-local function tryCatch(cb)\
-  return xpcall(cb, function(e)\
-    return stackTraceback and\
-      (e .. '\\n' .. debug.traceback())\
-      or (e)\
-  end)\
-end\
-\
-local function bindSelf(func, self)\
-  return function(...) return func(self, ...) end\
-end\
-\
-local getEventId = (function()\
-  local id = 0\
-  return function()\
-    id = id + 1\
-    return id\
-  end\
-end)()\
-\
--- main query\
-local eventQuery = {}\
--- sub query\
-local screenListenerQuery = {}\
-local screenListenerQueryIndex = {}\
-local buttonListenerQuery = {}\
-local buttonListenerQueryIndex = {}\
-local timerQuery = {}\
-local timerQueryIndex = {}\
-\
-\
-function getEventObj(func, time, isInterval, ms)\
-  return {\
-    id = getEventId() or 0,\
-    time = time or 0,\
-    func = func,\
-    isInterval = isInterval or false,\
-    ms = ms or 0,\
-    drop = false,\
-  }\
-end\
-\
-function getScreenEventObj(checker, func)\
-  return {\
-    id = getEventId() or 0,\
-    checker = checker,\
-    func = func,\
-    drop = false,\
-  }\
-end\
-\
-function getButtonEventObj(btnId, func)\
-  return {\
-    id = getEventId() or 0,\
-    btnId = btnId,\
-    func = func,\
-    drop = false,\
-  }\
-end\
-\
-\
-\
-\
-function setImmediate(func)\
-  if (type(func) ~= 'function') then return 0 end\
-  local eventObj = getEventObj(func)\
-  table.insert(timerQuery, eventObj)\
-  return eventObj.id\
-end\
-\
-function setTimeout(func, ms)\
-  if (type(func) ~= 'function') then return 0 end\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
-  local time = gettimeFunc() + ms\
-  local eventObj = getEventObj(func, time)\
-  table.insert(timerQuery, eventObj)\
-  timerQueryIndex[eventObj.id] = eventObj\
-  return eventObj.id\
-end\
-\
-function clearTimeout(id)\
-  local theEventObj = timerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-    timerQueryIndex[id] = nil\
-  end\
-end\
-\
-function setInterval(func, ms)\
-  if (type(func) ~= 'function') then return 0 end\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
-  local time = gettimeFunc() + ms\
-  local eventObj = getEventObj(func, time, true, ms)\
-  table.insert(timerQuery, eventObj)\
-  timerQueryIndex[eventObj.id] = eventObj\
-  return eventObj.id\
-end\
-\
--- param: checker, func\
-function setScreenListener(...)\
-  local args = { ... }\
-  local checker = table.remove(args, 1)\
-  local func = table.remove(args, 1)\
-\
-  if (type(checker) ~= 'function') then return 0 end\
-  if (type(func) ~= 'function') then return 0 end\
-  local screenEventObj = getScreenEventObj(checker, func)\
-  table.insert(screenListenerQuery, screenEventObj)\
-  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\
-  return screenEventObj.id\
-end\
-\
-function clearScreenListener(id)\
-  local theEventObj = screenListenerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-  end\
-end\
-\
-function setButotnListener(btnId, func)\
-  if (type(func) ~= 'function') then return 0 end\
-  local btnEventObj = getButtonEventObj(btnId, func)\
-  table.insert(buttonListenerQuery, btnEventObj)\
-  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\
-  return btnEventObj.id\
-end\
-\
-function clearButotnListener(id)\
-  local theEventObj = buttonListenerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-  end\
-end\
-\
-function clearListenersOnButton(btnId)\
-  for key = 1, #buttonListenerQuery do\
-    local value = buttonListenerQuery[key]\
-    if (value.btnId ~= btnId) then\
-      value.drop = true\
-    end\
-  end\
-end\
-\
-function run()\
-  local continue = 0\
-  local thisTime = 0\
-  local sleepTime = 3600000\
-\
-\
-  repeat\
-    continue = 0\
-    sleepTime = 3600000\
-\
-    -- run eventQuery\
-    if #eventQuery > 0 then\
-      for key = 1, #eventQuery do\
-        local value = eventQuery[key]\
-        value.func()\
-      end\
-      eventQuery = {}\
-    end\
-\
-\
-    -- read event from other Query\
-    thisTime = gettimeFunc()\
-\
-    -- timeQuery\
-    if (#timerQuery > 0) then\
-      continue = continue + 1\
-      local hasDropEvent = false\
-      for key = 1, #timerQuery do\
-        local value = timerQuery[key]\
-        if (not value.drop) then\
-          if (value.time <= thisTime) then\
-            table.insert(eventQuery, value)\
-\
-            -- setInterval event\
-            if (value.isInterval) then\
-              value.drop = false\
-              repeat\
-                value.time = value.time + value.ms\
-              until (value.time > thisTime)\
-              sleepTime = math.min(sleepTime, value.time - thisTime)\
-            else\
-              value.drop = true\
-              hasDropEvent = true\
-            end\
-          else\
-            sleepTime = math.min(sleepTime, value.time - thisTime)\
-          end\
-        else\
-          hasDropEvent = true\
-          timerQueryIndex[value.id] = nil\
-        end\
-      end\
-\
-      if hasDropEvent then\
-        local newTimeQuery = {}\
-        for key = 1, #timerQuery do\
-          local value = timerQuery[key]\
-          if not value.drop then\
-            table.insert(newTimeQuery, value)\
-          else\
-            timerQueryIndex[value.id] = nil\
-          end\
-        end\
-        timerQuery = newTimeQuery\
-      end\
-    end\
-\
-    -- screenListenerQuery\
-    if #screenListenerQuery > 0 then\
-      keepScreen(false);\
-      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\
-      local hasDropEvent = false\
-      continue = continue + 1\
-      sleepTime = math.min(sleepTime, 200)\
-      getColor(0, 0)\
-      keepScreen(true);\
-      for key = 1, #screenListenerQuery do\
-        local value = screenListenerQuery[key]\
-        if not value.drop then\
-          if (value.checker()) then\
-            table.insert(eventQuery, value)\
-            if (value.isOnce) then\
-              value.drop = true\
-              hasDropEvent = true\
-            end\
-          end\
-        else\
-          hasDropEvent = true\
-        end\
-      end\
-      keepScreen(false);\
-\
-      if (hasDropEvent) then\
-        local newScreenListenerQuery = {}\
-        for key = 1, #screenListenerQuery do\
-          local value = screenListenerQuery[key]\
-          if (not value.drop) then\
-            table.insert(newScreenListenerQuery, value)\
-          else\
-            screenListenerQueryIndex[value.id] = nil\
-          end\
-        end\
-        screenListenerQuery = newScreenListenerQuery\
-      end\
-    end\
-\
-    -- buttonListenerQuery\
-    if (#buttonListenerQuery > 0) then\
-      sleepTime = math.min(sleepTime, 200)\
-      continue = continue + 1\
-      local btnIdList = {}\
-      local hasBtnClick = false\
-      local hasDropEvent = false\
-      while (true) do\
-        local btnId = fwGetPressedButton()\
-        if (type(btnId) ~= 'string') then break end\
-        btnIdList[btnId] = btnId\
-        hasBtnClick = true\
-      end\
-      if (hasBtnClick) then\
-        for key = 1, #buttonListenerQuery do\
-          local value = buttonListenerQuery[key]\
-          if (not value.drop) then\
-            if (btnIdList[value.btnId] == value.btnId) then\
-              table.insert(eventQuery, value)\
-            end\
-          else\
-            hasDropEvent = true\
-          end\
-        end\
-\
-        if (hasDropEvent) then\
-          local newButtonListenerQuery = {}\
-          for key = 1, #buttonListenerQuery do\
-            local value = buttonListenerQuery[key]\
-            if (not value.drop) then\
-              table.insert(newButtonListenerQuery, value)\
-            else\
-              buttonListenerQueryIndex[value.id] = nil\
-            end\
-          end\
-          buttonListenerQuery = newButtonListenerQuery\
-        end\
-      end\
-    end\
-\
-    if (luaExisted) then\
-      break\
-    end\
-    if (#eventQuery <= 0) then\
-      mSleep(sleepTime)\
-    end\
-  until (false)\
-end\
-\
-return {\
-  setImmediate = setImmediate,\
-  setTimeout = setTimeout,\
-  clearTimeout = clearTimeout,\
-  setInterval = setInterval,\
-  clearInterval = clearTimeout,\
-  setScreenListener = setScreenListener,\
-  clearScreenListener = clearScreenListener,\
-  setButotnListener = setButotnListener,\
-  clearListenersOnButton = clearListenersOnButton,\
-  clearButotnListener = clearButotnListener,\
-  run = run,\
+package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\13\
+\13\
+-- get the time\13\
+local gettimeFunc = function()\13\
+  return socket.gettime() * 1000\13\
+end\13\
+-- sleep\13\
+local mSleep = mSleep or function(n)\13\
+  socket.select(nil, nil, n / 1000)\13\
+end\13\
+\13\
+-- fwGetPressedButton\13\
+-- keepScreen(true);\13\
+\13\
+local function isEmpty(tab)\13\
+  for _, v in pairs(tab) do\13\
+    return false\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+local function tryCatch(cb)\13\
+  return xpcall(cb, function(e)\13\
+    return stackTraceback and\13\
+      (e .. '\\n' .. debug.traceback())\13\
+      or (e)\13\
+  end)\13\
+end\13\
+\13\
+local function bindSelf(func, self)\13\
+  return function(...) return func(self, ...) end\13\
+end\13\
+\13\
+local getEventId = (function()\13\
+  local id = 0\13\
+  return function()\13\
+    id = id + 1\13\
+    return id\13\
+  end\13\
+end)()\13\
+\13\
+-- main query\13\
+local eventQuery = {}\13\
+-- sub query\13\
+local screenListenerQuery = {}\13\
+local screenListenerQueryIndex = {}\13\
+local buttonListenerQuery = {}\13\
+local buttonListenerQueryIndex = {}\13\
+local timerQuery = {}\13\
+local timerQueryIndex = {}\13\
+\13\
+\13\
+function getEventObj(func, time, isInterval, ms)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    time = time or 0,\13\
+    func = func,\13\
+    isInterval = isInterval or false,\13\
+    ms = ms or 0,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+function getScreenEventObj(checker, func)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    checker = checker,\13\
+    func = func,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+function getButtonEventObj(btnId, func)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    btnId = btnId,\13\
+    func = func,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+\13\
+\13\
+\13\
+function setImmediate(func)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local eventObj = getEventObj(func)\13\
+  table.insert(timerQuery, eventObj)\13\
+  return eventObj.id\13\
+end\13\
+\13\
+function setTimeout(func, ms)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
+  local time = gettimeFunc() + ms\13\
+  local eventObj = getEventObj(func, time)\13\
+  table.insert(timerQuery, eventObj)\13\
+  timerQueryIndex[eventObj.id] = eventObj\13\
+  return eventObj.id\13\
+end\13\
+\13\
+function clearTimeout(id)\13\
+  local theEventObj = timerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+    timerQueryIndex[id] = nil\13\
+  end\13\
+end\13\
+\13\
+function setInterval(func, ms)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
+  local time = gettimeFunc() + ms\13\
+  local eventObj = getEventObj(func, time, true, ms)\13\
+  table.insert(timerQuery, eventObj)\13\
+  timerQueryIndex[eventObj.id] = eventObj\13\
+  return eventObj.id\13\
+end\13\
+\13\
+-- param: checker, func\13\
+function setScreenListener(...)\13\
+  local args = { ... }\13\
+  local checker = table.remove(args, 1)\13\
+  local func = table.remove(args, 1)\13\
+\13\
+  if (type(checker) ~= 'function') then return 0 end\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local screenEventObj = getScreenEventObj(checker, func)\13\
+  table.insert(screenListenerQuery, screenEventObj)\13\
+  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\13\
+  return screenEventObj.id\13\
+end\13\
+\13\
+function clearScreenListener(id)\13\
+  local theEventObj = screenListenerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+  end\13\
+end\13\
+\13\
+function setButotnListener(btnId, func)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local btnEventObj = getButtonEventObj(btnId, func)\13\
+  table.insert(buttonListenerQuery, btnEventObj)\13\
+  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\13\
+  return btnEventObj.id\13\
+end\13\
+\13\
+function clearButotnListener(id)\13\
+  local theEventObj = buttonListenerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+  end\13\
+end\13\
+\13\
+function clearListenersOnButton(btnId)\13\
+  for key = 1, #buttonListenerQuery do\13\
+    local value = buttonListenerQuery[key]\13\
+    if (value.btnId ~= btnId) then\13\
+      value.drop = true\13\
+    end\13\
+  end\13\
+end\13\
+\13\
+function run()\13\
+  local continue = 0\13\
+  local thisTime = 0\13\
+  local sleepTime = 3600000\13\
+\13\
+\13\
+  repeat\13\
+    continue = 0\13\
+    sleepTime = 3600000\13\
+\13\
+    -- run eventQuery\13\
+    if #eventQuery > 0 then\13\
+      for key = 1, #eventQuery do\13\
+        local value = eventQuery[key]\13\
+        value.func()\13\
+      end\13\
+      eventQuery = {}\13\
+    end\13\
+\13\
+\13\
+    -- read event from other Query\13\
+    thisTime = gettimeFunc()\13\
+\13\
+    -- timeQuery\13\
+    if (#timerQuery > 0) then\13\
+      continue = continue + 1\13\
+      local hasDropEvent = false\13\
+      for key = 1, #timerQuery do\13\
+        local value = timerQuery[key]\13\
+        if (not value.drop) then\13\
+          if (value.time <= thisTime) then\13\
+            table.insert(eventQuery, value)\13\
+\13\
+            -- setInterval event\13\
+            if (value.isInterval) then\13\
+              value.drop = false\13\
+              repeat\13\
+                value.time = value.time + value.ms\13\
+              until (value.time > thisTime)\13\
+              sleepTime = math.min(sleepTime, value.time - thisTime)\13\
+            else\13\
+              value.drop = true\13\
+              hasDropEvent = true\13\
+            end\13\
+          else\13\
+            sleepTime = math.min(sleepTime, value.time - thisTime)\13\
+          end\13\
+        else\13\
+          hasDropEvent = true\13\
+          timerQueryIndex[value.id] = nil\13\
+        end\13\
+      end\13\
+\13\
+      if hasDropEvent then\13\
+        local newTimeQuery = {}\13\
+        for key = 1, #timerQuery do\13\
+          local value = timerQuery[key]\13\
+          if not value.drop then\13\
+            table.insert(newTimeQuery, value)\13\
+          else\13\
+            timerQueryIndex[value.id] = nil\13\
+          end\13\
+        end\13\
+        timerQuery = newTimeQuery\13\
+      end\13\
+    end\13\
+\13\
+    -- screenListenerQuery\13\
+    if #screenListenerQuery > 0 then\13\
+      keepScreen(false);\13\
+      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\13\
+      local hasDropEvent = false\13\
+      continue = continue + 1\13\
+      sleepTime = math.min(sleepTime, 200)\13\
+      getColor(0, 0)\13\
+      keepScreen(true);\13\
+      for key = 1, #screenListenerQuery do\13\
+        local value = screenListenerQuery[key]\13\
+        if not value.drop then\13\
+          if (value.checker()) then\13\
+            table.insert(eventQuery, value)\13\
+            if (value.isOnce) then\13\
+              value.drop = true\13\
+              hasDropEvent = true\13\
+            end\13\
+          end\13\
+        else\13\
+          hasDropEvent = true\13\
+        end\13\
+      end\13\
+      keepScreen(false);\13\
+\13\
+      if (hasDropEvent) then\13\
+        local newScreenListenerQuery = {}\13\
+        for key = 1, #screenListenerQuery do\13\
+          local value = screenListenerQuery[key]\13\
+          if (not value.drop) then\13\
+            table.insert(newScreenListenerQuery, value)\13\
+          else\13\
+            screenListenerQueryIndex[value.id] = nil\13\
+          end\13\
+        end\13\
+        screenListenerQuery = newScreenListenerQuery\13\
+      end\13\
+    end\13\
+\13\
+    -- buttonListenerQuery\13\
+    if (#buttonListenerQuery > 0) then\13\
+      sleepTime = math.min(sleepTime, 200)\13\
+      continue = continue + 1\13\
+      local btnIdList = {}\13\
+      local hasBtnClick = false\13\
+      local hasDropEvent = false\13\
+      while (true) do\13\
+        local btnId = fwGetPressedButton()\13\
+        if (type(btnId) ~= 'string') then break end\13\
+        btnIdList[btnId] = btnId\13\
+        hasBtnClick = true\13\
+      end\13\
+      if (hasBtnClick) then\13\
+        for key = 1, #buttonListenerQuery do\13\
+          local value = buttonListenerQuery[key]\13\
+          if (not value.drop) then\13\
+            if (btnIdList[value.btnId] == value.btnId) then\13\
+              table.insert(eventQuery, value)\13\
+            end\13\
+          else\13\
+            hasDropEvent = true\13\
+          end\13\
+        end\13\
+\13\
+        if (hasDropEvent) then\13\
+          local newButtonListenerQuery = {}\13\
+          for key = 1, #buttonListenerQuery do\13\
+            local value = buttonListenerQuery[key]\13\
+            if (not value.drop) then\13\
+              table.insert(newButtonListenerQuery, value)\13\
+            else\13\
+              buttonListenerQueryIndex[value.id] = nil\13\
+            end\13\
+          end\13\
+          buttonListenerQuery = newButtonListenerQuery\13\
+        end\13\
+      end\13\
+    end\13\
+\13\
+    if (luaExisted) then\13\
+      break\13\
+    end\13\
+    if (#eventQuery <= 0) then\13\
+      mSleep(sleepTime)\13\
+    end\13\
+  until (false)\13\
+end\13\
+\13\
+return {\13\
+  setImmediate = setImmediate,\13\
+  setTimeout = setTimeout,\13\
+  clearTimeout = clearTimeout,\13\
+  setInterval = setInterval,\13\
+  clearInterval = clearTimeout,\13\
+  setScreenListener = setScreenListener,\13\
+  clearScreenListener = clearScreenListener,\13\
+  setButotnListener = setButotnListener,\13\
+  clearListenersOnButton = clearListenersOnButton,\13\
+  clearButotnListener = clearButotnListener,\13\
+  run = run,\13\
 }" }
 
 
@@ -19961,163 +19979,163 @@ W\0\9\8\8 �T�#�rV4\18q+G6�g�\30H[�.\26��\19h\30�}Si'=F��V��t!\22�`ay�Gab\0\0\0��
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\
-\
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = getLength(tab)\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-\
-local __console = console or {}\
-\
-local function runTable(tab, space)\
-  if type(tab) == 'number' then\
-    return { tostring(tab) }\
-  end\
-  if type(tab) == 'string' then\
-    if string.len(tab) > 1000 then\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
-    end\
-    return { '\"' .. tab .. '\"' }\
-  end\
-  if type(tab) == 'boolean' then\
-    if (tab) then\
-      return { 'true' }\
-    else\
-      return { 'false' }\
-    end\
-  end\
-  if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
-  end\
-  if type(space) == 'number' then\
-    space = string.rep(' ', space)\
-  end\
-  if type(space) ~= 'string' then\
-    space = ''\
-  end\
-\
-  local resultStrList = {}\
-  local newTabPairs = {}\
-  local newTabPairsKeys = {}\
-  local tabIsArray = true\
-  local tabLength = 0\
-  local hasSubTab = false\
-\
-  -- 将 table 的数组部分取出\
-  for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
-    if (type(v) == 'table') then\
-      hasSubTab = true\
-    end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
-      tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
-      end\
-    end\
-  end\
-\
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
-  end\
-\
-  if (tabIsArray) then\
-    local newTabArr = newTabPairs\
-\
-    if (hasSubTab) then\
-      table.insert(resultStrList, '[')\
-      for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
-        v[2][v2Length] = v[2][v2Length] .. ','\
-        for k2, v2 in ipairs(v[2]) do\
-          table.insert(resultStrList, space .. v2)\
-        end\
-      end\
-      table.insert(resultStrList, ']')\
-    else\
-      local theStr = {}\
-      for k, v in ipairs(newTabPairs) do\
-        table.insert(theStr, v[2][1])\
-      end\
-      local childStr = table.concat(theStr, ', ')\
-      table.insert(resultStrList, '[' .. childStr .. ']')\
-    end\
-  else\
-    local newTabArr = newTabPairs\
-\
-    table.insert(resultStrList, '{')\
-    for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
-      v[2][v2Length] = v[2][v2Length] .. ','\
-      for k2, v2 in ipairs(v[2]) do\
-        table.insert(resultStrList, space .. v2 .. '')\
-      end\
-    end\
-    table.insert(resultStrList, '}')\
-  end\
-  return resultStrList\
-end\
-\
-\
-__console.log = __console.log or function(obj)\
-  local js = table.concat(runTable(obj, 2), \"\\n\")\
-  print(js)\
-  if useNlog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
-    end\
-    nLog(lineInfo .. js)\
-  end\
-  return js\
-end\
-\
-__console.getJsStr = function(obj)\
-  return table.concat(runTable(obj, 2), \",\\n\")\
-end\
-\
-__console.color = function(value)\
-  local resultStr = ''\
-  local color = getColor(value[1], value[2])\
-  local oldColor = value[3]\
-  local colorStr = string.format('0x%06x', color)\
-  local oldColorStr = string.format('0x%06x', oldColor)\
-  value[3] = oldColorStr\
-  if (color == oldColor) then\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
-  else\
-    value[3] = colorStr\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
-  end\
-  __console.log(resultStr)\
-end\
-\
+package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\13\
+\13\
+local getLength = table.length or function(target)\13\
+  local length = 0\13\
+  for k, v in ipairs(target) do\13\
+    length = k\13\
+  end\13\
+  return length\13\
+end\13\
+\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = getLength(tab)\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+local __console = console or {}\13\
+\13\
+local function runTable(tab, space)\13\
+  if type(tab) == 'number' then\13\
+    return { tostring(tab) }\13\
+  end\13\
+  if type(tab) == 'string' then\13\
+    if string.len(tab) > 1000 then\13\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
+    end\13\
+    return { '\"' .. tab .. '\"' }\13\
+  end\13\
+  if type(tab) == 'boolean' then\13\
+    if (tab) then\13\
+      return { 'true' }\13\
+    else\13\
+      return { 'false' }\13\
+    end\13\
+  end\13\
+  if type(tab) ~= 'table' then\13\
+    return { '(' .. type(tab) .. ')' }\13\
+  end\13\
+  if type(space) == 'number' then\13\
+    space = string.rep(' ', space)\13\
+  end\13\
+  if type(space) ~= 'string' then\13\
+    space = ''\13\
+  end\13\
+\13\
+  local resultStrList = {}\13\
+  local newTabPairs = {}\13\
+  local newTabPairsKeys = {}\13\
+  local tabIsArray = true\13\
+  local tabLength = 0\13\
+  local hasSubTab = false\13\
+\13\
+  -- 将 table 的数组部分取出\13\
+  for k, v in ipairs(tab) do\13\
+    tabLength = k\13\
+    table.insert(newTabPairs, { k, runTable(v, space) })\13\
+    if (type(v) == 'table') then\13\
+      hasSubTab = true\13\
+    end\13\
+  end\13\
+\13\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
+  for k, v in pairs(tab) do\13\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
+      tabIsArray = false\13\
+      table.insert(newTabPairsKeys, k)\13\
+      if (type(v) == 'table') then\13\
+        hasSubTab = true\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  table.sort(newTabPairsKeys)\13\
+  for _, k in ipairs(newTabPairsKeys) do\13\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
+  end\13\
+\13\
+  if (tabIsArray) then\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    if (hasSubTab) then\13\
+      table.insert(resultStrList, '[')\13\
+      for k, v in ipairs(newTabArr) do\13\
+        local v2Length = getLength(v[2])\13\
+        v[2][v2Length] = v[2][v2Length] .. ','\13\
+        for k2, v2 in ipairs(v[2]) do\13\
+          table.insert(resultStrList, space .. v2)\13\
+        end\13\
+      end\13\
+      table.insert(resultStrList, ']')\13\
+    else\13\
+      local theStr = {}\13\
+      for k, v in ipairs(newTabPairs) do\13\
+        table.insert(theStr, v[2][1])\13\
+      end\13\
+      local childStr = table.concat(theStr, ', ')\13\
+      table.insert(resultStrList, '[' .. childStr .. ']')\13\
+    end\13\
+  else\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    table.insert(resultStrList, '{')\13\
+    for k, v in ipairs(newTabArr) do\13\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
+      local v2Length = getLength(v[2])\13\
+      v[2][v2Length] = v[2][v2Length] .. ','\13\
+      for k2, v2 in ipairs(v[2]) do\13\
+        table.insert(resultStrList, space .. v2 .. '')\13\
+      end\13\
+    end\13\
+    table.insert(resultStrList, '}')\13\
+  end\13\
+  return resultStrList\13\
+end\13\
+\13\
+\13\
+__console.log = __console.log or function(obj)\13\
+  local js = table.concat(runTable(obj, 2), \"\\n\")\13\
+  print(js)\13\
+  if useNlog then\13\
+    local info = debug.getinfo(2, 'Sl')\13\
+    local lineInfo = ''\13\
+    if info.currentline then\13\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\13\
+    end\13\
+    nLog(lineInfo .. js)\13\
+  end\13\
+  return js\13\
+end\13\
+\13\
+__console.getJsStr = function(obj)\13\
+  return table.concat(runTable(obj, 2), \",\\n\")\13\
+end\13\
+\13\
+__console.color = function(value)\13\
+  local resultStr = ''\13\
+  local color = getColor(value[1], value[2])\13\
+  local oldColor = value[3]\13\
+  local colorStr = string.format('0x%06x', color)\13\
+  local oldColorStr = string.format('0x%06x', oldColor)\13\
+  value[3] = oldColorStr\13\
+  if (color == oldColor) then\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
+  else\13\
+    value[3] = colorStr\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
+  end\13\
+  __console.log(resultStr)\13\
+end\13\
+\13\
 console = __console" }
 
 
@@ -20378,163 +20396,163 @@ return function(optionParam)\
 end", "@" .."lua-require.lua"))
 
 
-package.preload["console"] = assert(load("local nLog = nLog or function() end\
-\
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = getLength(tab)\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-\
-local __console = console or {}\
-\
-local function runTable(tab, space)\
-  if type(tab) == 'number' then\
-    return { tostring(tab) }\
-  end\
-  if type(tab) == 'string' then\
-    if string.len(tab) > 1000 then\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
-    end\
-    return { '\"' .. tab .. '\"' }\
-  end\
-  if type(tab) == 'boolean' then\
-    if (tab) then\
-      return { 'true' }\
-    else\
-      return { 'false' }\
-    end\
-  end\
-  if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
-  end\
-  if type(space) == 'number' then\
-    space = string.rep(' ', space)\
-  end\
-  if type(space) ~= 'string' then\
-    space = ''\
-  end\
-\
-  local resultStrList = {}\
-  local newTabPairs = {}\
-  local newTabPairsKeys = {}\
-  local tabIsArray = true\
-  local tabLength = 0\
-  local hasSubTab = false\
-\
-  -- 将 table 的数组部分取出\
-  for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
-    if (type(v) == 'table') then\
-      hasSubTab = true\
-    end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
-      tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
-      end\
-    end\
-  end\
-\
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
-  end\
-\
-  if (tabIsArray) then\
-    local newTabArr = newTabPairs\
-\
-    if (hasSubTab) then\
-      table.insert(resultStrList, '[')\
-      for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
-        v[2][v2Length] = v[2][v2Length] .. ','\
-        for k2, v2 in ipairs(v[2]) do\
-          table.insert(resultStrList, space .. v2)\
-        end\
-      end\
-      table.insert(resultStrList, ']')\
-    else\
-      local theStr = {}\
-      for k, v in ipairs(newTabPairs) do\
-        table.insert(theStr, v[2][1])\
-      end\
-      local childStr = table.concat(theStr, ', ')\
-      table.insert(resultStrList, '[' .. childStr .. ']')\
-    end\
-  else\
-    local newTabArr = newTabPairs\
-\
-    table.insert(resultStrList, '{')\
-    for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
-      v[2][v2Length] = v[2][v2Length] .. ','\
-      for k2, v2 in ipairs(v[2]) do\
-        table.insert(resultStrList, space .. v2 .. '')\
-      end\
-    end\
-    table.insert(resultStrList, '}')\
-  end\
-  return resultStrList\
-end\
-\
-\
-__console.log = __console.log or function(obj)\
-  local js = table.concat(runTable(obj, 2), \"\\n\")\
-  print(js)\
-  if useNlog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
-    end\
-    nLog(lineInfo .. js)\
-  end\
-  return js\
-end\
-\
-__console.getJsStr = function(obj)\
-  return table.concat(runTable(obj, 2), \",\\n\")\
-end\
-\
-__console.color = function(value)\
-  local resultStr = ''\
-  local color = getColor(value[1], value[2])\
-  local oldColor = value[3]\
-  local colorStr = string.format('0x%06x', color)\
-  local oldColorStr = string.format('0x%06x', oldColor)\
-  value[3] = oldColorStr\
-  if (color == oldColor) then\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
-  else\
-    value[3] = colorStr\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
-  end\
-  __console.log(resultStr)\
-end\
-\
+package.preload["console"] = assert(load("local nLog = nLog or function() end\13\
+\13\
+local getLength = table.length or function(target)\13\
+  local length = 0\13\
+  for k, v in ipairs(target) do\13\
+    length = k\13\
+  end\13\
+  return length\13\
+end\13\
+\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = getLength(tab)\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+local __console = console or {}\13\
+\13\
+local function runTable(tab, space)\13\
+  if type(tab) == 'number' then\13\
+    return { tostring(tab) }\13\
+  end\13\
+  if type(tab) == 'string' then\13\
+    if string.len(tab) > 1000 then\13\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
+    end\13\
+    return { '\"' .. tab .. '\"' }\13\
+  end\13\
+  if type(tab) == 'boolean' then\13\
+    if (tab) then\13\
+      return { 'true' }\13\
+    else\13\
+      return { 'false' }\13\
+    end\13\
+  end\13\
+  if type(tab) ~= 'table' then\13\
+    return { '(' .. type(tab) .. ')' }\13\
+  end\13\
+  if type(space) == 'number' then\13\
+    space = string.rep(' ', space)\13\
+  end\13\
+  if type(space) ~= 'string' then\13\
+    space = ''\13\
+  end\13\
+\13\
+  local resultStrList = {}\13\
+  local newTabPairs = {}\13\
+  local newTabPairsKeys = {}\13\
+  local tabIsArray = true\13\
+  local tabLength = 0\13\
+  local hasSubTab = false\13\
+\13\
+  -- 将 table 的数组部分取出\13\
+  for k, v in ipairs(tab) do\13\
+    tabLength = k\13\
+    table.insert(newTabPairs, { k, runTable(v, space) })\13\
+    if (type(v) == 'table') then\13\
+      hasSubTab = true\13\
+    end\13\
+  end\13\
+\13\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
+  for k, v in pairs(tab) do\13\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
+      tabIsArray = false\13\
+      table.insert(newTabPairsKeys, k)\13\
+      if (type(v) == 'table') then\13\
+        hasSubTab = true\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  table.sort(newTabPairsKeys)\13\
+  for _, k in ipairs(newTabPairsKeys) do\13\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
+  end\13\
+\13\
+  if (tabIsArray) then\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    if (hasSubTab) then\13\
+      table.insert(resultStrList, '[')\13\
+      for k, v in ipairs(newTabArr) do\13\
+        local v2Length = getLength(v[2])\13\
+        v[2][v2Length] = v[2][v2Length] .. ','\13\
+        for k2, v2 in ipairs(v[2]) do\13\
+          table.insert(resultStrList, space .. v2)\13\
+        end\13\
+      end\13\
+      table.insert(resultStrList, ']')\13\
+    else\13\
+      local theStr = {}\13\
+      for k, v in ipairs(newTabPairs) do\13\
+        table.insert(theStr, v[2][1])\13\
+      end\13\
+      local childStr = table.concat(theStr, ', ')\13\
+      table.insert(resultStrList, '[' .. childStr .. ']')\13\
+    end\13\
+  else\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    table.insert(resultStrList, '{')\13\
+    for k, v in ipairs(newTabArr) do\13\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
+      local v2Length = getLength(v[2])\13\
+      v[2][v2Length] = v[2][v2Length] .. ','\13\
+      for k2, v2 in ipairs(v[2]) do\13\
+        table.insert(resultStrList, space .. v2 .. '')\13\
+      end\13\
+    end\13\
+    table.insert(resultStrList, '}')\13\
+  end\13\
+  return resultStrList\13\
+end\13\
+\13\
+\13\
+__console.log = __console.log or function(obj)\13\
+  local js = table.concat(runTable(obj, 2), \"\\n\")\13\
+  print(js)\13\
+  if useNlog then\13\
+    local info = debug.getinfo(2, 'Sl')\13\
+    local lineInfo = ''\13\
+    if info.currentline then\13\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\13\
+    end\13\
+    nLog(lineInfo .. js)\13\
+  end\13\
+  return js\13\
+end\13\
+\13\
+__console.getJsStr = function(obj)\13\
+  return table.concat(runTable(obj, 2), \",\\n\")\13\
+end\13\
+\13\
+__console.color = function(value)\13\
+  local resultStr = ''\13\
+  local color = getColor(value[1], value[2])\13\
+  local oldColor = value[3]\13\
+  local colorStr = string.format('0x%06x', color)\13\
+  local oldColorStr = string.format('0x%06x', oldColor)\13\
+  value[3] = oldColorStr\13\
+  if (color == oldColor) then\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
+  else\13\
+    value[3] = colorStr\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
+  end\13\
+  __console.log(resultStr)\13\
+end\13\
+\13\
 console = __console", "@" .."console.lua"))
 
 
