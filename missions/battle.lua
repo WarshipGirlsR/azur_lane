@@ -88,7 +88,7 @@ local battle = function(action)
         end
 
         if (settings.battleMode == 'normal' and o.battle.isHardMode())
-          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
           o.battle.clickSwitchHardModeBtn()
           c.yield(sleepPromise(500))
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -112,7 +112,7 @@ local battle = function(action)
       c.yield(sleepPromise(500))
       -- 检查是否在所需的章节
       if not o.battle.checkChapter(settings.battleChapter) then
-        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章失败，重新移动')
+        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter .. '章失败，重新移动')
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },
         }))
@@ -130,35 +130,55 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO' then
 
-      stepLabel.setStepLabelContent('2.6.章节信息面板')
-      stepLabel.setStepLabelContent('2.6.点击继续')
+      stepLabel.setStepLabelContent('2.8.章节信息面板')
+      stepLabel.setStepLabelContent('2.9.点击继续')
       o.battle.clickGotoSelectFleedPanelBtn()
 
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },
-        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel },
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET', o.battle.isSelectFleetPanel },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel },
       }))
       return makeAction(newstateTypes)
 
-    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET' then
-      -- 1.7.19 版本后选择舰队方法变了，太复杂所以不做选择舰队了。
-      --      stepLabel.setStepLabelContent('2.7.选择舰队面板')
-      --      stepLabel.setStepLabelContent('2.8.检查已选择的舰队')
-      --      local res, selectList, unselectList, selectedFeeldList = o.battle.checkSelectedFleet(settings.battleFleet)
-      --      if not res then
-      --        stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ','))
-      --        if #selectedFeeldList <= 1 then
-      --          o.battle.clickFleet(selectList)
-      --        else
-      --          o.battle.clickFleet(unselectList)
-      --        end
-      --        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 500 },
-      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 }
-      --        }))
-      --        return makeAction(newstateTypes)
-      --      end
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET' then
+
+      stepLabel.setStepLabelContent('2.10.取消第二个舰队')
+      o.battle.clickSelectFleetPanelCancel2Fleet()
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_1_FLEET', o.battle.isSelectFleetPanel, 500 },
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_1_FLEET' then
+
+      stepLabel.setStepLabelContent('2.10.选择第一个舰队')
+      c.yield(o.battle.clickSelectFleetPanelSelect1Fleet(settings.battleFleet[1]))
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_2_FLEET', o.battle.isSelectFleetPanel, 500 },
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_2_FLEET' then
+
+      stepLabel.setStepLabelContent('2.10.选择第二个舰队')
+      if settings.battleFleet[2] then
+        c.yield(o.battle.clickSelectFleetPanelSelect2Fleet(settings.battleFleet[2]))
+      else
+        c.yield(o.battle.clickSelectFleetPanelCancel2Fleet())
+      end
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isSelectFleetPanel, 500 },
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CLICK_INTO' then
 
       stepLabel.setStepLabelContent('2.10.点击进入章节')
       o.battle.clickGotoMapBtn()

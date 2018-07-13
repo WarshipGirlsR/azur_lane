@@ -13568,6 +13568,13 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "local mission = {}\
+\
+return mission\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./utils/vibrator-promise.lua"] = { path = "./utils/vibrator-promise.lua", name = "./utils/vibrator-promise.lua", source = "if type(Promise) ~= 'table' then\
   error('SleepPromise need Promise module to work. Please require \\'Promise\\' as global variable.', 2)\
 end\
@@ -13725,7 +13732,12 @@ return home" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/battle.lua"] = { path = "./meta-operation/battle.lua", name = "./meta-operation/battle.lua", source = "local battle = {}\
+package.sourceCode["./meta-operation/battle.lua"] = { path = "./meta-operation/battle.lua", name = "./meta-operation/battle.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local sleepPromise = require '../utils/sleep-promise'\
+\
+\
+local battle = {}\
 \
 \
 -- 点击出征\
@@ -14259,66 +14271,63 @@ battle.clickHardGotoSelectFleedPanelBtn = function()\
   RTap({ 1588, 934 }, 100)\
 end\
 \
--- 检查已经选择的舰队\
-battle.checkSelectedFleet = function(needFleetList)\
+-- 取消第二个舰队\
+battle.clickSelectFleetPanelCancel2Fleet = function(fleet)\
   local __keepScreenState = keepScreenState\
-  if __keepScreenState then keepScreen(false) end\
-  keepScreen(true)\
-  -- 需要选中的舰队，转换成索引\
-  local needFleet = { false, false, false, false }\
-  for _, v in ipairs(needFleetList) do\
-    needFleet[v] = true\
-  end\
-\
-  local list1 = { { 553, 835, 0xf7a23a } }\
-  local list2 = { { 760, 838, 0xf7a242 } }\
-  local list3 = { { 987, 839, 0xf7a242 } }\
-  local list4 = { { 1203, 840, 0xefa23a } }\
-  -- 已经选中的舰队索引\
-  local nowSelectedFeeld = {\
-    multiColorS(list1) and true or false,\
-    multiColorS(list2) and true or false,\
-    multiColorS(list3) and true or false,\
-    multiColorS(list4) and true or false,\
-  }\
-  -- 已经选中的舰队\
-  local nowSelectedFeeldList = {}\
-  for key, value in ipairs(nowSelectedFeeld) do\
-    if value then\
-      table.insert(nowSelectedFeeldList, key)\
-    end\
-  end\
-  -- 需要改变的舰队索引\
-  local needChange = { false, false, false, false }\
-  for key = 1, 4 do\
-    if needFleet[key] ~= nowSelectedFeeld[key] then\
-      if needFleet[key] then\
-        needChange[key] = 'select'\
-      else\
-        needChange[key] = 'unselect'\
-      end\
-    end\
-  end\
-\
-  -- 需要选中的舰队\
-  local selectChangeList = {}\
-  -- 需要取消的舰队\
-  local unSelectChangeList = {}\
-  -- 需要改变的舰队\
-  local needChangeList = {}\
-  for key, _ in ipairs(needChange) do\
-    if (needChange[key]) then\
-      table.insert(needChangeList, key)\
-    end\
-    if needChange[key] == 'select' then\
-      table.insert(selectChangeList, key)\
-    elseif needChange[key] == 'unselect' then\
-      table.insert(unSelectChangeList, key)\
-    end\
-  end\
-\
+  if __keepScreenState then keepScreen(true) end\
+  RTap({ 1690, 522 }, 100)\
   if not __keepScreenState then keepScreen(false) end\
-  return #needChangeList == 0, selectChangeList, unSelectChangeList, nowSelectedFeeldList\
+  return\
+end\
+\
+-- 选择第一个舰队\
+battle.clickSelectFleetPanelSelect1Fleet = function(fleet)\
+  return co(c.create(function()\
+    local __keepScreenState = keepScreenState\
+    if __keepScreenState then keepScreen(true) end\
+    RTap({ 1565, 314 }, 100)\
+    c.yield(sleepPromise(500))\
+    if fleet == 1 then\
+      RTap({ 1622, 414 }, 100)\
+    elseif fleet == 2 then\
+      RTap({ 1629, 487 }, 100)\
+    elseif fleet == 3 then\
+      RTap({ 1625, 562 }, 100)\
+    elseif fleet == 4 then\
+      RTap({ 1625, 634 }, 100)\
+    elseif fleet == 5 then\
+      RTap({ 1622, 712 }, 100)\
+    elseif fleet == 6 then\
+      RTap({ 1620, 788 }, 100)\
+    end\
+    if not __keepScreenState then keepScreen(false) end\
+    return\
+  end))\
+end\
+\
+-- 选择第二个舰队\
+battle.clickSelectFleetPanelSelect2Fleet = function(fleet)\
+  return co(c.create(function()\
+    local __keepScreenState = keepScreenState\
+    if __keepScreenState then keepScreen(true) end\
+    RTap({ 1568, 518 }, 100)\
+    c.yield(sleepPromise(500))\
+    if fleet == 1 then\
+      RTap({ 1621, 615 }, 100)\
+    elseif fleet == 2 then\
+      RTap({ 1619, 688 }, 100)\
+    elseif fleet == 3 then\
+      RTap({ 1627, 763 }, 100)\
+    elseif fleet == 4 then\
+      RTap({ 1623, 836 }, 100)\
+    elseif fleet == 5 then\
+      RTap({ 1620, 911 }, 100)\
+    elseif fleet == 6 then\
+      RTap({ 1627, 988 }, 100)\
+    end\
+    if not __keepScreenState then keepScreen(false) end\
+    return\
+  end))\
 end\
 \
 -- 点击舰队\
@@ -14705,8 +14714,8 @@ battle.isVictoryPanel = function()\
   }\
   local result = false\
   if multiColorS(list) or multiColorS(list2)\
-    or multiColorS(list3) or multiColorS(list4)\
-    or multiColorS(list5) or multiColorS(list6) then\
+      or multiColorS(list3) or multiColorS(list4)\
+      or multiColorS(list5) or multiColorS(list6) then\
     result = true\
   end\
   if not __keepScreenState then keepScreen(false) end\
@@ -16719,6 +16728,46 @@ return mapsType1\
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./missions/mission.lua"] = { path = "./missions/mission.lua", name = "./missions/mission.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local stepLabel = require '../utils/step-label'\
+local makeAction = (require './utils').makeAction\
+local sleepPromise = require '../utils/sleep-promise'\
+local moMission = require '../meta-operation/mission'\
+local moHome = require '../meta-operation/home'\
+local moMap = require '../meta-operation/maps-options/index'\
+local setScreenListeners = (require './utils').setScreenListeners\
+local store = require '../store'\
+local vibratorPromise = require '../utils/vibrator-promise'\
+\
+store.battle = store.battle or {}\
+\
+local o = {\
+  home = moHome,\
+  mission = moMission,\
+  map = moMap,\
+}\
+\
+local mission = function(action)\
+  local settings = store.settings;\
+  local mapProxy = o.map['map' .. settings.battleChapter]\
+\
+  return co(c.create(function()\
+\
+    if action.type == 'MISSION_INIT' then\
+      return makeAction('MISSION_START')\
+    elseif action.type == 'MISSION_START' then\
+    end\
+\
+    return nil\
+  end))\
+end\
+\
+return mission\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/battle.lua"] = { path = "./missions/battle.lua", name = "./missions/battle.lua", source = "local co = require '../lib/co'\
 local c = coroutine\
 local stepLabel = require '../utils/step-label'\
@@ -16809,7 +16858,7 @@ local battle = function(action)\
         end\
 \
         if (settings.battleMode == 'normal' and o.battle.isHardMode())\
-          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
+            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
           o.battle.clickSwitchHardModeBtn()\
           c.yield(sleepPromise(500))\
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
@@ -16833,7 +16882,7 @@ local battle = function(action)\
       c.yield(sleepPromise(500))\
       -- 检查是否在所需的章节\
       if not o.battle.checkChapter(settings.battleChapter) then\
-        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章失败，重新移动')\
+        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter .. '章失败，重新移动')\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
           { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },\
         }))\
@@ -16851,35 +16900,55 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO' then\
 \
-      stepLabel.setStepLabelContent('2.6.章节信息面板')\
-      stepLabel.setStepLabelContent('2.6.点击继续')\
+      stepLabel.setStepLabelContent('2.8.章节信息面板')\
+      stepLabel.setStepLabelContent('2.9.点击继续')\
       o.battle.clickGotoSelectFleedPanelBtn()\
 \
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },\
-        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET', o.battle.isSelectFleetPanel },\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel },\
       }))\
       return makeAction(newstateTypes)\
 \
-    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET' then\
-      -- 1.7.19 版本后选择舰队方法变了，太复杂所以不做选择舰队了。\
-      --      stepLabel.setStepLabelContent('2.7.选择舰队面板')\
-      --      stepLabel.setStepLabelContent('2.8.检查已选择的舰队')\
-      --      local res, selectList, unselectList, selectedFeeldList = o.battle.checkSelectedFleet(settings.battleFleet)\
-      --      if not res then\
-      --        stepLabel.setStepLabelContent('2-9.选择舰队 ' .. table.concat(settings.battleFleet, ','))\
-      --        if #selectedFeeldList <= 1 then\
-      --          o.battle.clickFleet(selectList)\
-      --        else\
-      --          o.battle.clickFleet(unselectList)\
-      --        end\
-      --        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 500 },\
-      --          { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 }\
-      --        }))\
-      --        return makeAction(newstateTypes)\
-      --      end\
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET' then\
+\
+      stepLabel.setStepLabelContent('2.10.取消第二个舰队')\
+      o.battle.clickSelectFleetPanelCancel2Fleet()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_1_FLEET', o.battle.isSelectFleetPanel, 500 },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },\
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_1_FLEET' then\
+\
+      stepLabel.setStepLabelContent('2.10.选择第一个舰队')\
+      c.yield(o.battle.clickSelectFleetPanelSelect1Fleet(settings.battleFleet[1]))\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_2_FLEET', o.battle.isSelectFleetPanel, 500 },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },\
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_2_FLEET' then\
+\
+      stepLabel.setStepLabelContent('2.10.选择第二个舰队')\
+      if settings.battleFleet[2] then\
+        c.yield(o.battle.clickSelectFleetPanelSelect2Fleet(settings.battleFleet[2]))\
+      else\
+        c.yield(o.battle.clickSelectFleetPanelCancel2Fleet())\
+      end\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isSelectFleetPanel, 500 },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },\
+        { 'BATTLE_MAP_PAGE', o.battle.isMapPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CLICK_INTO' then\
 \
       stepLabel.setStepLabelContent('2.10.点击进入章节')\
       o.battle.clickGotoMapBtn()\
@@ -17306,6 +17375,7 @@ return sleepPromise\
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/index.lua"] = { path = "./missions/index.lua", name = "./missions/index.lua", source = "local co = require '../lib/co'\
 local battle = require './battle'\
+local mission = require './mission'\
 local mapsType1 = require './maps-type-1'\
 local mapsType2 = require './maps-type-2'\
 local mapsType3 = require './maps-type-3'\
@@ -17315,6 +17385,7 @@ local scanMapsType1 = require './scan-map-type-1'\
 -- 将分散在各个文件的任务集合到一起\
 local missions = {\
   battle,\
+  mission,\
   mapsType1,\
   mapsType2,\
   mapsType3,\
@@ -17561,10 +17632,10 @@ return function()\
           ['id'] = 'battleChapter',\
           ['type'] = 'ComboBox',\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'\
-            .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
-            .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-            .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'\
-            .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',\
+              .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
+              .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
+              .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'\
+              .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',\
           ['select'] = '0',\
         },\
         {\
@@ -17610,8 +17681,7 @@ return function()\
         {\
           ['id'] = 'battleFleetOnWay',\
           ['type'] = 'RadioGroup',\
-          --          ['list'] = '无,1队,2队,3队,4队',\
-          ['list'] = '无,1队,2队',\
+          ['list'] = '无,1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
         {\
@@ -17624,8 +17694,7 @@ return function()\
         {\
           ['id'] = 'battleFleetBoss',\
           ['type'] = 'RadioGroup',\
-          --          ['list'] = '1队,2队,3队,4队',\
-          ['list'] = '1队,2队',\
+          ['list'] = '1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
         {\
@@ -17716,17 +17785,17 @@ return function()\
         {\
           ['type'] = 'Label',\
           ['text'] = ' 1-1, 1-2, 1-3, 1-4, \\n'\
-            .. '2-1, 2-2, 2-3, 2-4, \\n'\
-            .. '3-1, 3-2, 3-3, 3-4, \\n'\
-            .. '4-1, 4-2, 4-3, 4-4, \\n'\
-            .. '5-1, 5-2, 5-3, 5-4, \\n'\
-            .. '6-1, 6-2, 6-3, 6-4, \\n'\
-            .. '7-1, 7-2, 7-3, 7-4, \\n'\
-            .. '8-1, 8-2, 8-3, 8-4, \\n'\
-            .. '9-1, 9-2, 9-3, 9-4, \\n'\
-            .. '10-1, 10-2, 10-3, 10-4, \\n'\
-            .. '11-1,11-2, 11-3,11-4, \\n'\
-            .. '12-1, 12-2, 12-3, 12-4, \\n',\
+              .. '2-1, 2-2, 2-3, 2-4, \\n'\
+              .. '3-1, 3-2, 3-3, 3-4, \\n'\
+              .. '4-1, 4-2, 4-3, 4-4, \\n'\
+              .. '5-1, 5-2, 5-3, 5-4, \\n'\
+              .. '6-1, 6-2, 6-3, 6-4, \\n'\
+              .. '7-1, 7-2, 7-3, 7-4, \\n'\
+              .. '8-1, 8-2, 8-3, 8-4, \\n'\
+              .. '9-1, 9-2, 9-3, 9-4, \\n'\
+              .. '10-1, 10-2, 10-3, 10-4, \\n'\
+              .. '11-1,11-2, 11-3,11-4, \\n'\
+              .. '12-1, 12-2, 12-3, 12-4, \\n',\
           ['align'] = 'left',\
           ['color'] = '0,0,0',\
         },\
@@ -17826,13 +17895,13 @@ return function()\
     -- 选择Boss舰队\
     settings.battleFleet = {}\
     settings.battleFleetBoss = (function(battleFleetBoss)\
-      local list = transStrToTable({ 1, 2, 3, 4 })\
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })\
       return list[battleFleetBoss] or 1\
     end)(settings.battleFleetBoss)\
     settings.battleFleet = { settings.battleFleetBoss }\
     -- 选择道中舰队\
     settings.battleFleetOnWay = (function(battleFleetOnWay)\
-      local list = transStrToTable({ 0, 1, 2, 3, 4 })\
+      local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6 })\
       local result = list[battleFleetOnWay] or 0\
       if settings.battleFleetBoss == result then\
         result = 0\

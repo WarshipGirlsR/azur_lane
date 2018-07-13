@@ -1,5 +1,6 @@
 local co = require '../lib/co'
 local battle = require './battle'
+local mission = require './mission'
 local mapsType1 = require './maps-type-1'
 local mapsType2 = require './maps-type-2'
 local mapsType3 = require './maps-type-3'
@@ -9,6 +10,7 @@ local scanMapsType1 = require './scan-map-type-1'
 -- 将分散在各个文件的任务集合到一起
 local missions = {
   battle,
+  mission,
   mapsType1,
   mapsType2,
   mapsType3,

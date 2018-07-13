@@ -1,3 +1,8 @@
+local co = require '../lib/co'
+local c = coroutine
+local sleepPromise = require '../utils/sleep-promise'
+
+
 local battle = {}
 
 
@@ -532,66 +537,63 @@ battle.clickHardGotoSelectFleedPanelBtn = function()
   RTap({ 1588, 934 }, 100)
 end
 
--- 检查已经选择的舰队
-battle.checkSelectedFleet = function(needFleetList)
+-- 取消第二个舰队
+battle.clickSelectFleetPanelCancel2Fleet = function(fleet)
   local __keepScreenState = keepScreenState
-  if __keepScreenState then keepScreen(false) end
-  keepScreen(true)
-  -- 需要选中的舰队，转换成索引
-  local needFleet = { false, false, false, false }
-  for _, v in ipairs(needFleetList) do
-    needFleet[v] = true
-  end
-
-  local list1 = { { 553, 835, 0xf7a23a } }
-  local list2 = { { 760, 838, 0xf7a242 } }
-  local list3 = { { 987, 839, 0xf7a242 } }
-  local list4 = { { 1203, 840, 0xefa23a } }
-  -- 已经选中的舰队索引
-  local nowSelectedFeeld = {
-    multiColorS(list1) and true or false,
-    multiColorS(list2) and true or false,
-    multiColorS(list3) and true or false,
-    multiColorS(list4) and true or false,
-  }
-  -- 已经选中的舰队
-  local nowSelectedFeeldList = {}
-  for key, value in ipairs(nowSelectedFeeld) do
-    if value then
-      table.insert(nowSelectedFeeldList, key)
-    end
-  end
-  -- 需要改变的舰队索引
-  local needChange = { false, false, false, false }
-  for key = 1, 4 do
-    if needFleet[key] ~= nowSelectedFeeld[key] then
-      if needFleet[key] then
-        needChange[key] = 'select'
-      else
-        needChange[key] = 'unselect'
-      end
-    end
-  end
-
-  -- 需要选中的舰队
-  local selectChangeList = {}
-  -- 需要取消的舰队
-  local unSelectChangeList = {}
-  -- 需要改变的舰队
-  local needChangeList = {}
-  for key, _ in ipairs(needChange) do
-    if (needChange[key]) then
-      table.insert(needChangeList, key)
-    end
-    if needChange[key] == 'select' then
-      table.insert(selectChangeList, key)
-    elseif needChange[key] == 'unselect' then
-      table.insert(unSelectChangeList, key)
-    end
-  end
-
+  if __keepScreenState then keepScreen(true) end
+  RTap({ 1690, 522 }, 100)
   if not __keepScreenState then keepScreen(false) end
-  return #needChangeList == 0, selectChangeList, unSelectChangeList, nowSelectedFeeldList
+  return
+end
+
+-- 选择第一个舰队
+battle.clickSelectFleetPanelSelect1Fleet = function(fleet)
+  return co(c.create(function()
+    local __keepScreenState = keepScreenState
+    if __keepScreenState then keepScreen(true) end
+    RTap({ 1565, 314 }, 100)
+    c.yield(sleepPromise(500))
+    if fleet == 1 then
+      RTap({ 1622, 414 }, 100)
+    elseif fleet == 2 then
+      RTap({ 1629, 487 }, 100)
+    elseif fleet == 3 then
+      RTap({ 1625, 562 }, 100)
+    elseif fleet == 4 then
+      RTap({ 1625, 634 }, 100)
+    elseif fleet == 5 then
+      RTap({ 1622, 712 }, 100)
+    elseif fleet == 6 then
+      RTap({ 1620, 788 }, 100)
+    end
+    if not __keepScreenState then keepScreen(false) end
+    return
+  end))
+end
+
+-- 选择第二个舰队
+battle.clickSelectFleetPanelSelect2Fleet = function(fleet)
+  return co(c.create(function()
+    local __keepScreenState = keepScreenState
+    if __keepScreenState then keepScreen(true) end
+    RTap({ 1568, 518 }, 100)
+    c.yield(sleepPromise(500))
+    if fleet == 1 then
+      RTap({ 1621, 615 }, 100)
+    elseif fleet == 2 then
+      RTap({ 1619, 688 }, 100)
+    elseif fleet == 3 then
+      RTap({ 1627, 763 }, 100)
+    elseif fleet == 4 then
+      RTap({ 1623, 836 }, 100)
+    elseif fleet == 5 then
+      RTap({ 1620, 911 }, 100)
+    elseif fleet == 6 then
+      RTap({ 1627, 988 }, 100)
+    end
+    if not __keepScreenState then keepScreen(false) end
+    return
+  end))
 end
 
 -- 点击舰队
@@ -978,8 +980,8 @@ battle.isVictoryPanel = function()
   }
   local result = false
   if multiColorS(list) or multiColorS(list2)
-    or multiColorS(list3) or multiColorS(list4)
-    or multiColorS(list5) or multiColorS(list6) then
+      or multiColorS(list3) or multiColorS(list4)
+      or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
