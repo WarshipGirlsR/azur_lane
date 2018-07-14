@@ -13568,7 +13568,125 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "local mission = {}\
+package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local function transRelativePoint(tab, base)\
+  if not base then\
+    base = tab[1]\
+    table.remove(tab, 1)\
+  end\
+  local newTab = {}\
+  for key = 1, #tab do\
+    local value = tab[key]\
+    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])\
+  end\
+  return base, table.concat(newTab, ',')\
+end\
+\
+local function toPoint(tab)\
+  -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
+  local newTab = {}\
+  local tabLength = #tab\
+  for key = 1, tabLength do\
+    newTab[key] = { tab[key].x, tab[key].y }\
+    tab[key] = nil\
+  end\
+  return newTab\
+end\
+\
+\
+local mission = {}\
+\
+-- 检查是否有任务\
+mission.checkHasMission = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 1390, 1007, 0xe60821 }, { 1407, 1004, 0xde1831 },\
+    { 1409, 1016, 0xde0821 }, { 1391, 1017, 0xde0019 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击进入任务页\
+mission.clickIntoMissionPage = function()\
+  RTap({ 1305, 1032 }, 100)\
+end\
+\
+-- 检查是否在任务页\
+mission.isMissionPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 9, 10, 0xdee7ef }, { 872, 4, 0xeff3f7 }, { 832, 60, 0xdedfe6 }, { 13, 52, 0xcecece },\
+    { 132, 14, 0x313131 }, { 318, 11, 0x424542 }, { 166, 63, 0x313131 }, { 444, 43, 0x000000 },\
+    { 160, 35, 0x292d29 }, { 568, 18, 0xeff3f7 }, { 38, 32, 0xffd74a }, { 65, 32, 0xffd742 },\
+    { 52, 24, 0xffd74a }, { 52, 44, 0xffdf4a }, { 184, 26, 0xffe7a4 }, { 195, 28, 0x292d29 },\
+    { 194, 47, 0x313131 }, { 204, 44, 0xffc229 }, { 210, 25, 0xf7e7b5 }, { 225, 29, 0x3a393a },\
+    { 246, 20, 0xfffbe6 }, { 258, 24, 0x211c19 }, { 256, 50, 0x424142 }, { 257, 37, 0x101010 },\
+    { 270, 34, 0xefce5a }, { 275, 29, 0x101410 }, { 287, 54, 0x424142 }, { 226, 60, 0x3a393a },\
+    { 225, 47, 0x3a393a }, { 185, 51, 0x191810 }, { 299, 40, 0x000000 }, { 308, 43, 0xefefff },\
+    { 346, 46, 0xf7f3ff }, { 358, 46, 0x000000 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击全部任务\
+mission.clickAllMissionTag = function()\
+  RTap({ 86, 153 }, 100)\
+end\
+\
+-- 查找任务\
+mission.findMission = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local leftTop = { 1569, 120 }\
+  local rightBotton = { 1832, 454 }\
+  local basePoint, posandcolor = transRelativePoint({\
+    { 1694, 190, 0xd6a229 }, { 1646, 165, 0xf7db4a }, { 1685, 163, 0xffdb52 }, { 1735, 163, 0xffdf52 },\
+    { 1781, 186, 0xf7c231 }, { 1783, 212, 0xffae10 }, { 1701, 215, 0xffb221 }, { 1649, 214, 0xffb219 },\
+    { 1602, 212, 0xffae19 }, { 1623, 191, 0xf7b621 }, { 1634, 189, 0xf7c231 }, { 1658, 188, 0xa47d29 },\
+    { 1693, 188, 0x9c7921 }, { 1715, 188, 0xdee3d6 }, { 1697, 181, 0xb5a684 }, { 1681, 181, 0xffffff },\
+    { 1680, 202, 0xffffff }, { 1723, 202, 0xefe3d6 }, { 1707, 196, 0xffffff }, { 1720, 181, 0xffffff },\
+  })\
+  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2]))\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击任务\
+mission.clickMissionBtn = function(point)\
+  RTap(point, 100)\
+end\
+\
+-- 获得道具页面\
+mission.isGetPropsPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 13, 9, 0x31353a }, { 19, 42, 0x312d31 }, { 47, 32, 0x312d10 }, { 97, 39, 0x313131 },\
+    { 147, 55, 0x080808 }, { 117, 21, 0x191819 }, { 164, 15, 0x080808 }, { 191, 36, 0x312810 },\
+    { 256, 33, 0x312d10 }, { 200, 58, 0x191010 }, { 555, 10, 0x313531 }, { 728, 29, 0x313531 },\
+    { 844, 17, 0x313531 }, { 815, 57, 0x3a3531 }, { 716, 59, 0x292d29 }, { 1075, 47, 0x100c10 },\
+    { 1515, 69, 0x080810 }, { 1731, 45, 0x000408 }, { 20, 241, 0x101410 }, { 20, 412, 0x292029 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击获得道具继续\
+mission.clickGetPropsPanelNext = function(point)\
+  RTap({ 944, 815 }, 100)\
+end\
+\
+-- 点击返回\
+mission.getPropsPanelBack = function()\
+  RTap({ 57, 29 }, 100)\
+end\
 \
 return mission\
 " }
@@ -15149,8 +15267,8 @@ local mapsType2 = function(action)\
       end\
 \
       stepLabel.setStepLabelContent('3-3.移动地图')\
-      local isCenter = mapProxy.moveMapToCheckPosition(newMoveVector)\
-      if isCenter then\
+      local moved = mapProxy.moveMapToCheckPosition(newMoveVector)\
+      if moved then\
         -- 地图已经移动到位\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
           { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },\
@@ -16886,8 +17004,62 @@ local mission = function(action)\
   return co(c.create(function()\
 \
     if action.type == 'MISSION_INIT' then\
+\
       return makeAction('MISSION_START')\
+\
     elseif action.type == 'MISSION_START' then\
+\
+      stepLabel.setStepLabelContent('3.3.检查是否有任务')\
+      if o.mission.checkHasMission() then\
+        o.mission.clickIntoMissionPage()\
+        local newstateTypes = c.yield(setScreenListeners({\
+          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
+      return ''\
+\
+    elseif action.type == 'MISSION_MITTION_PAGE' then\
+\
+      stepLabel.setStepLabelContent('3.4.点击所有任务')\
+      o.mission.clickAllMissionTag()\
+      c.yield(sleepPromise(800))\
+\
+      stepLabel.setStepLabelContent('3.5.查找完成的任务')\
+      local res = o.mission.findMission()\
+      if res and #res > 0 then\
+        stepLabel.setStepLabelContent('3.6.点击任务')\
+        console.log(res[1])\
+        o.mission.clickMissionBtn(res[1])\
+        local newstateTypes = c.yield(setScreenListeners({\
+          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+          { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
+\
+      stepLabel.setStepLabelContent('3.7.没有任务，返回')\
+      local newstateTypes = c.yield(setScreenListeners({\
+        { 'MISSION_MITTION_PAGE_BACK', o.mission.isMissionPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MISSION_GET_PROPS_PANEL' then\
+\
+      stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')\
+      o.mission.clickGetPropsPanelNext()\
+\
+      local newstateTypes = c.yield(setScreenListeners({\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MISSION_MITTION_PAGE_BACK' then\
+\
+      stepLabel.setStepLabelContent('3.8.返回桌面')\
+      o.mission.getPropsPanelBack()\
+      return ''\
     end\
 \
     return nil\
@@ -17703,7 +17875,20 @@ return function()\
           ['color'] = '0,0,0',\
         },\
         {\
-          ['id'] = 'dailyChallenges',\
+          ['id'] = 'dailyChallengesEnable',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '开启,关闭',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '任务',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'missionEnable',\
           ['type'] = 'RadioGroup',\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
@@ -17978,10 +18163,15 @@ return function()\
       return list[battleEnable] or false\
     end)(settings.battleEnable)\
     -- 每日挑战\
-    settings.dailyChallenges = (function(dailyChallenges)\
+    settings.dailyChallengesEnable = (function(dailyChallengesEnable)\
       local list = transStrToTable({ true, false, })\
-      return list[dailyChallenges] or false\
-    end)(settings.dailyChallenges)\
+      return list[dailyChallengesEnable] or false\
+    end)(settings.dailyChallengesEnable)\
+    -- 任务\
+    settings.missionEnable = (function(missionEnable)\
+      local list = transStrToTable({ true, false, })\
+      return list[missionEnable] or false\
+    end)(settings.missionEnable)\
     -- 总循环间隔时间\
     settings.missionsInterval = tonumber(settings.missionsInterval) or 0\
     -- 多长时间界面不变则重启，最少60秒\
@@ -20868,12 +21058,16 @@ end)\
 \
 \
 co(c.create(function()\
-  if (settings.battleEnable) then\
+  if (settings.battleEnable or settings.missionEnable) then\
 \
     local theMissionsQuery = {}\
     -- 是否运行出征\
     if (settings.battleEnable) then\
       table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })\
+    end\
+    -- 是否运行任务\
+    if (settings.missionEnable) then\
+      table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })\
     end\
 \
     local theChain = createChain(missionsList)\

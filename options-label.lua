@@ -53,7 +53,20 @@ return function()
           ['color'] = '0,0,0',
         },
         {
-          ['id'] = 'dailyChallenges',
+          ['id'] = 'dailyChallengesEnable',
+          ['type'] = 'RadioGroup',
+          ['list'] = '开启,关闭',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '任务',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'missionEnable',
           ['type'] = 'RadioGroup',
           ['list'] = '开启,关闭',
           ['select'] = '0',
@@ -328,10 +341,15 @@ return function()
       return list[battleEnable] or false
     end)(settings.battleEnable)
     -- 每日挑战
-    settings.dailyChallenges = (function(dailyChallenges)
+    settings.dailyChallengesEnable = (function(dailyChallengesEnable)
       local list = transStrToTable({ true, false, })
-      return list[dailyChallenges] or false
-    end)(settings.dailyChallenges)
+      return list[dailyChallengesEnable] or false
+    end)(settings.dailyChallengesEnable)
+    -- 任务
+    settings.missionEnable = (function(missionEnable)
+      local list = transStrToTable({ true, false, })
+      return list[missionEnable] or false
+    end)(settings.missionEnable)
     -- 总循环间隔时间
     settings.missionsInterval = tonumber(settings.missionsInterval) or 0
     -- 多长时间界面不变则重启，最少60秒

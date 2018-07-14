@@ -133,8 +133,8 @@ local mapsType2 = function(action)
       end
 
       stepLabel.setStepLabelContent('3-3.移动地图')
-      local isCenter = mapProxy.moveMapToCheckPosition(newMoveVector)
-      if isCenter then
+      local moved = mapProxy.moveMapToCheckPosition(newMoveVector)
+      if moved then
         -- 地图已经移动到位
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },

@@ -25,8 +25,62 @@ local mission = function(action)
   return co(c.create(function()
 
     if action.type == 'MISSION_INIT' then
+
       return makeAction('MISSION_START')
+
     elseif action.type == 'MISSION_START' then
+
+      stepLabel.setStepLabelContent('3.3.检查是否有任务')
+      if o.mission.checkHasMission() then
+        o.mission.clickIntoMissionPage()
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage },
+        }))
+        return makeAction(newstateTypes)
+      end
+      return ''
+
+    elseif action.type == 'MISSION_MITTION_PAGE' then
+
+      stepLabel.setStepLabelContent('3.4.点击所有任务')
+      o.mission.clickAllMissionTag()
+      c.yield(sleepPromise(800))
+
+      stepLabel.setStepLabelContent('3.5.查找完成的任务')
+      local res = o.mission.findMission()
+      if res and #res > 0 then
+        stepLabel.setStepLabelContent('3.6.点击任务')
+        console.log(res[1])
+        o.mission.clickMissionBtn(res[1])
+        local newstateTypes = c.yield(setScreenListeners({
+          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },
+          { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },
+        }))
+        return makeAction(newstateTypes)
+      end
+
+      stepLabel.setStepLabelContent('3.7.没有任务，返回')
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'MISSION_MITTION_PAGE_BACK', o.mission.isMissionPage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MISSION_GET_PROPS_PANEL' then
+
+      stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')
+      o.mission.clickGetPropsPanelNext()
+
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },
+        { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MISSION_MITTION_PAGE_BACK' then
+
+      stepLabel.setStepLabelContent('3.8.返回桌面')
+      o.mission.getPropsPanelBack()
+      return ''
     end
 
     return nil
