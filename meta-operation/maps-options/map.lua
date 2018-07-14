@@ -89,7 +89,14 @@ local function checkPointPosition(checkPoint, topPoint, bottonPoint)
 end
 
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
-local function transPointListToChessboardPointList(positionMap, positionList)
+local function transPointListToChessboardPointList(positionMap, positionList, correction)
+  local correctionX = 0
+  local correctionY = 0
+  if type(correction) == 'table' then
+    correctionX = correction[1] or 0
+    correctionY = correction[2] or 0
+  end
+
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
@@ -103,7 +110,7 @@ local function transPointListToChessboardPointList(positionMap, positionList)
   for i = 1, #positionList do
     local theRow = -1
     local theCol = -1
-    local item = positionList[i]
+    local item = { positionList[i][1] + correctionX, positionList[i][2] + correctionY }
     -- 匹配点在第几行。
     -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘
     for rowNum, row in ipairs(positionMap) do
@@ -438,7 +445,7 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
 end
 
 -- 扫描地图
-map.scanMap = function(ImgInfo, targetPosition, mapChessboard)
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard, moveVectorForCheck)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
   getColor(0, 0)

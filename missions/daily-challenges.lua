@@ -9,24 +9,38 @@ local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 local vibratorPromise = require '../utils/vibrator-promise'
 
-store.battle = store.battle or {}
+store.dalyChallenges = store.dalyChallenges or {
+  intervalTime = os.time()
+}
 
 local o = {
   home = moHome,
   battle = moBattle,
-  moDailyChallenges = moDailyChallenges,
+  dailyChallenges = moDailyChallenges,
 }
 local battle = function(action)
   local settings = store.settings;
   return co(c.create(function()
     if action.type == 'DAILY_CHALLENGES_INIT' then
 
-      stepLabel.setStepLabelContent('2.1.等待桌面')
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
+      stepLabel.setStepLabelContent('4.1.等待桌面')
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'DAILY_CHALLENGES_START', o.home.isHome, 2000 },
       }))
       return makeAction(newstateTypes)
+
     elseif action.type == 'DAILY_CHALLENGES_START' then
+
+      stepLabel.setStepLabelContent('4.2.点击进入战斗页面')
+      o.dailyChallenges.clickIntoBattlePage()
+
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'DAILY_CHALLENGES_START', o.home.isHome, 2000 },
+        { 'DAILY_CHALLENGES_DAILY_CHALLENGES_PAGE', o.dailyChallenges.clickIntoDailyChallengesPage, 2000 },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'DAILY_CHALLENGES_DAILY_CHALLENGES_PAGE' then
     end
     return nil
   end))

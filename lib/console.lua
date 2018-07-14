@@ -122,17 +122,25 @@ end
 
 
 __console.log = __console.log or function(obj)
-  local js = table.concat(runTable(obj, 2), "\n")
-  print(js)
+  local res = runTable(obj, 2)
   if useNlog then
     local info = debug.getinfo(2, 'Sl')
     local lineInfo = ''
     if info.currentline then
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\n'
+      lineInfo = info.source .. ': ' .. info.currentline .. ':'
     end
-    nLog(lineInfo .. js)
+    nLog(lineInfo)
+    local tmp = {}
+    local resLength = #res
+    for i = 1, resLength do
+      table.insert(tmp, res[i])
+      local t1, t2 = math.modf(i / 10)
+      if t2 == 0 or i == resLength then
+        nLog(table.concat(tmp, "\n"))
+        tmp = {}
+      end
+    end
   end
-  return js
 end
 
 __console.getJsStr = function(obj)

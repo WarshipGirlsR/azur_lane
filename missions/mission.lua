@@ -26,7 +26,11 @@ local mission = function(action)
 
     if action.type == 'MISSION_INIT' then
 
-      return makeAction('MISSION_START')
+      stepLabel.setStepLabelContent('3.1.等待桌面')
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'MISSION_START', o.home.isHome, 2000 },
+      }))
+      return makeAction(newstateTypes)
 
     elseif action.type == 'MISSION_START' then
 

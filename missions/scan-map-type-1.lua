@@ -132,6 +132,17 @@ local mapsType2 = function(action)
         return makeAction(newstateTypes)
       end
 
+
+      local minLength = 20
+      if math.abs(newMoveVector[1]) <= minLength and math.abs(newMoveVector[2]) <= minLength then
+        store.scanMapType1.moveVectorForCheck = newMoveVector
+        -- 地图位置在误差范围之内
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },
+        }))
+        return makeAction(newstateTypes)
+      end
+
       stepLabel.setStepLabelContent('3-3.移动地图')
       local moved = mapProxy.moveMapToCheckPosition(newMoveVector)
       if moved then
@@ -147,18 +158,12 @@ local mapsType2 = function(action)
         }))
         return makeAction(newstateTypes)
       end
-      console.log(newMoveVector)
-      store.scanMapType1.moveVectorForCheck = newMoveVector
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
-      }))
-      return makeAction(newstateTypes)
 
     elseif action.type == 'SCAN_MAP_TYPE_1_SCAN_MAP' then
 
       stepLabel.setStepLabelContent('3-5.扫描地图')
       local targetPosition = store.scanMapType1.checkpositionListForCheck[1]
-      store.scanMapType1.newMapChessboard = mapProxy.scanMap(targetPosition, store.scanMapType1.newMapChessboard)
+      store.scanMapType1.newMapChessboard = mapProxy.scanMap(targetPosition, store.scanMapType1.newMapChessboard, store.scanMapType1.moveVectorForCheck)
       console.log(store.scanMapType1.newMapChessboard)
       -- 地图没扫描完，继续扫描
       if #store.scanMapType1.checkpositionListForCheck > 1 then
