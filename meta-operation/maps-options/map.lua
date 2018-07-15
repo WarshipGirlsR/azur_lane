@@ -287,39 +287,113 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   keepScreen(true)
   local isCenter = false
   -- 扫描边界
-  -- 需要扫描哪几个角，不需要扫描的角就跳过以加快扫描速度
   local topLinePointList = {}
   local bottonLinePointList = {}
   local leftLinePointList = {}
   local rightLinePointList = {}
-  if targetPosition.leftTop then
-    topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
-    leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
+
+  -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框
+  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 99, 184, 160, 1885, 1004)))
+  -- 寻找底边
+  -- 按照y坐标分组
+  local blackLineGroup = {}
+  for key = 1, #blackLineList do
+    local value = blackLineList[key]
+    blackLineGroup[value[2]] = blackLineGroup[value[2]] or {}
+    table.insert(blackLineGroup[value[2]], value)
   end
-  if targetPosition.rightTop then
-    topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
-    rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
-  end
-  if targetPosition.leftBotton then
-    bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList, true))
-    leftLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.leftLineList))
-  end
-  if targetPosition.rightBotton then
-    bottonLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bottonLineList, true))
-    rightLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rightLineList))
-  end
-  function findMostYPointList(pointList)
-    local mostPointMap = {}
-    for key = 1, #pointList do
-      local point = pointList[key]
-      mostPointMap[point[2]] = mostPointMap[point[2]] or {}
-      table.insert(mostPointMap[point[2]], point)
+  -- 横向坐标点超过200个点的组
+  local horizontalLineGroup = {}
+  for key, value in pairs(blackLineGroup) do
+    if #value > 200 then
+      table.insert(horizontalLineGroup, value)
     end
-    return math.maxTable(mostPointMap, function(item) return #item end) or {}
+  end
+  bottonLinePointList = math.minTable(horizontalLineGroup, function(item) return item[1][2] end) or {}
+
+  -- 寻找左右纵向黑线的坐标
+  -- 将横向黑线移除
+  local tmpGroup = table.assign({}, blackLineGroup)
+  for key, value in pairs(horizontalLineGroup) do
+    tmpGroup[value[1][2]] = nil
+  end
+  local verticalLineList = {}
+  for _, value in pairs(tmpGroup) do
+    for key2 = 1, #value do
+      local value2 = value[key2]
+      table.insert(verticalLineList, value2)
+    end
+  end
+  --  分别找到左边黑线和右边黑线
+  local leftLineList = {}
+  local rightLineList = {}
+  for key = 1, #verticalLineList do
+    local value = verticalLineList[key]
+    if value[1] < 1000 then
+      table.insert(leftLineList, value)
+    else
+      table.insert(rightLineList, value)
+    end
+  end
+  -- 左边黑线进行精简，使其变成宽度为1的细线
+  local leftLinePointList = {}
+  if #leftLineList > 0 then
+    local leftTopPoint = math.minTable(leftLineList, function(item) return item[2] end)
+    local leftBottomPoint = math.maxTable(leftLineList, function(item) return item[2] end)
+    local leftLineMap = makePointMap(leftLineList)
+    local point = leftTopPoint
+    for key = leftTopPoint[1], leftTopPoint[1] + 100 do
+      if leftLineMap[key .. '-' .. leftTopPoint[2]] then
+        point = leftLineMap[key .. '-' .. leftTopPoint[2]]
+      else
+        break
+      end
+    end
+    table.insert(leftLinePointList, point)
+    for key = point[2] + 1, leftBottomPoint[2] do
+      if leftLineMap[point[1] .. '-' .. key] then
+        point = leftLineMap[point[1] .. '-' .. key]
+        table.insert(leftLinePointList, point)
+      elseif leftLineMap[(point[1] - 1) .. '-' .. key] then
+        point = leftLineMap[(point[1] - 1) .. '-' .. key]
+        table.insert(leftLinePointList, point)
+      else
+        break
+      end
+    end
+  end
+  -- 右边黑线进行精简，使其变成宽度为1的细线
+  local rightLinePointList = {}
+  if #rightLineList > 0 then
+    local rightTopPoint = math.minTable(rightLineList, function(item) return item[2] end)
+    local rightBottomPoint = math.maxTable(rightLineList, function(item) return item[2] end)
+    local rightLineMap = makePointMap(rightLineList)
+    local point = rightTopPoint
+    for key = rightTopPoint[1], rightTopPoint[1] + 100 do
+      if rightLineMap[key .. '-' .. rightTopPoint[2]] then
+        point = rightLineMap[key .. '-' .. rightTopPoint[2]]
+      else
+        break
+      end
+    end
+    table.insert(rightLinePointList, point)
+    for key = point[2] + 1, rightBottomPoint[2] do
+      if rightLineMap[point[1] .. '-' .. key] then
+        point = rightLineMap[point[1] .. '-' .. key]
+        table.insert(rightLinePointList, point)
+      elseif rightLineMap[(point[1] + 1) .. '-' .. key] then
+        point = rightLineMap[(point[1] + 1) .. '-' .. key]
+        table.insert(rightLinePointList, point)
+      else
+        break
+      end
+    end
   end
 
-  local topLinePoint = findMostYPointList(topLinePointList)[1] or { -1, -1 }
-  local bottonLinePoint = findMostYPointList(bottonLinePointList)[1] or { -1, -1 }
+  topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
+
+  local topLinePoint = topLinePointList[1] or { -1, -1 }
+  local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
 
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)

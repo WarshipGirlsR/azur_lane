@@ -368,9 +368,6 @@ local mapsType2 = function(action)
 
     elseif action.type == 'MAPS_TYPE_2_PAGE_CHECK_FLEET_FORMATION' then
 
-      console.log(settings.battleFleetBossFormation)
-      console.log(settings.battleFleetOnWayFormation)
-      console.log(o.battle.getFleetFormation())
       stepLabel.setStepLabelContent('3-11.检查舰队阵型')
       if (store.mapType2.nextStepFleed == 'boss'
         and settings.battleFleetBossFormation

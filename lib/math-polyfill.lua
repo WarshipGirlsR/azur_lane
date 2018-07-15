@@ -28,6 +28,7 @@ end
 math.maxTable = math.maxTable or function(tab, path)
   local maxNum
   local maxTab
+  local maxKey
   if not path then
     return math.max(table.unpack(tab))
   elseif type(path) == 'string' or type(path) == 'number' then
@@ -35,6 +36,7 @@ math.maxTable = math.maxTable or function(tab, path)
       if not maxNum or maxNum < item[path] then
         maxNum = item[path]
         maxTab = item
+        maxKey = key
       end
     end
   elseif type(path) == 'function' then
@@ -43,22 +45,25 @@ math.maxTable = math.maxTable or function(tab, path)
       if not maxNum or maxNum < theNum then
         maxNum = theNum
         maxTab = item
+        maxKey = key
       end
     end
   end
-  return maxTab
+  return maxTab, maxKey
 end
 
 math.minTable = math.minTable or function(tab, path)
   local maxNum
-  local maxTab
+  local minTab
+  local minKey
   if not path then
     return math.max(table.unpack(tab))
   elseif type(path) == 'string' or type(path) == 'number' then
     for key, item in pairs(tab) do
       if not maxNum or maxNum > item[path] then
         maxNum = item[path]
-        maxTab = item
+        minTab = item
+        minKey = key
       end
     end
   elseif type(path) == 'function' then
@@ -66,11 +71,12 @@ math.minTable = math.minTable or function(tab, path)
       local theNum = path(item, key, tab)
       if not maxNum or maxNum > theNum then
         maxNum = theNum
-        maxTab = item
+        minTab = item
+        minKey = key
       end
     end
   end
-  return maxTab
+  return minTab, minKey
 end
 
 math.mod = math.mod or function(m, n)
