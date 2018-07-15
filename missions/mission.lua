@@ -42,7 +42,7 @@ local mission = function(action)
         }))
         return makeAction(newstateTypes)
       end
-      return ''
+      return makeAction('')
 
     elseif action.type == 'MISSION_MITTION_PAGE' then
 
@@ -84,7 +84,7 @@ local mission = function(action)
 
       stepLabel.setStepLabelContent('3.8.返回桌面')
       o.mission.getPropsPanelBack()
-      return ''
+      return makeAction('')
     end
 
     return nil

@@ -92,7 +92,7 @@ end)
 
 
 co(c.create(function()
-  if (settings.battleEnable or settings.missionEnable) then
+  if (settings.battleEnable or settings.missionEnable or settings.dailyChallengesEnable) then
 
     local theMissionsQuery = {}
     -- 是否运行出征
@@ -102,6 +102,10 @@ co(c.create(function()
     -- 是否运行任务
     if (settings.missionEnable) then
       table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })
+    end
+    -- 是否运行每日挑战
+    if (settings.dailyChallengesEnable) then
+      table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })
     end
 
     local theChain = createChain(missionsList)

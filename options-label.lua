@@ -314,6 +314,119 @@ return function()
           ['color'] = '0,0,0',
         },
       },
+      {
+        {
+          ['type'] = 'Label',
+          ['text'] = '每日挑战',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '战术研修关卡',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'tacticalTrainingChapter',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1.战术研修(航空),2.战术研修(炮击),3.战术研修(雷击),',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '战术研修舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'tacticalTrainingFleet',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1队,2队,3队,4队,5队,6队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '斩首行动关卡',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'decapitationStrikeChapter',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1.,2.,3.,4.',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '斩首行动舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'decapitationStrikeFleet',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1队,2队,3队,4队,5队,6队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '商船护送关卡',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'merchantShipEscortChapter',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1.,2.,3.,4.',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '商船护送舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'merchantShipEscortFleet',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1队,2队,3队,4队,5队,6队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '海域突进关卡',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'seaAreaBreakthroughChapter',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1.,2.,3.,4.',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '海域突进舰队',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'seaAreaBreakthroughFleet',
+          ['type'] = 'RadioGroup',
+          ['list'] = '1队,2队,3队,4队,5队,6队',
+          ['select'] = '0',
+        },
+      },
     }
   }
 
@@ -462,6 +575,47 @@ return function()
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
       return list[battleStepLength] or 0
     end)(settings.battleStepLength)
+    -- 每日挑战
+    -- 战术研修关卡
+    settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)
+      local list = transStrToTable({ 1, 2, 3 })
+      return list[tacticalTrainingChapter] or 1
+    end)(settings.tacticalTrainingChapter)
+    -- 战术研修舰队
+    settings.tacticalTrainingFleet = (function(tacticalTrainingFleet)
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
+      return list[tacticalTrainingFleet] or 1
+    end)(settings.tacticalTrainingFleet)
+    -- 斩首行动关卡
+    settings.decapitationStrikeChapter = (function(decapitationStrikeChapter)
+      local list = transStrToTable({ 1, 2, 3, 4 })
+      return list[decapitationStrikeChapter] or 1
+    end)(settings.decapitationStrikeChapter)
+    -- 斩首行动舰队
+    settings.decapitationStrikeFleet = (function(decapitationStrikeFleet)
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
+      return list[decapitationStrikeFleet] or 1
+    end)(settings.decapitationStrikeFleet)
+    -- 商船护送关卡
+    settings.merchantShipEscortChapter = (function(merchantShipEscortChapter)
+      local list = transStrToTable({ 1, 2, 3, 4 })
+      return list[merchantShipEscortChapter] or 1
+    end)(settings.merchantShipEscortChapter)
+    -- 商船护送舰队
+    settings.merchantShipEscortFleet = (function(merchantShipEscortFleet)
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
+      return list[merchantShipEscortFleet] or 1
+    end)(settings.merchantShipEscortFleet)
+    -- 海域突进关卡
+    settings.seaAreaBreakthroughChapter = (function(seaAreaBreakthroughChapter)
+      local list = transStrToTable({ 1, 2, 3, 4 })
+      return list[seaAreaBreakthroughChapter] or 1
+    end)(settings.seaAreaBreakthroughChapter)
+    -- 海域突进舰队
+    settings.seaAreaBreakthroughFleet = (function(seaAreaBreakthroughFleet)
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
+      return list[seaAreaBreakthroughFleet] or 1
+    end)(settings.seaAreaBreakthroughFleet)
   end
 
   return ret, settings
