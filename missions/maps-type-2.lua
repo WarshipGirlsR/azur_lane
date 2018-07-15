@@ -441,7 +441,7 @@ local mapsType2 = function(action)
 
       local minLength = 20
       if math.abs(newMoveVector[1]) <= minLength and math.abs(newMoveVector[2]) <= minLength then
-        store.mapType2.moveVectorForCheck = newMoveVector
+        store.mapType2.moveVectorForAStep = newMoveVector
         -- 地图位置在误差范围之内
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 1000 },
@@ -451,18 +451,11 @@ local mapsType2 = function(action)
 
 
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')
-      local isCenter = mapProxy.moveMapToCheckPosition(store.mapType2.moveVectorForAStep)
-      if isCenter then
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 500 },
-        }))
-        return makeAction(newstateTypes)
-      else
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
-        }))
-        return makeAction(newstateTypes)
-      end
+      local isCenter = mapProxy.moveMapToCheckPosition(newMoveVector)
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
+      }))
+      return makeAction(newstateTypes)
 
     elseif action.type == 'MAPS_TYPE_2_MOVE_A_STEP' then
 
@@ -472,7 +465,7 @@ local mapsType2 = function(action)
       local nextColNum = store.mapType2.nextStepPoint[2]
       console.log(store.mapType2.nextStepPoint)
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
-        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForCheck)
+        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForAStep)
         o.battle.clickAttackBtn()
       elseif #store.mapType2.checkpositionListForMove > 0 then
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {

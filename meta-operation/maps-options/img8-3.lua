@@ -24,7 +24,7 @@ return {
           { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },
           { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-7的上边
       (function()
@@ -36,7 +36,7 @@ return {
           { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },
           { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-4的上边
       (function()
@@ -48,7 +48,7 @@ return {
           { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },
           { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-1的上边
       (function()
@@ -60,7 +60,7 @@ return {
           { 438, 524, 0x31a2e6 }, { 428, 524, 0x319ee6 },
           { 418, 524, 0x319ee6 }, { 408, 524, 0x319ee6 },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 1-2的上边
       (function()
@@ -72,7 +72,7 @@ return {
           { 601, 524, 0x31aede }, { 588, 524, 0x31aee6 },
           { 577, 524, 0x31b2e6 }, { 566, 524, 0x31b2de },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- 我方舰队位置

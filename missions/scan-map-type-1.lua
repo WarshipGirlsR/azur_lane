@@ -145,19 +145,11 @@ local mapsType2 = function(action)
 
       stepLabel.setStepLabelContent('3-3.移动地图')
       local moved = mapProxy.moveMapToCheckPosition(newMoveVector)
-      if moved then
-        -- 地图已经移动到位
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },
-        }))
-        return makeAction(newstateTypes)
-      else
-        -- 地图没有移动到位
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
-        }))
-        return makeAction(newstateTypes)
-      end
+      -- 地图没有移动到位
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },
+      }))
+      return makeAction(newstateTypes)
 
     elseif action.type == 'SCAN_MAP_TYPE_1_SCAN_MAP' then
 

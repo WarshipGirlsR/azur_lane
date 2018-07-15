@@ -292,7 +292,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   local rightLinePointList = {}
 
   -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框
-  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 99, 184, 160, 1885, 1004)))
+  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '0|1|0x000000,0|2|0x000000,1|0|0x000000,1|1|0x000000,1|2|0x000000,2|0|0x000000,2|1|0x000000,2|2|0x000000', 99, 184, 160, 1885, 1004)))
   -- 寻找底边
   -- 按照y坐标分组
   local blackLineGroup = {}
@@ -426,7 +426,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)
 
   local leftPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, leftLinePointList)
   local rightPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, rightLinePointList)
-
   if not __keepScreenState then keepScreen(false) end
   return {
     leftTop = leftPoint[1],
@@ -499,7 +498,6 @@ end
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)
   local isCenter = false;
   local minLength = 5
-
   -- 将地图移动到中心
   local moveStep
   if (math.abs(moveVector[1]) > minLength) or (math.abs(moveVector[2]) > minLength) then
@@ -614,7 +612,6 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
 end
 
 map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)
-  console.log(deviation)
   local deviationX = 0
   local deviationY = 0
   if type(deviation) == 'table' then

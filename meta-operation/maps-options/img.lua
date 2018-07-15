@@ -215,6 +215,17 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      -- 大型 下框
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1346, 797, 0xbd3500 }, { 1357, 797, 0xbd3500 },
+          { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },
+          { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },
+        })
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
     -- boss位置
     bossPointList = {

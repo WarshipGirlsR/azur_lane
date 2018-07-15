@@ -217,6 +217,17 @@ local imgs = {\
         })\
         return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
+      -- 大型 下框\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBotton = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1346, 797, 0xbd3500 }, { 1357, 797, 0xbd3500 },\
+          { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },\
+          { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },\
+        })\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+      end)(),\
     },\
     -- boss位置\
     bossPointList = {\
@@ -3734,7 +3745,7 @@ return {\
           { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },\
           { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-7的上边\
       (function()\
@@ -3746,7 +3757,7 @@ return {\
           { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },\
           { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-4的上边\
       (function()\
@@ -3758,7 +3769,7 @@ return {\
           { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },\
           { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-1的上边\
       (function()\
@@ -3770,7 +3781,7 @@ return {\
           { 438, 524, 0x31a2e6 }, { 428, 524, 0x319ee6 },\
           { 418, 524, 0x319ee6 }, { 408, 524, 0x319ee6 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-2的上边\
       (function()\
@@ -3782,7 +3793,7 @@ return {\
           { 601, 524, 0x31aede }, { 588, 524, 0x31aee6 },\
           { 577, 524, 0x31b2e6 }, { 566, 524, 0x31b2de },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
     },\
     -- 我方舰队位置\
@@ -8668,7 +8679,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   local rightLinePointList = {}\
 \
   -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框\
-  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 99, 184, 160, 1885, 1004)))\
+  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '0|1|0x000000,0|2|0x000000,1|0|0x000000,1|1|0x000000,1|2|0x000000,2|0|0x000000,2|1|0x000000,2|2|0x000000', 99, 184, 160, 1885, 1004)))\
   -- 寻找底边\
   -- 按照y坐标分组\
   local blackLineGroup = {}\
@@ -8802,7 +8813,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
 \
   local leftPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, leftLinePointList)\
   local rightPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, rightLinePointList)\
-\
   if not __keepScreenState then keepScreen(false) end\
   return {\
     leftTop = leftPoint[1],\
@@ -8875,7 +8885,6 @@ end\
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)\
   local isCenter = false;\
   local minLength = 5\
-\
   -- 将地图移动到中心\
   local moveStep\
   if (math.abs(moveVector[1]) > minLength) or (math.abs(moveVector[2]) > minLength) then\
@@ -8990,7 +8999,6 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
 end\
 \
 map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)\
-  console.log(deviation)\
   local deviationX = 0\
   local deviationY = 0\
   if type(deviation) == 'table' then\
@@ -15005,19 +15013,11 @@ local mapsType2 = function(action)\
 \
       stepLabel.setStepLabelContent('3-3.移动地图')\
       local moved = mapProxy.moveMapToCheckPosition(newMoveVector)\
-      if moved then\
-        -- 地图已经移动到位\
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'SCAN_MAP_TYPE_1_SCAN_MAP', o.battle.isMapPage, 1000 },\
-        }))\
-        return makeAction(newstateTypes)\
-      else\
-        -- 地图没有移动到位\
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },\
-        }))\
-        return makeAction(newstateTypes)\
-      end\
+      -- 地图没有移动到位\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'SCAN_MAP_TYPE_1_MOVE_TO_CHECK_POSITION_FOR_CHECK', o.battle.isMapPage, 500 },\
+      }))\
+      return makeAction(newstateTypes)\
 \
     elseif action.type == 'SCAN_MAP_TYPE_1_SCAN_MAP' then\
 \
@@ -16237,7 +16237,7 @@ local mapsType2 = function(action)\
 \
       local minLength = 20\
       if math.abs(newMoveVector[1]) <= minLength and math.abs(newMoveVector[2]) <= minLength then\
-        store.mapType2.moveVectorForCheck = newMoveVector\
+        store.mapType2.moveVectorForAStep = newMoveVector\
         -- 地图位置在误差范围之内\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
           { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 1000 },\
@@ -16247,18 +16247,11 @@ local mapsType2 = function(action)\
 \
 \
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')\
-      local isCenter = mapProxy.moveMapToCheckPosition(store.mapType2.moveVectorForAStep)\
-      if isCenter then\
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 500 },\
-        }))\
-        return makeAction(newstateTypes)\
-      else\
-        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },\
-        }))\
-        return makeAction(newstateTypes)\
-      end\
+      local isCenter = mapProxy.moveMapToCheckPosition(newMoveVector)\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },\
+      }))\
+      return makeAction(newstateTypes)\
 \
     elseif action.type == 'MAPS_TYPE_2_MOVE_A_STEP' then\
 \
@@ -16268,7 +16261,7 @@ local mapsType2 = function(action)\
       local nextColNum = store.mapType2.nextStepPoint[2]\
       console.log(store.mapType2.nextStepPoint)\
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
-        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForCheck)\
+        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForAStep)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType2.checkpositionListForMove > 0 then\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
