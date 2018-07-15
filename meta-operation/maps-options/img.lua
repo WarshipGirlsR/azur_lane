@@ -25,12 +25,13 @@ local imgs = {
     end
     return newTab
   end,
-  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆
+  -- 过滤被右下角按钮和左上角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆
   filterNoUsePoint = function(list)
     local newList = {}
     for key = 1, #list do
       local point = list[key]
-      if point[1] < 940 or point[2] < 910 then
+      if (point[1] < 940 or point[2] < 910)
+        and (point[1] > 651 or point[2] > 261) then
         table.insert(newList, point)
       end
     end

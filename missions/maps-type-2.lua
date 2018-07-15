@@ -382,7 +382,7 @@ local mapsType2 = function(action)
         return makeAction(newstateTypes)
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
       }))
       return makeAction(newstateTypes)
 
@@ -416,12 +416,12 @@ local mapsType2 = function(action)
         c.yield(sleepPromise(1000))
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 500 },
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 500 },
         { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isFormationPanel, 200 },
       }))
       return makeAction(newstateTypes)
 
-    elseif action.type == 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP' then
+    elseif action.type == 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
 
       stepLabel.setStepLabelContent('3-11.获取地图位置参数')
       local targetPosition = store.mapType2.checkpositionListForMove[1]
@@ -438,13 +438,17 @@ local mapsType2 = function(action)
         return makeAction(newstateTypes)
       end
       console.log(newMoveVector)
-      store.mapType2.moveVectorForAStep = newMoveVector
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
-      }))
-      return makeAction(newstateTypes)
 
-    elseif action.type == 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then
+      local minLength = 20
+      if math.abs(newMoveVector[1]) <= minLength and math.abs(newMoveVector[2]) <= minLength then
+        store.mapType2.moveVectorForCheck = newMoveVector
+        -- 地图位置在误差范围之内
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 1000 },
+        }))
+        return makeAction(newstateTypes)
+      end
+
 
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')
       local isCenter = mapProxy.moveMapToCheckPosition(store.mapType2.moveVectorForAStep)
@@ -455,7 +459,7 @@ local mapsType2 = function(action)
         return makeAction(newstateTypes)
       else
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },
         }))
         return makeAction(newstateTypes)
       end
@@ -468,11 +472,11 @@ local mapsType2 = function(action)
       local nextColNum = store.mapType2.nextStepPoint[2]
       console.log(store.mapType2.nextStepPoint)
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
-        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint)
+        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForCheck)
         o.battle.clickAttackBtn()
       elseif #store.mapType2.checkpositionListForMove > 0 then
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },
         }))
         return makeAction(newstateTypes)
       end
@@ -492,7 +496,7 @@ local mapsType2 = function(action)
       if store.mapType2.moveFailTimes < 3 then
         store.mapType2.moveFailTimes = store.mapType2.moveFailTimes + 1
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置
         }))
         return makeAction(newstateTypes)
       end

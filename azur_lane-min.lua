@@ -27,12 +27,13 @@ local imgs = {\
     end\
     return newTab\
   end,\
-  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  -- 过滤被右下角按钮和左上角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
   filterNoUsePoint = function(list)\
     local newList = {}\
     for key = 1, #list do\
       local point = list[key]\
-      if point[1] < 940 or point[2] < 910 then\
+      if (point[1] < 940 or point[2] < 910)\
+        and (point[1] > 651 or point[2] > 261) then\
         table.insert(newList, point)\
       end\
     end\
@@ -1307,277 +1308,44 @@ return {\
         local leftTop = { 185, 155 }\
         local rightBotton = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 793, 548, 0x212031 }, { 808, 548, 0x292442 },\
-          { 820, 548, 0x292042 }, { 835, 548, 0x211c29 },\
-          { 847, 549, 0x3a3163 }, { 838, 549, 0x312d5a },\
-          { 826, 549, 0x312d5a }, { 813, 549, 0x3a3163 },\
+          { 747, 515, 0x3a3163 }, { 758, 515, 0x312d5a },\
+          { 766, 515, 0x312d5a }, { 777, 515, 0x3a3163 },\
+          { 790, 515, 0x312d5a }, { 799, 515, 0x3a3163 },\
         })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
-      -- 1-2的上边\
+      -- 1-3的上边\
       (function()\
         local leftTop = { 185, 155 }\
         local rightBotton = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 985, 548, 0x191429 }, { 1000, 548, 0x211831 },\
-          { 1012, 548, 0x211831 }, { 1025, 548, 0x191429 },\
-          { 1040, 549, 0x312d5a }, { 1029, 549, 0x3a3163 },\
-          { 1016, 549, 0x3a315a }, { 1006, 549, 0x312d5a },\
+          { 908, 515, 0x31315a }, { 926, 515, 0x312d5a },\
+          { 939, 515, 0x3a3163 }, { 952, 515, 0x312d5a },\
+          { 973, 515, 0x3a3163 },\
         })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-5的上边\
       (function()\
         local leftTop = { 185, 155 }\
         local rightBotton = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 1322, 548, 0x211c31 }, { 1333, 548, 0x191831 },\
-          { 1343, 548, 0x191c31 }, { 1353, 548, 0x191c31 },\
-          { 1365, 549, 0x42417b }, { 1355, 549, 0x3a3d6b },\
-          { 1342, 549, 0x313963 }, { 1333, 549, 0x3a396b },\
+          { 1275, 515, 0x3a396b }, { 1289, 515, 0x3a396b },\
+          { 1305, 515, 0x424173 }, { 1322, 515, 0x3a3d73 },\
+          { 1337, 515, 0x424573 },\
         })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 830, 508, 0x211c31 }, { 842, 508, 0x211c31 },\
-          { 852, 508, 0x211c31 }, { 861, 508, 0x191429 },\
-          { 872, 509, 0x424573 }, { 861, 509, 0x42497b },\
-          { 853, 509, 0x424573 }, { 844, 509, 0x3a3d73 },\
-        })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
       -- 1-9的上边\
       (function()\
         local leftTop = { 185, 155 }\
         local rightBotton = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 1267, 548, 0x211c31 }, { 1274, 548, 0x29203a },\
-          { 1283, 548, 0x191c31 }, { 1290, 548, 0x29203a },\
-          { 1302, 549, 0x636d9c }, { 1298, 549, 0x636d9c },\
-          { 1291, 549, 0x6b71ad }, { 1282, 549, 0x5a6d9c },\
+          { 1482, 542, 0x6b71b5 }, { 1489, 542, 0x6b6d9c },\
+          { 1501, 542, 0x636d9c }, { 1510, 542, 0x6b75b5 },\
+          { 1518, 542, 0x6b75b5 },\
         })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1374, 253, 0x19243a }, { 1383, 253, 0x212842 },\
-          { 1394, 253, 0x19243a }, { 1403, 253, 0x192842 },\
-          { 1413, 254, 0x3a416b }, { 1406, 254, 0x424173 },\
-          { 1398, 254, 0x424173 }, { 1390, 254, 0x424173 },\
-        })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1467, 513, 0x31314a }, { 1477, 513, 0x293142 },\
-          { 1486, 513, 0x212d3a }, { 1494, 513, 0x212d3a },\
-          { 1503, 514, 0x6b75ad }, { 1492, 514, 0x6b75b5 },\
-          { 1484, 514, 0x6b75ad }, { 1473, 514, 0x6b6d9c },\
-        })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1244, 368, 0x29284a }, { 1250, 368, 0x213542 },\
-          { 1258, 368, 0x212842 }, { 1264, 368, 0x292842 },\
-          { 1273, 369, 0x636dad }, { 1264, 369, 0x5a65a4 },\
-          { 1254, 369, 0x5a659c }, { 1247, 369, 0x6369ad },\
-        })\
-        return { basePoint[3], posandcolor, 97, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 359, 966, 0x000000 }, { 370, 966, 0x000000 },\
-          { 384, 966, 0x000000 }, { 397, 966, 0x000000 },\
-          { 407, 968, 0x000000 }, { 398, 968, 0x000000 },\
-          { 391, 968, 0x000000 }, { 396, 965, 0x212042 },\
-          { 386, 965, 0x212042 }, { 380, 965, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 502, 684, 0x000000 }, { 512, 684, 0x000000 },\
-          { 523, 684, 0x000000 }, { 534, 684, 0x000000 },\
-          { 544, 683, 0x212042 }, { 537, 683, 0x212042 },\
-          { 529, 683, 0x212042 }, { 520, 683, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 443, 944, 0x000000 }, { 456, 944, 0x000000 },\
-          { 470, 944, 0x000000 }, { 482, 944, 0x000000 },\
-          { 489, 943, 0x29204a }, { 476, 943, 0x211c42 },\
-          { 464, 943, 0x212042 }, { 455, 943, 0x29204a },\
-          { 455, 946, 0x000000 }, { 473, 946, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-4的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1107, 944, 0x000000 }, { 1123, 944, 0x000000 },\
-          { 1138, 944, 0x000000 }, { 1158, 944, 0x000000 },\
-          { 1170, 943, 0x29204a }, { 1155, 943, 0x29244a },\
-          { 1140, 943, 0x292042 }, { 1127, 943, 0x29244a },\
-          { 1135, 946, 0x000000 }, { 1157, 946, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-7 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1028, 913, 0x000000 }, { 1048, 913, 0x000000 },\
-          { 1067, 913, 0x000000 }, { 1081, 913, 0x000000 },\
-          { 1097, 912, 0x31284a }, { 1079, 912, 0x29284a },\
-          { 1062, 912, 0x312852 }, { 1048, 912, 0x312452 },\
-          { 1052, 915, 0x000000 }, { 1069, 915, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 573, 390, 0x000000 }, { 574, 390, 0x312852 },\
-          { 573, 389, 0x000000 }, { 574, 389, 0x29244a },\
-          { 572, 391, 0x000000 }, { 573, 391, 0x312852 },\
-          { 572, 392, 0x000000 }, { 573, 392, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 555, 526, 0x000000 }, { 556, 526, 0x31395a },\
-          { 555, 525, 0x000000 }, { 556, 525, 0x312d52 },\
-          { 554, 527, 0x000000 }, { 555, 527, 0x312d5a },\
-          { 554, 528, 0x000000 }, { 555, 528, 0x312d52 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 537, 661, 0x000000 }, { 538, 661, 0x29244a },\
-          { 537, 660, 0x000000 }, { 538, 660, 0x312852 },\
-          { 536, 662, 0x000000 }, { 537, 662, 0x292452 },\
-          { 536, 663, 0x000000 }, { 537, 663, 0x292852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 388, 879, 0x000000 }, { 389, 879, 0x212042 },\
-          { 388, 878, 0x000000 }, { 389, 878, 0x212042 },\
-          { 387, 880, 0x000000 }, { 388, 880, 0x29204a },\
-          { 387, 881, 0x000000 }, { 388, 881, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 469, 640, 0x000000 }, { 470, 640, 0x29244a },\
-          { 469, 639, 0x000000 }, { 470, 639, 0x212042 },\
-          { 468, 641, 0x000000 }, { 469, 641, 0x29204a },\
-          { 468, 642, 0x000000 }, { 469, 642, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1611, 539, 0x000000 }, { 1610, 539, 0x636dad },\
-          { 1611, 538, 0x000000 }, { 1610, 538, 0x6b71b5 },\
-          { 1612, 540, 0x000000 }, { 1611, 540, 0x636dad },\
-          { 1612, 541, 0x000000 }, { 1611, 541, 0x636db5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1547, 383, 0x000000 }, { 1546, 383, 0x5a59a4 },\
-          { 1547, 382, 0x000000 }, { 1546, 382, 0x635dad },\
-          { 1548, 384, 0x000000 }, { 1547, 384, 0x5a599c },\
-          { 1548, 385, 0x000000 }, { 1547, 385, 0x5a59a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1676, 848, 0x000000 }, { 1675, 848, 0x3a3163 },\
-          { 1676, 847, 0x000000 }, { 1675, 847, 0x3a3563 },\
-          { 1677, 849, 0x000000 }, { 1676, 849, 0x3a3163 },\
-          { 1677, 850, 0x000000 }, { 1676, 850, 0x3a3d63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1594, 462, 0x000000 }, { 1593, 462, 0x42396b },\
-          { 1594, 461, 0x000000 }, { 1593, 461, 0x42396b },\
-          { 1595, 463, 0x000000 }, { 1594, 463, 0x42396b },\
-          { 1595, 464, 0x000000 }, { 1594, 464, 0x424173 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
       end)(),\
     },\
     -- 我方舰队位置\
@@ -8648,11 +8416,17 @@ local rewardBoxListCorrectionValue = (function()\
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
 end)()\
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里\
-local corrected = function(list, correctionValue)\
+local corrected = function(list, deviationValue, deviation)\
+  local deviationX = 0\
+  local deviationY = 0\
+  if type(deviation) == 'table' then\
+    deviationX = deviation[1] or 0\
+    deviationY = deviation[2] or 0\
+  end\
   local res = {}\
   for key = 1, #list do\
     local item = list[key]\
-    table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })\
+    table.insert(res, { item[1] + deviationValue[1], item[2] + deviationValue[2] })\
   end\
   return res\
 end\
@@ -8697,14 +8471,7 @@ local function checkPointPosition(checkPoint, topPoint, bottonPoint)\
 end\
 \
 -- 将屏幕坐标列表转换为地图棋盘坐标列表\
-local function transPointListToChessboardPointList(positionMap, positionList, correction)\
-  local correctionX = 0\
-  local correctionY = 0\
-  if type(correction) == 'table' then\
-    correctionX = correction[1] or 0\
-    correctionY = correction[2] or 0\
-  end\
-\
+local function transPointListToChessboardPointList(positionMap, positionList)\
   local result = {}\
   -- 因为有可能有空的坐标，所以需要处理\
   -- 计算出地图棋盘的宽度\
@@ -8718,7 +8485,7 @@ local function transPointListToChessboardPointList(positionMap, positionList, co
   for i = 1, #positionList do\
     local theRow = -1\
     local theCol = -1\
-    local item = { positionList[i][1] + correctionX, positionList[i][2] + correctionY }\
+    local item = positionList[i]\
     -- 匹配点在第几行。\
     -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘\
     for rowNum, row in ipairs(positionMap) do\
@@ -9127,7 +8894,7 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)\
 end\
 \
 -- 扫描地图\
-map.scanMap = function(ImgInfo, targetPosition, mapChessboard, moveVectorForCheck)\
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   local __keepScreenState = keepScreenState\
   if __keepScreenState then keepScreen(false) end\
   getColor(0, 0)\
@@ -9136,18 +8903,18 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, moveVectorForChec
 \
   -- 扫描屏幕上的对象\
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))\
-  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue)\
+  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue, deviation)\
 \
   local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))\
-  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue)\
+  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue, deviation)\
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))\
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue)\
+  enemyList1 = corrected(enemyList1, enemyListCorrectionValue, deviation)\
   local enemyList2 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList2))\
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue)\
+  enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)\
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))\
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue)\
+  enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)\
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))\
-  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue)\
+  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)\
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))\
   local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))\
 \
@@ -9222,10 +8989,17 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
   return theMapChessBoard\
 end\
 \
-map.moveToPoint = function(ImgInfo, targetPosition, point)\
+map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)\
+  console.log(deviation)\
+  local deviationX = 0\
+  local deviationY = 0\
+  if type(deviation) == 'table' then\
+    deviationX = deviation[1] or 0\
+    deviationY = deviation[2] or 0\
+  end\
   local positionMap = targetPosition.positionMap\
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })\
-  RTap({ tapPointList[1][1], tapPointList[1][2] }, 100)\
+  RTap({ tapPointList[1][1] - deviationX, tapPointList[1][2] - deviationY }, 100)\
 end\
 \
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
@@ -16404,7 +16178,7 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       end\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },\
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },\
       }))\
       return makeAction(newstateTypes)\
 \
@@ -16438,12 +16212,12 @@ local mapsType2 = function(action)\
         c.yield(sleepPromise(1000))\
       end\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 500 },\
+        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 500 },\
         { 'MAPS_TYPE_2_PAGE_SELECT_FLEET_FORMATION', o.battle.isFormationPanel, 200 },\
       }))\
       return makeAction(newstateTypes)\
 \
-    elseif action.type == 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP' then\
+    elseif action.type == 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then\
 \
       stepLabel.setStepLabelContent('3-11.获取地图位置参数')\
       local targetPosition = store.mapType2.checkpositionListForMove[1]\
@@ -16460,13 +16234,17 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       end\
       console.log(newMoveVector)\
-      store.mapType2.moveVectorForAStep = newMoveVector\
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },\
-      }))\
-      return makeAction(newstateTypes)\
 \
-    elseif action.type == 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP' then\
+      local minLength = 20\
+      if math.abs(newMoveVector[1]) <= minLength and math.abs(newMoveVector[2]) <= minLength then\
+        store.mapType2.moveVectorForCheck = newMoveVector\
+        -- 地图位置在误差范围之内\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { 'MAPS_TYPE_2_MOVE_A_STEP', o.battle.isMapPage, 1000 },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
+\
 \
       stepLabel.setStepLabelContent('3-13.将地图移动到移动位置')\
       local isCenter = mapProxy.moveMapToCheckPosition(store.mapType2.moveVectorForAStep)\
@@ -16477,7 +16255,7 @@ local mapsType2 = function(action)\
         return makeAction(newstateTypes)\
       else\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },\
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 1000 },\
         }))\
         return makeAction(newstateTypes)\
       end\
@@ -16490,11 +16268,11 @@ local mapsType2 = function(action)\
       local nextColNum = store.mapType2.nextStepPoint[2]\
       console.log(store.mapType2.nextStepPoint)\
       if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
-        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint)\
+        mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForCheck)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType2.checkpositionListForMove > 0 then\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage },\
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage },\
         }))\
         return makeAction(newstateTypes)\
       end\
@@ -16514,7 +16292,7 @@ local mapsType2 = function(action)\
       if store.mapType2.moveFailTimes < 3 then\
         store.mapType2.moveFailTimes = store.mapType2.moveFailTimes + 1\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-          { 'MAPS_TYPE_2_GET_MAP_POSITION_FOR_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置\
+          { 'MAPS_TYPE_2_MOVE_TO_CHECK_POSITION_FOR_A_STEP', o.battle.isMapPage, 3000 } -- 如果移动后还是在地图页面，可能是遇到空隙。再次点击位置\
         }))\
         return makeAction(newstateTypes)\
       end\

@@ -40,11 +40,17 @@ local rewardBoxListCorrectionValue = (function()
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里
-local corrected = function(list, correctionValue)
+local corrected = function(list, deviationValue, deviation)
+  local deviationX = 0
+  local deviationY = 0
+  if type(deviation) == 'table' then
+    deviationX = deviation[1] or 0
+    deviationY = deviation[2] or 0
+  end
   local res = {}
   for key = 1, #list do
     local item = list[key]
-    table.insert(res, { item[1] + correctionValue[1], item[2] + correctionValue[2] })
+    table.insert(res, { item[1] + deviationValue[1], item[2] + deviationValue[2] })
   end
   return res
 end
@@ -89,14 +95,7 @@ local function checkPointPosition(checkPoint, topPoint, bottonPoint)
 end
 
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
-local function transPointListToChessboardPointList(positionMap, positionList, correction)
-  local correctionX = 0
-  local correctionY = 0
-  if type(correction) == 'table' then
-    correctionX = correction[1] or 0
-    correctionY = correction[2] or 0
-  end
-
+local function transPointListToChessboardPointList(positionMap, positionList)
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
@@ -110,7 +109,7 @@ local function transPointListToChessboardPointList(positionMap, positionList, co
   for i = 1, #positionList do
     local theRow = -1
     local theCol = -1
-    local item = { positionList[i][1] + correctionX, positionList[i][2] + correctionY }
+    local item = positionList[i]
     -- 匹配点在第几行。
     -- 保证匹配的点在检查的棋盘里，棋盘之外的目标不放入棋盘
     for rowNum, row in ipairs(positionMap) do
@@ -519,7 +518,7 @@ map.moveMapToCheckPosition = function(ImgInfo, moveVector)
 end
 
 -- 扫描地图
-map.scanMap = function(ImgInfo, targetPosition, mapChessboard, moveVectorForCheck)
+map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   local __keepScreenState = keepScreenState
   if __keepScreenState then keepScreen(false) end
   getColor(0, 0)
@@ -528,18 +527,18 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, moveVectorForChec
 
   -- 扫描屏幕上的对象
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
-  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue)
+  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue, deviation)
 
   local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
-  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue)
+  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue, deviation)
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue)
+  enemyList1 = corrected(enemyList1, enemyListCorrectionValue, deviation)
   local enemyList2 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList2))
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue)
+  enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue)
+  enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
-  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue)
+  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
 
@@ -614,10 +613,17 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
   return theMapChessBoard
 end
 
-map.moveToPoint = function(ImgInfo, targetPosition, point)
+map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)
+  console.log(deviation)
+  local deviationX = 0
+  local deviationY = 0
+  if type(deviation) == 'table' then
+    deviationX = deviation[1] or 0
+    deviationY = deviation[2] or 0
+  end
   local positionMap = targetPosition.positionMap
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })
-  RTap({ tapPointList[1][1], tapPointList[1][2] }, 100)
+  RTap({ tapPointList[1][1] - deviationX, tapPointList[1][2] - deviationY }, 100)
 end
 
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
