@@ -19221,6 +19221,29 @@ local sideLength = math.min(w, h)\
 local orient = 0;\
 local nextUpdateTime = 0\
 \
+local multiColorS = function(array, s)\
+  s = s or 90\
+  local theS = math.floor(0xff * (100 - s) * 0.01)\
+\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+\
+  local result = true\
+  for var = 1, #array do\
+    local lr, lg, lb = getColorRGB(array[var][1], array[var][2])\
+    local r = math.floor(array[var][3] / 0x10000)\
+    local g = math.floor(array[var][3] % 0x10000 / 0x100)\
+    local b = math.floor(array[var][3] % 0x100)\
+    if math.abs(lr - r) > theS or math.abs(lg - g) > theS or math.abs(lb - b) > theS then\
+      result = false\
+      break\
+    end\
+  end\
+\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
 -- 计算方向辅助界面，一像素宽度的白色边界，一像素宽的黑色边界，用于检测方向\
 fwShowWnd(\"orientwid1\", 0, 0, 2, m, 0)\
 fwShowTextView(\"orientwid1\", \"text1\", \"\", \"center\", \"000000\", \"FEFEFE\", 15, 0, 0, 0, 1, m, 1)\
@@ -19254,13 +19277,13 @@ function calOrient(_orient)\
   }\
 \
   -- 如果方向没变则不旋转\
-  if (multiColorS(checkPointList)) then\
+  if (multiColorS(checkPointList, 99)) then\
     return _orient\
   end\
   -- 如果方向变了则旋转\
   for k, v in ipairs(checkOrder) do\
     __init(v)\
-    if (multiColorS(checkPointList)) then\
+    if (multiColorS(checkPointList, 99)) then\
       return v\
     end\
   end\
@@ -19833,6 +19856,11 @@ math.minTable = math.minTable or function(tab, path)\
     end\
   end\
   return maxTab\
+end\
+\
+math.mod = math.mod or function(m, n)\
+  local a1 = math.modf(m / n)\
+  return m - a1 * n\
 end\
 " }
 
@@ -20417,6 +20445,11 @@ W\0\9\8\8 �T�#�rV4\18q+G6�g�\30H[�.\26��\19h\30�}Si'=F��V��t!\22�`ay�Gab\0\0\0��
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\
 \
+math.mod = math.mod or function(m, n)\
+  local a1 = math.modf(m / n)\
+  return m - a1 * n\
+end\
+\
 local getLength = table.length or function(target)\
   local length = 0\
   for k, v in ipairs(target) do\
@@ -20539,17 +20572,24 @@ end\
 \
 \
 __console.log = __console.log or function(obj)\
-  local js = table.concat(runTable(obj, 2), \"\\n\")\
-  print(js)\
+  local res = runTable(obj, 2)\
   if useNlog then\
     local info = debug.getinfo(2, 'Sl')\
     local lineInfo = ''\
     if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
     end\
-    nLog(lineInfo .. js)\
+    nLog(lineInfo)\
+    local tmp = {}\
+    local resLength = #res\
+    for i = 1, resLength do\
+      table.insert(tmp, res[i])\
+      if math.mod(i, 10) == 0 or i == resLength then\
+        nLog(table.concat(tmp, \"\\n\"))\
+        tmp = {}\
+      end\
+    end\
   end\
-  return js\
 end\
 \
 __console.getJsStr = function(obj)\
@@ -20834,6 +20874,11 @@ end", "@" .."lua-require.lua"))
 
 package.preload["console"] = assert(load("local nLog = nLog or function() end\
 \
+math.mod = math.mod or function(m, n)\
+  local a1 = math.modf(m / n)\
+  return m - a1 * n\
+end\
+\
 local getLength = table.length or function(target)\
   local length = 0\
   for k, v in ipairs(target) do\
@@ -20956,17 +21001,24 @@ end\
 \
 \
 __console.log = __console.log or function(obj)\
-  local js = table.concat(runTable(obj, 2), \"\\n\")\
-  print(js)\
+  local res = runTable(obj, 2)\
   if useNlog then\
     local info = debug.getinfo(2, 'Sl')\
     local lineInfo = ''\
     if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
     end\
-    nLog(lineInfo .. js)\
+    nLog(lineInfo)\
+    local tmp = {}\
+    local resLength = #res\
+    for i = 1, resLength do\
+      table.insert(tmp, res[i])\
+      if math.mod(i, 10) == 0 or i == resLength then\
+        nLog(table.concat(tmp, \"\\n\"))\
+        tmp = {}\
+      end\
+    end\
   end\
-  return js\
 end\
 \
 __console.getJsStr = function(obj)\
