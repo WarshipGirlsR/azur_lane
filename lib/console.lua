@@ -1,5 +1,10 @@
 local nLog = nLog or function() end
 
+math.mod = math.mod or function(m, n)
+  local a1 = math.modf(m / n)
+  return m - a1 * n
+end
+
 local getLength = table.length or function(target)
   local length = 0
   for k, v in ipairs(target) do
@@ -134,8 +139,7 @@ __console.log = __console.log or function(obj)
     local resLength = #res
     for i = 1, resLength do
       table.insert(tmp, res[i])
-      local t1, t2 = math.modf(i / 10)
-      if t2 == 0 or i == resLength then
+      if math.mod(i, 10) == 0 or i == resLength then
         nLog(table.concat(tmp, "\n"))
         tmp = {}
       end
