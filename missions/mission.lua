@@ -73,9 +73,20 @@ local mission = function(action)
 
       stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')
       o.mission.clickGetPropsPanelNext()
-
       local newstateTypes = c.yield(setScreenListeners({
         { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },
+        { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage },
+        { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'MISSION_GET_NEW_SHIP_PAGE' then
+
+      stepLabel.setStepLabelContent('3.9.获得新船,点击继续')
+      o.mission.clickGetNewShipNext()
+      local newstateTypes = c.yield(setScreenListeners({
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },
+        { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },
       }))
       return makeAction(newstateTypes)
