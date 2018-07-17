@@ -605,7 +605,7 @@ return utils\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imgevent16-2-b3.lua"] = { path = "./meta-operation/maps-options/imgevent16-2-b3.lua", name = "./meta-operation/maps-options/imgevent16-2-b3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/imgygxdxq-sp3.lua"] = { path = "./meta-operation/maps-options/imgygxdxq-sp3.lua", name = "./meta-operation/maps-options/imgygxdxq-sp3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -619,222 +619,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 426, 522, 0x312442 }, { 439, 522, 0x292031 },\
-          { 451, 522, 0x291c31 }, { 464, 522, 0x212031 },\
-          { 478, 523, 0x6b3d6b }, { 463, 523, 0x6b3d6b },\
-          { 449, 523, 0x733d6b }, { 435, 523, 0x6b396b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1545, 522, 0x191021 }, { 1565, 522, 0x191021 },\
-          { 1577, 522, 0x191021 }, { 1591, 522, 0x191029 },\
-          { 1601, 523, 0x6b3d7b }, { 1592, 523, 0x6b397b },\
-          { 1579, 523, 0x733d84 }, { 1563, 523, 0x6b3973 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 552, 522, 0x211829 }, { 563, 522, 0x211829 },\
-          { 573, 522, 0x211829 }, { 586, 522, 0x291c31 },\
-          { 601, 523, 0x6b3973 }, { 590, 523, 0x63356b },\
-          { 581, 523, 0x6b396b }, { 569, 523, 0x6b396b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 970, 522, 0x211831 }, { 983, 522, 0x191021 },\
-          { 995, 522, 0x191021 }, { 1008, 522, 0x211421 },\
-          { 1021, 523, 0x6b3d73 }, { 1009, 523, 0x6b3d73 },\
-          { 994, 523, 0x6b3973 }, { 979, 523, 0x733973 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 479, 965, 0x000000 }, { 493, 965, 0x000000 },\
-          { 510, 965, 0x000000 }, { 520, 965, 0x000000 },\
-          { 531, 964, 0x421c42 }, { 521, 964, 0x4a1842 },\
-          { 509, 964, 0x421842 }, { 501, 964, 0x421842 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 711, 965, 0x000000 }, { 725, 965, 0x000000 },\
-          { 735, 965, 0x000000 }, { 745, 965, 0x000000 },\
-          { 754, 964, 0x31144a }, { 748, 964, 0x42144a },\
-          { 741, 964, 0x421442 }, { 733, 964, 0x311442 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 880, 939, 0x000000 }, { 896, 939, 0x000000 },\
-          { 905, 939, 0x000000 }, { 916, 939, 0x000000 },\
-          { 931, 938, 0x29103a }, { 922, 938, 0x311042 },\
-          { 910, 938, 0x291042 }, { 900, 938, 0x29103a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 436, 920, 0x000000 }, { 437, 920, 0x4a1c4a },\
-          { 436, 919, 0x000000 }, { 437, 919, 0x4a204a },\
-          { 435, 921, 0x000000 }, { 436, 921, 0x4a1c4a },\
-          { 435, 922, 0x000000 }, { 436, 922, 0x4a2052 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 533, 335, 0x000000 }, { 534, 335, 0x3a245a },\
-          { 533, 334, 0x000000 }, { 534, 334, 0x42285a },\
-          { 532, 336, 0x000000 }, { 533, 336, 0x42245a },\
-          { 532, 337, 0x000000 }, { 533, 337, 0x52245a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 8-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 445, 895, 0x000000 }, { 446, 895, 0x421c4a },\
-          { 445, 894, 0x000000 }, { 446, 894, 0x4a2052 },\
-          { 444, 896, 0x000000 }, { 445, 896, 0x421c4a },\
-          { 444, 897, 0x000000 }, { 445, 897, 0x4a1c52 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 8-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 477, 683, 0x000000 }, { 478, 683, 0x3a204a },\
-          { 477, 682, 0x000000 }, { 478, 682, 0x422452 },\
-          { 476, 684, 0x000000 }, { 477, 684, 0x42204a },\
-          { 476, 685, 0x000000 }, { 477, 685, 0x42204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1645, 529, 0x000000 }, { 1644, 529, 0x6b397b },\
-          { 1645, 528, 0x000000 }, { 1644, 528, 0x734184 },\
-          { 1646, 530, 0x000000 }, { 1645, 530, 0x6b397b },\
-          { 1646, 531, 0x000000 }, { 1645, 531, 0x6b397b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1614, 675, 0x000000 }, { 1613, 675, 0x4a205a },\
-          { 1614, 674, 0x000000 }, { 1613, 674, 0x42205a },\
-          { 1615, 676, 0x000000 }, { 1614, 676, 0x4a2463 },\
-          { 1615, 677, 0x000000 }, { 1614, 677, 0x42205a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1645, 826, 0x000000 }, { 1644, 826, 0x5a497b },\
-          { 1645, 825, 0x000000 }, { 1644, 825, 0x5a497b },\
-          { 1646, 827, 0x000000 }, { 1645, 827, 0x5a4573 },\
-          { 1646, 828, 0x000000 }, { 1645, 828, 0x524173 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1641, 676, 0x000000 }, { 1640, 676, 0x422452 },\
-          { 1641, 675, 0x000000 }, { 1640, 675, 0x31204a },\
-          { 1642, 677, 0x000000 }, { 1641, 677, 0x3a2452 },\
-          { 1642, 678, 0x000000 }, { 1641, 678, 0x3a2052 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1660, 696, 0x000000 }, { 1659, 696, 0x312052 },\
-          { 1660, 695, 0x000000 }, { 1659, 695, 0x3a245a },\
-          { 1661, 697, 0x000000 }, { 1660, 697, 0x312052 },\
-          { 1661, 698, 0x000000 }, { 1660, 698, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 8-7 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1694, 848, 0x000400 }, { 1693, 848, 0x733152 },\
-          { 1694, 847, 0x000000 }, { 1693, 847, 0x6b315a },\
-          { 1695, 849, 0x000000 }, { 1694, 849, 0x6b3152 },\
-          { 1695, 850, 0x000000 }, { 1694, 850, 0x6b3963 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -856,7 +640,7 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imgevent16-2-b1.lua"] = { path = "./meta-operation/maps-options/imgevent16-2-b1.lua", name = "./meta-operation/maps-options/imgevent16-2-b1.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/imgygxdxq-sp2.lua"] = { path = "./meta-operation/maps-options/imgygxdxq-sp2.lua", name = "./meta-operation/maps-options/imgygxdxq-sp2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -870,174 +654,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 426, 522, 0x312442 }, { 439, 522, 0x292031 },\
-          { 451, 522, 0x291c31 }, { 464, 522, 0x212031 },\
-          { 478, 523, 0x6b3d6b }, { 463, 523, 0x6b3d6b },\
-          { 449, 523, 0x733d6b }, { 435, 523, 0x6b396b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1545, 522, 0x191021 }, { 1565, 522, 0x191021 },\
-          { 1577, 522, 0x191021 }, { 1591, 522, 0x191029 },\
-          { 1601, 523, 0x6b3d7b }, { 1592, 523, 0x6b397b },\
-          { 1579, 523, 0x733d84 }, { 1563, 523, 0x6b3973 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 552, 522, 0x211829 }, { 563, 522, 0x211829 },\
-          { 573, 522, 0x211829 }, { 586, 522, 0x291c31 },\
-          { 601, 523, 0x6b3973 }, { 590, 523, 0x63356b },\
-          { 581, 523, 0x6b396b }, { 569, 523, 0x6b396b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 479, 965, 0x000000 }, { 493, 965, 0x000000 },\
-          { 510, 965, 0x000000 }, { 520, 965, 0x000000 },\
-          { 531, 964, 0x421c42 }, { 521, 964, 0x4a1842 },\
-          { 509, 964, 0x421842 }, { 501, 964, 0x421842 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 711, 965, 0x000000 }, { 725, 965, 0x000000 },\
-          { 735, 965, 0x000000 }, { 745, 965, 0x000000 },\
-          { 754, 964, 0x31144a }, { 748, 964, 0x42144a },\
-          { 741, 964, 0x421442 }, { 733, 964, 0x311442 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 880, 939, 0x000000 }, { 896, 939, 0x000000 },\
-          { 905, 939, 0x000000 }, { 916, 939, 0x000000 },\
-          { 931, 938, 0x29103a }, { 922, 938, 0x311042 },\
-          { 910, 938, 0x291042 }, { 900, 938, 0x29103a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 436, 920, 0x000000 }, { 437, 920, 0x4a1c4a },\
-          { 436, 919, 0x000000 }, { 437, 919, 0x4a204a },\
-          { 435, 921, 0x000000 }, { 436, 921, 0x4a1c4a },\
-          { 435, 922, 0x000000 }, { 436, 922, 0x4a2052 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 533, 335, 0x000000 }, { 534, 335, 0x3a245a },\
-          { 533, 334, 0x000000 }, { 534, 334, 0x42285a },\
-          { 532, 336, 0x000000 }, { 533, 336, 0x42245a },\
-          { 532, 337, 0x000000 }, { 533, 337, 0x52245a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1645, 529, 0x000000 }, { 1644, 529, 0x6b397b },\
-          { 1645, 528, 0x000000 }, { 1644, 528, 0x734184 },\
-          { 1646, 530, 0x000000 }, { 1645, 530, 0x6b397b },\
-          { 1646, 531, 0x000000 }, { 1645, 531, 0x6b397b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1682, 678, 0x000000 }, { 1681, 678, 0x42245a },\
-          { 1682, 677, 0x000000 }, { 1681, 677, 0x4a245a },\
-          { 1683, 679, 0x000000 }, { 1682, 679, 0x3a245a },\
-          { 1683, 680, 0x000000 }, { 1682, 680, 0x422863 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1687, 872, 0x000000 }, { 1686, 872, 0x633963 },\
-          { 1687, 871, 0x000000 }, { 1686, 871, 0x633163 },\
-          { 1688, 873, 0x000000 }, { 1687, 873, 0x633163 },\
-          { 1688, 874, 0x000000 }, { 1687, 874, 0x633163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1641, 676, 0x000000 }, { 1640, 676, 0x422452 },\
-          { 1641, 675, 0x000000 }, { 1640, 675, 0x31204a },\
-          { 1642, 677, 0x000000 }, { 1641, 677, 0x3a2452 },\
-          { 1642, 678, 0x000000 }, { 1641, 678, 0x3a2052 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1615, 564, 0x000000 }, { 1614, 564, 0x311c4a },\
-          { 1615, 563, 0x000000 }, { 1614, 563, 0x29184a },\
-          { 1616, 565, 0x000000 }, { 1615, 565, 0x291c4a },\
-          { 1616, 566, 0x000000 }, { 1615, 566, 0x29184a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -1073,210 +689,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 513, 539, 0x212442 }, { 522, 539, 0x19243a },\
-          { 533, 539, 0x212442 }, { 541, 539, 0x212442 },\
-          { 550, 540, 0x31aede }, { 544, 540, 0x31aee6 },\
-          { 530, 540, 0x31aede }, { 521, 540, 0x31b2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1001, 539, 0x212442 }, { 1017, 539, 0x212442 },\
-          { 1028, 539, 0x19243a }, { 1046, 539, 0x19243a },\
-          { 1058, 540, 0x31b6de }, { 1048, 540, 0x31b6e6 },\
-          { 1034, 540, 0x31b6de }, { 1018, 540, 0x31c2de },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1173, 539, 0x212442 }, { 1191, 539, 0x212442 },\
-          { 1203, 539, 0x212442 }, { 1214, 539, 0x19243a },\
-          { 1232, 540, 0x42c6de }, { 1218, 540, 0x3ac2de },\
-          { 1204, 540, 0x42bede }, { 1190, 540, 0x3abede },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1585, 539, 0x192031 }, { 1596, 539, 0x101829 },\
-          { 1609, 539, 0x191c31 }, { 1620, 539, 0x101829 },\
-          { 1632, 540, 0x31b6e6 }, { 1626, 540, 0x31b6de },\
-          { 1617, 540, 0x31b6de }, { 1594, 540, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 512, 956, 0x000000 }, { 523, 956, 0x000000 },\
-          { 538, 956, 0x000000 }, { 554, 956, 0x000000 },\
-          { 566, 955, 0x197dbd }, { 555, 955, 0x2181c5 },\
-          { 535, 955, 0x2181c5 }, { 515, 955, 0x2181c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 732, 956, 0x000000 }, { 754, 956, 0x000000 },\
-          { 769, 956, 0x000000 }, { 783, 956, 0x000000 },\
-          { 794, 955, 0x1971b5 }, { 785, 955, 0x2171bd },\
-          { 772, 955, 0x1971b5 }, { 752, 955, 0x1971b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 514, 954, 0x000000 }, { 529, 954, 0x000000 },\
-          { 546, 954, 0x000000 }, { 563, 954, 0x000000 },\
-          { 574, 953, 0x1059ad }, { 562, 953, 0x105dad },\
-          { 547, 953, 0x1961b5 }, { 533, 953, 0x1961b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 718, 954, 0x000000 }, { 730, 954, 0x000000 },\
-          { 750, 954, 0x000000 }, { 765, 954, 0x000000 },\
-          { 778, 953, 0x10499c }, { 758, 953, 0x10499c },\
-          { 741, 953, 0x104da4 }, { 725, 953, 0x1049a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 284, 557, 0x000000 }, { 285, 557, 0x31a2de },\
-          { 284, 556, 0x000000 }, { 285, 556, 0x29a2de },\
-          { 283, 558, 0x000000 }, { 284, 558, 0x31a2de },\
-          { 283, 559, 0x000000 }, { 284, 559, 0x299ace },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 249, 717, 0x000000 }, { 250, 717, 0x29b2d6 },\
-          { 249, 716, 0x000000 }, { 250, 716, 0x31b6de },\
-          { 248, 718, 0x000000 }, { 249, 718, 0x31b6d6 },\
-          { 248, 719, 0x000000 }, { 249, 719, 0x31b6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 222, 840, 0x000000 }, { 223, 840, 0x29bade },\
-          { 222, 839, 0x000000 }, { 223, 839, 0x31bade },\
-          { 221, 841, 0x000000 }, { 222, 841, 0x29b6d6 },\
-          { 221, 842, 0x000000 }, { 222, 842, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 476, 845, 0x000000 }, { 477, 845, 0x218ec5 },\
-          { 476, 844, 0x000000 }, { 477, 844, 0x218ac5 },\
-          { 475, 846, 0x000000 }, { 476, 846, 0x218ec5 },\
-          { 475, 847, 0x000000 }, { 476, 847, 0x218abd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1540, 812, 0x000000 }, { 1539, 812, 0x4275bd },\
-          { 1540, 811, 0x000000 }, { 1539, 811, 0x4275ce },\
-          { 1541, 813, 0x000000 }, { 1540, 813, 0x4275c5 },\
-          { 1541, 814, 0x000000 }, { 1540, 814, 0x4275ce },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1491, 530, 0x000000 }, { 1490, 530, 0x319ad6 },\
-          { 1491, 529, 0x000000 }, { 1490, 529, 0x2996ce },\
-          { 1492, 531, 0x000000 }, { 1491, 531, 0x319ad6 },\
-          { 1492, 532, 0x000000 }, { 1491, 532, 0x299ad6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1675, 688, 0x000000 }, { 1674, 688, 0x31aee6 },\
-          { 1675, 687, 0x000000 }, { 1674, 687, 0x29aade },\
-          { 1676, 689, 0x000000 }, { 1675, 689, 0x31aede },\
-          { 1676, 690, 0x000000 }, { 1675, 690, 0x31aade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1650, 576, 0x000000 }, { 1649, 576, 0x29aade },\
-          { 1650, 575, 0x000000 }, { 1649, 575, 0x29aade },\
-          { 1651, 577, 0x000000 }, { 1650, 577, 0x29aade },\
-          { 1651, 578, 0x000000 }, { 1650, 578, 0x31aee6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -1285,6 +697,54 @@ return {\
     enemyList1 = imgBase.map.enemyList1,\
     -- 敌方舰队位置(中型舰队)\
     enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = imgBase.map.bossPointList,\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/img11-4.lua"] = { path = "./meta-operation/maps-options/img11-4.lua", name = "./meta-operation/maps-options/img11-4.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = table.merge({}, imgBase.map.enemyList2,\
+      {\
+        -- 下边框\
+        (function()\
+          local leftTop = { 185, 155 }\
+          local rightBotton = { 1899, 1022 }\
+          local basePoint, posandcolor = transRelativePoint({\
+            { 777, 481, 0xe6a600 }, { 792, 482, 0xd69a08 },\
+            { 806, 480, 0xe6a610 }, { 810, 473, 0xd69600 },\
+            { 796, 466, 0xe6a600 },\
+          })\
+          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        end)(),\
+      }),\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- boss位置\
@@ -1347,226 +807,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1514, 542, 0x212042 }, { 1522, 542, 0x212042 },\
-          { 1533, 542, 0x191c29 }, { 1549, 542, 0x191c29 },\
-          { 1560, 543, 0x6371ad }, { 1550, 543, 0x6371ad },\
-          { 1540, 543, 0x6371ad }, { 1531, 543, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 261, 542, 0x081019 }, { 269, 542, 0x081019 },\
-          { 282, 542, 0x211421 }, { 290, 542, 0x211421 },\
-          { 298, 543, 0x312d5a }, { 288, 543, 0x312d5a },\
-          { 279, 543, 0x3a2d63 }, { 268, 543, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1379, 542, 0x29313a }, { 1387, 542, 0x21313a },\
-          { 1393, 542, 0x212d31 }, { 1400, 542, 0x313d42 },\
-          { 1408, 543, 0x5a699c }, { 1398, 543, 0x5a65a4 },\
-          { 1388, 543, 0x5a659c }, { 1380, 543, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1072, 519, 0x000c10 }, { 1082, 519, 0x000c10 },\
-          { 1091, 519, 0x101019 }, { 1098, 519, 0x000c10 },\
-          { 1107, 520, 0x3a4173 }, { 1100, 520, 0x424573 },\
-          { 1091, 520, 0x3a416b }, { 1082, 520, 0x3a416b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 422, 542, 0x101421 }, { 436, 542, 0x101421 },\
-          { 449, 542, 0x081019 }, { 458, 542, 0x211421 },\
-          { 467, 543, 0x3a3163 }, { 458, 543, 0x312d5a },\
-          { 448, 543, 0x3a315a }, { 439, 543, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1276, 527, 0x101421 }, { 1288, 527, 0x101421 },\
-          { 1301, 527, 0x101429 }, { 1311, 527, 0x191829 },\
-          { 1322, 528, 0x42457b }, { 1312, 528, 0x42457b },\
-          { 1303, 528, 0x42497b }, { 1293, 528, 0x424573 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 359, 966, 0x000000 }, { 370, 966, 0x000000 },\
-          { 384, 966, 0x000000 }, { 397, 966, 0x000000 },\
-          { 407, 968, 0x000000 }, { 398, 968, 0x000000 },\
-          { 391, 968, 0x000000 }, { 396, 965, 0x212042 },\
-          { 386, 965, 0x212042 }, { 380, 965, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 451, 995, 0x000000 }, { 465, 995, 0x000000 },\
-          { 478, 995, 0x000000 }, { 492, 995, 0x000000 },\
-          { 503, 994, 0x29204a }, { 490, 994, 0x29204a },\
-          { 477, 994, 0x212042 }, { 468, 994, 0x29204a },\
-          { 477, 997, 0x000000 }, { 458, 997, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 697, 995, 0x000000 }, { 709, 995, 0x000000 },\
-          { 720, 995, 0x000000 }, { 732, 995, 0x000000 },\
-          { 741, 994, 0x29204a }, { 733, 994, 0x29204a },\
-          { 722, 994, 0x312452 }, { 713, 994, 0x29204a },\
-          { 714, 997, 0x000000 }, { 697, 997, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 478, 953, 0x000000 }, { 491, 953, 0x000000 },\
-          { 504, 953, 0x000000 }, { 517, 953, 0x000000 },\
-          { 530, 952, 0x31244a }, { 520, 952, 0x31244a },\
-          { 510, 952, 0x31244a }, { 498, 952, 0x31204a },\
-          { 520, 955, 0x000000 }, { 502, 955, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 574, 556, 0x000000 }, { 575, 556, 0x31285a },\
-          { 574, 555, 0x000000 }, { 575, 555, 0x312d5a },\
-          { 573, 557, 0x000000 }, { 574, 557, 0x292852 },\
-          { 573, 558, 0x000000 }, { 574, 558, 0x31355a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 558, 684, 0x000000 }, { 559, 684, 0x312852 },\
-          { 558, 683, 0x000000 }, { 559, 683, 0x312852 },\
-          { 557, 685, 0x000000 }, { 558, 685, 0x29244a },\
-          { 557, 686, 0x000000 }, { 558, 686, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 429, 907, 0x000000 }, { 430, 907, 0x211c42 },\
-          { 429, 906, 0x000000 }, { 430, 906, 0x29204a },\
-          { 428, 908, 0x000000 }, { 429, 908, 0x29204a },\
-          { 428, 909, 0x000000 }, { 429, 909, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1588, 566, 0x000000 }, { 1587, 566, 0x636db5 },\
-          { 1588, 565, 0x000000 }, { 1587, 565, 0x636db5 },\
-          { 1589, 567, 0x000000 }, { 1588, 567, 0x636dad },\
-          { 1589, 568, 0x000000 }, { 1588, 568, 0x6b6db5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1615, 699, 0x000000 }, { 1614, 699, 0x5a559c },\
-          { 1615, 698, 0x000000 }, { 1614, 698, 0x6359a4 },\
-          { 1616, 700, 0x000000 }, { 1615, 700, 0x5a559c },\
-          { 1616, 701, 0x000000 }, { 1615, 701, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1477, 535, 0x000000 }, { 1476, 535, 0x424173 },\
-          { 1477, 534, 0x000000 }, { 1476, 534, 0x42457b },\
-          { 1478, 536, 0x000000 }, { 1477, 536, 0x42417b },\
-          { 1478, 537, 0x000000 }, { 1477, 537, 0x42417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1527, 831, 0x000000 }, { 1526, 831, 0x312d5a },\
-          { 1527, 830, 0x000000 }, { 1526, 830, 0x423963 },\
-          { 1528, 832, 0x000000 }, { 1527, 832, 0x312d5a },\
-          { 1528, 833, 0x000000 }, { 1527, 833, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -1602,226 +842,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1514, 542, 0x212042 }, { 1522, 542, 0x212042 },\
-          { 1533, 542, 0x191c29 }, { 1549, 542, 0x191c29 },\
-          { 1560, 543, 0x6371ad }, { 1550, 543, 0x6371ad },\
-          { 1540, 543, 0x6371ad }, { 1531, 543, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 261, 542, 0x081019 }, { 269, 542, 0x081019 },\
-          { 282, 542, 0x211421 }, { 290, 542, 0x211421 },\
-          { 298, 543, 0x312d5a }, { 288, 543, 0x312d5a },\
-          { 279, 543, 0x3a2d63 }, { 268, 543, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1379, 542, 0x29313a }, { 1387, 542, 0x21313a },\
-          { 1393, 542, 0x212d31 }, { 1400, 542, 0x313d42 },\
-          { 1408, 543, 0x5a699c }, { 1398, 543, 0x5a65a4 },\
-          { 1388, 543, 0x5a659c }, { 1380, 543, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1072, 519, 0x000c10 }, { 1082, 519, 0x000c10 },\
-          { 1091, 519, 0x101019 }, { 1098, 519, 0x000c10 },\
-          { 1107, 520, 0x3a4173 }, { 1100, 520, 0x424573 },\
-          { 1091, 520, 0x3a416b }, { 1082, 520, 0x3a416b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 422, 542, 0x101421 }, { 436, 542, 0x101421 },\
-          { 449, 542, 0x081019 }, { 458, 542, 0x211421 },\
-          { 467, 543, 0x3a3163 }, { 458, 543, 0x312d5a },\
-          { 448, 543, 0x3a315a }, { 439, 543, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1276, 527, 0x101421 }, { 1288, 527, 0x101421 },\
-          { 1301, 527, 0x101429 }, { 1311, 527, 0x191829 },\
-          { 1322, 528, 0x42457b }, { 1312, 528, 0x42457b },\
-          { 1303, 528, 0x42497b }, { 1293, 528, 0x424573 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 359, 966, 0x000000 }, { 370, 966, 0x000000 },\
-          { 384, 966, 0x000000 }, { 397, 966, 0x000000 },\
-          { 407, 968, 0x000000 }, { 398, 968, 0x000000 },\
-          { 391, 968, 0x000000 }, { 396, 965, 0x212042 },\
-          { 386, 965, 0x212042 }, { 380, 965, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 451, 995, 0x000000 }, { 465, 995, 0x000000 },\
-          { 478, 995, 0x000000 }, { 492, 995, 0x000000 },\
-          { 503, 994, 0x29204a }, { 490, 994, 0x29204a },\
-          { 477, 994, 0x212042 }, { 468, 994, 0x29204a },\
-          { 477, 997, 0x000000 }, { 458, 997, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 697, 995, 0x000000 }, { 709, 995, 0x000000 },\
-          { 720, 995, 0x000000 }, { 732, 995, 0x000000 },\
-          { 741, 994, 0x29204a }, { 733, 994, 0x29204a },\
-          { 722, 994, 0x312452 }, { 713, 994, 0x29204a },\
-          { 714, 997, 0x000000 }, { 697, 997, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 478, 953, 0x000000 }, { 491, 953, 0x000000 },\
-          { 504, 953, 0x000000 }, { 517, 953, 0x000000 },\
-          { 530, 952, 0x31244a }, { 520, 952, 0x31244a },\
-          { 510, 952, 0x31244a }, { 498, 952, 0x31204a },\
-          { 520, 955, 0x000000 }, { 502, 955, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 574, 556, 0x000000 }, { 575, 556, 0x31285a },\
-          { 574, 555, 0x000000 }, { 575, 555, 0x312d5a },\
-          { 573, 557, 0x000000 }, { 574, 557, 0x292852 },\
-          { 573, 558, 0x000000 }, { 574, 558, 0x31355a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 558, 684, 0x000000 }, { 559, 684, 0x312852 },\
-          { 558, 683, 0x000000 }, { 559, 683, 0x312852 },\
-          { 557, 685, 0x000000 }, { 558, 685, 0x29244a },\
-          { 557, 686, 0x000000 }, { 558, 686, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 429, 907, 0x000000 }, { 430, 907, 0x211c42 },\
-          { 429, 906, 0x000000 }, { 430, 906, 0x29204a },\
-          { 428, 908, 0x000000 }, { 429, 908, 0x29204a },\
-          { 428, 909, 0x000000 }, { 429, 909, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1588, 566, 0x000000 }, { 1587, 566, 0x636db5 },\
-          { 1588, 565, 0x000000 }, { 1587, 565, 0x636db5 },\
-          { 1589, 567, 0x000000 }, { 1588, 567, 0x636dad },\
-          { 1589, 568, 0x000000 }, { 1588, 568, 0x6b6db5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1615, 699, 0x000000 }, { 1614, 699, 0x5a559c },\
-          { 1615, 698, 0x000000 }, { 1614, 698, 0x6359a4 },\
-          { 1616, 700, 0x000000 }, { 1615, 700, 0x5a559c },\
-          { 1616, 701, 0x000000 }, { 1615, 701, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1477, 535, 0x000000 }, { 1476, 535, 0x424173 },\
-          { 1477, 534, 0x000000 }, { 1476, 534, 0x42457b },\
-          { 1478, 536, 0x000000 }, { 1477, 536, 0x42417b },\
-          { 1478, 537, 0x000000 }, { 1477, 537, 0x42417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1527, 831, 0x000000 }, { 1526, 831, 0x312d5a },\
-          { 1527, 830, 0x000000 }, { 1526, 830, 0x423963 },\
-          { 1528, 832, 0x000000 }, { 1527, 832, 0x312d5a },\
-          { 1528, 833, 0x000000 }, { 1527, 833, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -1857,226 +877,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 694, 507, 0x212431 }, { 712, 507, 0x192031 },\
-          { 725, 507, 0x21243a }, { 744, 507, 0x192031 },\
-          { 762, 508, 0x3a3963 }, { 748, 508, 0x423963 },\
-          { 730, 508, 0x3a3963 }, { 713, 508, 0x3a2d63 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1570, 505, 0x101821 }, { 1580, 505, 0x101429 },\
-          { 1592, 505, 0x081421 }, { 1604, 505, 0x191c29 },\
-          { 1606, 506, 0x6b75b5 }, { 1596, 506, 0x6b75b5 },\
-          { 1585, 506, 0x6b6d9c }, { 1572, 506, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1126, 505, 0x101829 }, { 1137, 505, 0x191831 },\
-          { 1148, 505, 0x191829 }, { 1158, 505, 0x101829 },\
-          { 1165, 506, 0x3a4173 }, { 1150, 506, 0x424173 },\
-          { 1137, 506, 0x3a3d6b }, { 1122, 506, 0x424173 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 816, 505, 0x191829 }, { 835, 505, 0x191831 },\
-          { 845, 505, 0x191831 }, { 857, 505, 0x191831 },\
-          { 869, 506, 0x3a3d73 }, { 860, 506, 0x42417b },\
-          { 843, 506, 0x3a3d6b }, { 824, 506, 0x3a416b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 879, 507, 0x191831 }, { 893, 507, 0x191831 },\
-          { 904, 507, 0x101429 }, { 920, 507, 0x101429 },\
-          { 933, 508, 0x3a3163 }, { 927, 508, 0x3a315a },\
-          { 911, 508, 0x3a3163 }, { 894, 508, 0x3a3963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 493, 909, 0x000000 }, { 511, 909, 0x000000 },\
-          { 522, 909, 0x000000 }, { 532, 909, 0x000000 },\
-          { 545, 908, 0x29204a }, { 535, 908, 0x212042 },\
-          { 520, 908, 0x29204a }, { 508, 908, 0x29204a },\
-          { 507, 911, 0x000000 }, { 525, 911, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 728, 909, 0x000000 }, { 741, 909, 0x000000 },\
-          { 757, 909, 0x000000 }, { 778, 909, 0x000000 },\
-          { 789, 908, 0x29204a }, { 779, 908, 0x29204a },\
-          { 763, 908, 0x29204a }, { 749, 908, 0x29204a },\
-          { 746, 911, 0x000000 }, { 769, 911, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 272, 912, 0x000000 }, { 291, 912, 0x000000 },\
-          { 313, 912, 0x000000 }, { 335, 912, 0x000000 },\
-          { 352, 911, 0x212442 }, { 335, 911, 0x29244a },\
-          { 315, 911, 0x29244a }, { 298, 911, 0x29204a },\
-          { 298, 914, 0x000000 }, { 325, 914, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-7 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 976, 912, 0x000000 }, { 992, 912, 0x000000 },\
-          { 1009, 912, 0x000000 }, { 1031, 912, 0x000000 },\
-          { 1048, 911, 0x29244a }, { 1030, 911, 0x29284a },\
-          { 1013, 911, 0x29284a }, { 1000, 911, 0x29284a },\
-          { 1000, 914, 0x000000 }, { 1026, 914, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 472, 657, 0x000000 }, { 473, 657, 0x312852 },\
-          { 472, 656, 0x000000 }, { 473, 656, 0x292852 },\
-          { 471, 658, 0x000000 }, { 472, 658, 0x312852 },\
-          { 471, 659, 0x000000 }, { 472, 659, 0x292852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 522, 532, 0x000000 }, { 523, 532, 0x312d52 },\
-          { 522, 531, 0x000000 }, { 523, 531, 0x312d5a },\
-          { 521, 533, 0x000000 }, { 522, 533, 0x292d52 },\
-          { 521, 534, 0x000000 }, { 522, 534, 0x31355a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 502, 672, 0x000000 }, { 503, 672, 0x292452 },\
-          { 502, 671, 0x000000 }, { 503, 671, 0x312852 },\
-          { 501, 673, 0x000000 }, { 502, 673, 0x29244a },\
-          { 501, 674, 0x000000 }, { 502, 674, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 7-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 457, 834, 0x000000 }, { 458, 834, 0x29204a },\
-          { 457, 833, 0x000000 }, { 458, 833, 0x211c42 },\
-          { 456, 835, 0x000000 }, { 457, 835, 0x29204a },\
-          { 456, 836, 0x000000 }, { 457, 836, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1615, 546, 0x000000 }, { 1614, 546, 0x636db5 },\
-          { 1615, 545, 0x000000 }, { 1614, 545, 0x5a69ad },\
-          { 1616, 547, 0x000000 }, { 1615, 547, 0x636db5 },\
-          { 1616, 548, 0x000000 }, { 1615, 548, 0x6369ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1639, 658, 0x000000 }, { 1638, 658, 0x635dad },\
-          { 1639, 657, 0x000000 }, { 1638, 657, 0x5a599c },\
-          { 1640, 659, 0x000000 }, { 1639, 659, 0x6359a4 },\
-          { 1640, 660, 0x000000 }, { 1639, 660, 0x5a599c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1569, 646, 0x000000 }, { 1568, 646, 0x4a417b },\
-          { 1569, 645, 0x000000 }, { 1568, 645, 0x4a3d7b },\
-          { 1570, 647, 0x000000 }, { 1569, 647, 0x4a417b },\
-          { 1570, 648, 0x000000 }, { 1569, 648, 0x4a417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1611, 814, 0x000000 }, { 1610, 814, 0x423963 },\
-          { 1611, 813, 0x000000 }, { 1610, 813, 0x312d5a },\
-          { 1612, 815, 0x000000 }, { 1611, 815, 0x3a3163 },\
-          { 1612, 816, 0x000000 }, { 1611, 816, 0x31315a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -2112,238 +912,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 880, 519, 0x081421 }, { 893, 519, 0x101829 },\
-          { 904, 519, 0x081421 }, { 917, 519, 0x101829 },\
-          { 926, 520, 0x3a3963 }, { 916, 520, 0x423963 },\
-          { 906, 520, 0x3a3963 }, { 897, 520, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1427, 529, 0x192031 }, { 1415, 529, 0x192431 },\
-          { 1403, 529, 0x192431 }, { 1395, 529, 0x192031 },\
-          { 1403, 530, 0x525594 }, { 1413, 530, 0x525994 },\
-          { 1421, 530, 0x525d94 }, { 1431, 530, 0x5a5d9c },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 984, 519, 0x081421 }, { 992, 519, 0x081421 },\
-          { 1001, 519, 0x101829 }, { 1011, 519, 0x191829 },\
-          { 1022, 520, 0x3a3963 }, { 1011, 520, 0x3a3163 },\
-          { 1001, 520, 0x3a3163 }, { 990, 520, 0x3a3d63 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1160, 519, 0x081821 }, { 1171, 519, 0x191831 },\
-          { 1183, 519, 0x191831 }, { 1196, 519, 0x081821 },\
-          { 1213, 520, 0x3a3163 }, { 1203, 520, 0x3a3163 },\
-          { 1192, 520, 0x423d63 }, { 1183, 520, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1397, 526, 0x101c29 }, { 1412, 526, 0x192031 },\
-          { 1434, 526, 0x212042 }, { 1454, 526, 0x212042 },\
-          { 1469, 527, 0x6b71b5 }, { 1453, 527, 0x6b71b5 },\
-          { 1438, 527, 0x636db5 }, { 1422, 527, 0x636dad },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1234, 526, 0x211c31 }, { 1249, 526, 0x101829 },\
-          { 1264, 526, 0x191c31 }, { 1281, 526, 0x101829 },\
-          { 1293, 527, 0x5a619c }, { 1284, 527, 0x525d94 },\
-          { 1270, 527, 0x4a598c }, { 1252, 527, 0x4a558c },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1032, 526, 0x191829 }, { 1046, 526, 0x211831 },\
-          { 1063, 526, 0x101429 }, { 1075, 526, 0x101429 },\
-          { 1085, 527, 0x3a3d6b }, { 1067, 527, 0x3a396b },\
-          { 1044, 527, 0x31396b }, { 1030, 527, 0x31396b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 570, 939, 0x000000 }, { 592, 939, 0x000000 },\
-          { 613, 939, 0x000000 }, { 634, 939, 0x000000 },\
-          { 651, 938, 0x29204a }, { 635, 938, 0x29204a },\
-          { 623, 938, 0x29204a }, { 611, 938, 0x212042 },\
-          { 610, 941, 0x000000 }, { 629, 941, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1002, 939, 0x000000 }, { 1019, 939, 0x000000 },\
-          { 1034, 939, 0x000000 }, { 1048, 939, 0x000000 },\
-          { 1062, 938, 0x312452 }, { 1049, 938, 0x31244a },\
-          { 1033, 938, 0x31244a }, { 1019, 938, 0x31244a },\
-          { 1021, 941, 0x000000 }, { 1040, 941, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 792, 934, 0x000000 }, { 804, 934, 0x000000 },\
-          { 815, 934, 0x000000 }, { 828, 934, 0x000000 },\
-          { 836, 933, 0x29244a }, { 820, 933, 0x31244a },\
-          { 811, 933, 0x31244a }, { 800, 933, 0x31244a },\
-          { 799, 936, 0x000000 }, { 816, 936, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-7 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1199, 934, 0x000000 }, { 1213, 934, 0x000000 },\
-          { 1228, 934, 0x000000 }, { 1240, 934, 0x000000 },\
-          { 1252, 933, 0x29284a }, { 1241, 933, 0x312d52 },\
-          { 1230, 933, 0x29284a }, { 1219, 933, 0x292d52 },\
-          { 1218, 936, 0x000000 }, { 1236, 936, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 582, 734, 0x000000 }, { 583, 734, 0x312d52 },\
-          { 582, 733, 0x000000 }, { 583, 733, 0x312d52 },\
-          { 581, 735, 0x000000 }, { 582, 735, 0x312852 },\
-          { 581, 736, 0x000000 }, { 582, 736, 0x31355a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 556, 959, 0x000000 }, { 557, 959, 0x29244a },\
-          { 556, 958, 0x000000 }, { 557, 958, 0x29244a },\
-          { 555, 960, 0x000000 }, { 556, 960, 0x312452 },\
-          { 555, 961, 0x000000 }, { 556, 961, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 513, 907, 0x000000 }, { 514, 907, 0x212042 },\
-          { 513, 906, 0x000000 }, { 514, 906, 0x29244a },\
-          { 512, 908, 0x000000 }, { 513, 908, 0x212042 },\
-          { 512, 909, 0x000000 }, { 513, 909, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1520, 565, 0x000000 }, { 1519, 565, 0x636db5 },\
-          { 1520, 564, 0x000000 }, { 1519, 564, 0x6369ad },\
-          { 1521, 566, 0x000000 }, { 1520, 566, 0x636db5 },\
-          { 1521, 567, 0x000000 }, { 1520, 567, 0x6369ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1543, 692, 0x000000 }, { 1542, 692, 0x6359a4 },\
-          { 1543, 691, 0x000000 }, { 1542, 691, 0x5a559c },\
-          { 1544, 693, 0x000000 }, { 1543, 693, 0x5a55a4 },\
-          { 1544, 694, 0x000000 }, { 1543, 694, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1560, 660, 0x000000 }, { 1559, 660, 0x3a3563 },\
-          { 1560, 659, 0x000000 }, { 1559, 659, 0x3a3563 },\
-          { 1561, 661, 0x000000 }, { 1560, 661, 0x3a3163 },\
-          { 1561, 662, 0x000000 }, { 1560, 662, 0x423d6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1591, 825, 0x000000 }, { 1590, 825, 0x312d5a },\
-          { 1591, 824, 0x000000 }, { 1590, 824, 0x3a3963 },\
-          { 1592, 826, 0x000000 }, { 1591, 826, 0x3a2d63 },\
-          { 1592, 827, 0x000000 }, { 1591, 827, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -2379,225 +947,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 466, 525, 0x081c19 }, { 478, 525, 0x000c10 },\
-          { 489, 525, 0x080c19 }, { 498, 525, 0x000c10 },\
-          { 515, 526, 0x312d63 }, { 504, 526, 0x3a3963 },\
-          { 496, 526, 0x3a3963 }, { 488, 526, 0x3a3963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1484, 519, 0x081019 }, { 1494, 519, 0x081419 },\
-          { 1512, 519, 0x081419 }, { 1527, 519, 0x101421 },\
-          { 1546, 520, 0x6b75b5 }, { 1531, 520, 0x6b71ad },\
-          { 1519, 520, 0x6b71ad }, { 1506, 520, 0x6b75b5 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1289, 519, 0x081421 }, { 1298, 519, 0x081019 },\
-          { 1307, 519, 0x101421 }, { 1315, 519, 0x101421 },\
-          { 1328, 520, 0x5a65a4 }, { 1318, 520, 0x5a65a4 },\
-          { 1312, 520, 0x5a61a4 }, { 1304, 520, 0x5a61a4 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1072, 519, 0x000c10 }, { 1082, 519, 0x000c10 },\
-          { 1091, 519, 0x101019 }, { 1098, 519, 0x000c10 },\
-          { 1107, 520, 0x3a4173 }, { 1100, 520, 0x424573 },\
-          { 1091, 520, 0x3a416b }, { 1082, 520, 0x3a416b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 785, 525, 0x293142 }, { 795, 525, 0x21283a },\
-          { 803, 525, 0x192431 }, { 808, 525, 0x192029 },\
-          { 823, 526, 0x3a3163 }, { 815, 526, 0x3a3163 },\
-          { 807, 526, 0x3a3163 }, { 798, 526, 0x423963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1140, 525, 0x081019 }, { 1149, 525, 0x101419 },\
-          { 1156, 525, 0x081019 }, { 1166, 525, 0x001019 },\
-          { 1177, 526, 0x3a396b }, { 1169, 526, 0x3a396b },\
-          { 1163, 526, 0x3a396b }, { 1152, 526, 0x3a416b },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 359, 966, 0x000000 }, { 370, 966, 0x000000 },\
-          { 384, 966, 0x000000 }, { 397, 966, 0x000000 },\
-          { 407, 968, 0x000000 }, { 398, 968, 0x000000 },\
-          { 391, 968, 0x000000 }, { 396, 965, 0x212042 },\
-          { 386, 965, 0x212042 }, { 380, 965, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 916, 940, 0x000000 }, { 927, 940, 0x000000 },\
-          { 938, 940, 0x000000 }, { 947, 940, 0x000000 },\
-          { 962, 939, 0x29284a }, { 954, 939, 0x29284a },\
-          { 946, 939, 0x29244a }, { 940, 939, 0x29244a },\
-          { 940, 942, 0x000000 }, { 931, 942, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 472, 940, 0x000000 }, { 481, 940, 0x000000 },\
-          { 492, 940, 0x000000 }, { 502, 940, 0x000000 },\
-          { 510, 939, 0x29204a }, { 502, 939, 0x29204a },\
-          { 495, 939, 0x31204a }, { 488, 939, 0x292442 },\
-          { 488, 942, 0x000000 }, { 495, 943, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 422, 557, 0x000000 }, { 423, 557, 0x312d5a },\
-          { 422, 556, 0x000000 }, { 423, 556, 0x31285a },\
-          { 421, 558, 0x000000 }, { 422, 558, 0x31315a },\
-          { 421, 559, 0x000000 }, { 422, 559, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 397, 700, 0x000000 }, { 398, 700, 0x313552 },\
-          { 397, 699, 0x000000 }, { 398, 699, 0x292852 },\
-          { 396, 701, 0x000000 }, { 397, 701, 0x312d52 },\
-          { 396, 702, 0x000000 }, { 397, 702, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 330, 849, 0x000000 }, { 331, 849, 0x29204a },\
-          { 330, 848, 0x000400 }, { 331, 848, 0x29204a },\
-          { 329, 850, 0x000000 }, { 330, 850, 0x29204a },\
-          { 329, 851, 0x000000 }, { 330, 851, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1554, 525, 0x000000 }, { 1553, 525, 0x6b71ad },\
-          { 1554, 524, 0x000000 }, { 1553, 524, 0x6b71ad },\
-          { 1555, 526, 0x000000 }, { 1554, 526, 0x6b71b5 },\
-          { 1555, 527, 0x000000 }, { 1554, 527, 0x636dad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1588, 699, 0x000000 }, { 1587, 699, 0x6355a4 },\
-          { 1588, 698, 0x000000 }, { 1587, 698, 0x5a55a4 },\
-          { 1589, 700, 0x000000 }, { 1588, 700, 0x6359a4 },\
-          { 1589, 701, 0x000000 }, { 1588, 701, 0x5a559c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1727, 800, 0x000000 }, { 1726, 800, 0x3a3963 },\
-          { 1727, 799, 0x000000 }, { 1726, 799, 0x3a315a },\
-          { 1728, 801, 0x000000 }, { 1727, 801, 0x3a315a },\
-          { 1728, 802, 0x000000 }, { 1727, 802, 0x3a315a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1696, 666, 0x000000 }, { 1695, 666, 0x3a3563 },\
-          { 1696, 665, 0x000000 }, { 1695, 665, 0x3a3563 },\
-          { 1697, 667, 0x000000 }, { 1696, 667, 0x3a3163 },\
-          { 1697, 668, 0x000000 }, { 1696, 668, 0x423d6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1664, 663, 0x000000 }, { 1663, 663, 0x3a3563 },\
-          { 1664, 662, 0x000000 }, { 1663, 662, 0x3a3563 },\
-          { 1665, 664, 0x000000 }, { 1664, 664, 0x423d6b },\
-          { 1665, 665, 0x000000 }, { 1664, 665, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -2633,270 +982,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 409, 519, 0x081019 }, { 421, 519, 0x081019 },\
-          { 434, 519, 0x000c10 }, { 447, 519, 0x100c19 },\
-          { 458, 520, 0x3a3963 }, { 444, 520, 0x423963 },\
-          { 433, 520, 0x3a2d63 }, { 424, 520, 0x423963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1466, 530, 0x211831 }, { 1477, 530, 0x081421 },\
-          { 1485, 530, 0x081421 }, { 1493, 530, 0x081421 },\
-          { 1503, 531, 0x636db5 }, { 1495, 531, 0x636db5 },\
-          { 1486, 531, 0x636dad }, { 1476, 531, 0x636dad },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 787, 530, 0x101019 }, { 798, 530, 0x101421 },\
-          { 807, 530, 0x081019 }, { 813, 530, 0x081019 },\
-          { 824, 531, 0x31396b }, { 814, 531, 0x3a3963 },\
-          { 805, 531, 0x3a396b }, { 796, 531, 0x313963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 747, 519, 0x101419 }, { 757, 519, 0x081419 },\
-          { 766, 519, 0x081019 }, { 773, 519, 0x081419 },\
-          { 784, 520, 0x423963 }, { 776, 520, 0x423963 },\
-          { 770, 520, 0x3a3963 }, { 762, 520, 0x3a3963 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 338, 530, 0x212031 }, { 350, 530, 0x211c29 },\
-          { 359, 530, 0x101821 }, { 368, 530, 0x191c21 },\
-          { 379, 531, 0x3a3163 }, { 371, 531, 0x3a3163 },\
-          { 364, 531, 0x312d5a }, { 356, 531, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1283, 530, 0x101421 }, { 1292, 530, 0x191829 },\
-          { 1302, 530, 0x211831 }, { 1311, 530, 0x101429 },\
-          { 1320, 531, 0x4a598c }, { 1313, 531, 0x525994 },\
-          { 1305, 531, 0x4a598c }, { 1296, 531, 0x4a5184 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 602, 530, 0x101421 }, { 621, 530, 0x081019 },\
-          { 641, 530, 0x081019 }, { 662, 530, 0x101421 },\
-          { 677, 531, 0x3a3163 }, { 661, 531, 0x3a3163 },\
-          { 644, 531, 0x312d5a }, { 621, 531, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 274, 921, 0x000000 }, { 282, 921, 0x000000 },\
-          { 292, 921, 0x000000 }, { 299, 921, 0x000000 },\
-          { 310, 920, 0x29204a }, { 305, 920, 0x212042 },\
-          { 298, 920, 0x29204a }, { 289, 920, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 948, 921, 0x000000 }, { 957, 921, 0x000000 },\
-          { 967, 921, 0x000000 }, { 977, 921, 0x000000 },\
-          { 987, 920, 0x29204a }, { 980, 920, 0x29244a },\
-          { 973, 920, 0x29204a }, { 966, 920, 0x31204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-7 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1111, 933, 0x000000 }, { 1122, 933, 0x000000 },\
-          { 1129, 933, 0x000000 }, { 1137, 933, 0x000000 },\
-          { 1146, 932, 0x312852 }, { 1138, 932, 0x312852 },\
-          { 1131, 932, 0x29284a }, { 1122, 932, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 645, 933, 0x000000 }, { 654, 933, 0x000000 },\
-          { 663, 933, 0x000000 }, { 671, 933, 0x000000 },\
-          { 681, 932, 0x31244a }, { 675, 932, 0x292442 },\
-          { 667, 932, 0x292442 }, { 659, 932, 0x29244a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 378, 555, 0x000000 }, { 379, 555, 0x31285a },\
-          { 378, 554, 0x000000 }, { 379, 554, 0x31285a },\
-          { 377, 556, 0x000000 }, { 378, 556, 0x31355a },\
-          { 377, 557, 0x000000 }, { 378, 557, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 354, 682, 0x000000 }, { 355, 682, 0x312852 },\
-          { 354, 681, 0x000000 }, { 355, 681, 0x312852 },\
-          { 353, 683, 0x000000 }, { 354, 683, 0x292852 },\
-          { 353, 684, 0x000000 }, { 354, 684, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 259, 809, 0x000000 }, { 260, 809, 0x29204a },\
-          { 259, 808, 0x000000 }, { 260, 808, 0x29244a },\
-          { 258, 810, 0x000000 }, { 259, 810, 0x29204a },\
-          { 258, 811, 0x000000 }, { 259, 811, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1597, 567, 0x000000 }, { 1596, 567, 0x5a69ad },\
-          { 1597, 566, 0x000000 }, { 1596, 566, 0x636db5 },\
-          { 1598, 568, 0x000000 }, { 1597, 568, 0x6369b5 },\
-          { 1598, 569, 0x000000 }, { 1597, 569, 0x636db5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1611, 635, 0x000000 }, { 1610, 635, 0x5a59a4 },\
-          { 1611, 634, 0x000000 }, { 1610, 634, 0x635dad },\
-          { 1612, 636, 0x000000 }, { 1611, 636, 0x5a5d9c },\
-          { 1612, 637, 0x000000 }, { 1611, 637, 0x5a5da4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1716, 520, 0x000000 }, { 1715, 520, 0x5a559c },\
-          { 1716, 519, 0x000000 }, { 1715, 519, 0x6355a4 },\
-          { 1717, 521, 0x000000 }, { 1716, 521, 0x5a559c },\
-          { 1717, 522, 0x000000 }, { 1716, 522, 0x6359a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1631, 707, 0x000000 }, { 1630, 707, 0x5a559c },\
-          { 1631, 706, 0x000000 }, { 1630, 706, 0x6355a4 },\
-          { 1632, 708, 0x000008 }, { 1631, 708, 0x5a559c },\
-          { 1632, 709, 0x000000 }, { 1631, 709, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1696, 807, 0x000000 }, { 1695, 807, 0x3a3163 },\
-          { 1696, 806, 0x000000 }, { 1695, 806, 0x3a2d63 },\
-          { 1697, 808, 0x000000 }, { 1696, 808, 0x423963 },\
-          { 1697, 809, 0x000000 }, { 1696, 809, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1664, 663, 0x000000 }, { 1663, 663, 0x3a3563 },\
-          { 1664, 662, 0x000000 }, { 1663, 662, 0x3a3563 },\
-          { 1665, 664, 0x000000 }, { 1664, 664, 0x423d6b },\
-          { 1665, 665, 0x000000 }, { 1664, 665, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1631, 513, 0x000000 }, { 1630, 513, 0x423d73 },\
-          { 1631, 512, 0x000000 }, { 1630, 512, 0x42417b },\
-          { 1632, 514, 0x000000 }, { 1631, 514, 0x42417b },\
-          { 1632, 515, 0x000000 }, { 1631, 515, 0x42417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -2932,139 +1017,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1534, 505, 0x10283a }, { 1547, 505, 0x192d42 },\
-          { 1558, 505, 0x10283a }, { 1573, 505, 0x192d42 },\
-          { 1586, 506, 0x6b71b5 }, { 1572, 506, 0x636db5 },\
-          { 1562, 506, 0x636db5 }, { 1548, 506, 0x6371b5 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1447, 505, 0x102842 }, { 1460, 505, 0x10243a },\
-          { 1472, 505, 0x10243a }, { 1483, 505, 0x102842 },\
-          { 1494, 506, 0x636dad }, { 1482, 506, 0x6369a4 },\
-          { 1471, 506, 0x5a65a4 }, { 1457, 506, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 860, 505, 0x102031 }, { 874, 505, 0x102031 },\
-          { 889, 505, 0x192442 }, { 901, 505, 0x192442 },\
-          { 913, 506, 0x3a3163 }, { 903, 506, 0x3a3163 },\
-          { 891, 506, 0x3a3163 }, { 880, 506, 0x3a3d63 },\
-        })\
-        return { basePoint[3], posandcolor, 93, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 476, 879, 0x000000 }, { 492, 879, 0x000000 },\
-          { 511, 879, 0x000000 }, { 532, 879, 0x000000 },\
-          { 553, 878, 0x29204a }, { 532, 878, 0x312452 },\
-          { 517, 878, 0x31244a }, { 504, 878, 0x312452 },\
-          { 503, 882, 0x000000 }, { 529, 882, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 321, 395, 0x000000 }, { 322, 395, 0x31285a },\
-          { 321, 394, 0x000000 }, { 322, 394, 0x31355a },\
-          { 320, 396, 0x000000 }, { 321, 396, 0x31285a },\
-          { 320, 397, 0x000000 }, { 321, 397, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1686, 399, 0x000000 }, { 1685, 399, 0x636db5 },\
-          { 1686, 398, 0x000000 }, { 1685, 398, 0x636dad },\
-          { 1687, 400, 0x000000 }, { 1686, 400, 0x636db5 },\
-          { 1687, 401, 0x000000 }, { 1686, 401, 0x5a6dad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1716, 520, 0x000000 }, { 1715, 520, 0x5a559c },\
-          { 1716, 519, 0x000000 }, { 1715, 519, 0x6355a4 },\
-          { 1717, 521, 0x000000 }, { 1716, 521, 0x5a559c },\
-          { 1717, 522, 0x000000 }, { 1716, 522, 0x6359a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1752, 665, 0x000000 }, { 1751, 665, 0x4a457b },\
-          { 1752, 664, 0x000000 }, { 1751, 664, 0x4a417b },\
-          { 1753, 666, 0x000000 }, { 1752, 666, 0x4a4584 },\
-          { 1753, 667, 0x000000 }, { 1752, 667, 0x42417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1741, 789, 0x000000 }, { 1740, 789, 0x312d5a },\
-          { 1741, 788, 0x000000 }, { 1740, 788, 0x423963 },\
-          { 1742, 790, 0x000000 }, { 1741, 790, 0x312d5a },\
-          { 1742, 791, 0x000000 }, { 1741, 791, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1702, 623, 0x000000 }, { 1701, 623, 0x3a3563 },\
-          { 1702, 622, 0x000000 }, { 1701, 622, 0x3a3563 },\
-          { 1703, 624, 0x000000 }, { 1702, 624, 0x423d63 },\
-          { 1703, 625, 0x000000 }, { 1702, 625, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3100,150 +1052,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1702, 495, 0x081019 }, { 1713, 495, 0x081419 },\
-          { 1724, 495, 0x081019 }, { 1733, 495, 0x081419 },\
-          { 1740, 496, 0x6b71b5 }, { 1728, 496, 0x6b71b5 },\
-          { 1718, 496, 0x636db5 }, { 1705, 496, 0x636dad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 846, 495, 0x081419 }, { 854, 495, 0x081419 },\
-          { 862, 495, 0x081419 }, { 870, 495, 0x081419 },\
-          { 879, 496, 0x312d5a }, { 867, 496, 0x31315a },\
-          { 858, 496, 0x3a3563 }, { 848, 496, 0x423563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 332, 495, 0x000c10 }, { 342, 495, 0x000c10 },\
-          { 351, 495, 0x101019 }, { 362, 495, 0x000c11 },\
-          { 372, 496, 0x423563 }, { 361, 496, 0x3a2d5a },\
-          { 352, 496, 0x423563 }, { 343, 496, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 425, 902, 0x000000 }, { 436, 902, 0x000000 },\
-          { 444, 902, 0x000000 }, { 449, 902, 0x000000 },\
-          { 457, 901, 0x29204a }, { 443, 901, 0x212042 },\
-          { 430, 901, 0x212042 }, { 423, 901, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1037, 902, 0x000000 }, { 1047, 902, 0x000000 },\
-          { 1053, 902, 0x000000 }, { 1064, 902, 0x000000 },\
-          { 1076, 901, 0x29204a }, { 1064, 901, 0x29204a },\
-          { 1058, 901, 0x292042 }, { 1048, 901, 0x292042 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-9 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1453, 902, 0x000000 }, { 1464, 902, 0x000000 },\
-          { 1470, 902, 0x000000 }, { 1479, 902, 0x000000 },\
-          { 1491, 901, 0x312d52 }, { 1482, 901, 0x292d4a },\
-          { 1474, 901, 0x292d4a }, { 1467, 901, 0x312c52 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 5-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 379, 813, 0x000000 }, { 380, 813, 0x29204a },\
-          { 379, 812, 0x000000 }, { 380, 812, 0x29204a },\
-          { 378, 814, 0x000000 }, { 379, 814, 0x29204a },\
-          { 378, 815, 0x000000 }, { 379, 815, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 295, 530, 0x000000 }, { 296, 530, 0x31315a },\
-          { 295, 529, 0x000000 }, { 296, 529, 0x31285a },\
-          { 294, 531, 0x000000 }, { 295, 531, 0x312d5a },\
-          { 294, 532, 0x000000 }, { 295, 532, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 5-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1597, 807, 0x000000 }, { 1596, 807, 0x312d5a },\
-          { 1597, 806, 0x000000 }, { 1596, 806, 0x3a3563 },\
-          { 1598, 808, 0x000000 }, { 1597, 808, 0x3a2d63 },\
-          { 1598, 809, 0x000000 }, { 1597, 809, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1902, 761, 0x000000 }, { 1901, 761, 0x4a417b },\
-          { 1902, 760, 0x000000 }, { 1901, 760, 0x4a417b },\
-          { 1903, 762, 0x000000 }, { 1902, 762, 0x4a4184 },\
-          { 1903, 763, 0x000000 }, { 1902, 763, 0x4a3d7b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1836, 531, 0x000000 }, { 1835, 531, 0x6369b5 },\
-          { 1836, 530, 0x000000 }, { 1835, 530, 0x6369b5 },\
-          { 1837, 532, 0x000000 }, { 1836, 532, 0x6b69b5 },\
-          { 1837, 533, 0x000000 }, { 1836, 533, 0x6365ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3279,175 +1087,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1534, 505, 0x10283a }, { 1547, 505, 0x192d42 },\
-          { 1558, 505, 0x10283a }, { 1573, 505, 0x192d42 },\
-          { 1586, 506, 0x6b71b5 }, { 1572, 506, 0x636db5 },\
-          { 1562, 506, 0x636db5 }, { 1548, 506, 0x6371b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1473, 551, 0x101c31 }, { 1484, 551, 0x081c29 },\
-          { 1493, 551, 0x102031 }, { 1505, 551, 0x102031 },\
-          { 1516, 552, 0x636dad }, { 1504, 552, 0x6369a4 },\
-          { 1490, 552, 0x5a65a4 }, { 1479, 552, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1061, 551, 0x081821 }, { 1075, 551, 0x101821 },\
-          { 1088, 551, 0x081419 }, { 1100, 551, 0x081419 },\
-          { 1116, 552, 0x424173 }, { 1106, 552, 0x42417b },\
-          { 1089, 552, 0x42457b }, { 1076, 552, 0x42457b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 684, 551, 0x102431 }, { 702, 551, 0x192831 },\
-          { 718, 551, 0x102431 }, { 728, 551, 0x102831 },\
-          { 739, 552, 0x3a3163 }, { 730, 552, 0x3a3963 },\
-          { 717, 552, 0x3a3163 }, { 699, 552, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 550, 551, 0x213131 }, { 562, 551, 0x193131 },\
-          { 574, 551, 0x193131 }, { 586, 551, 0x192831 },\
-          { 598, 552, 0x3a3963 }, { 587, 552, 0x3a3163 },\
-          { 573, 552, 0x3a3163 }, { 562, 552, 0x3a3963 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 476, 879, 0x000000 }, { 492, 879, 0x000000 },\
-          { 511, 879, 0x000000 }, { 532, 879, 0x000000 },\
-          { 553, 878, 0x29204a }, { 532, 878, 0x312452 },\
-          { 517, 878, 0x31244a }, { 504, 878, 0x312452 },\
-          { 503, 882, 0x000000 }, { 529, 882, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 320, 582, 0x000400 }, { 321, 582, 0x31285a },\
-          { 320, 581, 0x000000 }, { 321, 581, 0x31285a },\
-          { 319, 583, 0x000000 }, { 320, 583, 0x31285a },\
-          { 319, 584, 0x000000 }, { 320, 584, 0x31355a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 258, 855, 0x000000 }, { 259, 855, 0x312852 },\
-          { 258, 854, 0x000000 }, { 259, 854, 0x312852 },\
-          { 257, 856, 0x000000 }, { 258, 856, 0x312852 },\
-          { 257, 857, 0x000000 }, { 258, 857, 0x29244a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1686, 399, 0x000000 }, { 1685, 399, 0x636db5 },\
-          { 1686, 398, 0x000000 }, { 1685, 398, 0x636dad },\
-          { 1687, 400, 0x000000 }, { 1686, 400, 0x636db5 },\
-          { 1687, 401, 0x000000 }, { 1686, 401, 0x5a6dad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1733, 706, 0x000000 }, { 1732, 706, 0x6359a4 },\
-          { 1733, 705, 0x000000 }, { 1732, 705, 0x5a559c },\
-          { 1734, 707, 0x000000 }, { 1733, 707, 0x5a55a4 },\
-          { 1734, 708, 0x000000 }, { 1733, 708, 0x5a559c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1769, 843, 0x000000 }, { 1768, 843, 0x42417b },\
-          { 1769, 842, 0x000000 }, { 1768, 842, 0x4a457b },\
-          { 1770, 844, 0x000000 }, { 1769, 844, 0x4a417b },\
-          { 1770, 845, 0x000000 }, { 1769, 845, 0x4a417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1675, 694, 0x000000 }, { 1674, 694, 0x42416b },\
-          { 1675, 693, 0x000000 }, { 1674, 693, 0x3a3563 },\
-          { 1676, 695, 0x000000 }, { 1675, 695, 0x423563 },\
-          { 1676, 696, 0x000000 }, { 1675, 696, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1702, 623, 0x000000 }, { 1701, 623, 0x3a3563 },\
-          { 1702, 622, 0x000000 }, { 1701, 622, 0x3a3563 },\
-          { 1703, 624, 0x000000 }, { 1702, 624, 0x423d63 },\
-          { 1703, 625, 0x000000 }, { 1702, 625, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3483,174 +1122,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1558, 509, 0x192031 }, { 1565, 509, 0x212442 },\
-          { 1576, 509, 0x212031 }, { 1588, 509, 0x191c31 },\
-          { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },\
-          { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1390, 509, 0x192031 }, { 1405, 509, 0x212442 },\
-          { 1421, 509, 0x212442 }, { 1435, 509, 0x212431 },\
-          { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },\
-          { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 898, 509, 0x101c31 }, { 918, 509, 0x191c31 },\
-          { 935, 509, 0x19203a }, { 950, 509, 0x191c31 },\
-          { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },\
-          { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 7-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 572, 906, 0x000000 }, { 589, 906, 0x000000 },\
-          { 604, 906, 0x000000 }, { 617, 906, 0x000000 },\
-          { 631, 905, 0x2181c5 }, { 608, 905, 0x197dc5 },\
-          { 591, 905, 0x2181c5 }, { 574, 905, 0x217dbd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1009, 906, 0x000000 }, { 1029, 906, 0x000000 },\
-          { 1043, 906, 0x000000 }, { 1055, 906, 0x000000 },\
-          { 1066, 905, 0x1965b5 }, { 1049, 905, 0x2169b5 },\
-          { 1034, 905, 0x1969b5 }, { 1020, 905, 0x1969ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1444, 906, 0x000000 }, { 1461, 906, 0x000000 },\
-          { 1475, 906, 0x000000 }, { 1488, 906, 0x000000 },\
-          { 1501, 905, 0x1049a4 }, { 1481, 905, 0x104da4 },\
-          { 1465, 905, 0x1049a4 }, { 1452, 905, 0x104da4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1549, 905, 0x000000 }, { 1566, 905, 0x000000 },\
-          { 1581, 905, 0x000000 }, { 1595, 905, 0x000000 },\
-          { 1607, 904, 0x3a6dbd }, { 1587, 904, 0x3169b5 },\
-          { 1572, 904, 0x3169bd }, { 1557, 904, 0x3169bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-7 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 544, 784, 0x000000 }, { 545, 784, 0x218ec5 },\
-          { 544, 783, 0x000000 }, { 545, 783, 0x218ec5 },\
-          { 543, 785, 0x000000 }, { 544, 785, 0x218ec5 },\
-          { 543, 786, 0x000000 }, { 544, 786, 0x2992ce },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 581, 489, 0x000000 }, { 582, 489, 0x3192d6 },\
-          { 581, 488, 0x000000 }, { 582, 488, 0x3a96de },\
-          { 580, 490, 0x000000 }, { 581, 490, 0x3196d6 },\
-          { 580, 491, 0x000000 }, { 581, 491, 0x3a96d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 614, 227, 0x000101 }, { 615, 227, 0x31bad6 },\
-          { 614, 226, 0x000000 }, { 615, 226, 0x29bad6 },\
-          { 613, 228, 0x000000 }, { 614, 228, 0x31bad6 },\
-          { 613, 229, 0x000000 }, { 614, 229, 0x29b6d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 7-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1724, 850, 0x000000 }, { 1723, 850, 0x3171c5 },\
-          { 1724, 849, 0x000000 }, { 1723, 849, 0x3175c5 },\
-          { 1725, 851, 0x000000 }, { 1724, 851, 0x3171bd },\
-          { 1725, 852, 0x000000 }, { 1724, 852, 0x3a75ce },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1617, 378, 0x000000 }, { 1616, 378, 0x31b2de },\
-          { 1617, 377, 0x000000 }, { 1616, 377, 0x29b2d6 },\
-          { 1618, 379, 0x000000 }, { 1617, 379, 0x31b2de },\
-          { 1618, 380, 0x000000 }, { 1617, 380, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1672, 290, 0x000000 }, { 1671, 290, 0x31aede },\
-          { 1672, 289, 0x000000 }, { 1671, 289, 0x31b2de },\
-          { 1673, 291, 0x000000 }, { 1672, 291, 0x29aede },\
-          { 1673, 292, 0x000000 }, { 1672, 292, 0x31b2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3686,69 +1157,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1558, 509, 0x192031 }, { 1565, 509, 0x212442 },\
-          { 1576, 509, 0x212031 }, { 1588, 509, 0x191c31 },\
-          { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },\
-          { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1390, 509, 0x192031 }, { 1405, 509, 0x212442 },\
-          { 1421, 509, 0x212442 }, { 1435, 509, 0x212431 },\
-          { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },\
-          { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 898, 509, 0x101c31 }, { 918, 509, 0x191c31 },\
-          { 935, 509, 0x19203a }, { 950, 509, 0x191c31 },\
-          { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },\
-          { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 395, 523, 0x3a353a }, { 408, 523, 0x292829 },\
-          { 417, 523, 0x312d31 }, { 426, 523, 0x292829 },\
-          { 438, 524, 0x31a2e6 }, { 428, 524, 0x319ee6 },\
-          { 418, 524, 0x319ee6 }, { 408, 524, 0x319ee6 },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 554, 523, 0x292829 }, { 567, 523, 0x312d31 },\
-          { 581, 523, 0x312d31 }, { 592, 523, 0x292829 },\
-          { 601, 524, 0x31aede }, { 588, 524, 0x31aee6 },\
-          { 577, 524, 0x31b2e6 }, { 566, 524, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3819,163 +1227,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1558, 509, 0x192031 }, { 1565, 509, 0x212442 },\
-          { 1576, 509, 0x212031 }, { 1588, 509, 0x191c31 },\
-          { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },\
-          { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1390, 509, 0x192031 }, { 1405, 509, 0x212442 },\
-          { 1421, 509, 0x212442 }, { 1435, 509, 0x212431 },\
-          { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },\
-          { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 898, 509, 0x101c31 }, { 918, 509, 0x191c31 },\
-          { 935, 509, 0x19203a }, { 950, 509, 0x191c31 },\
-          { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },\
-          { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 3-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 506, 881, 0x000000 }, { 516, 881, 0x000000 },\
-          { 525, 881, 0x000000 }, { 538, 881, 0x000000 },\
-          { 548, 880, 0x2181c5 }, { 537, 880, 0x217dc5 },\
-          { 527, 880, 0x217dbd }, { 517, 880, 0x2181c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-4 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1327, 881, 0x000000 }, { 1341, 881, 0x000000 },\
-          { 1350, 881, 0x000000 }, { 1361, 881, 0x000000 },\
-          { 1371, 880, 0x10519c }, { 1358, 880, 0x1055a4 },\
-          { 1348, 880, 0x1055ad }, { 1338, 880, 0x1955ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 976, 896, 0x000001 }, { 991, 896, 0x000001 },\
-          { 1001, 896, 0x000000 }, { 1012, 896, 0x000001 },\
-          { 1027, 895, 0x1051a4 }, { 1014, 895, 0x1049a4 },\
-          { 1002, 895, 0x1049a4 }, { 987, 895, 0x1051a4 },\
-          { 979, 895, 0x1051a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 529, 531, 0x000000 }, { 530, 531, 0x31a6d6 },\
-          { 529, 530, 0x000000 }, { 530, 530, 0x31aee6 },\
-          { 528, 532, 0x080408 }, { 529, 532, 0x31aede },\
-          { 528, 533, 0x000000 }, { 529, 533, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 512, 652, 0x080509 }, { 513, 652, 0x29aace },\
-          { 512, 651, 0x000101 }, { 513, 651, 0x29aad6 },\
-          { 511, 653, 0x000000 }, { 512, 653, 0x29aace },\
-          { 511, 654, 0x000000 }, { 512, 654, 0x29aed6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 494, 779, 0x000000 }, { 495, 779, 0x2992ce },\
-          { 494, 778, 0x000000 }, { 495, 778, 0x2192c5 },\
-          { 493, 780, 0x000000 }, { 494, 780, 0x3192ce },\
-          { 493, 781, 0x000000 }, { 494, 781, 0x298ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1676, 594, 0x000000 }, { 1675, 594, 0x29b9dd },\
-          { 1676, 593, 0x000000 }, { 1675, 593, 0x29b9e5 },\
-          { 1677, 595, 0x000000 }, { 1676, 595, 0x29b5dd },\
-          { 1677, 596, 0x000000 }, { 1676, 596, 0x31bae6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1690, 655, 0x000000 }, { 1689, 655, 0x31b2de },\
-          { 1690, 654, 0x000000 }, { 1689, 654, 0x29aed6 },\
-          { 1691, 656, 0x000000 }, { 1690, 656, 0x31b1dd },\
-          { 1691, 657, 0x000000 }, { 1690, 657, 0x29aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-9 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1730, 829, 0x000000 }, { 1729, 829, 0x4275c5 },\
-          { 1730, 828, 0x000000 }, { 1729, 828, 0x4275c5 },\
-          { 1731, 830, 0x000000 }, { 1730, 830, 0x4a79ce },\
-          { 1731, 831, 0x000000 }, { 1730, 831, 0x4275c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -4011,234 +1262,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1632, 497, 0x21252a }, { 1648, 497, 0x101421 },\
-          { 1665, 497, 0x211921 }, { 1675, 497, 0x191d21 },\
-          { 1687, 498, 0x6371ad }, { 1671, 498, 0x6371ad },\
-          { 1655, 498, 0x6b71ad }, { 1641, 498, 0x6371ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1469, 497, 0x212542 }, { 1481, 497, 0x212542 },\
-          { 1496, 497, 0x191d2a }, { 1507, 497, 0x192132 },\
-          { 1513, 498, 0x5a65a4 }, { 1499, 498, 0x5a65a4 },\
-          { 1488, 498, 0x6365a4 }, { 1478, 498, 0x5a61a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 864, 497, 0x101421 }, { 877, 497, 0x211821 },\
-          { 890, 497, 0x111419 }, { 902, 497, 0x111419 },\
-          { 914, 498, 0x3a3563 }, { 900, 498, 0x3a3563 },\
-          { 885, 498, 0x3a315a }, { 872, 498, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 568, 371, 0x101410 }, { 577, 371, 0x191819 },\
-          { 586, 371, 0x101410 }, { 598, 371, 0x101410 },\
-          { 608, 372, 0x423963 }, { 599, 372, 0x3a3163 },\
-          { 591, 372, 0x3a3163 }, { 583, 372, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 390, 371, 0x101419 }, { 403, 371, 0x191819 },\
-          { 413, 371, 0x191819 }, { 426, 371, 0x101410 },\
-          { 436, 372, 0x423563 }, { 425, 372, 0x312d63 },\
-          { 413, 372, 0x312d63 }, { 405, 372, 0x3a2d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 573, 895, 0x000000 }, { 586, 895, 0x000000 },\
-          { 597, 895, 0x000000 }, { 607, 895, 0x000000 },\
-          { 614, 894, 0x29204a }, { 600, 894, 0x29204a },\
-          { 589, 894, 0x29204a }, { 576, 894, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1014, 895, 0x000000 }, { 1032, 895, 0x000000 },\
-          { 1052, 895, 0x000000 }, { 1071, 895, 0x000000 },\
-          { 1082, 894, 0x312452 }, { 1063, 894, 0x29244a },\
-          { 1047, 894, 0x31244a }, { 1029, 894, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 837, 897, 0x312452 }, { 855, 897, 0x31244a },\
-          { 873, 897, 0x312452 }, { 888, 897, 0x31244a },\
-          { 900, 898, 0x000000 }, { 881, 898, 0x000000 },\
-          { 865, 898, 0x000000 }, { 851, 898, 0x000000 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1549, 898, 0x000000 }, { 1560, 898, 0x000000 },\
-          { 1572, 898, 0x000000 }, { 1584, 898, 0x000000 },\
-          { 1592, 897, 0x312d52 }, { 1578, 897, 0x312852 },\
-          { 1566, 897, 0x292852 }, { 1558, 897, 0x292d4a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-6 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 517, 790, 0x000000 }, { 518, 790, 0x29204a },\
-          { 517, 789, 0x000000 }, { 518, 789, 0x212042 },\
-          { 516, 791, 0x000000 }, { 517, 791, 0x29204a },\
-          { 516, 792, 0x000000 }, { 517, 792, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 558, 483, 0x000000 }, { 559, 483, 0x312452 },\
-          { 558, 482, 0x000000 }, { 559, 482, 0x29244a },\
-          { 557, 484, 0x000000 }, { 558, 484, 0x312452 },\
-          { 557, 485, 0x000000 }, { 558, 485, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 540, 618, 0x000000 }, { 541, 618, 0x29204a },\
-          { 540, 617, 0x000000 }, { 541, 617, 0x292052 },\
-          { 539, 619, 0x000000 }, { 540, 619, 0x21204a },\
-          { 539, 620, 0x000000 }, { 540, 620, 0x292052 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 337, 382, 0x000000 }, { 338, 382, 0x3a2d5a },\
-          { 337, 381, 0x000000 }, { 338, 381, 0x312d52 },\
-          { 336, 383, 0x000000 }, { 337, 383, 0x31315a },\
-          { 336, 384, 0x000000 }, { 337, 384, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1696, 506, 0x000000 }, { 1695, 506, 0x6b71b5 },\
-          { 1696, 505, 0x000000 }, { 1695, 505, 0x6b71b5 },\
-          { 1697, 507, 0x000000 }, { 1696, 507, 0x636dad },\
-          { 1697, 508, 0x000000 }, { 1696, 508, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1731, 650, 0x000001 }, { 1730, 650, 0x6359a4 },\
-          { 1731, 649, 0x000000 }, { 1730, 649, 0x5a559c },\
-          { 1732, 651, 0x000000 }, { 1731, 651, 0x6355a4 },\
-          { 1732, 652, 0x000000 }, { 1731, 652, 0x5a559c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1652, 643, 0x000000 }, { 1651, 643, 0x4a417b },\
-          { 1652, 642, 0x000000 }, { 1651, 642, 0x4a417b },\
-          { 1653, 644, 0x000000 }, { 1652, 644, 0x4a4184 },\
-          { 1653, 645, 0x000000 }, { 1652, 645, 0x4a3d7b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1658, 789, 0x000000 }, { 1657, 789, 0x423563 },\
-          { 1658, 788, 0x000000 }, { 1657, 788, 0x3a2d63 },\
-          { 1659, 790, 0x000000 }, { 1658, 790, 0x3a3163 },\
-          { 1659, 791, 0x000000 }, { 1658, 791, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1594, 486, 0x000000 }, { 1593, 486, 0x42417b },\
-          { 1594, 485, 0x000000 }, { 1593, 485, 0x42417b },\
-          { 1595, 487, 0x000000 }, { 1594, 487, 0x424173 },\
-          { 1595, 488, 0x000000 }, { 1594, 488, 0x4a417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -4274,162 +1297,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1614, 451, 0x192431 }, { 1621, 451, 0x21283a },\
-          { 1632, 451, 0x192431 }, { 1643, 451, 0x212842 },\
-          { 1655, 452, 0x6b71ad }, { 1642, 452, 0x6b71b5 },\
-          { 1630, 452, 0x6b71b5 }, { 1620, 452, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1448, 451, 0x192431 }, { 1459, 451, 0x21283a },\
-          { 1473, 451, 0x21283a }, { 1487, 451, 0x21283a },\
-          { 1501, 452, 0x5a65a4 }, { 1485, 452, 0x5a619c },\
-          { 1473, 452, 0x5a619c }, { 1463, 452, 0x52619c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 864, 497, 0x101421 }, { 877, 497, 0x211821 },\
-          { 890, 497, 0x111419 }, { 902, 497, 0x111419 },\
-          { 914, 498, 0x3a3563 }, { 900, 498, 0x3a3563 },\
-          { 885, 498, 0x3a315a }, { 872, 498, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 568, 371, 0x101410 }, { 577, 371, 0x191819 },\
-          { 586, 371, 0x101410 }, { 598, 371, 0x101410 },\
-          { 608, 372, 0x423963 }, { 599, 372, 0x3a3163 },\
-          { 591, 372, 0x3a3163 }, { 583, 372, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 390, 371, 0x101419 }, { 403, 371, 0x191819 },\
-          { 413, 371, 0x191819 }, { 426, 371, 0x101410 },\
-          { 436, 372, 0x423563 }, { 425, 372, 0x312d63 },\
-          { 413, 372, 0x312d63 }, { 405, 372, 0x3a2d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 666, 869, 0x000000 }, { 680, 869, 0x000000 },\
-          { 695, 869, 0x000000 }, { 707, 869, 0x000000 },\
-          { 719, 868, 0x29204a }, { 707, 868, 0x29204a },\
-          { 696, 868, 0x312452 }, { 675, 868, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1072, 880, 0x000000 }, { 1082, 880, 0x000000 },\
-          { 1092, 880, 0x000000 }, { 1110, 880, 0x000000 },\
-          { 1120, 879, 0x29244a }, { 1106, 879, 0x29244a },\
-          { 1096, 879, 0x292442 }, { 1088, 879, 0x292442 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 5-5 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 472, 774, 0x000000 }, { 473, 774, 0x29204a },\
-          { 472, 773, 0x000000 }, { 473, 773, 0x292052 },\
-          { 471, 775, 0x000000 }, { 472, 775, 0x211c42 },\
-          { 471, 776, 0x000000 }, { 472, 776, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 513, 497, 0x000000 }, { 514, 497, 0x292452 },\
-          { 513, 496, 0x000000 }, { 514, 496, 0x312852 },\
-          { 512, 498, 0x000000 }, { 513, 498, 0x292852 },\
-          { 512, 499, 0x000000 }, { 513, 499, 0x292852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1600, 405, 0x000001 }, { 1599, 405, 0x6365ad },\
-          { 1600, 404, 0x000000 }, { 1599, 404, 0x6365ad },\
-          { 1601, 406, 0x000000 }, { 1600, 406, 0x6369b5 },\
-          { 1601, 407, 0x000000 }, { 1600, 407, 0x5a65ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1621, 501, 0x000000 }, { 1620, 501, 0x5a559c },\
-          { 1621, 500, 0x000000 }, { 1620, 500, 0x6355a4 },\
-          { 1622, 502, 0x000000 }, { 1621, 502, 0x5a559c },\
-          { 1622, 503, 0x000000 }, { 1621, 503, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1652, 643, 0x000000 }, { 1651, 643, 0x4a417b },\
-          { 1652, 642, 0x000000 }, { 1651, 642, 0x4a417b },\
-          { 1653, 644, 0x000000 }, { 1652, 644, 0x4a4184 },\
-          { 1653, 645, 0x000000 }, { 1652, 645, 0x4a3d7b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -4465,174 +1332,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1528, 364, 0x21283a }, { 1548, 364, 0x21283a },\
-          { 1560, 364, 0x21283a }, { 1576, 364, 0x29283a },\
-          { 1588, 365, 0x6371ad }, { 1575, 365, 0x6b71ad },\
-          { 1560, 365, 0x6371ad }, { 1544, 365, 0x6371ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1358, 364, 0x21283a }, { 1376, 364, 0x21283a },\
-          { 1386, 364, 0x21283a }, { 1400, 364, 0x21243a },\
-          { 1412, 365, 0x5a69a4 }, { 1394, 365, 0x52659c },\
-          { 1378, 365, 0x5a619c }, { 1361, 365, 0x525d9c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 767, 364, 0x192829 }, { 784, 364, 0x212d3a },\
-          { 804, 364, 0x29353a }, { 824, 364, 0x29353a },\
-          { 835, 365, 0x3a3563 }, { 815, 365, 0x3a3563 },\
-          { 798, 365, 0x31315a }, { 783, 365, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 568, 371, 0x101410 }, { 577, 371, 0x191819 },\
-          { 586, 371, 0x101410 }, { 598, 371, 0x101410 },\
-          { 608, 372, 0x423963 }, { 599, 372, 0x3a3163 },\
-          { 591, 372, 0x3a3163 }, { 583, 372, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 390, 371, 0x101419 }, { 403, 371, 0x191819 },\
-          { 413, 371, 0x191819 }, { 426, 371, 0x101410 },\
-          { 436, 372, 0x423563 }, { 425, 372, 0x312d63 },\
-          { 413, 372, 0x312d63 }, { 405, 372, 0x3a2d5a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 487, 888, 0x000000 }, { 501, 888, 0x000000 },\
-          { 514, 888, 0x000000 }, { 528, 888, 0x000000 },\
-          { 542, 887, 0x211c42 }, { 528, 887, 0x212042 },\
-          { 513, 887, 0x212042 }, { 495, 887, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 893, 888, 0x000000 }, { 917, 888, 0x000000 },\
-          { 937, 888, 0x000000 }, { 957, 888, 0x000000 },\
-          { 974, 887, 0x29244a }, { 956, 887, 0x29204a },\
-          { 934, 887, 0x31244a }, { 913, 887, 0x312852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1317, 888, 0x000000 }, { 1333, 888, 0x000000 },\
-          { 1346, 888, 0x000000 }, { 1359, 888, 0x000000 },\
-          { 1372, 887, 0x29244a }, { 1353, 887, 0x31244a },\
-          { 1335, 887, 0x312452 }, { 1312, 887, 0x29244a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 5-5 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 472, 774, 0x000000 }, { 473, 774, 0x29204a },\
-          { 472, 773, 0x000000 }, { 473, 773, 0x292052 },\
-          { 471, 775, 0x000000 }, { 472, 775, 0x211c42 },\
-          { 471, 776, 0x000000 }, { 472, 776, 0x29204a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 513, 497, 0x000000 }, { 514, 497, 0x292452 },\
-          { 513, 496, 0x000000 }, { 514, 496, 0x312852 },\
-          { 512, 498, 0x000000 }, { 513, 498, 0x292852 },\
-          { 512, 499, 0x000000 }, { 513, 499, 0x292852 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1600, 405, 0x000001 }, { 1599, 405, 0x6365ad },\
-          { 1600, 404, 0x000000 }, { 1599, 404, 0x6365ad },\
-          { 1601, 406, 0x000000 }, { 1600, 406, 0x6369b5 },\
-          { 1601, 407, 0x000000 }, { 1600, 407, 0x5a65ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1621, 501, 0x000000 }, { 1620, 501, 0x5a559c },\
-          { 1621, 500, 0x000000 }, { 1620, 500, 0x6355a4 },\
-          { 1622, 502, 0x000000 }, { 1621, 502, 0x5a559c },\
-          { 1622, 503, 0x000000 }, { 1621, 503, 0x5a55a4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1652, 643, 0x000000 }, { 1651, 643, 0x4a417b },\
-          { 1652, 642, 0x000000 }, { 1651, 642, 0x4a417b },\
-          { 1653, 644, 0x000000 }, { 1652, 644, 0x4a4184 },\
-          { 1653, 645, 0x000000 }, { 1652, 645, 0x4a3d7b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -4668,114 +1367,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1533, 462, 0x191d2a }, { 1575, 462, 0x191d32 },\
-          { 1609, 462, 0x191d2a }, { 1646, 462, 0x212132 },\
-          { 1660, 463, 0x6371ad }, { 1616, 463, 0x636dad },\
-          { 1580, 463, 0x636dad }, { 1548, 463, 0x636dad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1352, 462, 0x191d29 }, { 1400, 462, 0x191c29 },\
-          { 1431, 462, 0x191d2a }, { 1473, 462, 0x111d21 },\
-          { 1495, 463, 0x6369ad }, { 1452, 463, 0x525d9c },\
-          { 1418, 463, 0x4a598c }, { 1376, 463, 0x424d84 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 798, 462, 0x191829 }, { 826, 462, 0x212431 },\
-          { 866, 462, 0x191c29 }, { 897, 462, 0x192429 },\
-          { 917, 463, 0x3a3963 }, { 891, 463, 0x423563 },\
-          { 859, 463, 0x423563 }, { 825, 463, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 3-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 561, 889, 0x000000 }, { 601, 889, 0x000000 },\
-          { 630, 889, 0x000000 }, { 673, 889, 0x000000 },\
-          { 690, 888, 0x31244a }, { 663, 888, 0x29244a },\
-          { 633, 888, 0x29244a }, { 604, 888, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1597, 889, 0x000000 }, { 1645, 889, 0x000000 },\
-          { 1683, 889, 0x000000 }, { 1719, 889, 0x000000 },\
-          { 1753, 888, 0x3a315a }, { 1718, 888, 0x3a315a },\
-          { 1676, 888, 0x312d52 }, { 1635, 888, 0x31284a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 250, 468, 0x000000 }, { 251, 468, 0x312d5a },\
-          { 250, 467, 0x000000 }, { 251, 467, 0x42315a },\
-          { 249, 469, 0x000000 }, { 250, 469, 0x31285a },\
-          { 249, 470, 0x000000 }, { 250, 470, 0x3a2d63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1681, 469, 0x000000 }, { 1680, 469, 0x636dad },\
-          { 1681, 468, 0x000000 }, { 1680, 468, 0x6b71b5 },\
-          { 1682, 470, 0x000000 }, { 1681, 470, 0x6371ad },\
-          { 1682, 471, 0x000000 }, { 1681, 471, 0x6371ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1730, 652, 0x000000 }, { 1729, 652, 0x4a417b },\
-          { 1730, 651, 0x000000 }, { 1729, 651, 0x4a417b },\
-          { 1731, 653, 0x000000 }, { 1730, 653, 0x423d73 },\
-          { 1731, 654, 0x000000 }, { 1730, 654, 0x4a417b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -4827,186 +1418,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1552, 151, 0x212829 }, { 1568, 151, 0x101419 },\
-          { 1577, 151, 0x212429 }, { 1592, 151, 0x101819 },\
-          { 1598, 152, 0x6b75b5 }, { 1586, 152, 0x6b75ad },\
-          { 1565, 152, 0x6b6dad }, { 1546, 152, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1254, 730, 0x211421 }, { 1271, 730, 0x100c19 },\
-          { 1286, 730, 0x211421 }, { 1303, 730, 0x101019 },\
-          { 1317, 731, 0x6b71ad }, { 1294, 731, 0x636da4 },\
-          { 1276, 731, 0x63699c }, { 1256, 731, 0x63699c },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1421, 490, 0x191c21 }, { 1438, 490, 0x191c29 },\
-          { 1456, 490, 0x211c29 }, { 1471, 490, 0x191c29 },\
-          { 1485, 491, 0x525d94 }, { 1459, 491, 0x52558c },\
-          { 1437, 491, 0x4a5184 }, { 1413, 491, 0x4a5184 },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 954, 490, 0x191421 }, { 968, 490, 0x191421 },\
-          { 981, 490, 0x101419 }, { 998, 490, 0x191821 },\
-          { 1008, 491, 0x313563 }, { 995, 491, 0x423963 },\
-          { 979, 491, 0x423563 }, { 960, 491, 0x31315a },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 558, 925, 0x000000 }, { 581, 925, 0x000000 },\
-          { 601, 925, 0x000000 }, { 619, 925, 0x000000 },\
-          { 635, 924, 0x29204a }, { 613, 924, 0x212042 },\
-          { 592, 924, 0x29204a }, { 571, 924, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 982, 925, 0x000000 }, { 997, 925, 0x000000 },\
-          { 1015, 925, 0x000000 }, { 1035, 925, 0x000000 },\
-          { 1055, 924, 0x31244a }, { 1035, 924, 0x31244a },\
-          { 1013, 924, 0x31244a }, { 987, 924, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 992, 931, 0x000000 }, { 1015, 931, 0x000000 },\
-          { 1029, 931, 0x000000 }, { 1044, 931, 0x000000 },\
-          { 1058, 930, 0x312852 }, { 1040, 930, 0x312452 },\
-          { 1017, 930, 0x31244a }, { 996, 930, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 404, 514, 0x000000 }, { 405, 514, 0x31285a },\
-          { 404, 513, 0x000000 }, { 405, 513, 0x31315a },\
-          { 403, 515, 0x000000 }, { 404, 515, 0x292852 },\
-          { 403, 516, 0x000000 }, { 404, 516, 0x312d5a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 359, 760, 0x000000 }, { 360, 760, 0x312d5a },\
-          { 359, 759, 0x000000 }, { 360, 759, 0x292d52 },\
-          { 358, 761, 0x000000 }, { 359, 761, 0x313152 },\
-          { 358, 762, 0x000000 }, { 359, 762, 0x312d52 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1609, 158, 0x000000 }, { 1608, 158, 0x6b71b5 },\
-          { 1609, 157, 0x000000 }, { 1608, 157, 0x6369ad },\
-          { 1610, 159, 0x000000 }, { 1609, 159, 0x6b71b5 },\
-          { 1610, 160, 0x080408 }, { 1609, 160, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1358, 736, 0x000000 }, { 1357, 736, 0x6b71ad },\
-          { 1358, 735, 0x000000 }, { 1357, 735, 0x6b71ad },\
-          { 1359, 737, 0x000000 }, { 1358, 737, 0x636d9c },\
-          { 1359, 738, 0x000000 }, { 1358, 738, 0x6b71b5 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1682, 460, 0x000000 }, { 1681, 460, 0x4a417b },\
-          { 1682, 459, 0x000000 }, { 1681, 459, 0x4a417b },\
-          { 1683, 461, 0x000000 }, { 1682, 461, 0x423d7b },\
-          { 1683, 462, 0x000000 }, { 1682, 462, 0x4a417b },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1702, 542, 0x000000 }, { 1701, 542, 0x423d73 },\
-          { 1702, 541, 0x000000 }, { 1701, 541, 0x42417b },\
-          { 1703, 543, 0x000000 }, { 1702, 543, 0x423d73 },\
-          { 1703, 544, 0x000000 }, { 1702, 544, 0x4a4173 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1761, 786, 0x000000 }, { 1760, 786, 0x3a3563 },\
-          { 1761, 785, 0x000000 }, { 1760, 785, 0x3a355a },\
-          { 1762, 787, 0x000000 }, { 1761, 787, 0x3a355a },\
-          { 1762, 788, 0x000000 }, { 1761, 788, 0x3a315a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5042,162 +1453,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1668, 513, 0x101c21 }, { 1677, 513, 0x192031 },\
-          { 1685, 513, 0x192029 }, { 1692, 513, 0x101c21 },\
-          { 1702, 514, 0x6b75b5 }, { 1692, 514, 0x6b75b5 },\
-          { 1682, 514, 0x6b75b5 }, { 1675, 514, 0x6b6db5 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1489, 513, 0x191819 }, { 1499, 513, 0x192029 },\
-          { 1512, 513, 0x212429 }, { 1522, 513, 0x192429 },\
-          { 1533, 514, 0x5a699c }, { 1521, 514, 0x5a659c },\
-          { 1512, 514, 0x6369a4 }, { 1499, 514, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1218, 513, 0x101819 }, { 1229, 513, 0x191c29 },\
-          { 1244, 513, 0x191821 }, { 1259, 513, 0x192029 },\
-          { 1269, 514, 0x3a396b }, { 1257, 514, 0x3a396b },\
-          { 1240, 514, 0x3a3d6b }, { 1231, 514, 0x3a3d6b },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1066, 513, 0x191821 }, { 1078, 513, 0x101821 },\
-          { 1091, 513, 0x191c29 }, { 1107, 513, 0x191821 },\
-          { 1117, 514, 0x3a4173 }, { 1103, 514, 0x42457b },\
-          { 1094, 514, 0x42457b }, { 1083, 514, 0x424573 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 561, 889, 0x000000 }, { 601, 889, 0x000000 },\
-          { 630, 889, 0x000000 }, { 673, 889, 0x000000 },\
-          { 690, 888, 0x31244a }, { 663, 888, 0x29244a },\
-          { 633, 888, 0x29244a }, { 604, 888, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1597, 889, 0x000000 }, { 1645, 889, 0x000000 },\
-          { 1683, 889, 0x000000 }, { 1719, 889, 0x000000 },\
-          { 1753, 888, 0x3a315a }, { 1718, 888, 0x3a315a },\
-          { 1676, 888, 0x312d52 }, { 1635, 888, 0x31284a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 326, 509, 0x000000 }, { 327, 509, 0x31315a },\
-          { 326, 508, 0x000000 }, { 327, 508, 0x31285a },\
-          { 325, 510, 0x000000 }, { 326, 510, 0x312d5a },\
-          { 325, 511, 0x000000 }, { 326, 511, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 532, 0x000000 }, { 483, 532, 0x29244a },\
-          { 482, 531, 0x000000 }, { 483, 531, 0x29244a },\
-          { 481, 533, 0x000000 }, { 482, 533, 0x29204a },\
-          { 481, 534, 0x000000 }, { 482, 534, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 435, 832, 0x000000 }, { 436, 832, 0x29204a },\
-          { 435, 831, 0x000000 }, { 436, 831, 0x211c42 },\
-          { 434, 833, 0x000000 }, { 435, 833, 0x212042 },\
-          { 434, 834, 0x000000 }, { 435, 834, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1695, 524, 0x000000 }, { 1694, 524, 0x6369b5 },\
-          { 1695, 523, 0x000000 }, { 1694, 523, 0x6365ad },\
-          { 1696, 525, 0x000000 }, { 1695, 525, 0x6365ad },\
-          { 1696, 526, 0x000000 }, { 1695, 526, 0x6365ad },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1546, 320, 0x000000 }, { 1545, 320, 0x4a417b },\
-          { 1546, 319, 0x000000 }, { 1545, 319, 0x4a417b },\
-          { 1547, 321, 0x000000 }, { 1546, 321, 0x423d7b },\
-          { 1547, 322, 0x000000 }, { 1546, 322, 0x4a4184 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1663, 729, 0x000000 }, { 1662, 729, 0x31355a },\
-          { 1663, 728, 0x000000 }, { 1662, 728, 0x3a3563 },\
-          { 1664, 730, 0x000000 }, { 1663, 730, 0x3a355a },\
-          { 1664, 731, 0x000000 }, { 1663, 731, 0x423963 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5233,162 +1488,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1665, 473, 0x21313a }, { 1677, 473, 0x213542 },\
-          { 1685, 473, 0x213142 }, { 1693, 473, 0x212d42 },\
-          { 1697, 474, 0x6b75ad }, { 1687, 474, 0x6b75ad },\
-          { 1678, 474, 0x6b75b5 }, { 1671, 474, 0x6b6dad },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1489, 513, 0x191819 }, { 1499, 513, 0x192029 },\
-          { 1512, 513, 0x212429 }, { 1522, 513, 0x192429 },\
-          { 1533, 514, 0x5a699c }, { 1521, 514, 0x5a659c },\
-          { 1512, 514, 0x6369a4 }, { 1499, 514, 0x5a619c },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1218, 513, 0x101819 }, { 1229, 513, 0x191c29 },\
-          { 1244, 513, 0x191821 }, { 1259, 513, 0x192029 },\
-          { 1269, 514, 0x3a396b }, { 1257, 514, 0x3a396b },\
-          { 1240, 514, 0x3a3d6b }, { 1231, 514, 0x3a3d6b },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1066, 513, 0x191821 }, { 1078, 513, 0x101821 },\
-          { 1091, 513, 0x191c29 }, { 1107, 513, 0x191821 },\
-          { 1117, 514, 0x3a4173 }, { 1103, 514, 0x42457b },\
-          { 1094, 514, 0x42457b }, { 1083, 514, 0x424573 },\
-        })\
-        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1034, 884, 0x000000 }, { 1080, 884, 0x000000 },\
-          { 1140, 884, 0x000000 }, { 1183, 884, 0x000000 },\
-          { 1212, 883, 0x29244a }, { 1161, 883, 0x29244a },\
-          { 1117, 883, 0x29244a }, { 1075, 883, 0x31204a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1486, 885, 0x000000 }, { 1546, 885, 0x000000 },\
-          { 1598, 885, 0x000000 }, { 1641, 885, 0x000000 },\
-          { 1669, 884, 0x3a315a }, { 1627, 884, 0x312d52 },\
-          { 1584, 884, 0x312d5a }, { 1543, 884, 0x31284a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 326, 509, 0x000000 }, { 327, 509, 0x31315a },\
-          { 326, 508, 0x000000 }, { 327, 508, 0x31285a },\
-          { 325, 510, 0x000000 }, { 326, 510, 0x312d5a },\
-          { 325, 511, 0x000000 }, { 326, 511, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 532, 0x000000 }, { 483, 532, 0x29244a },\
-          { 482, 531, 0x000000 }, { 483, 531, 0x29244a },\
-          { 481, 533, 0x000000 }, { 482, 533, 0x29204a },\
-          { 481, 534, 0x000000 }, { 482, 534, 0x312452 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 435, 832, 0x000000 }, { 436, 832, 0x29204a },\
-          { 435, 831, 0x000000 }, { 436, 831, 0x211c42 },\
-          { 434, 833, 0x000000 }, { 435, 833, 0x212042 },\
-          { 434, 834, 0x000000 }, { 435, 834, 0x212042 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1695, 524, 0x000000 }, { 1694, 524, 0x6369b5 },\
-          { 1695, 523, 0x000000 }, { 1694, 523, 0x6365ad },\
-          { 1696, 525, 0x000000 }, { 1695, 525, 0x6365ad },\
-          { 1696, 526, 0x000000 }, { 1695, 526, 0x6365ad },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1788, 746, 0x000000 }, { 1787, 746, 0x52498c },\
-          { 1788, 745, 0x000000 }, { 1787, 745, 0x52498c },\
-          { 1789, 747, 0x000000 }, { 1788, 747, 0x524584 },\
-          { 1789, 748, 0x000000 }, { 1788, 748, 0x5a498c },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1663, 729, 0x000000 }, { 1662, 729, 0x31355a },\
-          { 1663, 728, 0x000000 }, { 1662, 728, 0x3a3563 },\
-          { 1664, 730, 0x000000 }, { 1663, 730, 0x3a355a },\
-          { 1664, 731, 0x000000 }, { 1663, 731, 0x423963 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5424,126 +1523,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1617, 488, 0x100c19 }, { 1635, 488, 0x110d19 },\
-          { 1657, 488, 0x110d19 }, { 1680, 488, 0x111119 },\
-          { 1701, 489, 0x6b71b5 }, { 1677, 489, 0x636db5 },\
-          { 1656, 489, 0x636dad }, { 1629, 489, 0x6371b5 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1469, 488, 0x111019 }, { 1490, 488, 0x101019 },\
-          { 1514, 488, 0x111019 }, { 1539, 488, 0x080c19 },\
-          { 1553, 489, 0x5a65a4 }, { 1531, 489, 0x5a619c },\
-          { 1512, 489, 0x525d94 }, { 1487, 489, 0x4a558c },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6 的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1107, 488, 0x101419 }, { 1127, 488, 0x111421 },\
-          { 1152, 488, 0x191421 }, { 1170, 488, 0x191421 },\
-          { 1183, 489, 0x424173 }, { 1163, 489, 0x424173 },\
-          { 1139, 489, 0x424573 }, { 1117, 489, 0x424d7b },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 946, 488, 0x101019 }, { 967, 488, 0x101019 },\
-          { 990, 488, 0x191421 }, { 1009, 488, 0x101019 },\
-          { 1021, 489, 0x423963 }, { 995, 489, 0x3a3563 },\
-          { 974, 489, 0x31315a }, { 954, 489, 0x31315a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 860, 883, 0x000000 }, { 890, 883, 0x000000 },\
-          { 932, 883, 0x000000 }, { 974, 883, 0x000000 },\
-          { 1000, 882, 0x31244a }, { 961, 882, 0x29244a },\
-          { 924, 882, 0x312452 }, { 877, 882, 0x31244a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1525, 886, 0x000000 }, { 1581, 886, 0x000000 },\
-          { 1630, 886, 0x000000 }, { 1682, 886, 0x000000 },\
-          { 1711, 885, 0x3a395a }, { 1664, 885, 0x312d52 },\
-          { 1623, 885, 0x313152 }, { 1579, 885, 0x31314a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 326, 509, 0x000000 }, { 327, 509, 0x31315a },\
-          { 326, 508, 0x000000 }, { 327, 508, 0x31285a },\
-          { 325, 510, 0x000000 }, { 326, 510, 0x312d5a },\
-          { 325, 511, 0x000000 }, { 326, 511, 0x31285a },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1695, 524, 0x000000 }, { 1694, 524, 0x6369b5 },\
-          { 1695, 523, 0x000000 }, { 1694, 523, 0x6365ad },\
-          { 1696, 525, 0x000000 }, { 1695, 525, 0x6365ad },\
-          { 1696, 526, 0x000000 }, { 1695, 526, 0x6365ad },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1546, 320, 0x000000 }, { 1545, 320, 0x4a417b },\
-          { 1546, 319, 0x000000 }, { 1545, 319, 0x4a417b },\
-          { 1547, 321, 0x000000 }, { 1546, 321, 0x423d7b },\
-          { 1547, 322, 0x000000 }, { 1546, 322, 0x4a4184 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5579,88 +1558,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 889, 467, 0x213142 }, { 927, 467, 0x213142 },\
-          { 967, 467, 0x213542 }, { 1007, 467, 0x213542 },\
-          { 1022, 468, 0x31bade }, { 979, 468, 0x42ceef },\
-          { 941, 468, 0x31b6de }, { 900, 468, 0x3ab6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1422, 467, 0x293942 }, { 1459, 467, 0x29414a },\
-          { 1502, 467, 0x293942 }, { 1534, 467, 0x293942 },\
-          { 1556, 468, 0x3ac6de }, { 1517, 468, 0x3ac6de },\
-          { 1476, 468, 0x3acade }, { 1441, 468, 0x3ac6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 614, 884, 0x000000 }, { 660, 884, 0x000000 },\
-          { 693, 884, 0x000000 }, { 726, 884, 0x000000 },\
-          { 751, 883, 0x2171b5 }, { 701, 883, 0x2175bd },\
-          { 674, 883, 0x1971b5 }, { 630, 883, 0x1971b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1109, 881, 0x000000 }, { 1158, 881, 0x000000 },\
-          { 1207, 881, 0x000000 }, { 1242, 881, 0x000000 },\
-          { 1265, 880, 0x1959ac }, { 1219, 880, 0x1059ac },\
-          { 1166, 880, 0x195db4 }, { 1128, 880, 0x1959ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 273, 608, 0x000000 }, { 274, 608, 0x31aede },\
-          { 273, 607, 0x000000 }, { 274, 607, 0x29aade },\
-          { 272, 609, 0x000000 }, { 273, 609, 0x31aede },\
-          { 272, 610, 0x000000 }, { 273, 610, 0x29aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1722, 752, 0x000000 }, { 1721, 752, 0x29b2de },\
-          { 1722, 751, 0x000000 }, { 1721, 751, 0x29b6de },\
-          { 1723, 753, 0x000000 }, { 1722, 753, 0x21b2de },\
-          { 1723, 754, 0x000000 }, { 1722, 754, 0x29b6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5696,126 +1593,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 474, 477, 0x193d21 }, { 483, 477, 0x214531 },\
-          { 495, 477, 0x214131 }, { 505, 477, 0x29493a },\
-          { 513, 478, 0x299ede }, { 500, 478, 0x319edd },\
-          { 489, 478, 0x299ede }, { 478, 478, 0x319ee6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1007, 474, 0x212d42 }, { 1015, 474, 0x212d42 },\
-          { 1023, 474, 0x212d42 }, { 1032, 474, 0x21354a },\
-          { 1044, 475, 0x29b6de }, { 1033, 475, 0x31bade },\
-          { 1022, 475, 0x31bade }, { 1009, 475, 0x31bede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1505, 474, 0x213542 }, { 1512, 474, 0x293d4a },\
-          { 1519, 474, 0x21354a }, { 1526, 474, 0x313d4a },\
-          { 1534, 475, 0x31bade }, { 1526, 475, 0x31bede },\
-          { 1516, 475, 0x31bede }, { 1509, 475, 0x3ac2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 422, 850, 0x010203 }, { 433, 850, 0x010203 },\
-          { 445, 850, 0x010203 }, { 455, 850, 0x010203 },\
-          { 468, 849, 0x217ebd }, { 456, 849, 0x217ebd },\
-          { 444, 849, 0x2181c5 }, { 433, 849, 0x2985c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-7 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1109, 881, 0x000000 }, { 1158, 881, 0x000000 },\
-          { 1207, 881, 0x000000 }, { 1242, 881, 0x000000 },\
-          { 1265, 880, 0x1959ac }, { 1219, 880, 0x1059ac },\
-          { 1166, 880, 0x195db4 }, { 1128, 880, 0x1959ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 652, 739, 0x000000 }, { 653, 739, 0x29a2de },\
-          { 652, 738, 0x000000 }, { 653, 738, 0x299ede },\
-          { 651, 740, 0x000000 }, { 652, 740, 0x31a2e6 },\
-          { 651, 741, 0x000000 }, { 652, 741, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 451, 492, 0x000000 }, { 452, 492, 0x31a2de },\
-          { 451, 491, 0x000000 }, { 452, 491, 0x29a2de },\
-          { 450, 493, 0x000000 }, { 451, 493, 0x31a2de },\
-          { 450, 494, 0x000000 }, { 451, 494, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 447, 536, 0x010203 }, { 448, 536, 0x4296d6 },\
-          { 447, 535, 0x010203 }, { 448, 535, 0x3196ce },\
-          { 446, 537, 0x010203 }, { 447, 537, 0x3993d2 },\
-          { 446, 538, 0x010203 }, { 447, 538, 0x3296d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 7-4 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1453, 623, 0x000400 }, { 1452, 623, 0x3175c5 },\
-          { 1453, 622, 0x000000 }, { 1452, 622, 0x3978c2 },\
-          { 1454, 624, 0x000000 }, { 1453, 624, 0x3974c2 },\
-          { 1454, 625, 0x000000 }, { 1453, 625, 0x3a79c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5851,88 +1628,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 889, 467, 0x213142 }, { 927, 467, 0x213142 },\
-          { 967, 467, 0x213542 }, { 1007, 467, 0x213542 },\
-          { 1022, 468, 0x31bade }, { 979, 468, 0x42ceef },\
-          { 941, 468, 0x31b6de }, { 900, 468, 0x3ab6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1422, 467, 0x293942 }, { 1459, 467, 0x29414a },\
-          { 1502, 467, 0x293942 }, { 1534, 467, 0x293942 },\
-          { 1556, 468, 0x3ac6de }, { 1517, 468, 0x3ac6de },\
-          { 1476, 468, 0x3acade }, { 1441, 468, 0x3ac6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 5-2 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 614, 884, 0x000000 }, { 660, 884, 0x000000 },\
-          { 693, 884, 0x000000 }, { 726, 884, 0x000000 },\
-          { 751, 883, 0x2171b5 }, { 701, 883, 0x2175bd },\
-          { 674, 883, 0x1971b5 }, { 630, 883, 0x1971b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1109, 881, 0x000000 }, { 1158, 881, 0x000000 },\
-          { 1207, 881, 0x000000 }, { 1242, 881, 0x000000 },\
-          { 1265, 880, 0x1959ac }, { 1219, 880, 0x1059ac },\
-          { 1166, 880, 0x195db4 }, { 1128, 880, 0x1959ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 273, 608, 0x000000 }, { 274, 608, 0x31aede },\
-          { 273, 607, 0x000000 }, { 274, 607, 0x29aade },\
-          { 272, 609, 0x000000 }, { 273, 609, 0x31aede },\
-          { 272, 610, 0x000000 }, { 273, 610, 0x29aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1722, 752, 0x000000 }, { 1721, 752, 0x29b2de },\
-          { 1722, 751, 0x000000 }, { 1721, 751, 0x29b6de },\
-          { 1723, 753, 0x000000 }, { 1722, 753, 0x21b2de },\
-          { 1723, 754, 0x000000 }, { 1722, 754, 0x29b6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -5968,126 +1663,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 700, 516, 0x314254 }, { 712, 516, 0x313e4c },\
-          { 728, 516, 0x394654 }, { 742, 516, 0x314654 },\
-          { 744, 517, 0x299ede }, { 728, 517, 0x299ede },\
-          { 712, 517, 0x299ede }, { 698, 517, 0x299ed6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 875, 516, 0x213344 }, { 884, 516, 0x313b4c },\
-          { 897, 516, 0x213744 }, { 913, 516, 0x213344 },\
-          { 921, 517, 0x31aede }, { 911, 517, 0x31aede },\
-          { 897, 517, 0x31aede }, { 880, 517, 0x29b2d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1042, 516, 0x4a454a }, { 1049, 516, 0x4a4542 },\
-          { 1058, 516, 0x4a4542 }, { 1067, 516, 0x31393a },\
-          { 1078, 517, 0x29a6de }, { 1067, 517, 0x31a6e6 },\
-          { 1058, 517, 0x29a6de }, { 1049, 517, 0x31a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1193, 516, 0x213931 }, { 1202, 516, 0x294131 },\
-          { 1213, 516, 0x294131 }, { 1225, 516, 0x294131 },\
-          { 1231, 517, 0x31b6de }, { 1220, 517, 0x29b2d6 },\
-          { 1205, 517, 0x31b2de }, { 1196, 517, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 806, 885, 0x000000 }, { 849, 885, 0x000000 },\
-          { 891, 885, 0x000000 }, { 930, 885, 0x000000 },\
-          { 957, 884, 0x1965b5 }, { 916, 884, 0x1969bd },\
-          { 880, 884, 0x1969b5 }, { 841, 884, 0x1969b5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1008, 886, 0x000000 }, { 1069, 886, 0x000000 },\
-          { 1115, 886, 0x000000 }, { 1151, 886, 0x000000 },\
-          { 1175, 885, 0x1959ad }, { 1140, 885, 0x1055ad },\
-          { 1102, 885, 0x1055ad }, { 1065, 885, 0x2155ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 653, 555, 0x000000 }, { 654, 555, 0x29a2de },\
-          { 653, 554, 0x000000 }, { 654, 554, 0x31a6de },\
-          { 652, 556, 0x000000 }, { 653, 556, 0x31a2de },\
-          { 652, 557, 0x000000 }, { 653, 557, 0x31a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 611, 246, 0x010203 }, { 612, 246, 0x3197d2 },\
-          { 611, 245, 0x000000 }, { 612, 245, 0x3193c2 },\
-          { 610, 247, 0x000000 }, { 611, 247, 0x319ad6 },\
-          { 610, 248, 0x000000 }, { 611, 248, 0x3197d3 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 5-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1702, 545, 0x010203 }, { 1701, 545, 0x4275c5 },\
-          { 1702, 544, 0x000000 }, { 1701, 544, 0x3a75c5 },\
-          { 1703, 546, 0x000000 }, { 1702, 546, 0x3a79ce },\
-          { 1703, 547, 0x010203 }, { 1702, 547, 0x3a75c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6123,138 +1698,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1509, 501, 0x312829 }, { 1517, 501, 0x312829 },\
-          { 1525, 501, 0x322929 }, { 1533, 501, 0x322929 },\
-          { 1539, 502, 0xce9a6b }, { 1533, 502, 0xce9a63 },\
-          { 1526, 502, 0xce9e63 }, { 1520, 502, 0xce9e63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1336, 501, 0x292421 }, { 1347, 501, 0x312429 },\
-          { 1354, 501, 0x292421 }, { 1361, 501, 0x312429 },\
-          { 1371, 502, 0xce9a6b }, { 1363, 502, 0xce9a73 },\
-          { 1354, 502, 0xce9e73 }, { 1347, 502, 0xce9e73 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-8的下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1656, 894, 0x000000 }, { 1664, 894, 0x000000 },\
-          { 1674, 894, 0x000000 }, { 1683, 894, 0x000000 },\
-          { 1691, 893, 0x734d5a }, { 1682, 893, 0x73495a },\
-          { 1673, 893, 0x734962 }, { 1663, 893, 0x734d63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5的下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 912, 894, 0x000000 }, { 919, 894, 0x000000 },\
-          { 926, 894, 0x000000 }, { 932, 894, 0x000000 },\
-          { 938, 893, 0x29203a }, { 927, 893, 0x312442 },\
-          { 917, 893, 0x312442 }, { 907, 893, 0x312442 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1的下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 512, 893, 0x000000 }, { 520, 893, 0x000000 },\
-          { 530, 893, 0x000000 }, { 538, 893, 0x000000 },\
-          { 545, 892, 0x3a356b }, { 537, 892, 0x3a356b },\
-          { 528, 892, 0x3a396b }, { 521, 892, 0x3a396b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 4-1的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 534, 511, 0x000000 }, { 535, 511, 0x524584 },\
-          { 534, 510, 0x000000 }, { 535, 510, 0x524584 },\
-          { 533, 512, 0x000000 }, { 534, 512, 0x5a4584 },\
-          { 533, 513, 0x000000 }, { 534, 513, 0x524584 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-1的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 486, 854, 0x000000 }, { 487, 854, 0x423973 },\
-          { 486, 853, 0x000000 }, { 487, 853, 0x424173 },\
-          { 485, 855, 0x000000 }, { 486, 855, 0x42396b },\
-          { 485, 856, 0x000000 }, { 486, 856, 0x423d73 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-8的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1648, 529, 0x000000 }, { 1647, 529, 0xce9663 },\
-          { 1648, 528, 0x000000 }, { 1647, 528, 0xc59663 },\
-          { 1649, 530, 0x000000 }, { 1648, 530, 0xce9663 },\
-          { 1649, 531, 0x000000 }, { 1648, 531, 0xbd9663 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-8的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1675, 649, 0x000000 }, { 1674, 649, 0xbd8a63 },\
-          { 1675, 648, 0x000000 }, { 1674, 648, 0xc58a6b },\
-          { 1676, 650, 0x000000 }, { 1675, 650, 0xbd8a6b },\
-          { 1676, 651, 0x000000 }, { 1675, 651, 0xbd8a6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1731, 788, 0x000000 }, { 1730, 788, 0x84556b },\
-          { 1731, 787, 0x000000 }, { 1730, 787, 0x845563 },\
-          { 1732, 789, 0x000000 }, { 1731, 789, 0x845563 },\
-          { 1732, 790, 0x000400 }, { 1731, 790, 0x845563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6290,104 +1733,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1484, 594, 0x212431 }, { 1490, 594, 0x292431 },\
-          { 1500, 594, 0x212431 }, { 1512, 594, 0x212429 },\
-          { 1522, 595, 0xce9a5a }, { 1511, 595, 0xce9e6b },\
-          { 1501, 595, 0xce9e63 }, { 1490, 595, 0xc59e63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1142, 594, 0x292431 }, { 1148, 594, 0x212431 },\
-          { 1155, 594, 0x212029 }, { 1160, 594, 0x212431 },\
-          { 1169, 595, 0xb58173 }, { 1161, 595, 0xb58173 },\
-          { 1152, 595, 0xb57d73 }, { 1143, 595, 0xb58173 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 767, 594, 0x292431 }, { 778, 594, 0x31283a },\
-          { 786, 594, 0x31283a }, { 795, 594, 0x292831 },\
-          { 804, 595, 0x9c6d7b }, { 795, 595, 0xa4697b },\
-          { 786, 595, 0xa4697b }, { 776, 595, 0x9c657b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 4-7的下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          {\
-            { 1591, 888, 0x000000 }, { 1598, 888, 0x000000 },\
-            { 1606, 888, 0x000000 }, { 1614, 888, 0x000000 },\
-            { 1622, 887, 0x73495a }, { 1613, 887, 0x6b455a },\
-            { 1606, 887, 0x623c52 }, { 1599, 887, 0x63415a },\
-          }\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 2-1的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 368, 791, 0x000000 }, { 369, 791, 0x524d8c },\
-          { 368, 790, 0x000000 }, { 369, 790, 0x524d84 },\
-          { 367, 792, 0x000000 }, { 368, 792, 0x524d8c },\
-          { 367, 793, 0x000000 }, { 368, 793, 0x524984 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1639, 609, 0x000000 }, { 1638, 609, 0xbd9663 },\
-          { 1639, 608, 0x000000 }, { 1638, 608, 0xce9663 },\
-          { 1640, 610, 0x000000 }, { 1639, 610, 0xce9663 },\
-          { 1640, 611, 0x000000 }, { 1639, 611, 0xce966b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1672, 761, 0x010100 }, { 1671, 761, 0xb58e73 },\
-          { 1672, 760, 0x000000 }, { 1671, 760, 0xb58e73 },\
-          { 1673, 762, 0x000000 }, { 1672, 762, 0xb58e73 },\
-          { 1673, 763, 0x000000 }, { 1672, 763, 0xb58a6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6423,87 +1768,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1025, 490, 0x313129 }, { 1082, 490, 0x292431 },\
-          { 1120, 490, 0x212031 }, { 1144, 490, 0x212031 },\
-          { 1138, 491, 0xbd8a73 }, { 1099, 491, 0xb58173 },\
-          { 1063, 491, 0xb58173 }, { 1029, 491, 0xb58673 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1176, 490, 0x212431 }, { 1209, 490, 0x212029 },\
-          { 1251, 490, 0x212031 }, { 1299, 490, 0x212031 },\
-          { 1317, 491, 0xce9e6b }, { 1290, 491, 0xc59a6b },\
-          { 1245, 491, 0xce9a73 }, { 1201, 491, 0xc59673 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1344, 490, 0x312d31 }, { 1379, 490, 0x292831 },\
-          { 1418, 490, 0x31283a }, { 1465, 490, 0x313131 },\
-          { 1486, 491, 0xc59663 }, { 1438, 491, 0xce9a63 },\
-          { 1399, 491, 0xce9e63 }, { 1357, 491, 0xce9e6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 449, 899, 0x000000 }, { 466, 899, 0x000000 },\
-          { 494, 899, 0x000000 }, { 527, 899, 0x000000 },\
-          { 547, 898, 0x312d52 }, { 518, 898, 0x3a2d5a },\
-          { 479, 898, 0x3a315a }, { 453, 898, 0x3a3563 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 483, 288, 0x000001 }, { 484, 288, 0x5a518c },\
-          { 483, 287, 0x000000 }, { 484, 287, 0x524d84 },\
-          { 482, 289, 0x000000 }, { 483, 289, 0x525184 },\
-          { 482, 290, 0x000000 }, { 483, 290, 0x525184 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1586, 348, 0x010000 }, { 1585, 348, 0xb5816b },\
-          { 1586, 347, 0x000000 }, { 1585, 347, 0xb5866b },\
-          { 1587, 349, 0x000000 }, { 1586, 349, 0xad7d63 },\
-          { 1587, 350, 0x000000 }, { 1586, 350, 0xb5816b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6539,125 +1803,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1025, 490, 0x313129 }, { 1082, 490, 0x292431 },\
-          { 1120, 490, 0x212031 }, { 1144, 490, 0x212031 },\
-          { 1138, 491, 0xbd8a73 }, { 1099, 491, 0xb58173 },\
-          { 1063, 491, 0xb58173 }, { 1029, 491, 0xb58673 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1176, 490, 0x212431 }, { 1209, 490, 0x212029 },\
-          { 1251, 490, 0x212031 }, { 1299, 490, 0x212031 },\
-          { 1317, 491, 0xce9e6b }, { 1290, 491, 0xc59a6b },\
-          { 1245, 491, 0xce9a73 }, { 1201, 491, 0xc59673 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1309, 488, 0x312829 }, { 1319, 488, 0x292829 },\
-          { 1328, 488, 0x422831 }, { 1337, 488, 0x312831 },\
-          { 1347, 489, 0xce9e63 }, { 1338, 489, 0xc59e5a },\
-          { 1329, 489, 0xce9e6b }, { 1320, 489, 0xc59a6b },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 6-6的下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1584, 889, 0x000000 }, { 1597, 889, 0x000000 },\
-          { 1608, 889, 0x000000 }, { 1617, 889, 0x000000 },\
-          { 1628, 888, 0x63415a }, { 1617, 888, 0x634152 },\
-          { 1606, 888, 0x63415a }, { 1598, 888, 0x63415a },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 483, 288, 0x000001 }, { 484, 288, 0x5a518c },\
-          { 483, 287, 0x000000 }, { 484, 287, 0x524d84 },\
-          { 482, 289, 0x000000 }, { 483, 289, 0x525184 },\
-          { 482, 290, 0x000000 }, { 483, 290, 0x525184 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-6的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1477, 546, 0x000000 }, { 1476, 546, 0xce8e63 },\
-          { 1477, 545, 0x000000 }, { 1476, 545, 0xc58a63 },\
-          { 1478, 547, 0x000000 }, { 1477, 547, 0xce8e63 },\
-          { 1478, 548, 0x000000 }, { 1477, 548, 0xce8e63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-6的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1519, 796, 0x000000 }, { 1518, 796, 0xb5816b },\
-          { 1519, 795, 0x000000 }, { 1518, 795, 0xad7963 },\
-          { 1520, 797, 0x000000 }, { 1519, 797, 0xb58163 },\
-          { 1520, 798, 0x000400 }, { 1519, 798, 0xb57d63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 5-6的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1662, 609, 0x000000 }, { 1661, 609, 0x9c6163 },\
-          { 1662, 608, 0x000000 }, { 1661, 608, 0x9c6163 },\
-          { 1663, 610, 0x000000 }, { 1662, 610, 0xa4616b },\
-          { 1663, 611, 0x000000 }, { 1662, 611, 0x9c5d63 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-6的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1696, 760, 0x000000 }, { 1695, 760, 0x8c5963 },\
-          { 1696, 759, 0x000000 }, { 1695, 759, 0x8c5963 },\
-          { 1697, 761, 0x000000 }, { 1696, 761, 0x845563 },\
-          { 1697, 762, 0x000000 }, { 1696, 762, 0x8c5963 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6693,98 +1838,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 398, 334, 0x314152 }, { 429, 334, 0x293d4a },\
-          { 471, 334, 0x293d4a }, { 501, 334, 0x213d4a },\
-          { 485, 335, 0x31aade }, { 463, 335, 0x31a6de },\
-          { 439, 335, 0x319ede }, { 409, 335, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-6 上方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1229, 559, 0x212431 }, { 1277, 559, 0x212431 },\
-          { 1314, 559, 0x192429 }, { 1344, 559, 0x192421 },\
-          { 1362, 560, 0x42cade }, { 1329, 560, 0x3ac2de },\
-          { 1292, 560, 0x3ac2de }, { 1248, 560, 0x3abede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 918, 0x000000 }, { 554, 918, 0x000000 },\
-          { 615, 918, 0x000000 }, { 658, 918, 0x000000 },\
-          { 636, 917, 0x1971b4 }, { 596, 917, 0x2171b4 },\
-          { 560, 917, 0x2171b4 }, { 518, 917, 0x1971ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 271, 652, 0x000000 }, { 272, 652, 0x3ab2e6 },\
-          { 271, 651, 0x000000 }, { 272, 651, 0x31aad6 },\
-          { 270, 653, 0x000000 }, { 271, 653, 0x31aede },\
-          { 270, 654, 0x000000 }, { 271, 654, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 342, 803, 0x000000 }, { 343, 803, 0x218ec5 },\
-          { 342, 802, 0x080408 }, { 343, 802, 0x218ec5 },\
-          { 341, 804, 0x000000 }, { 342, 804, 0x298ec5 },\
-          { 341, 805, 0x000000 }, { 342, 805, 0x218abd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },\
-          { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },\
-          { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },\
-          { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1733, 831, 0x000000 }, { 1732, 831, 0x296dbd },\
-          { 1733, 830, 0x000000 }, { 1732, 830, 0x316dc5 },\
-          { 1734, 832, 0x000000 }, { 1733, 832, 0x316dbd },\
-          { 1734, 833, 0x000000 }, { 1733, 833, 0x316dbd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6833,62 +1886,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 398, 334, 0x314152 }, { 429, 334, 0x293d4a },\
-          { 471, 334, 0x293d4a }, { 501, 334, 0x213d4a },\
-          { 485, 335, 0x31aade }, { 463, 335, 0x31a6de },\
-          { 439, 335, 0x319ede }, { 409, 335, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 918, 0x000000 }, { 554, 918, 0x000000 },\
-          { 615, 918, 0x000000 }, { 658, 918, 0x000000 },\
-          { 636, 917, 0x1971b4 }, { 596, 917, 0x2171b4 },\
-          { 560, 917, 0x2171b4 }, { 518, 917, 0x1971ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 455, 458, 0x000000 }, { 456, 458, 0x31bade },\
-          { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },\
-          { 454, 459, 0x000000 }, { 455, 459, 0x31bade },\
-          { 454, 460, 0x000000 }, { 455, 460, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },\
-          { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },\
-          { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },\
-          { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -6924,86 +1921,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 398, 334, 0x314152 }, { 429, 334, 0x293d4a },\
-          { 471, 334, 0x293d4a }, { 501, 334, 0x213d4a },\
-          { 485, 335, 0x31aade }, { 463, 335, 0x31a6de },\
-          { 439, 335, 0x319ede }, { 409, 335, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5上方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1040, 378, 0x3a3d42 }, { 1086, 378, 0x3a3942 },\
-          { 1133, 378, 0x31393a }, { 1168, 378, 0x313942 },\
-          { 1190, 379, 0x29bade }, { 1148, 379, 0x29b2d6 },\
-          { 1107, 379, 0x31b6de }, { 1067, 379, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8上方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1572, 378, 0x42454a }, { 1616, 378, 0x31393a },\
-          { 1666, 378, 0x292831 }, { 1695, 378, 0x212429 },\
-          { 1720, 379, 0x29b2d6 }, { 1688, 379, 0x31bade },\
-          { 1634, 379, 0x31bade }, { 1590, 379, 0x31bed6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 918, 0x000000 }, { 554, 918, 0x000000 },\
-          { 615, 918, 0x000000 }, { 658, 918, 0x000000 },\
-          { 636, 917, 0x1971b4 }, { 596, 917, 0x2171b4 },\
-          { 560, 917, 0x2171b4 }, { 518, 917, 0x1971ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 455, 458, 0x000000 }, { 456, 458, 0x31bade },\
-          { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },\
-          { 454, 459, 0x000000 }, { 455, 459, 0x31bade },\
-          { 454, 460, 0x000000 }, { 455, 460, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },\
-          { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },\
-          { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },\
-          { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7039,62 +1956,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 398, 334, 0x314152 }, { 429, 334, 0x293d4a },\
-          { 471, 334, 0x293d4a }, { 501, 334, 0x213d4a },\
-          { 485, 335, 0x31aade }, { 463, 335, 0x31a6de },\
-          { 439, 335, 0x319ede }, { 409, 335, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 482, 918, 0x000000 }, { 554, 918, 0x000000 },\
-          { 615, 918, 0x000000 }, { 658, 918, 0x000000 },\
-          { 636, 917, 0x1971b4 }, { 596, 917, 0x2171b4 },\
-          { 560, 917, 0x2171b4 }, { 518, 917, 0x1971ac },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 455, 458, 0x000000 }, { 456, 458, 0x31bade },\
-          { 455, 457, 0x000000 }, { 456, 457, 0x31b6de },\
-          { 454, 459, 0x000000 }, { 455, 459, 0x31bade },\
-          { 454, 460, 0x000000 }, { 455, 460, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1609, 304, 0x000000 }, { 1608, 304, 0x29a2e6 },\
-          { 1609, 303, 0x000000 }, { 1608, 303, 0x219ede },\
-          { 1610, 305, 0x000000 }, { 1609, 305, 0x299ee6 },\
-          { 1610, 306, 0x000000 }, { 1609, 306, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7130,125 +1991,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 418, 309, 0x213d42 }, { 432, 309, 0x213d42 },\
-          { 450, 309, 0x213d42 }, { 472, 309, 0x213d42 },\
-          { 484, 310, 0x31aae6 }, { 462, 310, 0x319ee6 },\
-          { 445, 310, 0x299ede }, { 427, 310, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1207, 309, 0x213142 }, { 1222, 309, 0x192d3a },\
-          { 1238, 309, 0x192d3a }, { 1256, 309, 0x212d42 },\
-          { 1267, 310, 0x3ac2de }, { 1246, 310, 0x3ac2de },\
-          { 1226, 310, 0x3abee6 }, { 1202, 310, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1480, 309, 0x19253a }, { 1496, 309, 0x19243a },\
-          { 1513, 309, 0x212842 }, { 1529, 309, 0x212842 },\
-          { 1539, 310, 0x31bede }, { 1522, 310, 0x3abee6 },\
-          { 1502, 310, 0x3ac2de }, { 1482, 310, 0x3ac6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 613, 859, 0x000000 }, { 643, 859, 0x000000 },\
-          { 668, 859, 0x000000 }, { 699, 859, 0x000000 },\
-          { 717, 858, 0x1965ad }, { 676, 858, 0x1969b5 },\
-          { 646, 858, 0x1965b5 }, { 625, 858, 0x1965ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 384, 344, 0x000000 }, { 385, 344, 0x31a2e6 },\
-          { 384, 343, 0x000000 }, { 385, 343, 0x31a2e6 },\
-          { 383, 345, 0x000000 }, { 384, 345, 0x29a2de },\
-          { 383, 346, 0x000000 }, { 384, 346, 0x31a2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 309, 794, 0x000000 }, { 310, 794, 0x2992ce },\
-          { 309, 793, 0x000000 }, { 310, 793, 0x218ebd },\
-          { 308, 795, 0x000000 }, { 309, 795, 0x298ece },\
-          { 308, 796, 0x000000 }, { 309, 796, 0x298ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1637, 337, 0x000000 }, { 1636, 337, 0x29aede },\
-          { 1637, 336, 0x000000 }, { 1636, 336, 0x31aede },\
-          { 1638, 338, 0x000000 }, { 1637, 338, 0x29aede },\
-          { 1638, 339, 0x000000 }, { 1637, 339, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1667, 490, 0x000000 }, { 1666, 490, 0x31bee6 },\
-          { 1667, 489, 0x000000 }, { 1666, 489, 0x29bade },\
-          { 1668, 491, 0x000000 }, { 1667, 491, 0x31bee6 },\
-          { 1668, 492, 0x000000 }, { 1667, 492, 0x29bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1738, 851, 0x000000 }, { 1737, 851, 0x3a75c5 },\
-          { 1738, 850, 0x000000 }, { 1737, 850, 0x3a75c5 },\
-          { 1739, 852, 0x000000 }, { 1738, 852, 0x3a79c5 },\
-          { 1739, 853, 0x000000 }, { 1738, 853, 0x3175bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7284,125 +2026,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 418, 309, 0x213d42 }, { 432, 309, 0x213d42 },\
-          { 450, 309, 0x213d42 }, { 472, 309, 0x213d42 },\
-          { 484, 310, 0x31aae6 }, { 462, 310, 0x319ee6 },\
-          { 445, 310, 0x299ede }, { 427, 310, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1207, 309, 0x213142 }, { 1222, 309, 0x192d3a },\
-          { 1238, 309, 0x192d3a }, { 1256, 309, 0x212d42 },\
-          { 1267, 310, 0x3ac2de }, { 1246, 310, 0x3ac2de },\
-          { 1226, 310, 0x3abee6 }, { 1202, 310, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1480, 309, 0x19253a }, { 1496, 309, 0x19243a },\
-          { 1513, 309, 0x212842 }, { 1529, 309, 0x212842 },\
-          { 1539, 310, 0x31bede }, { 1522, 310, 0x3abee6 },\
-          { 1502, 310, 0x3ac2de }, { 1482, 310, 0x3ac6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 613, 859, 0x000000 }, { 643, 859, 0x000000 },\
-          { 668, 859, 0x000000 }, { 699, 859, 0x000000 },\
-          { 717, 858, 0x1965ad }, { 676, 858, 0x1969b5 },\
-          { 646, 858, 0x1965b5 }, { 625, 858, 0x1965ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 384, 344, 0x000000 }, { 385, 344, 0x31a2e6 },\
-          { 384, 343, 0x000000 }, { 385, 343, 0x31a2e6 },\
-          { 383, 345, 0x000000 }, { 384, 345, 0x29a2de },\
-          { 383, 346, 0x000000 }, { 384, 346, 0x31a2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 309, 794, 0x000000 }, { 310, 794, 0x2992ce },\
-          { 309, 793, 0x000000 }, { 310, 793, 0x218ebd },\
-          { 308, 795, 0x000000 }, { 309, 795, 0x298ece },\
-          { 308, 796, 0x000000 }, { 309, 796, 0x298ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1637, 337, 0x000000 }, { 1636, 337, 0x29aede },\
-          { 1637, 336, 0x000000 }, { 1636, 336, 0x31aede },\
-          { 1638, 338, 0x000000 }, { 1637, 338, 0x29aede },\
-          { 1638, 339, 0x000000 }, { 1637, 339, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1667, 490, 0x000000 }, { 1666, 490, 0x31bee6 },\
-          { 1667, 489, 0x000000 }, { 1666, 489, 0x29bade },\
-          { 1668, 491, 0x000000 }, { 1667, 491, 0x31bee6 },\
-          { 1668, 492, 0x000000 }, { 1667, 492, 0x29bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1738, 851, 0x000000 }, { 1737, 851, 0x3a75c5 },\
-          { 1738, 850, 0x000000 }, { 1737, 850, 0x3a75c5 },\
-          { 1739, 852, 0x000000 }, { 1738, 852, 0x3a79c5 },\
-          { 1739, 853, 0x000000 }, { 1738, 853, 0x3175bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7438,125 +2061,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 418, 309, 0x213d42 }, { 432, 309, 0x213d42 },\
-          { 450, 309, 0x213d42 }, { 472, 309, 0x213d42 },\
-          { 484, 310, 0x31aae6 }, { 462, 310, 0x319ee6 },\
-          { 445, 310, 0x299ede }, { 427, 310, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1207, 309, 0x213142 }, { 1222, 309, 0x192d3a },\
-          { 1238, 309, 0x192d3a }, { 1256, 309, 0x212d42 },\
-          { 1267, 310, 0x3ac2de }, { 1246, 310, 0x3ac2de },\
-          { 1226, 310, 0x3abee6 }, { 1202, 310, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1480, 309, 0x19253a }, { 1496, 309, 0x19243a },\
-          { 1513, 309, 0x212842 }, { 1529, 309, 0x212842 },\
-          { 1539, 310, 0x31bede }, { 1522, 310, 0x3abee6 },\
-          { 1502, 310, 0x3ac2de }, { 1482, 310, 0x3ac6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 613, 859, 0x000000 }, { 643, 859, 0x000000 },\
-          { 668, 859, 0x000000 }, { 699, 859, 0x000000 },\
-          { 717, 858, 0x1965ad }, { 676, 858, 0x1969b5 },\
-          { 646, 858, 0x1965b5 }, { 625, 858, 0x1965ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 384, 344, 0x000000 }, { 385, 344, 0x31a2e6 },\
-          { 384, 343, 0x000000 }, { 385, 343, 0x31a2e6 },\
-          { 383, 345, 0x000000 }, { 384, 345, 0x29a2de },\
-          { 383, 346, 0x000000 }, { 384, 346, 0x31a2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 309, 794, 0x000000 }, { 310, 794, 0x2992ce },\
-          { 309, 793, 0x000000 }, { 310, 793, 0x218ebd },\
-          { 308, 795, 0x000000 }, { 309, 795, 0x298ece },\
-          { 308, 796, 0x000000 }, { 309, 796, 0x298ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1637, 337, 0x000000 }, { 1636, 337, 0x29aede },\
-          { 1637, 336, 0x000000 }, { 1636, 336, 0x31aede },\
-          { 1638, 338, 0x000000 }, { 1637, 338, 0x29aede },\
-          { 1638, 339, 0x000000 }, { 1637, 339, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1667, 490, 0x000000 }, { 1666, 490, 0x31bee6 },\
-          { 1667, 489, 0x000000 }, { 1666, 489, 0x29bade },\
-          { 1668, 491, 0x000000 }, { 1667, 491, 0x31bee6 },\
-          { 1668, 492, 0x000000 }, { 1667, 492, 0x29bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1738, 851, 0x000000 }, { 1737, 851, 0x3a75c5 },\
-          { 1738, 850, 0x000000 }, { 1737, 850, 0x3a75c5 },\
-          { 1739, 852, 0x000000 }, { 1738, 852, 0x3a79c5 },\
-          { 1739, 853, 0x000000 }, { 1738, 853, 0x3175bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7592,125 +2096,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-1 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 418, 309, 0x213d42 }, { 432, 309, 0x213d42 },\
-          { 450, 309, 0x213d42 }, { 472, 309, 0x213d42 },\
-          { 484, 310, 0x31aae6 }, { 462, 310, 0x319ee6 },\
-          { 445, 310, 0x299ede }, { 427, 310, 0x299ede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1207, 309, 0x213142 }, { 1222, 309, 0x192d3a },\
-          { 1238, 309, 0x192d3a }, { 1256, 309, 0x212d42 },\
-          { 1267, 310, 0x3ac2de }, { 1246, 310, 0x3ac2de },\
-          { 1226, 310, 0x3abee6 }, { 1202, 310, 0x31bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1480, 309, 0x19253a }, { 1496, 309, 0x19243a },\
-          { 1513, 309, 0x212842 }, { 1529, 309, 0x212842 },\
-          { 1539, 310, 0x31bede }, { 1522, 310, 0x3abee6 },\
-          { 1502, 310, 0x3ac2de }, { 1482, 310, 0x3ac6e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 613, 859, 0x000000 }, { 643, 859, 0x000000 },\
-          { 668, 859, 0x000000 }, { 699, 859, 0x000000 },\
-          { 717, 858, 0x1965ad }, { 676, 858, 0x1969b5 },\
-          { 646, 858, 0x1965b5 }, { 625, 858, 0x1965ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 384, 344, 0x000000 }, { 385, 344, 0x31a2e6 },\
-          { 384, 343, 0x000000 }, { 385, 343, 0x31a2e6 },\
-          { 383, 345, 0x000000 }, { 384, 345, 0x29a2de },\
-          { 383, 346, 0x000000 }, { 384, 346, 0x31a2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 309, 794, 0x000000 }, { 310, 794, 0x2992ce },\
-          { 309, 793, 0x000000 }, { 310, 793, 0x218ebd },\
-          { 308, 795, 0x000000 }, { 309, 795, 0x298ece },\
-          { 308, 796, 0x000000 }, { 309, 796, 0x298ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1637, 337, 0x000000 }, { 1636, 337, 0x29aede },\
-          { 1637, 336, 0x000000 }, { 1636, 336, 0x31aede },\
-          { 1638, 338, 0x000000 }, { 1637, 338, 0x29aede },\
-          { 1638, 339, 0x000000 }, { 1637, 339, 0x31aede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 2-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1667, 490, 0x000000 }, { 1666, 490, 0x31bee6 },\
-          { 1667, 489, 0x000000 }, { 1666, 489, 0x29bade },\
-          { 1668, 491, 0x000000 }, { 1667, 491, 0x31bee6 },\
-          { 1668, 492, 0x000000 }, { 1667, 492, 0x29bade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-7 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1738, 851, 0x000000 }, { 1737, 851, 0x3a75c5 },\
-          { 1738, 850, 0x000000 }, { 1737, 850, 0x3a75c5 },\
-          { 1739, 852, 0x000000 }, { 1738, 852, 0x3a79c5 },\
-          { 1739, 853, 0x000000 }, { 1738, 853, 0x3175bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7746,63 +2131,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1089, 466, 0x213542 }, { 1109, 466, 0x192d3a },\
-          { 1153, 466, 0x213542 }, { 1185, 466, 0x29414a },\
-          { 1218, 466, 0x424d52 }, { 1238, 467, 0x31bede },\
-          { 1207, 467, 0x31bede }, { 1175, 467, 0x31b6de },\
-          { 1146, 467, 0x29b6de }, { 1117, 467, 0x29b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 285, 897, 0x000000 }, { 301, 897, 0x000000 },\
-          { 313, 897, 0x000000 }, { 326, 897, 0x000000 },\
-          { 339, 896, 0x1981c5 }, { 322, 896, 0x2083c2 },\
-          { 307, 896, 0x2080c2 }, { 297, 896, 0x2181c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 275, 796, 0x000000 }, { 276, 796, 0x288bca },\
-          { 275, 795, 0x000000 }, { 276, 795, 0x2087ba },\
-          { 274, 797, 0x000000 }, { 275, 797, 0x298ec5 },\
-          { 274, 798, 0x000000 }, { 275, 798, 0x298ac5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1669, 617, 0x000000 }, { 1668, 617, 0x29aed6 },\
-          { 1669, 616, 0x000000 }, { 1668, 616, 0x29b2de },\
-          { 1670, 618, 0x000000 }, { 1669, 618, 0x29aad6 },\
-          { 1670, 619, 0x000000 }, { 1669, 619, 0x29aade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7838,78 +2166,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-4 上方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1064, 470, 0x4a494a }, { 1105, 470, 0x21313a },\
-          { 1153, 470, 0x192d42 }, { 1193, 470, 0x193142 },\
-          { 1210, 471, 0x31bede }, { 1162, 471, 0x29bade },\
-          { 1106, 471, 0x31b2de }, { 1076, 471, 0x29b6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 上方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1246, 470, 0x29394a }, { 1280, 470, 0x213952 },\
-          { 1327, 470, 0x21394a }, { 1358, 470, 0x29394a },\
-          { 1386, 471, 0x3abede }, { 1344, 471, 0x31c2d6 },\
-          { 1307, 471, 0x42d7de }, { 1268, 471, 0x31bed6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 3-4 下方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1066, 887, 0x000000 }, { 1119, 887, 0x000000 },\
-          { 1159, 887, 0x000000 }, { 1200, 887, 0x000000 },\
-          { 1229, 886, 0x1055ad }, { 1171, 886, 0x104da4 },\
-          { 1134, 886, 0x1051ad }, { 1099, 886, 0x104da4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 3-1 左方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 465, 824, 0x000000 }, { 466, 824, 0x2992c5 },\
-          { 465, 823, 0x000000 }, { 466, 823, 0x218ac5 },\
-          { 464, 825, 0x000000 }, { 465, 825, 0x218ec5 },\
-          { 464, 826, 0x000000 }, { 465, 826, 0x218ec5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-5 右方\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1580, 501, 0x000000 }, { 1579, 501, 0x29a2de },\
-          { 1580, 500, 0x000000 }, { 1579, 500, 0x29a2de },\
-          { 1581, 502, 0x000000 }, { 1580, 502, 0x31a6de },\
-          { 1581, 503, 0x000000 }, { 1580, 503, 0x29a2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -7945,103 +2201,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-5 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1214, 409, 0x212d21 }, { 1231, 409, 0x424131 },\
-          { 1255, 409, 0x293929 }, { 1276, 409, 0x212d21 },\
-          { 1293, 409, 0x293531 }, { 1297, 410, 0x31bede },\
-          { 1277, 410, 0x31bede }, { 1256, 410, 0x3ac6de },\
-          { 1239, 410, 0x3ac6de }, { 1223, 410, 0x3ac6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 851, 409, 0x314132 }, { 872, 409, 0x314131 },\
-          { 891, 409, 0x424942 }, { 912, 409, 0x4a4942 },\
-          { 923, 410, 0x31bade }, { 903, 410, 0x3abede },\
-          { 879, 410, 0x4aceef }, { 852, 410, 0x3abade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 3-1 下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 410, 837, 0x000000 }, { 424, 837, 0x000000 },\
-          { 445, 837, 0x000000 }, { 469, 837, 0x000000 },\
-          { 481, 836, 0x197dbd }, { 459, 836, 0x197dbd },\
-          { 442, 836, 0x2181c5 }, { 421, 836, 0x2181c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-1 下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 836, 627, 0x000000 }, { 848, 627, 0x000000 },\
-          { 859, 627, 0x000000 }, { 871, 627, 0x000000 },\
-          { 880, 626, 0x207cc2 }, { 866, 626, 0x2080c2 },\
-          { 852, 626, 0x2181c5 }, { 841, 626, 0x187cba },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 3-1 左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 402, 772, 0x000400 }, { 403, 772, 0x298ec5 },\
-          { 402, 771, 0x000000 }, { 403, 771, 0x298ec5 },\
-          { 401, 773, 0x000000 }, { 402, 773, 0x218ac6 },\
-          { 401, 774, 0x000000 }, { 402, 774, 0x298ece },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 1-5 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1386, 454, 0x000000 }, { 1385, 454, 0x299ade },\
-          { 1386, 453, 0x000000 }, { 1385, 453, 0x299ee6 },\
-          { 1387, 455, 0x000000 }, { 1386, 455, 0x299ade },\
-          { 1387, 456, 0x000000 }, { 1386, 456, 0x299ee6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 3-5 右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1423, 713, 0x000001 }, { 1422, 713, 0x3175bd },\
-          { 1423, 712, 0x000000 }, { 1422, 712, 0x3a79c5 },\
-          { 1424, 714, 0x000000 }, { 1423, 714, 0x3a75c5 },\
-          { 1424, 715, 0x000000 }, { 1423, 715, 0x4275c5 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -8077,78 +2236,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-2 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 644, 576, 0x21354a }, { 663, 576, 0x213142 },\
-          { 681, 576, 0x213142 }, { 699, 576, 0x213142 },\
-          { 716, 576, 0x29354a }, { 725, 577, 0x31a2de },\
-          { 699, 577, 0x29a6de }, { 683, 577, 0x29a6de },\
-          { 664, 577, 0x29a6de }, { 644, 577, 0x31aade },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4 上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 971, 576, 0x21394a }, { 993, 576, 0x29394a },\
-          { 1013, 576, 0x21394a }, { 1033, 576, 0x21394a },\
-          { 1054, 576, 0x213952 }, { 1067, 577, 0x31bade },\
-          { 1045, 577, 0x31bede }, { 1025, 577, 0x31b6de },\
-          { 1005, 577, 0x31b6de }, { 982, 577, 0x29b6d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 1-2 下边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 573, 715, 0x000000 }, { 600, 715, 0x000000 },\
-          { 620, 715, 0x000000 }, { 642, 715, 0x000000 },\
-          { 662, 714, 0x195d9c }, { 639, 714, 0x105994 },\
-          { 612, 714, 0x21619c }, { 588, 714, 0x21619c },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 285, 362, 0x000000 }, { 286, 362, 0x31b6de },\
-          { 285, 363, 0x000000 }, { 286, 363, 0x31b2d6 },\
-          { 284, 364, 0x000000 }, { 285, 364, 0x31b2de },\
-          { 284, 365, 0x000000 }, { 285, 365, 0x31b6de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1800, 297, 0x299ade }, { 1801, 297, 0x000000 },\
-          { 1800, 298, 0x299ee6 }, { 1801, 298, 0x000000 },\
-          { 1801, 299, 0x299ae6 }, { 1802, 299, 0x000000 },\
-          { 1801, 300, 0x299ae6 }, { 1802, 300, 0x000408 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -8444,7 +2531,7 @@ end\
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
 map.getCheckpositionList = function()\
-  return {}\
+  error('章节尚未适配')\
 end\
 \
 -- 处理原始地图数据，生成程序需要的数据\
@@ -8502,7 +2589,7 @@ end\
 \
 -- 获取地图棋盘和相关数据\
 map.getMapChessboard = function()\
-  return {}\
+  error('章节尚未适配')\
 end\
 \
 -- 检查地图在屏幕中的位置，返回地图四个角的坐标\
@@ -9090,8 +3177,1653 @@ return map" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapevent16-2-b3.lua"] = { path = "./meta-operation/maps-options/mapevent16-2-b3.lua", name = "./meta-operation/maps-options/mapevent16-2-b3.lua", source = "local mapBase = require './map'\
-local imgEvent = require './imgevent16-2-b3'\
+package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local function transRelativePoint(tab, base)\
+  if not base then\
+    base = tab[1]\
+    table.remove(tab, 1)\
+  end\
+  local newTab = {}\
+  for key = 1, #tab do\
+    local value = tab[key]\
+    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])\
+  end\
+  return base, table.concat(newTab, ',')\
+end\
+\
+local function toPoint(tab)\
+  -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
+  local newTab = {}\
+  local tabLength = #tab\
+  for key = 1, tabLength do\
+    newTab[key] = { tab[key].x, tab[key].y }\
+    tab[key] = nil\
+  end\
+  return newTab\
+end\
+\
+\
+local mission = {}\
+\
+-- 检查是否有任务\
+mission.checkHasMission = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 1390, 1007, 0xe60821 }, { 1407, 1004, 0xde1831 },\
+    { 1409, 1016, 0xde0821 }, { 1391, 1017, 0xde0019 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击进入任务页\
+mission.clickIntoMissionPage = function()\
+  RTap({ 1305, 1032 }, 100)\
+end\
+\
+-- 检查是否在任务页\
+mission.isMissionPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 9, 10, 0xdee7ef }, { 872, 4, 0xeff3f7 }, { 832, 60, 0xdedfe6 }, { 13, 52, 0xcecece },\
+    { 132, 14, 0x313131 }, { 318, 11, 0x424542 }, { 166, 63, 0x313131 }, { 444, 43, 0x000000 },\
+    { 160, 35, 0x292d29 }, { 568, 18, 0xeff3f7 }, { 38, 32, 0xffd74a }, { 65, 32, 0xffd742 },\
+    { 52, 24, 0xffd74a }, { 52, 44, 0xffdf4a }, { 184, 26, 0xffe7a4 }, { 195, 28, 0x292d29 },\
+    { 194, 47, 0x313131 }, { 204, 44, 0xffc229 }, { 210, 25, 0xf7e7b5 }, { 225, 29, 0x3a393a },\
+    { 246, 20, 0xfffbe6 }, { 258, 24, 0x211c19 }, { 256, 50, 0x424142 }, { 257, 37, 0x101010 },\
+    { 270, 34, 0xefce5a }, { 275, 29, 0x101410 }, { 287, 54, 0x424142 }, { 226, 60, 0x3a393a },\
+    { 225, 47, 0x3a393a }, { 185, 51, 0x191810 }, { 299, 40, 0x000000 }, { 308, 43, 0xefefff },\
+    { 346, 46, 0xf7f3ff }, { 358, 46, 0x000000 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击全部任务\
+mission.clickAllMissionTag = function()\
+  RTap({ 86, 153 }, 100)\
+end\
+\
+-- 查找任务\
+mission.findMission = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local leftTop = { 1569, 120 }\
+  local rightBotton = { 1832, 454 }\
+  local basePoint, posandcolor = transRelativePoint({\
+    { 1694, 190, 0xd6a229 }, { 1646, 165, 0xf7db4a }, { 1685, 163, 0xffdb52 }, { 1735, 163, 0xffdf52 },\
+    { 1781, 186, 0xf7c231 }, { 1783, 212, 0xffae10 }, { 1701, 215, 0xffb221 }, { 1649, 214, 0xffb219 },\
+    { 1602, 212, 0xffae19 }, { 1623, 191, 0xf7b621 }, { 1634, 189, 0xf7c231 }, { 1658, 188, 0xa47d29 },\
+    { 1693, 188, 0x9c7921 }, { 1715, 188, 0xdee3d6 }, { 1697, 181, 0xb5a684 }, { 1681, 181, 0xffffff },\
+    { 1680, 202, 0xffffff }, { 1723, 202, 0xefe3d6 }, { 1707, 196, 0xffffff }, { 1720, 181, 0xffffff },\
+  })\
+  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2]))\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击任务\
+mission.clickMissionBtn = function(point)\
+  RTap(point, 100)\
+end\
+\
+-- 获得道具页面\
+mission.isGetPropsPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 13, 9, 0x31353a }, { 19, 42, 0x312d31 }, { 47, 32, 0x312d10 }, { 97, 39, 0x313131 },\
+    { 147, 55, 0x080808 }, { 117, 21, 0x191819 }, { 164, 15, 0x080808 }, { 191, 36, 0x312810 },\
+    { 256, 33, 0x312d10 }, { 200, 58, 0x191010 }, { 555, 10, 0x313531 }, { 728, 29, 0x313531 },\
+    { 844, 17, 0x313531 }, { 815, 57, 0x3a3531 }, { 716, 59, 0x292d29 }, { 1075, 47, 0x100c10 },\
+    { 1515, 69, 0x080810 }, { 1731, 45, 0x000408 }, { 20, 241, 0x101410 }, { 20, 412, 0x292029 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击获得道具继续\
+mission.clickGetPropsPanelNext = function(point)\
+  RTap({ 944, 815 }, 100)\
+end\
+\
+-- 获得新船界面\
+mission.isGetShipPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 64, 55, 0x736d8c }, { 1404, 33, 0x524984 },\
+    { 1829, 91, 0x6b617b }, { 1866, 451, 0x634d84 },\
+    { 1849, 818, 0x423d5a }, { 1610, 966, 0x846da4 },\
+    { 1180, 1036, 0x8c75ad }, { 901, 1036, 0xad9ece },\
+    { 309, 1023, 0x52516b }, { 1539, 687, 0x292d31 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击获得道具继续\
+mission.clickGetNewShipNext = function(point)\
+  RTap({ 887, 539 }, 100)\
+end\
+\
+-- 点击返回\
+mission.getPropsPanelBack = function()\
+  RTap({ 57, 29 }, 100)\
+end\
+\
+return mission\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/daily-challenges.lua"] = { path = "./meta-operation/daily-challenges.lua", name = "./meta-operation/daily-challenges.lua", source = "local dailyChallenges = {}\
+\
+-- 点击进入出击\
+dailyChallenges.clickIntoBattlePage = function()\
+  RTap({ 1643, 600 }, 100)\
+end\
+\
+-- 点击进入每日\
+dailyChallenges.clickIntoDailyChallengesPage = function()\
+  RTap({ 1226, 1014 }, 100)\
+end\
+\
+-- 检查是否每日页面\
+dailyChallenges.isDailyChallengesPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 6, 4, 0xefeff7 }, { 6, 49, 0xcecece }, { 40, 33, 0xf7d242 }, { 71, 33, 0xffd742 },\
+    { 134, 51, 0xced2ce }, { 107, 14, 0xf7f3f7 }, { 99, 31, 0xdedfde }, { 138, 11, 0x292d29 },\
+    { 166, 48, 0x313531 }, { 315, 10, 0x424542 }, { 173, 18, 0x292d29 }, { 192, 26, 0xad9a63 },\
+    { 210, 31, 0x736531 }, { 235, 32, 0x9c923a }, { 264, 32, 0x211821 }, { 274, 28, 0x211c21 },\
+    { 250, 28, 0x3a3d3a }, { 240, 20, 0xfff3ce }, { 271, 21, 0xd6c6a4 }, { 273, 54, 0xffdb73 },\
+    { 352, 10, 0xeff3f7 }, { 869, 12, 0xeff3f7 }, { 833, 50, 0xd6dbde }, { 708, 52, 0xdedfe6 },\
+    { 733, 31, 0xeff3f7 }, { 564, 27, 0xeff3f7 }, { 90, 531, 0xf7fbf7 }, { 86, 541, 0xf7fbf7 },\
+    { 1849, 533, 0xfffbf7 }, { 1851, 546, 0xf7fbf7 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查每日页面战役次数是否用完\
+dailyChallenges.isDailyChallengesPageDailyChallengesEmpty = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 1089, 134, 0xffffff }, { 1089, 141, 0xffffff },\
+    { 1092, 141, 0xffffff }, { 1092, 147, 0xffffff },\
+    { 1089, 147, 0xffffff }, { 1091, 153, 0xffffff },\
+    { 1096, 155, 0xffffff }, { 1100, 153, 0xffffff },\
+    { 1102, 143, 0xffffff }, { 1100, 144, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查是否战术研修\
+dailyChallenges.isTacticalTrainingCard = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 842, 128, 0x215984 }, { 842, 179, 0x29618c },\
+    { 827, 277, 0x3a81b5 }, { 833, 385, 0x737d94 },\
+    { 844, 889, 0x1969a4 }, { 914, 885, 0x105d8c },\
+    { 1095, 848, 0x73d7de }, { 1137, 700, 0x427db5 },\
+    { 1070, 635, 0x529ece }, { 1131, 879, 0x295584 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查是否斩首行动\
+dailyChallenges.isDecapitationStrikeCard = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 882, 205, 0x949294 }, { 970, 213, 0x84817b },\
+    { 1129, 235, 0x191010 }, { 861, 542, 0x5a1421 },\
+    { 918, 682, 0x311421 }, { 1098, 658, 0x7b2031 },\
+    { 1007, 442, 0x211819 }, { 1080, 447, 0xe6e3de },\
+    { 894, 785, 0x5a2429 }, { 859, 888, 0x4a2021 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查是否商船护送\
+dailyChallenges.isMerchantShipEscortCard = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 851, 163, 0x212d42 }, { 1070, 186, 0x21354a },\
+    { 923, 233, 0xd6a6a4 }, { 936, 289, 0xe6e3de },\
+    { 838, 575, 0x191c29 }, { 865, 685, 0x292d4a },\
+    { 1056, 675, 0x21314a }, { 1133, 675, 0x294573 },\
+    { 872, 811, 0x29315a }, { 1104, 379, 0x19283a },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查是否海域突破\
+dailyChallenges.isSeaAreaBreakthroughCard = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 842, 215, 0x213531 }, { 851, 555, 0x212d3a },\
+    { 864, 668, 0x213931 }, { 1099, 707, 0x3a413a },\
+    { 850, 833, 0x313121 }, { 1019, 194, 0xce9a6b },\
+    { 1037, 296, 0xdeb68c }, { 1041, 378, 0xb5ae9c },\
+    { 1057, 537, 0xe6cece }, { 856, 330, 0x103929 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 切换卡片\
+dailyChallenges.clickChangeCard = function()\
+  RTap({ 1419, 507 }, 100)\
+end\
+\
+-- 进入卡片\
+dailyChallenges.clickIntoCard = function()\
+  RTap({ 989, 476 }, 100)\
+end\
+\
+-- 检查是否选择关卡页面\
+dailyChallenges.isSelectChapterPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 246, 144, 0xf7c29c }, { 358, 194, 0xefba94 }, { 408, 331, 0xf7d2ad }, { 221, 346, 0xf7dfbd },\
+    { 17, 344, 0xfff3d6 }, { 212, 575, 0xf7f7f7 }, { 336, 621, 0xf7f7f7 }, { 405, 722, 0xfff3d6 },\
+    { 328, 989, 0xf7dfc5 }, { 616, 990, 0xffdfc5 }, { 663, 321, 0x29313a }, { 1046, 240, 0x29353a },\
+    { 663, 533, 0x292d3a }, { 968, 448, 0x313942 }, { 663, 723, 0x3a3d3a }, { 1018, 654, 0x424142 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查选择关卡页面挑战次数是否用完\
+dailyChallenges.isSelectChapterPageChallengeEmpty = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 137, 955, 0x191819 }, { 137, 966, 0x101819 },\
+    { 137, 977, 0x191819 }, { 137, 980, 0x101419 },\
+    { 127, 970, 0xa4f34a }, { 132, 970, 0xadf74a },\
+    { 142, 970, 0xadf74a }, { 147, 970, 0xa4f34a },\
+    { 141, 951, 0xadf74a }, { 133, 986, 0x9cf34a },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 选择关卡\
+dailyChallenges.selectChapter = function(chapter)\
+  if chapter == 1 then\
+    RTap({ 780, 308 }, 100)\
+  elseif chapter == 2 then\
+    RTap({ 779, 521 }, 100)\
+  elseif chapter == 3 then\
+    RTap({ 768, 722 }, 100)\
+  elseif chapter == 4 then\
+    RTap({ 764, 934 }, 100)\
+  end\
+end\
+\
+-- 检查是否选择舰队页面\
+dailyChallenges.isSelectFleetPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 12, 6, 0xefeff7 }, { 8, 45, 0xd6ced6 }, { 38, 33, 0xf7ce3a }, { 90, 8, 0xefebf7 },\
+    { 122, 57, 0xbdc6bd }, { 318, 15, 0x424542 }, { 168, 15, 0x292d29 }, { 742, 8, 0xeff3f7 },\
+    { 733, 48, 0xdedbde }, { 216, 66, 0x313d31 }, { 183, 19, 0x313131 }, { 201, 23, 0x101410 },\
+    { 189, 40, 0xffc631 }, { 222, 25, 0x080808 }, { 235, 25, 0xffeba4 }, { 240, 34, 0x212421 },\
+    { 247, 36, 0xffce42 }, { 274, 37, 0xffc631 }, { 284, 46, 0xffbe10 }, { 275, 60, 0x3a3d42 },\
+    { 1271, 186, 0xffffff }, { 1604, 185, 0xefefef }, { 1887, 214, 0xe6ebe6 }, { 1268, 490, 0xfffbff },\
+    { 1614, 501, 0xe6efe6 }, { 1878, 526, 0xe6e3e6 }, { 1385, 891, 0xd6f3f7 }, { 1396, 974, 0x9cdfde },\
+    { 1612, 936, 0xffefbd }, { 1774, 985, 0x8ccace },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 选择舰队页面获取当前是哪个舰队\
+dailyChallenges.getFleet = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list1 = {\
+    { 138, 218, 0x4a4942 }, { 138, 201, 0x424521 }, { 127, 191, 0x424542 }, { 146, 176, 0x424542 },\
+    { 156, 196, 0x4a4942 }, { 156, 227, 0x3a3d3a }, { 146, 238, 0x424142 }, { 146, 227, 0xefba08 },\
+    { 145, 196, 0xffdf8c }, { 147, 183, 0xffebbd },\
+  }\
+  local list2 = {\
+    { 147, 192, 0x42393a }, { 137, 201, 0x424542 }, { 137, 216, 0x635d42 }, { 129, 232, 0x424142 },\
+    { 145, 238, 0x4a493a }, { 165, 232, 0x424142 }, { 152, 224, 0x4a494a }, { 161, 207, 0x424531 },\
+    { 137, 197, 0xffdf8c }, { 135, 232, 0xf7b600 },\
+  }\
+  local list3 = {\
+    { 148, 193, 0x4a4529 }, { 147, 219, 0x4a493a }, { 139, 205, 0x635142 }, { 130, 199, 0x4a4142 },\
+    { 130, 213, 0x5a4d31 }, { 164, 233, 0x424142 }, { 156, 177, 0x313531 }, { 146, 205, 0xf7ca5a },\
+    { 137, 192, 0xffe39c }, { 138, 219, 0xf7be19 },\
+  }\
+  local list4 = {\
+    { 142, 211, 0x524531 }, { 131, 198, 0x4a493a }, { 148, 175, 0x3a3d3a }, { 161, 209, 0x424542 },\
+    { 161, 230, 0x424142 }, { 152, 236, 0x4a4542 }, { 140, 226, 0x424542 }, { 151, 230, 0xf7ba08 },\
+    { 149, 182, 0xffebb5 }, { 130, 210, 0xe6ba42 },\
+  }\
+  local list5 = {\
+    { 153, 189, 0x4a494a }, { 139, 175, 0x4a494a }, { 130, 192, 0x635d52 }, { 147, 203, 0x4a494a },\
+    { 139, 212, 0x4a4d42 }, { 147, 221, 0x4a4942 }, { 148, 231, 0xf7ba08 }, { 137, 217, 0xffc63a },\
+    { 153, 196, 0xffdb84 }, { 140, 182, 0xffebb5 },\
+  }\
+  local list6 = {\
+    { 148, 188, 0x4a494a }, { 154, 193, 0x424542 }, { 148, 208, 0x4a494a }, { 148, 223, 0x424542 },\
+    { 147, 236, 0x424542 }, { 129, 207, 0x4a4d4a }, { 159, 193, 0x4a4942 }, { 157, 185, 0xffe7a4 },\
+    { 135, 200, 0xf7d773 }, { 149, 230, 0xf7ba10 },\
+  }\
+  local result\
+  if multiColorS(list1) then\
+    result = 1\
+  elseif multiColorS(list2) then\
+    result = 2\
+  elseif multiColorS(list3) then\
+    result = 3\
+  elseif multiColorS(list4) then\
+    result = 4\
+  elseif multiColorS(list5) then\
+    result = 5\
+  elseif multiColorS(list6) then\
+    result = 6\
+  end\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 切换第一个舰队\
+dailyChallenges.clickChangeFirstFleet = function()\
+  for key = 1, 10 do\
+    RTap({ 67, 602 }, 100)\
+  end\
+end\
+\
+-- 切换下一个舰队\
+dailyChallenges.clickChangeNextFleet = function()\
+  RTap({ 1158, 596 }, 100)\
+end\
+\
+-- 点击出击按钮\
+dailyChallenges.clickBattleBtn = function()\
+  RTap({ 1580, 955 }, 100)\
+end\
+\
+-- 点击返回按钮\
+dailyChallenges.clickBackBtn = function()\
+  RTap({ 54, 29 }, 100)\
+end\
+\
+return dailyChallenges\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./utils/vibrator-promise.lua"] = { path = "./utils/vibrator-promise.lua", name = "./utils/vibrator-promise.lua", source = "if type(Promise) ~= 'table' then\
+  error('SleepPromise need Promise module to work. Please require \\'Promise\\' as global variable.', 2)\
+end\
+if type(EventQuery) ~= 'table' then\
+  error('SleepPromise need EventQuery module to work. Please require \\'EventQuery\\' as global variableß .', 2)\
+end\
+\
+local sleepPromise = function(ms)\
+  return Promise.new(function(resolve)\
+    EventQuery.setTimeout(resolve, ms)\
+  end)\
+end\
+\
+local vibratorPromise = function(num, ms)\
+  num = num or 1\
+  ms = ms or 500\
+  local res = Promise.resolve(1)\
+  for key = 1, num do\
+    res = res.andThen(function()\
+      return vibrator()\
+    end).andThen(function()\
+      return sleepPromise(ms)\
+    end)\
+  end\
+  return res\
+end\
+return vibratorPromise\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/home.lua"] = { path = "./meta-operation/home.lua", name = "./meta-operation/home.lua", source = "local home = {}\
+\
+-- 检测主页\
+home.isHome = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 139, 30, 0x101010 }, { 625, 24, 0x212021 },\
+    { 963, 16, 0x292d3a }, { 1033, 67, 0x3a3d3a },\
+    { 1058, 31, 0xe6efef }, { 1339, 47, 0xefba42 },\
+    { 1369, 32, 0xefebef }, { 1652, 39, 0xf74163 },\
+    { 1675, 65, 0xefefef }, { 1775, 184, 0xa4cede },\
+    { 1162, 179, 0xa4cade }, { 1276, 189, 0xa4cade },\
+    { 1201, 582, 0x109eef }, { 1383, 582, 0x199ae6 },\
+    { 1290, 571, 0xffffff }, { 1498, 585, 0xdeae10 },\
+    { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },\
+    { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+return home" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/battle.lua"] = { path = "./meta-operation/battle.lua", name = "./meta-operation/battle.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local sleepPromise = require '../utils/sleep-promise'\
+\
+\
+local battle = {}\
+\
+\
+-- 点击出征\
+battle.clickBattleBtn = function()\
+  RTap({ 1628, 599 }, 100)\
+end\
+\
+-- 点击活动\
+battle.clickEventBtn = function()\
+  RTap({ 1018, 249 }, 100)\
+end\
+\
+--  是否在出击选择章节界面\
+battle.isBattleChapterPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 13, 11, 0xdedfe6 }, { 10, 54, 0xcecace },\
+    { 38, 36, 0xefce42 }, { 68, 31, 0xefce3a },\
+    { 125, 56, 0xc5c2c5 }, { 892, 51, 0xd6dbde },\
+    { 930, 7, 0xeff3f7 }, { 248, 23, 0xffe7ad },\
+    { 257, 24, 0x292829 }, { 276, 22, 0x211c21 },\
+    { 232, 45, 0x313131 }, { 256, 45, 0x313531 },\
+    { 264, 47, 0xffba00 }, { 273, 47, 0x3a353a },\
+    { 284, 47, 0xffba00 }, { 293, 45, 0x313131 },\
+    { 302, 45, 0xffba00 }, { 308, 45, 0x191819 },\
+    { 321, 43, 0xffbe10 }, { 332, 44, 0x424142 },\
+    { 426, 42, 0x000000 }, { 438, 42, 0xefefff },\
+    { 545, 42, 0xdee7f7 }, { 573, 45, 0x000000 },\
+    { 559, 45, 0xd6d2de }, { 394, 43, 0x3a393a },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击回港\
+battle.clickBackToHomeBtn = function()\
+  RTap({ 98, 1016 }, 100)\
+end\
+\
+--  是否在普通模式\
+battle.isNormalMode = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },\
+    { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },\
+  }\
+  local list2 = {\
+    { 72, 973, 0xffffff }, { 152, 991, 0xbd0408 },\
+    { 164, 1005, 0xbd0408 }, { 261, 1025, 0x631010 },\
+  }\
+  local result = multiColorS(list) or multiColorS(list2)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+--  是否在困难模式\
+battle.isHardMode = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },\
+    { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },\
+  }\
+  local list2 = {\
+    { 109, 985, 0xdedbde }, { 189, 994, 0x001029 },\
+    { 281, 1004, 0x103984 }, { 284, 1032, 0x21284a },\
+  }\
+  local result = multiColorS(list) or multiColorS(list2)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 切换困难模式按钮\
+battle.clickSwitchHardModeBtn = function()\
+  RTap({ 202, 1010 }, 100)\
+end\
+\
+-- 移动到m章节\
+battle.moveToChapter = function(chapterObj)\
+  local chapter = chapter\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+\
+  local m = chapterObj.chapter or 1\
+\
+  local leftButton = {\
+    { 108, 500, 0xefefef }, { 66, 537, 0xd6d7d6 },\
+    { 99, 528, 0xdedfde }, { 99, 549, 0xbdbebd },\
+    { 93, 565, 0xc5c6c5 },\
+  }\
+  local leftButton2 = {\
+    { 97, 531, 0xb5b2b5 }, { 64, 538, 0xb5b2b5 },\
+    { 95, 510, 0xbdbebd }, { 112, 518, 0xb5b2b5 },\
+    { 102, 572, 0xadaaad }, { 101, 555, 0x9c9e9c },\
+  }\
+  -- 先移到第一章\
+  for i = 1, 14 do\
+    RTap({ 90, 540 }, 100)\
+    mSleep(80)\
+    keepScreen(true)\
+    if not multiColorS(leftButton) and not multiColorS(leftButton2) then\
+      break\
+    end\
+  end\
+  -- 再移到第m章\
+  for i = 2, m do\
+    RTap({ 1826, 540 }, 100)\
+    mSleep(200)\
+  end\
+  mSleep(200)\
+  if not __keepScreenState then keepScreen(false) end\
+  return true\
+end\
+\
+-- 点击m章节\
+battle.clickChapter = function(chapterObj)\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+\
+  if chapterObj.name == '1-1' then\
+    RTap({ 227, 687 }, 100)\
+  elseif chapterObj.name == '1-2' then\
+    RTap({ 685, 409 }, 100)\
+  elseif chapterObj.name == '1-3' then\
+    RTap({ 984, 789 }, 100)\
+  elseif chapterObj.name == '1-4' then\
+    RTap({ 1366, 317 }, 100)\
+  elseif chapterObj.name == '2-1' then\
+    RTap({ 1221, 685 }, 100)\
+  elseif chapterObj.name == '2-2' then\
+    RTap({ 1121, 277 }, 100)\
+  elseif chapterObj.name == '2-3' then\
+    RTap({ 429, 406 }, 100)\
+  elseif chapterObj.name == '2-4' then\
+    RTap({ 572, 821 }, 100)\
+  elseif chapterObj.name == '3-1' then\
+    RTap({ 603, 320 }, 100)\
+  elseif chapterObj.name == '3-2' then\
+    RTap({ 344, 750 }, 100)\
+  elseif chapterObj.name == '3-3' then\
+    RTap({ 1364, 279 }, 100)\
+  elseif chapterObj.name == '3-4' then\
+    RTap({ 923, 540 }, 100)\
+  elseif chapterObj.name == '4-1' then\
+    RTap({ 355, 451 }, 100)\
+  elseif chapterObj.name == '4-2' then\
+    RTap({ 628, 701 }, 100)\
+  elseif chapterObj.name == '4-3' then\
+    RTap({ 1234, 818 }, 100)\
+  elseif chapterObj.name == '4-4' then\
+    RTap({ 1167, 430 }, 100)\
+  elseif chapterObj.name == '5-1' then\
+    RTap({ 363, 544 }, 100)\
+  elseif chapterObj.name == '5-2' then\
+    RTap({ 1285, 803 }, 100)\
+  elseif chapterObj.name == '5-3' then\
+    RTap({ 1104, 549 }, 100)\
+  elseif chapterObj.name == '5-4' then\
+    RTap({ 884, 318 }, 100)\
+  elseif chapterObj.name == '6-1' then\
+    RTap({ 1373, 746 }, 100)\
+  elseif chapterObj.name == '6-2' then\
+    RTap({ 1055, 515 }, 100)\
+  elseif chapterObj.name == '6-3' then\
+    RTap({ 632, 317 }, 100)\
+  elseif chapterObj.name == '6-4' then\
+    RTap({ 443, 643 }, 100)\
+  elseif chapterObj.name == '7-1' then\
+    RTap({ 308, 725 }, 100)\
+  elseif chapterObj.name == '7-2' then\
+    RTap({ 688, 270 }, 100)\
+  elseif chapterObj.name == '7-3' then\
+    RTap({ 1234, 425 }, 100)\
+  elseif chapterObj.name == '7-4' then\
+    RTap({ 1416, 674 }, 100)\
+  elseif chapterObj.name == '8-1' then\
+    RTap({ 824, 280 }, 100)\
+  elseif chapterObj.name == '8-2' then\
+    RTap({ 411, 535 }, 100)\
+  elseif chapterObj.name == '8-3' then\
+    RTap({ 507, 849 }, 100)\
+  elseif chapterObj.name == '8-4' then\
+    RTap({ 1168, 686 }, 100)\
+  elseif chapterObj.name == '9-1' then\
+    RTap({ 360, 359 }, 100)\
+  elseif chapterObj.name == '9-2' then\
+    RTap({ 569, 729 }, 100)\
+  elseif chapterObj.name == '9-3' then\
+    RTap({ 1179, 395 }, 100)\
+  elseif chapterObj.name == '9-4' then\
+    RTap({ 1375, 768 }, 100)\
+  elseif chapterObj.name == '10-1' then\
+    RTap({ 301, 362 }, 100)\
+  elseif chapterObj.name == '10-2' then\
+    RTap({ 694, 571 }, 100)\
+  elseif chapterObj.name == '10-3' then\
+    RTap({ 971, 806 }, 100)\
+  elseif chapterObj.name == '10-4' then\
+    RTap({ 1111, 336 }, 100)\
+  elseif chapterObj.name == '11-1' then\
+    RTap({ 453, 348 }, 100)\
+  elseif chapterObj.name == '11-2' then\
+    RTap({ 643, 779 }, 100)\
+  elseif chapterObj.name == '11-3' then\
+    RTap({ 1077, 255 }, 100)\
+  elseif chapterObj.name == '11-4' then\
+    RTap({ 1335, 665 }, 100)\
+  elseif chapterObj.name == '12-1' then\
+    RTap({ 296, 362 }, 100)\
+  elseif chapterObj.name == 'ygxdxq-sp1' then\
+    RTap({ 405, 415 }, 100)\
+  elseif chapterObj.name == 'ygxdxq-sp2' then\
+    RTap({ 568, 808 }, 100)\
+  elseif chapterObj.name == 'ygxdxq-sp3' then\
+    RTap({ 1243, 590 }, 100)\
+  end\
+  if not __keepScreenState then keepScreen(false) end\
+end\
+\
+-- 检测是第几关\
+battle.checkChapter = function(chapterObj)\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local cha = chapterObj.chapter\
+  if chapterObj.type == 'event' then\
+    cha = 'event'\
+  end\
+  local list = {\
+    [1] = {\
+      { 73, 146, 0xf7df6b }, { 74, 159, 0xe6aa29 },\
+      { 74, 166, 0xffbe31 }, { 67, 151, 0x292419 },\
+      { 68, 143, 0x101810 }, { 79, 159, 0x212021 },\
+      { 80, 171, 0x193131 }, { 68, 171, 0x101c19 },\
+    },\
+    [2] = {\
+      { 67, 149, 0xe6be52 }, { 71, 148, 0x211808 },\
+      { 71, 142, 0xc5ba5a }, { 74, 156, 0xe6a631 },\
+      { 74, 163, 0x191808 }, { 78, 168, 0xffc629 },\
+      { 65, 168, 0xf7c229 }, { 62, 167, 0x212008 },\
+      { 80, 168, 0x292421 }, { 71, 171, 0x101010 },\
+    },\
+    [3] = {\
+      { 67, 149, 0xe6c263 }, { 72, 147, 0x212000 },\
+      { 78, 147, 0xe6ca63 }, { 72, 143, 0xefdb73 },\
+      { 71, 154, 0xd6aa42 }, { 72, 165, 0x291800 },\
+      { 72, 169, 0xf7c629 }, { 63, 164, 0x4a4521 },\
+      { 79, 164, 0xcea229 }, { 75, 171, 0x312d19 },\
+    },\
+    [4] = {\
+      { 74, 143, 0xefdf73 }, { 71, 158, 0x4a3519 },\
+      { 65, 163, 0xd6aa31 }, { 81, 162, 0xce9e31 },\
+      { 77, 169, 0xefc629 }, { 78, 152, 0xefbe52 },\
+      { 71, 166, 0x4a3d10 }, { 66, 164, 0xbd9229 },\
+      { 83, 163, 0x191410 },\
+    },\
+    [5] = {\
+      { 71, 147, 0x524921 }, { 65, 143, 0xf7e77b },\
+      { 78, 144, 0xf7e373 }, { 71, 140, 0x191c19 },\
+      { 72, 165, 0x191408 }, { 72, 154, 0x5a4119 },\
+      { 67, 161, 0xdeaa31 }, { 66, 154, 0xdeaa4a },\
+      { 72, 169, 0xe6c242 }, { 72, 171, 0x5a4900 },\
+    },\
+    [6] = {\
+      { 72, 142, 0xdebe63 }, { 77, 148, 0xe6c263 },\
+      { 72, 147, 0x291400 }, { 65, 155, 0xe6aa31 },\
+      { 72, 165, 0x191408 }, { 72, 156, 0x422021 },\
+      { 72, 170, 0xbd9629 }, { 72, 169, 0xf7c231 },\
+      { 79, 170, 0x211c10 }, { 79, 161, 0xe6aa29 },\
+    },\
+    [7] = {\
+      { 66, 144, 0xdece73 }, { 78, 144, 0xffdb7b },\
+      { 71, 169, 0xf7c229 }, { 70, 148, 0x313119 },\
+      { 66, 168, 0x101410 }, { 77, 168, 0x101419 },\
+      { 71, 171, 0x101010 }, { 71, 141, 0x423d29 },\
+      { 79, 141, 0x292819 },\
+    },\
+    [8] = {\
+      { 72, 142, 0xd6be6b }, { 72, 169, 0xefce29 },\
+      { 72, 165, 0x210c00 }, { 72, 158, 0x4a3510 },\
+      { 72, 151, 0x312400 }, { 72, 147, 0x100400 },\
+      { 64, 153, 0x3a3108 }, { 80, 154, 0x191410 },\
+      { 79, 160, 0xdeb229 }, { 65, 163, 0xe6ba29 },\
+    },\
+    [9] = {\
+      { 72, 142, 0xd6c27b }, { 72, 147, 0x101000 },\
+      { 72, 154, 0x191800 }, { 72, 165, 0x100c00 },\
+      { 65, 164, 0xe6b629 }, { 63, 164, 0x312d10 },\
+      { 66, 161, 0x292010 }, { 79, 157, 0xe6aa29 },\
+      { 79, 169, 0x3a3110 }, { 72, 169, 0xefc629 },\
+    },\
+    [10] = {\
+      { 54, 148, 0xefc663 }, { 55, 150, 0x5a4121 },\
+      { 65, 160, 0x5a4119 }, { 72, 155, 0x3a3919 },\
+      { 72, 154, 0x423d21 }, { 81, 147, 0x100c00 },\
+      { 81, 156, 0x190800 }, { 85, 168, 0xf7be29 },\
+      { 88, 159, 0xe6a621 }, { 70, 167, 0x081821 },\
+    },\
+    [11] = {\
+      { 57, 147, 0xe6c663 }, { 67, 159, 0xce9229 },\
+      { 64, 169, 0xe6c229 }, { 58, 151, 0x212010 },\
+      { 76, 151, 0x212010 }, { 73, 159, 0x19313a },\
+      { 77, 168, 0x101410 }, { 84, 169, 0xe6c229 },\
+      { 86, 156, 0x5a4d21 }, { 83, 143, 0xf7e77b },\
+    },\
+    [12] = {\
+      { 54, 148, 0xefc663 }, { 62, 143, 0xf7e373 },\
+      { 61, 169, 0xefc229 }, { 72, 168, 0x5a5529 },\
+      { 79, 167, 0xf7c629 }, { 80, 147, 0x311c10 },\
+      { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },\
+      { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },\
+    },\
+    event = {\
+      { 48, 147, 0xffffff }, { 61, 147, 0xffffff },\
+      { 55, 149, 0x10283a }, { 62, 154, 0x102031 },\
+      { 47, 161, 0x082029 }, { 54, 159, 0xffffff },\
+      { 55, 169, 0x082031 }, { 55, 176, 0xffffff },\
+      { 62, 168, 0xffffff }, { 64, 177, 0x082029 },\
+      { 72, 150, 0x102431 }, { 79, 149, 0xffffff },\
+      { 86, 151, 0x19313a }, { 94, 151, 0xffffff },\
+      { 88, 164, 0x102431 }, { 80, 174, 0xffffff },\
+      { 89, 174, 0x082031 }, { 98, 175, 0xffffff },\
+    },\
+  }\
+  local result = nil\
+  console.log(multiColorS(list[cha]))\
+  if not list[cha] or multiColorS(list[cha]) then\
+    result = true\
+  end\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+--  是否在章节信息面板\
+battle.isChapterInfoPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 476, 271, 0xe6efe6 }, { 833, 280, 0xefefef },\
+    { 1404, 282, 0xeff3f7 }, { 1561, 283, 0xadaaad },\
+    { 1522, 755, 0xffae10 }, { 1273, 691, 0xffdb52 },\
+    { 1271, 747, 0xffa619 }, { 1391, 713, 0xffffff },\
+    { 854, 339, 0x4a4d4a },\
+    { 896, 342, 0xdedfde }, { 1376, 349, 0xdedbde },\
+    { 1319, 708, 0xffffff }, { 1322, 720, 0xffca3a },\
+    { 1342, 729, 0xf7b219 }, { 1355, 718, 0xffffff },\
+    { 1383, 717, 0xffffff }, { 1397, 713, 0xbd9629 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 前往选择舰队面板\
+battle.clickGotoSelectFleedPanelBtn = function()\
+  RTap({ 1388, 720 }, 100)\
+end\
+\
+--  是否在选择舰队面板\
+battle.isSelectFleetPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },\
+    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },\
+    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },\
+    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },\
+    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },\
+    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },\
+    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },\
+    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },\
+    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },\
+    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },\
+\
+    { 1533, 299, 0x6b2400 }, { 1544, 300, 0x633910 },\
+    { 1551, 300, 0x633510 }, { 1564, 302, 0xffd24a },\
+    { 1533, 316, 0x6b2d08 }, { 1547, 321, 0xffca42 },\
+    { 1559, 314, 0xffc642 }, { 1580, 304, 0xffb242 },\
+    { 1570, 307, 0xffc242 }, { 1592, 308, 0x6b3d21 },\
+    { 1600, 307, 0xffaa29 }, { 1584, 293, 0xffc64a },\
+    { 1598, 299, 0x633110 }, { 1590, 307, 0x733110 },\
+    { 1591, 323, 0x632d10 }, { 1580, 321, 0xf7a229 },\
+    { 1598, 321, 0xde8e29 }, { 1580, 331, 0xf7a229 },\
+    { 1570, 324, 0xffaa3a }, { 1591, 316, 0x6b2800 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+--  是否在困难选择舰队面板\
+battle.isHardSelectFleetPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },\
+    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },\
+    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },\
+    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },\
+    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },\
+    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },\
+    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },\
+    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },\
+    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },\
+    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },\
+\
+    { 1531, 308, 0xf7db52 }, { 1536, 302, 0x633910 },\
+    { 1550, 305, 0xe6be52 }, { 1560, 305, 0xffd24a },\
+    { 1559, 314, 0xffc252 }, { 1555, 318, 0x633110 },\
+    { 1541, 322, 0xffc652 }, { 1541, 314, 0xf7c652 },\
+    { 1536, 325, 0x633100 }, { 1554, 327, 0x632400 },\
+    { 1572, 300, 0x732808 }, { 1595, 300, 0x633100 },\
+    { 1577, 316, 0xf7a63a }, { 1574, 326, 0x733508 },\
+    { 1596, 320, 0x6b3d21 }, { 1588, 324, 0xffa631 },\
+    { 1585, 316, 0xf7a231 }, { 1604, 303, 0xf7a629 },\
+    { 1583, 303, 0xffae3a }, { 1584, 329, 0xffaa21 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 困难进入战斗\
+battle.clickHardGotoSelectFleedPanelBtn = function()\
+  RTap({ 1588, 934 }, 100)\
+end\
+\
+-- 取消第二个舰队\
+battle.clickSelectFleetPanelCancel2Fleet = function(fleet)\
+  local __keepScreenState = keepScreenState\
+  if __keepScreenState then keepScreen(true) end\
+  RTap({ 1690, 522 }, 100)\
+  if not __keepScreenState then keepScreen(false) end\
+  return\
+end\
+\
+-- 选择第一个舰队\
+battle.clickSelectFleetPanelSelect1Fleet = function(fleet)\
+  return co(c.create(function()\
+    local __keepScreenState = keepScreenState\
+    if __keepScreenState then keepScreen(true) end\
+    RTap({ 1565, 314 }, 100)\
+    c.yield(sleepPromise(500))\
+    if fleet == 1 then\
+      RTap({ 1622, 414 }, 100)\
+    elseif fleet == 2 then\
+      RTap({ 1629, 487 }, 100)\
+    elseif fleet == 3 then\
+      RTap({ 1625, 562 }, 100)\
+    elseif fleet == 4 then\
+      RTap({ 1625, 634 }, 100)\
+    elseif fleet == 5 then\
+      RTap({ 1622, 712 }, 100)\
+    elseif fleet == 6 then\
+      RTap({ 1620, 788 }, 100)\
+    end\
+    if not __keepScreenState then keepScreen(false) end\
+    return\
+  end))\
+end\
+\
+-- 选择第二个舰队\
+battle.clickSelectFleetPanelSelect2Fleet = function(fleet)\
+  return co(c.create(function()\
+    local __keepScreenState = keepScreenState\
+    if __keepScreenState then keepScreen(true) end\
+    RTap({ 1568, 518 }, 100)\
+    c.yield(sleepPromise(500))\
+    if fleet == 1 then\
+      RTap({ 1621, 615 }, 100)\
+    elseif fleet == 2 then\
+      RTap({ 1619, 688 }, 100)\
+    elseif fleet == 3 then\
+      RTap({ 1627, 763 }, 100)\
+    elseif fleet == 4 then\
+      RTap({ 1623, 836 }, 100)\
+    elseif fleet == 5 then\
+      RTap({ 1620, 911 }, 100)\
+    elseif fleet == 6 then\
+      RTap({ 1627, 988 }, 100)\
+    end\
+    if not __keepScreenState then keepScreen(false) end\
+    return\
+  end))\
+end\
+\
+-- 点击舰队\
+battle.clickFleet = function(clickFleetList)\
+  if type(clickFleetList) ~= 'table' then\
+    clickFleetList = { clickFleetList }\
+  end\
+  for _, fleet in ipairs(clickFleetList) do\
+    if fleet == 1 then\
+      RTap({ 479, 842 }, 100)\
+    elseif fleet == 2 then\
+      RTap({ 689, 844 }, 100)\
+    elseif fleet == 3 then\
+      RTap({ 901, 843 }, 100)\
+    elseif fleet == 4 then\
+      RTap({ 1119, 845 }, 100)\
+    end\
+    mSleep(50)\
+  end\
+end\
+\
+\
+-- 前往地图\
+battle.clickGotoMapBtn = function()\
+  RTap({ 1588, 934 }, 100)\
+end\
+\
+--  是否在地图页面\
+battle.isMapPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 16, 19, 0xdee3de }, { 824, 17, 0xeff3f7 },\
+    { 1021, 35, 0x3a3d3a }, { 1332, 33, 0xffef5a },\
+    { 1647, 35, 0xff4573 }, { 1074, 1021, 0xeff3ef },\
+    { 1404, 998, 0xf7f7f7 }, { 1692, 1003, 0xf7fbf7 },\
+    { 895, 993, 0xdedfde }, { 938, 1020, 0xbdbabd },\
+    { 420, 47, 0x000000 }, { 447, 47, 0x000000 },\
+    { 459, 44, 0xefefff }, { 516, 50, 0xefebff },\
+    { 556, 44, 0xf7f3ff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检测是第几队\
+battle.scanMapCheckFleetNum = function()\
+  local __keepScreenState = keepScreenState\
+  keepScreen(true)\
+  local list1 = {\
+    { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },\
+    { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },\
+    { 311, 139, 0x424142 }, { 319, 152, 0x424142 },\
+    { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },\
+    { 312, 109, 0xf7e39c },\
+  }\
+  local list2 = {\
+    { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },\
+    { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },\
+    { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },\
+    { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },\
+    { 324, 138, 0x424142 }, { 337, 144, 0x424142 },\
+  }\
+  local list3 = {\
+    { 302, 110, 0x524531 }, { 320, 106, 0x424542 },\
+    { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },\
+    { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },\
+    { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },\
+    { 320, 140, 0x424542 }, { 338, 139, 0x424142 },\
+  }\
+  local list4 = {\
+    { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },\
+    { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },\
+    { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },\
+    { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },\
+    { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },\
+  }\
+  local result = 1\
+  if multiColorS(list1) then\
+    result = 1\
+  elseif multiColorS(list2) then\
+    result = 2\
+  elseif multiColorS(list3) then\
+    result = 3\
+  elseif multiColorS(list4) then\
+    result = 4\
+  end\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 是否选中指定舰队\
+battle.getSelectedFleed = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local result\
+  local list1 = {\
+    { 301, 105, 0x424542 }, { 325, 90, 0x424142 }, { 318, 152, 0x424142 }, { 311, 134, 0x42453a },\
+    { 329, 129, 0x4a4542 }, { 320, 146, 0xf7b210 }, { 318, 132, 0xf7c221 }, { 324, 111, 0xffe38c },\
+    { 307, 107, 0xffdf9c }, { 325, 95, 0xffe3ad },\
+  }\
+  local list2 = {\
+    { 302, 109, 0x4a4942 }, { 313, 115, 0x424542 }, { 319, 105, 0x423531 }, { 337, 147, 0x424142 },\
+    { 301, 146, 0x424142 }, { 318, 153, 0x424142 }, { 313, 124, 0x42413a }, { 317, 117, 0x4a4542 },\
+    { 331, 148, 0xf7ba08 }, { 309, 145, 0xf7ba08 }, { 324, 139, 0x424142 }, { 328, 139, 0x313531 },\
+    { 329, 129, 0x4a393a }, { 323, 129, 0xf7c231 }, { 323, 115, 0xffdb7b }, { 323, 96, 0xffebb5 },\
+    { 310, 110, 0xffe394 }, { 325, 114, 0xf7db7b },\
+  }\
+  local list3 = {\
+    { 302, 105, 0x4a493a }, { 321, 105, 0x4a4531 }, { 313, 113, 0x524942 }, { 313, 122, 0x635142 },\
+    { 320, 126, 0x4a494a }, { 320, 140, 0x4a4542 }, { 302, 134, 0x4a4542 }, { 308, 125, 0x525131 },\
+    { 322, 154, 0x424542 }, { 339, 133, 0x4a493a }, { 307, 109, 0xffdf9c }, { 316, 107, 0xffe39c },\
+    { 320, 94, 0xffefbd }, { 335, 108, 0xf7e78c }, { 317, 120, 0xffca5a }, { 333, 133, 0xffbe29 },\
+    { 322, 149, 0xffba00 }, { 307, 137, 0xffba10 }, { 313, 132, 0xf7be21 }, { 335, 119, 0x4a453a },\
+  }\
+  local list4 = {\
+    { 313, 90, 0x423531 }, { 331, 90, 0x424142 }, { 333, 127, 0x635129 }, { 337, 134, 0x5a4d3a },\
+    { 333, 145, 0x525142 }, { 324, 151, 0x424531 }, { 315, 141, 0x4a4931 }, { 303, 141, 0x424142 },\
+    { 314, 126, 0x524121 }, { 299, 129, 0x524d42 }, { 316, 93, 0xefe3ad }, { 327, 111, 0xffdb84 },\
+    { 334, 134, 0xffbe21 }, { 324, 146, 0xf7ba08 }, { 303, 134, 0xf7be21 }, { 309, 124, 0xf7be42 },\
+    { 320, 124, 0xffc64a }, { 314, 132, 0xf7c221 }, { 321, 102, 0xf7e79c }, { 313, 108, 0xffdf94 },\
+  }\
+  local list5 = {\
+    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },\
+    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },\
+    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },\
+    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },\
+  }\
+  local list6 = {\
+    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },\
+    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },\
+    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },\
+    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },\
+  }\
+  if multiColorS(list1) then\
+    result = 1\
+  elseif multiColorS(list2) then\
+    result = 2\
+  elseif multiColorS(list3) then\
+    result = 3\
+  elseif multiColorS(list4) then\
+    result = 4\
+  elseif multiColorS(list5) then\
+    result = 5\
+  elseif multiColorS(list6) then\
+    result = 6\
+  end\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 地图点击切换舰队按钮\
+battle.clickSwitchFleetBtn = function()\
+  RTap({ 1426, 1003 }, 100)\
+end\
+\
+-- 地图点击迎击\
+battle.clickAttackBtn = function()\
+  RTap({ 1740, 1005 }, 100)\
+end\
+\
+battle.getFleetFormation = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local result\
+  local listSingleFile = {\
+    { 451, 175, 0x08ebbd }, { 451, 188, 0x08e7b5 },\
+    { 452, 202, 0x08ebbd }, { 452, 216, 0x08ebbd },\
+    { 452, 231, 0x00e7b5 }, { 452, 244, 0x08ebbd },\
+  }\
+  local listSingleFile2 = {\
+    { 346, 174, 0x08ebbd }, { 347, 188, 0x08e7b5 },\
+    { 347, 202, 0x08e7b5 }, { 348, 216, 0x08ebbd },\
+    { 347, 230, 0x08e7b5 }, { 348, 244, 0x08ebbd },\
+  }\
+  local listDoubleFile = {\
+    { 439, 180, 0x08e7b5 }, { 466, 180, 0x08ebbd },\
+    { 437, 205, 0x08ebbd }, { 468, 203, 0x00e7b5 },\
+    { 436, 230, 0x08ebbd }, { 470, 230, 0x08ebbd },\
+  }\
+  local listDoubleFile2 = {\
+    { 334, 180, 0x08ebbd }, { 361, 179, 0x08ebbd },\
+    { 332, 204, 0x08ebbd }, { 363, 203, 0x08ebbd },\
+    { 332, 229, 0x00e7b5 }, { 365, 230, 0x00e7bd },\
+  }\
+  local listWheeledFile = {\
+    { 452, 178, 0x08ebbd }, { 452, 196, 0x08ebbd },\
+    { 452, 215, 0x00e7b5 }, { 452, 236, 0x08ebbd },\
+    { 425, 205, 0x08ebbd }, { 478, 205, 0x00e7b5 },\
+  }\
+  local listWheeledFile2 = {\
+    { 347, 177, 0x08ebbd }, { 347, 195, 0x08ebbd },\
+    { 347, 214, 0x08e7b5 }, { 347, 235, 0x08ebbd },\
+    { 320, 206, 0x08ebbd }, { 373, 205, 0x08ebbd },\
+  }\
+  if multiColorS(listSingleFile) or multiColorS(listSingleFile2) then\
+    result = 'single file'\
+  elseif multiColorS(listDoubleFile) or multiColorS(listDoubleFile2) then\
+    result = 'double file'\
+  elseif multiColorS(listWheeledFile) or multiColorS(listWheeledFile2) then\
+    result = 'wheeled file'\
+  end\
+\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检测阵型面板是否打开\
+battle.isFormationPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 1591, 527, 0xffe742 }, { 1591, 577, 0xffef31 },\
+    { 1593, 553, 0xffef3a }, { 1615, 552, 0xffe73a },\
+    { 1605, 542, 0xffe73a }, { 1605, 563, 0xffeb3a },\
+    { 1596, 563, 0xffe731 }, { 1597, 550, 0xffe73a },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 打开阵型面板\
+battle.openFormationPanel = function()\
+  RTap({ 1883, 551 }, 100)\
+end\
+\
+-- 改变阵型\
+battle.changeFormationPanelFormation = function()\
+  RTap({ 1712, 549 }, 100)\
+end\
+\
+-- 关闭阵型面板\
+battle.closeFormationPanel = function()\
+  RTap({ 1603, 553 }, 100)\
+end\
+\
+-- 检测敌方伏击面板\
+battle.isAmbushedPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 369, 678, 0x527119 }, { 399, 671, 0x527521 },\
+    { 428, 680, 0xfffbf7 }, { 803, 562, 0xf7ca3a },\
+    { 955, 565, 0xffffff }, { 1055, 597, 0xffa619 },\
+    { 1237, 540, 0xe6e7e6 }, { 1349, 568, 0xffffff },\
+    { 1485, 593, 0xc5bebd }, { 1200, 685, 0x5a595a },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 迎击伏击\
+battle.ambushedPanelClickInterceptBtn = function()\
+  RTap({ 922, 571 }, 100)\
+end\
+\
+-- 躲避伏击\
+battle.ambushedPanelClickAvoidBtn = function()\
+  RTap({ 1351, 564 }, 100)\
+end\
+\
+-- 检测信息弹窗\
+battle.isInfomationModal = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 463, 250, 0xeff3f7 }, { 938, 261, 0xe6f3f7 },\
+    { 1447, 255, 0xadaaad }, { 1391, 282, 0xf7ce42 },\
+    { 845, 709, 0xffdf52 }, { 947, 707, 0xffdb52 },\
+    { 1093, 708, 0x943d00 }, { 960, 778, 0xffba21 },\
+    { 840, 775, 0xf7b219 }, { 1088, 776, 0xffb221 },\
+    { 920, 726, 0xffffff }, { 954, 746, 0xffffff },\
+    { 984, 746, 0xffffff }, { 998, 774, 0xffb221 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 关闭信息弹窗\
+battle.infomationModalClickClose = function()\
+  RTap({ 1391, 281 }, 100)\
+end\
+\
+-- 移动到敌人\
+battle.moveToEnemy = function(point)\
+  RTap({ point[1], point[2] }, 100)\
+end\
+\
+-- 检测准备战斗面板\
+battle.isReadyBattlePage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 16, 10, 0xe6ebef }, { 762, 13, 0xe6f3f7 },\
+    { 1272, 190, 0xfffbff }, { 1897, 197, 0xf7f3f7 },\
+    { 1888, 499, 0xe6efe6 }, { 1266, 488, 0xfffbff },\
+    { 1394, 893, 0xd6f3f7 }, { 1761, 899, 0xd6f3f7 },\
+    { 1772, 1001, 0x8ccace }, { 1397, 985, 0x9cdbe6 },\
+    { 156, 15, 0x292829 }, { 320, 11, 0x3a4142 },\
+    { 188, 29, 0xf7db84 }, { 227, 39, 0xffca31 },\
+    { 286, 49, 0xffba00 }, { 243, 51, 0xf7b219 },\
+    { 254, 26, 0x100c10 }, { 200, 39, 0x080808 },\
+    { 235, 48, 0x080c08 }, { 292, 22, 0x42454a },\
+  }\
+  local result = multiColorS(list, 85)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 准备战斗面板点击出击\
+battle.readyBattlePageClickBattle = function()\
+  RTap({ 1592, 952 }, 100)\
+end\
+\
+-- 检测是否在战斗中\
+battle.isInBattlePage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 91, 78, 0x313942 }, { 131, 51, 0x4a5963 },\
+    { 307, 61, 0x4a5963 }, { 344, 47, 0xbdced6 },\
+    { 312, 109, 0x313d42 }, { 1818, 40, 0xdedfde },\
+    { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },\
+    { 1860, 56, 0x292d29 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检测是否自动战斗\
+battle.isNotAutoBattle = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 144, 68, 0xffffff }, { 154, 67, 0xffffff },\
+    { 154, 76, 0xe6e6e6 }, { 161, 84, 0xffffff },\
+    { 168, 91, 0xffffff }, { 180, 68, 0xffffff },\
+    { 180, 86, 0xffffff }, { 195, 78, 0xffffff },\
+    { 207, 88, 0xffffff }, { 205, 71, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检测是否自动战斗确认面板\
+battle.isAutoBattleConfirmPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 477, 232, 0x292829 }, { 1437, 227, 0xadaaad },\
+    { 688, 329, 0xf7f7f7 }, { 785, 343, 0xe6e7e6 },\
+    { 904, 346, 0xfffbff }, { 998, 337, 0xdeebde },\
+    { 1127, 344, 0xeff3ef }, { 1206, 333, 0xeff3ef },\
+    { 862, 754, 0xffdb4a }, { 928, 775, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 自动战斗确认面板点击知道了\
+battle.autoBattleConfirmPanelClickOk = function()\
+  RTap({ 949, 779 }, 100)\
+end\
+\
+-- 战斗页面点击自动战斗\
+battle.inBattlePageClickAutoBattle = function()\
+  RTap({ 208, 75 }, 100)\
+end\
+\
+-- 检测是否胜利界面\
+battle.isVictoryPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  -- 大获全胜\
+  local list = {\
+    { 557, 442, 0xf7d24a }, { 614, 492, 0xfffb5a },\
+    { 674, 555, 0xe67d31 }, { 853, 543, 0xef8a3a },\
+    { 1076, 484, 0xffff5a }, { 1211, 539, 0xef9242 },\
+    { 1350, 476, 0xffff5a }, { 523, 474, 0xffef9c },\
+    { 699, 441, 0x5a1c10 }, { 961, 439, 0x632410 },\
+    { 1132, 455, 0x632819 }, { 1299, 456, 0x5a2410 },\
+    { 1386, 481, 0x521c10 },\
+    { 257, 696, 0x423d42 }, { 563, 696, 0x423d42 },\
+    { 976, 699, 0x3a3d3a }, { 1398, 698, 0x424142 },\
+    { 1658, 698, 0x424142 },\
+    { 932, 474, 0x8c8183 }, { 1187, 492, 0x8c8a84 },\
+  }\
+  -- 战术碾压\
+  local list2 = {\
+    { 611, 440, 0xf7d74a }, { 666, 500, 0xfff35a },\
+    { 855, 479, 0xffff5a }, { 1110, 432, 0xffce52 },\
+    { 1218, 529, 0xefa63a }, { 1395, 482, 0xfffb5a },\
+    { 568, 468, 0x632419 }, { 902, 441, 0x5a2010 },\
+    { 987, 448, 0x632010 }, { 1234, 442, 0x6b2819 },\
+    { 537, 429, 0xfff394 }, { 1253, 565, 0x6b2410 },\
+    { 1295, 426, 0x632010 }, { 1080, 495, 0x632819 },\
+\
+    { 294, 702, 0x424142 }, { 523, 697, 0x424142 },\
+    { 967, 698, 0x423d42 }, { 1424, 697, 0x3a3d3a },\
+  }\
+  -- 完成任务\
+  local list3 = {\
+    { 556, 437, 0x6bc6de }, { 615, 438, 0x6bcede },\
+    { 676, 472, 0xb5f3ff }, { 855, 472, 0xb5f3ff },\
+    { 1092, 546, 0x31b2c5 }, { 1163, 508, 0x94e3ef },\
+    { 1384, 430, 0x6bc6de }, { 647, 477, 0x10595a },\
+    { 845, 488, 0x104552 }, { 1052, 459, 0x10555a },\
+\
+    { 309, 698, 0x424142 }, { 711, 701, 0x424142 },\
+    { 1189, 698, 0x424142 }, { 1584, 701, 0x423d3a },\
+  }\
+  -- 旗舰大破\
+  local list4 = {\
+    { 563, 438, 0xe6a273 }, { 844, 495, 0xde965a },\
+    { 1046, 479, 0xe6be9c }, { 1212, 461, 0xefc2a4 },\
+    { 1370, 471, 0xe6aa7b }, { 536, 454, 0x521810 },\
+    { 522, 467, 0xffebd6 }, { 863, 487, 0x5a1c10 },\
+    { 1088, 447, 0x632819 }, { 1386, 457, 0x521c08 },\
+    { 249, 698, 0x423d42 }, { 527, 696, 0x424142 },\
+    { 907, 697, 0x424142 }, { 1389, 697, 0x424142 },\
+    { 1636, 698, 0x424142 },\
+  }\
+  -- d 全军覆没\
+  local list5 = {\
+    { 550, 445, 0xde9e63 }, { 899, 476, 0xe6a273 },\
+    { 1088, 466, 0xefc6ad }, { 1219, 489, 0xdea673 },\
+    { 1420, 497, 0xe69e63 }, { 543, 422, 0x521808 },\
+    { 855, 458, 0x5a1c08 }, { 1012, 455, 0x632819 },\
+    { 1276, 463, 0x5a2410 }, { 1368, 480, 0x5a2010 },\
+\
+    { 279, 726, 0x423d42 }, { 525, 700, 0x423d42 },\
+    { 955, 698, 0x423d42 }, { 1366, 698, 0x424142 },\
+    { 1687, 734, 0x424142 },\
+  }\
+  -- c 作战超时\
+  local list6 = {\
+    { 553, 441, 0xe69e6b }, { 584, 440, 0xefba94 },\
+    { 676, 439, 0xdeaa7b }, { 685, 534, 0xdea273 },\
+    { 565, 549, 0xefaa7b }, { 852, 441, 0xe69663 },\
+    { 844, 499, 0xde965a }, { 937, 484, 0xe6a67b },\
+    { 1087, 473, 0xefc6a4 }, { 1186, 522, 0xefceb5 },\
+    { 941, 533, 0xefaa7b }, { 997, 530, 0xdeb68c },\
+    { 1090, 519, 0xefc2a4 }, { 1159, 542, 0xefc6ad },\
+    { 1270, 507, 0xe6be9c }, { 1347, 504, 0xdeae84 },\
+    { 1387, 487, 0xefa67b }, { 1416, 441, 0xe69e6b },\
+    { 1423, 505, 0xe69e6b }, { 1391, 549, 0xe6a673 },\
+\
+    { 383, 714, 0xef5d63 }, { 755, 711, 0xef6163 },\
+    { 1241, 713, 0xef6163 }, { 1327, 463, 0x632010 },\
+  }\
+  local result = false\
+  if multiColorS(list) or multiColorS(list2)\
+    or multiColorS(list3) or multiColorS(list4)\
+    or multiColorS(list5) or multiColorS(list6) then\
+    result = true\
+  end\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 胜利面板点击继续\
+battle.victoryPanelClickNext = function()\
+  RTap({ 952, 840 }, 100)\
+end\
+\
+-- 检测是否获得道具面板\
+battle.isGetPropsPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 763, 212, 0xf7ae63 }, { 854, 168, 0xffffff },\
+    { 958, 174, 0x845131 }, { 1054, 167, 0xf7f384 },\
+    { 764, 242, 0xffaa42 }, { 861, 232, 0x7b2408 },\
+    { 944, 240, 0xffffff }, { 1006, 268, 0xffdf3a },\
+    { 1098, 277, 0xf7b629 }, { 969, 809, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 获得道具面板点击继续\
+battle.getPropsPanelClickNext = function()\
+  RTap({ 952, 840 }, 100)\
+end\
+\
+-- 检测是否获得船面板\
+battle.isGetNewShipPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 64, 504, 0xefefff }, { 108, 539, 0x7b7d8c },\
+    { 86, 658, 0xe6c2c5 }, { 91, 787, 0xe6d7ce },\
+    { 83, 906, 0x3acee6 }, { 88, 948, 0xcecece },\
+    { 1496, 852, 0xefefef }, { 1572, 909, 0xc5c2bd },\
+    { 1543, 938, 0xeff3ef },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 获得船面板点击继续\
+battle.getNewShipPanelClickNext = function()\
+  RTap({ 952, 840 }, 100)\
+end\
+\
+-- 检测是否获得经验面板\
+battle.isGetExpPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 543, 279, 0x6b696b }, { 744, 280, 0x6b696b },\
+    { 890, 276, 0x6b696b }, { 1247, 275, 0x6b696b },\
+    { 1374, 275, 0x636563 }, { 1381, 308, 0x63656b },\
+    { 540, 306, 0x6b696b }, { 555, 269, 0x8c8e94 },\
+    { 949, 269, 0x948e94 }, { 1324, 269, 0x8c8a8c },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 获得经验面板点击继续\
+battle.getExpPanelClickNext = function()\
+  RTap({ 1671, 914 }, 100)\
+end\
+\
+-- 点击返回主页\
+battle.battlePageClickBackToHome = function()\
+  RTap({ 46, 37 }, 100)\
+end\
+\
+-- 检测是否紧急委托面板\
+battle.isUrgentEntrustmentPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 482, 289, 0x212821 }, { 493, 288, 0xffce3a },\
+    { 534, 293, 0x080808 }, { 567, 292, 0xf7c23a },\
+    { 752, 302, 0x000000 }, { 1047, 301, 0xdedfde },\
+    { 835, 737, 0xffca3a }, { 919, 740, 0xffffff },\
+    { 977, 745, 0xefb231 }, { 1002, 736, 0xfff7f7 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 紧急委托面板点击继续\
+battle.urgentEntrustmentPanelClickOk = function()\
+  RTap({ 957, 739 }, 100)\
+end\
+\
+return battle" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./missions/utils.lua"] = { path = "./missions/utils.lua", name = "./missions/utils.lua", source = "local eq = require '../lib/event-query'\
+local co = require '../lib/co'\
+local c = coroutine\
+\
+local combineListener = function(target, ...)\
+  local sources = { ... }\
+  if (type(target) ~= 'table') then\
+    target = {}\
+  end\
+  for k = 1, #sources do\
+    local source = sources[k]\
+    for key = 1, #source do\
+      local value = source[key]\
+      table.insert(target, value)\
+    end\
+  end\
+  local targetReverse = table.reverse(target)\
+  local resultIndex = {}\
+  local result = {}\
+  for key = 1, #targetReverse do\
+    local value = targetReverse[key]\
+    if (not resultIndex[value[3]]) then\
+      resultIndex[value[3]] = value\
+      table.insert(result, value)\
+    end\
+  end\
+\
+  local resultReverse = table.reverse(result)\
+  return resultReverse\
+end\
+\
+local setScreenListeners = function(...)\
+  local firstArr = select('1', ...)\
+\
+  if type(firstArr) ~= 'table' then\
+    return Promise.reject(error('the param 1 of \"setScreenListeners\" is nil.', 2))\
+  end\
+\
+  local theArr = table.merge(...)\
+\
+  local errorList = {}\
+  for key = 1, #theArr do\
+    local value = theArr[key]\
+    if not value[2] then\
+      table.insert(errorList, value)\
+    end\
+  end\
+  if #errorList > 0 then\
+    local errorMsg = ''\
+    for key = 1, #errorList do\
+      local value = errorList[key]\
+      if not value[2] then\
+        errorMsg = errorMsg .. 'the function of \"' .. value[1] .. '\" is nil.' .. '\\n'\
+      end\
+    end\
+    error(errorMsg, 2)\
+  end\
+\
+  local theArrUnique = table.uniqueLast(theArr, 2)\
+  for key = 1, #theArrUnique do\
+    local value = theArrUnique[key]\
+    value.isOnce = true\
+  end\
+  return co(c.create(function()\
+    local newArr = {}\
+    local ids = {}\
+    local done = false\
+    for key = 1, #theArrUnique do\
+      local listenerEvent = theArrUnique[key]\
+      if type(listenerEvent[3]) == 'number' and listenerEvent[3] > 0 then\
+        table.insert(newArr,\
+          Promise.new(function(resolve)\
+            local id = eq.setTimeout(resolve, listenerEvent[3])\
+            table.insert(ids, id)\
+          end).andThen(function()\
+            if (not done) then\
+              return Promise.new(function(resolve)\
+                local id = eq.setScreenListener(listenerEvent[2], function()\
+                  resolve(listenerEvent[1])\
+                end)\
+                table.insert(ids, id)\
+              end)\
+            end\
+          end))\
+      else\
+        table.insert(newArr, co(c.create(function()\
+          return Promise.new(function(resolve)\
+            local id = eq.setScreenListener(listenerEvent[2], function()\
+              resolve(listenerEvent[1])\
+            end)\
+            table.insert(ids, id)\
+          end)\
+        end)))\
+      end\
+    end\
+    local res = c.yield(Promise.race(newArr))\
+    done = true\
+    for key = 1, #ids do\
+      eq.clearScreenListener(ids[key])\
+      eq.clearTimeout(ids[key])\
+    end\
+    return res\
+  end))\
+end\
+\
+local makeAction = function(action)\
+  if (type(action) == 'table') then\
+    return action\
+  end\
+  return { type = action }\
+end\
+\
+return {\
+  combineListener = combineListener,\
+  setScreenListeners = setScreenListeners,\
+  makeAction = makeAction,\
+}\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapygxdxq-sp3.lua"] = { path = "./meta-operation/maps-options/mapygxdxq-sp3.lua", name = "./meta-operation/maps-options/mapygxdxq-sp3.lua", source = "local mapBase = require './map'\
+local imgEvent = require './imgygxdxq-sp3'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -9107,62 +4839,144 @@ end\
 -- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
-\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = nil,\
-      rightTop = { 1583, 522 },\
+      leftTop = { 304, 540 },\
+      rightTop = nil,\
       leftBotton = nil,\
       rightBotton = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 442, 522, 0x522042 }, { 604, 522, 0x211829 }, { 767, 522, 0x291c42 }, { 930, 522, 0x211842 }, { 1093, 522, 0x191019 }, { 1256, 522, 0x31283a }, { 1419, 522, 0x292031 }, { 1583, 522, 0x31283a }, },\
-        { { 422, 641, 0x000000 }, { 591, 641, 0x21143a }, { 759, 641, 0x291c42 }, { 929, 641, 0x291c42 }, { 1098, 641, 0x19183a }, { 1267, 641, 0x29204a }, { 1436, 641, 0x292042 }, { 1607, 641, 0x000000 }, },\
-        { { 400, 769, 0x000000 }, { 575, 769, 0x211c3a }, { 751, 769, 0x19183a }, { 927, 769, 0x19183a }, { 1103, 769, 0x19143a }, { 1279, 769, 0x19183a }, { 1455, 769, 0x291c42 }, { 1634, 769, 0x000000 }, },\
-        { { 377, 908, 0x000000 }, { 559, 908, 0x21183a }, { 742, 908, 0x212042 }, { 926, 908, 0x211842 }, { 1110, 908, 0x21143a }, { 1293, 908, 0x211431 }, { 1476, 908, 0x211842 }, { 1662, 908, 0x000000 }, },\
+        { { 304, 540, 0x101821 }, false, false, false, false, false, false, false, false, { 1718, 540, 0x191829 }, },\
+        { { 280, 655, 0x000000 }, false, false, false, false, false, false, false, false, { 1747, 655, 0x846d9c }, },\
+        { { 253, 779, 0x000000 }, false, false, false, false, false, false, false, false, { 1777, 779, 0x000000 }, },\
+        { { 224, 913, 0x000000 }, false, false, false, false, false, false, false, false, { 1811, 913, 0xbd815a }, },\
       },\
       pointMap = {},\
-    }, {\
-      --      leftTop = { 432, 292 },\
+    },\
+    {\
       leftTop = nil,\
-      rightTop = { 1573, 292 },\
-      leftBotton = nil,\
+      rightTop = nil,\
+      leftBotton = { 462, 936 },\
       rightBotton = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { { 365, 649, 0x000000 }, { 547, 649, 0x211c42 }, { 731, 649, 0x211c42 }, { 914, 649, 0x101031 }, { 1098, 649, 0x190c29 }, { 1281, 649, 0x29143a }, { 1464, 649, 0x191031 }, { 1650, 649, 0x000000 }, },\
-        { { 334, 791, 0x000000 }, { 524, 791, 0x191031 }, { 716, 791, 0x191431 }, { 907, 791, 0x21143a }, { 1098, 791, 0x191031 }, { 1290, 791, 0x191031 }, { 1482, 791, 0x191031 }, { 1676, 791, 0x000000 }, },\
-        { { 310, 943, 0x000000 }, { 509, 943, 0x21183a }, { 710, 943, 0x191031 }, { 909, 943, 0x19143a }, { 1111, 943, 0x21143a }, { 1311, 943, 0x21183a }, { 1511, 943, 0x191421 }, { 1715, 943, 0x100c10 }, },\
+        { { 522, 513, 0x000000 }, false, false, false, false, { 1401, 513, 0x211c3a }, },\
+        { { 504, 641, 0x000000 }, false, false, false, false, { 1420, 641, 0x191429 }, },\
+        { { 484, 781, 0x000000 }, false, false, false, false, { 1440, 781, 0x191421 }, },\
+        { { 462, 936, 0x000000 }, false, false, false, false, { 1463, 934, 0x292429 }, },\
       },\
       pointMap = {},\
-    }, {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBotton = { 436, 952 },\
-      rightBotton = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false, false, false,\
-        { { 509, 468, 0x000000 }, { 708, 468, 0x291c42 }, { 909, 468, 0x191431 }, { 1109, 468, 0x191431 }, { 1310, 468, 0x21143a }, },\
-        { { 487, 613, 0x000000 }, { 696, 613, 0x312029 }, { 906, 613, 0x100c29 }, { 1116, 613, 0x100c21 }, { 1326, 613, 0x5a5573 }, },\
-        { { 463, 772, 0x000000 }, { 682, 772, 0x291842 }, { 904, 772, 0x211042 }, { 1125, 772, 0x190829 }, { 1343, 772, 0x190c21 }, },\
-        { { 436, 952, 0x000000 }, { 668, 952, 0x000000 }, { 900, 952, 0x000000 }, { 1133, 952, 0x000000 }, { 1365, 951, 0x191019 }, },\
-      },\
-      pointMap = {},\
-    }, {\
+    },\
+    {\
       leftTop = nil,\
       rightTop = nil,\
       leftBotton = nil,\
-      rightBotton = { 1716, 950 },\
+      rightBotton = { 1630, 943 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false, false, false, false,\
-        { false, false, false, false, { 1008, 466, 0x21143a }, { 1208, 466, 0x21183a }, { 1408, 466, 0x291842 }, { 1611, 466, 0x000000 }, },\
-        { false, false, false, false, { 1010, 611, 0x190c29 }, { 1220, 611, 0x190c29 }, { 1430, 611, 0x211431 }, { 1645, 611, 0xde8e4a }, },\
-        { false, false, false, false, { 1012, 771, 0x100821 }, { 1234, 771, 0x190c29 }, { 1454, 771, 0x190c29 }, { 1678, 771, 0x000000 }, },\
-        { false, false, false, false, { 1015, 950, 0x000000 }, { 1248, 950, 0x000000 }, { 1481, 950, 0x080c08 }, { 1716, 950, 0x101010 }, },\
+        false, false, false,\
+        { { 666, 519, 0x101021 }, false, false, false, false, { 1548, 519, 0x000000 }, },\
+        { { 653, 648, 0x191831 }, false, false, false, false, { 1573, 648, 0x000000 }, },\
+        { { 640, 788, 0x211c42 }, false, false, false, false, { 1600, 788, 0x000000 }, },\
+        { { 624, 943, 0x000000 }, false, false, false, false, { 1630, 943, 0x080c08 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 9,\
+    height = 6,\
+    obstacle = {\
+      { 1, 1 }, { 1, 8 }, { 1, 9 },\
+      { 2, 5 }, { 2, 8 }, { 2, 9 },\
+      { 4, 1 }, { 4, 2 }, { 4, 3 }, { 4, 8 },\
+      { 5, 6 },\
+      { 6, 6 },\
+    },\
+    waitForBossPosition = { { 1, 2 }, { 6, 9 } },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapygxdxq-sp2.lua"] = { path = "./meta-operation/maps-options/mapygxdxq-sp2.lua", name = "./meta-operation/maps-options/mapygxdxq-sp2.lua", source = "local mapBase = require './map'\
+local imgEvent = require './imgygxdxq-sp2'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = nil,\
+      rightTop = { 1578, 538 },\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 478, 538, 0x100c21 }, false, false, false, false, false, false, { 1578, 538, 0x101021 }, },\
+        { { 460, 653, 0x000000 }, false, false, false, false, false, false, { 1601, 653, 0x000000 }, },\
+        { { 441, 777, 0x000000 }, false, false, false, false, false, false, { 1626, 777, 0x000000 }, },\
+        { { 420, 911, 0x000000 }, false, false, false, false, false, false, { 1653, 911, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1564, 293 },\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false,\
+        { { 426, 513, 0x212042 }, false, false, false, false, false, false, { 1611, 513, 0x000000 }, },\
+        { { 404, 636, 0x000000 }, false, false, false, false, false, false, { 1637, 636, 0x000000 }, },\
+        { { 381, 769, 0x211c3a }, false, false, false, false, false, false, { 1666, 769, 0x000000 }, },\
+        { { 355, 915, 0x000000 }, false, false, false, false, false, false, { 1697, 915, 0x080c08 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = { 1768, 894 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false,\
+        { { 381, 458, 0x211c3a }, false, false, false, false, false, false, { 1666, 458, 0x000000 }, },\
+        { { 355, 590, 0x000000 }, false, false, false, false, false, false, { 1697, 590, 0x000000 }, },\
+        { { 327, 734, 0x000000 }, false, false, false, false, false, false, { 1731, 734, 0x000000 }, },\
+        { { 296, 894, 0x000000 }, false, false, false, false, false, false, { 1769, 894, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -9174,14 +4988,17 @@ end\
 mapEvent.getMapChessboard = function()\
   return {\
     width = 7,\
-    height = 8,\
+    height = 7,\
     obstacle = {\
-      { 1, 1 }, { 1, 7 },\
-      { 3, 3 }, { 3, 4 }, { 3, 5 },\
-      { 4, 3 }, { 4, 5 },\
-      { 6, 3 }, { 6, 4 }, { 6, 5 },\
+      { 1, 1 }, { 1, 2 },\
+      { 2, 2 },\
+      { 3, 5 }, { 3, 6 }, { 3, 7 },\
+      { 4, 1 }, { 4, 2 }, { 4, 3 }, { 4, 8 },\
+      { 5, 3 }, { 5, 5 },\
+      { 6, 5 },\
+      { 7, 1 },\
     },\
-    waitForBossPosition = { { 4, 4 } },\
+    waitForBossPosition = { { 1, 7 }, { 4, 7 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -9193,102 +5010,7 @@ mapEvent.getMapChessboard = function()\
   }\
 end\
 \
-return mapEvent\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapevent16-2-b1.lua"] = { path = "./meta-operation/maps-options/mapevent16-2-b1.lua", name = "./meta-operation/maps-options/mapevent16-2-b1.lua", source = "local mapBase = require './map'\
-local imgEvent = require './imgevent16-2-b1'\
-local mapEvent = {}\
-\
--- 从mapBase继承方法\
-mapEvent = table.assign(mapEvent, mapBase)\
-for key, value in pairs(mapBase) do\
-  if type(value) == 'function' then\
-    mapEvent[key] = function(...)\
-      return value(imgEvent, ...)\
-    end\
-  end\
-end\
-\
--- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
--- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
--- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
-\
-mapEvent.getCheckpositionList = function()\
-  local list = mapBase.calCheckpositionList({\
-    {\
-      leftTop = nil,\
-      rightTop = { 1644, 522 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { { 332, 522, 0x42414a }, false, false, false, false, false, false, false, { 1644, 522, 0x211431 }, },\
-        { { 307, 641, 0x4a395a }, false, false, false, false, false, false, false, { 1673, 641, 0x000000 }, },\
-        { { 278, 772, 0x000000 }, false, false, false, false, false, false, false, { 1706, 772, 0x000000 }, },\
-        { { 245, 915, 0x000000 }, false, false, false, false, false, false, false, { 1741, 915, 0x080c08 }, },\
-      },\
-      pointMap = {},\
-    }, {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBotton = { 428, 965 },\
-      rightBotton = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { { 504, 506, 0x000000 }, false, false, false, { 1248, 506, 0x3a243a }, },\
-        { { 478, 643, 0x7b7d7b }, false, false, false, { 1265, 643, 0x19103a }, },\
-        { { 454, 794, 0x211829 }, false, false, false, { 1281, 794, 0x190c29 }, },\
-        { { 428, 965, 0x000000 }, false, false, false, { 1297, 965, 0x4a494a }, },\
-      },\
-      pointMap = {},\
-    }, {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1703, 939 },\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { false, false, false, false, { 845, 484, 0x3a2442 }, false, false, false, { 1597, 484, 0x000000 }, },\
-        { false, false, false, false, { 842, 620, 0x21143a }, false, false, false, { 1629, 620, 0x000000 }, },\
-        { false, false, false, false, { 835, 770, 0x190c29 }, false, false, false, { 1663, 770, 0x000000 }, },\
-        { false, false, false, false, { 827, 939, 0x000000 }, false, false, false, { 1703, 939, 0x101010 }, },\
-      },\
-      pointMap = {},\
-    },\
-  })\
-  return list\
-end\
-\
--- 获取地图棋盘和相关数据\
-mapEvent.getMapChessboard = function()\
-  return {\
-    width = 8,\
-    height = 6,\
-    obstacle = {\
-      { 1, 1 },\
-      { 2, 1 },\
-      { 3, 4 }, { 3, 5 }, { 3, 6 },\
-      { 4, 4 }, { 4, 5 }, { 4, 6 },\
-    },\
-    waitForBossPosition = { { 1, 8 }, { 6, 8 } },\
-    bossPosition = {},\
-    myFleetList = {},\
-    enemyPositionList1 = {},\
-    enemyPositionList2 = {},\
-    enemyPositionList3 = {},\
-    inBattleList = {},\
-    selectedArrowList = {},\
-    rewardBoxList = {},\
-  }\
-end\
-\
-return mapEvent\
-" }
+return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
@@ -9383,6 +5105,146 @@ mapEvent.getMapChessboard = function()\
       { 6, 7 },\
     },\
     waitForBossPosition = { { 5, 8 } },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/map11-4.lua"] = { path = "./meta-operation/maps-options/map11-4.lua", name = "./meta-operation/maps-options/map11-4.lua", source = "local mapBase = require './map'\
+local imgEvent = require './img11-4'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = { 368, 518 },\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 368, 518, 0x100c19 }, false, false, false, false, false, false, false, { 1670, 518, 0x211429 }, },\
+        { { 345, 637, 0x000000 }, false, false, false, false, false, false, false, { 1697, 637, 0x312d4a }, },\
+        { { 320, 765, 0x000000 }, false, false, false, false, false, false, false, { 1727, 765, 0x29244a }, },\
+        { { 293, 904, 0x000000 }, false, false, false, false, false, false, false, { 1760, 904, 0x292042 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1628, 517 },\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, false, false, { 486, 517, 0x101821 }, false, false, false, false, false, false, { 1628, 517, 0x101021 }, },\
+        { false, false, false, { 467, 635, 0x211c3a }, false, false, false, false, false, false, { 1654, 635, 0x000000 }, },\
+        { false, false, false, { 448, 764, 0x212042 }, false, false, false, false, false, false, { 1682, 764, 0x000000 }, },\
+        { false, false, false, { 426, 903, 0x191831 }, false, false, false, false, false, false, { 1712, 903, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1590, 273 },\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { false, false, false, { 407, 500, 0x21203a }, false, false, false, false, false, false, { 1641, 500, 0x000000 }, },\
+        { false, false, false, { 358, 767, 0x191831 }, false, false, false, false, false, false, { 1701, 767, 0x000000 }, },\
+        { false, false, false, { 330, 919, 0x191431 }, false, false, false, false, false, false, { 1735, 919, 0x292429 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 497, 288 },\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { { 439, 644, 0x000000 }, false, false, false, false, false, { 1538, 644, 0x212042 }, },\
+        { { 416, 784, 0x000000 }, false, false, false, false, false, { 1564, 784, 0x212042 }, },\
+        { { 390, 937, 0x000000 }, false, false, false, false, false, { 1592, 937, 0x292829 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBotton = { 278, 924 },\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false, false,\
+        { { 372, 443, 0x000000 }, false, false, false, false, false, { 1574, 443, 0x191829 }, },\
+        { { 344, 587, 0x000000 }, false, false, false, false, false, { 1604, 587, 0x101421 }, },\
+        { { 313, 745, 0x000000 }, false, false, false, false, false, { 1637, 745, 0x211831 }, },\
+        { { 277, 924, 0x000000 }, false, false, false, false, false, { 1671, 914, 0x191821 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = { 1657, 932 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false, false,\
+        { false, false, false, false, { 354, 451, 0x5a4508 }, false, false, false, false, false, { 1560, 451, 0x000000 }, },\
+        { false, false, false, false, { 325, 595, 0x191831 }, false, false, false, false, false, { 1589, 595, 0x000000 }, },\
+        { false, false, false, false, { 293, 754, 0x191829 }, false, false, false, false, false, { 1621, 754, 0x000000 }, },\
+        { false, false, false, false, { 257, 932, 0x000000 }, false, false, false, false, false, { 1657, 932, 0x100c10 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 10,\
+    height = 8,\
+    obstacle = {\
+      { 1, 3 }, { 1, 7 },\
+      { 2, 3 }, { 2, 7 },\
+      { 3, 5 },\
+      { 4, 2 },\
+      { 5, 8 }, { 5, 9 }, { 5, 10 },\
+      { 6, 1 }, { 6, 2 }, { 6, 3 },\
+      { 7, 6 }, { 7, 8 },\
+      { 8, 6 },\
+    },\
+    waitForBossPosition = { { 1, 1 }, { 1, 2 }, { 1, 8 }, { 5, 1 }, { 8, 1 }, { 8, 10 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -13217,1854 +9079,6 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
-local function transRelativePoint(tab, base)\
-  if not base then\
-    base = tab[1]\
-    table.remove(tab, 1)\
-  end\
-  local newTab = {}\
-  for key = 1, #tab do\
-    local value = tab[key]\
-    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])\
-  end\
-  return base, table.concat(newTab, ',')\
-end\
-\
-local function toPoint(tab)\
-  -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
-  local newTab = {}\
-  local tabLength = #tab\
-  for key = 1, tabLength do\
-    newTab[key] = { tab[key].x, tab[key].y }\
-    tab[key] = nil\
-  end\
-  return newTab\
-end\
-\
-\
-local mission = {}\
-\
--- 检查是否有任务\
-mission.checkHasMission = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 1390, 1007, 0xe60821 }, { 1407, 1004, 0xde1831 },\
-    { 1409, 1016, 0xde0821 }, { 1391, 1017, 0xde0019 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击进入任务页\
-mission.clickIntoMissionPage = function()\
-  RTap({ 1305, 1032 }, 100)\
-end\
-\
--- 检查是否在任务页\
-mission.isMissionPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 9, 10, 0xdee7ef }, { 872, 4, 0xeff3f7 }, { 832, 60, 0xdedfe6 }, { 13, 52, 0xcecece },\
-    { 132, 14, 0x313131 }, { 318, 11, 0x424542 }, { 166, 63, 0x313131 }, { 444, 43, 0x000000 },\
-    { 160, 35, 0x292d29 }, { 568, 18, 0xeff3f7 }, { 38, 32, 0xffd74a }, { 65, 32, 0xffd742 },\
-    { 52, 24, 0xffd74a }, { 52, 44, 0xffdf4a }, { 184, 26, 0xffe7a4 }, { 195, 28, 0x292d29 },\
-    { 194, 47, 0x313131 }, { 204, 44, 0xffc229 }, { 210, 25, 0xf7e7b5 }, { 225, 29, 0x3a393a },\
-    { 246, 20, 0xfffbe6 }, { 258, 24, 0x211c19 }, { 256, 50, 0x424142 }, { 257, 37, 0x101010 },\
-    { 270, 34, 0xefce5a }, { 275, 29, 0x101410 }, { 287, 54, 0x424142 }, { 226, 60, 0x3a393a },\
-    { 225, 47, 0x3a393a }, { 185, 51, 0x191810 }, { 299, 40, 0x000000 }, { 308, 43, 0xefefff },\
-    { 346, 46, 0xf7f3ff }, { 358, 46, 0x000000 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击全部任务\
-mission.clickAllMissionTag = function()\
-  RTap({ 86, 153 }, 100)\
-end\
-\
--- 查找任务\
-mission.findMission = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local leftTop = { 1569, 120 }\
-  local rightBotton = { 1832, 454 }\
-  local basePoint, posandcolor = transRelativePoint({\
-    { 1694, 190, 0xd6a229 }, { 1646, 165, 0xf7db4a }, { 1685, 163, 0xffdb52 }, { 1735, 163, 0xffdf52 },\
-    { 1781, 186, 0xf7c231 }, { 1783, 212, 0xffae10 }, { 1701, 215, 0xffb221 }, { 1649, 214, 0xffb219 },\
-    { 1602, 212, 0xffae19 }, { 1623, 191, 0xf7b621 }, { 1634, 189, 0xf7c231 }, { 1658, 188, 0xa47d29 },\
-    { 1693, 188, 0x9c7921 }, { 1715, 188, 0xdee3d6 }, { 1697, 181, 0xb5a684 }, { 1681, 181, 0xffffff },\
-    { 1680, 202, 0xffffff }, { 1723, 202, 0xefe3d6 }, { 1707, 196, 0xffffff }, { 1720, 181, 0xffffff },\
-  })\
-  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2]))\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击任务\
-mission.clickMissionBtn = function(point)\
-  RTap(point, 100)\
-end\
-\
--- 获得道具页面\
-mission.isGetPropsPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 13, 9, 0x31353a }, { 19, 42, 0x312d31 }, { 47, 32, 0x312d10 }, { 97, 39, 0x313131 },\
-    { 147, 55, 0x080808 }, { 117, 21, 0x191819 }, { 164, 15, 0x080808 }, { 191, 36, 0x312810 },\
-    { 256, 33, 0x312d10 }, { 200, 58, 0x191010 }, { 555, 10, 0x313531 }, { 728, 29, 0x313531 },\
-    { 844, 17, 0x313531 }, { 815, 57, 0x3a3531 }, { 716, 59, 0x292d29 }, { 1075, 47, 0x100c10 },\
-    { 1515, 69, 0x080810 }, { 1731, 45, 0x000408 }, { 20, 241, 0x101410 }, { 20, 412, 0x292029 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击获得道具继续\
-mission.clickGetPropsPanelNext = function(point)\
-  RTap({ 944, 815 }, 100)\
-end\
-\
--- 获得新船界面\
-mission.isGetShipPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 64, 55, 0x736d8c }, { 1404, 33, 0x524984 },\
-    { 1829, 91, 0x6b617b }, { 1866, 451, 0x634d84 },\
-    { 1849, 818, 0x423d5a }, { 1610, 966, 0x846da4 },\
-    { 1180, 1036, 0x8c75ad }, { 901, 1036, 0xad9ece },\
-    { 309, 1023, 0x52516b }, { 1539, 687, 0x292d31 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击获得道具继续\
-mission.clickGetNewShipNext = function(point)\
-  RTap({ 887, 539 }, 100)\
-end\
-\
--- 点击返回\
-mission.getPropsPanelBack = function()\
-  RTap({ 57, 29 }, 100)\
-end\
-\
-return mission\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/daily-challenges.lua"] = { path = "./meta-operation/daily-challenges.lua", name = "./meta-operation/daily-challenges.lua", source = "local dailyChallenges = {}\
-\
--- 点击进入出击\
-dailyChallenges.clickIntoBattlePage = function()\
-  RTap({ 1643, 600 }, 100)\
-end\
-\
--- 点击进入每日\
-dailyChallenges.clickIntoDailyChallengesPage = function()\
-  RTap({ 1226, 1014 }, 100)\
-end\
-\
--- 检查是否每日页面\
-dailyChallenges.isDailyChallengesPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 6, 4, 0xefeff7 }, { 6, 49, 0xcecece }, { 40, 33, 0xf7d242 }, { 71, 33, 0xffd742 },\
-    { 134, 51, 0xced2ce }, { 107, 14, 0xf7f3f7 }, { 99, 31, 0xdedfde }, { 138, 11, 0x292d29 },\
-    { 166, 48, 0x313531 }, { 315, 10, 0x424542 }, { 173, 18, 0x292d29 }, { 192, 26, 0xad9a63 },\
-    { 210, 31, 0x736531 }, { 235, 32, 0x9c923a }, { 264, 32, 0x211821 }, { 274, 28, 0x211c21 },\
-    { 250, 28, 0x3a3d3a }, { 240, 20, 0xfff3ce }, { 271, 21, 0xd6c6a4 }, { 273, 54, 0xffdb73 },\
-    { 352, 10, 0xeff3f7 }, { 869, 12, 0xeff3f7 }, { 833, 50, 0xd6dbde }, { 708, 52, 0xdedfe6 },\
-    { 733, 31, 0xeff3f7 }, { 564, 27, 0xeff3f7 }, { 90, 531, 0xf7fbf7 }, { 86, 541, 0xf7fbf7 },\
-    { 1849, 533, 0xfffbf7 }, { 1851, 546, 0xf7fbf7 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查每日页面战役次数是否用完\
-dailyChallenges.isDailyChallengesPageDailyChallengesEmpty = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 1089, 134, 0xffffff }, { 1089, 141, 0xffffff },\
-    { 1092, 141, 0xffffff }, { 1092, 147, 0xffffff },\
-    { 1089, 147, 0xffffff }, { 1091, 153, 0xffffff },\
-    { 1096, 155, 0xffffff }, { 1100, 153, 0xffffff },\
-    { 1102, 143, 0xffffff }, { 1100, 144, 0xffffff },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查是否战术研修\
-dailyChallenges.isTacticalTrainingCard = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 842, 128, 0x215984 }, { 842, 179, 0x29618c },\
-    { 827, 277, 0x3a81b5 }, { 833, 385, 0x737d94 },\
-    { 844, 889, 0x1969a4 }, { 914, 885, 0x105d8c },\
-    { 1095, 848, 0x73d7de }, { 1137, 700, 0x427db5 },\
-    { 1070, 635, 0x529ece }, { 1131, 879, 0x295584 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查是否斩首行动\
-dailyChallenges.isDecapitationStrikeCard = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 882, 205, 0x949294 }, { 970, 213, 0x84817b },\
-    { 1129, 235, 0x191010 }, { 861, 542, 0x5a1421 },\
-    { 918, 682, 0x311421 }, { 1098, 658, 0x7b2031 },\
-    { 1007, 442, 0x211819 }, { 1080, 447, 0xe6e3de },\
-    { 894, 785, 0x5a2429 }, { 859, 888, 0x4a2021 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查是否商船护送\
-dailyChallenges.isMerchantShipEscortCard = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 851, 163, 0x212d42 }, { 1070, 186, 0x21354a },\
-    { 923, 233, 0xd6a6a4 }, { 936, 289, 0xe6e3de },\
-    { 838, 575, 0x191c29 }, { 865, 685, 0x292d4a },\
-    { 1056, 675, 0x21314a }, { 1133, 675, 0x294573 },\
-    { 872, 811, 0x29315a }, { 1104, 379, 0x19283a },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查是否海域突破\
-dailyChallenges.isSeaAreaBreakthroughCard = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 842, 215, 0x213531 }, { 851, 555, 0x212d3a },\
-    { 864, 668, 0x213931 }, { 1099, 707, 0x3a413a },\
-    { 850, 833, 0x313121 }, { 1019, 194, 0xce9a6b },\
-    { 1037, 296, 0xdeb68c }, { 1041, 378, 0xb5ae9c },\
-    { 1057, 537, 0xe6cece }, { 856, 330, 0x103929 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 切换卡片\
-dailyChallenges.clickChangeCard = function()\
-  RTap({ 1419, 507 }, 100)\
-end\
-\
--- 进入卡片\
-dailyChallenges.clickIntoCard = function()\
-  RTap({ 989, 476 }, 100)\
-end\
-\
--- 检查是否选择关卡页面\
-dailyChallenges.isSelectChapterPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 246, 144, 0xf7c29c }, { 358, 194, 0xefba94 }, { 408, 331, 0xf7d2ad }, { 221, 346, 0xf7dfbd },\
-    { 17, 344, 0xfff3d6 }, { 212, 575, 0xf7f7f7 }, { 336, 621, 0xf7f7f7 }, { 405, 722, 0xfff3d6 },\
-    { 328, 989, 0xf7dfc5 }, { 616, 990, 0xffdfc5 }, { 663, 321, 0x29313a }, { 1046, 240, 0x29353a },\
-    { 663, 533, 0x292d3a }, { 968, 448, 0x313942 }, { 663, 723, 0x3a3d3a }, { 1018, 654, 0x424142 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 检查选择关卡页面挑战次数是否用完\
-dailyChallenges.isSelectChapterPageChallengeEmpty = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 137, 955, 0x191819 }, { 137, 966, 0x101819 },\
-    { 137, 977, 0x191819 }, { 137, 980, 0x101419 },\
-    { 127, 970, 0xa4f34a }, { 132, 970, 0xadf74a },\
-    { 142, 970, 0xadf74a }, { 147, 970, 0xa4f34a },\
-    { 141, 951, 0xadf74a }, { 133, 986, 0x9cf34a },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 选择关卡\
-dailyChallenges.selectChapter = function(chapter)\
-  if chapter == 1 then\
-    RTap({ 780, 308 }, 100)\
-  elseif chapter == 2 then\
-    RTap({ 779, 521 }, 100)\
-  elseif chapter == 3 then\
-    RTap({ 768, 722 }, 100)\
-  elseif chapter == 4 then\
-    RTap({ 764, 934 }, 100)\
-  end\
-end\
-\
--- 检查是否选择舰队页面\
-dailyChallenges.isSelectFleetPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 12, 6, 0xefeff7 }, { 8, 45, 0xd6ced6 }, { 38, 33, 0xf7ce3a }, { 90, 8, 0xefebf7 },\
-    { 122, 57, 0xbdc6bd }, { 318, 15, 0x424542 }, { 168, 15, 0x292d29 }, { 742, 8, 0xeff3f7 },\
-    { 733, 48, 0xdedbde }, { 216, 66, 0x313d31 }, { 183, 19, 0x313131 }, { 201, 23, 0x101410 },\
-    { 189, 40, 0xffc631 }, { 222, 25, 0x080808 }, { 235, 25, 0xffeba4 }, { 240, 34, 0x212421 },\
-    { 247, 36, 0xffce42 }, { 274, 37, 0xffc631 }, { 284, 46, 0xffbe10 }, { 275, 60, 0x3a3d42 },\
-    { 1271, 186, 0xffffff }, { 1604, 185, 0xefefef }, { 1887, 214, 0xe6ebe6 }, { 1268, 490, 0xfffbff },\
-    { 1614, 501, 0xe6efe6 }, { 1878, 526, 0xe6e3e6 }, { 1385, 891, 0xd6f3f7 }, { 1396, 974, 0x9cdfde },\
-    { 1612, 936, 0xffefbd }, { 1774, 985, 0x8ccace },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 选择舰队页面获取当前是哪个舰队\
-dailyChallenges.getFleet = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list1 = {\
-    { 138, 218, 0x4a4942 }, { 138, 201, 0x424521 }, { 127, 191, 0x424542 }, { 146, 176, 0x424542 },\
-    { 156, 196, 0x4a4942 }, { 156, 227, 0x3a3d3a }, { 146, 238, 0x424142 }, { 146, 227, 0xefba08 },\
-    { 145, 196, 0xffdf8c }, { 147, 183, 0xffebbd },\
-  }\
-  local list2 = {\
-    { 147, 192, 0x42393a }, { 137, 201, 0x424542 }, { 137, 216, 0x635d42 }, { 129, 232, 0x424142 },\
-    { 145, 238, 0x4a493a }, { 165, 232, 0x424142 }, { 152, 224, 0x4a494a }, { 161, 207, 0x424531 },\
-    { 137, 197, 0xffdf8c }, { 135, 232, 0xf7b600 },\
-  }\
-  local list3 = {\
-    { 148, 193, 0x4a4529 }, { 147, 219, 0x4a493a }, { 139, 205, 0x635142 }, { 130, 199, 0x4a4142 },\
-    { 130, 213, 0x5a4d31 }, { 164, 233, 0x424142 }, { 156, 177, 0x313531 }, { 146, 205, 0xf7ca5a },\
-    { 137, 192, 0xffe39c }, { 138, 219, 0xf7be19 },\
-  }\
-  local list4 = {\
-    { 142, 211, 0x524531 }, { 131, 198, 0x4a493a }, { 148, 175, 0x3a3d3a }, { 161, 209, 0x424542 },\
-    { 161, 230, 0x424142 }, { 152, 236, 0x4a4542 }, { 140, 226, 0x424542 }, { 151, 230, 0xf7ba08 },\
-    { 149, 182, 0xffebb5 }, { 130, 210, 0xe6ba42 },\
-  }\
-  local list5 = {\
-    { 153, 189, 0x4a494a }, { 139, 175, 0x4a494a }, { 130, 192, 0x635d52 }, { 147, 203, 0x4a494a },\
-    { 139, 212, 0x4a4d42 }, { 147, 221, 0x4a4942 }, { 148, 231, 0xf7ba08 }, { 137, 217, 0xffc63a },\
-    { 153, 196, 0xffdb84 }, { 140, 182, 0xffebb5 },\
-  }\
-  local list6 = {\
-    { 148, 188, 0x4a494a }, { 154, 193, 0x424542 }, { 148, 208, 0x4a494a }, { 148, 223, 0x424542 },\
-    { 147, 236, 0x424542 }, { 129, 207, 0x4a4d4a }, { 159, 193, 0x4a4942 }, { 157, 185, 0xffe7a4 },\
-    { 135, 200, 0xf7d773 }, { 149, 230, 0xf7ba10 },\
-  }\
-  local result\
-  if multiColorS(list1) then\
-    result = 1\
-  elseif multiColorS(list2) then\
-    result = 2\
-  elseif multiColorS(list3) then\
-    result = 3\
-  elseif multiColorS(list4) then\
-    result = 4\
-  elseif multiColorS(list5) then\
-    result = 5\
-  elseif multiColorS(list6) then\
-    result = 6\
-  end\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
--- 切换第一个舰队\
-dailyChallenges.clickChangeFirstFleet = function()\
-  for key = 1, 10 do\
-    RTap({ 67, 602 }, 100)\
-  end\
-end\
-\
--- 切换下一个舰队\
-dailyChallenges.clickChangeNextFleet = function()\
-  RTap({ 1158, 596 }, 100)\
-end\
-\
--- 点击出击按钮\
-dailyChallenges.clickBattleBtn = function()\
-  RTap({ 1580, 955 }, 100)\
-end\
-\
--- 点击返回按钮\
-dailyChallenges.clickBackBtn = function()\
-  RTap({ 54, 29 }, 100)\
-end\
-\
-return dailyChallenges\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./utils/vibrator-promise.lua"] = { path = "./utils/vibrator-promise.lua", name = "./utils/vibrator-promise.lua", source = "if type(Promise) ~= 'table' then\
-  error('SleepPromise need Promise module to work. Please require \\'Promise\\' as global variable.', 2)\
-end\
-if type(EventQuery) ~= 'table' then\
-  error('SleepPromise need EventQuery module to work. Please require \\'EventQuery\\' as global variableß .', 2)\
-end\
-\
-local sleepPromise = function(ms)\
-  return Promise.new(function(resolve)\
-    EventQuery.setTimeout(resolve, ms)\
-  end)\
-end\
-\
-local vibratorPromise = function(num, ms)\
-  num = num or 1\
-  ms = ms or 500\
-  local res = Promise.resolve(1)\
-  for key = 1, num do\
-    res = res.andThen(function()\
-      return vibrator()\
-    end).andThen(function()\
-      return sleepPromise(ms)\
-    end)\
-  end\
-  return res\
-end\
-return vibratorPromise\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/index.lua"] = { path = "./meta-operation/maps-options/index.lua", name = "./meta-operation/maps-options/index.lua", source = "local map1_1 = require './map1-1'\
-local map1_2 = require './map1-2'\
-local map1_3 = require './map1-3'\
-local map1_4 = require './map1-4'\
-local map2_1 = require './map2-1'\
-local map2_2 = require './map2-2'\
-local map2_3 = require './map2-3'\
-local map2_4 = require './map2-4'\
-local map3_1 = require './map3-1'\
-local map3_2 = require './map3-2'\
-local map3_3 = require './map3-3'\
-local map3_4 = require './map3-4'\
-local map4_1 = require './map4-1'\
-local map4_2 = require './map4-2'\
-local map4_3 = require './map4-3'\
-local map4_4 = require './map4-4'\
-local map5_1 = require './map5-1'\
-local map5_2 = require './map5-2'\
-local map5_3 = require './map5-3'\
-local map5_4 = require './map5-4'\
-local map6_1 = require './map6-1'\
-local map6_2 = require './map6-2'\
-local map6_3 = require './map6-3'\
-local map6_4 = require './map6-4'\
-local map7_1 = require './map7-1'\
-local map7_2 = require './map7-2'\
-local map7_3 = require './map7-3'\
-local map7_4 = require './map7-4'\
-local map8_1 = require './map8-1'\
-local map8_2 = require './map8-2'\
-local map8_3 = require './map8-3'\
-local map8_4 = require './map8-4'\
-local map9_1 = require './map9-1'\
-local map9_2 = require './map9-2'\
-local map9_3 = require './map9-3'\
-local map9_4 = require './map9-4'\
-local map10_1 = require './map10-1'\
-local map10_2 = require './map10-2'\
-local map10_3 = require './map10-3'\
-local map10_4 = require './map10-4'\
-local map11_1 = require './map11-1'\
-local map11_2 = require './map11-2'\
-local map11_3 = require './map11-3'\
-local map12_1 = require './map12-1'\
-local mapevent16_2_b1 = require './mapevent16-2-b1'\
-local mapevent16_2_b3 = require './mapevent16-2-b3'\
-\
-return {\
-  ['map1-1'] = map1_1,\
-  ['map1-2'] = map1_2,\
-  ['map1-3'] = map1_3,\
-  ['map1-4'] = map1_4,\
-  ['map2-1'] = map2_1,\
-  ['map2-2'] = map2_2,\
-  ['map2-3'] = map2_3,\
-  ['map2-4'] = map2_4,\
-  ['map3-1'] = map3_1,\
-  ['map3-2'] = map3_2,\
-  ['map3-3'] = map3_3,\
-  ['map3-4'] = map3_4,\
-  ['map4-1'] = map4_1,\
-  ['map4-2'] = map4_2,\
-  ['map4-3'] = map4_3,\
-  ['map4-4'] = map4_4,\
-  ['map5-1'] = map5_1,\
-  ['map5-2'] = map5_2,\
-  ['map5-3'] = map5_3,\
-  ['map5-4'] = map5_4,\
-  ['map6-1'] = map6_1,\
-  ['map6-2'] = map6_2,\
-  ['map6-3'] = map6_3,\
-  ['map6-4'] = map6_4,\
-  ['map7-1'] = map7_1,\
-  ['map7-2'] = map7_2,\
-  ['map7-3'] = map7_3,\
-  ['map7-4'] = map7_4,\
-  ['map8-1'] = map8_1,\
-  ['map8-2'] = map8_2,\
-  ['map8-3'] = map8_3,\
-  ['map8-4'] = map8_4,\
-  ['map9-1'] = map9_1,\
-  ['map9-2'] = map9_2,\
-  ['map9-3'] = map9_3,\
-  ['map9-4'] = map9_4,\
-  ['map10-1'] = map10_1,\
-  ['map10-2'] = map10_2,\
-  ['map10-3'] = map10_3,\
-  ['map10-4'] = map10_4,\
-  ['map11-1'] = map11_1,\
-  ['map11-2'] = map11_2,\
-  ['map11-3'] = map11_3,\
-  ['map12-1'] = map12_1,\
-  ['mapevent16-2-b1'] = mapevent16_2_b1,\
-  ['mapevent16-2-b3'] = mapevent16_2_b3,\
-}\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/home.lua"] = { path = "./meta-operation/home.lua", name = "./meta-operation/home.lua", source = "local home = {}\
-\
--- 检测主页\
-home.isHome = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 139, 30, 0x101010 }, { 625, 24, 0x212021 },\
-    { 963, 16, 0x292d3a }, { 1033, 67, 0x3a3d3a },\
-    { 1058, 31, 0xe6efef }, { 1339, 47, 0xefba42 },\
-    { 1369, 32, 0xefebef }, { 1652, 39, 0xf74163 },\
-    { 1675, 65, 0xefefef }, { 1775, 184, 0xa4cede },\
-    { 1162, 179, 0xa4cade }, { 1276, 189, 0xa4cade },\
-    { 1201, 582, 0x109eef }, { 1383, 582, 0x199ae6 },\
-    { 1290, 571, 0xffffff }, { 1498, 585, 0xdeae10 },\
-    { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },\
-    { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },\
-  }\
-  local result = multiColorS(list)\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
-return home" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/battle.lua"] = { path = "./meta-operation/battle.lua", name = "./meta-operation/battle.lua", source = "local co = require '../lib/co'\
-local c = coroutine\
-local sleepPromise = require '../utils/sleep-promise'\
-\
-\
-local battle = {}\
-\
-\
--- 点击出征\
-battle.clickBattleBtn = function()\
-  RTap({ 1628, 599 }, 100)\
-end\
-\
--- 点击活动\
-battle.clickEventBtn = function()\
-  RTap({ 1018, 249 }, 100)\
-end\
-\
---  是否在出击选择章节界面\
-battle.isBattleChapterPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 13, 11, 0xdedfe6 }, { 10, 54, 0xcecace },\
-    { 38, 36, 0xefce42 }, { 68, 31, 0xefce3a },\
-    { 125, 56, 0xc5c2c5 }, { 892, 51, 0xd6dbde },\
-    { 930, 7, 0xeff3f7 }, { 248, 23, 0xffe7ad },\
-    { 257, 24, 0x292829 }, { 276, 22, 0x211c21 },\
-    { 232, 45, 0x313131 }, { 256, 45, 0x313531 },\
-    { 264, 47, 0xffba00 }, { 273, 47, 0x3a353a },\
-    { 284, 47, 0xffba00 }, { 293, 45, 0x313131 },\
-    { 302, 45, 0xffba00 }, { 308, 45, 0x191819 },\
-    { 321, 43, 0xffbe10 }, { 332, 44, 0x424142 },\
-    { 426, 42, 0x000000 }, { 438, 42, 0xefefff },\
-    { 545, 42, 0xdee7f7 }, { 573, 45, 0x000000 },\
-    { 559, 45, 0xd6d2de }, { 394, 43, 0x3a393a },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 点击回港\
-battle.clickBackToHomeBtn = function()\
-  RTap({ 98, 1016 }, 100)\
-end\
-\
---  是否在普通模式\
-battle.isNormalMode = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },\
-    { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },\
-  }\
-  local list2 = {\
-    { 72, 973, 0xffffff }, { 152, 991, 0xbd0408 },\
-    { 164, 1005, 0xbd0408 }, { 261, 1025, 0x631010 },\
-  }\
-  local result = multiColorS(list) or multiColorS(list2)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
---  是否在困难模式\
-battle.isHardMode = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },\
-    { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },\
-  }\
-  local list2 = {\
-    { 109, 985, 0xdedbde }, { 189, 994, 0x001029 },\
-    { 281, 1004, 0x103984 }, { 284, 1032, 0x21284a },\
-  }\
-  local result = multiColorS(list) or multiColorS(list2)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 切换困难模式按钮\
-battle.clickSwitchHardModeBtn = function()\
-  RTap({ 202, 1010 }, 100)\
-end\
-\
--- 移动到m章节\
-battle.moveToChapter = function(chapter)\
-  local chapter = chapter\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-\
-  local chapterArr = strSplit(chapter, \"-\")\
-  local m = tonumber(chapterArr[1]) or 1\
-\
-  if string.sub(chapter, 1, 5) == 'event' then\
-    m = tonumber(chapterArr[2]) or 1\
-  end\
-\
-  local leftButton = {\
-    { 108, 500, 0xefefef }, { 66, 537, 0xd6d7d6 },\
-    { 99, 528, 0xdedfde }, { 99, 549, 0xbdbebd },\
-    { 93, 565, 0xc5c6c5 },\
-  }\
-  local leftButton2 = {\
-    { 97, 531, 0xb5b2b5 }, { 64, 538, 0xb5b2b5 },\
-    { 95, 510, 0xbdbebd }, { 112, 518, 0xb5b2b5 },\
-    { 102, 572, 0xadaaad }, { 101, 555, 0x9c9e9c },\
-  }\
-  -- 先移到第一章\
-  for i = 1, 14 do\
-    RTap({ 90, 540 }, 100)\
-    mSleep(80)\
-    keepScreen(true)\
-    if not multiColorS(leftButton) and not multiColorS(leftButton2) then\
-      break\
-    end\
-  end\
-  -- 再移到第m章\
-  for i = 2, m do\
-    RTap({ 1826, 540 }, 100)\
-    mSleep(200)\
-  end\
-  mSleep(200)\
-  if not __keepScreenState then keepScreen(false) end\
-  return true\
-end\
-\
--- 点击m章节\
-battle.clickChapter = function(chapter)\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-\
-  if (chapter == '1-1') then\
-    RTap({ 227, 687 }, 100)\
-  elseif (chapter == '1-2') then\
-    RTap({ 685, 409 }, 100)\
-  elseif (chapter == '1-3') then\
-    RTap({ 984, 789 }, 100)\
-  elseif (chapter == '1-4') then\
-    RTap({ 1366, 317 }, 100)\
-  elseif (chapter == '2-1') then\
-    RTap({ 1221, 685 }, 100)\
-  elseif (chapter == '2-2') then\
-    RTap({ 1121, 277 }, 100)\
-  elseif (chapter == '2-3') then\
-    RTap({ 429, 406 }, 100)\
-  elseif (chapter == '2-4') then\
-    RTap({ 572, 821 }, 100)\
-  elseif (chapter == '3-1') then\
-    RTap({ 603, 320 }, 100)\
-  elseif (chapter == '3-2') then\
-    RTap({ 344, 750 }, 100)\
-  elseif (chapter == '3-3') then\
-    RTap({ 1364, 279 }, 100)\
-  elseif (chapter == '3-4') then\
-    RTap({ 923, 540 }, 100)\
-  elseif (chapter == '4-1') then\
-    RTap({ 355, 451 }, 100)\
-  elseif (chapter == '4-2') then\
-    RTap({ 628, 701 }, 100)\
-  elseif (chapter == '4-3') then\
-    RTap({ 1234, 818 }, 100)\
-  elseif (chapter == '4-4') then\
-    RTap({ 1167, 430 }, 100)\
-  elseif (chapter == '5-1') then\
-    RTap({ 363, 544 }, 100)\
-  elseif (chapter == '5-2') then\
-    RTap({ 1285, 803 }, 100)\
-  elseif (chapter == '5-3') then\
-    RTap({ 1104, 549 }, 100)\
-  elseif (chapter == '5-4') then\
-    RTap({ 884, 318 }, 100)\
-  elseif (chapter == '6-1') then\
-    RTap({ 1373, 746 }, 100)\
-  elseif (chapter == '6-2') then\
-    RTap({ 1055, 515 }, 100)\
-  elseif (chapter == '6-3') then\
-    RTap({ 632, 317 }, 100)\
-  elseif (chapter == '6-4') then\
-    RTap({ 443, 643 }, 100)\
-  elseif (chapter == '7-1') then\
-    RTap({ 308, 725 }, 100)\
-  elseif (chapter == '7-2') then\
-    RTap({ 688, 270 }, 100)\
-  elseif (chapter == '7-3') then\
-    RTap({ 1234, 425 }, 100)\
-  elseif (chapter == '7-4') then\
-    RTap({ 1416, 674 }, 100)\
-  elseif (chapter == '8-1') then\
-    RTap({ 824, 280 }, 100)\
-  elseif (chapter == '8-2') then\
-    RTap({ 411, 535 }, 100)\
-  elseif (chapter == '8-3') then\
-    RTap({ 507, 849 }, 100)\
-  elseif (chapter == '8-4') then\
-    RTap({ 1168, 686 }, 100)\
-  elseif (chapter == '9-1') then\
-    RTap({ 360, 359 }, 100)\
-  elseif (chapter == '9-2') then\
-    RTap({ 569, 729 }, 100)\
-  elseif (chapter == '9-3') then\
-    RTap({ 1179, 395 }, 100)\
-  elseif (chapter == '9-4') then\
-    RTap({ 1375, 768 }, 100)\
-  elseif (chapter == '10-1') then\
-    RTap({ 301, 362 }, 100)\
-  elseif (chapter == '10-2') then\
-    RTap({ 694, 571 }, 100)\
-  elseif (chapter == '10-3') then\
-    RTap({ 971, 806 }, 100)\
-  elseif (chapter == '10-4') then\
-    RTap({ 1111, 336 }, 100)\
-  elseif (chapter == '11-1') then\
-    RTap({ 453, 348 }, 100)\
-  elseif (chapter == '11-2') then\
-    RTap({ 643, 779 }, 100)\
-  elseif (chapter == '11-3') then\
-    RTap({ 1077, 255 }, 100)\
-  elseif (chapter == '11-4') then\
-    RTap({ 1335, 665 }, 100)\
-  elseif (chapter == '12-1') then\
-    RTap({ 296, 362 }, 100)\
-  elseif (chapter == 'event4-1-sp1') then\
-    RTap({ 834, 312 }, 100)\
-  elseif (chapter == 'event4-1-sp2') then\
-    RTap({ 417, 542 }, 100)\
-  elseif (chapter == 'event4-1-sp3') then\
-    RTap({ 1392, 473 }, 100)\
-  elseif (chapter == 'event5-1-a1') then\
-    RTap({ 655, 268 }, 100)\
-  elseif (chapter == 'event5-1-a2') then\
-    RTap({ 1100, 781 }, 100)\
-  elseif (chapter == 'event5-1-a3') then\
-    RTap({ 1340, 381 }, 100)\
-  elseif (chapter == 'event5-2-b1') then\
-    RTap({ 532, 778 }, 100)\
-  elseif (chapter == 'event5-2-b2') then\
-    RTap({ 1305, 744 }, 100)\
-  elseif (chapter == 'event5-2-b3') then\
-    RTap({ 1058, 333 }, 100)\
-  elseif (chapter == 'event6-1-sp1') then\
-    RTap({ 404, 414 }, 100)\
-  elseif (chapter == 'event6-1-sp2') then\
-    RTap({ 569, 808 }, 100)\
-  elseif (chapter == 'event6-1-sp3') then\
-    RTap({ 1240, 592 }, 100)\
-  elseif (chapter == 'event7-1-a1') then\
-    RTap({ 498, 341 }, 100)\
-  elseif (chapter == 'event7-1-a2') then\
-    RTap({ 748, 834 }, 100)\
-  elseif (chapter == 'event7-1-a3') then\
-    RTap({ 1296, 410 }, 100)\
-  elseif (chapter == 'event7-1-c1') then\
-    RTap({ 498, 341 }, 100)\
-  elseif (chapter == 'event7-1-c2') then\
-    RTap({ 748, 834 }, 100)\
-  elseif (chapter == 'event7-1-c3') then\
-    RTap({ 1296, 410 }, 100)\
-  elseif (chapter == 'event8-1-sp1') then\
-    RTap({ 1368, 453 }, 100)\
-  elseif (chapter == 'event8-1-sp2') then\
-    RTap({ 872, 791 }, 100)\
-  elseif (chapter == 'event8-1-sp3') then\
-    RTap({ 587, 375 }, 100)\
-  elseif (chapter == 'event9-1-sp1') then\
-    RTap({ 366, 339 }, 100)\
-  elseif (chapter == 'event9-1-sp2') then\
-    RTap({ 1206, 282 }, 100)\
-  elseif (chapter == 'event9-1-sp3') then\
-    RTap({ 286, 866 }, 100)\
-  elseif (chapter == 'event9-1-sp4') then\
-    RTap({ 1070, 744 }, 100)\
-  elseif (chapter == 'event11-1-a1') then\
-    RTap({ 653, 265 }, 100)\
-  elseif (chapter == 'event11-1-a2') then\
-    RTap({ 1102, 786 }, 100)\
-  elseif (chapter == 'event11-1-a3') then\
-    RTap({ 1342, 378 }, 100)\
-  elseif (chapter == 'event11-2 -b1') then\
-    RTap({ 537, 775 }, 100)\
-  elseif (chapter == 'event11-2-b2') then\
-    RTap({ 1307, 727 }, 100)\
-  elseif (chapter == 'event11-2-b3') then\
-    RTap({ 1063, 325 }, 100)\
-  elseif (chapter == 'event12-1-sp1') then\
-    RTap({ 1379, 457 }, 100)\
-  elseif (chapter == 'event12-1-sp2') then\
-    RTap({ 875, 796 }, 100)\
-  elseif (chapter == 'event12-1-sp3') then\
-    RTap({ 582, 370 }, 100)\
-  elseif (chapter == 'event13-1-sp1') then\
-    RTap({ 407, 409 }, 100)\
-  elseif (chapter == 'event13-1-sp2') then\
-    RTap({ 568, 804 }, 100)\
-  elseif (chapter == 'event13-1-sp3') then\
-    RTap({ 1243, 590 }, 100)\
-  elseif (chapter == 'event15-1-a1') then\
-    RTap({ 387, 367 }, 100)\
-  elseif (chapter == 'event15-1-a2') then\
-    RTap({ 535, 690 }, 100)\
-  elseif (chapter == 'event15-1-a3') then\
-    RTap({ 1345, 769 }, 100)\
-  elseif (chapter == 'event15-1-a4') then\
-    RTap({ 1190, 421 }, 100)\
-  elseif (chapter == 'event15-2-b1') then\
-    RTap({ 517, 655 }, 100)\
-  elseif (chapter == 'event15-2-b2') then\
-    RTap({ 1257, 544 }, 100)\
-  elseif (chapter == 'event16-1-a1') then\
-    RTap({ 328, 332 }, 100)\
-  elseif (chapter == 'event16-1-a2') then\
-    RTap({ 471, 731 }, 100)\
-  elseif (chapter == 'event16-1-a3') then\
-    RTap({ 1210, 360 }, 100)\
-  elseif (chapter == 'event16-1-a4') then\
-    RTap({ 1333, 757 }, 100)\
-  elseif (chapter == 'event16-2-b1') then\
-    RTap({ 453, 353 }, 100)\
-  elseif (chapter == 'event16-2-b2') then\
-    RTap({ 1312, 282 }, 100)\
-  elseif (chapter == 'event16-2-b3') then\
-    RTap({ 627, 802 }, 100)\
-  elseif (chapter == 'event16-2-b4') then\
-    RTap({ 1092, 538 }, 100)\
-  end\
-  if not __keepScreenState then keepScreen(false) end\
-end\
-\
--- 检测是第几关\
-battle.checkChapter = function(chapter)\
-  local __keepScreenState = keepScreenState\
-  if (not __keepScreenState) then keepScreen(true) end\
-\
-  local chapterArr = strSplit(chapter, \"-\")\
-  local m = tonumber(chapterArr[1]) or 0\
-\
-  if string.find(chapter, 'sp') then\
-    m = 'sp'\
-  end\
-\
-  local list = {\
-    [1] = {\
-      { 73, 146, 0xf7df6b }, { 74, 159, 0xe6aa29 },\
-      { 74, 166, 0xffbe31 }, { 67, 151, 0x292419 },\
-      { 68, 143, 0x101810 }, { 79, 159, 0x212021 },\
-      { 80, 171, 0x193131 }, { 68, 171, 0x101c19 },\
-    },\
-    [2] = {\
-      { 67, 149, 0xe6be52 }, { 71, 148, 0x211808 },\
-      { 71, 142, 0xc5ba5a }, { 74, 156, 0xe6a631 },\
-      { 74, 163, 0x191808 }, { 78, 168, 0xffc629 },\
-      { 65, 168, 0xf7c229 }, { 62, 167, 0x212008 },\
-      { 80, 168, 0x292421 }, { 71, 171, 0x101010 },\
-    },\
-    [3] = {\
-      { 67, 149, 0xe6c263 }, { 72, 147, 0x212000 },\
-      { 78, 147, 0xe6ca63 }, { 72, 143, 0xefdb73 },\
-      { 71, 154, 0xd6aa42 }, { 72, 165, 0x291800 },\
-      { 72, 169, 0xf7c629 }, { 63, 164, 0x4a4521 },\
-      { 79, 164, 0xcea229 }, { 75, 171, 0x312d19 },\
-    },\
-    [4] = {\
-      { 74, 143, 0xefdf73 }, { 71, 158, 0x4a3519 },\
-      { 65, 163, 0xd6aa31 }, { 81, 162, 0xce9e31 },\
-      { 77, 169, 0xefc629 }, { 78, 152, 0xefbe52 },\
-      { 71, 166, 0x4a3d10 }, { 66, 164, 0xbd9229 },\
-      { 83, 163, 0x191410 },\
-    },\
-    [5] = {\
-      { 71, 147, 0x524921 }, { 65, 143, 0xf7e77b },\
-      { 78, 144, 0xf7e373 }, { 71, 140, 0x191c19 },\
-      { 72, 165, 0x191408 }, { 72, 154, 0x5a4119 },\
-      { 67, 161, 0xdeaa31 }, { 66, 154, 0xdeaa4a },\
-      { 72, 169, 0xe6c242 }, { 72, 171, 0x5a4900 },\
-    },\
-    [6] = {\
-      { 72, 142, 0xdebe63 }, { 77, 148, 0xe6c263 },\
-      { 72, 147, 0x291400 }, { 65, 155, 0xe6aa31 },\
-      { 72, 165, 0x191408 }, { 72, 156, 0x422021 },\
-      { 72, 170, 0xbd9629 }, { 72, 169, 0xf7c231 },\
-      { 79, 170, 0x211c10 }, { 79, 161, 0xe6aa29 },\
-    },\
-    [7] = {\
-      { 66, 144, 0xdece73 }, { 78, 144, 0xffdb7b },\
-      { 71, 169, 0xf7c229 }, { 70, 148, 0x313119 },\
-      { 66, 168, 0x101410 }, { 77, 168, 0x101419 },\
-      { 71, 171, 0x101010 }, { 71, 141, 0x423d29 },\
-      { 79, 141, 0x292819 },\
-    },\
-    [8] = {\
-      { 72, 142, 0xd6be6b }, { 72, 169, 0xefce29 },\
-      { 72, 165, 0x210c00 }, { 72, 158, 0x4a3510 },\
-      { 72, 151, 0x312400 }, { 72, 147, 0x100400 },\
-      { 64, 153, 0x3a3108 }, { 80, 154, 0x191410 },\
-      { 79, 160, 0xdeb229 }, { 65, 163, 0xe6ba29 },\
-    },\
-    [9] = {\
-      { 72, 142, 0xd6c27b }, { 72, 147, 0x101000 },\
-      { 72, 154, 0x191800 }, { 72, 165, 0x100c00 },\
-      { 65, 164, 0xe6b629 }, { 63, 164, 0x312d10 },\
-      { 66, 161, 0x292010 }, { 79, 157, 0xe6aa29 },\
-      { 79, 169, 0x3a3110 }, { 72, 169, 0xefc629 },\
-    },\
-    [10] = {\
-      { 54, 148, 0xefc663 }, { 55, 150, 0x5a4121 },\
-      { 65, 160, 0x5a4119 }, { 72, 155, 0x3a3919 },\
-      { 72, 154, 0x423d21 }, { 81, 147, 0x100c00 },\
-      { 81, 156, 0x190800 }, { 85, 168, 0xf7be29 },\
-      { 88, 159, 0xe6a621 }, { 70, 167, 0x081821 },\
-    },\
-    [11] = {\
-      { 57, 147, 0xe6c663 }, { 67, 159, 0xce9229 },\
-      { 64, 169, 0xe6c229 }, { 58, 151, 0x212010 },\
-      { 76, 151, 0x212010 }, { 73, 159, 0x19313a },\
-      { 77, 168, 0x101410 }, { 84, 169, 0xe6c229 },\
-      { 86, 156, 0x5a4d21 }, { 83, 143, 0xf7e77b },\
-    },\
-    [12] = {\
-      { 54, 148, 0xefc663 }, { 62, 143, 0xf7e373 },\
-      { 61, 169, 0xefc229 }, { 72, 168, 0x5a5529 },\
-      { 79, 167, 0xf7c629 }, { 80, 147, 0x311c10 },\
-      { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },\
-      { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },\
-    },\
-    sp = {\
-      { 48, 147, 0xffffff }, { 61, 147, 0xffffff },\
-      { 55, 149, 0x10283a }, { 62, 154, 0x102031 },\
-      { 47, 161, 0x082029 }, { 54, 159, 0xffffff },\
-      { 55, 169, 0x082031 }, { 55, 176, 0xffffff },\
-      { 62, 168, 0xffffff }, { 64, 177, 0x082029 },\
-      { 72, 150, 0x102431 }, { 79, 149, 0xffffff },\
-      { 86, 151, 0x19313a }, { 94, 151, 0xffffff },\
-      { 88, 164, 0x102431 }, { 80, 174, 0xffffff },\
-      { 89, 174, 0x082031 }, { 98, 175, 0xffffff },\
-    },\
-  }\
-  local result = nil\
-  if m == 0 or multiColorS(list[m]) then\
-    result = true\
-  end\
-  if (not __keepScreenState) then keepScreen(false) end\
-  return result\
-end\
-\
---  是否在章节信息面板\
-battle.isChapterInfoPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 476, 271, 0xe6efe6 }, { 833, 280, 0xefefef },\
-    { 1404, 282, 0xeff3f7 }, { 1561, 283, 0xadaaad },\
-    { 1522, 755, 0xffae10 }, { 1273, 691, 0xffdb52 },\
-    { 1271, 747, 0xffa619 }, { 1391, 713, 0xffffff },\
-    { 854, 339, 0x4a4d4a },\
-    { 896, 342, 0xdedfde }, { 1376, 349, 0xdedbde },\
-    { 1319, 708, 0xffffff }, { 1322, 720, 0xffca3a },\
-    { 1342, 729, 0xf7b219 }, { 1355, 718, 0xffffff },\
-    { 1383, 717, 0xffffff }, { 1397, 713, 0xbd9629 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 前往选择舰队面板\
-battle.clickGotoSelectFleedPanelBtn = function()\
-  RTap({ 1388, 720 }, 100)\
-end\
-\
---  是否在选择舰队面板\
-battle.isSelectFleetPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },\
-    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },\
-    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },\
-    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },\
-    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },\
-    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },\
-    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },\
-    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },\
-    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },\
-    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },\
-\
-    { 1533, 299, 0x6b2400 }, { 1544, 300, 0x633910 },\
-    { 1551, 300, 0x633510 }, { 1564, 302, 0xffd24a },\
-    { 1533, 316, 0x6b2d08 }, { 1547, 321, 0xffca42 },\
-    { 1559, 314, 0xffc642 }, { 1580, 304, 0xffb242 },\
-    { 1570, 307, 0xffc242 }, { 1592, 308, 0x6b3d21 },\
-    { 1600, 307, 0xffaa29 }, { 1584, 293, 0xffc64a },\
-    { 1598, 299, 0x633110 }, { 1590, 307, 0x733110 },\
-    { 1591, 323, 0x632d10 }, { 1580, 321, 0xf7a229 },\
-    { 1598, 321, 0xde8e29 }, { 1580, 331, 0xf7a229 },\
-    { 1570, 324, 0xffaa3a }, { 1591, 316, 0x6b2800 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
---  是否在困难选择舰队面板\
-battle.isHardSelectFleetPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 155, 123, 0x292429 }, { 833, 127, 0xeff3f7 },\
-    { 1604, 118, 0xeff3f7 }, { 1671, 120, 0x9caa9c },\
-    { 1753, 121, 0xadaaad }, { 1699, 132, 0xf7db42 },\
-    { 1720, 157, 0xf7ce42 }, { 1727, 143, 0xadaaad },\
-    { 1708, 161, 0xadaaad }, { 1709, 145, 0xffd742 },\
-    { 170, 150, 0xffc642 }, { 187, 154, 0xa47d10 },\
-    { 212, 154, 0xe6b631 }, { 215, 154, 0x080c08 },\
-    { 278, 144, 0x3a413a }, { 257, 168, 0x292d29 },\
-    { 251, 163, 0xffba00 }, { 318, 148, 0xc5a63a },\
-    { 295, 139, 0x292429 }, { 329, 179, 0x3a3d3a },\
-\
-    { 1531, 308, 0xf7db52 }, { 1536, 302, 0x633910 },\
-    { 1550, 305, 0xe6be52 }, { 1560, 305, 0xffd24a },\
-    { 1559, 314, 0xffc252 }, { 1555, 318, 0x633110 },\
-    { 1541, 322, 0xffc652 }, { 1541, 314, 0xf7c652 },\
-    { 1536, 325, 0x633100 }, { 1554, 327, 0x632400 },\
-    { 1572, 300, 0x732808 }, { 1595, 300, 0x633100 },\
-    { 1577, 316, 0xf7a63a }, { 1574, 326, 0x733508 },\
-    { 1596, 320, 0x6b3d21 }, { 1588, 324, 0xffa631 },\
-    { 1585, 316, 0xf7a231 }, { 1604, 303, 0xf7a629 },\
-    { 1583, 303, 0xffae3a }, { 1584, 329, 0xffaa21 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 困难进入战斗\
-battle.clickHardGotoSelectFleedPanelBtn = function()\
-  RTap({ 1588, 934 }, 100)\
-end\
-\
--- 取消第二个舰队\
-battle.clickSelectFleetPanelCancel2Fleet = function(fleet)\
-  local __keepScreenState = keepScreenState\
-  if __keepScreenState then keepScreen(true) end\
-  RTap({ 1690, 522 }, 100)\
-  if not __keepScreenState then keepScreen(false) end\
-  return\
-end\
-\
--- 选择第一个舰队\
-battle.clickSelectFleetPanelSelect1Fleet = function(fleet)\
-  return co(c.create(function()\
-    local __keepScreenState = keepScreenState\
-    if __keepScreenState then keepScreen(true) end\
-    RTap({ 1565, 314 }, 100)\
-    c.yield(sleepPromise(500))\
-    if fleet == 1 then\
-      RTap({ 1622, 414 }, 100)\
-    elseif fleet == 2 then\
-      RTap({ 1629, 487 }, 100)\
-    elseif fleet == 3 then\
-      RTap({ 1625, 562 }, 100)\
-    elseif fleet == 4 then\
-      RTap({ 1625, 634 }, 100)\
-    elseif fleet == 5 then\
-      RTap({ 1622, 712 }, 100)\
-    elseif fleet == 6 then\
-      RTap({ 1620, 788 }, 100)\
-    end\
-    if not __keepScreenState then keepScreen(false) end\
-    return\
-  end))\
-end\
-\
--- 选择第二个舰队\
-battle.clickSelectFleetPanelSelect2Fleet = function(fleet)\
-  return co(c.create(function()\
-    local __keepScreenState = keepScreenState\
-    if __keepScreenState then keepScreen(true) end\
-    RTap({ 1568, 518 }, 100)\
-    c.yield(sleepPromise(500))\
-    if fleet == 1 then\
-      RTap({ 1621, 615 }, 100)\
-    elseif fleet == 2 then\
-      RTap({ 1619, 688 }, 100)\
-    elseif fleet == 3 then\
-      RTap({ 1627, 763 }, 100)\
-    elseif fleet == 4 then\
-      RTap({ 1623, 836 }, 100)\
-    elseif fleet == 5 then\
-      RTap({ 1620, 911 }, 100)\
-    elseif fleet == 6 then\
-      RTap({ 1627, 988 }, 100)\
-    end\
-    if not __keepScreenState then keepScreen(false) end\
-    return\
-  end))\
-end\
-\
--- 点击舰队\
-battle.clickFleet = function(clickFleetList)\
-  if type(clickFleetList) ~= 'table' then\
-    clickFleetList = { clickFleetList }\
-  end\
-  for _, fleet in ipairs(clickFleetList) do\
-    if fleet == 1 then\
-      RTap({ 479, 842 }, 100)\
-    elseif fleet == 2 then\
-      RTap({ 689, 844 }, 100)\
-    elseif fleet == 3 then\
-      RTap({ 901, 843 }, 100)\
-    elseif fleet == 4 then\
-      RTap({ 1119, 845 }, 100)\
-    end\
-    mSleep(50)\
-  end\
-end\
-\
-\
--- 前往地图\
-battle.clickGotoMapBtn = function()\
-  RTap({ 1588, 934 }, 100)\
-end\
-\
---  是否在地图页面\
-battle.isMapPage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 16, 19, 0xdee3de }, { 824, 17, 0xeff3f7 },\
-    { 1021, 35, 0x3a3d3a }, { 1332, 33, 0xffef5a },\
-    { 1647, 35, 0xff4573 }, { 1074, 1021, 0xeff3ef },\
-    { 1404, 998, 0xf7f7f7 }, { 1692, 1003, 0xf7fbf7 },\
-    { 895, 993, 0xdedfde }, { 938, 1020, 0xbdbabd },\
-    { 420, 47, 0x000000 }, { 447, 47, 0x000000 },\
-    { 459, 44, 0xefefff }, { 516, 50, 0xefebff },\
-    { 556, 44, 0xf7f3ff },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 检测是第几队\
-battle.scanMapCheckFleetNum = function()\
-  local __keepScreenState = keepScreenState\
-  keepScreen(true)\
-  local list1 = {\
-    { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },\
-    { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },\
-    { 311, 139, 0x424142 }, { 319, 152, 0x424142 },\
-    { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },\
-    { 312, 109, 0xf7e39c },\
-  }\
-  local list2 = {\
-    { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },\
-    { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },\
-    { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },\
-    { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },\
-    { 324, 138, 0x424142 }, { 337, 144, 0x424142 },\
-  }\
-  local list3 = {\
-    { 302, 110, 0x524531 }, { 320, 106, 0x424542 },\
-    { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },\
-    { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },\
-    { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },\
-    { 320, 140, 0x424542 }, { 338, 139, 0x424142 },\
-  }\
-  local list4 = {\
-    { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },\
-    { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },\
-    { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },\
-    { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },\
-    { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },\
-  }\
-  local result = 1\
-  if multiColorS(list1) then\
-    result = 1\
-  elseif multiColorS(list2) then\
-    result = 2\
-  elseif multiColorS(list3) then\
-    result = 3\
-  elseif multiColorS(list4) then\
-    result = 4\
-  end\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 是否选中指定舰队\
-battle.getSelectedFleed = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local result\
-  local list1 = {\
-    { 301, 105, 0x424542 }, { 325, 90, 0x424142 }, { 318, 152, 0x424142 }, { 311, 134, 0x42453a },\
-    { 329, 129, 0x4a4542 }, { 320, 146, 0xf7b210 }, { 318, 132, 0xf7c221 }, { 324, 111, 0xffe38c },\
-    { 307, 107, 0xffdf9c }, { 325, 95, 0xffe3ad },\
-  }\
-  local list2 = {\
-    { 302, 109, 0x4a4942 }, { 313, 115, 0x424542 }, { 319, 105, 0x423531 }, { 337, 147, 0x424142 },\
-    { 301, 146, 0x424142 }, { 318, 153, 0x424142 }, { 313, 124, 0x42413a }, { 317, 117, 0x4a4542 },\
-    { 331, 148, 0xf7ba08 }, { 309, 145, 0xf7ba08 }, { 324, 139, 0x424142 }, { 328, 139, 0x313531 },\
-    { 329, 129, 0x4a393a }, { 323, 129, 0xf7c231 }, { 323, 115, 0xffdb7b }, { 323, 96, 0xffebb5 },\
-    { 310, 110, 0xffe394 }, { 325, 114, 0xf7db7b },\
-  }\
-  local list3 = {\
-    { 302, 105, 0x4a493a }, { 321, 105, 0x4a4531 }, { 313, 113, 0x524942 }, { 313, 122, 0x635142 },\
-    { 320, 126, 0x4a494a }, { 320, 140, 0x4a4542 }, { 302, 134, 0x4a4542 }, { 308, 125, 0x525131 },\
-    { 322, 154, 0x424542 }, { 339, 133, 0x4a493a }, { 307, 109, 0xffdf9c }, { 316, 107, 0xffe39c },\
-    { 320, 94, 0xffefbd }, { 335, 108, 0xf7e78c }, { 317, 120, 0xffca5a }, { 333, 133, 0xffbe29 },\
-    { 322, 149, 0xffba00 }, { 307, 137, 0xffba10 }, { 313, 132, 0xf7be21 }, { 335, 119, 0x4a453a },\
-  }\
-  local list4 = {\
-    { 313, 90, 0x423531 }, { 331, 90, 0x424142 }, { 333, 127, 0x635129 }, { 337, 134, 0x5a4d3a },\
-    { 333, 145, 0x525142 }, { 324, 151, 0x424531 }, { 315, 141, 0x4a4931 }, { 303, 141, 0x424142 },\
-    { 314, 126, 0x524121 }, { 299, 129, 0x524d42 }, { 316, 93, 0xefe3ad }, { 327, 111, 0xffdb84 },\
-    { 334, 134, 0xffbe21 }, { 324, 146, 0xf7ba08 }, { 303, 134, 0xf7be21 }, { 309, 124, 0xf7be42 },\
-    { 320, 124, 0xffc64a }, { 314, 132, 0xf7c221 }, { 321, 102, 0xf7e79c }, { 313, 108, 0xffdf94 },\
-  }\
-  local list5 = {\
-    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },\
-    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },\
-    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },\
-    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },\
-  }\
-  local list6 = {\
-    { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },\
-    { 220, 119, 0xe6f3e6 }, { 228, 122, 0xfffbf7 },\
-    { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },\
-    { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },\
-  }\
-  if multiColorS(list1) then\
-    result = 1\
-  elseif multiColorS(list2) then\
-    result = 2\
-  elseif multiColorS(list3) then\
-    result = 3\
-  elseif multiColorS(list4) then\
-    result = 4\
-  elseif multiColorS(list5) then\
-    result = 5\
-  elseif multiColorS(list6) then\
-    result = 6\
-  end\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 地图点击切换舰队按钮\
-battle.clickSwitchFleetBtn = function()\
-  RTap({ 1426, 1003 }, 100)\
-end\
-\
--- 地图点击迎击\
-battle.clickAttackBtn = function()\
-  RTap({ 1740, 1005 }, 100)\
-end\
-\
-battle.getFleetFormation = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local result\
-  local listSingleFile = {\
-    { 451, 175, 0x08ebbd }, { 451, 188, 0x08e7b5 },\
-    { 452, 202, 0x08ebbd }, { 452, 216, 0x08ebbd },\
-    { 452, 231, 0x00e7b5 }, { 452, 244, 0x08ebbd },\
-  }\
-  local listSingleFile2 = {\
-    { 346, 174, 0x08ebbd }, { 347, 188, 0x08e7b5 },\
-    { 347, 202, 0x08e7b5 }, { 348, 216, 0x08ebbd },\
-    { 347, 230, 0x08e7b5 }, { 348, 244, 0x08ebbd },\
-  }\
-  local listDoubleFile = {\
-    { 439, 180, 0x08e7b5 }, { 466, 180, 0x08ebbd },\
-    { 437, 205, 0x08ebbd }, { 468, 203, 0x00e7b5 },\
-    { 436, 230, 0x08ebbd }, { 470, 230, 0x08ebbd },\
-  }\
-  local listDoubleFile2 = {\
-    { 334, 180, 0x08ebbd }, { 361, 179, 0x08ebbd },\
-    { 332, 204, 0x08ebbd }, { 363, 203, 0x08ebbd },\
-    { 332, 229, 0x00e7b5 }, { 365, 230, 0x00e7bd },\
-  }\
-  local listWheeledFile = {\
-    { 452, 178, 0x08ebbd }, { 452, 196, 0x08ebbd },\
-    { 452, 215, 0x00e7b5 }, { 452, 236, 0x08ebbd },\
-    { 425, 205, 0x08ebbd }, { 478, 205, 0x00e7b5 },\
-  }\
-  local listWheeledFile2 = {\
-    { 347, 177, 0x08ebbd }, { 347, 195, 0x08ebbd },\
-    { 347, 214, 0x08e7b5 }, { 347, 235, 0x08ebbd },\
-    { 320, 206, 0x08ebbd }, { 373, 205, 0x08ebbd },\
-  }\
-  if multiColorS(listSingleFile) or multiColorS(listSingleFile2) then\
-    result = 'single file'\
-  elseif multiColorS(listDoubleFile) or multiColorS(listDoubleFile2) then\
-    result = 'double file'\
-  elseif multiColorS(listWheeledFile) or multiColorS(listWheeledFile2) then\
-    result = 'wheeled file'\
-  end\
-\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 检测阵型面板是否打开\
-battle.isFormationPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 1591, 527, 0xffe742 }, { 1591, 577, 0xffef31 },\
-    { 1593, 553, 0xffef3a }, { 1615, 552, 0xffe73a },\
-    { 1605, 542, 0xffe73a }, { 1605, 563, 0xffeb3a },\
-    { 1596, 563, 0xffe731 }, { 1597, 550, 0xffe73a },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 打开阵型面板\
-battle.openFormationPanel = function()\
-  RTap({ 1883, 551 }, 100)\
-end\
-\
--- 改变阵型\
-battle.changeFormationPanelFormation = function()\
-  RTap({ 1712, 549 }, 100)\
-end\
-\
--- 关闭阵型面板\
-battle.closeFormationPanel = function()\
-  RTap({ 1603, 553 }, 100)\
-end\
-\
--- 检测敌方伏击面板\
-battle.isAmbushedPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 369, 678, 0x527119 }, { 399, 671, 0x527521 },\
-    { 428, 680, 0xfffbf7 }, { 803, 562, 0xf7ca3a },\
-    { 955, 565, 0xffffff }, { 1055, 597, 0xffa619 },\
-    { 1237, 540, 0xe6e7e6 }, { 1349, 568, 0xffffff },\
-    { 1485, 593, 0xc5bebd }, { 1200, 685, 0x5a595a },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 迎击伏击\
-battle.ambushedPanelClickInterceptBtn = function()\
-  RTap({ 922, 571 }, 100)\
-end\
-\
--- 躲避伏击\
-battle.ambushedPanelClickAvoidBtn = function()\
-  RTap({ 1351, 564 }, 100)\
-end\
-\
--- 检测信息弹窗\
-battle.isInfomationModal = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 463, 250, 0xeff3f7 }, { 938, 261, 0xe6f3f7 },\
-    { 1447, 255, 0xadaaad }, { 1391, 282, 0xf7ce42 },\
-    { 845, 709, 0xffdf52 }, { 947, 707, 0xffdb52 },\
-    { 1093, 708, 0x943d00 }, { 960, 778, 0xffba21 },\
-    { 840, 775, 0xf7b219 }, { 1088, 776, 0xffb221 },\
-    { 920, 726, 0xffffff }, { 954, 746, 0xffffff },\
-    { 984, 746, 0xffffff }, { 998, 774, 0xffb221 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 关闭信息弹窗\
-battle.infomationModalClickClose = function()\
-  RTap({ 1391, 281 }, 100)\
-end\
-\
--- 移动到敌人\
-battle.moveToEnemy = function(point)\
-  RTap({ point[1], point[2] }, 100)\
-end\
-\
--- 检测准备战斗面板\
-battle.isReadyBattlePage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 16, 10, 0xe6ebef }, { 762, 13, 0xe6f3f7 },\
-    { 1272, 190, 0xfffbff }, { 1897, 197, 0xf7f3f7 },\
-    { 1888, 499, 0xe6efe6 }, { 1266, 488, 0xfffbff },\
-    { 1394, 893, 0xd6f3f7 }, { 1761, 899, 0xd6f3f7 },\
-    { 1772, 1001, 0x8ccace }, { 1397, 985, 0x9cdbe6 },\
-    { 156, 15, 0x292829 }, { 320, 11, 0x3a4142 },\
-    { 188, 29, 0xf7db84 }, { 227, 39, 0xffca31 },\
-    { 286, 49, 0xffba00 }, { 243, 51, 0xf7b219 },\
-    { 254, 26, 0x100c10 }, { 200, 39, 0x080808 },\
-    { 235, 48, 0x080c08 }, { 292, 22, 0x42454a },\
-  }\
-  local result = multiColorS(list, 85)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 准备战斗面板点击出击\
-battle.readyBattlePageClickBattle = function()\
-  RTap({ 1592, 952 }, 100)\
-end\
-\
--- 检测是否在战斗中\
-battle.isInBattlePage = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 91, 78, 0x313942 }, { 131, 51, 0x4a5963 },\
-    { 307, 61, 0x4a5963 }, { 344, 47, 0xbdced6 },\
-    { 312, 109, 0x313d42 }, { 1818, 40, 0xdedfde },\
-    { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },\
-    { 1860, 56, 0x292d29 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 检测是否自动战斗\
-battle.isNotAutoBattle = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 144, 68, 0xffffff }, { 154, 67, 0xffffff },\
-    { 154, 76, 0xe6e6e6 }, { 161, 84, 0xffffff },\
-    { 168, 91, 0xffffff }, { 180, 68, 0xffffff },\
-    { 180, 86, 0xffffff }, { 195, 78, 0xffffff },\
-    { 207, 88, 0xffffff }, { 205, 71, 0xffffff },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 检测是否自动战斗确认面板\
-battle.isAutoBattleConfirmPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 477, 232, 0x292829 }, { 1437, 227, 0xadaaad },\
-    { 688, 329, 0xf7f7f7 }, { 785, 343, 0xe6e7e6 },\
-    { 904, 346, 0xfffbff }, { 998, 337, 0xdeebde },\
-    { 1127, 344, 0xeff3ef }, { 1206, 333, 0xeff3ef },\
-    { 862, 754, 0xffdb4a }, { 928, 775, 0xffffff },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 自动战斗确认面板点击知道了\
-battle.autoBattleConfirmPanelClickOk = function()\
-  RTap({ 949, 779 }, 100)\
-end\
-\
--- 战斗页面点击自动战斗\
-battle.inBattlePageClickAutoBattle = function()\
-  RTap({ 208, 75 }, 100)\
-end\
-\
--- 检测是否胜利界面\
-battle.isVictoryPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  -- 大获全胜\
-  local list = {\
-    { 557, 442, 0xf7d24a }, { 614, 492, 0xfffb5a },\
-    { 674, 555, 0xe67d31 }, { 853, 543, 0xef8a3a },\
-    { 1076, 484, 0xffff5a }, { 1211, 539, 0xef9242 },\
-    { 1350, 476, 0xffff5a }, { 523, 474, 0xffef9c },\
-    { 699, 441, 0x5a1c10 }, { 961, 439, 0x632410 },\
-    { 1132, 455, 0x632819 }, { 1299, 456, 0x5a2410 },\
-    { 1386, 481, 0x521c10 },\
-    { 257, 696, 0x423d42 }, { 563, 696, 0x423d42 },\
-    { 976, 699, 0x3a3d3a }, { 1398, 698, 0x424142 },\
-    { 1658, 698, 0x424142 },\
-    { 932, 474, 0x8c8183 }, { 1187, 492, 0x8c8a84 },\
-  }\
-  -- 战术碾压\
-  local list2 = {\
-    { 611, 440, 0xf7d74a }, { 666, 500, 0xfff35a },\
-    { 855, 479, 0xffff5a }, { 1110, 432, 0xffce52 },\
-    { 1218, 529, 0xefa63a }, { 1395, 482, 0xfffb5a },\
-    { 568, 468, 0x632419 }, { 902, 441, 0x5a2010 },\
-    { 987, 448, 0x632010 }, { 1234, 442, 0x6b2819 },\
-    { 537, 429, 0xfff394 }, { 1253, 565, 0x6b2410 },\
-    { 1295, 426, 0x632010 }, { 1080, 495, 0x632819 },\
-\
-    { 294, 702, 0x424142 }, { 523, 697, 0x424142 },\
-    { 967, 698, 0x423d42 }, { 1424, 697, 0x3a3d3a },\
-  }\
-  -- 完成任务\
-  local list3 = {\
-    { 556, 437, 0x6bc6de }, { 615, 438, 0x6bcede },\
-    { 676, 472, 0xb5f3ff }, { 855, 472, 0xb5f3ff },\
-    { 1092, 546, 0x31b2c5 }, { 1163, 508, 0x94e3ef },\
-    { 1384, 430, 0x6bc6de }, { 647, 477, 0x10595a },\
-    { 845, 488, 0x104552 }, { 1052, 459, 0x10555a },\
-\
-    { 309, 698, 0x424142 }, { 711, 701, 0x424142 },\
-    { 1189, 698, 0x424142 }, { 1584, 701, 0x423d3a },\
-  }\
-  -- 旗舰大破\
-  local list4 = {\
-    { 563, 438, 0xe6a273 }, { 844, 495, 0xde965a },\
-    { 1046, 479, 0xe6be9c }, { 1212, 461, 0xefc2a4 },\
-    { 1370, 471, 0xe6aa7b }, { 536, 454, 0x521810 },\
-    { 522, 467, 0xffebd6 }, { 863, 487, 0x5a1c10 },\
-    { 1088, 447, 0x632819 }, { 1386, 457, 0x521c08 },\
-    { 249, 698, 0x423d42 }, { 527, 696, 0x424142 },\
-    { 907, 697, 0x424142 }, { 1389, 697, 0x424142 },\
-    { 1636, 698, 0x424142 },\
-  }\
-  -- d 全军覆没\
-  local list5 = {\
-    { 550, 445, 0xde9e63 }, { 899, 476, 0xe6a273 },\
-    { 1088, 466, 0xefc6ad }, { 1219, 489, 0xdea673 },\
-    { 1420, 497, 0xe69e63 }, { 543, 422, 0x521808 },\
-    { 855, 458, 0x5a1c08 }, { 1012, 455, 0x632819 },\
-    { 1276, 463, 0x5a2410 }, { 1368, 480, 0x5a2010 },\
-\
-    { 279, 726, 0x423d42 }, { 525, 700, 0x423d42 },\
-    { 955, 698, 0x423d42 }, { 1366, 698, 0x424142 },\
-    { 1687, 734, 0x424142 },\
-  }\
-  -- c 作战超时\
-  local list6 = {\
-    { 553, 441, 0xe69e6b }, { 584, 440, 0xefba94 },\
-    { 676, 439, 0xdeaa7b }, { 685, 534, 0xdea273 },\
-    { 565, 549, 0xefaa7b }, { 852, 441, 0xe69663 },\
-    { 844, 499, 0xde965a }, { 937, 484, 0xe6a67b },\
-    { 1087, 473, 0xefc6a4 }, { 1186, 522, 0xefceb5 },\
-    { 941, 533, 0xefaa7b }, { 997, 530, 0xdeb68c },\
-    { 1090, 519, 0xefc2a4 }, { 1159, 542, 0xefc6ad },\
-    { 1270, 507, 0xe6be9c }, { 1347, 504, 0xdeae84 },\
-    { 1387, 487, 0xefa67b }, { 1416, 441, 0xe69e6b },\
-    { 1423, 505, 0xe69e6b }, { 1391, 549, 0xe6a673 },\
-\
-    { 383, 714, 0xef5d63 }, { 755, 711, 0xef6163 },\
-    { 1241, 713, 0xef6163 }, { 1327, 463, 0x632010 },\
-  }\
-  local result = false\
-  if multiColorS(list) or multiColorS(list2)\
-      or multiColorS(list3) or multiColorS(list4)\
-      or multiColorS(list5) or multiColorS(list6) then\
-    result = true\
-  end\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 胜利面板点击继续\
-battle.victoryPanelClickNext = function()\
-  RTap({ 952, 840 }, 100)\
-end\
-\
--- 检测是否获得道具面板\
-battle.isGetPropsPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 763, 212, 0xf7ae63 }, { 854, 168, 0xffffff },\
-    { 958, 174, 0x845131 }, { 1054, 167, 0xf7f384 },\
-    { 764, 242, 0xffaa42 }, { 861, 232, 0x7b2408 },\
-    { 944, 240, 0xffffff }, { 1006, 268, 0xffdf3a },\
-    { 1098, 277, 0xf7b629 }, { 969, 809, 0xffffff },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 获得道具面板点击继续\
-battle.getPropsPanelClickNext = function()\
-  RTap({ 952, 840 }, 100)\
-end\
-\
--- 检测是否获得船面板\
-battle.isGetNewShipPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 64, 504, 0xefefff }, { 108, 539, 0x7b7d8c },\
-    { 86, 658, 0xe6c2c5 }, { 91, 787, 0xe6d7ce },\
-    { 83, 906, 0x3acee6 }, { 88, 948, 0xcecece },\
-    { 1496, 852, 0xefefef }, { 1572, 909, 0xc5c2bd },\
-    { 1543, 938, 0xeff3ef },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 获得船面板点击继续\
-battle.getNewShipPanelClickNext = function()\
-  RTap({ 952, 840 }, 100)\
-end\
-\
--- 检测是否获得经验面板\
-battle.isGetExpPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 543, 279, 0x6b696b }, { 744, 280, 0x6b696b },\
-    { 890, 276, 0x6b696b }, { 1247, 275, 0x6b696b },\
-    { 1374, 275, 0x636563 }, { 1381, 308, 0x63656b },\
-    { 540, 306, 0x6b696b }, { 555, 269, 0x8c8e94 },\
-    { 949, 269, 0x948e94 }, { 1324, 269, 0x8c8a8c },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 获得经验面板点击继续\
-battle.getExpPanelClickNext = function()\
-  RTap({ 1671, 914 }, 100)\
-end\
-\
--- 点击返回主页\
-battle.battlePageClickBackToHome = function()\
-  RTap({ 46, 37 }, 100)\
-end\
-\
--- 检测是否紧急委托面板\
-battle.isUrgentEntrustmentPanel = function()\
-  local __keepScreenState = keepScreenState\
-  if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 482, 289, 0x212821 }, { 493, 288, 0xffce3a },\
-    { 534, 293, 0x080808 }, { 567, 292, 0xf7c23a },\
-    { 752, 302, 0x000000 }, { 1047, 301, 0xdedfde },\
-    { 835, 737, 0xffca3a }, { 919, 740, 0xffffff },\
-    { 977, 745, 0xefb231 }, { 1002, 736, 0xfff7f7 },\
-  }\
-  local result = multiColorS(list)\
-  if not __keepScreenState then keepScreen(false) end\
-  return result\
-end\
-\
--- 紧急委托面板点击继续\
-battle.urgentEntrustmentPanelClickOk = function()\
-  RTap({ 957, 739 }, 100)\
-end\
-\
-return battle" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./missions/utils.lua"] = { path = "./missions/utils.lua", name = "./missions/utils.lua", source = "local eq = require '../lib/event-query'\
-local co = require '../lib/co'\
-local c = coroutine\
-\
-local combineListener = function(target, ...)\
-  local sources = { ... }\
-  if (type(target) ~= 'table') then\
-    target = {}\
-  end\
-  for k = 1, #sources do\
-    local source = sources[k]\
-    for key = 1, #source do\
-      local value = source[key]\
-      table.insert(target, value)\
-    end\
-  end\
-  local targetReverse = table.reverse(target)\
-  local resultIndex = {}\
-  local result = {}\
-  for key = 1, #targetReverse do\
-    local value = targetReverse[key]\
-    if (not resultIndex[value[3]]) then\
-      resultIndex[value[3]] = value\
-      table.insert(result, value)\
-    end\
-  end\
-\
-  local resultReverse = table.reverse(result)\
-  return resultReverse\
-end\
-\
-local setScreenListeners = function(...)\
-  local firstArr = select('1', ...)\
-\
-  if type(firstArr) ~= 'table' then\
-    return Promise.reject(error('the param 1 of \"setScreenListeners\" is nil.', 2))\
-  end\
-\
-  local theArr = table.merge(...)\
-\
-  local errorList = {}\
-  for key = 1, #theArr do\
-    local value = theArr[key]\
-    if not value[2] then\
-      table.insert(errorList, value)\
-    end\
-  end\
-  if #errorList > 0 then\
-    local errorMsg = ''\
-    for key = 1, #errorList do\
-      local value = errorList[key]\
-      if not value[2] then\
-        errorMsg = errorMsg .. 'the function of \"' .. value[1] .. '\" is nil.' .. '\\n'\
-      end\
-    end\
-    error(errorMsg, 2)\
-  end\
-\
-  local theArrUnique = table.uniqueLast(theArr, 2)\
-  for key = 1, #theArrUnique do\
-    local value = theArrUnique[key]\
-    value.isOnce = true\
-  end\
-  return co(c.create(function()\
-    local newArr = {}\
-    local ids = {}\
-    local done = false\
-    for key = 1, #theArrUnique do\
-      local listenerEvent = theArrUnique[key]\
-      if type(listenerEvent[3]) == 'number' and listenerEvent[3] > 0 then\
-        table.insert(newArr,\
-          Promise.new(function(resolve)\
-            local id = eq.setTimeout(resolve, listenerEvent[3])\
-            table.insert(ids, id)\
-          end).andThen(function()\
-            if (not done) then\
-              return Promise.new(function(resolve)\
-                local id = eq.setScreenListener(listenerEvent[2], function()\
-                  resolve(listenerEvent[1])\
-                end)\
-                table.insert(ids, id)\
-              end)\
-            end\
-          end))\
-      else\
-        table.insert(newArr, co(c.create(function()\
-          return Promise.new(function(resolve)\
-            local id = eq.setScreenListener(listenerEvent[2], function()\
-              resolve(listenerEvent[1])\
-            end)\
-            table.insert(ids, id)\
-          end)\
-        end)))\
-      end\
-    end\
-    local res = c.yield(Promise.race(newArr))\
-    done = true\
-    for key = 1, #ids do\
-      eq.clearScreenListener(ids[key])\
-      eq.clearTimeout(ids[key])\
-    end\
-    return res\
-  end))\
-end\
-\
-local makeAction = function(action)\
-  if (type(action) == 'table') then\
-    return action\
-  end\
-  return { type = action }\
-end\
-\
-return {\
-  combineListener = combineListener,\
-  setScreenListeners = setScreenListeners,\
-  makeAction = makeAction,\
-}\
-" }
-
-
-package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/scan-map-type-1.lua"] = { path = "./missions/scan-map-type-1.lua", name = "./missions/scan-map-type-1.lua", source = "local co = require '../lib/co'\
 local c = coroutine\
 local stepLabel = require '../utils/step-label'\
@@ -15124,7 +9138,7 @@ local battleListenerList = {\
 \
 local mapsType2 = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
   return co(c.create(function()\
     if action.type == 'SCAN_MAP_TYPE_1_PRE_INIT' then\
 \
@@ -15358,7 +9372,7 @@ local battleListenerList = {\
 \
 local mapsType2 = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
   return co(c.create(function()\
     if action.type == 'MAPS_TYPE_4_PRE_INIT' then\
 \
@@ -15682,7 +9696,7 @@ local battleListenerList = {\
 \
 local mapsType2 = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
   return co(c.create(function()\
     if action.type == 'MAPS_TYPE_3_PRE_INIT' then\
 \
@@ -16074,7 +10088,7 @@ local battleListenerList = {\
 \
 local mapsType2 = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
   return co(c.create(function()\
     if action.type == 'MAPS_TYPE_2_PRE_INIT' then\
 \
@@ -16588,7 +10602,7 @@ local battleListenerList = {\
 \
 local mapsType1 = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
 \
   return co(c.create(function()\
     if action.type == 'MAPS_TYPE_1_PRE_INIT' then\
@@ -16923,7 +10937,6 @@ local o = {\
 \
 local mission = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
 \
   return co(c.create(function()\
 \
@@ -17315,7 +11328,7 @@ local battleListenerList = {\
 \
 local battle = function(action)\
   local settings = store.settings;\
-  local mapProxy = o.map['map' .. settings.battleChapter]\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
 \
   return co(c.create(function()\
     if action.type == 'BATTLE_INIT' then\
@@ -17341,9 +11354,9 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_HOME_CLICK_BATTLE' then\
 \
-      if settings.battleChapter ~= '0' then\
+      if settings.battleChapter.name ~= '0' then\
         stepLabel.setStepLabelContent('2.2.点击出击')\
-        if string.sub(settings.battleChapter, 1, 5) == 'event' then\
+        if settings.battleChapter.type == 'event' then\
           o.battle.clickEventBtn()\
         else\
           o.battle.clickBattleBtn()\
@@ -17357,7 +11370,7 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE' then\
 \
-      if settings.battleChapter ~= '0' then\
+      if settings.battleChapter.name ~= '0' then\
         stepLabel.setStepLabelContent('2.3.选择章节界面')\
         console.log(settings.battleMode)\
         if settings.battleMode == 'normal' and o.battle.isHardMode() then\
@@ -17367,7 +11380,7 @@ local battle = function(action)\
         end\
 \
         if (settings.battleMode == 'normal' and o.battle.isHardMode())\
-            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
+          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
           o.battle.clickSwitchHardModeBtn()\
           c.yield(sleepPromise(500))\
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
@@ -17384,14 +11397,14 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER' then\
 \
-      if settings.battleChapter ~= '0' then\
-        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')\
+      if settings.battleChapter.name ~= '0' then\
+        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter.name .. '章')\
         o.battle.moveToChapter(settings.battleChapter)\
       end\
       c.yield(sleepPromise(500))\
       -- 检查是否在所需的章节\
       if not o.battle.checkChapter(settings.battleChapter) then\
-        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter .. '章失败，重新移动')\
+        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter.name .. '章失败，重新移动')\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
           { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },\
         }))\
@@ -17560,22 +11573,7 @@ local battle = function(action)\
 \
       stepLabel.setStepLabelContent('2-19.检测是自动模式还是辅助模式')\
       if store.battle.battleAssistantMode == 'auto' then\
-        local type1 = {\
-          '1-1', '1-2', '1-3', '1-4',\
-          '2-1', '2-2', '2-3', '2-4',\
-          '3-1', '3-2', '3-3', '3-4',\
-          '4-1', '4-2', '4-3', '4-4',\
-          '5-1', '5-2', '5-3', '5-4',\
-          '6-1', '6-2', '6-3', '6-4',\
-          '7-1', '7-2', '7-3', '7-4',\
-          '8-1', '8-2', '8-3', '8-4',\
-          '9-1', '9-2', '9-3', '9-4',\
-          '10-1', '10-2', '10-3', '10-4',\
-          '11-1', '11-2', '11-3',\
-          '12-1',\
-          'event16-2-b1', 'event16-2-b3',\
-        }\
-        if table.findIndex(type1, settings.battleChapter) > -1 then\
+        if mapProxy then\
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')\
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
@@ -17596,22 +11594,7 @@ local battle = function(action)\
 \
       stepLabel.setStepLabelContent('2-19.战斗模式')\
       if store.battle.battleAssistantMode == 'auto' then\
-        local canAutoChapter = {\
-          '1-1', '1-2', '1-3', '1-4',\
-          '2-1', '2-2', '2-3', '2-4',\
-          '3-1', '3-2', '3-3', '3-4',\
-          '4-1', '4-2', '4-3', '4-4',\
-          '5-1', '5-2', '5-3', '5-4',\
-          '6-1', '6-2', '6-3', '6-4',\
-          '7-1', '7-2', '7-3', '7-4',\
-          '8-1', '8-2', '8-3', '8-4',\
-          '9-1', '9-2', '9-3', '9-4',\
-          '10-1', '10-2', '10-3', '10-4',\
-          '11-1', '11-2', '11-3',\
-          '12-1',\
-          'event16-2-b1', 'event16-2-b3',\
-        }\
-        if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then\
+        if mapProxy then\
           if settings.mapsType == 'maps-type-2' then\
             stepLabel.setStepLabelContent('2-19.maps-type-2')\
             local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
@@ -17743,7 +11726,7 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME' then\
 \
-      if settings.battleChapter ~= '0' then\
+      if settings.battleChapter.name ~= '0' then\
         o.battle.battlePageClickBackToHome()\
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
           { '', o.home.isHome, 2000 },\
@@ -17764,6 +11747,511 @@ local battle = function(action)\
 end\
 \
 return battle\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/index.lua"] = { path = "./meta-operation/maps-options/index.lua", name = "./meta-operation/maps-options/index.lua", source = "local map1_1 = require './map1-1'\
+local map1_2 = require './map1-2'\
+local map1_3 = require './map1-3'\
+local map1_4 = require './map1-4'\
+local map2_1 = require './map2-1'\
+local map2_2 = require './map2-2'\
+local map2_3 = require './map2-3'\
+local map2_4 = require './map2-4'\
+local map3_1 = require './map3-1'\
+local map3_2 = require './map3-2'\
+local map3_3 = require './map3-3'\
+local map3_4 = require './map3-4'\
+local map4_1 = require './map4-1'\
+local map4_2 = require './map4-2'\
+local map4_3 = require './map4-3'\
+local map4_4 = require './map4-4'\
+local map5_1 = require './map5-1'\
+local map5_2 = require './map5-2'\
+local map5_3 = require './map5-3'\
+local map5_4 = require './map5-4'\
+local map6_1 = require './map6-1'\
+local map6_2 = require './map6-2'\
+local map6_3 = require './map6-3'\
+local map6_4 = require './map6-4'\
+local map7_1 = require './map7-1'\
+local map7_2 = require './map7-2'\
+local map7_3 = require './map7-3'\
+local map7_4 = require './map7-4'\
+local map8_1 = require './map8-1'\
+local map8_2 = require './map8-2'\
+local map8_3 = require './map8-3'\
+local map8_4 = require './map8-4'\
+local map9_1 = require './map9-1'\
+local map9_2 = require './map9-2'\
+local map9_3 = require './map9-3'\
+local map9_4 = require './map9-4'\
+local map10_1 = require './map10-1'\
+local map10_2 = require './map10-2'\
+local map10_3 = require './map10-3'\
+local map10_4 = require './map10-4'\
+local map11_1 = require './map11-1'\
+local map11_2 = require './map11-2'\
+local map11_3 = require './map11-3'\
+local map11_4 = require './map11-4'\
+local map12_1 = require './map12-1'\
+local mapygxdxq_sp2 = require './mapygxdxq-sp2'\
+local mapygxdxq_sp3 = require './mapygxdxq-sp3'\
+\
+return {\
+  ['map1-1'] = map1_1,\
+  ['map1-2'] = map1_2,\
+  ['map1-3'] = map1_3,\
+  ['map1-4'] = map1_4,\
+  ['map2-1'] = map2_1,\
+  ['map2-2'] = map2_2,\
+  ['map2-3'] = map2_3,\
+  ['map2-4'] = map2_4,\
+  ['map3-1'] = map3_1,\
+  ['map3-2'] = map3_2,\
+  ['map3-3'] = map3_3,\
+  ['map3-4'] = map3_4,\
+  ['map4-1'] = map4_1,\
+  ['map4-2'] = map4_2,\
+  ['map4-3'] = map4_3,\
+  ['map4-4'] = map4_4,\
+  ['map5-1'] = map5_1,\
+  ['map5-2'] = map5_2,\
+  ['map5-3'] = map5_3,\
+  ['map5-4'] = map5_4,\
+  ['map6-1'] = map6_1,\
+  ['map6-2'] = map6_2,\
+  ['map6-3'] = map6_3,\
+  ['map6-4'] = map6_4,\
+  ['map7-1'] = map7_1,\
+  ['map7-2'] = map7_2,\
+  ['map7-3'] = map7_3,\
+  ['map7-4'] = map7_4,\
+  ['map8-1'] = map8_1,\
+  ['map8-2'] = map8_2,\
+  ['map8-3'] = map8_3,\
+  ['map8-4'] = map8_4,\
+  ['map9-1'] = map9_1,\
+  ['map9-2'] = map9_2,\
+  ['map9-3'] = map9_3,\
+  ['map9-4'] = map9_4,\
+  ['map10-1'] = map10_1,\
+  ['map10-2'] = map10_2,\
+  ['map10-3'] = map10_3,\
+  ['map10-4'] = map10_4,\
+  ['map11-1'] = map11_1,\
+  ['map11-2'] = map11_2,\
+  ['map11-3'] = map11_3,\
+  ['map11-4'] = map11_4,\
+  ['map12-1'] = map12_1,\
+  ['mapygxdxq-sp2'] = mapygxdxq_sp2,\
+  ['mapygxdxq-sp3'] = mapygxdxq_sp3,\
+}\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./lib/json.lua"] = { path = "./lib/json.lua", name = "./lib/json.lua", source = "--\
+-- json.lua\
+--\
+-- Copyright (c) 2018 rxi\
+--\
+-- Permission is hereby granted, free of charge, to any person obtaining a copy of\
+-- this software and associated documentation files (the \"Software\"), to deal in\
+-- the Software without restriction, including without limitation the rights to\
+-- use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\
+-- of the Software, and to permit persons to whom the Software is furnished to do\
+-- so, subject to the following conditions:\
+--\
+-- The above copyright notice and this permission notice shall be included in all\
+-- copies or substantial portions of the Software.\
+--\
+-- THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\
+-- SOFTWARE.\
+--\
+\
+local json = { _version = \"0.1.1\" }\
+\
+-------------------------------------------------------------------------------\
+-- Encode\
+-------------------------------------------------------------------------------\
+\
+local encode\
+\
+local escape_char_map = {\
+  [ \"\\\\\" ] = \"\\\\\\\\\",\
+  [ \"\\\"\" ] = \"\\\\\\\"\",\
+  [ \"\\b\" ] = \"\\\\b\",\
+  [ \"\\f\" ] = \"\\\\f\",\
+  [ \"\\n\" ] = \"\\\\n\",\
+  [ \"\\r\" ] = \"\\\\r\",\
+  [ \"\\t\" ] = \"\\\\t\",\
+}\
+\
+local escape_char_map_inv = { [ \"\\\\/\" ] = \"/\" }\
+for k, v in pairs(escape_char_map) do\
+  escape_char_map_inv[v] = k\
+end\
+\
+\
+local function escape_char(c)\
+  return escape_char_map[c] or string.format(\"\\\\u%04x\", c:byte())\
+end\
+\
+\
+local function encode_nil(val)\
+  return \"null\"\
+end\
+\
+\
+local function encode_table(val, stack)\
+  local res = {}\
+  stack = stack or {}\
+\
+  -- Circular reference?\
+  if stack[val] then error(\"circular reference\") end\
+\
+  stack[val] = true\
+\
+  if val[1] ~= nil or next(val) == nil then\
+    -- Treat as array -- check keys are valid and it is not sparse\
+    local n = 0\
+    for k in pairs(val) do\
+      if type(k) ~= \"number\" then\
+        error(\"invalid table: mixed or invalid key types\")\
+      end\
+      n = n + 1\
+    end\
+    if n ~= #val then\
+      error(\"invalid table: sparse array\")\
+    end\
+    -- Encode\
+    for i, v in ipairs(val) do\
+      table.insert(res, encode(v, stack))\
+    end\
+    stack[val] = nil\
+    return \"[\" .. table.concat(res, \",\") .. \"]\"\
+\
+  else\
+    -- Treat as an object\
+    for k, v in pairs(val) do\
+      if type(k) ~= \"string\" then\
+        error(\"invalid table: mixed or invalid key types\")\
+      end\
+      table.insert(res, encode(k, stack) .. \":\" .. encode(v, stack))\
+    end\
+    stack[val] = nil\
+    return \"{\" .. table.concat(res, \",\") .. \"}\"\
+  end\
+end\
+\
+\
+local function encode_string(val)\
+  return '\"' .. val:gsub('[%z\\1-\\31\\\\\"]', escape_char) .. '\"'\
+end\
+\
+\
+local function encode_number(val)\
+  -- Check for NaN, -inf and inf\
+  if val ~= val or val <= -math.huge or val >= math.huge then\
+    error(\"unexpected number value '\" .. tostring(val) .. \"'\")\
+  end\
+  return string.format(\"%.14g\", val)\
+end\
+\
+\
+local type_func_map = {\
+  [ \"nil\"     ] = encode_nil,\
+  [ \"table\"   ] = encode_table,\
+  [ \"string\"  ] = encode_string,\
+  [ \"number\"  ] = encode_number,\
+  [ \"boolean\" ] = tostring,\
+}\
+\
+\
+encode = function(val, stack)\
+  local t = type(val)\
+  local f = type_func_map[t]\
+  if f then\
+    return f(val, stack)\
+  end\
+  error(\"unexpected type '\" .. t .. \"'\")\
+end\
+\
+\
+function json.encode(val)\
+  return ( encode(val) )\
+end\
+\
+\
+-------------------------------------------------------------------------------\
+-- Decode\
+-------------------------------------------------------------------------------\
+\
+local parse\
+\
+local function create_set(...)\
+  local res = {}\
+  for i = 1, select(\"#\", ...) do\
+    res[ select(i, ...) ] = true\
+  end\
+  return res\
+end\
+\
+local space_chars   = create_set(\" \", \"\\t\", \"\\r\", \"\\n\")\
+local delim_chars   = create_set(\" \", \"\\t\", \"\\r\", \"\\n\", \"]\", \"}\", \",\")\
+local escape_chars  = create_set(\"\\\\\", \"/\", '\"', \"b\", \"f\", \"n\", \"r\", \"t\", \"u\")\
+local literals      = create_set(\"true\", \"false\", \"null\")\
+\
+local literal_map = {\
+  [ \"true\"  ] = true,\
+  [ \"false\" ] = false,\
+  [ \"null\"  ] = nil,\
+}\
+\
+\
+local function next_char(str, idx, set, negate)\
+  for i = idx, #str do\
+    if set[str:sub(i, i)] ~= negate then\
+      return i\
+    end\
+  end\
+  return #str + 1\
+end\
+\
+\
+local function decode_error(str, idx, msg)\
+  local line_count = 1\
+  local col_count = 1\
+  for i = 1, idx - 1 do\
+    col_count = col_count + 1\
+    if str:sub(i, i) == \"\\n\" then\
+      line_count = line_count + 1\
+      col_count = 1\
+    end\
+  end\
+  error( string.format(\"%s at line %d col %d\", msg, line_count, col_count) )\
+end\
+\
+\
+local function codepoint_to_utf8(n)\
+  -- http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=iws-appendixa\
+  local f = math.floor\
+  if n <= 0x7f then\
+    return string.char(n)\
+  elseif n <= 0x7ff then\
+    return string.char(f(n / 64) + 192, n % 64 + 128)\
+  elseif n <= 0xffff then\
+    return string.char(f(n / 4096) + 224, f(n % 4096 / 64) + 128, n % 64 + 128)\
+  elseif n <= 0x10ffff then\
+    return string.char(f(n / 262144) + 240, f(n % 262144 / 4096) + 128,\
+                       f(n % 4096 / 64) + 128, n % 64 + 128)\
+  end\
+  error( string.format(\"invalid unicode codepoint '%x'\", n) )\
+end\
+\
+\
+local function parse_unicode_escape(s)\
+  local n1 = tonumber( s:sub(3, 6),  16 )\
+  local n2 = tonumber( s:sub(9, 12), 16 )\
+  -- Surrogate pair?\
+  if n2 then\
+    return codepoint_to_utf8((n1 - 0xd800) * 0x400 + (n2 - 0xdc00) + 0x10000)\
+  else\
+    return codepoint_to_utf8(n1)\
+  end\
+end\
+\
+\
+local function parse_string(str, i)\
+  local has_unicode_escape = false\
+  local has_surrogate_escape = false\
+  local has_escape = false\
+  local last\
+  for j = i + 1, #str do\
+    local x = str:byte(j)\
+\
+    if x < 32 then\
+      decode_error(str, j, \"control character in string\")\
+    end\
+\
+    if last == 92 then -- \"\\\\\" (escape char)\
+      if x == 117 then -- \"u\" (unicode escape sequence)\
+        local hex = str:sub(j + 1, j + 5)\
+        if not hex:find(\"%x%x%x%x\") then\
+          decode_error(str, j, \"invalid unicode escape in string\")\
+        end\
+        if hex:find(\"^[dD][89aAbB]\") then\
+          has_surrogate_escape = true\
+        else\
+          has_unicode_escape = true\
+        end\
+      else\
+        local c = string.char(x)\
+        if not escape_chars[c] then\
+          decode_error(str, j, \"invalid escape char '\" .. c .. \"' in string\")\
+        end\
+        has_escape = true\
+      end\
+      last = nil\
+\
+    elseif x == 34 then -- '\"' (end of string)\
+      local s = str:sub(i + 1, j - 1)\
+      if has_surrogate_escape then\
+        s = s:gsub(\"\\\\u[dD][89aAbB]..\\\\u....\", parse_unicode_escape)\
+      end\
+      if has_unicode_escape then\
+        s = s:gsub(\"\\\\u....\", parse_unicode_escape)\
+      end\
+      if has_escape then\
+        s = s:gsub(\"\\\\.\", escape_char_map_inv)\
+      end\
+      return s, j + 1\
+\
+    else\
+      last = x\
+    end\
+  end\
+  decode_error(str, i, \"expected closing quote for string\")\
+end\
+\
+\
+local function parse_number(str, i)\
+  local x = next_char(str, i, delim_chars)\
+  local s = str:sub(i, x - 1)\
+  local n = tonumber(s)\
+  if not n then\
+    decode_error(str, i, \"invalid number '\" .. s .. \"'\")\
+  end\
+  return n, x\
+end\
+\
+\
+local function parse_literal(str, i)\
+  local x = next_char(str, i, delim_chars)\
+  local word = str:sub(i, x - 1)\
+  if not literals[word] then\
+    decode_error(str, i, \"invalid literal '\" .. word .. \"'\")\
+  end\
+  return literal_map[word], x\
+end\
+\
+\
+local function parse_array(str, i)\
+  local res = {}\
+  local n = 1\
+  i = i + 1\
+  while 1 do\
+    local x\
+    i = next_char(str, i, space_chars, true)\
+    -- Empty / end of array?\
+    if str:sub(i, i) == \"]\" then\
+      i = i + 1\
+      break\
+    end\
+    -- Read token\
+    x, i = parse(str, i)\
+    res[n] = x\
+    n = n + 1\
+    -- Next token\
+    i = next_char(str, i, space_chars, true)\
+    local chr = str:sub(i, i)\
+    i = i + 1\
+    if chr == \"]\" then break end\
+    if chr ~= \",\" then decode_error(str, i, \"expected ']' or ','\") end\
+  end\
+  return res, i\
+end\
+\
+\
+local function parse_object(str, i)\
+  local res = {}\
+  i = i + 1\
+  while 1 do\
+    local key, val\
+    i = next_char(str, i, space_chars, true)\
+    -- Empty / end of object?\
+    if str:sub(i, i) == \"}\" then\
+      i = i + 1\
+      break\
+    end\
+    -- Read key\
+    if str:sub(i, i) ~= '\"' then\
+      decode_error(str, i, \"expected string for key\")\
+    end\
+    key, i = parse(str, i)\
+    -- Read ':' delimiter\
+    i = next_char(str, i, space_chars, true)\
+    if str:sub(i, i) ~= \":\" then\
+      decode_error(str, i, \"expected ':' after key\")\
+    end\
+    i = next_char(str, i + 1, space_chars, true)\
+    -- Read value\
+    val, i = parse(str, i)\
+    -- Set\
+    res[key] = val\
+    -- Next token\
+    i = next_char(str, i, space_chars, true)\
+    local chr = str:sub(i, i)\
+    i = i + 1\
+    if chr == \"}\" then break end\
+    if chr ~= \",\" then decode_error(str, i, \"expected '}' or ','\") end\
+  end\
+  return res, i\
+end\
+\
+\
+local char_func_map = {\
+  [ '\"' ] = parse_string,\
+  [ \"0\" ] = parse_number,\
+  [ \"1\" ] = parse_number,\
+  [ \"2\" ] = parse_number,\
+  [ \"3\" ] = parse_number,\
+  [ \"4\" ] = parse_number,\
+  [ \"5\" ] = parse_number,\
+  [ \"6\" ] = parse_number,\
+  [ \"7\" ] = parse_number,\
+  [ \"8\" ] = parse_number,\
+  [ \"9\" ] = parse_number,\
+  [ \"-\" ] = parse_number,\
+  [ \"t\" ] = parse_literal,\
+  [ \"f\" ] = parse_literal,\
+  [ \"n\" ] = parse_literal,\
+  [ \"[\" ] = parse_array,\
+  [ \"{\" ] = parse_object,\
+}\
+\
+\
+parse = function(str, idx)\
+  local chr = str:sub(idx, idx)\
+  local f = char_func_map[chr]\
+  if f then\
+    return f(str, idx)\
+  end\
+  decode_error(str, idx, \"unexpected character '\" .. chr .. \"'\")\
+end\
+\
+\
+function json.decode(str)\
+  if type(str) ~= \"string\" then\
+    error(\"expected argument of type string, got \" .. type(str))\
+  end\
+  local res, idx = parse(str, next_char(str, 1, space_chars, true))\
+  idx = next_char(str, idx, space_chars, true)\
+  if idx <= #str then\
+    decode_error(str, idx, \"trailing garbage\")\
+  end\
+  return res\
+end\
+\
+\
+return json\
 " }
 
 
@@ -18040,8 +12528,10 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./options-label.lua"] = { path = "./options-label.lua", name = "./options-label.lua", source = "local sz = require 'sz'\
-local json = sz.json\
+package.sourceCode["./options-label.lua"] = { path = "./options-label.lua", name = "./options-label.lua", source = "local json = require './lib/json'\
+local mapsList = require './meta-operation/maps-options/index'\
+\
+local canAutoMaps = table.map(table.keys(mapsList), function(item) return string.gsub(item, '^map', '') end)\
 \
 local width, height = getScreenSize()\
 -- 设置\
@@ -18170,8 +12660,7 @@ return function()\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'\
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-            .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'\
-            .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',\
+            .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',\
           ['select'] = '0',\
         },\
         {\
@@ -18333,18 +12822,30 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
-          ['text'] = ' 1-1, 1-2, 1-3, 1-4, \\n'\
-            .. '2-1, 2-2, 2-3, 2-4, \\n'\
-            .. '3-1, 3-2, 3-3, 3-4, \\n'\
-            .. '4-1, 4-2, 4-3, 4-4, \\n'\
-            .. '5-1, 5-2, 5-3, 5-4, \\n'\
-            .. '6-1, 6-2, 6-3, 6-4, \\n'\
-            .. '7-1, 7-2, 7-3, 7-4, \\n'\
-            .. '8-1, 8-2, 8-3, 8-4, \\n'\
-            .. '9-1, 9-2, 9-3, 9-4, \\n'\
-            .. '10-1, 10-2, 10-3, 10-4, \\n'\
-            .. '11-1,11-2, 11-3,11-4, \\n'\
-            .. '12-1, 12-2, 12-3, 12-4, \\n',\
+          ['text'] = (function()\
+            local group = {}\
+            local keyList = {}\
+            for _, value in ipairs(canAutoMaps) do\
+              local tmpArr = string.split(value, '-')\
+              local key = tonumber(tmpArr[1]) or tmpArr[1]\
+              if key then\
+                if not group[key] then\
+                  group[key] = {}\
+                  table.insert(keyList, key)\
+                end\
+              end\
+              table.insert(group[key], value)\
+            end\
+            keyList = table.sortNumAndStr(keyList)\
+            local groupList = {}\
+            for _, key in ipairs(keyList) do\
+              local item = table.sortNumAndStr(group[key])\
+              local itemStr = table.concat(item, ',   ')\
+              table.insert(groupList, itemStr)\
+            end\
+            local result = table.concat(groupList, '\\n')\
+            return result\
+          end)(),\
           ['align'] = 'left',\
           ['color'] = '0,0,0',\
         },\
@@ -18514,34 +13015,34 @@ return function()\
     -- 选择关卡\
     settings.battleChapter = (function(battleChapter)\
       local list = transStrToTable({\
-        '0',\
-        '1-1', '1-2', '1-3', '1-4',\
-        '2-1', '2-2', '2-3', '2-4',\
-        '3-1', '3-2', '3-3', '3-4',\
-        '4-1', '4-2', '4-3', '4-4',\
-        '5-1', '5-2', '5-3', '5-4',\
-        '6-1', '6-2', '6-3', '6-4',\
-        '7-1', '7-2', '7-3', '7-4',\
-        '8-1', '8-2', '8-3', '8-4',\
-        '9-1', '9-2', '9-3', '9-4',\
-        '10-1', '10-2', '10-3', '10-4',\
-        '11-1', '11-2', '11-3', '11-4',\
-        '12-1', '12-2', '12-3', '12-4',\
-        --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',\
-        --      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',\
-        --      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',\
-        --      'event6-1-sp1', 'event6-1-sp2', 'event6-1-sp3',\
-        --      'event7-1-c1',\
-        --      'event8-1-sp1', 'event8-1-sp2', 'event8-1-sp3',\
-        --      'event9-1-sp1', 'event9-1-sp2', 'event9-1-sp3', 'event9-1-sp4',\
-        --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',\
-        --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',\
-        --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',\
-        --      'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',\
-        --        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',\
-        --        'event15-2-b1', 'event15-2-b2',\
-        'event16-1-a1', 'event16-1-a2', 'event16-1-a3', 'event16-1-a4',\
-        'event16-2-b1', 'event16-2-b2', 'event16-2-b3', 'event16-2-b4',\
+        { name = '0', chapter = 0, section = '0' },\
+        { name = '1-1', chapter = 1, section = '1' }, { name = '1-2', chapter = 1, section = '2' },\
+        { name = '1-3', chapter = 1, section = '3' }, { name = '1-4', chapter = 1, section = '4' },\
+        { name = '2-1', chapter = 2, section = '1' }, { name = '2-2', chapter = 2, section = '2' },\
+        { name = '2-3', chapter = 2, section = '3' }, { name = '2-4', chapter = 2, section = '4' },\
+        { name = '3-1', chapter = 3, section = '1' }, { name = '3-2', chapter = 3, section = '2' },\
+        { name = '3-3', chapter = 3, section = '3' }, { name = '3-4', chapter = 3, section = '4' },\
+        { name = '4-1', chapter = 4, section = '1' }, { name = '4-2', chapter = 4, section = '2' },\
+        { name = '4-3', chapter = 4, section = '3' }, { name = '4-4', chapter = 4, section = '4' },\
+        { name = '5-1', chapter = 5, section = '1' }, { name = '5-2', chapter = 5, section = '2' },\
+        { name = '5-3', chapter = 5, section = '3' }, { name = '5-4', chapter = 5, section = '4' },\
+        { name = '6-1', chapter = 6, section = '1' }, { name = '6-2', chapter = 6, section = '2' },\
+        { name = '6-3', chapter = 6, section = '3' }, { name = '6-4', chapter = 6, section = '4' },\
+        { name = '7-1', chapter = 7, section = '1' }, { name = '7-2', chapter = 7, section = '2' },\
+        { name = '7-3', chapter = 7, section = '3' }, { name = '7-4', chapter = 7, section = '4' },\
+        { name = '8-1', chapter = 8, section = '1' }, { name = '8-2', chapter = 8, section = '2' },\
+        { name = '8-3', chapter = 8, section = '3' }, { name = '8-4', chapter = 8, section = '4' },\
+        { name = '9-1', chapter = 9, section = '1' }, { name = '9-2', chapter = 9, section = '2' },\
+        { name = '9-3', chapter = 9, section = '3' }, { name = '9-4', chapter = 9, section = '4' },\
+        { name = '10-1', chapter = 10, section = '1' }, { name = '10-2', chapter = 10, section = '2' },\
+        { name = '10-3', chapter = 10, section = '3' }, { name = '10-4', chapter = 10, section = '4' },\
+        { name = '11-1', chapter = 11, section = '1' }, { name = '11-2', chapter = 11, section = '2' },\
+        { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },\
+        { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },\
+        { name = '12-3', chapter = 12, section = '3' }, { name = '12-4', chapter = 12, section = '4' },\
+        { name = 'ygxdxq-sp1', chapter = 1, section = 'sp1', type = 'event' },\
+        { name = 'ygxdxq-sp2', chapter = 1, section = 'sp2', type = 'event' },\
+        { name = 'ygxdxq-sp3', chapter = 1, section = 'sp3', type = 'event' },\
       })\
       return list[battleChapter] or '0'\
     end)(settings.battleChapter)\
@@ -18666,233 +13167,233 @@ end\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\13\
--- ES6 co lib in lua 5.1\13\
--- Author: fgfg163@163.com\13\
--- Copyright (c) 2015.11\13\
---\13\
--- This is a lib porting from Co v4 in JavaScript\13\
--- It has some different before.\13\
--- to see https://github.com/tj/co\13\
--- Useage:\13\
--- co(coroutine.create(function()\13\
--- local v1 = coroutine.yield(Promise.resolve(123))\13\
--- local v2 = coroutine.yield({\13\
--- a = Promise.resolve(234),\13\
--- b = Promise.resolve(456),\13\
--- })\13\
--- console.log(v1)\13\
--- console.log(v2)\13\
--- end)):catch(function(err)\13\
--- print(err)\13\
--- end)\13\
-\13\
------------------------------------------------------------------------------\13\
-\13\
-\13\
-local Promise = Promise\13\
-\13\
-if type(Promise) ~= 'table' then\13\
-  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\13\
-end\13\
-\13\
-local unpack = unpack or table.unpack\13\
-local isArray = table.isArray or function(tab)\13\
-  if (type(tab) ~= \"table\") then\13\
-    return false\13\
-  end\13\
-  local length = #tab\13\
-  for k, v in pairs(tab) do\13\
-    if ((type(k) ~= \"number\") or (k > length)) then\13\
-      return false\13\
-    end\13\
-  end\13\
-  return true\13\
-end\13\
-function tryCatch(cb)\13\
-  return xpcall(cb, function(e)\13\
-    return setStackTraceback and\13\
-      (e .. '\\n' .. debug.traceback())\13\
-      or (e)\13\
-  end)\13\
-end\13\
-\13\
-----------------------------------------------------------------------\13\
-function new(gen, ...)\13\
-  return Promise.new(function(resolve, reject)\13\
-    if (type(gen) == 'function') then gen = coroutine.create(gen) end\13\
-    if (type(gen) ~= 'thread') then return resolve(gen) end\13\
-\13\
-    local onResolved, onRejected, next\13\
-\13\
-    onResolved = function(res)\13\
-      local done, ret\13\
-      local coStatus = true\13\
-      local xpcallRes, xpcallErr = tryCatch(function()\13\
-        coStatus, ret = coroutine.resume(gen, res)\13\
-      end)\13\
-      if (not xpcallRes) then\13\
-        return reject(xpcallErr)\13\
-      end\13\
-      if (not coStatus) then\13\
-        return reject(ret)\13\
-      end\13\
-      done = (coroutine.status(gen) == 'dead')\13\
-      next(done, ret)\13\
-    end\13\
-\13\
-    onRejected = function(err)\13\
-      local done, ret\13\
-      local coStatus = true\13\
-      local xpcallRes, xpcallErr = tryCatch(function()\13\
-        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\13\
-      end)\13\
-      if (not xpcallRes) then\13\
-        return reject(xpcallErr)\13\
-      end\13\
-      if (not coStatus) then\13\
-        return reject(xpcallErr)\13\
-      end\13\
-      done = (coroutine.status(gen) == 'dead')\13\
-      next(done, ret)\13\
-    end\13\
-\13\
-    next = function(done, ret)\13\
-      if (done) then\13\
-        return resolve(ret)\13\
-      end\13\
-      local value = toPromise(ret)\13\
-      if (value and (isPromise(value))) then\13\
-        return value.andThen(onResolved, onRejected)\13\
-      end\13\
-      return onResolved(value)\13\
-      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\13\
-      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\13\
-    end\13\
-\13\
-    onResolved();\13\
-  end)\13\
-end\13\
-\13\
-\13\
--- Convert a `yield`ed value into a promise.\13\
---\13\
--- @param {Mixed} obj\13\
--- @return {Promise}\13\
--- @api private\13\
-function toPromise(obj)\13\
-  if (not obj) then return obj end\13\
-\13\
-  if (isPromise(obj)) then return obj end\13\
-  if (isCoroutine(obj)) then return new(obj) end\13\
-  if (type(obj) == 'function') then return thunkToPromise(obj) end\13\
-\13\
-  if (isArray(obj)) then\13\
-    return arrayToPromise(obj)\13\
-  elseif (type(obj) == 'table') then\13\
-    return objectToPromise(obj)\13\
-  end\13\
-\13\
-  return obj\13\
-end\13\
-\13\
--- Check if `obj` is a promise.\13\
---\13\
--- @param {Object} obj\13\
--- @return {Boolean}\13\
--- @api private\13\
-function isPromise(obj)\13\
-  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\13\
-    return true\13\
-  end\13\
-  return false\13\
-end\13\
-\13\
--- Check if `obj` is a generator.\13\
---\13\
--- @param {Mixed} obj\13\
--- @return {Boolean}\13\
--- @api private\13\
-function isCoroutine(obj)\13\
-  if (type(obj) == 'thread') then\13\
-    return true\13\
-  end\13\
-  return false\13\
-end\13\
-\13\
-\13\
--- Convert a thunk to a promise.\13\
---\13\
--- @param {Function}\13\
--- @return {Promise}\13\
--- @api private\13\
-function thunkToPromise(fn)\13\
-  return Promise.new(function(resolve, reject)\13\
-    fn(function(err, res)\13\
-      if (err) then return reject(err) end\13\
-      if (#res > 2) then\13\
-        res = { res[2] }\13\
-      end\13\
-      resolve(res)\13\
-    end)\13\
-  end)\13\
-end\13\
-\13\
--- Convert an array of \"yieldables\" to a promise.\13\
--- Uses `Promise.all()` internally.\13\
---\13\
--- @param {Array} obj\13\
--- @return {Promise}\13\
--- @api private\13\
-function arrayToPromise(obj)\13\
-  local newArr = {}\13\
-  for k, v in ipairs(obj) do\13\
-    table.insert(newArr, toPromise(v))\13\
-  end\13\
-  return Promise.all(newArr);\13\
-end\13\
-\13\
--- Convert an object of \"yieldables\" to a promise.\13\
--- Uses `Promise.all()` internally.\13\
---\13\
--- @param {Object} obj\13\
--- @return {Promise}\13\
--- @api private\13\
-function objectToPromise(obj)\13\
-  local results = {}\13\
-  local promises = {}\13\
-\13\
-  local function defer(promise, key)\13\
-    results[key] = nil\13\
-    table.insert(promises, promise.andThen(function(res)\13\
-      results[key] = res\13\
-    end))\13\
-  end\13\
-\13\
-  for key, value in pairs(obj) do\13\
-    local promise = toPromise(value)\13\
-    if (promise and isPromise(promise)) then\13\
-      defer(promise, key)\13\
-    else\13\
-      results[key] = obj[key]\13\
-    end\13\
-  end\13\
-\13\
-  return Promise.all(promises).andThen(function()\13\
-    return results\13\
-  end)\13\
-end\13\
-\13\
-\13\
-\13\
-return setmetatable({\13\
-  new = new,\13\
-  Promise = Promise,\13\
-}, {\13\
-  __call = function(_, ...)\13\
-    return new(...)\13\
-  end\13\
-})\13\
+package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\
+-- ES6 co lib in lua 5.1\
+-- Author: fgfg163@163.com\
+-- Copyright (c) 2015.11\
+--\
+-- This is a lib porting from Co v4 in JavaScript\
+-- It has some different before.\
+-- to see https://github.com/tj/co\
+-- Useage:\
+-- co(coroutine.create(function()\
+-- local v1 = coroutine.yield(Promise.resolve(123))\
+-- local v2 = coroutine.yield({\
+-- a = Promise.resolve(234),\
+-- b = Promise.resolve(456),\
+-- })\
+-- console.log(v1)\
+-- console.log(v2)\
+-- end)):catch(function(err)\
+-- print(err)\
+-- end)\
+\
+-----------------------------------------------------------------------------\
+\
+\
+local Promise = Promise\
+\
+if type(Promise) ~= 'table' then\
+  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\
+end\
+\
+local unpack = unpack or table.unpack\
+local isArray = table.isArray or function(tab)\
+  if (type(tab) ~= \"table\") then\
+    return false\
+  end\
+  local length = #tab\
+  for k, v in pairs(tab) do\
+    if ((type(k) ~= \"number\") or (k > length)) then\
+      return false\
+    end\
+  end\
+  return true\
+end\
+function tryCatch(cb)\
+  return xpcall(cb, function(e)\
+    return setStackTraceback and\
+      (e .. '\\n' .. debug.traceback())\
+      or (e)\
+  end)\
+end\
+\
+----------------------------------------------------------------------\
+function new(gen, ...)\
+  return Promise.new(function(resolve, reject)\
+    if (type(gen) == 'function') then gen = coroutine.create(gen) end\
+    if (type(gen) ~= 'thread') then return resolve(gen) end\
+\
+    local onResolved, onRejected, next\
+\
+    onResolved = function(res)\
+      local done, ret\
+      local coStatus = true\
+      local xpcallRes, xpcallErr = tryCatch(function()\
+        coStatus, ret = coroutine.resume(gen, res)\
+      end)\
+      if (not xpcallRes) then\
+        return reject(xpcallErr)\
+      end\
+      if (not coStatus) then\
+        return reject(ret)\
+      end\
+      done = (coroutine.status(gen) == 'dead')\
+      next(done, ret)\
+    end\
+\
+    onRejected = function(err)\
+      local done, ret\
+      local coStatus = true\
+      local xpcallRes, xpcallErr = tryCatch(function()\
+        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\
+      end)\
+      if (not xpcallRes) then\
+        return reject(xpcallErr)\
+      end\
+      if (not coStatus) then\
+        return reject(xpcallErr)\
+      end\
+      done = (coroutine.status(gen) == 'dead')\
+      next(done, ret)\
+    end\
+\
+    next = function(done, ret)\
+      if (done) then\
+        return resolve(ret)\
+      end\
+      local value = toPromise(ret)\
+      if (value and (isPromise(value))) then\
+        return value.andThen(onResolved, onRejected)\
+      end\
+      return onResolved(value)\
+      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\
+      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\
+    end\
+\
+    onResolved();\
+  end)\
+end\
+\
+\
+-- Convert a `yield`ed value into a promise.\
+--\
+-- @param {Mixed} obj\
+-- @return {Promise}\
+-- @api private\
+function toPromise(obj)\
+  if (not obj) then return obj end\
+\
+  if (isPromise(obj)) then return obj end\
+  if (isCoroutine(obj)) then return new(obj) end\
+  if (type(obj) == 'function') then return thunkToPromise(obj) end\
+\
+  if (isArray(obj)) then\
+    return arrayToPromise(obj)\
+  elseif (type(obj) == 'table') then\
+    return objectToPromise(obj)\
+  end\
+\
+  return obj\
+end\
+\
+-- Check if `obj` is a promise.\
+--\
+-- @param {Object} obj\
+-- @return {Boolean}\
+-- @api private\
+function isPromise(obj)\
+  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\
+    return true\
+  end\
+  return false\
+end\
+\
+-- Check if `obj` is a generator.\
+--\
+-- @param {Mixed} obj\
+-- @return {Boolean}\
+-- @api private\
+function isCoroutine(obj)\
+  if (type(obj) == 'thread') then\
+    return true\
+  end\
+  return false\
+end\
+\
+\
+-- Convert a thunk to a promise.\
+--\
+-- @param {Function}\
+-- @return {Promise}\
+-- @api private\
+function thunkToPromise(fn)\
+  return Promise.new(function(resolve, reject)\
+    fn(function(err, res)\
+      if (err) then return reject(err) end\
+      if (#res > 2) then\
+        res = { res[2] }\
+      end\
+      resolve(res)\
+    end)\
+  end)\
+end\
+\
+-- Convert an array of \"yieldables\" to a promise.\
+-- Uses `Promise.all()` internally.\
+--\
+-- @param {Array} obj\
+-- @return {Promise}\
+-- @api private\
+function arrayToPromise(obj)\
+  local newArr = {}\
+  for k, v in ipairs(obj) do\
+    table.insert(newArr, toPromise(v))\
+  end\
+  return Promise.all(newArr);\
+end\
+\
+-- Convert an object of \"yieldables\" to a promise.\
+-- Uses `Promise.all()` internally.\
+--\
+-- @param {Object} obj\
+-- @return {Promise}\
+-- @api private\
+function objectToPromise(obj)\
+  local results = {}\
+  local promises = {}\
+\
+  local function defer(promise, key)\
+    results[key] = nil\
+    table.insert(promises, promise.andThen(function(res)\
+      results[key] = res\
+    end))\
+  end\
+\
+  for key, value in pairs(obj) do\
+    local promise = toPromise(value)\
+    if (promise and isPromise(promise)) then\
+      defer(promise, key)\
+    else\
+      results[key] = obj[key]\
+    end\
+  end\
+\
+  return Promise.all(promises).andThen(function()\
+    return results\
+  end)\
+end\
+\
+\
+\
+return setmetatable({\
+  new = new,\
+  Promise = Promise,\
+}, {\
+  __call = function(_, ...)\
+    return new(...)\
+  end\
+})\
 " }
 
 
@@ -19146,343 +13647,343 @@ return Promise\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\13\
-\13\
--- get the time\13\
-local gettimeFunc = function()\13\
-  return socket.gettime() * 1000\13\
-end\13\
--- sleep\13\
-local mSleep = mSleep or function(n)\13\
-  socket.select(nil, nil, n / 1000)\13\
-end\13\
-\13\
--- fwGetPressedButton\13\
--- keepScreen(true);\13\
-\13\
-local function isEmpty(tab)\13\
-  for _, v in pairs(tab) do\13\
-    return false\13\
-  end\13\
-  return true\13\
-end\13\
-\13\
-\13\
-\13\
-\13\
-\13\
-\13\
-\13\
-local function tryCatch(cb)\13\
-  return xpcall(cb, function(e)\13\
-    return stackTraceback and\13\
-      (e .. '\\n' .. debug.traceback())\13\
-      or (e)\13\
-  end)\13\
-end\13\
-\13\
-local function bindSelf(func, self)\13\
-  return function(...) return func(self, ...) end\13\
-end\13\
-\13\
-local getEventId = (function()\13\
-  local id = 0\13\
-  return function()\13\
-    id = id + 1\13\
-    return id\13\
-  end\13\
-end)()\13\
-\13\
--- main query\13\
-local eventQuery = {}\13\
--- sub query\13\
-local screenListenerQuery = {}\13\
-local screenListenerQueryIndex = {}\13\
-local buttonListenerQuery = {}\13\
-local buttonListenerQueryIndex = {}\13\
-local timerQuery = {}\13\
-local timerQueryIndex = {}\13\
-\13\
-\13\
-function getEventObj(func, time, isInterval, ms)\13\
-  return {\13\
-    id = getEventId() or 0,\13\
-    time = time or 0,\13\
-    func = func,\13\
-    isInterval = isInterval or false,\13\
-    ms = ms or 0,\13\
-    drop = false,\13\
-  }\13\
-end\13\
-\13\
-function getScreenEventObj(checker, func)\13\
-  return {\13\
-    id = getEventId() or 0,\13\
-    checker = checker,\13\
-    func = func,\13\
-    drop = false,\13\
-  }\13\
-end\13\
-\13\
-function getButtonEventObj(btnId, func)\13\
-  return {\13\
-    id = getEventId() or 0,\13\
-    btnId = btnId,\13\
-    func = func,\13\
-    drop = false,\13\
-  }\13\
-end\13\
-\13\
-\13\
-\13\
-\13\
-function setImmediate(func)\13\
-  if (type(func) ~= 'function') then return 0 end\13\
-  local eventObj = getEventObj(func)\13\
-  table.insert(timerQuery, eventObj)\13\
-  return eventObj.id\13\
-end\13\
-\13\
-function setTimeout(func, ms)\13\
-  if (type(func) ~= 'function') then return 0 end\13\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
-  local time = gettimeFunc() + ms\13\
-  local eventObj = getEventObj(func, time)\13\
-  table.insert(timerQuery, eventObj)\13\
-  timerQueryIndex[eventObj.id] = eventObj\13\
-  return eventObj.id\13\
-end\13\
-\13\
-function clearTimeout(id)\13\
-  local theEventObj = timerQueryIndex[id]\13\
-  if (theEventObj) then\13\
-    theEventObj.drop = true\13\
-    timerQueryIndex[id] = nil\13\
-  end\13\
-end\13\
-\13\
-function setInterval(func, ms)\13\
-  if (type(func) ~= 'function') then return 0 end\13\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
-  local time = gettimeFunc() + ms\13\
-  local eventObj = getEventObj(func, time, true, ms)\13\
-  table.insert(timerQuery, eventObj)\13\
-  timerQueryIndex[eventObj.id] = eventObj\13\
-  return eventObj.id\13\
-end\13\
-\13\
--- param: checker, func\13\
-function setScreenListener(...)\13\
-  local args = { ... }\13\
-  local checker = table.remove(args, 1)\13\
-  local func = table.remove(args, 1)\13\
-\13\
-  if (type(checker) ~= 'function') then return 0 end\13\
-  if (type(func) ~= 'function') then return 0 end\13\
-  local screenEventObj = getScreenEventObj(checker, func)\13\
-  table.insert(screenListenerQuery, screenEventObj)\13\
-  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\13\
-  return screenEventObj.id\13\
-end\13\
-\13\
-function clearScreenListener(id)\13\
-  local theEventObj = screenListenerQueryIndex[id]\13\
-  if (theEventObj) then\13\
-    theEventObj.drop = true\13\
-  end\13\
-end\13\
-\13\
-function setButotnListener(btnId, func)\13\
-  if (type(func) ~= 'function') then return 0 end\13\
-  local btnEventObj = getButtonEventObj(btnId, func)\13\
-  table.insert(buttonListenerQuery, btnEventObj)\13\
-  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\13\
-  return btnEventObj.id\13\
-end\13\
-\13\
-function clearButotnListener(id)\13\
-  local theEventObj = buttonListenerQueryIndex[id]\13\
-  if (theEventObj) then\13\
-    theEventObj.drop = true\13\
-  end\13\
-end\13\
-\13\
-function clearListenersOnButton(btnId)\13\
-  for key = 1, #buttonListenerQuery do\13\
-    local value = buttonListenerQuery[key]\13\
-    if (value.btnId ~= btnId) then\13\
-      value.drop = true\13\
-    end\13\
-  end\13\
-end\13\
-\13\
-function run()\13\
-  local continue = 0\13\
-  local thisTime = 0\13\
-  local sleepTime = 3600000\13\
-\13\
-\13\
-  repeat\13\
-    continue = 0\13\
-    sleepTime = 3600000\13\
-\13\
-    -- run eventQuery\13\
-    if #eventQuery > 0 then\13\
-      for key = 1, #eventQuery do\13\
-        local value = eventQuery[key]\13\
-        value.func()\13\
-      end\13\
-      eventQuery = {}\13\
-    end\13\
-\13\
-\13\
-    -- read event from other Query\13\
-    thisTime = gettimeFunc()\13\
-\13\
-    -- timeQuery\13\
-    if (#timerQuery > 0) then\13\
-      continue = continue + 1\13\
-      local hasDropEvent = false\13\
-      for key = 1, #timerQuery do\13\
-        local value = timerQuery[key]\13\
-        if (not value.drop) then\13\
-          if (value.time <= thisTime) then\13\
-            table.insert(eventQuery, value)\13\
-\13\
-            -- setInterval event\13\
-            if (value.isInterval) then\13\
-              value.drop = false\13\
-              repeat\13\
-                value.time = value.time + value.ms\13\
-              until (value.time > thisTime)\13\
-              sleepTime = math.min(sleepTime, value.time - thisTime)\13\
-            else\13\
-              value.drop = true\13\
-              hasDropEvent = true\13\
-            end\13\
-          else\13\
-            sleepTime = math.min(sleepTime, value.time - thisTime)\13\
-          end\13\
-        else\13\
-          hasDropEvent = true\13\
-          timerQueryIndex[value.id] = nil\13\
-        end\13\
-      end\13\
-\13\
-      if hasDropEvent then\13\
-        local newTimeQuery = {}\13\
-        for key = 1, #timerQuery do\13\
-          local value = timerQuery[key]\13\
-          if not value.drop then\13\
-            table.insert(newTimeQuery, value)\13\
-          else\13\
-            timerQueryIndex[value.id] = nil\13\
-          end\13\
-        end\13\
-        timerQuery = newTimeQuery\13\
-      end\13\
-    end\13\
-\13\
-    -- screenListenerQuery\13\
-    if #screenListenerQuery > 0 then\13\
-      keepScreen(false);\13\
-      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\13\
-      local hasDropEvent = false\13\
-      continue = continue + 1\13\
-      sleepTime = math.min(sleepTime, 200)\13\
-      getColor(0, 0)\13\
-      keepScreen(true);\13\
-      for key = 1, #screenListenerQuery do\13\
-        local value = screenListenerQuery[key]\13\
-        if not value.drop then\13\
-          if (value.checker()) then\13\
-            table.insert(eventQuery, value)\13\
-            if (value.isOnce) then\13\
-              value.drop = true\13\
-              hasDropEvent = true\13\
-            end\13\
-          end\13\
-        else\13\
-          hasDropEvent = true\13\
-        end\13\
-      end\13\
-      keepScreen(false);\13\
-\13\
-      if (hasDropEvent) then\13\
-        local newScreenListenerQuery = {}\13\
-        for key = 1, #screenListenerQuery do\13\
-          local value = screenListenerQuery[key]\13\
-          if (not value.drop) then\13\
-            table.insert(newScreenListenerQuery, value)\13\
-          else\13\
-            screenListenerQueryIndex[value.id] = nil\13\
-          end\13\
-        end\13\
-        screenListenerQuery = newScreenListenerQuery\13\
-      end\13\
-    end\13\
-\13\
-    -- buttonListenerQuery\13\
-    if (#buttonListenerQuery > 0) then\13\
-      sleepTime = math.min(sleepTime, 200)\13\
-      continue = continue + 1\13\
-      local btnIdList = {}\13\
-      local hasBtnClick = false\13\
-      local hasDropEvent = false\13\
-      while (true) do\13\
-        local btnId = fwGetPressedButton()\13\
-        if (type(btnId) ~= 'string') then break end\13\
-        btnIdList[btnId] = btnId\13\
-        hasBtnClick = true\13\
-      end\13\
-      if (hasBtnClick) then\13\
-        for key = 1, #buttonListenerQuery do\13\
-          local value = buttonListenerQuery[key]\13\
-          if (not value.drop) then\13\
-            if (btnIdList[value.btnId] == value.btnId) then\13\
-              table.insert(eventQuery, value)\13\
-            end\13\
-          else\13\
-            hasDropEvent = true\13\
-          end\13\
-        end\13\
-\13\
-        if (hasDropEvent) then\13\
-          local newButtonListenerQuery = {}\13\
-          for key = 1, #buttonListenerQuery do\13\
-            local value = buttonListenerQuery[key]\13\
-            if (not value.drop) then\13\
-              table.insert(newButtonListenerQuery, value)\13\
-            else\13\
-              buttonListenerQueryIndex[value.id] = nil\13\
-            end\13\
-          end\13\
-          buttonListenerQuery = newButtonListenerQuery\13\
-        end\13\
-      end\13\
-    end\13\
-\13\
-    if (luaExisted) then\13\
-      break\13\
-    end\13\
-    if (#eventQuery <= 0) then\13\
-      mSleep(sleepTime)\13\
-    end\13\
-  until (false)\13\
-end\13\
-\13\
-return {\13\
-  setImmediate = setImmediate,\13\
-  setTimeout = setTimeout,\13\
-  clearTimeout = clearTimeout,\13\
-  setInterval = setInterval,\13\
-  clearInterval = clearTimeout,\13\
-  setScreenListener = setScreenListener,\13\
-  clearScreenListener = clearScreenListener,\13\
-  setButotnListener = setButotnListener,\13\
-  clearListenersOnButton = clearListenersOnButton,\13\
-  clearButotnListener = clearButotnListener,\13\
-  run = run,\13\
+package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\
+\
+-- get the time\
+local gettimeFunc = function()\
+  return socket.gettime() * 1000\
+end\
+-- sleep\
+local mSleep = mSleep or function(n)\
+  socket.select(nil, nil, n / 1000)\
+end\
+\
+-- fwGetPressedButton\
+-- keepScreen(true);\
+\
+local function isEmpty(tab)\
+  for _, v in pairs(tab) do\
+    return false\
+  end\
+  return true\
+end\
+\
+\
+\
+\
+\
+\
+\
+local function tryCatch(cb)\
+  return xpcall(cb, function(e)\
+    return stackTraceback and\
+      (e .. '\\n' .. debug.traceback())\
+      or (e)\
+  end)\
+end\
+\
+local function bindSelf(func, self)\
+  return function(...) return func(self, ...) end\
+end\
+\
+local getEventId = (function()\
+  local id = 0\
+  return function()\
+    id = id + 1\
+    return id\
+  end\
+end)()\
+\
+-- main query\
+local eventQuery = {}\
+-- sub query\
+local screenListenerQuery = {}\
+local screenListenerQueryIndex = {}\
+local buttonListenerQuery = {}\
+local buttonListenerQueryIndex = {}\
+local timerQuery = {}\
+local timerQueryIndex = {}\
+\
+\
+function getEventObj(func, time, isInterval, ms)\
+  return {\
+    id = getEventId() or 0,\
+    time = time or 0,\
+    func = func,\
+    isInterval = isInterval or false,\
+    ms = ms or 0,\
+    drop = false,\
+  }\
+end\
+\
+function getScreenEventObj(checker, func)\
+  return {\
+    id = getEventId() or 0,\
+    checker = checker,\
+    func = func,\
+    drop = false,\
+  }\
+end\
+\
+function getButtonEventObj(btnId, func)\
+  return {\
+    id = getEventId() or 0,\
+    btnId = btnId,\
+    func = func,\
+    drop = false,\
+  }\
+end\
+\
+\
+\
+\
+function setImmediate(func)\
+  if (type(func) ~= 'function') then return 0 end\
+  local eventObj = getEventObj(func)\
+  table.insert(timerQuery, eventObj)\
+  return eventObj.id\
+end\
+\
+function setTimeout(func, ms)\
+  if (type(func) ~= 'function') then return 0 end\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
+  local time = gettimeFunc() + ms\
+  local eventObj = getEventObj(func, time)\
+  table.insert(timerQuery, eventObj)\
+  timerQueryIndex[eventObj.id] = eventObj\
+  return eventObj.id\
+end\
+\
+function clearTimeout(id)\
+  local theEventObj = timerQueryIndex[id]\
+  if (theEventObj) then\
+    theEventObj.drop = true\
+    timerQueryIndex[id] = nil\
+  end\
+end\
+\
+function setInterval(func, ms)\
+  if (type(func) ~= 'function') then return 0 end\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
+  local time = gettimeFunc() + ms\
+  local eventObj = getEventObj(func, time, true, ms)\
+  table.insert(timerQuery, eventObj)\
+  timerQueryIndex[eventObj.id] = eventObj\
+  return eventObj.id\
+end\
+\
+-- param: checker, func\
+function setScreenListener(...)\
+  local args = { ... }\
+  local checker = table.remove(args, 1)\
+  local func = table.remove(args, 1)\
+\
+  if (type(checker) ~= 'function') then return 0 end\
+  if (type(func) ~= 'function') then return 0 end\
+  local screenEventObj = getScreenEventObj(checker, func)\
+  table.insert(screenListenerQuery, screenEventObj)\
+  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\
+  return screenEventObj.id\
+end\
+\
+function clearScreenListener(id)\
+  local theEventObj = screenListenerQueryIndex[id]\
+  if (theEventObj) then\
+    theEventObj.drop = true\
+  end\
+end\
+\
+function setButotnListener(btnId, func)\
+  if (type(func) ~= 'function') then return 0 end\
+  local btnEventObj = getButtonEventObj(btnId, func)\
+  table.insert(buttonListenerQuery, btnEventObj)\
+  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\
+  return btnEventObj.id\
+end\
+\
+function clearButotnListener(id)\
+  local theEventObj = buttonListenerQueryIndex[id]\
+  if (theEventObj) then\
+    theEventObj.drop = true\
+  end\
+end\
+\
+function clearListenersOnButton(btnId)\
+  for key = 1, #buttonListenerQuery do\
+    local value = buttonListenerQuery[key]\
+    if (value.btnId ~= btnId) then\
+      value.drop = true\
+    end\
+  end\
+end\
+\
+function run()\
+  local continue = 0\
+  local thisTime = 0\
+  local sleepTime = 3600000\
+\
+\
+  repeat\
+    continue = 0\
+    sleepTime = 3600000\
+\
+    -- run eventQuery\
+    if #eventQuery > 0 then\
+      for key = 1, #eventQuery do\
+        local value = eventQuery[key]\
+        value.func()\
+      end\
+      eventQuery = {}\
+    end\
+\
+\
+    -- read event from other Query\
+    thisTime = gettimeFunc()\
+\
+    -- timeQuery\
+    if (#timerQuery > 0) then\
+      continue = continue + 1\
+      local hasDropEvent = false\
+      for key = 1, #timerQuery do\
+        local value = timerQuery[key]\
+        if (not value.drop) then\
+          if (value.time <= thisTime) then\
+            table.insert(eventQuery, value)\
+\
+            -- setInterval event\
+            if (value.isInterval) then\
+              value.drop = false\
+              repeat\
+                value.time = value.time + value.ms\
+              until (value.time > thisTime)\
+              sleepTime = math.min(sleepTime, value.time - thisTime)\
+            else\
+              value.drop = true\
+              hasDropEvent = true\
+            end\
+          else\
+            sleepTime = math.min(sleepTime, value.time - thisTime)\
+          end\
+        else\
+          hasDropEvent = true\
+          timerQueryIndex[value.id] = nil\
+        end\
+      end\
+\
+      if hasDropEvent then\
+        local newTimeQuery = {}\
+        for key = 1, #timerQuery do\
+          local value = timerQuery[key]\
+          if not value.drop then\
+            table.insert(newTimeQuery, value)\
+          else\
+            timerQueryIndex[value.id] = nil\
+          end\
+        end\
+        timerQuery = newTimeQuery\
+      end\
+    end\
+\
+    -- screenListenerQuery\
+    if #screenListenerQuery > 0 then\
+      keepScreen(false);\
+      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\
+      local hasDropEvent = false\
+      continue = continue + 1\
+      sleepTime = math.min(sleepTime, 200)\
+      getColor(0, 0)\
+      keepScreen(true);\
+      for key = 1, #screenListenerQuery do\
+        local value = screenListenerQuery[key]\
+        if not value.drop then\
+          if (value.checker()) then\
+            table.insert(eventQuery, value)\
+            if (value.isOnce) then\
+              value.drop = true\
+              hasDropEvent = true\
+            end\
+          end\
+        else\
+          hasDropEvent = true\
+        end\
+      end\
+      keepScreen(false);\
+\
+      if (hasDropEvent) then\
+        local newScreenListenerQuery = {}\
+        for key = 1, #screenListenerQuery do\
+          local value = screenListenerQuery[key]\
+          if (not value.drop) then\
+            table.insert(newScreenListenerQuery, value)\
+          else\
+            screenListenerQueryIndex[value.id] = nil\
+          end\
+        end\
+        screenListenerQuery = newScreenListenerQuery\
+      end\
+    end\
+\
+    -- buttonListenerQuery\
+    if (#buttonListenerQuery > 0) then\
+      sleepTime = math.min(sleepTime, 200)\
+      continue = continue + 1\
+      local btnIdList = {}\
+      local hasBtnClick = false\
+      local hasDropEvent = false\
+      while (true) do\
+        local btnId = fwGetPressedButton()\
+        if (type(btnId) ~= 'string') then break end\
+        btnIdList[btnId] = btnId\
+        hasBtnClick = true\
+      end\
+      if (hasBtnClick) then\
+        for key = 1, #buttonListenerQuery do\
+          local value = buttonListenerQuery[key]\
+          if (not value.drop) then\
+            if (btnIdList[value.btnId] == value.btnId) then\
+              table.insert(eventQuery, value)\
+            end\
+          else\
+            hasDropEvent = true\
+          end\
+        end\
+\
+        if (hasDropEvent) then\
+          local newButtonListenerQuery = {}\
+          for key = 1, #buttonListenerQuery do\
+            local value = buttonListenerQuery[key]\
+            if (not value.drop) then\
+              table.insert(newButtonListenerQuery, value)\
+            else\
+              buttonListenerQueryIndex[value.id] = nil\
+            end\
+          end\
+          buttonListenerQuery = newButtonListenerQuery\
+        end\
+      end\
+    end\
+\
+    if (luaExisted) then\
+      break\
+    end\
+    if (#eventQuery <= 0) then\
+      mSleep(sleepTime)\
+    end\
+  until (false)\
+end\
+\
+return {\
+  setImmediate = setImmediate,\
+  setTimeout = setTimeout,\
+  clearTimeout = clearTimeout,\
+  setInterval = setInterval,\
+  clearInterval = clearTimeout,\
+  setScreenListener = setScreenListener,\
+  clearScreenListener = clearScreenListener,\
+  setButotnListener = setButotnListener,\
+  clearListenersOnButton = clearListenersOnButton,\
+  clearButotnListener = clearButotnListener,\
+  run = run,\
 }" }
 
 
@@ -19989,7 +14490,8 @@ end\
 myTable.map = myTable.map or function(tab, callback)\
   local values = {}\
   for k, v in ipairs(tab) do\
-    myTable.insert(values, callback(v, k, tab))\
+    local value = callback(v, k, tab)\
+    myTable.insert(values, value)\
   end\
   return values\
 end\
@@ -20024,6 +14526,29 @@ myTable.sortByKey = myTable.sortByKey or function(tab, call)\
     myTable.insert(newTable, { key, tab[key] })\
   end\
   return newTable\
+end\
+\
+-- 对数字和字符串的数组同时排序，数字会从小到大放在前面，之后字符串按照字典排序\
+myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)\
+  local numTab = {}\
+  local strTab = {}\
+  for k = 1, #tab do\
+    if type(tab[k]) == 'number' then\
+      table.insert(numTab, tab[k])\
+    elseif type(tab[k]) == 'string' then\
+      table.insert(strTab, tab[k])\
+    end\
+  end\
+  table.sort(numTab)\
+  table.sort(strTab)\
+  local result = {}\
+  for k = 1, #numTab do\
+    table.insert(result, numTab[k])\
+  end\
+  for k = 1, #strTab do\
+    table.insert(result, strTab[k])\
+  end\
+  return result\
 end\
 \
 myTable.findIndex = myTable.findIndex or function(tab, call)\
@@ -20219,26 +14744,33 @@ end\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/string-polyfill.lua"] = { path = "./lib/string-polyfill.lua", name = "./lib/string-polyfill.lua", source = "string.split = string.split or function(str, d)\
+package.sourceCode["./lib/string-polyfill.lua"] = { path = "./lib/string-polyfill.lua", name = "./lib/string-polyfill.lua", source = "local myString = {}\
+do\
+  for key, value in pairs(string) do\
+    myString[key] = string[key]\
+  end\
+end\
+\
+myString.split = myString.split or function(str, d)\
   if str == '' and d ~= '' then\
     return { str }\
   elseif str ~= '' and d == '' then\
     local lst = {}\
-    for key = 1, string.len(str) do\
-      table.insert(lst, string.sub(str, key, 1))\
+    for key = 1, myString.len(str) do\
+      table.insert(lst, myString.sub(str, key, 1))\
     end\
     return lst\
   else\
     local lst = {}\
-    local n = string.len(str) --长度\
+    local n = myString.len(str) --长度\
     local start = 1\
     while start <= n do\
-      local i = string.find(str, d, start) -- find 'next' 0\
+      local i = myString.find(str, d, start) -- find 'next' 0\
       if i == nil then\
-        table.insert(lst, string.sub(str, start, n))\
+        table.insert(lst, myString.sub(str, start, n))\
         break\
       end\
-      table.insert(lst, string.sub(str, start, i - 1))\
+      table.insert(lst, myString.sub(str, start, i - 1))\
       if i == n then\
         table.insert(lst, '')\
         break\
@@ -20249,31 +14781,38 @@ package.sourceCode["./lib/string-polyfill.lua"] = { path = "./lib/string-polyfil
   end\
 end\
 \
-string.startWith = string.startWith or function(str, pattern)\
-  if (type(str) ~= 'string') then\
+myString.startWith = myString.startWith or function(str, pattern)\
+  if type(str) ~= 'myString' then\
     return false\
   end\
-  if (type(pattern) ~= 'string') then\
+  if type(pattern) ~= 'string' then\
     return false\
   end\
-  if (string.sub(str, 1, string.len(pattern)) == pattern) then\
+  if myString.sub(str, 1, myString.len(pattern)) == pattern then\
     return true\
   end\
   return false\
 end\
 \
-string.endWith = string.endWith or function(str, pattern)\
-  if (type(str) ~= 'string') then\
+myString.endWith = myString.endWith or function(str, pattern)\
+  if type(str) ~= 'string' then\
     return false\
   end\
-  if (type(pattern) ~= 'string') then\
+  if type(pattern) ~= 'string' then\
     return false\
   end\
-  if (string.sub(str, 1, (0 - string.len(pattern))) == pattern) then\
+  if myString.sub(str, 1, (0 - myString.len(pattern))) == pattern then\
     return true\
   end\
   return false\
-end" }
+end\
+\
+do\
+  for key, value in pairs(myString) do\
+    string[key] = string[key] or myString[key]\
+  end\
+end\
+" }
 
 
 package.preload["TSLib"] = assert(load("\27TS1R\0\1\4\4\4\8\0\25�\13\
@@ -20796,175 +15335,175 @@ W\0\9\8\8 �T�#�rV4\18q+G6�g�\30H[�.\26��\19h\30�}Si'=F��V��t!\22�`ay�Gab\0\0\0��
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\13\
-\13\
-math.mod = math.mod or function(m, n)\13\
-  local a1 = math.modf(m / n)\13\
-  return m - a1 * n\13\
-end\13\
-\13\
-local getLength = table.length or function(target)\13\
-  local length = 0\13\
-  for k, v in ipairs(target) do\13\
-    length = k\13\
-  end\13\
-  return length\13\
-end\13\
-\13\
-local isArray = table.isArray or function(tab)\13\
-  if (type(tab) ~= \"table\") then\13\
-    return false\13\
-  end\13\
-  local length = getLength(tab)\13\
-  for k, v in pairs(tab) do\13\
-    if ((type(k) ~= \"number\") or (k > length)) then\13\
-      return false\13\
-    end\13\
-  end\13\
-  return true\13\
-end\13\
-\13\
-local __console = console or {}\13\
-\13\
-local function runTable(tab, space)\13\
-  if type(tab) == 'number' then\13\
-    return { tostring(tab) }\13\
-  end\13\
-  if type(tab) == 'string' then\13\
-    if string.len(tab) > 1000 then\13\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
-    end\13\
-    return { '\"' .. tab .. '\"' }\13\
-  end\13\
-  if type(tab) == 'boolean' then\13\
-    if (tab) then\13\
-      return { 'true' }\13\
-    else\13\
-      return { 'false' }\13\
-    end\13\
-  end\13\
-  if type(tab) ~= 'table' then\13\
-    return { '(' .. type(tab) .. ')' }\13\
-  end\13\
-  if type(space) == 'number' then\13\
-    space = string.rep(' ', space)\13\
-  end\13\
-  if type(space) ~= 'string' then\13\
-    space = ''\13\
-  end\13\
-\13\
-  local resultStrList = {}\13\
-  local newTabPairs = {}\13\
-  local newTabPairsKeys = {}\13\
-  local tabIsArray = true\13\
-  local tabLength = 0\13\
-  local hasSubTab = false\13\
-\13\
-  -- 将 table 的数组部分取出\13\
-  for k, v in ipairs(tab) do\13\
-    tabLength = k\13\
-    table.insert(newTabPairs, { k, runTable(v, space) })\13\
-    if (type(v) == 'table') then\13\
-      hasSubTab = true\13\
-    end\13\
-  end\13\
-\13\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
-  for k, v in pairs(tab) do\13\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
-      tabIsArray = false\13\
-      table.insert(newTabPairsKeys, k)\13\
-      if (type(v) == 'table') then\13\
-        hasSubTab = true\13\
-      end\13\
-    end\13\
-  end\13\
-\13\
-  table.sort(newTabPairsKeys)\13\
-  for _, k in ipairs(newTabPairsKeys) do\13\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
-  end\13\
-\13\
-  if (tabIsArray) then\13\
-    local newTabArr = newTabPairs\13\
-\13\
-    if (hasSubTab) then\13\
-      table.insert(resultStrList, '[')\13\
-      for k, v in ipairs(newTabArr) do\13\
-        local v2Length = getLength(v[2])\13\
-        v[2][v2Length] = v[2][v2Length] .. ','\13\
-        for k2, v2 in ipairs(v[2]) do\13\
-          table.insert(resultStrList, space .. v2)\13\
-        end\13\
-      end\13\
-      table.insert(resultStrList, ']')\13\
-    else\13\
-      local theStr = {}\13\
-      for k, v in ipairs(newTabPairs) do\13\
-        table.insert(theStr, v[2][1])\13\
-      end\13\
-      local childStr = table.concat(theStr, ', ')\13\
-      table.insert(resultStrList, '[' .. childStr .. ']')\13\
-    end\13\
-  else\13\
-    local newTabArr = newTabPairs\13\
-\13\
-    table.insert(resultStrList, '{')\13\
-    for k, v in ipairs(newTabArr) do\13\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
-      local v2Length = getLength(v[2])\13\
-      v[2][v2Length] = v[2][v2Length] .. ','\13\
-      for k2, v2 in ipairs(v[2]) do\13\
-        table.insert(resultStrList, space .. v2 .. '')\13\
-      end\13\
-    end\13\
-    table.insert(resultStrList, '}')\13\
-  end\13\
-  return resultStrList\13\
-end\13\
-\13\
-\13\
-__console.log = __console.log or function(obj)\13\
-  local res = runTable(obj, 2)\13\
-  if useNlog then\13\
-    local info = debug.getinfo(2, 'Sl')\13\
-    local lineInfo = ''\13\
-    if info.currentline then\13\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':'\13\
-    end\13\
-    nLog(lineInfo)\13\
-    local tmp = {}\13\
-    local resLength = #res\13\
-    for i = 1, resLength do\13\
-      table.insert(tmp, res[i])\13\
-      if math.mod(i, 10) == 0 or i == resLength then\13\
-        nLog(table.concat(tmp, \"\\n\"))\13\
-        tmp = {}\13\
-      end\13\
-    end\13\
-  end\13\
-end\13\
-\13\
-__console.getJsStr = function(obj)\13\
-  return table.concat(runTable(obj, 2), \",\\n\")\13\
-end\13\
-\13\
-__console.color = function(value)\13\
-  local resultStr = ''\13\
-  local color = getColor(value[1], value[2])\13\
-  local oldColor = value[3]\13\
-  local colorStr = string.format('0x%06x', color)\13\
-  local oldColorStr = string.format('0x%06x', oldColor)\13\
-  value[3] = oldColorStr\13\
-  if (color == oldColor) then\13\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
-  else\13\
-    value[3] = colorStr\13\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
-  end\13\
-  __console.log(resultStr)\13\
-end\13\
-\13\
+package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\
+\
+math.mod = math.mod or function(m, n)\
+  local a1 = math.modf(m / n)\
+  return m - a1 * n\
+end\
+\
+local getLength = table.length or function(target)\
+  local length = 0\
+  for k, v in ipairs(target) do\
+    length = k\
+  end\
+  return length\
+end\
+\
+local isArray = table.isArray or function(tab)\
+  if (type(tab) ~= \"table\") then\
+    return false\
+  end\
+  local length = getLength(tab)\
+  for k, v in pairs(tab) do\
+    if ((type(k) ~= \"number\") or (k > length)) then\
+      return false\
+    end\
+  end\
+  return true\
+end\
+\
+local __console = console or {}\
+\
+local function runTable(tab, space)\
+  if type(tab) == 'number' then\
+    return { tostring(tab) }\
+  end\
+  if type(tab) == 'string' then\
+    if string.len(tab) > 1000 then\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
+    end\
+    return { '\"' .. tab .. '\"' }\
+  end\
+  if type(tab) == 'boolean' then\
+    if (tab) then\
+      return { 'true' }\
+    else\
+      return { 'false' }\
+    end\
+  end\
+  if type(tab) ~= 'table' then\
+    return { '(' .. type(tab) .. ')' }\
+  end\
+  if type(space) == 'number' then\
+    space = string.rep(' ', space)\
+  end\
+  if type(space) ~= 'string' then\
+    space = ''\
+  end\
+\
+  local resultStrList = {}\
+  local newTabPairs = {}\
+  local newTabPairsKeys = {}\
+  local tabIsArray = true\
+  local tabLength = 0\
+  local hasSubTab = false\
+\
+  -- 将 table 的数组部分取出\
+  for k, v in ipairs(tab) do\
+    tabLength = k\
+    table.insert(newTabPairs, { k, runTable(v, space) })\
+    if (type(v) == 'table') then\
+      hasSubTab = true\
+    end\
+  end\
+\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\
+  for k, v in pairs(tab) do\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
+      tabIsArray = false\
+      table.insert(newTabPairsKeys, k)\
+      if (type(v) == 'table') then\
+        hasSubTab = true\
+      end\
+    end\
+  end\
+\
+  table.sort(newTabPairsKeys)\
+  for _, k in ipairs(newTabPairsKeys) do\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
+  end\
+\
+  if (tabIsArray) then\
+    local newTabArr = newTabPairs\
+\
+    if (hasSubTab) then\
+      table.insert(resultStrList, '[')\
+      for k, v in ipairs(newTabArr) do\
+        local v2Length = getLength(v[2])\
+        v[2][v2Length] = v[2][v2Length] .. ','\
+        for k2, v2 in ipairs(v[2]) do\
+          table.insert(resultStrList, space .. v2)\
+        end\
+      end\
+      table.insert(resultStrList, ']')\
+    else\
+      local theStr = {}\
+      for k, v in ipairs(newTabPairs) do\
+        table.insert(theStr, v[2][1])\
+      end\
+      local childStr = table.concat(theStr, ', ')\
+      table.insert(resultStrList, '[' .. childStr .. ']')\
+    end\
+  else\
+    local newTabArr = newTabPairs\
+\
+    table.insert(resultStrList, '{')\
+    for k, v in ipairs(newTabArr) do\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\
+      local v2Length = getLength(v[2])\
+      v[2][v2Length] = v[2][v2Length] .. ','\
+      for k2, v2 in ipairs(v[2]) do\
+        table.insert(resultStrList, space .. v2 .. '')\
+      end\
+    end\
+    table.insert(resultStrList, '}')\
+  end\
+  return resultStrList\
+end\
+\
+\
+__console.log = __console.log or function(obj)\
+  local res = runTable(obj, 2)\
+  if useNlog then\
+    local info = debug.getinfo(2, 'Sl')\
+    local lineInfo = ''\
+    if info.currentline then\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
+    end\
+    nLog(lineInfo)\
+    local tmp = {}\
+    local resLength = #res\
+    for i = 1, resLength do\
+      table.insert(tmp, res[i])\
+      if math.mod(i, 10) == 0 or i == resLength then\
+        nLog(table.concat(tmp, \"\\n\"))\
+        tmp = {}\
+      end\
+    end\
+  end\
+end\
+\
+__console.getJsStr = function(obj)\
+  return table.concat(runTable(obj, 2), \",\\n\")\
+end\
+\
+__console.color = function(value)\
+  local resultStr = ''\
+  local color = getColor(value[1], value[2])\
+  local oldColor = value[3]\
+  local colorStr = string.format('0x%06x', color)\
+  local oldColorStr = string.format('0x%06x', oldColor)\
+  value[3] = oldColorStr\
+  if (color == oldColor) then\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
+  else\
+    value[3] = colorStr\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
+  end\
+  __console.log(resultStr)\
+end\
+\
 console = __console" }
 
 
@@ -21225,175 +15764,175 @@ return function(optionParam)\
 end", "@" .."lua-require.lua"))
 
 
-package.preload["console"] = assert(load("local nLog = nLog or function() end\13\
-\13\
-math.mod = math.mod or function(m, n)\13\
-  local a1 = math.modf(m / n)\13\
-  return m - a1 * n\13\
-end\13\
-\13\
-local getLength = table.length or function(target)\13\
-  local length = 0\13\
-  for k, v in ipairs(target) do\13\
-    length = k\13\
-  end\13\
-  return length\13\
-end\13\
-\13\
-local isArray = table.isArray or function(tab)\13\
-  if (type(tab) ~= \"table\") then\13\
-    return false\13\
-  end\13\
-  local length = getLength(tab)\13\
-  for k, v in pairs(tab) do\13\
-    if ((type(k) ~= \"number\") or (k > length)) then\13\
-      return false\13\
-    end\13\
-  end\13\
-  return true\13\
-end\13\
-\13\
-local __console = console or {}\13\
-\13\
-local function runTable(tab, space)\13\
-  if type(tab) == 'number' then\13\
-    return { tostring(tab) }\13\
-  end\13\
-  if type(tab) == 'string' then\13\
-    if string.len(tab) > 1000 then\13\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
-    end\13\
-    return { '\"' .. tab .. '\"' }\13\
-  end\13\
-  if type(tab) == 'boolean' then\13\
-    if (tab) then\13\
-      return { 'true' }\13\
-    else\13\
-      return { 'false' }\13\
-    end\13\
-  end\13\
-  if type(tab) ~= 'table' then\13\
-    return { '(' .. type(tab) .. ')' }\13\
-  end\13\
-  if type(space) == 'number' then\13\
-    space = string.rep(' ', space)\13\
-  end\13\
-  if type(space) ~= 'string' then\13\
-    space = ''\13\
-  end\13\
-\13\
-  local resultStrList = {}\13\
-  local newTabPairs = {}\13\
-  local newTabPairsKeys = {}\13\
-  local tabIsArray = true\13\
-  local tabLength = 0\13\
-  local hasSubTab = false\13\
-\13\
-  -- 将 table 的数组部分取出\13\
-  for k, v in ipairs(tab) do\13\
-    tabLength = k\13\
-    table.insert(newTabPairs, { k, runTable(v, space) })\13\
-    if (type(v) == 'table') then\13\
-      hasSubTab = true\13\
-    end\13\
-  end\13\
-\13\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
-  for k, v in pairs(tab) do\13\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
-      tabIsArray = false\13\
-      table.insert(newTabPairsKeys, k)\13\
-      if (type(v) == 'table') then\13\
-        hasSubTab = true\13\
-      end\13\
-    end\13\
-  end\13\
-\13\
-  table.sort(newTabPairsKeys)\13\
-  for _, k in ipairs(newTabPairsKeys) do\13\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
-  end\13\
-\13\
-  if (tabIsArray) then\13\
-    local newTabArr = newTabPairs\13\
-\13\
-    if (hasSubTab) then\13\
-      table.insert(resultStrList, '[')\13\
-      for k, v in ipairs(newTabArr) do\13\
-        local v2Length = getLength(v[2])\13\
-        v[2][v2Length] = v[2][v2Length] .. ','\13\
-        for k2, v2 in ipairs(v[2]) do\13\
-          table.insert(resultStrList, space .. v2)\13\
-        end\13\
-      end\13\
-      table.insert(resultStrList, ']')\13\
-    else\13\
-      local theStr = {}\13\
-      for k, v in ipairs(newTabPairs) do\13\
-        table.insert(theStr, v[2][1])\13\
-      end\13\
-      local childStr = table.concat(theStr, ', ')\13\
-      table.insert(resultStrList, '[' .. childStr .. ']')\13\
-    end\13\
-  else\13\
-    local newTabArr = newTabPairs\13\
-\13\
-    table.insert(resultStrList, '{')\13\
-    for k, v in ipairs(newTabArr) do\13\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
-      local v2Length = getLength(v[2])\13\
-      v[2][v2Length] = v[2][v2Length] .. ','\13\
-      for k2, v2 in ipairs(v[2]) do\13\
-        table.insert(resultStrList, space .. v2 .. '')\13\
-      end\13\
-    end\13\
-    table.insert(resultStrList, '}')\13\
-  end\13\
-  return resultStrList\13\
-end\13\
-\13\
-\13\
-__console.log = __console.log or function(obj)\13\
-  local res = runTable(obj, 2)\13\
-  if useNlog then\13\
-    local info = debug.getinfo(2, 'Sl')\13\
-    local lineInfo = ''\13\
-    if info.currentline then\13\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':'\13\
-    end\13\
-    nLog(lineInfo)\13\
-    local tmp = {}\13\
-    local resLength = #res\13\
-    for i = 1, resLength do\13\
-      table.insert(tmp, res[i])\13\
-      if math.mod(i, 10) == 0 or i == resLength then\13\
-        nLog(table.concat(tmp, \"\\n\"))\13\
-        tmp = {}\13\
-      end\13\
-    end\13\
-  end\13\
-end\13\
-\13\
-__console.getJsStr = function(obj)\13\
-  return table.concat(runTable(obj, 2), \",\\n\")\13\
-end\13\
-\13\
-__console.color = function(value)\13\
-  local resultStr = ''\13\
-  local color = getColor(value[1], value[2])\13\
-  local oldColor = value[3]\13\
-  local colorStr = string.format('0x%06x', color)\13\
-  local oldColorStr = string.format('0x%06x', oldColor)\13\
-  value[3] = oldColorStr\13\
-  if (color == oldColor) then\13\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
-  else\13\
-    value[3] = colorStr\13\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
-  end\13\
-  __console.log(resultStr)\13\
-end\13\
-\13\
+package.preload["console"] = assert(load("local nLog = nLog or function() end\
+\
+math.mod = math.mod or function(m, n)\
+  local a1 = math.modf(m / n)\
+  return m - a1 * n\
+end\
+\
+local getLength = table.length or function(target)\
+  local length = 0\
+  for k, v in ipairs(target) do\
+    length = k\
+  end\
+  return length\
+end\
+\
+local isArray = table.isArray or function(tab)\
+  if (type(tab) ~= \"table\") then\
+    return false\
+  end\
+  local length = getLength(tab)\
+  for k, v in pairs(tab) do\
+    if ((type(k) ~= \"number\") or (k > length)) then\
+      return false\
+    end\
+  end\
+  return true\
+end\
+\
+local __console = console or {}\
+\
+local function runTable(tab, space)\
+  if type(tab) == 'number' then\
+    return { tostring(tab) }\
+  end\
+  if type(tab) == 'string' then\
+    if string.len(tab) > 1000 then\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
+    end\
+    return { '\"' .. tab .. '\"' }\
+  end\
+  if type(tab) == 'boolean' then\
+    if (tab) then\
+      return { 'true' }\
+    else\
+      return { 'false' }\
+    end\
+  end\
+  if type(tab) ~= 'table' then\
+    return { '(' .. type(tab) .. ')' }\
+  end\
+  if type(space) == 'number' then\
+    space = string.rep(' ', space)\
+  end\
+  if type(space) ~= 'string' then\
+    space = ''\
+  end\
+\
+  local resultStrList = {}\
+  local newTabPairs = {}\
+  local newTabPairsKeys = {}\
+  local tabIsArray = true\
+  local tabLength = 0\
+  local hasSubTab = false\
+\
+  -- 将 table 的数组部分取出\
+  for k, v in ipairs(tab) do\
+    tabLength = k\
+    table.insert(newTabPairs, { k, runTable(v, space) })\
+    if (type(v) == 'table') then\
+      hasSubTab = true\
+    end\
+  end\
+\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\
+  for k, v in pairs(tab) do\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
+      tabIsArray = false\
+      table.insert(newTabPairsKeys, k)\
+      if (type(v) == 'table') then\
+        hasSubTab = true\
+      end\
+    end\
+  end\
+\
+  table.sort(newTabPairsKeys)\
+  for _, k in ipairs(newTabPairsKeys) do\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
+  end\
+\
+  if (tabIsArray) then\
+    local newTabArr = newTabPairs\
+\
+    if (hasSubTab) then\
+      table.insert(resultStrList, '[')\
+      for k, v in ipairs(newTabArr) do\
+        local v2Length = getLength(v[2])\
+        v[2][v2Length] = v[2][v2Length] .. ','\
+        for k2, v2 in ipairs(v[2]) do\
+          table.insert(resultStrList, space .. v2)\
+        end\
+      end\
+      table.insert(resultStrList, ']')\
+    else\
+      local theStr = {}\
+      for k, v in ipairs(newTabPairs) do\
+        table.insert(theStr, v[2][1])\
+      end\
+      local childStr = table.concat(theStr, ', ')\
+      table.insert(resultStrList, '[' .. childStr .. ']')\
+    end\
+  else\
+    local newTabArr = newTabPairs\
+\
+    table.insert(resultStrList, '{')\
+    for k, v in ipairs(newTabArr) do\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\
+      local v2Length = getLength(v[2])\
+      v[2][v2Length] = v[2][v2Length] .. ','\
+      for k2, v2 in ipairs(v[2]) do\
+        table.insert(resultStrList, space .. v2 .. '')\
+      end\
+    end\
+    table.insert(resultStrList, '}')\
+  end\
+  return resultStrList\
+end\
+\
+\
+__console.log = __console.log or function(obj)\
+  local res = runTable(obj, 2)\
+  if useNlog then\
+    local info = debug.getinfo(2, 'Sl')\
+    local lineInfo = ''\
+    if info.currentline then\
+      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
+    end\
+    nLog(lineInfo)\
+    local tmp = {}\
+    local resLength = #res\
+    for i = 1, resLength do\
+      table.insert(tmp, res[i])\
+      if math.mod(i, 10) == 0 or i == resLength then\
+        nLog(table.concat(tmp, \"\\n\"))\
+        tmp = {}\
+      end\
+    end\
+  end\
+end\
+\
+__console.getJsStr = function(obj)\
+  return table.concat(runTable(obj, 2), \",\\n\")\
+end\
+\
+__console.color = function(value)\
+  local resultStr = ''\
+  local color = getColor(value[1], value[2])\
+  local oldColor = value[3]\
+  local colorStr = string.format('0x%06x', color)\
+  local oldColorStr = string.format('0x%06x', oldColor)\
+  value[3] = oldColorStr\
+  if (color == oldColor) then\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
+  else\
+    value[3] = colorStr\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
+  end\
+  __console.log(resultStr)\
+end\
+\
 console = __console", "@" .."console.lua"))
 
 
@@ -21455,7 +15994,7 @@ local stepLabel = require './utils/step-label'\
 stepLabel.init('stopbtn')\
 \
 local c = coroutine\
-console.log('version 20150501-0054')\
+console.log('version 20180718-0201')\
 stepLabel.setStepLabelContent('开始')\
 \
 function closeStepLabel()\

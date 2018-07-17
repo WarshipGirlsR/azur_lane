@@ -20,7 +20,6 @@ local o = {
 
 local mission = function(action)
   local settings = store.settings;
-  local mapProxy = o.map['map' .. settings.battleChapter]
 
   return co(c.create(function()
 

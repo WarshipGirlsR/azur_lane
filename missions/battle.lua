@@ -36,7 +36,7 @@ local battleListenerList = {
 
 local battle = function(action)
   local settings = store.settings;
-  local mapProxy = o.map['map' .. settings.battleChapter]
+  local mapProxy = o.map['map' .. settings.battleChapter.name]
 
   return co(c.create(function()
     if action.type == 'BATTLE_INIT' then
@@ -62,9 +62,9 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_HOME_CLICK_BATTLE' then
 
-      if settings.battleChapter ~= '0' then
+      if settings.battleChapter.name ~= '0' then
         stepLabel.setStepLabelContent('2.2.点击出击')
-        if string.sub(settings.battleChapter, 1, 5) == 'event' then
+        if settings.battleChapter.type == 'event' then
           o.battle.clickEventBtn()
         else
           o.battle.clickBattleBtn()
@@ -78,7 +78,7 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE' then
 
-      if settings.battleChapter ~= '0' then
+      if settings.battleChapter.name ~= '0' then
         stepLabel.setStepLabelContent('2.3.选择章节界面')
         console.log(settings.battleMode)
         if settings.battleMode == 'normal' and o.battle.isHardMode() then
@@ -88,7 +88,7 @@ local battle = function(action)
         end
 
         if (settings.battleMode == 'normal' and o.battle.isHardMode())
-            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
           o.battle.clickSwitchHardModeBtn()
           c.yield(sleepPromise(500))
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -105,14 +105,14 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER' then
 
-      if settings.battleChapter ~= '0' then
-        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter .. '章')
+      if settings.battleChapter.name ~= '0' then
+        stepLabel.setStepLabelContent('2.6.移动到第' .. settings.battleChapter.name .. '章')
         o.battle.moveToChapter(settings.battleChapter)
       end
       c.yield(sleepPromise(500))
       -- 检查是否在所需的章节
       if not o.battle.checkChapter(settings.battleChapter) then
-        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter .. '章失败，重新移动')
+        stepLabel.setStepLabelContent('2.7.移动到第' .. settings.battleChapter.name .. '章失败，重新移动')
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage },
         }))
@@ -281,22 +281,7 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2-19.检测是自动模式还是辅助模式')
       if store.battle.battleAssistantMode == 'auto' then
-        local type1 = {
-          '1-1', '1-2', '1-3', '1-4',
-          '2-1', '2-2', '2-3', '2-4',
-          '3-1', '3-2', '3-3', '3-4',
-          '4-1', '4-2', '4-3', '4-4',
-          '5-1', '5-2', '5-3', '5-4',
-          '6-1', '6-2', '6-3', '6-4',
-          '7-1', '7-2', '7-3', '7-4',
-          '8-1', '8-2', '8-3', '8-4',
-          '9-1', '9-2', '9-3', '9-4',
-          '10-1', '10-2', '10-3', '10-4',
-          '11-1', '11-2', '11-3',
-          '12-1',
-          'event16-2-b1', 'event16-2-b3',
-        }
-        if table.findIndex(type1, settings.battleChapter) > -1 then
+        if mapProxy then
           stepLabel.setStepLabelContent('2-19.scan-map-type-1')
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
             { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
@@ -317,22 +302,7 @@ local battle = function(action)
 
       stepLabel.setStepLabelContent('2-19.战斗模式')
       if store.battle.battleAssistantMode == 'auto' then
-        local canAutoChapter = {
-          '1-1', '1-2', '1-3', '1-4',
-          '2-1', '2-2', '2-3', '2-4',
-          '3-1', '3-2', '3-3', '3-4',
-          '4-1', '4-2', '4-3', '4-4',
-          '5-1', '5-2', '5-3', '5-4',
-          '6-1', '6-2', '6-3', '6-4',
-          '7-1', '7-2', '7-3', '7-4',
-          '8-1', '8-2', '8-3', '8-4',
-          '9-1', '9-2', '9-3', '9-4',
-          '10-1', '10-2', '10-3', '10-4',
-          '11-1', '11-2', '11-3',
-          '12-1',
-          'event16-2-b1', 'event16-2-b3',
-        }
-        if table.findIndex(canAutoChapter, settings.battleChapter) > -1 then
+        if mapProxy then
           if settings.mapsType == 'maps-type-2' then
             stepLabel.setStepLabelContent('2-19.maps-type-2')
             local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -464,7 +434,7 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME' then
 
-      if settings.battleChapter ~= '0' then
+      if settings.battleChapter.name ~= '0' then
         o.battle.battlePageClickBackToHome()
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { '', o.home.isHome, 2000 },

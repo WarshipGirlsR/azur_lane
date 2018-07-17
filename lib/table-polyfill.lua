@@ -278,7 +278,8 @@ end
 myTable.map = myTable.map or function(tab, callback)
   local values = {}
   for k, v in ipairs(tab) do
-    myTable.insert(values, callback(v, k, tab))
+    local value = callback(v, k, tab)
+    myTable.insert(values, value)
   end
   return values
 end
@@ -313,6 +314,29 @@ myTable.sortByKey = myTable.sortByKey or function(tab, call)
     myTable.insert(newTable, { key, tab[key] })
   end
   return newTable
+end
+
+-- 对数字和字符串的数组同时排序，数字会从小到大放在前面，之后字符串按照字典排序
+myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)
+  local numTab = {}
+  local strTab = {}
+  for k = 1, #tab do
+    if type(tab[k]) == 'number' then
+      table.insert(numTab, tab[k])
+    elseif type(tab[k]) == 'string' then
+      table.insert(strTab, tab[k])
+    end
+  end
+  table.sort(numTab)
+  table.sort(strTab)
+  local result = {}
+  for k = 1, #numTab do
+    table.insert(result, numTab[k])
+  end
+  for k = 1, #strTab do
+    table.insert(result, strTab[k])
+  end
+  return result
 end
 
 myTable.findIndex = myTable.findIndex or function(tab, call)

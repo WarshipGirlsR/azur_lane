@@ -272,7 +272,7 @@ end
 -- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。
 -- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系
 map.getCheckpositionList = function()
-  return {}
+  error('章节尚未适配')
 end
 
 -- 处理原始地图数据，生成程序需要的数据
@@ -330,7 +330,7 @@ end
 
 -- 获取地图棋盘和相关数据
 map.getMapChessboard = function()
-  return {}
+  error('章节尚未适配')
 end
 
 -- 检查地图在屏幕中的位置，返回地图四个角的坐标

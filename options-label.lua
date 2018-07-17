@@ -1,5 +1,7 @@
-local sz = require 'sz'
-local json = sz.json
+local json = require './lib/json'
+local mapsList = require './meta-operation/maps-options/index'
+
+local canAutoMaps = table.map(table.keys(mapsList), function(item) return string.gsub(item, '^map', '') end)
 
 local width, height = getScreenSize()
 -- 设置
@@ -128,8 +130,7 @@ return function()
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
             .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
             .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-            .. '复刻异色格-1-a1,复刻异色格-1-a2,复刻异色格-1-a3,复刻异色格-1-a4,'
-            .. '复刻异色格-2-b1,复刻异色格-2-b2,复刻异色格-2-b3,复刻异色格-2-b4',
+            .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',
           ['select'] = '0',
         },
         {
@@ -291,18 +292,30 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = ' 1-1, 1-2, 1-3, 1-4, \n'
-            .. '2-1, 2-2, 2-3, 2-4, \n'
-            .. '3-1, 3-2, 3-3, 3-4, \n'
-            .. '4-1, 4-2, 4-3, 4-4, \n'
-            .. '5-1, 5-2, 5-3, 5-4, \n'
-            .. '6-1, 6-2, 6-3, 6-4, \n'
-            .. '7-1, 7-2, 7-3, 7-4, \n'
-            .. '8-1, 8-2, 8-3, 8-4, \n'
-            .. '9-1, 9-2, 9-3, 9-4, \n'
-            .. '10-1, 10-2, 10-3, 10-4, \n'
-            .. '11-1,11-2, 11-3,11-4, \n'
-            .. '12-1, 12-2, 12-3, 12-4, \n',
+          ['text'] = (function()
+            local group = {}
+            local keyList = {}
+            for _, value in ipairs(canAutoMaps) do
+              local tmpArr = string.split(value, '-')
+              local key = tonumber(tmpArr[1]) or tmpArr[1]
+              if key then
+                if not group[key] then
+                  group[key] = {}
+                  table.insert(keyList, key)
+                end
+              end
+              table.insert(group[key], value)
+            end
+            keyList = table.sortNumAndStr(keyList)
+            local groupList = {}
+            for _, key in ipairs(keyList) do
+              local item = table.sortNumAndStr(group[key])
+              local itemStr = table.concat(item, ',   ')
+              table.insert(groupList, itemStr)
+            end
+            local result = table.concat(groupList, '\n')
+            return result
+          end)(),
           ['align'] = 'left',
           ['color'] = '0,0,0',
         },
@@ -472,34 +485,34 @@ return function()
     -- 选择关卡
     settings.battleChapter = (function(battleChapter)
       local list = transStrToTable({
-        '0',
-        '1-1', '1-2', '1-3', '1-4',
-        '2-1', '2-2', '2-3', '2-4',
-        '3-1', '3-2', '3-3', '3-4',
-        '4-1', '4-2', '4-3', '4-4',
-        '5-1', '5-2', '5-3', '5-4',
-        '6-1', '6-2', '6-3', '6-4',
-        '7-1', '7-2', '7-3', '7-4',
-        '8-1', '8-2', '8-3', '8-4',
-        '9-1', '9-2', '9-3', '9-4',
-        '10-1', '10-2', '10-3', '10-4',
-        '11-1', '11-2', '11-3', '11-4',
-        '12-1', '12-2', '12-3', '12-4',
-        --      'event4-1-sp1', 'event4-1-sp2', 'event4-1-sp3',
-        --      'event5-1-a1', 'event5-1-a2', 'event5-1-a3',
-        --      'event5-2-b1', 'event5-2-b2', 'event5-2-b3',
-        --      'event6-1-sp1', 'event6-1-sp2', 'event6-1-sp3',
-        --      'event7-1-c1',
-        --      'event8-1-sp1', 'event8-1-sp2', 'event8-1-sp3',
-        --      'event9-1-sp1', 'event9-1-sp2', 'event9-1-sp3', 'event9-1-sp4',
-        --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
-        --      'event11-1-b1', 'event11-1-b2', 'event11-1-b3',
-        --      'event12-1-sp1', 'event12-1-sp2', 'event12-1-sp3',
-        --      'event13-1-sp1', 'event13-1-sp2', 'event13-1-sp3',
-        --        'event15-1-a1', 'event15-1-a2', 'event15-1-a3', 'event15-1-a4',
-        --        'event15-2-b1', 'event15-2-b2',
-        'event16-1-a1', 'event16-1-a2', 'event16-1-a3', 'event16-1-a4',
-        'event16-2-b1', 'event16-2-b2', 'event16-2-b3', 'event16-2-b4',
+        { name = '0', chapter = 0, section = '0' },
+        { name = '1-1', chapter = 1, section = '1' }, { name = '1-2', chapter = 1, section = '2' },
+        { name = '1-3', chapter = 1, section = '3' }, { name = '1-4', chapter = 1, section = '4' },
+        { name = '2-1', chapter = 2, section = '1' }, { name = '2-2', chapter = 2, section = '2' },
+        { name = '2-3', chapter = 2, section = '3' }, { name = '2-4', chapter = 2, section = '4' },
+        { name = '3-1', chapter = 3, section = '1' }, { name = '3-2', chapter = 3, section = '2' },
+        { name = '3-3', chapter = 3, section = '3' }, { name = '3-4', chapter = 3, section = '4' },
+        { name = '4-1', chapter = 4, section = '1' }, { name = '4-2', chapter = 4, section = '2' },
+        { name = '4-3', chapter = 4, section = '3' }, { name = '4-4', chapter = 4, section = '4' },
+        { name = '5-1', chapter = 5, section = '1' }, { name = '5-2', chapter = 5, section = '2' },
+        { name = '5-3', chapter = 5, section = '3' }, { name = '5-4', chapter = 5, section = '4' },
+        { name = '6-1', chapter = 6, section = '1' }, { name = '6-2', chapter = 6, section = '2' },
+        { name = '6-3', chapter = 6, section = '3' }, { name = '6-4', chapter = 6, section = '4' },
+        { name = '7-1', chapter = 7, section = '1' }, { name = '7-2', chapter = 7, section = '2' },
+        { name = '7-3', chapter = 7, section = '3' }, { name = '7-4', chapter = 7, section = '4' },
+        { name = '8-1', chapter = 8, section = '1' }, { name = '8-2', chapter = 8, section = '2' },
+        { name = '8-3', chapter = 8, section = '3' }, { name = '8-4', chapter = 8, section = '4' },
+        { name = '9-1', chapter = 9, section = '1' }, { name = '9-2', chapter = 9, section = '2' },
+        { name = '9-3', chapter = 9, section = '3' }, { name = '9-4', chapter = 9, section = '4' },
+        { name = '10-1', chapter = 10, section = '1' }, { name = '10-2', chapter = 10, section = '2' },
+        { name = '10-3', chapter = 10, section = '3' }, { name = '10-4', chapter = 10, section = '4' },
+        { name = '11-1', chapter = 11, section = '1' }, { name = '11-2', chapter = 11, section = '2' },
+        { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },
+        { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },
+        { name = '12-3', chapter = 12, section = '3' }, { name = '12-4', chapter = 12, section = '4' },
+        { name = 'ygxdxq-sp1', chapter = 1, section = 'sp1', type = 'event' },
+        { name = 'ygxdxq-sp2', chapter = 1, section = 'sp2', type = 'event' },
+        { name = 'ygxdxq-sp3', chapter = 1, section = 'sp3', type = 'event' },
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

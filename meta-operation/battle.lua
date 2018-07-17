@@ -85,17 +85,12 @@ battle.clickSwitchHardModeBtn = function()
 end
 
 -- 移动到m章节
-battle.moveToChapter = function(chapter)
+battle.moveToChapter = function(chapterObj)
   local chapter = chapter
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
-  local chapterArr = strSplit(chapter, "-")
-  local m = tonumber(chapterArr[1]) or 1
-
-  if string.sub(chapter, 1, 5) == 'event' then
-    m = tonumber(chapterArr[2]) or 1
-  end
+  local m = chapterObj.chapter or 1
 
   local leftButton = {
     { 108, 500, 0xefefef }, { 66, 537, 0xd6d7d6 },
@@ -127,218 +122,118 @@ battle.moveToChapter = function(chapter)
 end
 
 -- 点击m章节
-battle.clickChapter = function(chapter)
+battle.clickChapter = function(chapterObj)
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
 
-  if (chapter == '1-1') then
+  if chapterObj.name == '1-1' then
     RTap({ 227, 687 }, 100)
-  elseif (chapter == '1-2') then
+  elseif chapterObj.name == '1-2' then
     RTap({ 685, 409 }, 100)
-  elseif (chapter == '1-3') then
+  elseif chapterObj.name == '1-3' then
     RTap({ 984, 789 }, 100)
-  elseif (chapter == '1-4') then
+  elseif chapterObj.name == '1-4' then
     RTap({ 1366, 317 }, 100)
-  elseif (chapter == '2-1') then
+  elseif chapterObj.name == '2-1' then
     RTap({ 1221, 685 }, 100)
-  elseif (chapter == '2-2') then
+  elseif chapterObj.name == '2-2' then
     RTap({ 1121, 277 }, 100)
-  elseif (chapter == '2-3') then
+  elseif chapterObj.name == '2-3' then
     RTap({ 429, 406 }, 100)
-  elseif (chapter == '2-4') then
+  elseif chapterObj.name == '2-4' then
     RTap({ 572, 821 }, 100)
-  elseif (chapter == '3-1') then
+  elseif chapterObj.name == '3-1' then
     RTap({ 603, 320 }, 100)
-  elseif (chapter == '3-2') then
+  elseif chapterObj.name == '3-2' then
     RTap({ 344, 750 }, 100)
-  elseif (chapter == '3-3') then
+  elseif chapterObj.name == '3-3' then
     RTap({ 1364, 279 }, 100)
-  elseif (chapter == '3-4') then
+  elseif chapterObj.name == '3-4' then
     RTap({ 923, 540 }, 100)
-  elseif (chapter == '4-1') then
+  elseif chapterObj.name == '4-1' then
     RTap({ 355, 451 }, 100)
-  elseif (chapter == '4-2') then
+  elseif chapterObj.name == '4-2' then
     RTap({ 628, 701 }, 100)
-  elseif (chapter == '4-3') then
+  elseif chapterObj.name == '4-3' then
     RTap({ 1234, 818 }, 100)
-  elseif (chapter == '4-4') then
+  elseif chapterObj.name == '4-4' then
     RTap({ 1167, 430 }, 100)
-  elseif (chapter == '5-1') then
+  elseif chapterObj.name == '5-1' then
     RTap({ 363, 544 }, 100)
-  elseif (chapter == '5-2') then
+  elseif chapterObj.name == '5-2' then
     RTap({ 1285, 803 }, 100)
-  elseif (chapter == '5-3') then
+  elseif chapterObj.name == '5-3' then
     RTap({ 1104, 549 }, 100)
-  elseif (chapter == '5-4') then
+  elseif chapterObj.name == '5-4' then
     RTap({ 884, 318 }, 100)
-  elseif (chapter == '6-1') then
+  elseif chapterObj.name == '6-1' then
     RTap({ 1373, 746 }, 100)
-  elseif (chapter == '6-2') then
+  elseif chapterObj.name == '6-2' then
     RTap({ 1055, 515 }, 100)
-  elseif (chapter == '6-3') then
+  elseif chapterObj.name == '6-3' then
     RTap({ 632, 317 }, 100)
-  elseif (chapter == '6-4') then
+  elseif chapterObj.name == '6-4' then
     RTap({ 443, 643 }, 100)
-  elseif (chapter == '7-1') then
+  elseif chapterObj.name == '7-1' then
     RTap({ 308, 725 }, 100)
-  elseif (chapter == '7-2') then
+  elseif chapterObj.name == '7-2' then
     RTap({ 688, 270 }, 100)
-  elseif (chapter == '7-3') then
+  elseif chapterObj.name == '7-3' then
     RTap({ 1234, 425 }, 100)
-  elseif (chapter == '7-4') then
+  elseif chapterObj.name == '7-4' then
     RTap({ 1416, 674 }, 100)
-  elseif (chapter == '8-1') then
+  elseif chapterObj.name == '8-1' then
     RTap({ 824, 280 }, 100)
-  elseif (chapter == '8-2') then
+  elseif chapterObj.name == '8-2' then
     RTap({ 411, 535 }, 100)
-  elseif (chapter == '8-3') then
+  elseif chapterObj.name == '8-3' then
     RTap({ 507, 849 }, 100)
-  elseif (chapter == '8-4') then
+  elseif chapterObj.name == '8-4' then
     RTap({ 1168, 686 }, 100)
-  elseif (chapter == '9-1') then
+  elseif chapterObj.name == '9-1' then
     RTap({ 360, 359 }, 100)
-  elseif (chapter == '9-2') then
+  elseif chapterObj.name == '9-2' then
     RTap({ 569, 729 }, 100)
-  elseif (chapter == '9-3') then
+  elseif chapterObj.name == '9-3' then
     RTap({ 1179, 395 }, 100)
-  elseif (chapter == '9-4') then
+  elseif chapterObj.name == '9-4' then
     RTap({ 1375, 768 }, 100)
-  elseif (chapter == '10-1') then
+  elseif chapterObj.name == '10-1' then
     RTap({ 301, 362 }, 100)
-  elseif (chapter == '10-2') then
+  elseif chapterObj.name == '10-2' then
     RTap({ 694, 571 }, 100)
-  elseif (chapter == '10-3') then
+  elseif chapterObj.name == '10-3' then
     RTap({ 971, 806 }, 100)
-  elseif (chapter == '10-4') then
+  elseif chapterObj.name == '10-4' then
     RTap({ 1111, 336 }, 100)
-  elseif (chapter == '11-1') then
+  elseif chapterObj.name == '11-1' then
     RTap({ 453, 348 }, 100)
-  elseif (chapter == '11-2') then
+  elseif chapterObj.name == '11-2' then
     RTap({ 643, 779 }, 100)
-  elseif (chapter == '11-3') then
+  elseif chapterObj.name == '11-3' then
     RTap({ 1077, 255 }, 100)
-  elseif (chapter == '11-4') then
+  elseif chapterObj.name == '11-4' then
     RTap({ 1335, 665 }, 100)
-  elseif (chapter == '12-1') then
+  elseif chapterObj.name == '12-1' then
     RTap({ 296, 362 }, 100)
-  elseif (chapter == 'event4-1-sp1') then
-    RTap({ 834, 312 }, 100)
-  elseif (chapter == 'event4-1-sp2') then
-    RTap({ 417, 542 }, 100)
-  elseif (chapter == 'event4-1-sp3') then
-    RTap({ 1392, 473 }, 100)
-  elseif (chapter == 'event5-1-a1') then
-    RTap({ 655, 268 }, 100)
-  elseif (chapter == 'event5-1-a2') then
-    RTap({ 1100, 781 }, 100)
-  elseif (chapter == 'event5-1-a3') then
-    RTap({ 1340, 381 }, 100)
-  elseif (chapter == 'event5-2-b1') then
-    RTap({ 532, 778 }, 100)
-  elseif (chapter == 'event5-2-b2') then
-    RTap({ 1305, 744 }, 100)
-  elseif (chapter == 'event5-2-b3') then
-    RTap({ 1058, 333 }, 100)
-  elseif (chapter == 'event6-1-sp1') then
-    RTap({ 404, 414 }, 100)
-  elseif (chapter == 'event6-1-sp2') then
-    RTap({ 569, 808 }, 100)
-  elseif (chapter == 'event6-1-sp3') then
-    RTap({ 1240, 592 }, 100)
-  elseif (chapter == 'event7-1-a1') then
-    RTap({ 498, 341 }, 100)
-  elseif (chapter == 'event7-1-a2') then
-    RTap({ 748, 834 }, 100)
-  elseif (chapter == 'event7-1-a3') then
-    RTap({ 1296, 410 }, 100)
-  elseif (chapter == 'event7-1-c1') then
-    RTap({ 498, 341 }, 100)
-  elseif (chapter == 'event7-1-c2') then
-    RTap({ 748, 834 }, 100)
-  elseif (chapter == 'event7-1-c3') then
-    RTap({ 1296, 410 }, 100)
-  elseif (chapter == 'event8-1-sp1') then
-    RTap({ 1368, 453 }, 100)
-  elseif (chapter == 'event8-1-sp2') then
-    RTap({ 872, 791 }, 100)
-  elseif (chapter == 'event8-1-sp3') then
-    RTap({ 587, 375 }, 100)
-  elseif (chapter == 'event9-1-sp1') then
-    RTap({ 366, 339 }, 100)
-  elseif (chapter == 'event9-1-sp2') then
-    RTap({ 1206, 282 }, 100)
-  elseif (chapter == 'event9-1-sp3') then
-    RTap({ 286, 866 }, 100)
-  elseif (chapter == 'event9-1-sp4') then
-    RTap({ 1070, 744 }, 100)
-  elseif (chapter == 'event11-1-a1') then
-    RTap({ 653, 265 }, 100)
-  elseif (chapter == 'event11-1-a2') then
-    RTap({ 1102, 786 }, 100)
-  elseif (chapter == 'event11-1-a3') then
-    RTap({ 1342, 378 }, 100)
-  elseif (chapter == 'event11-2 -b1') then
-    RTap({ 537, 775 }, 100)
-  elseif (chapter == 'event11-2-b2') then
-    RTap({ 1307, 727 }, 100)
-  elseif (chapter == 'event11-2-b3') then
-    RTap({ 1063, 325 }, 100)
-  elseif (chapter == 'event12-1-sp1') then
-    RTap({ 1379, 457 }, 100)
-  elseif (chapter == 'event12-1-sp2') then
-    RTap({ 875, 796 }, 100)
-  elseif (chapter == 'event12-1-sp3') then
-    RTap({ 582, 370 }, 100)
-  elseif (chapter == 'event13-1-sp1') then
-    RTap({ 407, 409 }, 100)
-  elseif (chapter == 'event13-1-sp2') then
-    RTap({ 568, 804 }, 100)
-  elseif (chapter == 'event13-1-sp3') then
+  elseif chapterObj.name == 'ygxdxq-sp1' then
+    RTap({ 405, 415 }, 100)
+  elseif chapterObj.name == 'ygxdxq-sp2' then
+    RTap({ 568, 808 }, 100)
+  elseif chapterObj.name == 'ygxdxq-sp3' then
     RTap({ 1243, 590 }, 100)
-  elseif (chapter == 'event15-1-a1') then
-    RTap({ 387, 367 }, 100)
-  elseif (chapter == 'event15-1-a2') then
-    RTap({ 535, 690 }, 100)
-  elseif (chapter == 'event15-1-a3') then
-    RTap({ 1345, 769 }, 100)
-  elseif (chapter == 'event15-1-a4') then
-    RTap({ 1190, 421 }, 100)
-  elseif (chapter == 'event15-2-b1') then
-    RTap({ 517, 655 }, 100)
-  elseif (chapter == 'event15-2-b2') then
-    RTap({ 1257, 544 }, 100)
-  elseif (chapter == 'event16-1-a1') then
-    RTap({ 328, 332 }, 100)
-  elseif (chapter == 'event16-1-a2') then
-    RTap({ 471, 731 }, 100)
-  elseif (chapter == 'event16-1-a3') then
-    RTap({ 1210, 360 }, 100)
-  elseif (chapter == 'event16-1-a4') then
-    RTap({ 1333, 757 }, 100)
-  elseif (chapter == 'event16-2-b1') then
-    RTap({ 453, 353 }, 100)
-  elseif (chapter == 'event16-2-b2') then
-    RTap({ 1312, 282 }, 100)
-  elseif (chapter == 'event16-2-b3') then
-    RTap({ 627, 802 }, 100)
-  elseif (chapter == 'event16-2-b4') then
-    RTap({ 1092, 538 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
 
 -- 检测是第几关
-battle.checkChapter = function(chapter)
+battle.checkChapter = function(chapterObj)
   local __keepScreenState = keepScreenState
-  if (not __keepScreenState) then keepScreen(true) end
-
-  local chapterArr = strSplit(chapter, "-")
-  local m = tonumber(chapterArr[1]) or 0
-
-  if string.find(chapter, 'sp') then
-    m = 'sp'
+  if not __keepScreenState then keepScreen(true) end
+  local cha = chapterObj.chapter
+  if chapterObj.type == 'event' then
+    cha = 'event'
   end
-
   local list = {
     [1] = {
       { 73, 146, 0xf7df6b }, { 74, 159, 0xe6aa29 },
@@ -423,7 +318,7 @@ battle.checkChapter = function(chapter)
       { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },
       { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },
     },
-    sp = {
+    event = {
       { 48, 147, 0xffffff }, { 61, 147, 0xffffff },
       { 55, 149, 0x10283a }, { 62, 154, 0x102031 },
       { 47, 161, 0x082029 }, { 54, 159, 0xffffff },
@@ -436,7 +331,8 @@ battle.checkChapter = function(chapter)
     },
   }
   local result = nil
-  if m == 0 or multiColorS(list[m]) then
+  console.log(multiColorS(list[cha]))
+  if not list[cha] or multiColorS(list[cha]) then
     result = true
   end
   if (not __keepScreenState) then keepScreen(false) end
@@ -1053,8 +949,8 @@ battle.isVictoryPanel = function()
   }
   local result = false
   if multiColorS(list) or multiColorS(list2)
-      or multiColorS(list3) or multiColorS(list4)
-      or multiColorS(list5) or multiColorS(list6) then
+    or multiColorS(list3) or multiColorS(list4)
+    or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end

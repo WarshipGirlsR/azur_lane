@@ -67,7 +67,7 @@ local battleListenerList = {
 
 local mapsType1 = function(action)
   local settings = store.settings;
-  local mapProxy = o.map['map' .. settings.battleChapter]
+  local mapProxy = o.map['map' .. settings.battleChapter.name]
 
   return co(c.create(function()
     if action.type == 'MAPS_TYPE_1_PRE_INIT' then

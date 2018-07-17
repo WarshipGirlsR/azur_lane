@@ -56,7 +56,7 @@ local stepLabel = require './utils/step-label'
 stepLabel.init('stopbtn')
 
 local c = coroutine
-console.log('version 20150501-0054')
+console.log('version 20180718-0201')
 stepLabel.setStepLabelContent('开始')
 
 function closeStepLabel()
