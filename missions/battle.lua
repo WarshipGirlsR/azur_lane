@@ -464,8 +464,20 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME' then
 
-      o.battle.battlePageClickBackToHome()
-      return makeAction('')
+      if settings.battleChapter ~= '0' then
+        o.battle.battlePageClickBackToHome()
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { '', o.home.isHome, 2000 },
+        }))
+        return makeAction(newstateTypes)
+      else
+        stepLabel.setStepLabelContent('2.25.等待用户操作')
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+          { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 86400 },
+          { '', o.home.isHome, 2000 },
+        }))
+        return makeAction(newstateTypes)
+      end
     end
 
     return nil

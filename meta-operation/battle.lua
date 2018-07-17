@@ -902,7 +902,7 @@ battle.isReadyBattlePage = function()
     { 254, 26, 0x100c10 }, { 200, 39, 0x080808 },
     { 235, 48, 0x080c08 }, { 292, 22, 0x42454a },
   }
-  local result = multiColorS(list)
+  local result = multiColorS(list, 85)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
@@ -1053,8 +1053,8 @@ battle.isVictoryPanel = function()
   }
   local result = false
   if multiColorS(list) or multiColorS(list2)
-    or multiColorS(list3) or multiColorS(list4)
-    or multiColorS(list5) or multiColorS(list6) then
+      or multiColorS(list3) or multiColorS(list4)
+      or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end
