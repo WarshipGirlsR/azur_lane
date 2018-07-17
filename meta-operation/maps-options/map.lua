@@ -1,6 +1,6 @@
 local utils = require './utils'
 local AStart = require '../../utils/a-start'
-local _sWidth, _sHeight = getScreenSize();
+local _sWidth, _sHeight = getScreenSize()
 local sWidth = math.max(_sWidth, _sHeight)
 local sHeight = math.min(_sWidth, _sHeight)
 
@@ -73,6 +73,61 @@ local function transListToMap(list)
     result[item[1] .. '-' .. item[2]] = item
   end
   return result
+end
+
+-- 将点按照相邻分组，连成一片的就分为一组
+local function listAdjacentGroups(list)
+  local theList = table.assign({}, list)
+  local theListMap = transListToMap(theList)
+  local group = {}
+  while #theList > 0 do
+    local groupItem = {}
+    table.insert(groupItem, theList[1])
+    theListMap[theList[1][1] .. '-' .. theList[1][2]] = nil
+    local theIndex = 1
+    while theIndex <= #groupItem do
+      local item = groupItem[theIndex]
+      -- 将相邻的点都加入队列
+      if theListMap[(item[1] + 1) .. '-' .. item[2]] then
+        local index = (item[1] + 1) .. '-' .. item[2]
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[(item[1] - 1) .. '-' .. item[2]] then
+        local index = (item[1] - 1) .. '-' .. item[2]
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[item[1] .. '-' .. (item[2] + 1)] then
+        local index = item[1] .. '-' .. (item[2] + 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[item[1] .. '-' .. (item[2] - 1)] then
+        local index = item[1] .. '-' .. (item[2] - 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] - 1)] then
+        local index = (item[1] - 1) .. '-' .. (item[2] - 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] - 1)] then
+        local index = (item[1] + 1) .. '-' .. (item[2] - 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] + 1)] then
+        local index = (item[1] - 1) .. '-' .. (item[2] + 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] + 1)] then
+        local index = (item[1] + 1) .. '-' .. (item[2] + 1)
+        table.insert(groupItem, theListMap[index])
+        theListMap[index] = nil
+      end
+
+      theIndex = theIndex + 1
+    end
+    table.insert(group, groupItem)
+    theList = table.values(theListMap)
+  end
+  return group
 end
 
 -- 检查坐标点在直线的左边还是右边，直线用两点表示
@@ -292,7 +347,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   local rightLinePointList = {}
 
   -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框
-  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '0|1|0x000000,0|2|0x000000,1|0|0x000000,1|1|0x000000,1|2|0x000000,2|0|0x000000,2|1|0x000000,2|2|0x000000', 99, 184, 160, 1885, 1004)))
+  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 100, 184, 160, 1885, 1004)))
+
   -- 寻找底边
   -- 按照y坐标分组
   local blackLineGroup = {}
@@ -302,18 +358,19 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     table.insert(blackLineGroup[value[2]], value)
   end
   -- 横向坐标点超过200个点的组
-  local horizontalLineGroup = {}
+  local bottomHorizontalLineGroup = {}
   for key, value in pairs(blackLineGroup) do
     if #value > 200 then
-      table.insert(horizontalLineGroup, value)
+      table.insert(bottomHorizontalLineGroup, value)
     end
   end
-  bottonLinePointList = math.minTable(horizontalLineGroup, function(item) return item[1][2] end) or {}
+
+  bottonLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}
 
   -- 寻找左右纵向黑线的坐标
   -- 将横向黑线移除
   local tmpGroup = table.assign({}, blackLineGroup)
-  for key, value in pairs(horizontalLineGroup) do
+  for key, value in pairs(bottomHorizontalLineGroup) do
     tmpGroup[value[1][2]] = nil
   end
   local verticalLineList = {}
@@ -334,12 +391,15 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       table.insert(rightLineList, value)
     end
   end
+
   -- 左边黑线进行精简，使其变成宽度为1的细线
   local leftLinePointList = {}
   if #leftLineList > 0 then
-    local leftTopPoint = math.minTable(leftLineList, function(item) return item[2] end)
-    local leftBottomPoint = math.maxTable(leftLineList, function(item) return item[2] end)
-    local leftLineMap = makePointMap(leftLineList)
+    local leftLineAdjacentGroup = listAdjacentGroups(leftLineList)
+    local leftLineAdjacentMaxList = math.maxTable(leftLineAdjacentGroup, function(item) return #item end)
+    local leftTopPoint = math.minTable(leftLineAdjacentMaxList, 2)
+    local leftBottomPoint = math.maxTable(leftLineAdjacentMaxList, 2)
+    local leftLineMap = makePointMap(leftLineAdjacentMaxList)
     local point = leftTopPoint
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do
       if leftLineMap[key .. '-' .. leftTopPoint[2]] then
@@ -349,26 +409,38 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
     table.insert(leftLinePointList, point)
-    for key = point[2] + 1, leftBottomPoint[2] do
-      if leftLineMap[point[1] .. '-' .. key] then
-        point = leftLineMap[point[1] .. '-' .. key]
-        table.insert(leftLinePointList, point)
-      elseif leftLineMap[(point[1] - 1) .. '-' .. key] then
-        point = leftLineMap[(point[1] - 1) .. '-' .. key]
-        table.insert(leftLinePointList, point)
-      else
+    while point[2] <= leftBottomPoint[2] do
+      local lastPoint = point
+      local _ = (function()
+        for theY = (point[2] + 1), point[2] + 20 do
+          for theX = point[1], (point[1] - 10), -1 do
+            if leftLineMap[theX .. '-' .. theY] then
+              point = leftLineMap[theX .. '-' .. theY]
+              table.insert(leftLinePointList, point)
+              return
+            end
+          end
+        end
+      end)()
+      if lastPoint[1] == point[1] and lastPoint[2] == point[2] then
         break
       end
     end
   end
+  -- 如果左边集合小于10个点，则认为做边黑线不存在
+  if #leftLinePointList < 10 then
+    leftLinePointList = {}
+  end
   -- 右边黑线进行精简，使其变成宽度为1的细线
   local rightLinePointList = {}
   if #rightLineList > 0 then
-    local rightTopPoint = math.minTable(rightLineList, function(item) return item[2] end)
-    local rightBottomPoint = math.maxTable(rightLineList, function(item) return item[2] end)
+    local rightLineAdjacentGroup = listAdjacentGroups(rightLineList)
+    local rightLineAdjacentMaxList = math.maxTable(rightLineAdjacentGroup, function(item) return #item end)
+    local rightTopPoint = math.minTable(rightLineAdjacentMaxList, 2)
+    local rightBottomPoint = math.maxTable(rightLineAdjacentMaxList, 2)
     local rightLineMap = makePointMap(rightLineList)
     local point = rightTopPoint
-    for key = rightTopPoint[1], rightTopPoint[1] + 100 do
+    for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do
       if rightLineMap[key .. '-' .. rightTopPoint[2]] then
         point = rightLineMap[key .. '-' .. rightTopPoint[2]]
       else
@@ -376,22 +448,80 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
     table.insert(rightLinePointList, point)
-    for key = point[2] + 1, rightBottomPoint[2] do
-      if rightLineMap[point[1] .. '-' .. key] then
-        point = rightLineMap[point[1] .. '-' .. key]
-        table.insert(rightLinePointList, point)
-      elseif rightLineMap[(point[1] + 1) .. '-' .. key] then
-        point = rightLineMap[(point[1] + 1) .. '-' .. key]
-        table.insert(rightLinePointList, point)
-      else
+    while point[2] <= rightBottomPoint[2] do
+      local lastPoint = point
+      local _ = (function()
+        for theY = (point[2] + 1), point[2] + 20 do
+          for theX = point[1], (point[1] + 10) do
+            if rightLineMap[theX .. '-' .. theY] then
+              point = rightLineMap[theX .. '-' .. theY]
+              table.insert(rightLinePointList, point)
+              return
+            end
+          end
+        end
+      end)()
+      if lastPoint[1] == point[1] and lastPoint[2] == point[2] then
         break
       end
     end
   end
+  -- 如果右边集合小于10个点，则认为做边黑线不存在
+  if #rightLinePointList < 10 then
+    rightLinePointList = {}
+  end
 
-  topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))
-
-  local topLinePoint = topLinePointList[1] or { -1, -1 }
+  -- 上边界用白色字母作为参考点
+  local whiteCharacterList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0xffffff, '', 100, 184, 160, 1885, 1004)))
+  -- 寻找上边
+  -- 按照y坐标分组
+  local whiteCharacterGroup = {}
+  for key = 1, #whiteCharacterList do
+    local value = whiteCharacterList[key]
+    whiteCharacterGroup[value[2]] = whiteCharacterGroup[value[2]] or {}
+    table.insert(whiteCharacterGroup[value[2]], value)
+  end
+  -- 横向坐标点超过40个点的组
+  local topHorizontalLineGroupTmp = {}
+  for key, value in pairs(whiteCharacterGroup) do
+    if #value > 40 then
+      table.insert(topHorizontalLineGroupTmp, value)
+    end
+  end
+  -- 横向宽度超过700的组
+  local topHorizontalLineGroupTmp2 = {}
+  for key, value in ipairs(topHorizontalLineGroupTmp) do
+    local leftPoint = math.minTable(value, 1)
+    local rightPoint = math.maxTable(value, 1)
+    if rightPoint[1] - leftPoint[1] > 700 then
+      table.insert(topHorizontalLineGroupTmp2, value)
+    end
+  end
+  -- 白点间隔不超过450的组
+  local topHorizontalLineGroup = {}
+  for key, value in ipairs(topHorizontalLineGroupTmp2) do
+    local sortValue = table.assign({}, value)
+    table.sort(sortValue, function(a, b) return a[1] < b[1] end)
+    local flag = true
+    for key2 = 1, #sortValue - 1 do
+      local a = sortValue[key2]
+      local b = sortValue[key2 + 1]
+      if math.abs(b[1] - a[1]) >= 450 then
+        flag = false
+        break
+      end
+    end
+    if flag then
+      table.insert(topHorizontalLineGroup, value)
+    end
+  end
+  -- 寻找最靠下的一个组
+  topLinePointList = math.minTable(topHorizontalLineGroup, function(item) return item[1][2] end)
+  -- 白字下方13像素才是上边界
+  local topLinePoint = { -1, -1 }
+  if topLinePointList and #topLinePointList > 0 then
+    topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }
+  end
   local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
 
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
@@ -450,24 +580,24 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
       moveVector = { sWidth / 3, sHeight / 3 }
     else
       effectiveStep = true
-      moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1];
-      moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2];
+      moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1]
+      moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2]
     end
   elseif targetPosition.rightTop then
     if not currentPosition.rightTop then
       moveVector = { (0 - sWidth) / 3, sHeight / 3 }
     else
       effectiveStep = true
-      moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1];
-      moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2];
+      moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1]
+      moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2]
     end
   elseif targetPosition.leftBotton then
     if not currentPosition.leftBotton then
       moveVector = { sWidth / 3, (0 - sHeight) / 3 }
     else
       effectiveStep = true
-      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1];
-      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2];
+      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1]
+      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2]
     end
   elseif targetPosition.rightBotton then
     if not currentPosition.rightBotton then
@@ -496,7 +626,7 @@ end
 
 -- 将地图移动到指定位置
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)
-  local isCenter = false;
+  local isCenter = false
   local minLength = 5
   -- 将地图移动到中心
   local moveStep
@@ -726,7 +856,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
             local value = thePath[key]
             if enemyPositionMap[value[1] .. '-' .. value[2]] then
               minCoastEnemy = value
-              break;
+              break
             end
           end
         end

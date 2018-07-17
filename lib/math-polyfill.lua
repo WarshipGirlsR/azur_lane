@@ -79,6 +79,7 @@ math.minTable = math.minTable or function(tab, path)
   return minTab, minKey
 end
 
+
 math.mod = math.mod or function(m, n)
   local a1 = math.modf(m / n)
   return m - a1 * n

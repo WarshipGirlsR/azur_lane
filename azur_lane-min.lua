@@ -1312,53 +1312,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-2的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 747, 515, 0x3a3163 }, { 758, 515, 0x312d5a },\
-          { 766, 515, 0x312d5a }, { 777, 515, 0x3a3163 },\
-          { 790, 515, 0x312d5a }, { 799, 515, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 908, 515, 0x31315a }, { 926, 515, 0x312d5a },\
-          { 939, 515, 0x3a3163 }, { 952, 515, 0x312d5a },\
-          { 973, 515, 0x3a3163 },\
-        })\
-        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1275, 515, 0x3a396b }, { 1289, 515, 0x3a396b },\
-          { 1305, 515, 0x424173 }, { 1322, 515, 0x3a3d73 },\
-          { 1337, 515, 0x424573 },\
-        })\
-        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-9的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1482, 542, 0x6b71b5 }, { 1489, 542, 0x6b6d9c },\
-          { 1501, 542, 0x636d9c }, { 1510, 542, 0x6b75b5 },\
-          { 1518, 542, 0x6b75b5 },\
-        })\
-        return { basePoint[3], posandcolor, 100, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3831,174 +3784,6 @@ return {\
   -- 图片数据\
   -- 地图扫描\
   map = {\
-    -- 地图上边界\
-    topLineList = {\
-      -- 1-8的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1558, 509, 0x192031 }, { 1565, 509, 0x212442 },\
-          { 1576, 509, 0x212031 }, { 1588, 509, 0x191c31 },\
-          { 1598, 510, 0x3abee6 }, { 1586, 510, 0x3ac2e6 },\
-          { 1570, 510, 0x31c2de }, { 1559, 510, 0x31bede },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-7的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1390, 509, 0x192031 }, { 1405, 509, 0x212442 },\
-          { 1421, 509, 0x212442 }, { 1435, 509, 0x212431 },\
-          { 1448, 510, 0x3acade }, { 1428, 510, 0x3acade },\
-          { 1413, 510, 0x3ac6d6 }, { 1396, 510, 0x42dbe6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-4的上边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 898, 509, 0x101c31 }, { 918, 509, 0x191c31 },\
-          { 935, 509, 0x19203a }, { 950, 509, 0x191c31 },\
-          { 959, 510, 0x31b6de }, { 938, 510, 0x3ab6e6 },\
-          { 924, 510, 0x31b2de }, { 909, 510, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图下边界\
-    bottonLineList = {\
-      -- 7-1 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 572, 906, 0x000000 }, { 589, 906, 0x000000 },\
-          { 604, 906, 0x000000 }, { 617, 906, 0x000000 },\
-          { 631, 905, 0x2181c5 }, { 608, 905, 0x197dc5 },\
-          { 591, 905, 0x2181c5 }, { 574, 905, 0x217dbd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-3 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1009, 906, 0x000000 }, { 1029, 906, 0x000000 },\
-          { 1043, 906, 0x000000 }, { 1055, 906, 0x000000 },\
-          { 1066, 905, 0x1965b5 }, { 1049, 905, 0x2169b5 },\
-          { 1034, 905, 0x1969b5 }, { 1020, 905, 0x1969ad },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-5 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1444, 906, 0x000000 }, { 1461, 906, 0x000000 },\
-          { 1475, 906, 0x000000 }, { 1488, 906, 0x000000 },\
-          { 1501, 905, 0x1049a4 }, { 1481, 905, 0x104da4 },\
-          { 1465, 905, 0x1049a4 }, { 1452, 905, 0x104da4 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 6-8 的下面\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022 }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1549, 905, 0x000000 }, { 1566, 905, 0x000000 },\
-          { 1581, 905, 0x000000 }, { 1595, 905, 0x000000 },\
-          { 1607, 904, 0x3a6dbd }, { 1587, 904, 0x3169b5 },\
-          { 1572, 904, 0x3169bd }, { 1557, 904, 0x3169bd },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图左边界\
-    leftLineList = {\
-      -- 1-7 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 544, 784, 0x000000 }, { 545, 784, 0x218ec5 },\
-          { 544, 783, 0x000000 }, { 545, 783, 0x218ec5 },\
-          { 543, 785, 0x000000 }, { 544, 785, 0x218ec5 },\
-          { 543, 786, 0x000000 }, { 544, 786, 0x2992ce },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-5 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 581, 489, 0x000000 }, { 582, 489, 0x3192d6 },\
-          { 581, 488, 0x000000 }, { 582, 488, 0x3a96de },\
-          { 580, 490, 0x000000 }, { 581, 490, 0x3196d6 },\
-          { 580, 491, 0x000000 }, { 581, 491, 0x3a96d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-3 的左边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 614, 227, 0x000101 }, { 615, 227, 0x31bad6 },\
-          { 614, 226, 0x000000 }, { 615, 226, 0x29bad6 },\
-          { 613, 228, 0x000000 }, { 614, 228, 0x31bad6 },\
-          { 613, 229, 0x000000 }, { 614, 229, 0x29b6d6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
-    -- 地图右边界\
-    rightLineList = {\
-      -- 7-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1724, 850, 0x000000 }, { 1723, 850, 0x3171c5 },\
-          { 1724, 849, 0x000000 }, { 1723, 849, 0x3175c5 },\
-          { 1725, 851, 0x000000 }, { 1724, 851, 0x3171bd },\
-          { 1725, 852, 0x000000 }, { 1724, 852, 0x3a75ce },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 4-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1617, 378, 0x000000 }, { 1616, 378, 0x31b2de },\
-          { 1617, 377, 0x000000 }, { 1616, 377, 0x29b2d6 },\
-          { 1618, 379, 0x000000 }, { 1617, 379, 0x31b2de },\
-          { 1618, 380, 0x000000 }, { 1617, 380, 0x31b2de },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-      -- 1-8 的右边\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1672, 290, 0x000000 }, { 1671, 290, 0x31aede },\
-          { 1672, 289, 0x000000 }, { 1671, 289, 0x31b2de },\
-          { 1673, 291, 0x000000 }, { 1672, 291, 0x29aede },\
-          { 1673, 292, 0x000000 }, { 1672, 292, 0x31b2e6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
-      end)(),\
-    },\
     -- 我方舰队位置\
     myFleetList = imgBase.map.myFleetList,\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -8387,7 +8172,7 @@ return {\
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./meta-operation/maps-options/map.lua"] = { path = "./meta-operation/maps-options/map.lua", name = "./meta-operation/maps-options/map.lua", source = "local utils = require './utils'\
 local AStart = require '../../utils/a-start'\
-local _sWidth, _sHeight = getScreenSize();\
+local _sWidth, _sHeight = getScreenSize()\
 local sWidth = math.max(_sWidth, _sHeight)\
 local sHeight = math.min(_sWidth, _sHeight)\
 \
@@ -8460,6 +8245,61 @@ local function transListToMap(list)\
     result[item[1] .. '-' .. item[2]] = item\
   end\
   return result\
+end\
+\
+-- 将点按照相邻分组，连成一片的就分为一组\
+local function listAdjacentGroups(list)\
+  local theList = table.assign({}, list)\
+  local theListMap = transListToMap(theList)\
+  local group = {}\
+  while #theList > 0 do\
+    local groupItem = {}\
+    table.insert(groupItem, theList[1])\
+    theListMap[theList[1][1] .. '-' .. theList[1][2]] = nil\
+    local theIndex = 1\
+    while theIndex <= #groupItem do\
+      local item = groupItem[theIndex]\
+      -- 将相邻的点都加入队列\
+      if theListMap[(item[1] + 1) .. '-' .. item[2]] then\
+        local index = (item[1] + 1) .. '-' .. item[2]\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[(item[1] - 1) .. '-' .. item[2]] then\
+        local index = (item[1] - 1) .. '-' .. item[2]\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[item[1] .. '-' .. (item[2] + 1)] then\
+        local index = item[1] .. '-' .. (item[2] + 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[item[1] .. '-' .. (item[2] - 1)] then\
+        local index = item[1] .. '-' .. (item[2] - 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] - 1)] then\
+        local index = (item[1] - 1) .. '-' .. (item[2] - 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] - 1)] then\
+        local index = (item[1] + 1) .. '-' .. (item[2] - 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] + 1)] then\
+        local index = (item[1] - 1) .. '-' .. (item[2] + 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] + 1)] then\
+        local index = (item[1] + 1) .. '-' .. (item[2] + 1)\
+        table.insert(groupItem, theListMap[index])\
+        theListMap[index] = nil\
+      end\
+\
+      theIndex = theIndex + 1\
+    end\
+    table.insert(group, groupItem)\
+    theList = table.values(theListMap)\
+  end\
+  return group\
 end\
 \
 -- 检查坐标点在直线的左边还是右边，直线用两点表示\
@@ -8679,7 +8519,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   local rightLinePointList = {}\
 \
   -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框\
-  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '0|1|0x000000,0|2|0x000000,1|0|0x000000,1|1|0x000000,1|2|0x000000,2|0|0x000000,2|1|0x000000,2|2|0x000000', 99, 184, 160, 1885, 1004)))\
+  local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 100, 184, 160, 1885, 1004)))\
+\
   -- 寻找底边\
   -- 按照y坐标分组\
   local blackLineGroup = {}\
@@ -8689,18 +8530,19 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     table.insert(blackLineGroup[value[2]], value)\
   end\
   -- 横向坐标点超过200个点的组\
-  local horizontalLineGroup = {}\
+  local bottomHorizontalLineGroup = {}\
   for key, value in pairs(blackLineGroup) do\
     if #value > 200 then\
-      table.insert(horizontalLineGroup, value)\
+      table.insert(bottomHorizontalLineGroup, value)\
     end\
   end\
-  bottonLinePointList = math.minTable(horizontalLineGroup, function(item) return item[1][2] end) or {}\
+\
+  bottonLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}\
 \
   -- 寻找左右纵向黑线的坐标\
   -- 将横向黑线移除\
   local tmpGroup = table.assign({}, blackLineGroup)\
-  for key, value in pairs(horizontalLineGroup) do\
+  for key, value in pairs(bottomHorizontalLineGroup) do\
     tmpGroup[value[1][2]] = nil\
   end\
   local verticalLineList = {}\
@@ -8721,12 +8563,15 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       table.insert(rightLineList, value)\
     end\
   end\
+\
   -- 左边黑线进行精简，使其变成宽度为1的细线\
   local leftLinePointList = {}\
   if #leftLineList > 0 then\
-    local leftTopPoint = math.minTable(leftLineList, function(item) return item[2] end)\
-    local leftBottomPoint = math.maxTable(leftLineList, function(item) return item[2] end)\
-    local leftLineMap = makePointMap(leftLineList)\
+    local leftLineAdjacentGroup = listAdjacentGroups(leftLineList)\
+    local leftLineAdjacentMaxList = math.maxTable(leftLineAdjacentGroup, function(item) return #item end)\
+    local leftTopPoint = math.minTable(leftLineAdjacentMaxList, 2)\
+    local leftBottomPoint = math.maxTable(leftLineAdjacentMaxList, 2)\
+    local leftLineMap = makePointMap(leftLineAdjacentMaxList)\
     local point = leftTopPoint\
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do\
       if leftLineMap[key .. '-' .. leftTopPoint[2]] then\
@@ -8736,26 +8581,38 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
     table.insert(leftLinePointList, point)\
-    for key = point[2] + 1, leftBottomPoint[2] do\
-      if leftLineMap[point[1] .. '-' .. key] then\
-        point = leftLineMap[point[1] .. '-' .. key]\
-        table.insert(leftLinePointList, point)\
-      elseif leftLineMap[(point[1] - 1) .. '-' .. key] then\
-        point = leftLineMap[(point[1] - 1) .. '-' .. key]\
-        table.insert(leftLinePointList, point)\
-      else\
+    while point[2] <= leftBottomPoint[2] do\
+      local lastPoint = point\
+      local _ = (function()\
+        for theY = (point[2] + 1), point[2] + 20 do\
+          for theX = point[1], (point[1] - 10), -1 do\
+            if leftLineMap[theX .. '-' .. theY] then\
+              point = leftLineMap[theX .. '-' .. theY]\
+              table.insert(leftLinePointList, point)\
+              return\
+            end\
+          end\
+        end\
+      end)()\
+      if lastPoint[1] == point[1] and lastPoint[2] == point[2] then\
         break\
       end\
     end\
   end\
+  -- 如果左边集合小于10个点，则认为做边黑线不存在\
+  if #leftLinePointList < 10 then\
+    leftLinePointList = {}\
+  end\
   -- 右边黑线进行精简，使其变成宽度为1的细线\
   local rightLinePointList = {}\
   if #rightLineList > 0 then\
-    local rightTopPoint = math.minTable(rightLineList, function(item) return item[2] end)\
-    local rightBottomPoint = math.maxTable(rightLineList, function(item) return item[2] end)\
+    local rightLineAdjacentGroup = listAdjacentGroups(rightLineList)\
+    local rightLineAdjacentMaxList = math.maxTable(rightLineAdjacentGroup, function(item) return #item end)\
+    local rightTopPoint = math.minTable(rightLineAdjacentMaxList, 2)\
+    local rightBottomPoint = math.maxTable(rightLineAdjacentMaxList, 2)\
     local rightLineMap = makePointMap(rightLineList)\
     local point = rightTopPoint\
-    for key = rightTopPoint[1], rightTopPoint[1] + 100 do\
+    for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do\
       if rightLineMap[key .. '-' .. rightTopPoint[2]] then\
         point = rightLineMap[key .. '-' .. rightTopPoint[2]]\
       else\
@@ -8763,22 +8620,80 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
     table.insert(rightLinePointList, point)\
-    for key = point[2] + 1, rightBottomPoint[2] do\
-      if rightLineMap[point[1] .. '-' .. key] then\
-        point = rightLineMap[point[1] .. '-' .. key]\
-        table.insert(rightLinePointList, point)\
-      elseif rightLineMap[(point[1] + 1) .. '-' .. key] then\
-        point = rightLineMap[(point[1] + 1) .. '-' .. key]\
-        table.insert(rightLinePointList, point)\
-      else\
+    while point[2] <= rightBottomPoint[2] do\
+      local lastPoint = point\
+      local _ = (function()\
+        for theY = (point[2] + 1), point[2] + 20 do\
+          for theX = point[1], (point[1] + 10) do\
+            if rightLineMap[theX .. '-' .. theY] then\
+              point = rightLineMap[theX .. '-' .. theY]\
+              table.insert(rightLinePointList, point)\
+              return\
+            end\
+          end\
+        end\
+      end)()\
+      if lastPoint[1] == point[1] and lastPoint[2] == point[2] then\
         break\
       end\
     end\
   end\
+  -- 如果右边集合小于10个点，则认为做边黑线不存在\
+  if #rightLinePointList < 10 then\
+    rightLinePointList = {}\
+  end\
 \
-  topLinePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.topLineList, true))\
-\
-  local topLinePoint = topLinePointList[1] or { -1, -1 }\
+  -- 上边界用白色字母作为参考点\
+  local whiteCharacterList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0xffffff, '', 100, 184, 160, 1885, 1004)))\
+  -- 寻找上边\
+  -- 按照y坐标分组\
+  local whiteCharacterGroup = {}\
+  for key = 1, #whiteCharacterList do\
+    local value = whiteCharacterList[key]\
+    whiteCharacterGroup[value[2]] = whiteCharacterGroup[value[2]] or {}\
+    table.insert(whiteCharacterGroup[value[2]], value)\
+  end\
+  -- 横向坐标点超过40个点的组\
+  local topHorizontalLineGroupTmp = {}\
+  for key, value in pairs(whiteCharacterGroup) do\
+    if #value > 40 then\
+      table.insert(topHorizontalLineGroupTmp, value)\
+    end\
+  end\
+  -- 横向宽度超过700的组\
+  local topHorizontalLineGroupTmp2 = {}\
+  for key, value in ipairs(topHorizontalLineGroupTmp) do\
+    local leftPoint = math.minTable(value, 1)\
+    local rightPoint = math.maxTable(value, 1)\
+    if rightPoint[1] - leftPoint[1] > 700 then\
+      table.insert(topHorizontalLineGroupTmp2, value)\
+    end\
+  end\
+  -- 白点间隔不超过450的组\
+  local topHorizontalLineGroup = {}\
+  for key, value in ipairs(topHorizontalLineGroupTmp2) do\
+    local sortValue = table.assign({}, value)\
+    table.sort(sortValue, function(a, b) return a[1] < b[1] end)\
+    local flag = true\
+    for key2 = 1, #sortValue - 1 do\
+      local a = sortValue[key2]\
+      local b = sortValue[key2 + 1]\
+      if math.abs(b[1] - a[1]) >= 450 then\
+        flag = false\
+        break\
+      end\
+    end\
+    if flag then\
+      table.insert(topHorizontalLineGroup, value)\
+    end\
+  end\
+  -- 寻找最靠下的一个组\
+  topLinePointList = math.minTable(topHorizontalLineGroup, function(item) return item[1][2] end)\
+  -- 白字下方13像素才是上边界\
+  local topLinePoint = { -1, -1 }\
+  if topLinePointList and #topLinePointList > 0 then\
+    topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }\
+  end\
   local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }\
 \
   function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)\
@@ -8837,24 +8752,24 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)\
       moveVector = { sWidth / 3, sHeight / 3 }\
     else\
       effectiveStep = true\
-      moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1];\
-      moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2];\
+      moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1]\
+      moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2]\
     end\
   elseif targetPosition.rightTop then\
     if not currentPosition.rightTop then\
       moveVector = { (0 - sWidth) / 3, sHeight / 3 }\
     else\
       effectiveStep = true\
-      moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1];\
-      moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2];\
+      moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1]\
+      moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2]\
     end\
   elseif targetPosition.leftBotton then\
     if not currentPosition.leftBotton then\
       moveVector = { sWidth / 3, (0 - sHeight) / 3 }\
     else\
       effectiveStep = true\
-      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1];\
-      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2];\
+      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1]\
+      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2]\
     end\
   elseif targetPosition.rightBotton then\
     if not currentPosition.rightBotton then\
@@ -8883,7 +8798,7 @@ end\
 \
 -- 将地图移动到指定位置\
 map.moveMapToCheckPosition = function(ImgInfo, moveVector)\
-  local isCenter = false;\
+  local isCenter = false\
   local minLength = 5\
   -- 将地图移动到中心\
   local moveStep\
@@ -9113,7 +9028,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
             local value = thePath[key]\
             if enemyPositionMap[value[1] .. '-' .. value[2]] then\
               minCoastEnemy = value\
-              break;\
+              break\
             end\
           end\
         end\
@@ -13417,6 +13332,27 @@ mission.clickGetPropsPanelNext = function(point)\
   RTap({ 944, 815 }, 100)\
 end\
 \
+-- 获得新船界面\
+mission.isGetShipPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 64, 55, 0x736d8c }, { 1404, 33, 0x524984 },\
+    { 1829, 91, 0x6b617b }, { 1866, 451, 0x634d84 },\
+    { 1849, 818, 0x423d5a }, { 1610, 966, 0x846da4 },\
+    { 1180, 1036, 0x8c75ad }, { 901, 1036, 0xad9ece },\
+    { 309, 1023, 0x52516b }, { 1539, 687, 0x292d31 },\
+  }\
+  local result = multiColorS(list)\
+  if (not __keepScreenState) then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击获得道具继续\
+mission.clickGetNewShipNext = function(point)\
+  RTap({ 887, 539 }, 100)\
+end\
+\
 -- 点击返回\
 mission.getPropsPanelBack = function()\
   RTap({ 57, 29 }, 100)\
@@ -17040,9 +16976,20 @@ local mission = function(action)\
 \
       stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')\
       o.mission.clickGetPropsPanelNext()\
-\
       local newstateTypes = c.yield(setScreenListeners({\
         { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage },\
+        { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MISSION_GET_NEW_SHIP_PAGE' then\
+\
+      stepLabel.setStepLabelContent('3.9.获得新船,点击继续')\
+      o.mission.clickGetNewShipNext()\
+      local newstateTypes = c.yield(setScreenListeners({\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
       }))\
       return makeAction(newstateTypes)\
@@ -20262,6 +20209,7 @@ math.minTable = math.minTable or function(tab, path)\
   end\
   return minTab, minKey\
 end\
+\
 \
 math.mod = math.mod or function(m, n)\
   local a1 = math.modf(m / n)\

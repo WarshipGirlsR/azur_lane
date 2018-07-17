@@ -113,6 +113,27 @@ mission.clickGetPropsPanelNext = function(point)
   RTap({ 944, 815 }, 100)
 end
 
+-- 获得新船界面
+mission.isGetShipPage = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 64, 55, 0x736d8c }, { 1404, 33, 0x524984 },
+    { 1829, 91, 0x6b617b }, { 1866, 451, 0x634d84 },
+    { 1849, 818, 0x423d5a }, { 1610, 966, 0x846da4 },
+    { 1180, 1036, 0x8c75ad }, { 901, 1036, 0xad9ece },
+    { 309, 1023, 0x52516b }, { 1539, 687, 0x292d31 },
+  }
+  local result = multiColorS(list)
+  if (not __keepScreenState) then keepScreen(false) end
+  return result
+end
+
+-- 点击获得道具继续
+mission.clickGetNewShipNext = function(point)
+  RTap({ 887, 539 }, 100)
+end
+
 -- 点击返回
 mission.getPropsPanelBack = function()
   RTap({ 57, 29 }, 100)
