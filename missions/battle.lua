@@ -417,10 +417,21 @@ local battle = function(action)
       o.battle.getNewShipPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 1000 },
+        { 'BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },
       }))
       return makeAction(newstateTypes)
 
+    elseif action.type == 'BATTLE_LOCK_NEW_SHIP_PANEL' then
+
+      stepLabel.setStepLabelContent('2.23.锁定新船面板点击继续')
+      o.battle.lockNewShipPanelClickNext()
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },
+        { 'BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },
+      }))
+      return makeAction(newstateTypes)
 
     elseif action.type == 'BATTLE_GET_EXP_PANEL' then
 

@@ -983,7 +983,7 @@ battle.getPropsPanelClickNext = function()
   RTap({ 952, 840 }, 100)
 end
 
--- 检测是否获得船面板
+-- 检测是否获得新船面板
 battle.isGetNewShipPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
@@ -999,9 +999,34 @@ battle.isGetNewShipPanel = function()
   return result
 end
 
--- 获得船面板点击继续
+-- 获得新船面板点击继续
 battle.getNewShipPanelClickNext = function()
   RTap({ 952, 840 }, 100)
+end
+
+-- 检测是否锁定新船面板
+battle.isLockNewShipPanel = function()
+  local __keepScreenState = keepScreenState
+  if not __keepScreenState then keepScreen(true) end
+  local list = {
+    { 477, 265, 0x292829 }, { 1442, 262, 0xadaaad },
+    { 746, 256, 0xeff3f7 }, { 1275, 259, 0xeff3f7 },
+    { 1247, 307, 0xdedfde }, { 747, 300, 0x000000 },
+    { 643, 716, 0xdee7de }, { 1100, 723, 0xf7ce42 },
+    { 1299, 724, 0xf7ce42 }, { 822, 726, 0xe6e3e6 },
+    { 813, 495, 0xfffff7 }, { 855, 501, 0xfffff7 },
+    { 897, 506, 0x9cf34a }, { 939, 505, 0xadf74a },
+    { 953, 529, 0xadf74a }, { 986, 513, 0xfffff7 },
+    { 1025, 511, 0xf7f7ef }, { 1065, 516, 0xfffff7 },
+  }
+  local result = multiColorS(list)
+  if not __keepScreenState then keepScreen(false) end
+  return result
+end
+
+-- 锁定新船面板点击继续
+battle.lockNewShipPanelClickNext = function()
+  RTap({ 1186, 742 }, 100)
 end
 
 -- 检测是否获得经验面板

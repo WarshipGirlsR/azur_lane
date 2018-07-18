@@ -4638,7 +4638,7 @@ battle.getPropsPanelClickNext = function()\
   RTap({ 952, 840 }, 100)\
 end\
 \
--- 检测是否获得船面板\
+-- 检测是否获得新船面板\
 battle.isGetNewShipPanel = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
@@ -4654,9 +4654,34 @@ battle.isGetNewShipPanel = function()\
   return result\
 end\
 \
--- 获得船面板点击继续\
+-- 获得新船面板点击继续\
 battle.getNewShipPanelClickNext = function()\
   RTap({ 952, 840 }, 100)\
+end\
+\
+-- 检测是否锁定新船面板\
+battle.isLockNewShipPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 477, 265, 0x292829 }, { 1442, 262, 0xadaaad },\
+    { 746, 256, 0xeff3f7 }, { 1275, 259, 0xeff3f7 },\
+    { 1247, 307, 0xdedfde }, { 747, 300, 0x000000 },\
+    { 643, 716, 0xdee7de }, { 1100, 723, 0xf7ce42 },\
+    { 1299, 724, 0xf7ce42 }, { 822, 726, 0xe6e3e6 },\
+    { 813, 495, 0xfffff7 }, { 855, 501, 0xfffff7 },\
+    { 897, 506, 0x9cf34a }, { 939, 505, 0xadf74a },\
+    { 953, 529, 0xadf74a }, { 986, 513, 0xfffff7 },\
+    { 1025, 511, 0xf7f7ef }, { 1065, 516, 0xfffff7 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 锁定新船面板点击继续\
+battle.lockNewShipPanelClickNext = function()\
+  RTap({ 1186, 742 }, 100)\
 end\
 \
 -- 检测是否获得经验面板\
@@ -4910,7 +4935,7 @@ mapEvent.getMapChessboard = function()\
       { 5, 6 },\
       { 6, 6 },\
     },\
-    waitForBossPosition = { { 1, 2 }, { 6, 9 } },\
+    waitForBossPosition = { { 1, 2 }, { 2, 1 }, { 3, 1 }, { 5, 1 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -10929,6 +10954,7 @@ local c = coroutine\
 local stepLabel = require '../utils/step-label'\
 local makeAction = (require './utils').makeAction\
 local sleepPromise = require '../utils/sleep-promise'\
+local moBattle = require '../meta-operation/battle'\
 local moMission = require '../meta-operation/mission'\
 local moHome = require '../meta-operation/home'\
 local moMap = require '../meta-operation/maps-options/index'\
@@ -10936,12 +10962,20 @@ local setScreenListeners = (require './utils').setScreenListeners\
 local store = require '../store'\
 local vibratorPromise = require '../utils/vibrator-promise'\
 \
-store.battle = store.battle or {}\
+store.mission = store.mission or {}\
 \
 local o = {\
   home = moHome,\
+  battle = moBattle,\
   mission = moMission,\
   map = moMap,\
+}\
+\
+local missionListenerList = {\
+  { '', o.home.isHome, 2000 },\
+  { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
+  { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel, 2000 },\
+  { 'MISSION_MITTION_PAGE_BACK', o.mission.isMissionPage, 2000 },\
 }\
 \
 local mission = function(action)\
@@ -10952,7 +10986,7 @@ local mission = function(action)\
     if action.type == 'MISSION_INIT' then\
 \
       stepLabel.setStepLabelContent('3.1.等待桌面')\
-      local newstateTypes = c.yield(setScreenListeners({\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
         { 'MISSION_START', o.home.isHome, 2000 },\
       }))\
       return makeAction(newstateTypes)\
@@ -10962,7 +10996,7 @@ local mission = function(action)\
       stepLabel.setStepLabelContent('3.3.检查是否有任务')\
       if o.mission.checkHasMission() then\
         o.mission.clickIntoMissionPage()\
-        local newstateTypes = c.yield(setScreenListeners({\
+        local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
           { 'MISSION_MITTION_PAGE', o.mission.isMissionPage },\
         }))\
         return makeAction(newstateTypes)\
@@ -10981,7 +11015,7 @@ local mission = function(action)\
         stepLabel.setStepLabelContent('3.6.点击任务')\
         console.log(res[1])\
         o.mission.clickMissionBtn(res[1])\
-        local newstateTypes = c.yield(setScreenListeners({\
+        local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
           { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
           { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
         }))\
@@ -10989,7 +11023,7 @@ local mission = function(action)\
       end\
 \
       stepLabel.setStepLabelContent('3.7.没有任务，返回')\
-      local newstateTypes = c.yield(setScreenListeners({\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
         { 'MISSION_MITTION_PAGE_BACK', o.mission.isMissionPage },\
       }))\
       return makeAction(newstateTypes)\
@@ -10998,7 +11032,7 @@ local mission = function(action)\
 \
       stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')\
       o.mission.clickGetPropsPanelNext()\
-      local newstateTypes = c.yield(setScreenListeners({\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
         { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
         { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
@@ -11009,10 +11043,22 @@ local mission = function(action)\
 \
       stepLabel.setStepLabelContent('3.9.获得新船,点击继续')\
       o.mission.clickGetNewShipNext()\
-      local newstateTypes = c.yield(setScreenListeners({\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
         { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
         { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
+        { 'MISSION_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+    elseif action.type == 'MISSION_LOCK_NEW_SHIP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('3.11.锁定新船面板点击继续')\
+      o.battle.lockNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
+        { 'MISSION_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },\
+        { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel, 2000 },\
       }))\
       return makeAction(newstateTypes)\
 \
@@ -11020,7 +11066,12 @@ local mission = function(action)\
 \
       stepLabel.setStepLabelContent('3.8.返回桌面')\
       o.mission.getPropsPanelBack()\
-      return makeAction('')\
+\
+      local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
+        { 'MISSION_MITTION_PAGE_BACK', o.mission.isMissionPage, 2000 },\
+        { '', o.home.isHome },\
+      }))\
+      return makeAction(newstateTypes)\
     end\
 \
     return nil\
@@ -11718,10 +11769,21 @@ local battle = function(action)\
       o.battle.getNewShipPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 1000 },\
+        { 'BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
       }))\
       return makeAction(newstateTypes)\
 \
+    elseif action.type == 'BATTLE_LOCK_NEW_SHIP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('2.23.锁定新船面板点击继续')\
+      o.battle.lockNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
 \
     elseif action.type == 'BATTLE_GET_EXP_PANEL' then\
 \
