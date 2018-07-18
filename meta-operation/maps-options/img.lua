@@ -310,6 +310,16 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBotton = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 518, 592, 0x9cfff7 }, { 479, 592, 0xdeebde },
+          { 554, 592, 0xefebef }, { 556, 616, 0xefebef },
+          { 518, 618, 0x94fff7 }, { 481, 625, 0xefebef },
+        })
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+      end)(),
     },
   },
 }

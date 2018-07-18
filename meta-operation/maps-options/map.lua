@@ -718,24 +718,23 @@ end
 map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
   -- 将我方舰队上方和右上方和右边的敌人找到，并保存下来。因为扫描时会被遮挡，所以从上次敌人列表中寻找
   local checkMyFleetList = utils.subtractionList(newMapChessboard.myFleetList, newMapChessboard.inBattleList)
-  local checkMyFleetMap = makePointMap(checkMyFleetList)
-  function findMyFleetTopRightEnemy(el)
+  function findMyFleetTopRightEnemy(myFleetList, oldMap)
     local res = {}
-    for key, enemy in ipairs(el) do
-      if checkMyFleetMap[(enemy[1] + 1) .. '-' .. enemy[2]]
-        or checkMyFleetMap[(enemy[1] + 1) .. '-' .. (enemy[2] - 1)]
-        or checkMyFleetMap[(enemy[1]) .. '-' .. (enemy[2] - 1)] then
-        table.insert(res, enemy)
+    for key, item in ipairs(myFleetList) do
+      if oldMap[(item[1] + 1) .. '-' .. item[2]]
+        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
+        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
+        table.insert(res, item)
       end
     end
     return res
   end
 
   local theMapChessBoard = table.assign({}, newMapChessboard, {
-    rewardBoxList = utils.unionList(newMapChessboard.rewardBoxList, findMyFleetTopRightEnemy(mapChessboard.rewardBoxList)),
-    enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList1)),
-    enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList2)),
-    enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(mapChessboard.enemyPositionList3)),
+    rewardBoxList = utils.unionList(newMapChessboard.rewardBoxList, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.rewardBoxList)),
+    enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList1)),
+    enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList2)),
+    enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList3)),
     bossPosition = utils.unionList(newMapChessboard.bossPosition, mapChessboard.bossPosition),
   })
   return theMapChessBoard
