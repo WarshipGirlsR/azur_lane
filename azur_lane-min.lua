@@ -11016,7 +11016,7 @@ local mission = function(action)\
         console.log(res[1])\
         o.mission.clickMissionBtn(res[1])\
         local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
-          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+          { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 1000 },\
           { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
         }))\
         return makeAction(newstateTypes)\
@@ -11033,7 +11033,7 @@ local mission = function(action)\
       stepLabel.setStepLabelContent('3.8.获得道具面板,点击继续')\
       o.mission.clickGetPropsPanelNext()\
       local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
-        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 1000 },\
         { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
       }))\
@@ -11044,7 +11044,7 @@ local mission = function(action)\
       stepLabel.setStepLabelContent('3.9.获得新船,点击继续')\
       o.mission.clickGetNewShipNext()\
       local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
-        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 1000 },\
         { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
         { 'MISSION_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel },\
@@ -11055,7 +11055,7 @@ local mission = function(action)\
       stepLabel.setStepLabelContent('3.11.锁定新船面板点击继续')\
       o.battle.lockNewShipPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(missionListenerList, {\
-        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 2000 },\
+        { 'MISSION_MITTION_PAGE', o.mission.isMissionPage, 1000 },\
         { 'MISSION_GET_NEW_SHIP_PAGE', o.mission.isGetShipPage, 2000 },\
         { 'MISSION_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },\
         { 'MISSION_GET_PROPS_PANEL', o.mission.isGetPropsPanel, 2000 },\
