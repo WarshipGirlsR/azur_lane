@@ -49,6 +49,19 @@ return function()
         },
         {
           ['type'] = 'Label',
+          ['text'] = '演习',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'exerciseEnable',
+          ['type'] = 'RadioGroup',
+          ['list'] = '开启,关闭',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
           ['text'] = '每日挑战',
           ['size'] = 15,
           ['align'] = 'left',
@@ -330,6 +343,28 @@ return function()
       {
         {
           ['type'] = 'Label',
+          ['text'] = '演习',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '自动选择敌人',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'exerciseAutoSelectEnemy',
+          ['type'] = 'RadioGroup',
+          ['list'] = '手动,自动',
+          ['select'] = '0',
+        },
+      },
+      {
+        {
+          ['type'] = 'Label',
           ['text'] = '每日挑战',
           ['size'] = 15,
           ['align'] = 'left',
@@ -466,6 +501,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleEnable] or false
     end)(settings.battleEnable)
+    -- 演习
+    settings.exerciseEnable = (function(exerciseEnable)
+      local list = transStrToTable({ true, false, })
+      return list[exerciseEnable] or false
+    end)(settings.exerciseEnable)
     -- 每日挑战
     settings.dailyChallengesEnable = (function(dailyChallengesEnable)
       local list = transStrToTable({ true, false, })
@@ -533,9 +573,7 @@ return function()
     end)(settings.battleMode)
     -- 选择辅助模式
     settings.battleAssistantMode = (function(battleAssistantMode)
-      local list = transStrToTable({
-        'manual', 'auto',
-      })
+      local list = transStrToTable({ 'manual', 'auto' })
       return list[battleAssistantMode] or 'manual'
     end)(settings.battleAssistantMode)
     -- 选择Boss舰队
@@ -596,6 +634,11 @@ return function()
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
       return list[battleStepLength] or 0
     end)(settings.battleStepLength)
+    -- 演习
+    settings.exerciseAutoSelectEnemy = (function(exerciseAutoSelectEnemy)
+      local list = transStrToTable({ 'manual', 'auto' })
+      return list[exerciseAutoSelectEnemy] or 'manual'
+    end)(settings.exerciseAutoSelectEnemy)
     -- 每日挑战
     -- 战术研修关卡
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)

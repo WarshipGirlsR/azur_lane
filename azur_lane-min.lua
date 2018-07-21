@@ -3168,6 +3168,137 @@ return map" }
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/exercise.lua"] = { path = "./meta-operation/exercise.lua", name = "./meta-operation/exercise.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local sleepPromise = require '../utils/sleep-promise'\
+\
+local toPoint = function(tab)\
+  -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
+  local newTab = {}\
+  local tabLength = #tab\
+  for key = 1, tabLength do\
+    newTab[key] = { tab[key].x, tab[key].y }\
+    tab[key] = nil\
+  end\
+  return newTab\
+end\
+\
+local exercise = {}\
+\
+-- 点击演习按钮\
+exercise.clickExerciseBtn = function()\
+  RTap({ 1797, 1013 }, 100)\
+end\
+\
+-- 是否演习界面\
+exercise.isExercisePage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 15, 15, 0xe6ebef }, { 11, 59, 0xcecece }, { 865, 12, 0xeff3f7 }, { 830, 52, 0xdedfde },\
+    { 359, 5, 0xeff3f7 }, { 315, 14, 0x424542 }, { 142, 13, 0x292829 }, { 302, 42, 0x000000 },\
+    { 163, 21, 0x292d29 }, { 235, 37, 0x3a393a }, { 41, 620, 0x080c08 }, { 878, 1011, 0x000419 },\
+    { 1187, 660, 0x002063 }, { 1605, 534, 0x00aad6 }, { 1831, 548, 0x00aad6 }, { 1651, 112, 0x000410 },\
+    { 1720, 227, 0x000410 }, { 1707, 302, 0x081029 },\
+\
+    { 209, 23, 0x080808 }, { 264, 26, 0x293131 }, { 272, 39, 0x313531 }, { 280, 32, 0xffd763 },\
+    { 282, 18, 0xffffde }, { 249, 32, 0xf7ce6b }, { 232, 49, 0x313531 }, { 240, 55, 0xffdb73 },\
+    { 238, 59, 0x080808 }, { 203, 65, 0x313531 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 是否演习次数为0\
+exercise.isExercisePageExerciseNumZero = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 1691, 414, 0x001029 }, { 1692, 438, 0x001029 },\
+    { 1692, 443, 0xa4f342 }, { 1700, 438, 0xadf74a },\
+    { 1695, 423, 0xadf74a }, { 1699, 413, 0xadf74a },\
+    { 1683, 418, 0xa4f34a }, { 1687, 432, 0x9cf34a },\
+    { 1684, 440, 0xadf74a }, { 1690, 439, 0xa4ef42 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 选择敌人舰队\
+exercise.clickEnemyFleet = function(n)\
+  n = n or 1\
+  if n == 1 then\
+    RTap({ 243, 379 }, 100)\
+  elseif n == 2 then\
+    RTap({ 610, 394 }, 100)\
+  elseif n == 3 then\
+    RTap({ 989, 405 }, 100)\
+  elseif n == 4 then\
+    RTap({ 1363, 400 }, 100)\
+  end\
+end\
+\
+-- 是否敌人信息页面\
+exercise.isEnemyInfoPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 784, 242, 0xfff7d6 }, { 795, 259, 0xffca42 }, { 809, 266, 0xffbe19 }, { 818, 274, 0xffbe00 },\
+    { 857, 257, 0xf7d25a }, { 912, 258, 0xffd252 }, { 947, 260, 0xffc642 }, { 997, 256, 0xffce5a },\
+    { 1061, 241, 0xfff7de }, { 1132, 261, 0xffc231 }, { 1432, 928, 0xffdb52 }, { 1476, 948, 0xffffff },\
+    { 1517, 976, 0xffae19 }, { 1555, 960, 0xffffff }, { 1646, 966, 0xffc642 }, { 1662, 958, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击开始演习按钮\
+exercise.clickcStartExerciseBtn = function()\
+  RTap({ 1566, 958 }, 100)\
+end\
+\
+-- 是否敌战斗中\
+exercise.isInBattlePage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 619, 31, 0x313131 }, { 698, 30, 0x313531 },\
+    { 812, 35, 0x4a718c }, { 1028, 35, 0x42718c },\
+    { 1117, 33, 0x313131 }, { 1259, 33, 0x313131 },\
+    { 1303, 25, 0x52555a }, { 1816, 36, 0xe6e7e6 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 检查我方生命剩余多少\
+exercise.checkMyHPRemain = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local leftPoint = { 71, 65, 0x4a4d4a }\
+  local rightPoint = { 782, 62, 0x5a3d42 }\
+  local pointList = toPoint(findMultiColorInRegionFuzzyExt('0xf74942', '', 90, 70, 42, 791, 65))\
+  local percentPoint = math.minTable(pointList, function(item) return item[2] end)\
+  console.log(pointList)\
+  local result = math.abs(rightPoint[1] - percentPoint[1]) / math.abs(rightPoint[1] - leftPoint[1])\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 点击返回按钮\
+exercise.clickBackBtn = function()\
+  RTap({ 59, 35 }, 100)\
+end\
+\
+return exercise\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./meta-operation/mission.lua"] = { path = "./meta-operation/mission.lua", name = "./meta-operation/mission.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local function transRelativePoint(tab, base)\
   if not base then\
@@ -10951,6 +11082,218 @@ return mapsType1\
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./missions/exercise.lua"] = { path = "./missions/exercise.lua", name = "./missions/exercise.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local stepLabel = require '../utils/step-label'\
+local makeAction = (require './utils').makeAction\
+local sleepPromise = require '../utils/sleep-promise'\
+local moBattle = require '../meta-operation/battle'\
+local moExercise = require '../meta-operation/exercise'\
+local moHome = require '../meta-operation/home'\
+local moMap = require '../meta-operation/maps-options/index'\
+local setScreenListeners = (require './utils').setScreenListeners\
+local store = require '../store'\
+local vibratorPromise = require '../utils/vibrator-promise'\
+\
+store.battle = store.battle or {}\
+\
+local o = {\
+  home = moHome,\
+  battle = moBattle,\
+  exercise = moExercise,\
+  map = moMap,\
+}\
+local exerciseListenerList = {\
+  { '', o.home.isHome, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
+  { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 2000 },\
+  { 'EXERCISE_VICTORY_PAGE', o.battle.isVictoryPanel, 2000 },\
+  { 'EXERCISE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },\
+  { 'EXERCISE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+  { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+}\
+\
+local exercise = function(action)\
+  local settings = store.settings;\
+  local mapProxy = o.map['map' .. settings.battleChapter.name]\
+  return co(c.create(function()\
+\
+    if action.type == 'EXERCISE_INIT' then\
+\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_START', o.home.isHome },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_START' then\
+\
+      stepLabel.setStepLabelContent('5.1.等待桌面')\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_HOME_CLICK_BATTLE' then\
+\
+      stepLabel.setStepLabelContent('5.2.点击出击')\
+      o.battle.clickBattleBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE' then\
+\
+      stepLabel.setStepLabelContent('5.2.点击演习')\
+      o.exercise.clickExerciseBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
+        { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_EXERCISE_PAGE_START_EXERCISE' then\
+\
+      if not o.exercise.isExercisePageExerciseNumZero() then\
+        if settings.exerciseAutoSelectEnemy == 'auto' then\
+          stepLabel.setStepLabelContent('5.10.选择敌人')\
+          o.exercise.clickEnemyFleet(1)\
+          local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+            { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
+            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
+            { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },\
+            { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
+          }))\
+          return makeAction(newstateTypes)\
+        else\
+          stepLabel.setStepLabelContent('5.10.等待用户选择敌人')\
+          local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+            { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
+            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 86400000 },\
+            { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage },\
+            { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
+          }))\
+          return makeAction(newstateTypes)\
+        end\
+      end\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isExercisePage },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE' then\
+\
+      stepLabel.setStepLabelContent('5.16.准备战斗')\
+      o.exercise.clickcStartExerciseBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_READY_PAGE_CLICK_BATTLE' then\
+\
+      stepLabel.setStepLabelContent('5.16.准备战斗')\
+      c.yield(sleepPromise(1000))\
+      o.battle.readyBattlePageClickBattle()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_IN_BATTLE_PAGE' then\
+\
+      stepLabel.setStepLabelContent('5.16.战斗中，检测血量')\
+      local remainHp = o.exercise.checkMyHPRemain()\
+      console.log(remainHp)\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 500 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_VICTORY_PAGE' then\
+\
+      stepLabel.setStepLabelContent('5.21.胜利面板点击继续')\
+      o.battle.victoryPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_VICTORY_PAGE', o.battle.isGetPropsPanel, 2000 },\
+        { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'EXERCISE_GET_PROPS_PANEL', o.battle.isGetPropsPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_GET_PROPS_PANEL' then\
+\
+      stepLabel.setStepLabelContent('5.22.获得道具面板点击继续')\
+      o.battle.getPropsPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },\
+        { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'EXERCISE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_GET_NEW_SHIP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('5.23.获得新船面板点击继续')\
+      o.battle.getNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+        { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 1000 },\
+        { 'EXERCISE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_LOCK_NEW_SHIP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('5.23.锁定新船面板点击继续')\
+      o.battle.lockNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+        { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'EXERCISE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_GET_EXP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('5.24.获得经验面板点击继续')\
+      o.battle.getExpPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { '', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME' then\
+\
+      o.exercise.clickBackBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isExercisePage, 2000 },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, 2000 },\
+        { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage, 2000 },\
+        { '', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+    end\
+  end))\
+end\
+\
+return exercise\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/mission.lua"] = { path = "./missions/mission.lua", name = "./missions/mission.lua", source = "local co = require '../lib/co'\
 local c = coroutine\
 local stepLabel = require '../utils/step-label'\
@@ -11736,15 +12079,6 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_VICTORY_PAGE' then\
 \
-      stepLabel.setStepLabelContent('2.20.胜利面板点击继续')\
-      o.battle.victoryPanelClickNext()\
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },\
-      }))\
-      return makeAction(newstateTypes)\
-\
-    elseif action.type == 'BATTLE_VICTORY_PAGE' then\
-\
       stepLabel.setStepLabelContent('2.21.胜利面板点击继续')\
       o.battle.victoryPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
@@ -12459,6 +12793,7 @@ package.sourceCode["./missions/index.lua"] = { path = "./missions/index.lua", na
 local battle = require './battle'\
 local dailyChallenges = require './daily-challenges'\
 local mission = require './mission'\
+local exercise = require './exercise'\
 local mapsType1 = require './maps-type-1'\
 local mapsType2 = require './maps-type-2'\
 local mapsType3 = require './maps-type-3'\
@@ -12469,6 +12804,7 @@ local scanMapsType1 = require './scan-map-type-1'\
 local missions = {\
   battle,\
   dailyChallenges,\
+  exercise,\
   mission,\
   mapsType1,\
   mapsType2,\
@@ -12652,6 +12988,19 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
+          ['text'] = '演习',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'exerciseEnable',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '开启,关闭',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
           ['text'] = '每日挑战',\
           ['size'] = 15,\
           ['align'] = 'left',\
@@ -12730,9 +13079,9 @@ return function()\
         {\
           ['id'] = 'battleChapter',\
           ['type'] = 'ComboBox',\
-          ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'\
-            .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'\
-            .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
+          ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
+            .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
             .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',\
           ['select'] = '0',\
         },\
@@ -12933,6 +13282,28 @@ return function()\
       {\
         {\
           ['type'] = 'Label',\
+          ['text'] = '演习',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '自动选择敌人',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'exerciseAutoSelectEnemy',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '手动,自动',\
+          ['select'] = '0',\
+        },\
+      },\
+      {\
+        {\
+          ['type'] = 'Label',\
           ['text'] = '每日挑战',\
           ['size'] = 15,\
           ['align'] = 'left',\
@@ -13069,6 +13440,11 @@ return function()\
       local list = transStrToTable({ true, false, })\
       return list[battleEnable] or false\
     end)(settings.battleEnable)\
+    -- 演习\
+    settings.exerciseEnable = (function(exerciseEnable)\
+      local list = transStrToTable({ true, false, })\
+      return list[exerciseEnable] or false\
+    end)(settings.exerciseEnable)\
     -- 每日挑战\
     settings.dailyChallengesEnable = (function(dailyChallengesEnable)\
       local list = transStrToTable({ true, false, })\
@@ -13095,20 +13471,28 @@ return function()\
         { name = '2-3', chapter = 2, section = '3' }, { name = '2-4', chapter = 2, section = '4' },\
         { name = '3-1', chapter = 3, section = '1' }, { name = '3-2', chapter = 3, section = '2' },\
         { name = '3-3', chapter = 3, section = '3' }, { name = '3-4', chapter = 3, section = '4' },\
+        { name = '3-sos', chapter = 3, section = 'sos' },\
         { name = '4-1', chapter = 4, section = '1' }, { name = '4-2', chapter = 4, section = '2' },\
         { name = '4-3', chapter = 4, section = '3' }, { name = '4-4', chapter = 4, section = '4' },\
+        { name = '4-sos', chapter = 4, section = 'sos' },\
         { name = '5-1', chapter = 5, section = '1' }, { name = '5-2', chapter = 5, section = '2' },\
         { name = '5-3', chapter = 5, section = '3' }, { name = '5-4', chapter = 5, section = '4' },\
+        { name = '5-1', chapter = 5, section = 'sos' },\
         { name = '6-1', chapter = 6, section = '1' }, { name = '6-2', chapter = 6, section = '2' },\
         { name = '6-3', chapter = 6, section = '3' }, { name = '6-4', chapter = 6, section = '4' },\
+        { name = '6-sos', chapter = 6, section = 'sos' },\
         { name = '7-1', chapter = 7, section = '1' }, { name = '7-2', chapter = 7, section = '2' },\
         { name = '7-3', chapter = 7, section = '3' }, { name = '7-4', chapter = 7, section = '4' },\
+        { name = '7-sos', chapter = 7, section = 'sos' },\
         { name = '8-1', chapter = 8, section = '1' }, { name = '8-2', chapter = 8, section = '2' },\
         { name = '8-3', chapter = 8, section = '3' }, { name = '8-4', chapter = 8, section = '4' },\
+        { name = '8-sos', chapter = 8, section = 'sos' },\
         { name = '9-1', chapter = 9, section = '1' }, { name = '9-2', chapter = 9, section = '2' },\
         { name = '9-3', chapter = 9, section = '3' }, { name = '9-4', chapter = 9, section = '4' },\
+        { name = '9-sos', chapter = 9, section = 'sos' },\
         { name = '10-1', chapter = 10, section = '1' }, { name = '10-2', chapter = 10, section = '2' },\
         { name = '10-3', chapter = 10, section = '3' }, { name = '10-4', chapter = 10, section = '4' },\
+        { name = '10-sos', chapter = 10, section = 'sos' },\
         { name = '11-1', chapter = 11, section = '1' }, { name = '11-2', chapter = 11, section = '2' },\
         { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },\
         { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },\
@@ -13128,9 +13512,7 @@ return function()\
     end)(settings.battleMode)\
     -- 选择辅助模式\
     settings.battleAssistantMode = (function(battleAssistantMode)\
-      local list = transStrToTable({\
-        'manual', 'auto',\
-      })\
+      local list = transStrToTable({ 'manual', 'auto' })\
       return list[battleAssistantMode] or 'manual'\
     end)(settings.battleAssistantMode)\
     -- 选择Boss舰队\
@@ -13191,6 +13573,11 @@ return function()\
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })\
       return list[battleStepLength] or 0\
     end)(settings.battleStepLength)\
+    -- 演习\
+    settings.exerciseAutoSelectEnemy = (function(exerciseAutoSelectEnemy)\
+      local list = transStrToTable({ 'manual', 'auto' })\
+      return list[exerciseAutoSelectEnemy] or 'manual'\
+    end)(settings.exerciseAutoSelectEnemy)\
     -- 每日挑战\
     -- 战术研修关卡\
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)\
@@ -16103,7 +16490,7 @@ end)\
 \
 \
 co(c.create(function()\
-  if (settings.battleEnable or settings.missionEnable or settings.dailyChallengesEnable) then\
+  if (settings.battleEnable or settings.exerciseEnable or settings.missionEnable or settings.dailyChallengesEnable) then\
 \
     local theMissionsQuery = {}\
     -- 是否运行出征\
@@ -16113,6 +16500,10 @@ co(c.create(function()\
     -- 是否运行任务\
     if (settings.missionEnable) then\
       table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })\
+    end\
+    -- 是否运行演习\
+    if (settings.exerciseEnable) then\
+      table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })\
     end\
     -- 是否运行每日挑战\
     if (settings.dailyChallengesEnable) then\

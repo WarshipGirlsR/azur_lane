@@ -382,15 +382,6 @@ local battle = function(action)
 
     elseif action.type == 'BATTLE_VICTORY_PAGE' then
 
-      stepLabel.setStepLabelContent('2.20.胜利面板点击继续')
-      o.battle.victoryPanelClickNext()
-      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
-        { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },
-      }))
-      return makeAction(newstateTypes)
-
-    elseif action.type == 'BATTLE_VICTORY_PAGE' then
-
       stepLabel.setStepLabelContent('2.21.胜利面板点击继续')
       o.battle.victoryPanelClickNext()
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {

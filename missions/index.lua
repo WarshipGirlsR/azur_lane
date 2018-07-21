@@ -2,6 +2,7 @@ local co = require '../lib/co'
 local battle = require './battle'
 local dailyChallenges = require './daily-challenges'
 local mission = require './mission'
+local exercise = require './exercise'
 local mapsType1 = require './maps-type-1'
 local mapsType2 = require './maps-type-2'
 local mapsType3 = require './maps-type-3'
@@ -12,6 +13,7 @@ local scanMapsType1 = require './scan-map-type-1'
 local missions = {
   battle,
   dailyChallenges,
+  exercise,
   mission,
   mapsType1,
   mapsType2,
