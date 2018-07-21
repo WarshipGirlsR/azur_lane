@@ -2319,7 +2319,7 @@ local corrected = function(list, deviationValue, deviation)\
   local res = {}\
   for key = 1, #list do\
     local item = list[key]\
-    table.insert(res, { item[1] + deviationValue[1], item[2] + deviationValue[2] })\
+    table.insert(res, { item[1] + deviationValue[1] - deviationX, item[2] + deviationValue[2] - deviationY })\
   end\
   return res\
 end\
@@ -2570,7 +2570,7 @@ map.calCheckpositionList = function(list)\
           local itemNum = right - left\
           for i = left + 1, right - 1 do\
             positionMap[rowNum][i] = positionMap[rowNum][i] or {\
-              math.floor(leftX + width / itemNum * (i - 1)),\
+              math.floor(leftX + width / itemNum * (i - left)),\
               leftY,\
               0x000000,\
             }\
@@ -2580,7 +2580,7 @@ map.calCheckpositionList = function(list)\
     end\
   end\
 \
-  -- 获取地图每行焦点的索引\
+  -- 获取地图每行交点的索引\
   for key = 1, #list do\
     list[key].pointMap = list[key].pointMap or {}\
     local positionMap = list[key].positionMap or {}\
@@ -2952,7 +2952,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   end\
   myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)\
   local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))\
-\
   local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))\
   local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))\
   local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))\
@@ -4876,6 +4875,20 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
+      leftTop = { 554, 561 },\
+      rightTop = nil,\
+      leftBotton = nil,\
+      rightBotton = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 554, 561, 0x101821 }, false, false, false, false, false, false, { 1652, 561, 0x191829 }, },\
+        { { 539, 677, 0x000000 }, false, false, false, false, false, false, { 1678, 677, 0x846d9c }, },\
+        { { 523, 801, 0x000000 }, false, false, false, false, false, false, { 1706, 801, 0x000000 }, },\
+        { { 505, 936, 0x000000 }, false, false, false, false, false, false, { 1737, 936, 0xbd815a }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
       leftTop = { 304, 540 },\
       rightTop = nil,\
       leftBotton = nil,\
@@ -4912,10 +4925,10 @@ mapEvent.getCheckpositionList = function()\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { { 666, 519, 0x101021 }, false, false, false, false, { 1548, 519, 0x000000 }, },\
-        { { 653, 648, 0x191831 }, false, false, false, false, { 1573, 648, 0x000000 }, },\
-        { { 640, 788, 0x211c42 }, false, false, false, false, { 1600, 788, 0x000000 }, },\
-        { { 624, 943, 0x000000 }, false, false, false, false, { 1630, 943, 0x080c08 }, },\
+        { false, false, false, false, { 666, 519, 0x101021 }, false, false, false, false, { 1548, 519, 0x000000 }, },\
+        { false, false, false, false, { 653, 648, 0x191831 }, false, false, false, false, { 1573, 648, 0x000000 }, },\
+        { false, false, false, false, { 640, 788, 0x211c42 }, false, false, false, false, { 1600, 788, 0x000000 }, },\
+        { false, false, false, false, { 624, 943, 0x000000 }, false, false, false, false, { 1630, 943, 0x080c08 }, },\
       },\
       pointMap = {},\
     },\

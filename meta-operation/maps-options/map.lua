@@ -50,7 +50,7 @@ local corrected = function(list, deviationValue, deviation)
   local res = {}
   for key = 1, #list do
     local item = list[key]
-    table.insert(res, { item[1] + deviationValue[1], item[2] + deviationValue[2] })
+    table.insert(res, { item[1] + deviationValue[1] - deviationX, item[2] + deviationValue[2] - deviationY })
   end
   return res
 end
@@ -301,7 +301,7 @@ map.calCheckpositionList = function(list)
           local itemNum = right - left
           for i = left + 1, right - 1 do
             positionMap[rowNum][i] = positionMap[rowNum][i] or {
-              math.floor(leftX + width / itemNum * (i - 1)),
+              math.floor(leftX + width / itemNum * (i - left)),
               leftY,
               0x000000,
             }
@@ -311,7 +311,7 @@ map.calCheckpositionList = function(list)
     end
   end
 
-  -- 获取地图每行焦点的索引
+  -- 获取地图每行交点的索引
   for key = 1, #list do
     list[key].pointMap = list[key].pointMap or {}
     local positionMap = list[key].positionMap or {}
@@ -683,7 +683,6 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   end
   myFleetList = utils.unionList(myFleetList, mapChessboard.myFleetList)
   local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
-
   local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
   local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
   local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))
