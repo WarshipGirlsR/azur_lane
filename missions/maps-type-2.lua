@@ -156,7 +156,6 @@ local mapsType2 = function(action)
         if table.findIndex(store.mapType2.missionStep, { 'randomMoveAStep' }) <= 0
           and #mapChessboard.bossPosition > 0 then
           -- 判断boss队到boss中间能否通过
-          console.log(mapChessboard)
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
           if bossTo and comparePoints(bossTo, mapChessboard.bossPosition[1]) then
             stepLabel.setStepLabelContent('3-8.boss队移动到boss位置')
@@ -175,17 +174,19 @@ local mapsType2 = function(action)
           end
         end
 
-        -- 道中队清理路线上的敌人
+        -- 道中队清理路线上的敌人，保持boss队到各个boss点都是畅通的。
+        -- 此处会计算出所有需要清理的敌人，并选中一个最近的敌人
         if table.findIndex(store.mapType2.missionStep, {
           'onWayFleetMoveToWaitBoss',
           'onWayFleetMoveToBossFleet',
           'onWayFleetMoveToClosestEnemy',
         }) <= 0 then
+          local needClearEnemyList = {}
           for _, waitForBossPositionItem in ipairs(mapChessboard.waitForBossPosition) do
             local bossFleetToWaitBoss = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, waitForBossPositionItem)
             local onWayFleetToBossFleet, onWayFleetToBossFleetPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
             local onWayFleetToWaitBoss, onWayFleetToWaitBossPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
-
+            local needClearEnemy
             if not bossFleetToWaitBoss or not comparePoints(bossFleetToWaitBoss, waitForBossPositionItem) then
               if onWayFleetToBossFleet
                 and onWayFleetToWaitBoss
@@ -193,35 +194,40 @@ local mapsType2 = function(action)
                 and not comparePoints(onWayFleetToWaitBoss, waitForBossPositionItem) then
                 if #onWayFleetToBossFleetPath < #onWayFleetToWaitBossPath then
                   stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
-                  store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
-                  store.mapType2.nextStepFleed = 'onWay'
-                  store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
-                  return
+                  needClearEnemy = needClearEnemy or {}
+                  needClearEnemy.missionStep = 'onWayFleetMoveToWaitBoss'
+                  needClearEnemy.nextStepFleed = 'onWay'
+                  needClearEnemy.nextStepPoint, needClearEnemy.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
                 else
                   stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')
-                  store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'
-                  store.mapType2.nextStepFleed = 'onWay'
-                  mapProxy.findClosestEnemy(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
-                  store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
-                  return
+                  needClearEnemy = needClearEnemy or {}
+                  needClearEnemy.missionStep = 'onWayFleetMoveToBossFleet'
+                  needClearEnemy.nextStepFleed = 'onWay'
+                  needClearEnemy.nextStepPoint, needClearEnemy.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
                 end
-              end
-              if not comparePoints(mapChessboard.onWayFleet, waitForBossPositionItem)
+              elseif not comparePoints(mapChessboard.onWayFleet, waitForBossPositionItem)
                 and (onWayFleetToWaitBoss and not comparePoints(onWayFleetToWaitBoss, waitForBossPositionItem)) then
                 stepLabel.setStepLabelContent('3-8.道中队移动到待命位置')
-                store.mapType2.missionStep = 'onWayFleetMoveToWaitBoss'
-                store.mapType2.nextStepFleed = 'onWay'
-                store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
-                return
-              end
-              if onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet) then
+                needClearEnemy = needClearEnemy or {}
+                needClearEnemy.missionStep = 'onWayFleetMoveToWaitBoss'
+                needClearEnemy.nextStepFleed = 'onWay'
+                needClearEnemy.nextStepPoint, needClearEnemy.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, waitForBossPositionItem)
+              elseif onWayFleetToBossFleet and not comparePoints(onWayFleetToBossFleet, mapChessboard.bossFleet) then
                 stepLabel.setStepLabelContent('3-8.道中移动到boss队旁边')
-                store.mapType2.missionStep = 'onWayFleetMoveToBossFleet'
-                store.mapType2.nextStepFleed = 'onWay'
-                store.mapType2.nextStepPoint, store.mapType2.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
-                return
+                needClearEnemy = needClearEnemy or {}
+                needClearEnemy.missionStep = 'onWayFleetMoveToBossFleet'
+                needClearEnemy.nextStepFleed = 'onWay'
+                needClearEnemy.nextStepPoint, needClearEnemy.nextStepPath = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.onWayFleet, mapChessboard.bossFleet)
+              end
+              if needClearEnemy then
+                table.insert(needClearEnemyList, needClearEnemy)
               end
             end
+          end
+          local closestEnemy = math.minTable(needClearEnemyList, function(enemy) return #enemy.nextStepPath end)
+          if closestEnemy then
+            table.assign(store.mapType2, closestEnemy)
+            return
           end
         end
 

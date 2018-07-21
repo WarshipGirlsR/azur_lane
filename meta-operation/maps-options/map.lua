@@ -788,8 +788,6 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
 end
 
 map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
-  -- 取得等待boss位置，因为清除boss附近的小怪会更有效率
-  local waitForBossPosition = mapChessboard.waitForBossPosition[1]
   -- 除了3种敌人的位置，还会考虑奖励点的位置，方便获取额外奖励
   local myField = myFleed or mapChessboard.myFleetList[1]
   local myField2 = myFleed2 or mapChessboard.myFleetList[2]
@@ -819,8 +817,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
   local minCoastEnemy = nil
   local minCoastPath = nil
 
-  for key = 1, #enemyPositionList do
-    local enemy = enemyPositionList[key]
+  for _, enemy in ipairs(enemyPositionList) do
     if not myField2 or enemy[1] ~= myField2[1] or enemy[2] ~= myField2[2] then
       -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
       local thePath = AStart(myField, enemy, {
@@ -832,26 +829,12 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
         -- 将权重也加入到coast里以便让结果倾向选择小型舰队
         local weight = enemy.weight or 0
         local theCoast = thePath[#thePath].G + weight
-        -- 计算敌人到boss的距离，因为清除boss附近的小怪会更有效率
-        -- 现在会自动识别路上阻拦的敌人所以不需要这个功能了
-        --        if waitForBossPosition then
-        --          -- 这里将敌人视为高权重方块，因为1.4.77版本之后我方舰队会绕过路途中的敌人走向目标。
-        --          local boosPath = AStart(waitForBossPosition, enemy, {
-        --            width = mapChessboard.width,
-        --            height = mapChessboard.height,
-        --            obstacle = theObstacle,
-        --          })
-        --          if boosPath and #boosPath > 0 then
-        --            theCoast = theCoast + boosPath[#boosPath].G * 0.1
-        --          end
-        --        end
         if not minCoast or minCoast > theCoast then
           minCoast = theCoast
           minCoastEnemy = enemy
           minCoastPath = thePath
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上
-          for key = 1, #thePath do
-            local value = thePath[key]
+          for _, value in ipairs(thePath) do
             if enemyPositionMap[value[1] .. '-' .. value[2]] then
               minCoastEnemy = value
               break

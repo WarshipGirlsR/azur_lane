@@ -127,9 +127,9 @@ return function()
         {
           ['id'] = 'battleChapter',
           ['type'] = 'ComboBox',
-          ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4,'
-            .. '5-1,5-2,5-3,5-4,6-1,6-2,6-3,6-4,7-1,7-2,7-3,7-4,8-1,8-2,8-3,8-4,9-1,9-2,9-3,9-4,'
-            .. '10-1,10-2,10-3,10-4,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
+          ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
+            .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
             .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',
           ['select'] = '0',
         },
@@ -492,20 +492,28 @@ return function()
         { name = '2-3', chapter = 2, section = '3' }, { name = '2-4', chapter = 2, section = '4' },
         { name = '3-1', chapter = 3, section = '1' }, { name = '3-2', chapter = 3, section = '2' },
         { name = '3-3', chapter = 3, section = '3' }, { name = '3-4', chapter = 3, section = '4' },
+        { name = '3-sos', chapter = 3, section = 'sos' },
         { name = '4-1', chapter = 4, section = '1' }, { name = '4-2', chapter = 4, section = '2' },
         { name = '4-3', chapter = 4, section = '3' }, { name = '4-4', chapter = 4, section = '4' },
+        { name = '4-sos', chapter = 4, section = 'sos' },
         { name = '5-1', chapter = 5, section = '1' }, { name = '5-2', chapter = 5, section = '2' },
         { name = '5-3', chapter = 5, section = '3' }, { name = '5-4', chapter = 5, section = '4' },
+        { name = '5-1', chapter = 5, section = 'sos' },
         { name = '6-1', chapter = 6, section = '1' }, { name = '6-2', chapter = 6, section = '2' },
         { name = '6-3', chapter = 6, section = '3' }, { name = '6-4', chapter = 6, section = '4' },
+        { name = '6-sos', chapter = 6, section = 'sos' },
         { name = '7-1', chapter = 7, section = '1' }, { name = '7-2', chapter = 7, section = '2' },
         { name = '7-3', chapter = 7, section = '3' }, { name = '7-4', chapter = 7, section = '4' },
+        { name = '7-sos', chapter = 7, section = 'sos' },
         { name = '8-1', chapter = 8, section = '1' }, { name = '8-2', chapter = 8, section = '2' },
         { name = '8-3', chapter = 8, section = '3' }, { name = '8-4', chapter = 8, section = '4' },
+        { name = '8-sos', chapter = 8, section = 'sos' },
         { name = '9-1', chapter = 9, section = '1' }, { name = '9-2', chapter = 9, section = '2' },
         { name = '9-3', chapter = 9, section = '3' }, { name = '9-4', chapter = 9, section = '4' },
+        { name = '9-sos', chapter = 9, section = 'sos' },
         { name = '10-1', chapter = 10, section = '1' }, { name = '10-2', chapter = 10, section = '2' },
         { name = '10-3', chapter = 10, section = '3' }, { name = '10-4', chapter = 10, section = '4' },
+        { name = '10-sos', chapter = 10, section = 'sos' },
         { name = '11-1', chapter = 11, section = '1' }, { name = '11-2', chapter = 11, section = '2' },
         { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },
         { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },
