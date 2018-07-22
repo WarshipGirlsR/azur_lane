@@ -3172,6 +3172,20 @@ package.sourceCode["./meta-operation/exercise.lua"] = { path = "./meta-operation
 local c = coroutine\
 local sleepPromise = require '../utils/sleep-promise'\
 \
+-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local function transRelativePoint(tab, base)\
+  if not base then\
+    base = tab[1]\
+    table.remove(tab, 1)\
+  end\
+  local newTab = {}\
+  for key = 1, #tab do\
+    local value = tab[key]\
+    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])\
+  end\
+  return base, table.concat(newTab, ',')\
+end\
+\
 local toPoint = function(tab)\
   -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
   local newTab = {}\
@@ -3215,11 +3229,13 @@ exercise.isExercisePageExerciseNumZero = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 1691, 414, 0x001029 }, { 1692, 438, 0x001029 },\
-    { 1692, 443, 0xa4f342 }, { 1700, 438, 0xadf74a },\
-    { 1695, 423, 0xadf74a }, { 1699, 413, 0xadf74a },\
-    { 1683, 418, 0xa4f34a }, { 1687, 432, 0x9cf34a },\
-    { 1684, 440, 0xadf74a }, { 1690, 439, 0xa4ef42 },\
+    { 1681, 413, 0x000c29 }, { 1680, 421, 0x080c29 }, { 1680, 428, 0x081031 }, { 1680, 432, 0x081029 },\
+    { 1683, 441, 0x314931 }, { 1691, 437, 0x000c29 }, { 1691, 431, 0x000c29 }, { 1691, 424, 0x000c21 },\
+    { 1691, 418, 0x081029 }, { 1692, 414, 0x081429 }, { 1703, 414, 0x000c29 }, { 1703, 420, 0x000821 },\
+    { 1703, 428, 0x000c21 }, { 1703, 436, 0x000821 }, { 1700, 441, 0x426131 }, { 1685, 415, 0xadf74a },\
+    { 1685, 421, 0xadf74a }, { 1685, 428, 0xa4f34a }, { 1685, 433, 0xadf74a }, { 1685, 438, 0x9cf34a },\
+    { 1696, 414, 0xadf74a }, { 1696, 419, 0xa4f342 }, { 1696, 425, 0xa4f342 }, { 1696, 430, 0xadf74a },\
+    { 1696, 438, 0xadf74a },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -3270,7 +3286,14 @@ exercise.isInBattlePage = function()\
     { 1117, 33, 0x313131 }, { 1259, 33, 0x313131 },\
     { 1303, 25, 0x52555a }, { 1816, 36, 0xe6e7e6 },\
   }\
-  local result = multiColorS(list)\
+  local list2 = {\
+    { 343, 29, 0x52555a }, { 534, 21, 0x525152 },\
+    { 682, 34, 0x313531 }, { 770, 26, 0x636973 },\
+    { 1067, 32, 0x5a656b }, { 921, 76, 0x5a656b },\
+    { 1110, 35, 0x313131 }, { 1307, 26, 0x52555a },\
+    { 1500, 28, 0x5a555a },\
+  }\
+  local result = multiColorS(list) or multiColorS(list2)\
   if not __keepScreenState then keepScreen(false) end\
   return result\
 end\
@@ -3281,12 +3304,74 @@ exercise.checkMyHPRemain = function()\
   if not __keepScreenState then keepScreen(true) end\
   local leftPoint = { 71, 65, 0x4a4d4a }\
   local rightPoint = { 782, 62, 0x5a3d42 }\
-  local pointList = toPoint(findMultiColorInRegionFuzzyExt('0xf74942', '', 90, 70, 42, 791, 65))\
-  local percentPoint = math.minTable(pointList, function(item) return item[2] end)\
-  console.log(pointList)\
-  local result = math.abs(rightPoint[1] - percentPoint[1]) / math.abs(rightPoint[1] - leftPoint[1])\
+  local baseColor, posandcolor = transRelativePoint({\
+    { 143, 46, 0xef753a },\
+    { 144, 46, 0xf77d3a },\
+  })\
+  local baseColor2, posandcolor2 = transRelativePoint({\
+    { 630, 47, 0xe64d3a },\
+    { 631, 47, 0xf74d42 },\
+  })\
+  local pointList1 = toPoint(findMultiColorInRegionFuzzyExt(baseColor[3], posandcolor, 80, 70, 42, 791, 65))\
+  local pointList2 = toPoint(findMultiColorInRegionFuzzyExt(baseColor2[3], posandcolor2, 80, 70, 42, 791, 65))\
+  local pointList = table.merge({}, pointList1, pointList2)\
+  local percentPoint = math.minTable(pointList, function(item) return item[1] end)\
+  local result = 1\
+  if percentPoint and #percentPoint > 0 then\
+    result = math.abs(rightPoint[1] - percentPoint[1]) / math.abs(rightPoint[1] - leftPoint[1])\
+  end\
   if not __keepScreenState then keepScreen(false) end\
   return result\
+end\
+\
+-- 点击开始演习按钮\
+exercise.clickcPauseBtn = function()\
+  RTap({ 1845, 66 }, 100)\
+end\
+\
+-- 是否暂停面板\
+exercise.isPausePanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 522, 284, 0x101010 }, { 537, 285, 0x211c21 }, { 538, 299, 0x313131 }, { 506, 306, 0x7b6529 },\
+    { 505, 299, 0x211808 }, { 498, 284, 0xffd76b }, { 530, 282, 0xffdb6b }, { 557, 283, 0x080c08 },\
+    { 562, 284, 0xffd76b }, { 578, 281, 0x211c10 }, { 462, 250, 0xeff3f7 }, { 688, 253, 0xeff3f7 },\
+    { 1293, 255, 0xeff3f7 }, { 1438, 258, 0xadaaad }, { 469, 260, 0x292829 }, { 863, 317, 0x9c9e9c },\
+    { 1390, 279, 0xf7d242 }, { 614, 734, 0xe6e3e6 }, { 851, 779, 0xc5c2c5 }, { 1065, 731, 0xffd74a },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 暂停面板点击退出按钮\
+exercise.clickcPausePanelExitBtn = function()\
+  RTap({ 726, 748 }, 100)\
+end\
+\
+-- 是否退出确认面板\
+exercise.isExitBattleInfoPanel = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 516, 277, 0x212019 }, { 493, 278, 0xffe79c }, { 496, 297, 0x080c08 }, { 515, 303, 0x080808 },\
+    { 516, 308, 0xffdf8c }, { 542, 286, 0x313531 }, { 550, 290, 0xffce42 }, { 573, 288, 0x524521 },\
+    { 560, 301, 0xf7b608 }, { 579, 297, 0x080c08 }, { 472, 259, 0x212421 }, { 661, 262, 0x4a5152 },\
+    { 696, 255, 0xe6f3f7 }, { 1433, 264, 0xadaaad }, { 1395, 284, 0xefc652 }, { 628, 735, 0xf7c63a },\
+    { 818, 746, 0xf7b621 }, { 1097, 724, 0xdedfde }, { 1284, 764, 0xc5c2c5 }, { 743, 299, 0x000000 },\
+    { 695, 473, 0xfffff7 }, { 746, 475, 0xfffff7 }, { 620, 521, 0xa4f342 }, { 664, 527, 0x9cf342 },\
+    { 765, 544, 0xa4f34a }, { 825, 534, 0x9cf34a }, { 892, 536, 0xadf74a }, { 933, 539, 0xadf74a },\
+    { 1043, 528, 0xfffff7 }, { 1229, 480, 0xfffff7 },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+-- 暂停面板点击退出按钮\
+exercise.clickcExitBattleInfoPanelExitBtn = function()\
+  RTap({ 1185, 739 }, 100)\
 end\
 \
 -- 点击返回按钮\
@@ -11095,7 +11180,9 @@ local setScreenListeners = (require './utils').setScreenListeners\
 local store = require '../store'\
 local vibratorPromise = require '../utils/vibrator-promise'\
 \
-store.battle = store.battle or {}\
+store.exercise = store.exercise or {\
+  nextCheckExerciseTime = os.time(),\
+}\
 \
 local o = {\
   home = moHome,\
@@ -11106,8 +11193,8 @@ local o = {\
 local exerciseListenerList = {\
   { '', o.home.isHome, 2000 },\
   { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
-  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, 2000 },\
-  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.battle.isReadyBattlePage, 2000 },\
+  { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },\
   { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
   { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 2000 },\
   { 'EXERCISE_VICTORY_PAGE', o.battle.isVictoryPanel, 2000 },\
@@ -11122,6 +11209,17 @@ local exercise = function(action)\
   return co(c.create(function()\
 \
     if action.type == 'EXERCISE_INIT' then\
+\
+      if store.exercise.nextCheckExerciseTime and store.exercise.nextCheckExerciseTime > os.time() then\
+        stepLabel.setStepLabelContent('5.1.下次演习时间：' .. os.date(\"%Y-%m-%d %H:%M:%S\", store.exercise.nextCheckExerciseTime))\
+        local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+          { '', o.home.isHome },\
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage },\
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage },\
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
 \
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
         { 'EXERCISE_START', o.home.isHome },\
@@ -11154,15 +11252,17 @@ local exercise = function(action)\
         { 'EXERCISE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
         { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
         { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage },\
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage },\
       }))\
       return makeAction(newstateTypes)\
 \
     elseif action.type == 'EXERCISE_EXERCISE_PAGE_START_EXERCISE' then\
 \
+      c.yield(sleepPromise(1000))\
       if not o.exercise.isExercisePageExerciseNumZero() then\
-        if settings.exerciseAutoSelectEnemy == 'auto' then\
+        if settings.exerciseSelectEnemy ~= 'manual' and settings.exerciseSelectEnemy > 0 then\
           stepLabel.setStepLabelContent('5.10.选择敌人')\
-          o.exercise.clickEnemyFleet(1)\
+          o.exercise.clickEnemyFleet(settings.exerciseSelectEnemy)\
           local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
             { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
             { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
@@ -11172,9 +11272,12 @@ local exercise = function(action)\
           return makeAction(newstateTypes)\
         else\
           stepLabel.setStepLabelContent('5.10.等待用户选择敌人')\
+          if settings.exerciseAlertWhenManualSelectEnemy then\
+            vibratorPromise(3)\
+          end\
           local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
             { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
-            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 86400000 },\
+            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 15000 },\
             { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage },\
             { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
           }))\
@@ -11213,10 +11316,58 @@ local exercise = function(action)\
 \
       stepLabel.setStepLabelContent('5.16.战斗中，检测血量')\
       local remainHp = o.exercise.checkMyHPRemain()\
-      console.log(remainHp)\
+      stepLabel.setStepLabelContent('5.16.剩余血量' .. string.format(\"%0.2f\", remainHp * 100))\
+      if remainHp < settings.exerciseLowerHPRestart then\
+        stepLabel.setStepLabelContent('5.16.当前血量为' .. string.format(\"%0.2f\", remainHp * 100) .. ',小于' .. (settings.exerciseLowerHPRestart * 100) .. ',退出')\
+        local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+          { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+          { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
         { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
         { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 500 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN' then\
+\
+      stepLabel.setStepLabelContent('5.16.点击暂停')\
+      o.exercise.clickcPauseBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },\
+        { 'EXERCISE_PAUSE_PANEL_FOR_EXIT', o.exercise.isPausePanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_PAUSE_PANEL_FOR_EXIT' then\
+\
+      stepLabel.setStepLabelContent('5.16.暂停战斗，点击退出')\
+      o.exercise.clickcPausePanelExitBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },\
+        { 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT', o.exercise.isExitBattleInfoPanel },\
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
+        { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT' then\
+\
+      stepLabel.setStepLabelContent('5.16.暂停战斗，点击退出')\
+      o.exercise.clickcExitBattleInfoPanelExitBtn()\
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },\
+        { 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT', o.exercise.isExitBattleInfoPanel, 1000 },\
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },\
+        { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },\
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },\
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
       }))\
       return makeAction(newstateTypes)\
 \
@@ -13289,16 +13440,42 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
-          ['text'] = '自动选择敌人',\
+          ['text'] = '选择敌人',\
           ['size'] = 15,\
           ['align'] = 'left',\
           ['color'] = '0,0,0',\
         },\
         {\
-          ['id'] = 'exerciseAutoSelectEnemy',\
+          ['id'] = 'exerciseSelectEnemy',\
           ['type'] = 'RadioGroup',\
-          ['list'] = '手动,自动',\
+          ['list'] = '手动,1,2,3,4',\
           ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '手动选择敌人时是否震动提醒',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'exerciseAlertWhenManualSelectEnemy',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '是,否',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '血量低于百分之几则退出重新打',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'exerciseLowerHPRestart',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '95%,90%,85%,80%,75%,70%,65%,60%,50%,40%,30%,20%,10%',\
+          ['select'] = '8',\
         },\
       },\
       {\
@@ -13574,10 +13751,21 @@ return function()\
       return list[battleStepLength] or 0\
     end)(settings.battleStepLength)\
     -- 演习\
-    settings.exerciseAutoSelectEnemy = (function(exerciseAutoSelectEnemy)\
-      local list = transStrToTable({ 'manual', 'auto' })\
-      return list[exerciseAutoSelectEnemy] or 'manual'\
-    end)(settings.exerciseAutoSelectEnemy)\
+    -- 是否自动选择敌人，选择第几个敌人\
+    settings.exerciseSelectEnemy = (function(exerciseSelectEnemy)\
+      local list = transStrToTable({ 'manual', 1, 2, 3, 4 })\
+      return list[exerciseSelectEnemy] or 'manual'\
+    end)(settings.exerciseSelectEnemy)\
+    -- 手动选择敌人时是否震动提醒\
+    settings.exerciseAlertWhenManualSelectEnemy = (function(exerciseAlertWhenManualSelectEnemy)\
+      local list = transStrToTable({ true, false })\
+      return list[exerciseAlertWhenManualSelectEnemy] or 'manual'\
+    end)(settings.exerciseAlertWhenManualSelectEnemy)\
+    -- 血量低于某值则退出重新开始\
+    settings.exerciseLowerHPRestart = (function(exerciseLowerHPRestart)\
+      local list = transStrToTable({ 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1 })\
+      return list[exerciseLowerHPRestart] or 0.5\
+    end)(settings.exerciseLowerHPRestart)\
     -- 每日挑战\
     -- 战术研修关卡\
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)\

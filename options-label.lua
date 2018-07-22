@@ -350,16 +350,42 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = '自动选择敌人',
+          ['text'] = '选择敌人',
           ['size'] = 15,
           ['align'] = 'left',
           ['color'] = '0,0,0',
         },
         {
-          ['id'] = 'exerciseAutoSelectEnemy',
+          ['id'] = 'exerciseSelectEnemy',
           ['type'] = 'RadioGroup',
-          ['list'] = '手动,自动',
+          ['list'] = '手动,1,2,3,4',
           ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '手动选择敌人时是否震动提醒',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'exerciseAlertWhenManualSelectEnemy',
+          ['type'] = 'RadioGroup',
+          ['list'] = '是,否',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '血量低于百分之几则退出重新打',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'exerciseLowerHPRestart',
+          ['type'] = 'RadioGroup',
+          ['list'] = '95%,90%,85%,80%,75%,70%,65%,60%,50%,40%,30%,20%,10%',
+          ['select'] = '8',
         },
       },
       {
@@ -635,10 +661,21 @@ return function()
       return list[battleStepLength] or 0
     end)(settings.battleStepLength)
     -- 演习
-    settings.exerciseAutoSelectEnemy = (function(exerciseAutoSelectEnemy)
-      local list = transStrToTable({ 'manual', 'auto' })
-      return list[exerciseAutoSelectEnemy] or 'manual'
-    end)(settings.exerciseAutoSelectEnemy)
+    -- 是否自动选择敌人，选择第几个敌人
+    settings.exerciseSelectEnemy = (function(exerciseSelectEnemy)
+      local list = transStrToTable({ 'manual', 1, 2, 3, 4 })
+      return list[exerciseSelectEnemy] or 'manual'
+    end)(settings.exerciseSelectEnemy)
+    -- 手动选择敌人时是否震动提醒
+    settings.exerciseAlertWhenManualSelectEnemy = (function(exerciseAlertWhenManualSelectEnemy)
+      local list = transStrToTable({ true, false })
+      return list[exerciseAlertWhenManualSelectEnemy] or 'manual'
+    end)(settings.exerciseAlertWhenManualSelectEnemy)
+    -- 血量低于某值则退出重新开始
+    settings.exerciseLowerHPRestart = (function(exerciseLowerHPRestart)
+      local list = transStrToTable({ 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1 })
+      return list[exerciseLowerHPRestart] or 0.5
+    end)(settings.exerciseLowerHPRestart)
     -- 每日挑战
     -- 战术研修关卡
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)

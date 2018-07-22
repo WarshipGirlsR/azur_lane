@@ -11,7 +11,9 @@ local setScreenListeners = (require './utils').setScreenListeners
 local store = require '../store'
 local vibratorPromise = require '../utils/vibrator-promise'
 
-store.battle = store.battle or {}
+store.exercise = store.exercise or {
+  nextCheckExerciseTime = os.time(),
+}
 
 local o = {
   home = moHome,
@@ -22,8 +24,8 @@ local o = {
 local exerciseListenerList = {
   { '', o.home.isHome, 2000 },
   { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },
-  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, 2000 },
-  { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage, 2000 },
+  { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.battle.isReadyBattlePage, 2000 },
+  { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },
   { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },
   { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 2000 },
   { 'EXERCISE_VICTORY_PAGE', o.battle.isVictoryPanel, 2000 },
@@ -38,6 +40,17 @@ local exercise = function(action)
   return co(c.create(function()
 
     if action.type == 'EXERCISE_INIT' then
+
+      if store.exercise.nextCheckExerciseTime and store.exercise.nextCheckExerciseTime > os.time() then
+        stepLabel.setStepLabelContent('5.1.下次演习时间：' .. os.date("%Y-%m-%d %H:%M:%S", store.exercise.nextCheckExerciseTime))
+        local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
+          { '', o.home.isHome },
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage },
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage },
+          { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.exercise.isEnemyInfoPage },
+        }))
+        return makeAction(newstateTypes)
+      end
 
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
         { 'EXERCISE_START', o.home.isHome },
@@ -70,15 +83,17 @@ local exercise = function(action)
         { 'EXERCISE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },
         { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },
         { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage },
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage },
       }))
       return makeAction(newstateTypes)
 
     elseif action.type == 'EXERCISE_EXERCISE_PAGE_START_EXERCISE' then
 
+      c.yield(sleepPromise(1000))
       if not o.exercise.isExercisePageExerciseNumZero() then
-        if settings.exerciseAutoSelectEnemy == 'auto' then
+        if settings.exerciseSelectEnemy ~= 'manual' and settings.exerciseSelectEnemy > 0 then
           stepLabel.setStepLabelContent('5.10.选择敌人')
-          o.exercise.clickEnemyFleet(1)
+          o.exercise.clickEnemyFleet(settings.exerciseSelectEnemy)
           local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
             { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },
             { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },
@@ -88,9 +103,12 @@ local exercise = function(action)
           return makeAction(newstateTypes)
         else
           stepLabel.setStepLabelContent('5.10.等待用户选择敌人')
+          if settings.exerciseAlertWhenManualSelectEnemy then
+            vibratorPromise(3)
+          end
           local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
             { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },
-            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 86400000 },
+            { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 15000 },
             { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage },
             { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
           }))
@@ -129,10 +147,58 @@ local exercise = function(action)
 
       stepLabel.setStepLabelContent('5.16.战斗中，检测血量')
       local remainHp = o.exercise.checkMyHPRemain()
-      console.log(remainHp)
+      stepLabel.setStepLabelContent('5.16.剩余血量' .. string.format("%0.2f", remainHp * 100))
+      if remainHp < settings.exerciseLowerHPRestart then
+        stepLabel.setStepLabelContent('5.16.当前血量为' .. string.format("%0.2f", remainHp * 100) .. ',小于' .. (settings.exerciseLowerHPRestart * 100) .. ',退出')
+        local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
+          { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
+          { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage },
+        }))
+        return makeAction(newstateTypes)
+      end
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
         { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
         { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 500 },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN' then
+
+      stepLabel.setStepLabelContent('5.16.点击暂停')
+      o.exercise.clickcPauseBtn()
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },
+        { 'EXERCISE_PAUSE_PANEL_FOR_EXIT', o.exercise.isPausePanel },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'EXERCISE_PAUSE_PANEL_FOR_EXIT' then
+
+      stepLabel.setStepLabelContent('5.16.暂停战斗，点击退出')
+      o.exercise.clickcPausePanelExitBtn()
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },
+        { 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT', o.exercise.isExitBattleInfoPanel },
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },
+        { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
+      }))
+      return makeAction(newstateTypes)
+
+    elseif action.type == 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT' then
+
+      stepLabel.setStepLabelContent('5.16.暂停战斗，点击退出')
+      o.exercise.clickcExitBattleInfoPanelExitBtn()
+      local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
+        { 'EXERCISE_IN_BATTLE_CLICK_PAUSE_BTN', o.exercise.isInBattlePage, 1000 },
+        { 'EXERCISE_EXIT_BATTLE_INFO_PANEL_FOR_EXIT', o.exercise.isExitBattleInfoPanel, 1000 },
+        { 'EXERCISE_BATTLE_CHAPTER_CLICK_EXERCISE', o.battle.isBattleChapterPage, 1000 },
+        { 'EXERCISE_EXERCISE_PAGE_START_EXERCISE', o.exercise.isExercisePage, 2000 },
+        { 'EXERCISE_EXERCISE_PAGE_ENEMY_INFO_PAGE', o.exercise.isEnemyInfoPage, 2000 },
+        { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },
       }))
       return makeAction(newstateTypes)
 
