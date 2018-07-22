@@ -40,14 +40,6 @@ local imgs = {
   -- 图片数据
   -- 地图扫描
   map = {
-    -- 地图上边界
-    topLineList = {},
-    -- 地图下边界
-    bottonLine = {},
-    -- 地图左边界
-    leftLineList = {},
-    -- 地图右边界
-    rightLineList = {},
     -- 我方舰队位置列表
     myFleetList = {
       --  采集位置5-2
@@ -123,73 +115,59 @@ local imgs = {
     },
     -- 敌方舰队位置，右上角的难度标志
     enemyList1 = {
-      -- 小型 左上框
+      -- 小型 上框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 975, 577, 0xe6ba08 }, { 986, 577, 0xdeba08 },
-          { 997, 577, 0xe6b200 }, { 969, 596, 0xdeba10 },
-          { 991, 598, 0xd6c219 },
+          { 709, 447, 0xe6b600 }, { 714, 447, 0xe6b200 },
+          { 716, 447, 0xdeb200 }, { 719, 447, 0xe6b200 },
+          { 722, 447, 0xe6b600 }, { 725, 447, 0xe6ba08 },
+          { 727, 447, 0xe6ba08 }, { 730, 447, 0xe6b600 },
+          { 732, 447, 0xdeb200 }, { 735, 447, 0xe6b600 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 小型 左上框
+      -- 小型 左框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 892, 552, 0xd6c221 }, { 880, 552, 0xd6c221 },
-          { 866, 552, 0xd6c219 }, { 855, 559, 0xe6b200 },
-          { 855, 568, 0xdeb600 }, { 878, 572, 0xdec229 },
+          { 701, 453, 0xceaa10 }, { 701, 455, 0xd6b610 },
+          { 701, 457, 0xdeba10 }, { 701, 461, 0xdeba10 },
+          { 701, 464, 0xdeba10 }, { 701, 466, 0xdeba10 },
+          { 701, 469, 0xdeba10 }, { 701, 472, 0xdeba10 },
+          { 701, 475, 0xdeba10 }, { 701, 479, 0xdeba10 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 小型 右下框
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1007, 621, 0xe6b600 }, { 994, 621, 0xdeb200 },
-          { 983, 621, 0xe6b600 }, { 1013, 601, 0xdeba10 },
-          { 991, 604, 0xcebe10 },
-        })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
-      end)(),
-      -- 小型 右下框
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBotton = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 873, 600, 0xcebe19 }, { 888, 600, 0xd6c221 },
-          { 903, 592, 0xdeb200 }, { 879, 584, 0xdec610 },
-          { 884, 600, 0xd6c221 },
-        })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList2 = {
-      -- 中型 左上框
+      -- 中型 上框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1134, 378, 0xe6a610 }, { 1143, 378, 0xe6a208 },
-          { 1156, 378, 0xe6a610 }, { 1126, 395, 0xdea608 },
-          { 1139, 400, 0xdea608 },
+          { 906, 319, 0xdeaa00 }, { 910, 319, 0xdeaa00 },
+          { 914, 319, 0xe6a200 }, { 918, 319, 0xe6a200 },
+          { 921, 319, 0xe6a600 }, { 924, 319, 0xdea200 },
+          { 928, 319, 0xdea200 }, { 931, 319, 0xe6a600 },
+          { 934, 319, 0xdeaa00 }, { 937, 319, 0xdeaa00 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
-      -- 中型 右下框
+      -- 中型 左框
       (function()
         local leftTop = { 185, 155 }
         local rightBotton = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1163, 423, 0xe6a608 }, { 1153, 423, 0xe6a608 },
-          { 1139, 423, 0xe6a610 }, { 1171, 408, 0xdea608 },
-          { 1158, 407, 0xdeaa00 },
+          { 900, 325, 0xdeaa00 }, { 900, 328, 0xdeaa00 },
+          { 900, 330, 0xdeaa00 }, { 900, 334, 0xdeaa00 },
+          { 900, 336, 0xdeaa00 }, { 900, 339, 0xd6aa00 },
+          { 900, 342, 0xdeaa00 }, { 900, 345, 0xdeaa00 },
+          { 900, 348, 0xdeaa00 }, { 900, 351, 0xd6aa00 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     enemyList3 = {
@@ -202,7 +180,7 @@ local imgs = {
           { 1407, 475, 0xbd3900 }, { 1411, 475, 0xbd3900 },
           { 1388, 480, 0xbd3908 }, { 1388, 487, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 大型 右下框
       (function()
@@ -213,7 +191,7 @@ local imgs = {
           { 1413, 517, 0xbd3900 }, { 1420, 517, 0xb53100 },
           { 1429, 509, 0xbd3900 }, { 1429, 502, 0xbd3500 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
       -- 大型 下框
       (function()
@@ -224,7 +202,7 @@ local imgs = {
           { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },
           { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
       end)(),
     },
     -- boss位置

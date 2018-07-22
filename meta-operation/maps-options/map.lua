@@ -10,8 +10,8 @@ local map = {}
 -- 舰队坐标修正向量
 local myFleetListCorrectionValue = (function()
   local point = {
-    { 965, 474, 0xded28c },
-    { 909, 689, 0x313531 },
+    { 1328, 343, 0xd68142 },
+    { 1277, 528, 0xb5b6b5 },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -26,8 +26,8 @@ end)()
 -- 敌人坐标修正向量
 local enemyListCorrectionValue = (function()
   local point = {
-    { 1082, 528, 0xa43d10 },
-    { 1152, 619, 0xf7f7ef },
+    { 846, 438, 0xdeaa00 },
+    { 899, 500, 0xcebe94 },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -50,7 +50,7 @@ local corrected = function(list, deviationValue, deviation)
   local res = {}
   for key = 1, #list do
     local item = list[key]
-    table.insert(res, { item[1] + deviationValue[1] - deviationX, item[2] + deviationValue[2] - deviationY })
+    table.insert(res, { item[1] + deviationValue[1] + deviationX, item[2] + deviationValue[2] - deviationY })
   end
   return res
 end
@@ -481,25 +481,36 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     whiteCharacterGroup[value[2]] = whiteCharacterGroup[value[2]] or {}
     table.insert(whiteCharacterGroup[value[2]], value)
   end
-  -- 横向坐标点超过40个点的组
+  -- 位置高于所有的黑线
+  local leftLineAndRightLinePointList = table.merge({}, leftLinePointList, rightLinePointList)
+  local topBlackPoint = math.minTable(leftLineAndRightLinePointList, function(item) return item[2] end)
   local topHorizontalLineGroupTmp = {}
-  for key, value in pairs(whiteCharacterGroup) do
+  if topBlackPoint then
+    for key, value in pairs(whiteCharacterGroup) do
+      if value and #value > 0 and value[1][2] < topBlackPoint[2] then
+        table.insert(topHorizontalLineGroupTmp, value)
+      end
+    end
+  end
+  -- 横向坐标点超过40个点的组
+  local topHorizontalLineGroupTmp2 = {}
+  for key, value in pairs(topHorizontalLineGroupTmp) do
     if #value > 40 then
-      table.insert(topHorizontalLineGroupTmp, value)
+      table.insert(topHorizontalLineGroupTmp2, value)
     end
   end
   -- 横向宽度超过700的组
-  local topHorizontalLineGroupTmp2 = {}
-  for key, value in ipairs(topHorizontalLineGroupTmp) do
+  local topHorizontalLineGroupTmp3 = {}
+  for key, value in ipairs(topHorizontalLineGroupTmp2) do
     local leftPoint = math.minTable(value, 1)
     local rightPoint = math.maxTable(value, 1)
     if rightPoint[1] - leftPoint[1] > 700 then
-      table.insert(topHorizontalLineGroupTmp2, value)
+      table.insert(topHorizontalLineGroupTmp3, value)
     end
   end
   -- 白点间隔不超过450的组
   local topHorizontalLineGroup = {}
-  for key, value in ipairs(topHorizontalLineGroupTmp2) do
+  for key, value in ipairs(topHorizontalLineGroupTmp3) do
     local sortValue = table.assign({}, value)
     table.sort(sortValue, function(a, b) return a[1] < b[1] end)
     local flag = true

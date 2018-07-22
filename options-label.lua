@@ -564,7 +564,7 @@ return function()
         { name = '4-sos', chapter = 4, section = 'sos' },
         { name = '5-1', chapter = 5, section = '1' }, { name = '5-2', chapter = 5, section = '2' },
         { name = '5-3', chapter = 5, section = '3' }, { name = '5-4', chapter = 5, section = '4' },
-        { name = '5-1', chapter = 5, section = 'sos' },
+        { name = '5-sos', chapter = 5, section = 'sos' },
         { name = '6-1', chapter = 6, section = '1' }, { name = '6-2', chapter = 6, section = '2' },
         { name = '6-3', chapter = 6, section = '3' }, { name = '6-4', chapter = 6, section = '4' },
         { name = '6-sos', chapter = 6, section = 'sos' },

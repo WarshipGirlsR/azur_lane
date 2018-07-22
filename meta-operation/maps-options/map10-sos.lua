@@ -18,12 +18,81 @@ end
 mapEvent.getCheckpositionList = function()
   local list = mapBase.calCheckpositionList({
     {
-      leftTop = { 427, 525 },
+      leftTop = { 573, 515 },
       rightTop = nil,
       leftBotton = nil,
       rightBotton = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
-      positionMap = {},
+      positionMap = {
+        { { 573, 515, 0x192431 }, false, false, false, false, false, false, { 1757, 515, 0x101821 }, },
+        { { 558, 638, 0x000000 }, false, false, false, false, false, false, { 1789, 638, 0x21284a }, },
+        { { 541, 772, 0x000000 }, false, false, false, false, false, false, { 1824, 772, 0x292042 }, },
+        { { 522, 917, 0x000000 }, false, false, false, false, false, false, { 1861, 917, 0x211c21 }, },
+      },
+      pointMap = {},
+    },
+    {
+      leftTop = nil,
+      rightTop = { 1554, 505 },
+      leftBotton = nil,
+      rightBotton = nil,
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
+      positionMap = {
+        { false, false, { 367, 505, 0x192d31 }, false, false, false, false, false, false, { 1554, 505, 0x081419 }, },
+        { false, false, { 343, 628, 0x21183a }, false, false, false, false, false, false, { 1578, 628, 0x000000 }, },
+        { false, false, { 317, 761, 0x21203a }, false, false, false, false, false, false, { 1604, 761, 0x000000 }, },
+        { false, false, { 289, 906, 0x191c31 }, false, false, false, false, false, false, { 1632, 906, 0x000000 }, },
+      },
+      pointMap = {},
+    },
+    {
+      leftTop = nil,
+      rightTop = { 1710, 242 },
+      leftBotton = nil,
+      rightBotton = nil,
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
+      positionMap = {
+        { false, { 353, 242, 0xbdae84 }, false, false, false, false, false, false, false, { 1710, 242, 0x212442 }, },
+        { false, { 329, 354, 0x191831 }, false, false, false, false, false, false, false, { 1740, 354, 0x000000 }, },
+        { false, { 303, 475, 0x211c3a }, false, false, false, false, false, false, false, { 1773, 475, 0x000000 }, },
+        { false, { 274, 608, 0x211c42 }, false, false, false, false, false, false, false, { 1809, 608, 0x000000 }, },
+        { false, { 242, 753, 0x191429 }, false, false, false, false, false, false, false, { 1849, 753, 0x000000 }, },
+        { false, { 208, 912, 0x42417b }, false, false, false, false, false, false, false, { 1892, 912, 0x000000 }, },
+      },
+      pointMap = {},
+    },
+    {
+      leftTop = nil,
+      rightTop = nil,
+      leftBotton = { 467, 913 },
+      rightBotton = nil,
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
+      positionMap = {
+        false,
+        { { 567, 214, 0x000000 }, false, false, false, false, false, { 1622, 214, 0x29284a }, },
+        { { 550, 330, 0x000000 }, false, false, false, false, false, { 1650, 330, 0x292042 }, },
+        { { 532, 456, 0x000000 }, false, false, false, false, false, { 1681, 456, 0x635d73 }, },
+        { { 513, 593, 0x000000 }, false, false, false, false, false, { 1715, 593, 0xffffd6 }, },
+        { { 491, 745, 0x000000 }, false, false, false, false, false, { 1750, 745, 0x191429 }, },
+        { { 467, 913, 0x000000 }, false, false, false, false, false, { 1791, 913, 0x000000 }, },
+      },
+      pointMap = {},
+    },
+    {
+      leftTop = nil,
+      rightTop = nil,
+      leftBotton = nil,
+      rightBotton = { 1699, 912 },
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
+      positionMap = {
+        false,
+        { false, false, false, { 489, 213, 0x8c8e9c }, false, false, false, false, false, { 1549, 213, 0x000000 }, },
+        { false, false, false, { 471, 328, 0xdeaa00 }, false, false, false, false, false, { 1574, 328, 0x000000 }, },
+        { false, false, false, { 449, 455, 0x211c3a }, false, false, false, false, false, { 1601, 455, 0x000000 }, },
+        { false, false, false, { 424, 592, 0xbd4108 }, false, false, false, false, false, { 1630, 592, 0x000000 }, },
+        { false, false, false, { 399, 743, 0x21183a }, false, false, false, false, false, { 1663, 743, 0x000000 }, },
+        { false, false, false, { 370, 912, 0x000000 }, false, false, false, false, false, { 1699, 912, 0x000000 }, },
+      },
       pointMap = {},
     },
   })

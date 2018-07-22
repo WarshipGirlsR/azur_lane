@@ -150,6 +150,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1364, 279 }, 100)
   elseif chapterObj.name == '3-4' then
     RTap({ 923, 540 }, 100)
+  elseif chapterObj.name == '3-sos' then
+    RTap({ 1118, 794 }, 100)
   elseif chapterObj.name == '4-1' then
     RTap({ 355, 451 }, 100)
   elseif chapterObj.name == '4-2' then
@@ -158,6 +160,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1234, 818 }, 100)
   elseif chapterObj.name == '4-4' then
     RTap({ 1167, 430 }, 100)
+  elseif chapterObj.name == '4-sos' then
+    RTap({ 720, 266 }, 100)
   elseif chapterObj.name == '5-1' then
     RTap({ 363, 544 }, 100)
   elseif chapterObj.name == '5-2' then
@@ -166,6 +170,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1104, 549 }, 100)
   elseif chapterObj.name == '5-4' then
     RTap({ 884, 318 }, 100)
+  elseif chapterObj.name == '5-sos' then
+    RTap({ 614, 825 }, 100)
   elseif chapterObj.name == '6-1' then
     RTap({ 1373, 746 }, 100)
   elseif chapterObj.name == '6-2' then
@@ -174,6 +180,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 632, 317 }, 100)
   elseif chapterObj.name == '6-4' then
     RTap({ 443, 643 }, 100)
+  elseif chapterObj.name == '6-sos' then
+    RTap({ 1340, 247 }, 100)
   elseif chapterObj.name == '7-1' then
     RTap({ 308, 725 }, 100)
   elseif chapterObj.name == '7-2' then
@@ -182,6 +190,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1234, 425 }, 100)
   elseif chapterObj.name == '7-4' then
     RTap({ 1416, 674 }, 100)
+  elseif chapterObj.name == '7-sos' then
+    RTap({ 454, 506 }, 100)
   elseif chapterObj.name == '8-1' then
     RTap({ 824, 280 }, 100)
   elseif chapterObj.name == '8-2' then
@@ -190,6 +200,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 507, 849 }, 100)
   elseif chapterObj.name == '8-4' then
     RTap({ 1168, 686 }, 100)
+  elseif chapterObj.name == '8-sos' then
+    RTap({ 1301, 442 }, 100)
   elseif chapterObj.name == '9-1' then
     RTap({ 360, 359 }, 100)
   elseif chapterObj.name == '9-2' then
@@ -198,6 +210,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1179, 395 }, 100)
   elseif chapterObj.name == '9-4' then
     RTap({ 1375, 768 }, 100)
+  elseif chapterObj.name == '9-sos' then
+    RTap({ 881, 589 }, 100)
   elseif chapterObj.name == '10-1' then
     RTap({ 301, 362 }, 100)
   elseif chapterObj.name == '10-2' then
@@ -206,6 +220,8 @@ battle.clickChapter = function(chapterObj)
     RTap({ 971, 806 }, 100)
   elseif chapterObj.name == '10-4' then
     RTap({ 1111, 336 }, 100)
+  elseif chapterObj.name == '10-sos' then
+    RTap({ 1336, 647 }, 100)
   elseif chapterObj.name == '11-1' then
     RTap({ 453, 348 }, 100)
   elseif chapterObj.name == '11-2' then

@@ -327,7 +327,7 @@ local mapsType2 = function(action)
       if settings.battleFleet[2] then
         stepLabel.setStepLabelContent('3-20.检查舰队')
         if store.mapType2.nextStepFleed == 'boss' then
-          if o.battle.getSelectedFleed() ~= settings.battleFleet[1] and store.mapType2.changeFleetNum < 2 then
+          if o.battle.getSelectedFleed() ~= settings.battleFleet[1] and store.mapType2.changeFleetNum < 3 then
             store.mapType2.changeFleetNum = store.mapType2.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-21.选择boss舰队')
             o.battle.clickSwitchFleetBtn()
@@ -346,7 +346,7 @@ local mapsType2 = function(action)
           end
         elseif store.mapType2.nextStepFleed == 'onWay'
           or store.mapType2.missionStep == nil then
-          if o.battle.getSelectedFleed() ~= settings.battleFleet[2] and store.mapType2.changeFleetNum < 2 then
+          if o.battle.getSelectedFleed() ~= settings.battleFleet[2] and store.mapType2.changeFleetNum < 3 then
             store.mapType2.changeFleetNum = store.mapType2.changeFleetNum + 1
             stepLabel.setStepLabelContent('3-22.选择道中舰队')
             o.battle.clickSwitchFleetBtn()
