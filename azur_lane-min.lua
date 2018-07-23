@@ -47,31 +47,31 @@ local imgs = {\
       --  采集位置5-2\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1356, 430, 0xa4494a }, { 1353, 411, 0xde8a42 },\
           { 1363, 403, 0xe69e5a }, { 1388, 404, 0xef9652 },\
           { 1396, 389, 0xe69652 }, { 1397, 378, 0xce7973 },\
           { 1416, 423, 0x101410 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       --  采集位置5-3\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 752, 438, 0xad4d52 }, { 751, 421, 0xde8642 },\
           { 763, 417, 0xe69663 }, { 771, 404, 0xde9e52 },\
           { 795, 402, 0x422d29 }, { 798, 400, 0xce7173 },\
           { 816, 430, 0x211c21 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       --  采集位置sp3\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1030, 346, 0xce7173 }, { 1012, 329, 0xde8184 },\
           { 1007, 338, 0xffffe6 }, { 998, 349, 0xefce8c },\
@@ -79,40 +79,40 @@ local imgs = {\
           { 999, 376, 0xde8e42 }, { 1016, 361, 0xce8142 },\
           { 1039, 371, 0x191819 }, { 999, 366, 0xffffd6 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       --  采集位置 9-3\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 383, 626, 0xde8a4a }, { 351, 622, 0xad5152 },\
           { 356, 603, 0xfffbde }, { 368, 590, 0xfffbe6 },\
           { 390, 585, 0xde9e5a }, { 397, 579, 0xd67d7b },\
           { 422, 596, 0x424542 }, { 396, 615, 0xde9652 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
     selectedArrow = {\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 454, 303, 0x3aff84 }, { 474, 303, 0x7bffad },\
           { 452, 288, 0x005d21 }, { 472, 289, 0x00be4a },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 904, 627, 0x19ff6b }, { 928, 627, 0x7cff9d },\
           { 907, 577, 0x3aff84 }, { 926, 574, 0x83ffb5 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 敌方舰队位置，右上角的难度标志\
@@ -120,7 +120,7 @@ local imgs = {\
       -- 小型 上框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 709, 447, 0xe6b600 }, { 714, 447, 0xe6b200 },\
           { 716, 447, 0xdeb200 }, { 719, 447, 0xe6b200 },\
@@ -128,12 +128,12 @@ local imgs = {\
           { 727, 447, 0xe6ba08 }, { 730, 447, 0xe6b600 },\
           { 732, 447, 0xdeb200 }, { 735, 447, 0xe6b600 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 小型 左框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 701, 453, 0xceaa10 }, { 701, 455, 0xd6b610 },\
           { 701, 457, 0xdeba10 }, { 701, 461, 0xdeba10 },\
@@ -141,14 +141,14 @@ local imgs = {\
           { 701, 469, 0xdeba10 }, { 701, 472, 0xdeba10 },\
           { 701, 475, 0xdeba10 }, { 701, 479, 0xdeba10 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     enemyList2 = {\
       -- 中型 上框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 906, 319, 0xdeaa00 }, { 910, 319, 0xdeaa00 },\
           { 914, 319, 0xe6a200 }, { 918, 319, 0xe6a200 },\
@@ -156,12 +156,12 @@ local imgs = {\
           { 928, 319, 0xdea200 }, { 931, 319, 0xe6a600 },\
           { 934, 319, 0xdeaa00 }, { 937, 319, 0xdeaa00 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 中型 左框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 900, 325, 0xdeaa00 }, { 900, 328, 0xdeaa00 },\
           { 900, 330, 0xdeaa00 }, { 900, 334, 0xdeaa00 },\
@@ -169,42 +169,42 @@ local imgs = {\
           { 900, 342, 0xdeaa00 }, { 900, 345, 0xdeaa00 },\
           { 900, 348, 0xdeaa00 }, { 900, 351, 0xd6aa00 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     enemyList3 = {\
       -- 大型 左上框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1394, 475, 0xbd3500 }, { 1400, 475, 0xbd3500 },\
           { 1407, 475, 0xbd3900 }, { 1411, 475, 0xbd3900 },\
           { 1388, 480, 0xbd3908 }, { 1388, 487, 0xbd3500 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 大型 右下框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1400, 517, 0xbd3500 }, { 1409, 517, 0xbd3900 },\
           { 1413, 517, 0xbd3900 }, { 1420, 517, 0xb53100 },\
           { 1429, 509, 0xbd3900 }, { 1429, 502, 0xbd3500 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 大型 下框\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1346, 797, 0xbd3500 }, { 1357, 797, 0xbd3500 },\
           { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },\
           { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- boss位置\
@@ -212,7 +212,7 @@ local imgs = {\
       -- 我方舰队和boss重叠 3-3 的 4-1\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 702, 600, 0x313131 }, { 685, 600, 0x31353a },\
           { 677, 600, 0x31353a }, { 669, 600, 0x313131 },\
@@ -224,23 +224,23 @@ local imgs = {\
           { 678, 616, 0xe66d63 }, { 689, 616, 0xe66963 },\
           { 705, 618, 0xde695a },\
         })\
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 我方舰队不和boss重叠 9-4 的 6-9\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1615, 803, 0x3a2d31 }, { 1593, 795, 0xf75152 },\
           { 1645, 797, 0xff5152 }, { 1616, 752, 0x313931 },\
           { 1584, 745, 0x313531 }, { 1648, 742, 0x312831 },\
         })\
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 我方舰队不和boss重叠 1-1 的 1-7\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1462, 426, 0x313131 }, { 1451, 426, 0x31313a },\
           { 1439, 426, 0x31353a }, { 1472, 426, 0x312d31 },\
@@ -251,54 +251,54 @@ local imgs = {\
           { 1482, 459, 0xf74d4a }, { 1492, 452, 0xff4d52 },\
           { 1464, 468, 0x3a2d31 },\
         })\
-        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)()\
     },\
     -- 战斗中的点\
     inBattleList = {\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 538, 757, 0xf77d6b }, { 515, 735, 0xf78173 },\
           { 471, 727, 0xfff7f7 }, { 519, 727, 0xfff7f7 },\
           { 558, 727, 0xf7f7f7 }, { 592, 727, 0xf7f7ef },\
           { 581, 751, 0xfffbf7 }, { 581, 762, 0xfffbff },\
         })\
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 奖励点\
     rewardBoxList = {\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 1125, 860, 0x94fff7 }, { 1126, 847, 0x292d29 },\
           { 1125, 839, 0x292829 }, { 1125, 827, 0x94fff7 },\
           { 1125, 812, 0x292829 }, { 1128, 781, 0x84ffef },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 573, 304, 0x94fff7 }, { 573, 296, 0x292d29 },\
           { 573, 289, 0x292829 }, { 573, 277, 0x9cfff7 },\
           { 576, 242, 0x83fff7 },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       (function()\
         local leftTop = { 185, 155 }\
-        local rightBotton = { 1899, 1022, }\
+        local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
           { 518, 592, 0x9cfff7 }, { 479, 592, 0xdeebde },\
           { 554, 592, 0xefebef }, { 556, 616, 0xefebef },\
           { 518, 618, 0x94fff7 }, { 481, 625, 0xefebef },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
   },\
@@ -724,13 +724,13 @@ return {\
         -- 下边框\
         (function()\
           local leftTop = { 185, 155 }\
-          local rightBotton = { 1899, 1022 }\
+          local rightBottom = { 1899, 1022 }\
           local basePoint, posandcolor = transRelativePoint({\
             { 777, 481, 0xe6a600 }, { 792, 482, 0xd69a08 },\
             { 806, 480, 0xe6a610 }, { 810, 473, 0xd69600 },\
             { 796, 466, 0xe6a600 },\
           })\
-          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
         end)(),\
       }),\
     -- 敌方舰队位置(大型舰队)\
@@ -1511,7 +1511,7 @@ return {\
       {\
         (function()\
           local leftTop = { 185, 155 }\
-          local rightBotton = { 1899, 1022, }\
+          local rightBottom = { 1899, 1022, }\
           local basePoint, posandcolor = transRelativePoint({\
             { 1624, 752, 0x423d42 }, { 1648, 751, 0x312d31 },\
             { 1675, 755, 0x292429 }, { 1626, 784, 0xff4d52 },\
@@ -1519,7 +1519,7 @@ return {\
             { 1650, 812, 0x7b0410 }, { 1621, 727, 0x211010 },\
             { 1677, 730, 0x211819 },\
           })\
-          return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+          return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
         end)(),\
       },\
       imgBase.map.bossPointList),\
@@ -2086,14 +2086,14 @@ return {\
       {\
         (function()\
           local leftTop = { 185, 155 }\
-          local rightBotton = { 1899, 1022 }\
+          local rightBottom = { 1899, 1022 }\
           local basePoint, posandcolor = transRelativePoint({\
             { 1556, 712, 0x423d42 }, { 1582, 712, 0x3a3931 },\
             { 1611, 714, 0x292429 }, { 1561, 751, 0xff4d52 },\
             { 1617, 749, 0xff4d52 }, { 1586, 763, 0x312831 },\
             { 1554, 700, 0x3a413a }, { 1617, 699, 0x312829 },\
           })\
-          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
         end)(),\
       }),\
     -- 战斗中的位置\
@@ -2134,14 +2134,14 @@ return {\
       {\
         (function()\
           local leftTop = { 185, 155 }\
-          local rightBotton = { 1899, 1022 }\
+          local rightBottom = { 1899, 1022 }\
           local basePoint, posandcolor = transRelativePoint({\
             { 1556, 712, 0x423d42 }, { 1582, 712, 0x3a3931 },\
             { 1611, 714, 0x292429 }, { 1561, 751, 0xff4d52 },\
             { 1617, 749, 0xff4d52 }, { 1586, 763, 0x312831 },\
             { 1554, 700, 0x3a413a }, { 1617, 699, 0x312829 },\
           })\
-          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }\
+          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
         end)(),\
       }),\
     -- 战斗中的位置\
@@ -2671,8 +2671,8 @@ local function listAdjacentGroups(list)\
 end\
 \
 -- 检查坐标点在直线的左边还是右边，直线用两点表示\
-local function checkPointPosition(checkPoint, topPoint, bottonPoint)\
-  if topPoint[2] == bottonPoint[2] then\
+local function checkPointPosition(checkPoint, topPoint, bottomPoint)\
+  if topPoint[2] == bottomPoint[2] then\
     if checkPoint[1] < topPoint[1] then\
       return -1\
     elseif checkPoint[1] > topPoint[1] then\
@@ -2680,7 +2680,7 @@ local function checkPointPosition(checkPoint, topPoint, bottonPoint)\
     end\
     return 0\
   end\
-  local x = (checkPoint[2] - topPoint[2]) * (bottonPoint[1] - topPoint[1]) / (bottonPoint[2] - topPoint[2]) + topPoint[1]\
+  local x = (checkPoint[2] - topPoint[2]) * (bottomPoint[1] - topPoint[1]) / (bottomPoint[2] - topPoint[2]) + topPoint[1]\
   if checkPoint[1] < x then\
     return -1\
   elseif checkPoint[1] > x then\
@@ -2732,22 +2732,22 @@ local function transPointListToChessboardPointList(positionMap, positionList)\
       -- 保存最左边那条线的两个点，匹配目標必須在第1条线和第n条线的中间\
       -- 避免匹配到第1条线左边的点\
       local firstTopPoint = nil\
-      local firstBottonPoint = nil\
+      local firstBottomPoint = nil\
       for col = 1, width do\
         -- 寻找这一列最高和最低的两个点，做直线\
         local topPoint\
-        local bottonPoint\
+        local bottomPoint\
         for row = 1, height do\
           if positionMap[row] and positionMap[row][col] then\
             if not topPoint then\
               topPoint = positionMap[row][col]\
             else\
-              bottonPoint = positionMap[row][col]\
+              bottomPoint = positionMap[row][col]\
             end\
           end\
         end\
-        if topPoint and bottonPoint then\
-          if checkPointPosition(item, topPoint, bottonPoint) > 0 then\
+        if topPoint and bottomPoint then\
+          if checkPointPosition(item, topPoint, bottomPoint) > 0 then\
             theCol = col\
           else\
             break\
@@ -2771,10 +2771,10 @@ local function transChessboardPointListToPositionList(positionMap, pointList)\
   for _, item in pairs(pointList) do\
     local leftTop = positionMap[item[1]][item[2]]\
     local rightTop = positionMap[item[1]][item[2] + 1]\
-    local leftBotton = positionMap[item[1] + 1][item[2]]\
-    local rightBotton = positionMap[item[1] + 1][item[2] + 1]\
-    local theLeft = (leftTop[1] + rightTop[1] + leftBotton[1] + rightBotton[1]) / 4\
-    local theTop = (leftTop[2] + rightTop[2] + leftBotton[2] + rightBotton[2]) / 4\
+    local leftBottom = positionMap[item[1] + 1][item[2]]\
+    local rightBottom = positionMap[item[1] + 1][item[2] + 1]\
+    local theLeft = (leftTop[1] + rightTop[1] + leftBottom[1] + rightBottom[1]) / 4\
+    local theTop = (leftTop[2] + rightTop[2] + leftBottom[2] + rightBottom[2]) / 4\
     theLeft = math.floor(theLeft)\
     theTop = math.floor(theTop)\
     table.insert(result, { theLeft, theTop })\
@@ -2882,7 +2882,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   local isCenter = false\
   -- 扫描边界\
   local topLinePointList = {}\
-  local bottonLinePointList = {}\
+  local bottomLinePointList = {}\
   local leftLinePointList = {}\
   local rightLinePointList = {}\
 \
@@ -2905,7 +2905,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     end\
   end\
 \
-  bottonLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}\
+  bottomLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}\
 \
   -- 寻找左右纵向黑线的坐标\
   -- 将横向黑线移除\
@@ -3073,9 +3073,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   if topLinePointList and #topLinePointList > 0 then\
     topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }\
   end\
-  local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }\
+  local bottomLinePoint = bottomLinePointList[1] or { -1, -1 }\
 \
-  function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)\
+  function getTopAndBottomPoint(topLinePoint, bottomLinePoint, pointList)\
     -- 获取左右边界的上下两点(就是算四个叫的坐标)\
     -- 这个函数求一条斜边的上点和下点，需要2次才能计算出四个角\
     -- 结果第一个是上点，第二个是下点\
@@ -3092,8 +3092,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
           result[1] = { X1, Y1 }\
         end\
       end\
-      if bottonLinePoint and bottonLinePoint[1] > 0 then\
-        local Y2 = math.floor(bottonLinePoint[2])\
+      if bottomLinePoint and bottomLinePoint[1] > 0 then\
+        local Y2 = math.floor(bottomLinePoint[2])\
         local X2 = (Y2 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1\
         X2 = math.trueNumber(X2) or -1\
         X2 = math.floor(X2)\
@@ -3105,14 +3105,14 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     return result\
   end\
 \
-  local leftPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, leftLinePointList)\
-  local rightPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, rightLinePointList)\
+  local leftPoint = getTopAndBottomPoint(topLinePoint, bottomLinePoint, leftLinePointList)\
+  local rightPoint = getTopAndBottomPoint(topLinePoint, bottomLinePoint, rightLinePointList)\
   if not __keepScreenState then keepScreen(false) end\
   return {\
     leftTop = leftPoint[1],\
     rightTop = rightPoint[1],\
-    leftBotton = leftPoint[2],\
-    rightBotton = rightPoint[2],\
+    leftBottom = leftPoint[2],\
+    rightBottom = rightPoint[2],\
   }\
 end\
 \
@@ -3142,21 +3142,21 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)\
       moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1]\
       moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2]\
     end\
-  elseif targetPosition.leftBotton then\
-    if not currentPosition.leftBotton then\
+  elseif targetPosition.leftBottom then\
+    if not currentPosition.leftBottom then\
       moveVector = { sWidth / 3, (0 - sHeight) / 3 }\
     else\
       effectiveStep = true\
-      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1]\
-      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2]\
+      moveVector[1] = targetPosition.leftBottom[1] - currentPosition.leftBottom[1]\
+      moveVector[2] = targetPosition.leftBottom[2] - currentPosition.leftBottom[2]\
     end\
-  elseif targetPosition.rightBotton then\
-    if not currentPosition.rightBotton then\
+  elseif targetPosition.rightBottom then\
+    if not currentPosition.rightBottom then\
       moveVector = { (0 - sWidth) / 3, (0 - sHeight) / 3 }\
     else\
       effectiveStep = true\
-      moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]\
-      moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2]\
+      moveVector[1] = targetPosition.rightBottom[1] - currentPosition.rightBottom[1]\
+      moveVector[2] = targetPosition.rightBottom[2] - currentPosition.rightBottom[2]\
     end\
   end\
 \
@@ -3411,7 +3411,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
   local obstacleMap = transListToMap(mapChessboard.obstacle)\
   local checkList = {\
     { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint\
-    { myFleet[1] + 1, myFleet[2], coast = nil }, -- bottonPoint\
+    { myFleet[1] + 1, myFleet[2], coast = nil }, -- bottomPoint\
     { myFleet[1], myFleet[2] - 1, coast = nil }, -- leftPoint\
     { myFleet[1], myFleet[2] + 1, coast = nil }, -- rightPoint\
   }\
@@ -3742,7 +3742,7 @@ mission.findMission = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local leftTop = { 1569, 120 }\
-  local rightBotton = { 1832, 454 }\
+  local rightBottom = { 1832, 454 }\
   local basePoint, posandcolor = transRelativePoint({\
     { 1694, 190, 0xd6a229 }, { 1646, 165, 0xf7db4a }, { 1685, 163, 0xffdb52 }, { 1735, 163, 0xffdf52 },\
     { 1781, 186, 0xf7c231 }, { 1783, 212, 0xffae10 }, { 1701, 215, 0xffb221 }, { 1649, 214, 0xffb219 },\
@@ -3750,7 +3750,7 @@ mission.findMission = function()\
     { 1693, 188, 0x9c7921 }, { 1715, 188, 0xdee3d6 }, { 1697, 181, 0xb5a684 }, { 1681, 181, 0xffffff },\
     { 1680, 202, 0xffffff }, { 1723, 202, 0xefe3d6 }, { 1707, 196, 0xffffff }, { 1720, 181, 0xffffff },\
   })\
-  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2]))\
+  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2]))\
   if (not __keepScreenState) then keepScreen(false) end\
   return result\
 end\
@@ -5374,8 +5374,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 554, 561 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 554, 561, 0x101821 }, false, false, false, false, false, false, { 1652, 561, 0x191829 }, },\
@@ -5388,8 +5388,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 304, 540 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 304, 540, 0x101821 }, false, false, false, false, false, false, false, false, { 1718, 540, 0x191829 }, },\
@@ -5402,8 +5402,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 462, 936 },\
-      rightBotton = nil,\
+      leftBottom = { 462, 936 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5417,8 +5417,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1630, 943 },\
+      leftBottom = nil,\
+      rightBottom = { 1630, 943 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5483,8 +5483,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1578, 538 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 478, 538, 0x100c21 }, false, false, false, false, false, false, { 1578, 538, 0x101021 }, },\
@@ -5497,8 +5497,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1564, 293 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -5512,8 +5512,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1768, 894 },\
+      leftBottom = nil,\
+      rightBottom = { 1768, 894 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -5580,8 +5580,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 287, 539 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 287, 539, 0x212442 }, { 455, 539, 0x212442 }, { 625, 539, 0x212442 }, { 794, 539, 0x19243a }, { 963, 539, 0x212442 }, { 1133, 539, 0x212442 }, { 1302, 539, 0x19243a }, { 1471, 539, 0x293529 }, { 1642, 539, 0x101829 }, },\
@@ -5594,8 +5594,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 460, 956 },\
-      rightBotton = nil,\
+      leftBottom = { 460, 956 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5609,8 +5609,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1565, 954 },\
+      leftBottom = nil,\
+      rightBottom = { 1565, 954 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5624,8 +5624,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1550, 953 },\
+      leftBottom = nil,\
+      rightBottom = { 1550, 953 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5686,8 +5686,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 368, 518 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 368, 518, 0x100c19 }, false, false, false, false, false, false, false, { 1670, 518, 0x211429 }, },\
@@ -5700,8 +5700,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1628, 517 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, { 486, 517, 0x101821 }, false, false, false, false, false, false, { 1628, 517, 0x101021 }, },\
@@ -5714,8 +5714,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1590, 273 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5728,8 +5728,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 497, 288 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5742,8 +5742,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 278, 924 },\
-      rightBotton = nil,\
+      leftBottom = { 278, 924 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -5757,8 +5757,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1657, 932 },\
+      leftBottom = nil,\
+      rightBottom = { 1657, 932 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -5826,8 +5826,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 561, 512 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 561, 512, 0x191429 }, { 729, 512, 0x212431 }, { 898, 512, 0x211831 }, { 1068, 512, 0x211c42 }, { 1237, 512, 0x191831 }, { 1406, 512, 0x21203a }, },\
@@ -5840,8 +5840,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1611, 509 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, { 932, 509, 0x191429 }, { 1101, 509, 0x191831 }, { 1271, 509, 0x21203a }, { 1440, 509, 0x191c31 }, { 1611, 509, 0x102031 }, },\
@@ -5854,8 +5854,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1471, 363 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5867,8 +5867,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 579, 372 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -5880,8 +5880,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 377, 944 },\
-      rightBotton = nil,\
+      leftBottom = { 377, 944 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -5895,8 +5895,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1690, 913 },\
+      leftBottom = nil,\
+      rightBottom = { 1690, 913 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -5961,8 +5961,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 476, 497 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 476, 497, 0x080408 }, { 645, 497, 0x191819 }, { 813, 497, 0x5a7584 }, { 982, 497, 0x000808 }, { 1151, 497, 0x080810 }, { 1321, 497, 0x191421 }, { 1490, 497, 0x081019 }, },\
@@ -5975,8 +5975,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1592, 499 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, false, { 743, 499, 0x080810 }, { 913, 499, 0x080810 }, { 1082, 499, 0x000808 }, { 1251, 499, 0x191421 }, { 1420, 499, 0x52555a }, { 1592, 499, 0x000810 }, },\
@@ -5989,8 +5989,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 377, 972 },\
-      rightBotton = nil,\
+      leftBottom = { 377, 972 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6004,8 +6004,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1550, 953 },\
+      leftBottom = nil,\
+      rightBottom = { 1550, 953 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6071,8 +6071,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 577, 527 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 577, 527, 0x101419 }, { 745, 527, 0x101419 }, { 915, 527, 0x29243a }, { 1084, 527, 0x101821 }, { 1253, 527, 0x192031 }, { 1422, 527, 0x212431 }, },\
@@ -6085,8 +6085,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1584, 542 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, { 904, 542, 0x212031 }, { 1074, 542, 0x212031 }, { 1243, 542, 0x191c31 }, { 1412, 542, 0x3a414a }, { 1584, 542, 0x211c31 }, },\
@@ -6099,8 +6099,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 415, 995 },\
-      rightBotton = nil,\
+      leftBottom = { 415, 995 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6114,8 +6114,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1550, 953 },\
+      leftBottom = nil,\
+      rightBottom = { 1550, 953 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6180,8 +6180,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 573, 515 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 573, 515, 0x192431 }, false, false, false, false, false, false, { 1757, 515, 0x101821 }, },\
@@ -6194,8 +6194,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1554, 505 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, { 367, 505, 0x192d31 }, false, false, false, false, false, false, { 1554, 505, 0x081419 }, },\
@@ -6208,8 +6208,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1710, 242 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, { 353, 242, 0xbdae84 }, false, false, false, false, false, false, false, { 1710, 242, 0x212442 }, },\
@@ -6224,8 +6224,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 467, 913 },\
-      rightBotton = nil,\
+      leftBottom = { 467, 913 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -6241,8 +6241,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1699, 912 },\
+      leftBottom = nil,\
+      rightBottom = { 1699, 912 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -6309,8 +6309,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 427, 525 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 427, 525, 0x314142 }, { 595, 525, 0x192831 }, { 764, 525, 0x21313a }, { 934, 525, 0x101819 }, { 1103, 525, 0x081019 }, { 1272, 525, 0x081021 }, },\
@@ -6323,8 +6323,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1553, 519 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, { 874, 519, 0x101c29 }, { 1044, 519, 0x000c10 }, { 1213, 519, 0x081419 }, { 1382, 519, 0x081419 }, { 1553, 519, 0x101421 }, },\
@@ -6337,8 +6337,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 308, 966 },\
-      rightBotton = nil,\
+      leftBottom = { 308, 966 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6352,8 +6352,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1761, 940 },\
+      leftBottom = nil,\
+      rightBottom = { 1761, 940 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点 1761, 940的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6365,9 +6365,9 @@ mapEvent.getCheckpositionList = function()\
       {\
         leftTop = nil,\
         rightTop = nil,\
-        leftBotton = nil,\
+        leftBottom = nil,\
         -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点 1761, 940的时候自动加上的\
-        rightBotton = { 1761, 940 },\
+        rightBottom = { 1761, 940 },\
         positionMap = {\
           false, false, false,\
           { false, false, false, false, false, { 884, 479, 0x191429 }, { 1076, 479, 0x191831 }, { 1267, 479, 0x29203a }, { 1459, 479, 0x292042 }, { 1653, 479, 0x000000 }, },\
@@ -6433,8 +6433,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 494, 507 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 494, 507, 0x080c19 }, { 662, 507, 0x29243a }, { 832, 507, 0x101421 }, { 1001, 507, 0x191831 }, { 1170, 507, 0x101829 }, { 1340, 507, 0x101c31 }, },\
@@ -6447,8 +6447,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1607, 505 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, { 928, 505, 0x191429 }, { 1097, 505, 0x191831 }, { 1266, 505, 0x101831 }, { 1436, 505, 0x191c31 }, { 1607, 505, 0x192031 }, },\
@@ -6461,8 +6461,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 561, 257 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6475,8 +6475,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1493, 249 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6489,8 +6489,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 446, 909 },\
-      rightBotton = nil,\
+      leftBottom = { 446, 909 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -6503,8 +6503,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1630, 912 },\
+      leftBottom = nil,\
+      rightBottom = { 1630, 912 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -6568,8 +6568,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 606, 519 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 606, 519, 0x312810 }, { 762, 519, 0x191819 }, { 944, 519, 0x081421 }, { 1113, 519, 0x101829 }, { 1282, 519, 0x101829 }, },\
@@ -6582,8 +6582,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1513, 526 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, { 835, 526, 0x101421 }, { 1004, 526, 0x191829 }, { 1173, 526, 0x101429 }, { 1342, 526, 0x211c31 }, { 1513, 526, 0x101c29 }, },\
@@ -6596,8 +6596,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 509, 939 },\
-      rightBotton = nil,\
+      leftBottom = { 509, 939 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6611,8 +6611,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1611, 934 },\
+      leftBottom = nil,\
+      rightBottom = { 1611, 934 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6678,8 +6678,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1625, 529 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 439, 529, 0x081019 }, { 608, 529, 0x081019 }, { 777, 529, 0x101421 }, { 946, 529, 0x101821 }, { 1115, 529, 0x21283a }, { 1285, 529, 0x192031 }, { 1454, 529, 0x101c29 }, { 1625, 529, 0x101c29 }, },\
@@ -6692,8 +6692,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1805, 956 },\
+      leftBottom = nil,\
+      rightBottom = { 1805, 956 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6759,8 +6759,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 526, 513 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 526, 513, 0x000c10 }, false, false, false, false, false, false, { 1710, 513, 0x081821 }, },\
@@ -6773,8 +6773,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1570, 507 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, { 383, 507, 0x100c19 }, false, false, false, false, false, false, { 1570, 507, 0x081829 }, },\
@@ -6787,8 +6787,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1707, 259 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, { 351, 259, 0x101421 }, false, false, false, false, false, false, false, { 1707, 259, 0x192842 }, },\
@@ -6803,8 +6803,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 364, 920 },\
-      rightBotton = nil,\
+      leftBottom = { 364, 920 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -6820,8 +6820,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1731, 931 },\
+      leftBottom = nil,\
+      rightBottom = { 1731, 931 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -6887,8 +6887,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 384, 519 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 384, 519, 0x001010 }, { 552, 519, 0x000c10 }, { 721, 519, 0x081419 }, { 890, 519, 0x081019 }, { 1060, 519, 0x081019 }, { 1229, 519, 0x101821 }, },\
@@ -6901,8 +6901,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1595, 530 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, { 916, 530, 0x191829 }, { 1085, 530, 0x081019 }, { 1254, 530, 0x211829 }, { 1424, 530, 0x191c29 }, { 1595, 530, 0x101829 }, },\
@@ -6915,8 +6915,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 235, 921 },\
-      rightBotton = nil,\
+      leftBottom = { 235, 921 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6930,8 +6930,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1724, 933 },\
+      leftBottom = nil,\
+      rightBottom = { 1724, 933 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -6997,8 +6997,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1670, 505 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 315, 505, 0x102431 }, { 483, 505, 0x10283a }, { 653, 505, 0x19243a }, { 822, 505, 0x102031 }, { 991, 505, 0x10203a }, { 1160, 505, 0x10203a }, { 1330, 505, 0x10243a }, { 1499, 505, 0x192d42 }, { 1670, 505, 0x10283a }, },\
@@ -7011,8 +7011,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1680, 373 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7024,8 +7024,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1768, 903 },\
+      leftBottom = nil,\
+      rightBottom = { 1768, 903 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -7090,8 +7090,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1826, 495 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 302, 495, 0x000c11 }, { 470, 495, 0x000c10 }, { 639, 495, 0x192029 }, { 808, 495, 0x081010 }, { 978, 495, 0x101c21 }, { 1147, 495, 0x212d3a }, { 1317, 495, 0x101819 }, { 1486, 495, 0x101819 }, { 1655, 495, 0x292429 }, { 1826, 495, 0x081419 }, },\
@@ -7104,8 +7104,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 363, 902 },\
-      rightBotton = nil,\
+      leftBottom = { 363, 902 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7118,8 +7118,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1615, 902 },\
+      leftBottom = nil,\
+      rightBottom = { 1615, 902 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7183,8 +7183,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1670, 530 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 303, 530, 0x192431 }, { 472, 530, 0x6b7584 }, { 643, 530, 0x9caabd }, { 811, 530, 0x5a558c }, { 985, 530, 0x081421 }, { 1156, 530, 0x101829 }, { 1325, 530, 0x081419 }, { 1497, 530, 0x101c31 }, { 1670, 530, 0x212042 }, },\
@@ -7197,8 +7197,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 502, 893 },\
-      rightBotton = nil,\
+      leftBottom = { 502, 893 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7211,8 +7211,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1705, 893 },\
+      leftBottom = nil,\
+      rightBottom = { 1705, 893 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7276,8 +7276,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 325, 525 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 325, 525, 0x31393a }, false, false, false, false, false, false, false, { 1629, 525, 0x21203a }, },\
@@ -7290,8 +7290,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 642, 266 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 642, 266, 0x292842 }, false, false, false, false, false, { 1618, 266, 0x293942 }, },\
@@ -7306,8 +7306,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1520, 268 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, { 377, 268, 0x31393a }, false, false, false, false, false, false, { 1520, 268, 0x293942 }, },\
@@ -7322,8 +7322,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 487, 911 },\
-      rightBotton = nil,\
+      leftBottom = { 487, 911 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -7339,8 +7339,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1680, 914 },\
+      leftBottom = nil,\
+      rightBottom = { 1680, 914 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -7408,8 +7408,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1693, 509 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 385, 509, 0xa4d2ff }, { 551, 509, 0x192031 }, { 714, 509, 0x101c29 }, { 877, 509, 0x212042 }, { 1040, 509, 0x191c31 }, { 1202, 509, 0x192031 }, { 1365, 509, 0x212442 }, { 1528, 509, 0x212031 }, { 1693, 509, 0x212442 }, },\
@@ -7422,8 +7422,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1666, 264 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7436,8 +7436,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 528, 906 },\
-      rightBotton = nil,\
+      leftBottom = { 528, 906 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -7450,8 +7450,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1737, 905 },\
+      leftBottom = nil,\
+      rightBottom = { 1737, 905 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false, false,\
@@ -7516,8 +7516,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 347, 520 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 347, 520, 0x3a3d3a }, { 508, 520, 0x293542 }, { 671, 520, 0x212d31 }, { 834, 520, 0x313942 }, { 997, 520, 0x292d42 }, { 1160, 520, 0x313942 }, { 1323, 520, 0x293131 }, { 1486, 520, 0x293542 }, { 1651, 520, 0x29313a }, },\
@@ -7530,8 +7530,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 426, 904 },\
-      rightBotton = nil,\
+      leftBottom = { 426, 904 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7545,8 +7545,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1707, 905 },\
+      leftBottom = nil,\
+      rightBottom = { 1707, 905 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7610,8 +7610,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 350, 507 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 350, 507, 0x191c31 }, { 518, 507, 0x191c31 }, { 687, 507, 0x21243a }, { 857, 507, 0x21243a }, { 1026, 507, 0x192031 }, { 1195, 507, 0x21243a }, { 1365, 507, 0x21243a }, { 1534, 507, 0x192431 }, { 1705, 507, 0x21243a }, },\
@@ -7624,8 +7624,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 512, 902 },\
-      rightBotton = nil,\
+      leftBottom = { 512, 902 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7638,8 +7638,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1471, 905 },\
+      leftBottom = nil,\
+      rightBottom = { 1471, 905 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7702,8 +7702,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 479, 881 },\
-      rightBotton = nil,\
+      leftBottom = { 479, 881 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 538, 465, 0x101c29 }, { 712, 465, 0x080c08 }, { 889, 465, 0x192031 }, { 1065, 465, 0x192031 }, { 1241, 465, 0x21203a }, { 1417, 465, 0x21203a }, { 1594, 465, 0x191c31 }, },\
@@ -7716,8 +7716,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1745, 896 },\
+      leftBottom = nil,\
+      rightBottom = { 1745, 896 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, false, false, false, false, false, { 1120, 478, 0x212031 }, { 1296, 478, 0x21203a }, { 1472, 478, 0x21203a }, { 1650, 478, 0x212042 }, },\
@@ -7779,8 +7779,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 656, 513 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 656, 513, 0x191c29 }, false, false, false, false, false, { 1671, 513, 0x101821 }, },\
@@ -7793,8 +7793,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1608, 511 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 253, 511, 0x081419 }, false, false, false, false, false, false, false, { 1608, 511, 0x101c21 }, },\
@@ -7807,8 +7807,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 558, 910 },\
-      rightBotton = nil,\
+      leftBottom = { 558, 910 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -7824,8 +7824,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1636, 912 },\
+      leftBottom = nil,\
+      rightBottom = { 1636, 912 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -7891,8 +7891,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1695, 497 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 341, 497, 0x101821 }, { 508, 497, 0x081019 }, { 677, 497, 0x212031 }, { 846, 497, 0x081419 }, { 1016, 497, 0x111421 }, { 1185, 497, 0x211c29 }, { 1354, 497, 0x111c21 }, { 1523, 497, 0x192532 }, { 1695, 497, 0x192029 }, },\
@@ -7905,8 +7905,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1693, 373 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -7918,8 +7918,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 503, 895 },\
-      rightBotton = nil,\
+      leftBottom = { 503, 895 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -7932,8 +7932,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1681, 898 },\
+      leftBottom = nil,\
+      rightBottom = { 1681, 898 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -7996,8 +7996,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1705, 501 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 350, 501, 0x101c21 }, { 520, 501, 0xdeba10 }, { 688, 501, 0x192429 }, { 857, 501, 0x212431 }, { 1026, 501, 0x29353a }, { 1196, 501, 0x212831 }, { 1365, 501, 0x213142 }, { 1534, 501, 0x192431 }, { 1705, 501, 0x212842 }, },\
@@ -8010,8 +8010,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1775, 373 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8023,8 +8023,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 516, 900 },\
-      rightBotton = nil,\
+      leftBottom = { 516, 900 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -8037,8 +8037,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1772, 903 },\
+      leftBottom = nil,\
+      rightBottom = { 1772, 903 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
@@ -8102,8 +8102,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1721, 507 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 367, 507, 0x212029 }, { 535, 507, 0x212029 }, { 704, 507, 0x102021 }, { 873, 507, 0x192431 }, { 1043, 507, 0x213142 }, { 1212, 507, 0x111c21 }, { 1381, 507, 0x192031 }, { 1551, 507, 0x212431 }, { 1721, 507, 0x19243a }, },\
@@ -8116,8 +8116,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 455, 888 },\
-      rightBotton = nil,\
+      leftBottom = { 455, 888 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8180,8 +8180,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1679, 462 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 252, 462, 0x191421 }, { 431, 462, 0x292821 }, { 608, 462, 0x191821 }, { 786, 462, 0x191829 }, { 964, 462, 0x212431 }, { 1142, 462, 0x191c29 }, { 1322, 462, 0x191c32 }, { 1500, 462, 0x192129 }, { 1679, 462, 0x191d32 }, },\
@@ -8243,8 +8243,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 643, 530 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 643, 530, 0x101421 }, false, false, false, false, false, false, { 1782, 530, 0x211c31 }, },\
@@ -8257,8 +8257,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1623, 522 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 319, 522, 0x192431 }, false, false, false, false, false, false, false, { 1623, 522, 0x191829 }, },\
@@ -8271,8 +8271,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 573, 918 },\
-      rightBotton = nil,\
+      leftBottom = { 573, 918 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -8288,8 +8288,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1728, 908 },\
+      leftBottom = nil,\
+      rightBottom = { 1728, 908 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -8355,8 +8355,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1712, 490 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 408, 490, 0x101419 }, { 569, 490, 0x080c10 }, { 732, 490, 0x101019 }, { 895, 490, 0x081019 }, { 1058, 490, 0x212031 }, { 1221, 490, 0x213131 }, { 1384, 490, 0x212029 }, { 1546, 490, 0x21203a }, { 1712, 490, 0x191821 }, },\
@@ -8369,8 +8369,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 542, 925 },\
-      rightBotton = nil,\
+      leftBottom = { 542, 925 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8384,8 +8384,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1800, 931 },\
+      leftBottom = nil,\
+      rightBottom = { 1800, 931 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8449,8 +8449,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1685, 483 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 332, 483, 0x101c21 }, { 500, 483, 0x111c21 }, { 669, 483, 0x5a4921 }, { 838, 483, 0x192029 }, { 1008, 483, 0x192031 }, { 1177, 483, 0x21243a }, { 1346, 483, 0x192431 }, { 1515, 483, 0x212431 }, { 1685, 483, 0x293142 }, },\
@@ -8463,8 +8463,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 450, 886 },\
-      rightBotton = nil,\
+      leftBottom = { 450, 886 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8477,8 +8477,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1711, 885 },\
+      leftBottom = nil,\
+      rightBottom = { 1711, 885 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8536,8 +8536,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1719, 473 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 365, 473, 0x211c29 }, { 533, 473, 0x211829 }, { 703, 473, 0x191c29 }, { 872, 473, 0x191829 }, { 1041, 473, 0x212031 }, { 1211, 473, 0x21283a }, { 1380, 473, 0x191c29 }, { 1549, 473, 0x212431 }, { 1719, 473, 0x21243a }, },\
@@ -8550,8 +8550,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 357, 884 },\
-      rightBotton = nil,\
+      leftBottom = { 357, 884 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8565,8 +8565,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1697, 885 },\
+      leftBottom = nil,\
+      rightBottom = { 1697, 885 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8631,8 +8631,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1685, 483 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 332, 483, 0x101c21 }, { 500, 483, 0x111c21 }, { 669, 483, 0x5a4921 }, { 838, 483, 0x192029 }, { 1008, 483, 0x192031 }, { 1177, 483, 0x21243a }, { 1346, 483, 0x192431 }, { 1515, 483, 0x212431 }, { 1685, 483, 0x293142 }, },\
@@ -8645,8 +8645,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 450, 886 },\
-      rightBotton = nil,\
+      leftBottom = { 450, 886 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8659,8 +8659,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1711, 885 },\
+      leftBottom = nil,\
+      rightBottom = { 1711, 885 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8721,8 +8721,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 612, 507 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 612, 507, 0x6b5d00 }, false, false, false, false, false, false, { 1796, 507, 0x19313a }, },\
@@ -8735,8 +8735,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1597, 513 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 242, 513, 0x213d3a }, false, false, false, false, false, false, false, { 1597, 513, 0x29394a }, },\
@@ -8749,8 +8749,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 479, 922 },\
-      rightBotton = nil,\
+      leftBottom = { 479, 922 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -8766,8 +8766,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1722, 905 },\
+      leftBottom = nil,\
+      rightBottom = { 1722, 905 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -8832,8 +8832,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 335, 475 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 335, 475, 0x294152 }, { 509, 475, 0x29414a }, { 685, 475, 0x29414a }, { 861, 475, 0x29414a }, { 1037, 475, 0x29414a }, { 1214, 475, 0x293542 }, { 1390, 475, 0x213542 }, { 1566, 475, 0x213142 }, { 1744, 475, 0x213042 }, },\
@@ -8846,8 +8846,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 365, 885 },\
-      rightBotton = nil,\
+      leftBottom = { 365, 885 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8860,8 +8860,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1738, 885 },\
+      leftBottom = nil,\
+      rightBottom = { 1738, 885 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8923,8 +8923,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 449, 473 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 449, 473, 0x213531 }, { 618, 475, 0x213542 }, { 787, 475, 0x213142 }, { 956, 475, 0x19293a }, { 1125, 475, 0x213142 }, { 1293, 475, 0x213142 }, { 1464, 475, 0x19313a }, { 1633, 475, 0x29414a }, },\
@@ -8937,8 +8937,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 316, 885 },\
-      rightBotton = nil,\
+      leftBottom = { 316, 885 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -8996,8 +8996,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 339, 467 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 339, 467, 0x314531 }, { 514, 467, 0x19243a }, { 690, 467, 0x19243a }, { 866, 467, 0x19283a }, { 1043, 467, 0x293942 }, { 1219, 467, 0x29414a }, { 1394, 467, 0x293942 }, { 1570, 467, 0x293942 }, { 1748, 467, 0x213d42 }, },\
@@ -9010,8 +9010,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 358, 884 },\
-      rightBotton = nil,\
+      leftBottom = { 358, 884 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9024,8 +9024,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1676, 884 },\
+      leftBottom = nil,\
+      rightBottom = { 1676, 884 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9087,8 +9087,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 303, 471 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 303, 471, 0x293d4a }, { 472, 471, 0x213542 }, { 641, 471, 0x29414a }, { 810, 471, 0x212d42 }, { 979, 471, 0x314952 }, { 1149, 471, 0x315152 }, { 1318, 471, 0x212d42 }, { 1487, 471, 0x213142 }, { 1656, 471, 0x19283a }, },\
@@ -9101,8 +9101,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 385, 885 },\
-      rightBotton = nil,\
+      leftBottom = { 385, 885 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9116,8 +9116,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1676, 884 },\
+      leftBottom = nil,\
+      rightBottom = { 1676, 884 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9180,8 +9180,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 594, 526 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 594, 526, 0x423d42 }, false, false, false, false, false, false, { 1733, 526, 0x312821 }, },\
@@ -9194,8 +9194,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1612, 525 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 308, 525, 0x212029 }, false, false, false, false, false, false, false, { 1612, 525, 0x312821 }, },\
@@ -9208,8 +9208,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 610, 268 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 610, 268, 0x3a3529 }, false, false, false, false, false, { 1589, 268, 0x292429 }, },\
@@ -9224,8 +9224,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1560, 267 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, { 418, 267, 0x292429 }, false, false, false, false, false, false, { 1560, 267, 0x312419 }, },\
@@ -9240,8 +9240,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 527, 917 },\
-      rightBotton = nil,\
+      leftBottom = { 527, 917 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -9257,8 +9257,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1627, 917 },\
+      leftBottom = nil,\
+      rightBottom = { 1627, 917 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -9325,8 +9325,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1642, 501 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 287, 501, 0x313131 }, { 455, 501, 0x423931 }, { 625, 501, 0x312829 }, { 794, 501, 0x292421 }, { 963, 501, 0x312429 }, { 1132, 501, 0x312410 }, { 1302, 501, 0x292421 }, { 1471, 501, 0x312429 }, { 1642, 501, 0x312821 }, },\
@@ -9339,8 +9339,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 480, 893 },\
-      rightBotton = nil,\
+      leftBottom = { 480, 893 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9354,8 +9354,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1756, 894 },\
+      leftBottom = nil,\
+      rightBottom = { 1756, 894 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9420,8 +9420,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1635, 594 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 402, 594, 0x212031 }, { 577, 594, 0x191c29 }, { 754, 594, 0x31283a }, { 930, 594, 0x3a3129 }, { 1106, 594, 0x292031 }, { 1283, 594, 0xad8673 }, { 1459, 594, 0x424142 }, { 1635, 594, 0x212029 }, },\
@@ -9433,8 +9433,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1591, 332 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -9495,8 +9495,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 476, 469 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 476, 469, 0x31313a }, { 644, 469, 0x191c29 }, { 813, 469, 0x212031 }, { 983, 469, 0x313129 }, { 1152, 469, 0x211c29 }, { 1321, 469, 0x292431 }, { 1490, 469, 0x3a3531 }, },\
@@ -9509,8 +9509,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 407, 914 },\
-      rightBotton = nil,\
+      leftBottom = { 407, 914 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9573,8 +9573,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1576, 536 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 561, 536, 0xa47508 }, { 729, 536, 0x3a3131 }, { 899, 536, 0x292429 }, { 1068, 536, 0x292431 }, { 1237, 536, 0x322d32 }, { 1407, 536, 0x3a3531 }, { 1576, 536, 0x213921 }, },\
@@ -9587,8 +9587,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1725, 889 },\
+      leftBottom = nil,\
+      rightBottom = { 1725, 889 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9651,8 +9651,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 541, 507 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 541, 507, 0x213942 }, false, false, false, false, false, false, { 1773, 507, 0x19203a }, },\
@@ -9665,8 +9665,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = { 1558, 510 },\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { false, { 322, 510, 0x21394a }, false, false, false, false, false, false, { 1558, 510, 0x294152 }, },\
@@ -9679,8 +9679,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 436, 910 },\
-      rightBotton = nil,\
+      leftBottom = { 436, 910 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -9695,8 +9695,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1728, 923 },\
+      leftBottom = nil,\
+      rightBottom = { 1728, 923 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -9763,8 +9763,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 290, 559 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 290, 559, 0x19283a }, false, false, false, false, false, false, false, { 1758, 559, 0x10203a }, },\
@@ -9776,8 +9776,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 363, 862 },\
-      rightBotton = nil,\
+      leftBottom = { 363, 862 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -9791,8 +9791,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1736, 856, },\
+      leftBottom = nil,\
+      rightBottom = { 1736, 856, },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
@@ -9856,8 +9856,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 540, 476 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 540, 476, 0x314152 }, { 702, 476, 0x21354a }, { 865, 476, 0x212842 }, { 1028, 476, 0x29314a }, { 1191, 476, 0x213542 }, { 1354, 476, 0x21354a }, { 1518, 476, 0x21314a }, },\
@@ -9870,8 +9870,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 450, 880 },\
-      rightBotton = nil,\
+      leftBottom = { 450, 880 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -9932,8 +9932,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 348, 478 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 348, 478, 0x29394a }, { 523, 478, 0x21314a }, { 699, 478, 0x213142 }, { 876, 478, 0x21314a }, { 1052, 478, 0x29394a }, { 1228, 478, 0x212842 }, { 1404, 478, 0x29394a }, { 1580, 478, 0x21354a }, { 1758, 478, 0x212842 }, },\
@@ -9946,8 +9946,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 237, 880 },\
-      rightBotton = nil,\
+      leftBottom = { 237, 880 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -10008,8 +10008,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 412, 434, },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 412, 434, 0x314552 }, { 594, 434, 0x3a4552 }, { 778, 434, 0x313d52 }, { 961, 434, 0x293d4a }, { 1145, 434, 0x21394a }, { 1329, 434, 0x21394a }, { 1512, 434, 0x313d52 }, { 1698, 434, 0x313d52 }, },\
@@ -10022,8 +10022,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = { 1709, 883 },\
+      leftBottom = nil,\
+      rightBottom = { 1709, 883 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -10083,8 +10083,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 437, 493 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 437, 493, 0x315152 }, { 614, 493, 0x213942 }, { 790, 493, 0x105d73 }, { 969, 493, 0x213d4a }, { 1146, 493, 0x193142 }, { 1324, 493, 0x212d3a }, { 1501, 493, 0x213142 }, { 1678, 493, 0x19283a }, },\
@@ -10096,8 +10096,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 341, 888 },\
-      rightBotton = nil,\
+      leftBottom = { 341, 888 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -10158,8 +10158,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 493, 502 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 493, 502, 0x21414a }, { 660, 502, 0x294552 }, { 830, 502, 0x314552 }, { 999, 502, 0x293d4a }, { 1168, 502, 0x294552 }, { 1338, 502, 0x314552 }, { 1509, 502, 0x213d4a }, },\
@@ -10172,8 +10172,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 413, 902 },\
-      rightBotton = nil,\
+      leftBottom = { 413, 902 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -10236,8 +10236,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 436, 498 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 436, 498, 0x294552 }, { 604, 498, 0x293d52 }, { 773, 498, 0x21394a }, { 942, 498, 0x29354a }, { 1112, 498, 0x21354a }, { 1273, 498, 0x19aac5 }, { 1450, 498, 0x313d52 }, { 1621, 498, 0x294152 }, },\
@@ -10250,8 +10250,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 268, 903 },\
-      rightBotton = nil,\
+      leftBottom = { 268, 903 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
@@ -10312,8 +10312,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 462, 552 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 462, 552, 0x21354a }, { 637, 552, 0x212d42 }, { 813, 552, 0x212842 }, { 990, 552, 0x21314a }, { 1166, 552, 0x21314a }, { 1342, 552, 0x21354a }, { 1520, 552, 0x293952 }, },\
@@ -10325,8 +10325,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 385, 905 },\
-      rightBotton = nil,\
+      leftBottom = { 385, 905 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false,\
@@ -10388,8 +10388,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 262, 902 },\
-      rightBotton = nil,\
+      leftBottom = { 262, 902 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 350, 466, 0x3a4952 }, { 533, 466, 0x19283a }, { 717, 466, 0x4a4542 }, { 900, 466, 0x314531 }, { 1084, 466, 0x21394a }, { 1267, 466, 0x213931 }, { 1451, 466, 0x314531 }, { 1635, 466, 0x213542 }, },\
@@ -10451,8 +10451,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = { 518, 470 },\
       rightTop = nil,\
-      leftBotton = nil,\
-      rightBotton = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 518, 470, 0x293d52 }, { 694, 470, 0x63bece }, { 868, 470, 0x73be8c }, { 1045, 470, 0x293d3a }, { 1221, 470, 0x213142 }, { 1397, 470, 0x193142 }, { 1573, 470, 0x213542 }, },\
@@ -10510,8 +10510,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 399, 837 },\
-      rightBotton = nil,\
+      leftBottom = { 399, 837 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 462, 409, 0x31393a }, { 645, 409, 0x42494a }, { 828, 409, 0x313931 }, { 1012, 409, 0x293529 }, { 1196, 409, 0x212821 }, { 1380, 409, 0x424942 }, },\
@@ -10569,8 +10569,8 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBotton = { 352, 676 },\
-      rightBotton = nil,\
+      leftBottom = { 352, 676 },\
+      rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         { { 377, 540, 0x192842 }, false, false, false, false, false, false, { 1662, 540, 0x21354a }, },\
@@ -10706,10 +10706,10 @@ local mapsType2 = function(action)\
             return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]\
           elseif cForMove.rightTop and cForCheck.rightTop then\
             return cForMove.rightTop[1] == cForCheck.rightTop[1] and cForMove.rightTop[2] == cForCheck.rightTop[2]\
-          elseif cForMove.leftBotton and cForCheck.leftBotton then\
-            return cForMove.leftBotton[1] == cForCheck.leftBotton[1] and cForMove.leftBotton[2] == cForCheck.leftBotton[2]\
-          elseif cForMove.rightBotton and cForCheck.rightBotton then\
-            return cForMove.rightBotton[1] == cForCheck.rightBotton[1] and cForMove.rightBotton[2] == cForCheck.rightBotton[2]\
+          elseif cForMove.leftBottom and cForCheck.leftBottom then\
+            return cForMove.leftBottom[1] == cForCheck.leftBottom[1] and cForMove.leftBottom[2] == cForCheck.leftBottom[2]\
+          elseif cForMove.rightBottom and cForCheck.rightBottom then\
+            return cForMove.rightBottom[1] == cForCheck.rightBottom[1] and cForMove.rightBottom[2] == cForCheck.rightBottom[2]\
           end\
         end)\
         if index > 0 then\
@@ -12188,10 +12188,10 @@ local mapsType1 = function(action)\
             return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]\
           elseif cForMove.rightTop and cForCheck.rightTop then\
             return cForMove.rightTop[1] == cForCheck.rightTop[1] and cForMove.rightTop[2] == cForCheck.rightTop[2]\
-          elseif cForMove.leftBotton and cForCheck.leftBotton then\
-            return cForMove.leftBotton[1] == cForCheck.leftBotton[1] and cForMove.leftBotton[2] == cForCheck.leftBotton[2]\
-          elseif cForMove.rightBotton and cForCheck.rightBotton then\
-            return cForMove.rightBotton[1] == cForCheck.rightBotton[1] and cForMove.rightBotton[2] == cForCheck.rightBotton[2]\
+          elseif cForMove.leftBottom and cForCheck.leftBottom then\
+            return cForMove.leftBottom[1] == cForCheck.leftBottom[1] and cForMove.leftBottom[2] == cForCheck.leftBottom[2]\
+          elseif cForMove.rightBottom and cForCheck.rightBottom then\
+            return cForMove.rightBottom[1] == cForCheck.rightBottom[1] and cForMove.rightBottom[2] == cForCheck.rightBottom[2]\
           end\
         end)\
         if index > 0 then\
@@ -14192,7 +14192,7 @@ StepLable.setStepLabelContent = function(text, noNLog)\
     if info.currentline then\
       lineInfo = info.source .. ': ' .. info.currentline .. ': '\
     end\
-    wLog('azur_lane', '[DATE] ' .. lineInfo .. finalText);\
+    wLog('azur_lane', lineInfo .. finalText);\
   end\
   if useNlog then\
     local info = debug.getinfo(2, 'Sl')\
@@ -15110,233 +15110,233 @@ end\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\
--- ES6 co lib in lua 5.1\
--- Author: fgfg163@163.com\
--- Copyright (c) 2015.11\
---\
--- This is a lib porting from Co v4 in JavaScript\
--- It has some different before.\
--- to see https://github.com/tj/co\
--- Useage:\
--- co(coroutine.create(function()\
--- local v1 = coroutine.yield(Promise.resolve(123))\
--- local v2 = coroutine.yield({\
--- a = Promise.resolve(234),\
--- b = Promise.resolve(456),\
--- })\
--- console.log(v1)\
--- console.log(v2)\
--- end)):catch(function(err)\
--- print(err)\
--- end)\
-\
------------------------------------------------------------------------------\
-\
-\
-local Promise = Promise\
-\
-if type(Promise) ~= 'table' then\
-  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\
-end\
-\
-local unpack = unpack or table.unpack\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = #tab\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-function tryCatch(cb)\
-  return xpcall(cb, function(e)\
-    return setStackTraceback and\
-      (e .. '\\n' .. debug.traceback())\
-      or (e)\
-  end)\
-end\
-\
-----------------------------------------------------------------------\
-function new(gen, ...)\
-  return Promise.new(function(resolve, reject)\
-    if (type(gen) == 'function') then gen = coroutine.create(gen) end\
-    if (type(gen) ~= 'thread') then return resolve(gen) end\
-\
-    local onResolved, onRejected, next\
-\
-    onResolved = function(res)\
-      local done, ret\
-      local coStatus = true\
-      local xpcallRes, xpcallErr = tryCatch(function()\
-        coStatus, ret = coroutine.resume(gen, res)\
-      end)\
-      if (not xpcallRes) then\
-        return reject(xpcallErr)\
-      end\
-      if (not coStatus) then\
-        return reject(ret)\
-      end\
-      done = (coroutine.status(gen) == 'dead')\
-      next(done, ret)\
-    end\
-\
-    onRejected = function(err)\
-      local done, ret\
-      local coStatus = true\
-      local xpcallRes, xpcallErr = tryCatch(function()\
-        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\
-      end)\
-      if (not xpcallRes) then\
-        return reject(xpcallErr)\
-      end\
-      if (not coStatus) then\
-        return reject(xpcallErr)\
-      end\
-      done = (coroutine.status(gen) == 'dead')\
-      next(done, ret)\
-    end\
-\
-    next = function(done, ret)\
-      if (done) then\
-        return resolve(ret)\
-      end\
-      local value = toPromise(ret)\
-      if (value and (isPromise(value))) then\
-        return value.andThen(onResolved, onRejected)\
-      end\
-      return onResolved(value)\
-      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\
-      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\
-    end\
-\
-    onResolved();\
-  end)\
-end\
-\
-\
--- Convert a `yield`ed value into a promise.\
---\
--- @param {Mixed} obj\
--- @return {Promise}\
--- @api private\
-function toPromise(obj)\
-  if (not obj) then return obj end\
-\
-  if (isPromise(obj)) then return obj end\
-  if (isCoroutine(obj)) then return new(obj) end\
-  if (type(obj) == 'function') then return thunkToPromise(obj) end\
-\
-  if (isArray(obj)) then\
-    return arrayToPromise(obj)\
-  elseif (type(obj) == 'table') then\
-    return objectToPromise(obj)\
-  end\
-\
-  return obj\
-end\
-\
--- Check if `obj` is a promise.\
---\
--- @param {Object} obj\
--- @return {Boolean}\
--- @api private\
-function isPromise(obj)\
-  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\
-    return true\
-  end\
-  return false\
-end\
-\
--- Check if `obj` is a generator.\
---\
--- @param {Mixed} obj\
--- @return {Boolean}\
--- @api private\
-function isCoroutine(obj)\
-  if (type(obj) == 'thread') then\
-    return true\
-  end\
-  return false\
-end\
-\
-\
--- Convert a thunk to a promise.\
---\
--- @param {Function}\
--- @return {Promise}\
--- @api private\
-function thunkToPromise(fn)\
-  return Promise.new(function(resolve, reject)\
-    fn(function(err, res)\
-      if (err) then return reject(err) end\
-      if (#res > 2) then\
-        res = { res[2] }\
-      end\
-      resolve(res)\
-    end)\
-  end)\
-end\
-\
--- Convert an array of \"yieldables\" to a promise.\
--- Uses `Promise.all()` internally.\
---\
--- @param {Array} obj\
--- @return {Promise}\
--- @api private\
-function arrayToPromise(obj)\
-  local newArr = {}\
-  for k, v in ipairs(obj) do\
-    table.insert(newArr, toPromise(v))\
-  end\
-  return Promise.all(newArr);\
-end\
-\
--- Convert an object of \"yieldables\" to a promise.\
--- Uses `Promise.all()` internally.\
---\
--- @param {Object} obj\
--- @return {Promise}\
--- @api private\
-function objectToPromise(obj)\
-  local results = {}\
-  local promises = {}\
-\
-  local function defer(promise, key)\
-    results[key] = nil\
-    table.insert(promises, promise.andThen(function(res)\
-      results[key] = res\
-    end))\
-  end\
-\
-  for key, value in pairs(obj) do\
-    local promise = toPromise(value)\
-    if (promise and isPromise(promise)) then\
-      defer(promise, key)\
-    else\
-      results[key] = obj[key]\
-    end\
-  end\
-\
-  return Promise.all(promises).andThen(function()\
-    return results\
-  end)\
-end\
-\
-\
-\
-return setmetatable({\
-  new = new,\
-  Promise = Promise,\
-}, {\
-  __call = function(_, ...)\
-    return new(...)\
-  end\
-})\
+package.sourceCode["./lib/co.lua"] = { path = "./lib/co.lua", name = "./lib/co.lua", source = "-----------------------------------------------------------------------------\13\
+-- ES6 co lib in lua 5.1\13\
+-- Author: fgfg163@163.com\13\
+-- Copyright (c) 2015.11\13\
+--\13\
+-- This is a lib porting from Co v4 in JavaScript\13\
+-- It has some different before.\13\
+-- to see https://github.com/tj/co\13\
+-- Useage:\13\
+-- co(coroutine.create(function()\13\
+-- local v1 = coroutine.yield(Promise.resolve(123))\13\
+-- local v2 = coroutine.yield({\13\
+-- a = Promise.resolve(234),\13\
+-- b = Promise.resolve(456),\13\
+-- })\13\
+-- console.log(v1)\13\
+-- console.log(v2)\13\
+-- end)):catch(function(err)\13\
+-- print(err)\13\
+-- end)\13\
+\13\
+-----------------------------------------------------------------------------\13\
+\13\
+\13\
+local Promise = Promise\13\
+\13\
+if type(Promise) ~= 'table' then\13\
+  error('Co need Promise module to work. Please add \\'Promise\\' and require it.', 2)\13\
+end\13\
+\13\
+local unpack = unpack or table.unpack\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = #tab\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+function tryCatch(cb)\13\
+  return xpcall(cb, function(e)\13\
+    return setStackTraceback and\13\
+      (e .. '\\n' .. debug.traceback())\13\
+      or (e)\13\
+  end)\13\
+end\13\
+\13\
+----------------------------------------------------------------------\13\
+function new(gen, ...)\13\
+  return Promise.new(function(resolve, reject)\13\
+    if (type(gen) == 'function') then gen = coroutine.create(gen) end\13\
+    if (type(gen) ~= 'thread') then return resolve(gen) end\13\
+\13\
+    local onResolved, onRejected, next\13\
+\13\
+    onResolved = function(res)\13\
+      local done, ret\13\
+      local coStatus = true\13\
+      local xpcallRes, xpcallErr = tryCatch(function()\13\
+        coStatus, ret = coroutine.resume(gen, res)\13\
+      end)\13\
+      if (not xpcallRes) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      if (not coStatus) then\13\
+        return reject(ret)\13\
+      end\13\
+      done = (coroutine.status(gen) == 'dead')\13\
+      next(done, ret)\13\
+    end\13\
+\13\
+    onRejected = function(err)\13\
+      local done, ret\13\
+      local coStatus = true\13\
+      local xpcallRes, xpcallErr = tryCatch(function()\13\
+        coStatus, ret = coroutine.resume(gen, error(tostring(err)))\13\
+      end)\13\
+      if (not xpcallRes) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      if (not coStatus) then\13\
+        return reject(xpcallErr)\13\
+      end\13\
+      done = (coroutine.status(gen) == 'dead')\13\
+      next(done, ret)\13\
+    end\13\
+\13\
+    next = function(done, ret)\13\
+      if (done) then\13\
+        return resolve(ret)\13\
+      end\13\
+      local value = toPromise(ret)\13\
+      if (value and (isPromise(value))) then\13\
+        return value.andThen(onResolved, onRejected)\13\
+      end\13\
+      return onResolved(value)\13\
+      --       onRejected(error('You may only yield a function, promise, generator, array, or object, '\13\
+      --          .. 'but the following object was passed: \"' .. type(ret) .. '\"'))\13\
+    end\13\
+\13\
+    onResolved();\13\
+  end)\13\
+end\13\
+\13\
+\13\
+-- Convert a `yield`ed value into a promise.\13\
+--\13\
+-- @param {Mixed} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function toPromise(obj)\13\
+  if (not obj) then return obj end\13\
+\13\
+  if (isPromise(obj)) then return obj end\13\
+  if (isCoroutine(obj)) then return new(obj) end\13\
+  if (type(obj) == 'function') then return thunkToPromise(obj) end\13\
+\13\
+  if (isArray(obj)) then\13\
+    return arrayToPromise(obj)\13\
+  elseif (type(obj) == 'table') then\13\
+    return objectToPromise(obj)\13\
+  end\13\
+\13\
+  return obj\13\
+end\13\
+\13\
+-- Check if `obj` is a promise.\13\
+--\13\
+-- @param {Object} obj\13\
+-- @return {Boolean}\13\
+-- @api private\13\
+function isPromise(obj)\13\
+  if ((type(obj) == 'table') and (type(obj.andThen) == 'function')) then\13\
+    return true\13\
+  end\13\
+  return false\13\
+end\13\
+\13\
+-- Check if `obj` is a generator.\13\
+--\13\
+-- @param {Mixed} obj\13\
+-- @return {Boolean}\13\
+-- @api private\13\
+function isCoroutine(obj)\13\
+  if (type(obj) == 'thread') then\13\
+    return true\13\
+  end\13\
+  return false\13\
+end\13\
+\13\
+\13\
+-- Convert a thunk to a promise.\13\
+--\13\
+-- @param {Function}\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function thunkToPromise(fn)\13\
+  return Promise.new(function(resolve, reject)\13\
+    fn(function(err, res)\13\
+      if (err) then return reject(err) end\13\
+      if (#res > 2) then\13\
+        res = { res[2] }\13\
+      end\13\
+      resolve(res)\13\
+    end)\13\
+  end)\13\
+end\13\
+\13\
+-- Convert an array of \"yieldables\" to a promise.\13\
+-- Uses `Promise.all()` internally.\13\
+--\13\
+-- @param {Array} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function arrayToPromise(obj)\13\
+  local newArr = {}\13\
+  for k, v in ipairs(obj) do\13\
+    table.insert(newArr, toPromise(v))\13\
+  end\13\
+  return Promise.all(newArr);\13\
+end\13\
+\13\
+-- Convert an object of \"yieldables\" to a promise.\13\
+-- Uses `Promise.all()` internally.\13\
+--\13\
+-- @param {Object} obj\13\
+-- @return {Promise}\13\
+-- @api private\13\
+function objectToPromise(obj)\13\
+  local results = {}\13\
+  local promises = {}\13\
+\13\
+  local function defer(promise, key)\13\
+    results[key] = nil\13\
+    table.insert(promises, promise.andThen(function(res)\13\
+      results[key] = res\13\
+    end))\13\
+  end\13\
+\13\
+  for key, value in pairs(obj) do\13\
+    local promise = toPromise(value)\13\
+    if (promise and isPromise(promise)) then\13\
+      defer(promise, key)\13\
+    else\13\
+      results[key] = obj[key]\13\
+    end\13\
+  end\13\
+\13\
+  return Promise.all(promises).andThen(function()\13\
+    return results\13\
+  end)\13\
+end\13\
+\13\
+\13\
+\13\
+return setmetatable({\13\
+  new = new,\13\
+  Promise = Promise,\13\
+}, {\13\
+  __call = function(_, ...)\13\
+    return new(...)\13\
+  end\13\
+})\13\
 " }
 
 
@@ -15590,343 +15590,343 @@ return Promise\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\
-\
--- get the time\
-local gettimeFunc = function()\
-  return socket.gettime() * 1000\
-end\
--- sleep\
-local mSleep = mSleep or function(n)\
-  socket.select(nil, nil, n / 1000)\
-end\
-\
--- fwGetPressedButton\
--- keepScreen(true);\
-\
-local function isEmpty(tab)\
-  for _, v in pairs(tab) do\
-    return false\
-  end\
-  return true\
-end\
-\
-\
-\
-\
-\
-\
-\
-local function tryCatch(cb)\
-  return xpcall(cb, function(e)\
-    return stackTraceback and\
-      (e .. '\\n' .. debug.traceback())\
-      or (e)\
-  end)\
-end\
-\
-local function bindSelf(func, self)\
-  return function(...) return func(self, ...) end\
-end\
-\
-local getEventId = (function()\
-  local id = 0\
-  return function()\
-    id = id + 1\
-    return id\
-  end\
-end)()\
-\
--- main query\
-local eventQuery = {}\
--- sub query\
-local screenListenerQuery = {}\
-local screenListenerQueryIndex = {}\
-local buttonListenerQuery = {}\
-local buttonListenerQueryIndex = {}\
-local timerQuery = {}\
-local timerQueryIndex = {}\
-\
-\
-function getEventObj(func, time, isInterval, ms)\
-  return {\
-    id = getEventId() or 0,\
-    time = time or 0,\
-    func = func,\
-    isInterval = isInterval or false,\
-    ms = ms or 0,\
-    drop = false,\
-  }\
-end\
-\
-function getScreenEventObj(checker, func)\
-  return {\
-    id = getEventId() or 0,\
-    checker = checker,\
-    func = func,\
-    drop = false,\
-  }\
-end\
-\
-function getButtonEventObj(btnId, func)\
-  return {\
-    id = getEventId() or 0,\
-    btnId = btnId,\
-    func = func,\
-    drop = false,\
-  }\
-end\
-\
-\
-\
-\
-function setImmediate(func)\
-  if (type(func) ~= 'function') then return 0 end\
-  local eventObj = getEventObj(func)\
-  table.insert(timerQuery, eventObj)\
-  return eventObj.id\
-end\
-\
-function setTimeout(func, ms)\
-  if (type(func) ~= 'function') then return 0 end\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
-  local time = gettimeFunc() + ms\
-  local eventObj = getEventObj(func, time)\
-  table.insert(timerQuery, eventObj)\
-  timerQueryIndex[eventObj.id] = eventObj\
-  return eventObj.id\
-end\
-\
-function clearTimeout(id)\
-  local theEventObj = timerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-    timerQueryIndex[id] = nil\
-  end\
-end\
-\
-function setInterval(func, ms)\
-  if (type(func) ~= 'function') then return 0 end\
-  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\
-  local time = gettimeFunc() + ms\
-  local eventObj = getEventObj(func, time, true, ms)\
-  table.insert(timerQuery, eventObj)\
-  timerQueryIndex[eventObj.id] = eventObj\
-  return eventObj.id\
-end\
-\
--- param: checker, func\
-function setScreenListener(...)\
-  local args = { ... }\
-  local checker = table.remove(args, 1)\
-  local func = table.remove(args, 1)\
-\
-  if (type(checker) ~= 'function') then return 0 end\
-  if (type(func) ~= 'function') then return 0 end\
-  local screenEventObj = getScreenEventObj(checker, func)\
-  table.insert(screenListenerQuery, screenEventObj)\
-  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\
-  return screenEventObj.id\
-end\
-\
-function clearScreenListener(id)\
-  local theEventObj = screenListenerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-  end\
-end\
-\
-function setButotnListener(btnId, func)\
-  if (type(func) ~= 'function') then return 0 end\
-  local btnEventObj = getButtonEventObj(btnId, func)\
-  table.insert(buttonListenerQuery, btnEventObj)\
-  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\
-  return btnEventObj.id\
-end\
-\
-function clearButotnListener(id)\
-  local theEventObj = buttonListenerQueryIndex[id]\
-  if (theEventObj) then\
-    theEventObj.drop = true\
-  end\
-end\
-\
-function clearListenersOnButton(btnId)\
-  for key = 1, #buttonListenerQuery do\
-    local value = buttonListenerQuery[key]\
-    if (value.btnId ~= btnId) then\
-      value.drop = true\
-    end\
-  end\
-end\
-\
-function run()\
-  local continue = 0\
-  local thisTime = 0\
-  local sleepTime = 3600000\
-\
-\
-  repeat\
-    continue = 0\
-    sleepTime = 3600000\
-\
-    -- run eventQuery\
-    if #eventQuery > 0 then\
-      for key = 1, #eventQuery do\
-        local value = eventQuery[key]\
-        value.func()\
-      end\
-      eventQuery = {}\
-    end\
-\
-\
-    -- read event from other Query\
-    thisTime = gettimeFunc()\
-\
-    -- timeQuery\
-    if (#timerQuery > 0) then\
-      continue = continue + 1\
-      local hasDropEvent = false\
-      for key = 1, #timerQuery do\
-        local value = timerQuery[key]\
-        if (not value.drop) then\
-          if (value.time <= thisTime) then\
-            table.insert(eventQuery, value)\
-\
-            -- setInterval event\
-            if (value.isInterval) then\
-              value.drop = false\
-              repeat\
-                value.time = value.time + value.ms\
-              until (value.time > thisTime)\
-              sleepTime = math.min(sleepTime, value.time - thisTime)\
-            else\
-              value.drop = true\
-              hasDropEvent = true\
-            end\
-          else\
-            sleepTime = math.min(sleepTime, value.time - thisTime)\
-          end\
-        else\
-          hasDropEvent = true\
-          timerQueryIndex[value.id] = nil\
-        end\
-      end\
-\
-      if hasDropEvent then\
-        local newTimeQuery = {}\
-        for key = 1, #timerQuery do\
-          local value = timerQuery[key]\
-          if not value.drop then\
-            table.insert(newTimeQuery, value)\
-          else\
-            timerQueryIndex[value.id] = nil\
-          end\
-        end\
-        timerQuery = newTimeQuery\
-      end\
-    end\
-\
-    -- screenListenerQuery\
-    if #screenListenerQuery > 0 then\
-      keepScreen(false);\
-      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\
-      local hasDropEvent = false\
-      continue = continue + 1\
-      sleepTime = math.min(sleepTime, 200)\
-      getColor(0, 0)\
-      keepScreen(true);\
-      for key = 1, #screenListenerQuery do\
-        local value = screenListenerQuery[key]\
-        if not value.drop then\
-          if (value.checker()) then\
-            table.insert(eventQuery, value)\
-            if (value.isOnce) then\
-              value.drop = true\
-              hasDropEvent = true\
-            end\
-          end\
-        else\
-          hasDropEvent = true\
-        end\
-      end\
-      keepScreen(false);\
-\
-      if (hasDropEvent) then\
-        local newScreenListenerQuery = {}\
-        for key = 1, #screenListenerQuery do\
-          local value = screenListenerQuery[key]\
-          if (not value.drop) then\
-            table.insert(newScreenListenerQuery, value)\
-          else\
-            screenListenerQueryIndex[value.id] = nil\
-          end\
-        end\
-        screenListenerQuery = newScreenListenerQuery\
-      end\
-    end\
-\
-    -- buttonListenerQuery\
-    if (#buttonListenerQuery > 0) then\
-      sleepTime = math.min(sleepTime, 200)\
-      continue = continue + 1\
-      local btnIdList = {}\
-      local hasBtnClick = false\
-      local hasDropEvent = false\
-      while (true) do\
-        local btnId = fwGetPressedButton()\
-        if (type(btnId) ~= 'string') then break end\
-        btnIdList[btnId] = btnId\
-        hasBtnClick = true\
-      end\
-      if (hasBtnClick) then\
-        for key = 1, #buttonListenerQuery do\
-          local value = buttonListenerQuery[key]\
-          if (not value.drop) then\
-            if (btnIdList[value.btnId] == value.btnId) then\
-              table.insert(eventQuery, value)\
-            end\
-          else\
-            hasDropEvent = true\
-          end\
-        end\
-\
-        if (hasDropEvent) then\
-          local newButtonListenerQuery = {}\
-          for key = 1, #buttonListenerQuery do\
-            local value = buttonListenerQuery[key]\
-            if (not value.drop) then\
-              table.insert(newButtonListenerQuery, value)\
-            else\
-              buttonListenerQueryIndex[value.id] = nil\
-            end\
-          end\
-          buttonListenerQuery = newButtonListenerQuery\
-        end\
-      end\
-    end\
-\
-    if (luaExisted) then\
-      break\
-    end\
-    if (#eventQuery <= 0) then\
-      mSleep(sleepTime)\
-    end\
-  until (false)\
-end\
-\
-return {\
-  setImmediate = setImmediate,\
-  setTimeout = setTimeout,\
-  clearTimeout = clearTimeout,\
-  setInterval = setInterval,\
-  clearInterval = clearTimeout,\
-  setScreenListener = setScreenListener,\
-  clearScreenListener = clearScreenListener,\
-  setButotnListener = setButotnListener,\
-  clearListenersOnButton = clearListenersOnButton,\
-  clearButotnListener = clearButotnListener,\
-  run = run,\
+package.sourceCode["./lib/event-query.lua"] = { path = "./lib/event-query.lua", name = "./lib/event-query.lua", source = "local socket = require 'socket'\13\
+\13\
+-- get the time\13\
+local gettimeFunc = function()\13\
+  return socket.gettime() * 1000\13\
+end\13\
+-- sleep\13\
+local mSleep = mSleep or function(n)\13\
+  socket.select(nil, nil, n / 1000)\13\
+end\13\
+\13\
+-- fwGetPressedButton\13\
+-- keepScreen(true);\13\
+\13\
+local function isEmpty(tab)\13\
+  for _, v in pairs(tab) do\13\
+    return false\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+\13\
+local function tryCatch(cb)\13\
+  return xpcall(cb, function(e)\13\
+    return stackTraceback and\13\
+      (e .. '\\n' .. debug.traceback())\13\
+      or (e)\13\
+  end)\13\
+end\13\
+\13\
+local function bindSelf(func, self)\13\
+  return function(...) return func(self, ...) end\13\
+end\13\
+\13\
+local getEventId = (function()\13\
+  local id = 0\13\
+  return function()\13\
+    id = id + 1\13\
+    return id\13\
+  end\13\
+end)()\13\
+\13\
+-- main query\13\
+local eventQuery = {}\13\
+-- sub query\13\
+local screenListenerQuery = {}\13\
+local screenListenerQueryIndex = {}\13\
+local buttonListenerQuery = {}\13\
+local buttonListenerQueryIndex = {}\13\
+local timerQuery = {}\13\
+local timerQueryIndex = {}\13\
+\13\
+\13\
+function getEventObj(func, time, isInterval, ms)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    time = time or 0,\13\
+    func = func,\13\
+    isInterval = isInterval or false,\13\
+    ms = ms or 0,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+function getScreenEventObj(checker, func)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    checker = checker,\13\
+    func = func,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+function getButtonEventObj(btnId, func)\13\
+  return {\13\
+    id = getEventId() or 0,\13\
+    btnId = btnId,\13\
+    func = func,\13\
+    drop = false,\13\
+  }\13\
+end\13\
+\13\
+\13\
+\13\
+\13\
+function setImmediate(func)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local eventObj = getEventObj(func)\13\
+  table.insert(timerQuery, eventObj)\13\
+  return eventObj.id\13\
+end\13\
+\13\
+function setTimeout(func, ms)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
+  local time = gettimeFunc() + ms\13\
+  local eventObj = getEventObj(func, time)\13\
+  table.insert(timerQuery, eventObj)\13\
+  timerQueryIndex[eventObj.id] = eventObj\13\
+  return eventObj.id\13\
+end\13\
+\13\
+function clearTimeout(id)\13\
+  local theEventObj = timerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+    timerQueryIndex[id] = nil\13\
+  end\13\
+end\13\
+\13\
+function setInterval(func, ms)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  if ((type(ms) ~= 'number') or (ms < 4)) then ms = 4 end\13\
+  local time = gettimeFunc() + ms\13\
+  local eventObj = getEventObj(func, time, true, ms)\13\
+  table.insert(timerQuery, eventObj)\13\
+  timerQueryIndex[eventObj.id] = eventObj\13\
+  return eventObj.id\13\
+end\13\
+\13\
+-- param: checker, func\13\
+function setScreenListener(...)\13\
+  local args = { ... }\13\
+  local checker = table.remove(args, 1)\13\
+  local func = table.remove(args, 1)\13\
+\13\
+  if (type(checker) ~= 'function') then return 0 end\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local screenEventObj = getScreenEventObj(checker, func)\13\
+  table.insert(screenListenerQuery, screenEventObj)\13\
+  screenListenerQueryIndex[screenEventObj.id] = screenEventObj\13\
+  return screenEventObj.id\13\
+end\13\
+\13\
+function clearScreenListener(id)\13\
+  local theEventObj = screenListenerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+  end\13\
+end\13\
+\13\
+function setButotnListener(btnId, func)\13\
+  if (type(func) ~= 'function') then return 0 end\13\
+  local btnEventObj = getButtonEventObj(btnId, func)\13\
+  table.insert(buttonListenerQuery, btnEventObj)\13\
+  buttonListenerQueryIndex[btnEventObj.id] = btnEventObj\13\
+  return btnEventObj.id\13\
+end\13\
+\13\
+function clearButotnListener(id)\13\
+  local theEventObj = buttonListenerQueryIndex[id]\13\
+  if (theEventObj) then\13\
+    theEventObj.drop = true\13\
+  end\13\
+end\13\
+\13\
+function clearListenersOnButton(btnId)\13\
+  for key = 1, #buttonListenerQuery do\13\
+    local value = buttonListenerQuery[key]\13\
+    if (value.btnId ~= btnId) then\13\
+      value.drop = true\13\
+    end\13\
+  end\13\
+end\13\
+\13\
+function run()\13\
+  local continue = 0\13\
+  local thisTime = 0\13\
+  local sleepTime = 3600000\13\
+\13\
+\13\
+  repeat\13\
+    continue = 0\13\
+    sleepTime = 3600000\13\
+\13\
+    -- run eventQuery\13\
+    if #eventQuery > 0 then\13\
+      for key = 1, #eventQuery do\13\
+        local value = eventQuery[key]\13\
+        value.func()\13\
+      end\13\
+      eventQuery = {}\13\
+    end\13\
+\13\
+\13\
+    -- read event from other Query\13\
+    thisTime = gettimeFunc()\13\
+\13\
+    -- timeQuery\13\
+    if (#timerQuery > 0) then\13\
+      continue = continue + 1\13\
+      local hasDropEvent = false\13\
+      for key = 1, #timerQuery do\13\
+        local value = timerQuery[key]\13\
+        if (not value.drop) then\13\
+          if (value.time <= thisTime) then\13\
+            table.insert(eventQuery, value)\13\
+\13\
+            -- setInterval event\13\
+            if (value.isInterval) then\13\
+              value.drop = false\13\
+              repeat\13\
+                value.time = value.time + value.ms\13\
+              until (value.time > thisTime)\13\
+              sleepTime = math.min(sleepTime, value.time - thisTime)\13\
+            else\13\
+              value.drop = true\13\
+              hasDropEvent = true\13\
+            end\13\
+          else\13\
+            sleepTime = math.min(sleepTime, value.time - thisTime)\13\
+          end\13\
+        else\13\
+          hasDropEvent = true\13\
+          timerQueryIndex[value.id] = nil\13\
+        end\13\
+      end\13\
+\13\
+      if hasDropEvent then\13\
+        local newTimeQuery = {}\13\
+        for key = 1, #timerQuery do\13\
+          local value = timerQuery[key]\13\
+          if not value.drop then\13\
+            table.insert(newTimeQuery, value)\13\
+          else\13\
+            timerQueryIndex[value.id] = nil\13\
+          end\13\
+        end\13\
+        timerQuery = newTimeQuery\13\
+      end\13\
+    end\13\
+\13\
+    -- screenListenerQuery\13\
+    if #screenListenerQuery > 0 then\13\
+      keepScreen(false);\13\
+      if type(getDeviceOrient) == 'function' then getDeviceOrient() end\13\
+      local hasDropEvent = false\13\
+      continue = continue + 1\13\
+      sleepTime = math.min(sleepTime, 200)\13\
+      getColor(0, 0)\13\
+      keepScreen(true);\13\
+      for key = 1, #screenListenerQuery do\13\
+        local value = screenListenerQuery[key]\13\
+        if not value.drop then\13\
+          if (value.checker()) then\13\
+            table.insert(eventQuery, value)\13\
+            if (value.isOnce) then\13\
+              value.drop = true\13\
+              hasDropEvent = true\13\
+            end\13\
+          end\13\
+        else\13\
+          hasDropEvent = true\13\
+        end\13\
+      end\13\
+      keepScreen(false);\13\
+\13\
+      if (hasDropEvent) then\13\
+        local newScreenListenerQuery = {}\13\
+        for key = 1, #screenListenerQuery do\13\
+          local value = screenListenerQuery[key]\13\
+          if (not value.drop) then\13\
+            table.insert(newScreenListenerQuery, value)\13\
+          else\13\
+            screenListenerQueryIndex[value.id] = nil\13\
+          end\13\
+        end\13\
+        screenListenerQuery = newScreenListenerQuery\13\
+      end\13\
+    end\13\
+\13\
+    -- buttonListenerQuery\13\
+    if (#buttonListenerQuery > 0) then\13\
+      sleepTime = math.min(sleepTime, 200)\13\
+      continue = continue + 1\13\
+      local btnIdList = {}\13\
+      local hasBtnClick = false\13\
+      local hasDropEvent = false\13\
+      while (true) do\13\
+        local btnId = fwGetPressedButton()\13\
+        if (type(btnId) ~= 'string') then break end\13\
+        btnIdList[btnId] = btnId\13\
+        hasBtnClick = true\13\
+      end\13\
+      if (hasBtnClick) then\13\
+        for key = 1, #buttonListenerQuery do\13\
+          local value = buttonListenerQuery[key]\13\
+          if (not value.drop) then\13\
+            if (btnIdList[value.btnId] == value.btnId) then\13\
+              table.insert(eventQuery, value)\13\
+            end\13\
+          else\13\
+            hasDropEvent = true\13\
+          end\13\
+        end\13\
+\13\
+        if (hasDropEvent) then\13\
+          local newButtonListenerQuery = {}\13\
+          for key = 1, #buttonListenerQuery do\13\
+            local value = buttonListenerQuery[key]\13\
+            if (not value.drop) then\13\
+              table.insert(newButtonListenerQuery, value)\13\
+            else\13\
+              buttonListenerQueryIndex[value.id] = nil\13\
+            end\13\
+          end\13\
+          buttonListenerQuery = newButtonListenerQuery\13\
+        end\13\
+      end\13\
+    end\13\
+\13\
+    if (luaExisted) then\13\
+      break\13\
+    end\13\
+    if (#eventQuery <= 0) then\13\
+      mSleep(sleepTime)\13\
+    end\13\
+  until (false)\13\
+end\13\
+\13\
+return {\13\
+  setImmediate = setImmediate,\13\
+  setTimeout = setTimeout,\13\
+  clearTimeout = clearTimeout,\13\
+  setInterval = setInterval,\13\
+  clearInterval = clearTimeout,\13\
+  setScreenListener = setScreenListener,\13\
+  clearScreenListener = clearScreenListener,\13\
+  setButotnListener = setButotnListener,\13\
+  clearListenersOnButton = clearListenersOnButton,\13\
+  clearButotnListener = clearButotnListener,\13\
+  run = run,\13\
 }" }
 
 
@@ -15987,7 +15987,7 @@ dirs = table.filter(dirs, function(e, index)\
   if (string.startWith(e, 'azur_lane_')) then\
     local res = string.match(e, 'azur_lane_(%d+)')\
     res = tonumber(res) or theTime\
-    if ((index < (dirsLen - 50)) and (res < sevenDayBeforeTime)) then\
+    if res < sevenDayBeforeTime then\
       return true\
     end\
   end\
@@ -17278,175 +17278,178 @@ W\0\9\8\8 �T�#�rV4\18q+G6�g�\30H[�.\26��\19h\30�}Si'=F��V��t!\22�`ay�Gab\0\0\0��
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\
-\
-math.mod = math.mod or function(m, n)\
-  local a1 = math.modf(m / n)\
-  return m - a1 * n\
-end\
-\
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = getLength(tab)\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-\
-local __console = console or {}\
-\
-local function runTable(tab, space)\
-  if type(tab) == 'number' then\
-    return { tostring(tab) }\
-  end\
-  if type(tab) == 'string' then\
-    if string.len(tab) > 1000 then\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
-    end\
-    return { '\"' .. tab .. '\"' }\
-  end\
-  if type(tab) == 'boolean' then\
-    if (tab) then\
-      return { 'true' }\
-    else\
-      return { 'false' }\
-    end\
-  end\
-  if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
-  end\
-  if type(space) == 'number' then\
-    space = string.rep(' ', space)\
-  end\
-  if type(space) ~= 'string' then\
-    space = ''\
-  end\
-\
-  local resultStrList = {}\
-  local newTabPairs = {}\
-  local newTabPairsKeys = {}\
-  local tabIsArray = true\
-  local tabLength = 0\
-  local hasSubTab = false\
-\
-  -- 将 table 的数组部分取出\
-  for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
-    if (type(v) == 'table') then\
-      hasSubTab = true\
-    end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
-      tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
-      end\
-    end\
-  end\
-\
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
-  end\
-\
-  if (tabIsArray) then\
-    local newTabArr = newTabPairs\
-\
-    if (hasSubTab) then\
-      table.insert(resultStrList, '[')\
-      for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
-        v[2][v2Length] = v[2][v2Length] .. ','\
-        for k2, v2 in ipairs(v[2]) do\
-          table.insert(resultStrList, space .. v2)\
-        end\
-      end\
-      table.insert(resultStrList, ']')\
-    else\
-      local theStr = {}\
-      for k, v in ipairs(newTabPairs) do\
-        table.insert(theStr, v[2][1])\
-      end\
-      local childStr = table.concat(theStr, ', ')\
-      table.insert(resultStrList, '[' .. childStr .. ']')\
-    end\
-  else\
-    local newTabArr = newTabPairs\
-\
-    table.insert(resultStrList, '{')\
-    for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
-      v[2][v2Length] = v[2][v2Length] .. ','\
-      for k2, v2 in ipairs(v[2]) do\
-        table.insert(resultStrList, space .. v2 .. '')\
-      end\
-    end\
-    table.insert(resultStrList, '}')\
-  end\
-  return resultStrList\
-end\
-\
-\
-__console.log = __console.log or function(obj)\
-  local res = runTable(obj, 2)\
-  if useNlog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
-    end\
-    nLog(lineInfo)\
-    local tmp = {}\
-    local resLength = #res\
-    for i = 1, resLength do\
-      table.insert(tmp, res[i])\
-      if math.mod(i, 10) == 0 or i == resLength then\
-        nLog(table.concat(tmp, \"\\n\"))\
-        tmp = {}\
-      end\
-    end\
-  end\
-end\
-\
-__console.getJsStr = function(obj)\
-  return table.concat(runTable(obj, 2), \",\\n\")\
-end\
-\
-__console.color = function(value)\
-  local resultStr = ''\
-  local color = getColor(value[1], value[2])\
-  local oldColor = value[3]\
-  local colorStr = string.format('0x%06x', color)\
-  local oldColorStr = string.format('0x%06x', oldColor)\
-  value[3] = oldColorStr\
-  if (color == oldColor) then\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
-  else\
-    value[3] = colorStr\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
-  end\
-  __console.log(resultStr)\
-end\
-\
+package.sourceCode["./lib/console.lua"] = { path = "./lib/console.lua", name = "./lib/console.lua", source = "local nLog = nLog or function() end\13\
+\13\
+math.mod = math.mod or function(m, n)\13\
+  local a1 = math.modf(m / n)\13\
+  return m - a1 * n\13\
+end\13\
+\13\
+local getLength = table.length or function(target)\13\
+  local length = 0\13\
+  for k, v in ipairs(target) do\13\
+    length = k\13\
+  end\13\
+  return length\13\
+end\13\
+\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = getLength(tab)\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+local __console = console or {}\13\
+\13\
+local function runTable(tab, space)\13\
+  if type(tab) == 'number' then\13\
+    return { tostring(tab) }\13\
+  end\13\
+  if type(tab) == 'string' then\13\
+    if string.len(tab) > 1000 then\13\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
+    end\13\
+    return { '\"' .. tab .. '\"' }\13\
+  end\13\
+  if type(tab) == 'boolean' then\13\
+    if (tab) then\13\
+      return { 'true' }\13\
+    else\13\
+      return { 'false' }\13\
+    end\13\
+  end\13\
+  if type(tab) ~= 'table' then\13\
+    return { '(' .. type(tab) .. ')' }\13\
+  end\13\
+  if type(space) == 'number' then\13\
+    space = string.rep(' ', space)\13\
+  end\13\
+  if type(space) ~= 'string' then\13\
+    space = ''\13\
+  end\13\
+\13\
+  local resultStrList = {}\13\
+  local newTabPairs = {}\13\
+  local newTabPairsKeys = {}\13\
+  local tabIsArray = true\13\
+  local tabLength = 0\13\
+  local hasSubTab = false\13\
+\13\
+  -- 将 table 的数组部分取出\13\
+  for k, v in ipairs(tab) do\13\
+    tabLength = k\13\
+    table.insert(newTabPairs, { k, runTable(v, space) })\13\
+    if (type(v) == 'table') then\13\
+      hasSubTab = true\13\
+    end\13\
+  end\13\
+\13\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
+  for k, v in pairs(tab) do\13\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
+      tabIsArray = false\13\
+      table.insert(newTabPairsKeys, k)\13\
+      if (type(v) == 'table') then\13\
+        hasSubTab = true\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  table.sort(newTabPairsKeys)\13\
+  for _, k in ipairs(newTabPairsKeys) do\13\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
+  end\13\
+\13\
+  if (tabIsArray) then\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    if (hasSubTab) then\13\
+      table.insert(resultStrList, '[')\13\
+      for k, v in ipairs(newTabArr) do\13\
+        local v2Length = getLength(v[2])\13\
+        v[2][v2Length] = v[2][v2Length] .. ','\13\
+        for k2, v2 in ipairs(v[2]) do\13\
+          table.insert(resultStrList, space .. v2)\13\
+        end\13\
+      end\13\
+      table.insert(resultStrList, ']')\13\
+    else\13\
+      local theStr = {}\13\
+      for k, v in ipairs(newTabPairs) do\13\
+        table.insert(theStr, v[2][1])\13\
+      end\13\
+      local childStr = table.concat(theStr, ', ')\13\
+      table.insert(resultStrList, '[' .. childStr .. ']')\13\
+    end\13\
+  else\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    table.insert(resultStrList, '{')\13\
+    for k, v in ipairs(newTabArr) do\13\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
+      local v2Length = getLength(v[2])\13\
+      v[2][v2Length] = v[2][v2Length] .. ','\13\
+      for k2, v2 in ipairs(v[2]) do\13\
+        table.insert(resultStrList, space .. v2 .. '')\13\
+      end\13\
+    end\13\
+    table.insert(resultStrList, '}')\13\
+  end\13\
+  return resultStrList\13\
+end\13\
+\13\
+\13\
+__console.log = __console.log or function(obj)\13\
+  local res = runTable(obj, 2)\13\
+  local info = debug.getinfo(2, 'Sl')\13\
+  local lineInfo = ''\13\
+  if info.currentline then\13\
+    lineInfo = info.source .. ': ' .. info.currentline .. ':'\13\
+  end\13\
+\13\
+  if useNlog then\13\
+    nLog(lineInfo)\13\
+    local tmp = {}\13\
+    local resLength = #res\13\
+    for i = 1, resLength do\13\
+      table.insert(tmp, res[i])\13\
+      if math.mod(i, 10) == 0 or i == resLength then\13\
+        nLog(table.concat(tmp, \"\\n\"))\13\
+        tmp = {}\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  wLog('azur_lane', lineInfo .. table.concat(res .. '\\n'))\13\
+end\13\
+\13\
+__console.getJsStr = function(obj)\13\
+  return table.concat(runTable(obj, 2), \",\\n\")\13\
+end\13\
+\13\
+__console.color = function(value)\13\
+  local resultStr = ''\13\
+  local color = getColor(value[1], value[2])\13\
+  local oldColor = value[3]\13\
+  local colorStr = string.format('0x%06x', color)\13\
+  local oldColorStr = string.format('0x%06x', oldColor)\13\
+  value[3] = oldColorStr\13\
+  if (color == oldColor) then\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
+  else\13\
+    value[3] = colorStr\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
+  end\13\
+  __console.log(resultStr)\13\
+end\13\
+\13\
 console = __console" }
 
 
@@ -17707,175 +17710,178 @@ return function(optionParam)\
 end", "@" .."lua-require.lua"))
 
 
-package.preload["console"] = assert(load("local nLog = nLog or function() end\
-\
-math.mod = math.mod or function(m, n)\
-  local a1 = math.modf(m / n)\
-  return m - a1 * n\
-end\
-\
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
-local isArray = table.isArray or function(tab)\
-  if (type(tab) ~= \"table\") then\
-    return false\
-  end\
-  local length = getLength(tab)\
-  for k, v in pairs(tab) do\
-    if ((type(k) ~= \"number\") or (k > length)) then\
-      return false\
-    end\
-  end\
-  return true\
-end\
-\
-local __console = console or {}\
-\
-local function runTable(tab, space)\
-  if type(tab) == 'number' then\
-    return { tostring(tab) }\
-  end\
-  if type(tab) == 'string' then\
-    if string.len(tab) > 1000 then\
-      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\
-    end\
-    return { '\"' .. tab .. '\"' }\
-  end\
-  if type(tab) == 'boolean' then\
-    if (tab) then\
-      return { 'true' }\
-    else\
-      return { 'false' }\
-    end\
-  end\
-  if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
-  end\
-  if type(space) == 'number' then\
-    space = string.rep(' ', space)\
-  end\
-  if type(space) ~= 'string' then\
-    space = ''\
-  end\
-\
-  local resultStrList = {}\
-  local newTabPairs = {}\
-  local newTabPairsKeys = {}\
-  local tabIsArray = true\
-  local tabLength = 0\
-  local hasSubTab = false\
-\
-  -- 将 table 的数组部分取出\
-  for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
-    if (type(v) == 'table') then\
-      hasSubTab = true\
-    end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
-      tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
-      end\
-    end\
-  end\
-\
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
-    table.insert(newTabPairs, { k, runTable(tab[k], space) })\
-  end\
-\
-  if (tabIsArray) then\
-    local newTabArr = newTabPairs\
-\
-    if (hasSubTab) then\
-      table.insert(resultStrList, '[')\
-      for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
-        v[2][v2Length] = v[2][v2Length] .. ','\
-        for k2, v2 in ipairs(v[2]) do\
-          table.insert(resultStrList, space .. v2)\
-        end\
-      end\
-      table.insert(resultStrList, ']')\
-    else\
-      local theStr = {}\
-      for k, v in ipairs(newTabPairs) do\
-        table.insert(theStr, v[2][1])\
-      end\
-      local childStr = table.concat(theStr, ', ')\
-      table.insert(resultStrList, '[' .. childStr .. ']')\
-    end\
-  else\
-    local newTabArr = newTabPairs\
-\
-    table.insert(resultStrList, '{')\
-    for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
-      v[2][v2Length] = v[2][v2Length] .. ','\
-      for k2, v2 in ipairs(v[2]) do\
-        table.insert(resultStrList, space .. v2 .. '')\
-      end\
-    end\
-    table.insert(resultStrList, '}')\
-  end\
-  return resultStrList\
-end\
-\
-\
-__console.log = __console.log or function(obj)\
-  local res = runTable(obj, 2)\
-  if useNlog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':'\
-    end\
-    nLog(lineInfo)\
-    local tmp = {}\
-    local resLength = #res\
-    for i = 1, resLength do\
-      table.insert(tmp, res[i])\
-      if math.mod(i, 10) == 0 or i == resLength then\
-        nLog(table.concat(tmp, \"\\n\"))\
-        tmp = {}\
-      end\
-    end\
-  end\
-end\
-\
-__console.getJsStr = function(obj)\
-  return table.concat(runTable(obj, 2), \",\\n\")\
-end\
-\
-__console.color = function(value)\
-  local resultStr = ''\
-  local color = getColor(value[1], value[2])\
-  local oldColor = value[3]\
-  local colorStr = string.format('0x%06x', color)\
-  local oldColorStr = string.format('0x%06x', oldColor)\
-  value[3] = oldColorStr\
-  if (color == oldColor) then\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\
-  else\
-    value[3] = colorStr\
-    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\
-  end\
-  __console.log(resultStr)\
-end\
-\
+package.preload["console"] = assert(load("local nLog = nLog or function() end\13\
+\13\
+math.mod = math.mod or function(m, n)\13\
+  local a1 = math.modf(m / n)\13\
+  return m - a1 * n\13\
+end\13\
+\13\
+local getLength = table.length or function(target)\13\
+  local length = 0\13\
+  for k, v in ipairs(target) do\13\
+    length = k\13\
+  end\13\
+  return length\13\
+end\13\
+\13\
+local isArray = table.isArray or function(tab)\13\
+  if (type(tab) ~= \"table\") then\13\
+    return false\13\
+  end\13\
+  local length = getLength(tab)\13\
+  for k, v in pairs(tab) do\13\
+    if ((type(k) ~= \"number\") or (k > length)) then\13\
+      return false\13\
+    end\13\
+  end\13\
+  return true\13\
+end\13\
+\13\
+local __console = console or {}\13\
+\13\
+local function runTable(tab, space)\13\
+  if type(tab) == 'number' then\13\
+    return { tostring(tab) }\13\
+  end\13\
+  if type(tab) == 'string' then\13\
+    if string.len(tab) > 1000 then\13\
+      return { '\"' .. string.sub(tab, 1, 1000) .. '...\"' }\13\
+    end\13\
+    return { '\"' .. tab .. '\"' }\13\
+  end\13\
+  if type(tab) == 'boolean' then\13\
+    if (tab) then\13\
+      return { 'true' }\13\
+    else\13\
+      return { 'false' }\13\
+    end\13\
+  end\13\
+  if type(tab) ~= 'table' then\13\
+    return { '(' .. type(tab) .. ')' }\13\
+  end\13\
+  if type(space) == 'number' then\13\
+    space = string.rep(' ', space)\13\
+  end\13\
+  if type(space) ~= 'string' then\13\
+    space = ''\13\
+  end\13\
+\13\
+  local resultStrList = {}\13\
+  local newTabPairs = {}\13\
+  local newTabPairsKeys = {}\13\
+  local tabIsArray = true\13\
+  local tabLength = 0\13\
+  local hasSubTab = false\13\
+\13\
+  -- 将 table 的数组部分取出\13\
+  for k, v in ipairs(tab) do\13\
+    tabLength = k\13\
+    table.insert(newTabPairs, { k, runTable(v, space) })\13\
+    if (type(v) == 'table') then\13\
+      hasSubTab = true\13\
+    end\13\
+  end\13\
+\13\
+  -- 将 table 的 map 部分取出，并按照字典顺序排序\13\
+  for k, v in pairs(tab) do\13\
+    if type(k) ~= 'number' or k > tabLength or k <= 0 then\13\
+      tabIsArray = false\13\
+      table.insert(newTabPairsKeys, k)\13\
+      if (type(v) == 'table') then\13\
+        hasSubTab = true\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  table.sort(newTabPairsKeys)\13\
+  for _, k in ipairs(newTabPairsKeys) do\13\
+    table.insert(newTabPairs, { k, runTable(tab[k], space) })\13\
+  end\13\
+\13\
+  if (tabIsArray) then\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    if (hasSubTab) then\13\
+      table.insert(resultStrList, '[')\13\
+      for k, v in ipairs(newTabArr) do\13\
+        local v2Length = getLength(v[2])\13\
+        v[2][v2Length] = v[2][v2Length] .. ','\13\
+        for k2, v2 in ipairs(v[2]) do\13\
+          table.insert(resultStrList, space .. v2)\13\
+        end\13\
+      end\13\
+      table.insert(resultStrList, ']')\13\
+    else\13\
+      local theStr = {}\13\
+      for k, v in ipairs(newTabPairs) do\13\
+        table.insert(theStr, v[2][1])\13\
+      end\13\
+      local childStr = table.concat(theStr, ', ')\13\
+      table.insert(resultStrList, '[' .. childStr .. ']')\13\
+    end\13\
+  else\13\
+    local newTabArr = newTabPairs\13\
+\13\
+    table.insert(resultStrList, '{')\13\
+    for k, v in ipairs(newTabArr) do\13\
+      v[2][1] = v[1] .. ': ' .. v[2][1]\13\
+      local v2Length = getLength(v[2])\13\
+      v[2][v2Length] = v[2][v2Length] .. ','\13\
+      for k2, v2 in ipairs(v[2]) do\13\
+        table.insert(resultStrList, space .. v2 .. '')\13\
+      end\13\
+    end\13\
+    table.insert(resultStrList, '}')\13\
+  end\13\
+  return resultStrList\13\
+end\13\
+\13\
+\13\
+__console.log = __console.log or function(obj)\13\
+  local res = runTable(obj, 2)\13\
+  local info = debug.getinfo(2, 'Sl')\13\
+  local lineInfo = ''\13\
+  if info.currentline then\13\
+    lineInfo = info.source .. ': ' .. info.currentline .. ':'\13\
+  end\13\
+\13\
+  if useNlog then\13\
+    nLog(lineInfo)\13\
+    local tmp = {}\13\
+    local resLength = #res\13\
+    for i = 1, resLength do\13\
+      table.insert(tmp, res[i])\13\
+      if math.mod(i, 10) == 0 or i == resLength then\13\
+        nLog(table.concat(tmp, \"\\n\"))\13\
+        tmp = {}\13\
+      end\13\
+    end\13\
+  end\13\
+\13\
+  wLog('azur_lane', lineInfo .. table.concat(res, '\\n'))\13\
+end\13\
+\13\
+__console.getJsStr = function(obj)\13\
+  return table.concat(runTable(obj, 2), \",\\n\")\13\
+end\13\
+\13\
+__console.color = function(value)\13\
+  local resultStr = ''\13\
+  local color = getColor(value[1], value[2])\13\
+  local oldColor = value[3]\13\
+  local colorStr = string.format('0x%06x', color)\13\
+  local oldColorStr = string.format('0x%06x', oldColor)\13\
+  value[3] = oldColorStr\13\
+  if (color == oldColor) then\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\")\13\
+  else\13\
+    value[3] = colorStr\13\
+    resultStr = resultStr .. '\\n' .. table.concat(runTable(value), \"\") .. '  old Color: ' .. oldColorStr\13\
+  end\13\
+  __console.log(resultStr)\13\
+end\13\
+\13\
 console = __console", "@" .."console.lua"))
 
 
@@ -17910,8 +17916,7 @@ end\
 \
 -- 开启日志\
 initLog('azur_lane', 1)\
-require 'console'\
---require './lib/console.lua'\
+--require './lib/console'\
 require 'TSLib'\
 require './lib/string-polyfill'\
 require './lib/math-polyfill'\

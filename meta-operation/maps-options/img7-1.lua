@@ -28,7 +28,7 @@ return {
       {
         (function()
           local leftTop = { 185, 155 }
-          local rightBotton = { 1899, 1022, }
+          local rightBottom = { 1899, 1022, }
           local basePoint, posandcolor = transRelativePoint({
             { 1624, 752, 0x423d42 }, { 1648, 751, 0x312d31 },
             { 1675, 755, 0x292429 }, { 1626, 784, 0xff4d52 },
@@ -36,7 +36,7 @@ return {
             { 1650, 812, 0x7b0410 }, { 1621, 727, 0x211010 },
             { 1677, 730, 0x211819 },
           })
-          return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2] }
+          return { basePoint[3], posandcolor, 82, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
         end)(),
       },
       imgBase.map.bossPointList),

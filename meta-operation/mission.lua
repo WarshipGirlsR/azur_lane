@@ -74,7 +74,7 @@ mission.findMission = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local leftTop = { 1569, 120 }
-  local rightBotton = { 1832, 454 }
+  local rightBottom = { 1832, 454 }
   local basePoint, posandcolor = transRelativePoint({
     { 1694, 190, 0xd6a229 }, { 1646, 165, 0xf7db4a }, { 1685, 163, 0xffdb52 }, { 1735, 163, 0xffdf52 },
     { 1781, 186, 0xf7c231 }, { 1783, 212, 0xffae10 }, { 1701, 215, 0xffb221 }, { 1649, 214, 0xffb219 },
@@ -82,7 +82,7 @@ mission.findMission = function()
     { 1693, 188, 0x9c7921 }, { 1715, 188, 0xdee3d6 }, { 1697, 181, 0xb5a684 }, { 1681, 181, 0xffffff },
     { 1680, 202, 0xffffff }, { 1723, 202, 0xefe3d6 }, { 1707, 196, 0xffffff }, { 1720, 181, 0xffffff },
   })
-  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBotton[1], rightBotton[2]))
+  local result = toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2]))
   if (not __keepScreenState) then keepScreen(false) end
   return result
 end

@@ -20,8 +20,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = { 427, 525 },
       rightTop = nil,
-      leftBotton = nil,
-      rightBotton = nil,
+      leftBottom = nil,
+      rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         { { 427, 525, 0x314142 }, { 595, 525, 0x192831 }, { 764, 525, 0x21313a }, { 934, 525, 0x101819 }, { 1103, 525, 0x081019 }, { 1272, 525, 0x081021 }, },
@@ -34,8 +34,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = { 1553, 519 },
-      leftBotton = nil,
-      rightBotton = nil,
+      leftBottom = nil,
+      rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         { false, false, false, false, false, { 874, 519, 0x101c29 }, { 1044, 519, 0x000c10 }, { 1213, 519, 0x081419 }, { 1382, 519, 0x081419 }, { 1553, 519, 0x101421 }, },
@@ -48,8 +48,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBotton = { 308, 966 },
-      rightBotton = nil,
+      leftBottom = { 308, 966 },
+      rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false,
@@ -63,8 +63,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBotton = nil,
-      rightBotton = { 1761, 940 },
+      leftBottom = nil,
+      rightBottom = { 1761, 940 },
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点 1761, 940的时候自动加上的
       positionMap = {
         false, false, false,
@@ -76,9 +76,9 @@ mapEvent.getCheckpositionList = function()
       {
         leftTop = nil,
         rightTop = nil,
-        leftBotton = nil,
+        leftBottom = nil,
         -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点 1761, 940的时候自动加上的
-        rightBotton = { 1761, 940 },
+        rightBottom = { 1761, 940 },
         positionMap = {
           false, false, false,
           { false, false, false, false, false, { 884, 479, 0x191429 }, { 1076, 479, 0x191831 }, { 1267, 479, 0x29203a }, { 1459, 479, 0x292042 }, { 1653, 479, 0x000000 }, },

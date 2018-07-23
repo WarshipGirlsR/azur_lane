@@ -29,8 +29,7 @@ end
 
 -- 开启日志
 initLog('azur_lane', 1)
-require 'console'
---require './lib/console.lua'
+--require './lib/console'
 require 'TSLib'
 require './lib/string-polyfill'
 require './lib/math-polyfill'

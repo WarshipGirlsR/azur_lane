@@ -11,7 +11,7 @@ dirs = table.filter(dirs, function(e, index)
   if (string.startWith(e, 'azur_lane_')) then
     local res = string.match(e, 'azur_lane_(%d+)')
     res = tonumber(res) or theTime
-    if ((index < (dirsLen - 50)) and (res < sevenDayBeforeTime)) then
+    if res < sevenDayBeforeTime then
       return true
     end
   end

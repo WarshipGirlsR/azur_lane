@@ -46,7 +46,7 @@ StepLable.setStepLabelContent = function(text, noNLog)
     if info.currentline then
       lineInfo = info.source .. ': ' .. info.currentline .. ': '
     end
-    wLog('azur_lane', '[DATE] ' .. lineInfo .. finalText);
+    wLog('azur_lane', lineInfo .. finalText);
   end
   if useNlog then
     local info = debug.getinfo(2, 'Sl')

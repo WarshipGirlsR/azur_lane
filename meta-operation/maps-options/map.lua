@@ -131,8 +131,8 @@ local function listAdjacentGroups(list)
 end
 
 -- 检查坐标点在直线的左边还是右边，直线用两点表示
-local function checkPointPosition(checkPoint, topPoint, bottonPoint)
-  if topPoint[2] == bottonPoint[2] then
+local function checkPointPosition(checkPoint, topPoint, bottomPoint)
+  if topPoint[2] == bottomPoint[2] then
     if checkPoint[1] < topPoint[1] then
       return -1
     elseif checkPoint[1] > topPoint[1] then
@@ -140,7 +140,7 @@ local function checkPointPosition(checkPoint, topPoint, bottonPoint)
     end
     return 0
   end
-  local x = (checkPoint[2] - topPoint[2]) * (bottonPoint[1] - topPoint[1]) / (bottonPoint[2] - topPoint[2]) + topPoint[1]
+  local x = (checkPoint[2] - topPoint[2]) * (bottomPoint[1] - topPoint[1]) / (bottomPoint[2] - topPoint[2]) + topPoint[1]
   if checkPoint[1] < x then
     return -1
   elseif checkPoint[1] > x then
@@ -192,22 +192,22 @@ local function transPointListToChessboardPointList(positionMap, positionList)
       -- 保存最左边那条线的两个点，匹配目標必須在第1条线和第n条线的中间
       -- 避免匹配到第1条线左边的点
       local firstTopPoint = nil
-      local firstBottonPoint = nil
+      local firstBottomPoint = nil
       for col = 1, width do
         -- 寻找这一列最高和最低的两个点，做直线
         local topPoint
-        local bottonPoint
+        local bottomPoint
         for row = 1, height do
           if positionMap[row] and positionMap[row][col] then
             if not topPoint then
               topPoint = positionMap[row][col]
             else
-              bottonPoint = positionMap[row][col]
+              bottomPoint = positionMap[row][col]
             end
           end
         end
-        if topPoint and bottonPoint then
-          if checkPointPosition(item, topPoint, bottonPoint) > 0 then
+        if topPoint and bottomPoint then
+          if checkPointPosition(item, topPoint, bottomPoint) > 0 then
             theCol = col
           else
             break
@@ -231,10 +231,10 @@ local function transChessboardPointListToPositionList(positionMap, pointList)
   for _, item in pairs(pointList) do
     local leftTop = positionMap[item[1]][item[2]]
     local rightTop = positionMap[item[1]][item[2] + 1]
-    local leftBotton = positionMap[item[1] + 1][item[2]]
-    local rightBotton = positionMap[item[1] + 1][item[2] + 1]
-    local theLeft = (leftTop[1] + rightTop[1] + leftBotton[1] + rightBotton[1]) / 4
-    local theTop = (leftTop[2] + rightTop[2] + leftBotton[2] + rightBotton[2]) / 4
+    local leftBottom = positionMap[item[1] + 1][item[2]]
+    local rightBottom = positionMap[item[1] + 1][item[2] + 1]
+    local theLeft = (leftTop[1] + rightTop[1] + leftBottom[1] + rightBottom[1]) / 4
+    local theTop = (leftTop[2] + rightTop[2] + leftBottom[2] + rightBottom[2]) / 4
     theLeft = math.floor(theLeft)
     theTop = math.floor(theTop)
     table.insert(result, { theLeft, theTop })
@@ -342,7 +342,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   local isCenter = false
   -- 扫描边界
   local topLinePointList = {}
-  local bottonLinePointList = {}
+  local bottomLinePointList = {}
   local leftLinePointList = {}
   local rightLinePointList = {}
 
@@ -365,7 +365,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     end
   end
 
-  bottonLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}
+  bottomLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}
 
   -- 寻找左右纵向黑线的坐标
   -- 将横向黑线移除
@@ -533,9 +533,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   if topLinePointList and #topLinePointList > 0 then
     topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }
   end
-  local bottonLinePoint = bottonLinePointList[1] or { -1, -1 }
+  local bottomLinePoint = bottomLinePointList[1] or { -1, -1 }
 
-  function getTopAndBottonPoint(topLinePoint, bottonLinePoint, pointList)
+  function getTopAndBottomPoint(topLinePoint, bottomLinePoint, pointList)
     -- 获取左右边界的上下两点(就是算四个叫的坐标)
     -- 这个函数求一条斜边的上点和下点，需要2次才能计算出四个角
     -- 结果第一个是上点，第二个是下点
@@ -552,8 +552,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
           result[1] = { X1, Y1 }
         end
       end
-      if bottonLinePoint and bottonLinePoint[1] > 0 then
-        local Y2 = math.floor(bottonLinePoint[2])
+      if bottomLinePoint and bottomLinePoint[1] > 0 then
+        local Y2 = math.floor(bottomLinePoint[2])
         local X2 = (Y2 - point1[2]) / (point2[2] - point1[2]) * (point2[1] - point1[1]) + point1[1] or -1
         X2 = math.trueNumber(X2) or -1
         X2 = math.floor(X2)
@@ -565,14 +565,14 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     return result
   end
 
-  local leftPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, leftLinePointList)
-  local rightPoint = getTopAndBottonPoint(topLinePoint, bottonLinePoint, rightLinePointList)
+  local leftPoint = getTopAndBottomPoint(topLinePoint, bottomLinePoint, leftLinePointList)
+  local rightPoint = getTopAndBottomPoint(topLinePoint, bottomLinePoint, rightLinePointList)
   if not __keepScreenState then keepScreen(false) end
   return {
     leftTop = leftPoint[1],
     rightTop = rightPoint[1],
-    leftBotton = leftPoint[2],
-    rightBotton = rightPoint[2],
+    leftBottom = leftPoint[2],
+    rightBottom = rightPoint[2],
   }
 end
 
@@ -602,21 +602,21 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)
       moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1]
       moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2]
     end
-  elseif targetPosition.leftBotton then
-    if not currentPosition.leftBotton then
+  elseif targetPosition.leftBottom then
+    if not currentPosition.leftBottom then
       moveVector = { sWidth / 3, (0 - sHeight) / 3 }
     else
       effectiveStep = true
-      moveVector[1] = targetPosition.leftBotton[1] - currentPosition.leftBotton[1]
-      moveVector[2] = targetPosition.leftBotton[2] - currentPosition.leftBotton[2]
+      moveVector[1] = targetPosition.leftBottom[1] - currentPosition.leftBottom[1]
+      moveVector[2] = targetPosition.leftBottom[2] - currentPosition.leftBottom[2]
     end
-  elseif targetPosition.rightBotton then
-    if not currentPosition.rightBotton then
+  elseif targetPosition.rightBottom then
+    if not currentPosition.rightBottom then
       moveVector = { (0 - sWidth) / 3, (0 - sHeight) / 3 }
     else
       effectiveStep = true
-      moveVector[1] = targetPosition.rightBotton[1] - currentPosition.rightBotton[1]
-      moveVector[2] = targetPosition.rightBotton[2] - currentPosition.rightBotton[2]
+      moveVector[1] = targetPosition.rightBottom[1] - currentPosition.rightBottom[1]
+      moveVector[2] = targetPosition.rightBottom[2] - currentPosition.rightBottom[2]
     end
   end
 
@@ -871,7 +871,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local obstacleMap = transListToMap(mapChessboard.obstacle)
   local checkList = {
     { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint
-    { myFleet[1] + 1, myFleet[2], coast = nil }, -- bottonPoint
+    { myFleet[1] + 1, myFleet[2], coast = nil }, -- bottomPoint
     { myFleet[1], myFleet[2] - 1, coast = nil }, -- leftPoint
     { myFleet[1], myFleet[2] + 1, coast = nil }, -- rightPoint
   }

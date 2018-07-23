@@ -100,10 +100,10 @@ local mapsType2 = function(action)
             return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]
           elseif cForMove.rightTop and cForCheck.rightTop then
             return cForMove.rightTop[1] == cForCheck.rightTop[1] and cForMove.rightTop[2] == cForCheck.rightTop[2]
-          elseif cForMove.leftBotton and cForCheck.leftBotton then
-            return cForMove.leftBotton[1] == cForCheck.leftBotton[1] and cForMove.leftBotton[2] == cForCheck.leftBotton[2]
-          elseif cForMove.rightBotton and cForCheck.rightBotton then
-            return cForMove.rightBotton[1] == cForCheck.rightBotton[1] and cForMove.rightBotton[2] == cForCheck.rightBotton[2]
+          elseif cForMove.leftBottom and cForCheck.leftBottom then
+            return cForMove.leftBottom[1] == cForCheck.leftBottom[1] and cForMove.leftBottom[2] == cForCheck.leftBottom[2]
+          elseif cForMove.rightBottom and cForCheck.rightBottom then
+            return cForMove.rightBottom[1] == cForCheck.rightBottom[1] and cForMove.rightBottom[2] == cForCheck.rightBottom[2]
           end
         end)
         if index > 0 then

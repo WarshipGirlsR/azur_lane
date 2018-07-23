@@ -20,8 +20,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = { 347, 520 },
       rightTop = nil,
-      leftBotton = nil,
-      rightBotton = nil,
+      leftBottom = nil,
+      rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         { { 347, 520, 0x3a3d3a }, { 508, 520, 0x293542 }, { 671, 520, 0x212d31 }, { 834, 520, 0x313942 }, { 997, 520, 0x292d42 }, { 1160, 520, 0x313942 }, { 1323, 520, 0x293131 }, { 1486, 520, 0x293542 }, { 1651, 520, 0x29313a }, },
@@ -34,8 +34,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBotton = { 426, 904 },
-      rightBotton = nil,
+      leftBottom = { 426, 904 },
+      rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false,
@@ -49,8 +49,8 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBotton = nil,
-      rightBotton = { 1707, 905 },
+      leftBottom = nil,
+      rightBottom = { 1707, 905 },
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {
         false, false, false,

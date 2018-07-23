@@ -128,12 +128,13 @@ end
 
 __console.log = __console.log or function(obj)
   local res = runTable(obj, 2)
+  local info = debug.getinfo(2, 'Sl')
+  local lineInfo = ''
+  if info.currentline then
+    lineInfo = info.source .. ': ' .. info.currentline .. ':'
+  end
+
   if useNlog then
-    local info = debug.getinfo(2, 'Sl')
-    local lineInfo = ''
-    if info.currentline then
-      lineInfo = info.source .. ': ' .. info.currentline .. ':'
-    end
     nLog(lineInfo)
     local tmp = {}
     local resLength = #res
@@ -145,6 +146,8 @@ __console.log = __console.log or function(obj)
       end
     end
   end
+
+  wLog('azur_lane', lineInfo .. table.concat(res, '\n'))
 end
 
 __console.getJsStr = function(obj)
