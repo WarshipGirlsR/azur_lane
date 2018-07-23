@@ -5897,15 +5897,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1613, 909 },\
+      rightBottom = { 1646, 911 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { false, false, false, { 346, 300, 0x211c42 }, false, false, false, false, false, { 1498, 300, 0x000000 }, },\
-        { false, false, false, { 346, 300, 0x211c42 }, false, false, false, false, false, { 1498, 300, 0x000000 }, },\
-        { false, false, false, { 318, 431, 0x3a3963 }, false, false, false, false, false, { 1522, 431, 0x000000 }, },\
-        { false, false, false, { 252, 732, 0x211c42 }, false, false, false, false, false, { 1580, 732, 0x000000 }, },\
-        { false, false, false, { 214, 909, 0x000000 }, false, false, false, false, false, { 1613, 909, 0x000000 }, },\
+        { false, false, false, { 373, 302, 0x211831 }, false, false, false, false, false, { 1525, 302, 0x000000 }, },\
+        { false, false, false, { 346, 432, 0x424163 }, false, false, false, false, false, { 1551, 432, 0x000000 }, },\
+        { false, false, false, { 316, 576, 0x424121 }, false, false, false, false, false, { 1579, 576, 0x000000 }, },\
+        { false, false, false, { 283, 734, 0x191831 }, false, false, false, false, false, { 1611, 734, 0x000000 }, },\
+        { false, false, false, { 247, 911, 0x000000 }, false, false, false, false, false, { 1646, 911, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
