@@ -759,7 +759,7 @@ map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)
   end
   local positionMap = targetPosition.positionMap
   local tapPointList = transChessboardPointListToPositionList(positionMap, { point })
-  RTap({ tapPointList[1][1] - deviationX, tapPointList[1][2] - deviationY }, 100)
+  RTap({ tapPointList[1][1] + deviationX, tapPointList[1][2] + deviationY }, 100)
 end
 
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
