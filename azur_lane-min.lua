@@ -2590,7 +2590,7 @@ local corrected = function(list, deviationValue, deviation)\
   local res = {}\
   for key = 1, #list do\
     local item = list[key]\
-    table.insert(res, { item[1] + deviationValue[1] + deviationX, item[2] + deviationValue[2] - deviationY })\
+    table.insert(res, { item[1] + deviationValue[1] + deviationX, item[2] + deviationValue[2] + deviationY })\
   end\
   return res\
 end\
