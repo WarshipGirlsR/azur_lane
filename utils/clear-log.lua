@@ -3,4 +3,4 @@ local lfs = require '../lib/lfs'
 local logPath = userPath() .. '/log'
 local theTime = os.time()
 
-os.execute('find "' .. logPath .. '" -mtime +1 -type f -name azur_lane_*.log -exec rm -f {} \;')
+os.execute('find "' .. logPath .. '" -mtime +7 -type f -name azur_lane_*.log -exec rm -f {} \;')
