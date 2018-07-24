@@ -115,6 +115,9 @@ local exercise = function(action)
           return makeAction(newstateTypes)
         end
       end
+
+      store.exercise.nextCheckExerciseTime = os.time() + settings.exerciseInterval
+
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
         { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage },
         { 'EXERCISE_EXERCISE_PAGE_BACK_TO_HOME', o.battle.isReadyBattlePage, },

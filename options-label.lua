@@ -387,6 +387,20 @@ return function()
           ['list'] = '95%,90%,85%,80%,75%,70%,65%,60%,50%,40%,30%,20%,10%',
           ['select'] = '8',
         },
+        {
+          ['type'] = 'Label',
+          ['text'] = '间隔多长时间检查一次演习',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'exerciseInterval',
+          ['type'] = 'Edit',
+          ['prompt'] = '最短间隔时间(秒)',
+          ['text'] = '900',
+          ['kbtype'] = 'number',
+        },
       },
       {
         {
@@ -676,6 +690,8 @@ return function()
       local list = transStrToTable({ 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1 })
       return list[exerciseLowerHPRestart] or 0.5
     end)(settings.exerciseLowerHPRestart)
+    -- 检查演习间隔时间
+    settings.exerciseInterval = tonumber(settings.exerciseInterval) or 0
     -- 每日挑战
     -- 战术研修关卡
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)

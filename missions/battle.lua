@@ -44,13 +44,18 @@ local battle = function(action)
       -- 是否自动模式，如果没有相应配置的话会自动从自动切换到手动
       store.battle.battleAssistantMode = settings.battleAssistantMode
 
-      return {
-        makeAction('MAPS_TYPE_2_PRE_INIT'),
-        makeAction('MAPS_TYPE_3_PRE_INIT'),
-        makeAction('MAPS_TYPE_4_PRE_INIT'),
-        makeAction('SCAN_MAP_TYPE_1_PRE_INIT'),
-        makeAction('BATTLE_START'),
-      }
+      local newListeners = {}
+      if settings.mapsType == 'maps-type-2' then
+        table.insert(newListeners, makeAction('MAPS_TYPE_2_PRE_INIT'))
+      elseif settings.mapsType == 'maps-type-3' then
+        table.insert(newListeners, makeAction('MAPS_TYPE_3_PRE_INIT'))
+      elseif settings.mapsType == 'maps-type-4' then
+        table.insert(newListeners, makeAction('MAPS_TYPE_4_PRE_INIT'))
+      end
+      table.insert(newListeners, makeAction('SCAN_MAP_TYPE_1_PRE_INIT'))
+      table.insert(newListeners, makeAction('BATTLE_START'))
+
+      return newListeners
 
     elseif action.type == 'BATTLE_START' then
 
