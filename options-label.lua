@@ -139,7 +139,7 @@ return function()
         },
         {
           ['id'] = 'battleChapter',
-          ['type'] = 'ComboBox',
+          ['type'] = 'RadioGroup',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
             .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
@@ -189,21 +189,8 @@ return function()
         {
           ['id'] = 'battleFleetOnWay',
           ['type'] = 'RadioGroup',
-          ['list'] = '无,1队,2队,3队,4队',
+          ['list'] = '1队,2队,3队,4队,无',
           ['select'] = '2',
-        },
-        {
-          ['type'] = 'Label',
-          ['text'] = '道中舰队阵型',
-          ['size'] = 15,
-          ['align'] = 'left',
-          ['color'] = '0,0,0',
-        },
-        {
-          ['id'] = 'battleFleetOnWayFormation',
-          ['type'] = 'RadioGroup',
-          ['list'] = '不设置,单纵,复纵,轮型',
-          ['select'] = '0',
         },
         {
           ['type'] = 'Label',
@@ -216,6 +203,19 @@ return function()
           ['id'] = 'battleFleetBoss',
           ['type'] = 'RadioGroup',
           ['list'] = '1队,2队,3队,4队',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '道中舰队阵型',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleFleetOnWayFormation',
+          ['type'] = 'RadioGroup',
+          ['list'] = '不设置,单纵,复纵,轮型',
           ['select'] = '0',
         },
         {
@@ -602,30 +602,30 @@ return function()
       local list = transStrToTable({ 'manual', 'auto' })
       return list[battleAssistantMode] or 'manual'
     end)(settings.battleAssistantMode)
-    -- 选择Boss舰队
-    settings.battleFleetBoss = (function(battleFleetBoss)
-      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
-      return list[battleFleetBoss] or 1
-    end)(settings.battleFleetBoss)
-    -- 选择Boss舰队阵型
-    settings.battleFleetBossFormation = (function(battleFleetBossFormation)
-      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })
-      return list[battleFleetBossFormation] or false
-    end)(settings.battleFleetBossFormation)
     -- 选择道中舰队
     settings.battleFleetOnWay = (function(battleFleetOnWay)
-      local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6 })
+      local list = transStrToTable({ 1, 2, 3, 4, 0, })
       local result = list[battleFleetOnWay] or 0
       if settings.battleFleetBoss == result then
         result = 0
       end
       return result
     end)(settings.battleFleetOnWay)
+    -- 选择Boss舰队
+    settings.battleFleetBoss = (function(battleFleetBoss)
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })
+      return list[battleFleetBoss] or 1
+    end)(settings.battleFleetBoss)
     -- 选择道中舰队阵型
     settings.battleFleetOnWayFormation = (function(battleFleetOnWayFormation)
       local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })
       return list[battleFleetOnWayFormation] or false
     end)(settings.battleFleetOnWayFormation)
+    -- 选择Boss舰队阵型
+    settings.battleFleetBossFormation = (function(battleFleetBossFormation)
+      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })
+      return list[battleFleetBossFormation] or false
+    end)(settings.battleFleetBossFormation)
     -- 合并两个舰队选项
     settings.battleFleet = { settings.battleFleetBoss }
     if settings.battleFleetOnWay > 0 then

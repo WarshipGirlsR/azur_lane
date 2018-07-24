@@ -427,8 +427,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果左边集合小于10个点，则认为做边黑线不存在
-  if #leftLinePointList < 10 then
+  -- 如果左边集合小于50个点，则认为做边黑线不存在
+  if #leftLinePointList < 50 then
     leftLinePointList = {}
   end
   -- 右边黑线进行精简，使其变成宽度为1的细线
@@ -466,8 +466,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果右边集合小于10个点，则认为做边黑线不存在
-  if #rightLinePointList < 10 then
+  -- 如果右边集合小于50个点，则认为做边黑线不存在
+  if #rightLinePointList < 50 then
     rightLinePointList = {}
   end
 
@@ -499,12 +499,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       table.insert(topHorizontalLineGroupTmp2, value)
     end
   end
-  -- 横向宽度超过700的组
+  -- 横向宽度超过600的组
   local topHorizontalLineGroupTmp3 = {}
   for key, value in ipairs(topHorizontalLineGroupTmp2) do
     local leftPoint = math.minTable(value, 1)
     local rightPoint = math.maxTable(value, 1)
-    if rightPoint[1] - leftPoint[1] > 700 then
+    if rightPoint[1] - leftPoint[1] > 600 then
       table.insert(topHorizontalLineGroupTmp3, value)
     end
   end

@@ -32,8 +32,8 @@ mapEvent.getCheckpositionList = function()
       pointMap = {},
     },
     {
-      leftTop = nil,
-      rightTop = { 1623, 522 },
+      leftTop = { 319, 522 },
+      rightTop = nil,
       leftBottom = nil,
       rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
@@ -48,7 +48,7 @@ mapEvent.getCheckpositionList = function()
     {
       leftTop = nil,
       rightTop = nil,
-      leftBottom = { 573, 918 },
+      leftBottom = { 563, 918 },
       rightBottom = nil,
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的
       positionMap = {

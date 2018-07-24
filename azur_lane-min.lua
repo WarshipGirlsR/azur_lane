@@ -2967,8 +2967,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果左边集合小于10个点，则认为做边黑线不存在\
-  if #leftLinePointList < 10 then\
+  -- 如果左边集合小于50个点，则认为做边黑线不存在\
+  if #leftLinePointList < 50 then\
     leftLinePointList = {}\
   end\
   -- 右边黑线进行精简，使其变成宽度为1的细线\
@@ -3006,8 +3006,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果右边集合小于10个点，则认为做边黑线不存在\
-  if #rightLinePointList < 10 then\
+  -- 如果右边集合小于50个点，则认为做边黑线不存在\
+  if #rightLinePointList < 50 then\
     rightLinePointList = {}\
   end\
 \
@@ -3039,12 +3039,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       table.insert(topHorizontalLineGroupTmp2, value)\
     end\
   end\
-  -- 横向宽度超过700的组\
+  -- 横向宽度超过600的组\
   local topHorizontalLineGroupTmp3 = {}\
   for key, value in ipairs(topHorizontalLineGroupTmp2) do\
     local leftPoint = math.minTable(value, 1)\
     local rightPoint = math.maxTable(value, 1)\
-    if rightPoint[1] - leftPoint[1] > 700 then\
+    if rightPoint[1] - leftPoint[1] > 600 then\
       table.insert(topHorizontalLineGroupTmp3, value)\
     end\
   end\
@@ -4713,11 +4713,14 @@ battle.scanMapCheckFleetNum = function()\
     { 320, 140, 0x424542 }, { 338, 139, 0x424142 },\
   }\
   local list4 = {\
-    { 315, 93, 0xf7e7b5 }, { 327, 90, 0x424142 },\
-    { 333, 114, 0x635531 }, { 334, 127, 0x423d31 },\
-    { 334, 133, 0xf7be21 }, { 326, 147, 0xefba19 },\
-    { 302, 135, 0xefbe29 }, { 315, 125, 0x424542 },\
-    { 316, 119, 0x5a513a }, { 325, 151, 0x424142 },\
+    { 315, 90, 0x424142 }, { 332, 90, 0x424142 },\
+    { 334, 126, 0x4a4942 }, { 334, 141, 0x4a4121 },\
+    { 338, 134, 0x4a4942 }, { 315, 140, 0x424142 },\
+    { 315, 127, 0x424542 }, { 316, 116, 0x6b5d4a },\
+    { 299, 139, 0x4a4542 }, { 306, 107, 0x3a3d3a },\
+    { 314, 94, 0xfff7c5 }, { 329, 94, 0xf7e7b5 },\
+    { 302, 137, 0xe6be21 }, { 323, 148, 0xde9a08 },\
+    { 335, 134, 0xefb219 }, { 329, 113, 0xffdb73 },\
   }\
   local result = 1\
   if multiColorS(list1) then\
@@ -8295,8 +8298,8 @@ mapEvent.getCheckpositionList = function()\
       pointMap = {},\
     },\
     {\
-      leftTop = nil,\
-      rightTop = { 1623, 522 },\
+      leftTop = { 319, 522 },\
+      rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
@@ -8311,7 +8314,7 @@ mapEvent.getCheckpositionList = function()\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBottom = { 573, 918 },\
+      leftBottom = { 563, 918 },\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
@@ -14564,7 +14567,7 @@ return function()\
         },\
         {\
           ['id'] = 'battleChapter',\
-          ['type'] = 'ComboBox',\
+          ['type'] = 'RadioGroup',\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
             .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
@@ -14614,21 +14617,8 @@ return function()\
         {\
           ['id'] = 'battleFleetOnWay',\
           ['type'] = 'RadioGroup',\
-          ['list'] = '无,1队,2队,3队,4队',\
+          ['list'] = '1队,2队,3队,4队,无',\
           ['select'] = '2',\
-        },\
-        {\
-          ['type'] = 'Label',\
-          ['text'] = '道中舰队阵型',\
-          ['size'] = 15,\
-          ['align'] = 'left',\
-          ['color'] = '0,0,0',\
-        },\
-        {\
-          ['id'] = 'battleFleetOnWayFormation',\
-          ['type'] = 'RadioGroup',\
-          ['list'] = '不设置,单纵,复纵,轮型',\
-          ['select'] = '0',\
         },\
         {\
           ['type'] = 'Label',\
@@ -14641,6 +14631,19 @@ return function()\
           ['id'] = 'battleFleetBoss',\
           ['type'] = 'RadioGroup',\
           ['list'] = '1队,2队,3队,4队',\
+          ['select'] = '0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '道中舰队阵型',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'battleFleetOnWayFormation',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '不设置,单纵,复纵,轮型',\
           ['select'] = '0',\
         },\
         {\
@@ -15027,30 +15030,30 @@ return function()\
       local list = transStrToTable({ 'manual', 'auto' })\
       return list[battleAssistantMode] or 'manual'\
     end)(settings.battleAssistantMode)\
-    -- 选择Boss舰队\
-    settings.battleFleetBoss = (function(battleFleetBoss)\
-      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })\
-      return list[battleFleetBoss] or 1\
-    end)(settings.battleFleetBoss)\
-    -- 选择Boss舰队阵型\
-    settings.battleFleetBossFormation = (function(battleFleetBossFormation)\
-      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })\
-      return list[battleFleetBossFormation] or false\
-    end)(settings.battleFleetBossFormation)\
     -- 选择道中舰队\
     settings.battleFleetOnWay = (function(battleFleetOnWay)\
-      local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6 })\
+      local list = transStrToTable({ 1, 2, 3, 4, 0, })\
       local result = list[battleFleetOnWay] or 0\
       if settings.battleFleetBoss == result then\
         result = 0\
       end\
       return result\
     end)(settings.battleFleetOnWay)\
+    -- 选择Boss舰队\
+    settings.battleFleetBoss = (function(battleFleetBoss)\
+      local list = transStrToTable({ 1, 2, 3, 4, 5, 6 })\
+      return list[battleFleetBoss] or 1\
+    end)(settings.battleFleetBoss)\
     -- 选择道中舰队阵型\
     settings.battleFleetOnWayFormation = (function(battleFleetOnWayFormation)\
       local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })\
       return list[battleFleetOnWayFormation] or false\
     end)(settings.battleFleetOnWayFormation)\
+    -- 选择Boss舰队阵型\
+    settings.battleFleetBossFormation = (function(battleFleetBossFormation)\
+      local list = transStrToTable({ false, 'single file', 'double file', 'wheeled file' })\
+      return list[battleFleetBossFormation] or false\
+    end)(settings.battleFleetBossFormation)\
     -- 合并两个舰队选项\
     settings.battleFleet = { settings.battleFleetBoss }\
     if settings.battleFleetOnWay > 0 then\
@@ -16017,26 +16020,9 @@ package.sourceCode = package.sourceCode or {}
 package.sourceCode["./utils/clear-log.lua"] = { path = "./utils/clear-log.lua", name = "./utils/clear-log.lua", source = "-- 删除大于7天并且大于50条的log，避免日志过大\
 local lfs = require '../lib/lfs'\
 local logPath = userPath() .. '/log'\
-local dirs = lfs.dir(logPath)\
-local sevenDayBeforeTime = os.time() - (7 * 24 * 60 * 60)\
 local theTime = os.time()\
 \
-local dirsLen = #dirs\
-\
-dirs = table.filter(dirs, function(e, index)\
-  if (string.startWith(e, 'azur_lane_')) then\
-    local res = string.match(e, 'azur_lane_(%d+)')\
-    res = tonumber(res) or theTime\
-    if res < sevenDayBeforeTime then\
-      return true\
-    end\
-  end\
-  return false\
-end)\
-\
-for k, v in ipairs(dirs) do\
-  lfs.rm(logPath .. '/' .. v)\
-end\
+os.execute('find \"' .. logPath .. '\" -mtime +1 -type f -name azur_lane_*.log -exec rm -f {} \\;')\
 " }
 
 
