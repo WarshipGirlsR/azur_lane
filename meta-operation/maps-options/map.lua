@@ -393,10 +393,13 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
 
   -- 左边黑线进行精简，使其变成宽度为1的细线
+  -- 左边黑线的集合，相邻的点集合最大的一组，用于识别一组点数量是否够多，排除角色上黑点的干扰
+  local leftLineAdjacentMaxList = {}
+  -- 左边黑线的细线，每行只取一个像素
   local leftLinePointList = {}
   if #leftLineList > 0 then
     local leftLineAdjacentGroup = listAdjacentGroups(leftLineList)
-    local leftLineAdjacentMaxList = math.maxTable(leftLineAdjacentGroup, function(item) return #item end)
+    leftLineAdjacentMaxList = math.maxTable(leftLineAdjacentGroup, function(item) return #item end)
     local leftTopPoint = math.minTable(leftLineAdjacentMaxList, 2)
     local leftBottomPoint = math.maxTable(leftLineAdjacentMaxList, 2)
     local leftLineMap = makePointMap(leftLineAdjacentMaxList)
@@ -428,14 +431,17 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     end
   end
   -- 如果左边集合小于50个点，则认为做边黑线不存在
-  if #leftLinePointList < 50 then
+  if #leftLineAdjacentMaxList < 50 then
     leftLinePointList = {}
   end
   -- 右边黑线进行精简，使其变成宽度为1的细线
+  -- 左边黑线的集合，相邻的点集合最大的一组，用于识别一组点数量是否够多，排除角色上黑点的干扰
+  local rightLineAdjacentMaxList = {}
+  -- 左边黑线的细线，每行只取一个像素
   local rightLinePointList = {}
   if #rightLineList > 0 then
     local rightLineAdjacentGroup = listAdjacentGroups(rightLineList)
-    local rightLineAdjacentMaxList = math.maxTable(rightLineAdjacentGroup, function(item) return #item end)
+    rightLineAdjacentMaxList = math.maxTable(rightLineAdjacentGroup, function(item) return #item end)
     local rightTopPoint = math.minTable(rightLineAdjacentMaxList, 2)
     local rightBottomPoint = math.maxTable(rightLineAdjacentMaxList, 2)
     local rightLineMap = makePointMap(rightLineList)
@@ -467,7 +473,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     end
   end
   -- 如果右边集合小于50个点，则认为做边黑线不存在
-  if #rightLinePointList < 50 then
+  if #rightLineAdjacentMaxList < 50 then
     rightLinePointList = {}
   end
 
@@ -732,8 +738,8 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     local res = {}
     for key, item in ipairs(myFleetList) do
       if oldMap[(item[1] + 1) .. '-' .. item[2]]
-        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
-        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
+          or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
+          or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
         table.insert(res, item)
       end
     end
@@ -878,7 +884,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-      and not obstacleMap[point[1] .. '-' .. point[2]] then
+        and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then
