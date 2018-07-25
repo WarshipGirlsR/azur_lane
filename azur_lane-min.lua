@@ -5709,29 +5709,33 @@ mapEvent.getCheckpositionList = function()\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1590, 273 },\
+      rightTop = { 1566, 269 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false, false,\
-        { false, false, false, { 407, 500, 0x21203a }, false, false, false, false, false, false, { 1641, 500, 0x000000 }, },\
-        { false, false, false, { 358, 767, 0x191831 }, false, false, false, false, false, false, { 1701, 767, 0x000000 }, },\
-        { false, false, false, { 330, 919, 0x191431 }, false, false, false, false, false, false, { 1735, 919, 0x292429 }, },\
+        { false, false, false, { 424, 269, 0x101421 }, false, false, false, false, false, false, { 1566, 269, 0x101c31 }, },\
+        { false, false, false, { 403, 378, 0x211c3a }, false, false, false, false, false, false, { 1590, 378, 0x000000 }, },\
+        { false, false, false, { 381, 496, 0x21203a }, false, false, false, false, false, false, { 1615, 496, 0x000000 }, },\
+        { false, false, false, { 356, 623, 0x191831 }, false, false, false, false, false, false, { 1643, 623, 0x000000 }, },\
+        { false, false, false, { 329, 762, 0x211831 }, false, false, false, false, false, false, { 1673, 762, 0x000000 }, },\
+        { false, false, false, { 300, 914, 0x211c42 }, false, false, false, false, false, false, { 1706, 914, 0x100c10 } },\
       },\
       pointMap = {},\
     },\
     {\
-      leftTop = { 497, 288 },\
+      leftTop = { 468, 256 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false, false,\
-        { { 439, 644, 0x000000 }, false, false, false, false, false, { 1538, 644, 0x212042 }, },\
-        { { 416, 784, 0x000000 }, false, false, false, false, false, { 1564, 784, 0x212042 }, },\
-        { { 390, 937, 0x000000 }, false, false, false, false, false, { 1592, 937, 0x292829 }, },\
+        { { 468, 256, 0x211c31 }, false, false, false, false, false, false, { 1607, 256, 0x313963 }, },\
+        { { 449, 365, 0x000000 }, false, false, false, false, false, false, { 1632, 365, 0x212442 }, },\
+        { { 428, 482, 0x000000 }, false, false, false, false, false, false, { 1659, 482, 0x292042 }, },\
+        { { 406, 609, 0x000000 }, false, false, false, false, false, false, { 1689, 609, 0x292042 }, },\
+        { { 381, 747, 0x000000 }, false, false, false, false, false, false, { 1721, 747, 0x211c3a }, },\
+        { { 354, 899, 0x000000 }, false, false, false, false, false, false, { 1757, 899, 0x211c3a }, },\
       },\
       pointMap = {},\
     },\
