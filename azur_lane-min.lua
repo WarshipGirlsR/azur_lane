@@ -719,20 +719,7 @@ return {\
     -- 敌方舰队位置(小型舰队)\
     enemyList1 = imgBase.map.enemyList1,\
     -- 敌方舰队位置(中型舰队)\
-    enemyList2 = table.merge({}, imgBase.map.enemyList2,\
-      {\
-        -- 下边框\
-        (function()\
-          local leftTop = { 185, 155 }\
-          local rightBottom = { 1899, 1022 }\
-          local basePoint, posandcolor = transRelativePoint({\
-            { 777, 481, 0xe6a600 }, { 792, 482, 0xd69a08 },\
-            { 806, 480, 0xe6a610 }, { 810, 473, 0xd69600 },\
-            { 796, 466, 0xe6a600 },\
-          })\
-          return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
-        end)(),\
-      }),\
+    enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- boss位置\
