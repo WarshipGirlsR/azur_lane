@@ -238,6 +238,12 @@ battle.clickChapter = function(chapterObj)
     RTap({ 568, 808 }, 100)
   elseif chapterObj.name == 'ygxdxq-sp3' then
     RTap({ 1243, 590 }, 100)
+  elseif chapterObj.name == 'gyydywzh-a1' then
+    RTap({ 328, 329 }, 100)
+  elseif chapterObj.name == 'gyydywzh-a2' then
+    RTap({ 1213, 360 }, 100)
+  elseif chapterObj.name == 'gyydywzh-a3' then
+    RTap({ 750, 663 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -334,20 +340,8 @@ battle.checkChapter = function(chapterObj)
       { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },
       { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },
     },
-    event = {
-      { 48, 147, 0xffffff }, { 61, 147, 0xffffff },
-      { 55, 149, 0x10283a }, { 62, 154, 0x102031 },
-      { 47, 161, 0x082029 }, { 54, 159, 0xffffff },
-      { 55, 169, 0x082031 }, { 55, 176, 0xffffff },
-      { 62, 168, 0xffffff }, { 64, 177, 0x082029 },
-      { 72, 150, 0x102431 }, { 79, 149, 0xffffff },
-      { 86, 151, 0x19313a }, { 94, 151, 0xffffff },
-      { 88, 164, 0x102431 }, { 80, 174, 0xffffff },
-      { 89, 174, 0x082031 }, { 98, 175, 0xffffff },
-    },
   }
   local result = nil
-  console.log(multiColorS(list[cha]))
   if not list[cha] or multiColorS(list[cha]) then
     result = true
   end

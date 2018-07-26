@@ -143,7 +143,7 @@ return function()
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
             .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-            .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',
+            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3',
           ['select'] = '0',
         },
         {
@@ -170,7 +170,7 @@ return function()
           ['id'] = 'battleAssistantMode',
           ['type'] = 'RadioGroup',
           ['list'] = '手动过地图,自动过地图',
-          ['select'] = '0',
+          ['select'] = '1',
         },
         {
           ['type'] = 'Label',
@@ -190,7 +190,7 @@ return function()
           ['id'] = 'battleFleetOnWay',
           ['type'] = 'RadioGroup',
           ['list'] = '1队,2队,3队,4队,无',
-          ['select'] = '2',
+          ['select'] = '0',
         },
         {
           ['type'] = 'Label',
@@ -203,7 +203,7 @@ return function()
           ['id'] = 'battleFleetBoss',
           ['type'] = 'RadioGroup',
           ['list'] = '1队,2队,3队,4队',
-          ['select'] = '0',
+          ['select'] = '1',
         },
         {
           ['type'] = 'Label',
@@ -598,9 +598,9 @@ return function()
         { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },
         { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },
         { name = '12-3', chapter = 12, section = '3' }, { name = '12-4', chapter = 12, section = '4' },
-        { name = 'ygxdxq-sp1', chapter = 1, section = 'sp1', type = 'event' },
-        { name = 'ygxdxq-sp2', chapter = 1, section = 'sp2', type = 'event' },
-        { name = 'ygxdxq-sp3', chapter = 1, section = 'sp3', type = 'event' },
+        { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },
+        { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },
+        { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

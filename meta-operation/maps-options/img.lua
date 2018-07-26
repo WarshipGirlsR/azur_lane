@@ -42,54 +42,17 @@ local imgs = {
   map = {
     -- 我方舰队位置列表
     myFleetList = {
-      --  采集位置5-2
       (function()
         local leftTop = { 185, 155 }
         local rightBottom = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1356, 430, 0xa4494a }, { 1353, 411, 0xde8a42 },
-          { 1363, 403, 0xe69e5a }, { 1388, 404, 0xef9652 },
-          { 1396, 389, 0xe69652 }, { 1397, 378, 0xce7973 },
-          { 1416, 423, 0x101410 },
+          { 780, 502, 0x524d52 }, { 783, 502, 0xffffff }, { 782, 505, 0xffffff }, { 778, 505, 0x424142 },
+          { 777, 507, 0x424142 }, { 782, 507, 0xffffff }, { 781, 510, 0xffffff }, { 777, 510, 0x3a393a },
+          { 776, 513, 0x313131 }, { 780, 513, 0xffffff }, { 775, 516, 0x292d29 }, { 779, 516, 0xffffff },
+          { 775, 519, 0x212421 }, { 778, 519, 0xffffff }, { 774, 521, 0x212021 }, { 777, 521, 0xffffff },
+          { 774, 523, 0x192019 }, { 777, 523, 0xffffff }, { 772, 527, 0x191819 }, { 776, 527, 0xffffff },
         })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
-      end)(),
-      --  采集位置5-3
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBottom = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 752, 438, 0xad4d52 }, { 751, 421, 0xde8642 },
-          { 763, 417, 0xe69663 }, { 771, 404, 0xde9e52 },
-          { 795, 402, 0x422d29 }, { 798, 400, 0xce7173 },
-          { 816, 430, 0x211c21 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
-      end)(),
-      --  采集位置sp3
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBottom = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 1030, 346, 0xce7173 }, { 1012, 329, 0xde8184 },
-          { 1007, 338, 0xffffe6 }, { 998, 349, 0xefce8c },
-          { 989, 364, 0xd68642 }, { 981, 369, 0xad5152 },
-          { 999, 376, 0xde8e42 }, { 1016, 361, 0xce8142 },
-          { 1039, 371, 0x191819 }, { 999, 366, 0xffffd6 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
-      end)(),
-      --  采集位置 9-3
-      (function()
-        local leftTop = { 185, 155 }
-        local rightBottom = { 1899, 1022, }
-        local basePoint, posandcolor = transRelativePoint({
-          { 383, 626, 0xde8a4a }, { 351, 622, 0xad5152 },
-          { 356, 603, 0xfffbde }, { 368, 590, 0xfffbe6 },
-          { 390, 585, 0xde9e5a }, { 397, 579, 0xd67d7b },
-          { 422, 596, 0x424542 }, { 396, 615, 0xde9652 },
-        })
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
@@ -128,6 +91,19 @@ local imgs = {
         })
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
+      -- 小型 上框 蓝色地图
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBottom = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1181, 245, 0xdeba10 }, { 1185, 245, 0xdeba10 },
+          { 1188, 245, 0xdeba10 }, { 1192, 245, 0xceba10 },
+          { 1194, 245, 0xbdba10 }, { 1197, 245, 0xceba10 },
+          { 1200, 245, 0xdeba10 }, { 1203, 245, 0xdeba10 },
+          { 1206, 245, 0xd6ba10 }, { 1209, 245, 0xdeba10 },
+        })
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+      end)(),
       -- 小型 左框
       (function()
         local leftTop = { 185, 155 }
@@ -138,6 +114,19 @@ local imgs = {
           { 701, 464, 0xdeba10 }, { 701, 466, 0xdeba10 },
           { 701, 469, 0xdeba10 }, { 701, 472, 0xdeba10 },
           { 701, 475, 0xdeba10 }, { 701, 479, 0xdeba10 },
+        })
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+      end)(),
+      -- 小型 左框 蓝色地图
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBottom = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1177, 251, 0xcebe19 }, { 1177, 255, 0xcebe19 },
+          { 1177, 258, 0xceba19 }, { 1177, 261, 0xcebe19 },
+          { 1177, 264, 0xceba19 }, { 1177, 267, 0xcebe19 },
+          { 1177, 270, 0xceba19 }, { 1177, 273, 0xcebe19 },
+          { 1177, 275, 0xcebe21 }, { 1177, 278, 0xceba29 },
         })
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
@@ -154,7 +143,7 @@ local imgs = {
           { 928, 319, 0xdea200 }, { 931, 319, 0xe6a600 },
           { 934, 319, 0xdeaa00 }, { 937, 319, 0xdeaa00 },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
       -- 中型 左框
       (function()
@@ -167,7 +156,7 @@ local imgs = {
           { 900, 342, 0xdeaa00 }, { 900, 345, 0xdeaa00 },
           { 900, 348, 0xdeaa00 }, { 900, 351, 0xd6aa00 },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
     },
     enemyList3 = {
