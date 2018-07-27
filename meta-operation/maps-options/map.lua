@@ -10,8 +10,8 @@ local map = {}
 -- 舰队坐标修正向量
 local myFleetListCorrectionValue = (function()
   local point = {
-    { 1328, 343, 0xd68142 },
-    { 1277, 528, 0xb5b6b5 },
+    { 742, 367, 0xffffff },
+    { 617, 601, 0x529eb5 },
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
@@ -430,8 +430,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果左边集合小于50个点，则认为做边黑线不存在
-  if #leftLineAdjacentMaxList < 50 then
+  -- 如果左边集合小于50个点，或者高差小于20个像素，则认为左边黑线不存在
+  if #leftLineAdjacentMaxList < 50
+    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 20) then
     leftLinePointList = {}
   end
   -- 右边黑线进行精简，使其变成宽度为1的细线
@@ -472,8 +473,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果右边集合小于50个点，则认为做边黑线不存在
-  if #rightLineAdjacentMaxList < 50 then
+  -- 如果右边集合小于50个点，或者高差小于20个像素，则认为右边黑线不存在
+  if #rightLineAdjacentMaxList < 50
+    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 20) then
     rightLinePointList = {}
   end
 
@@ -738,8 +740,8 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     local res = {}
     for key, item in ipairs(myFleetList) do
       if oldMap[(item[1] + 1) .. '-' .. item[2]]
-          or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
-          or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
+        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
+        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
         table.insert(res, item)
       end
     end
@@ -884,7 +886,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-        and not obstacleMap[point[1] .. '-' .. point[2]] then
+      and not obstacleMap[point[1] .. '-' .. point[2]] then
       if enemyList3Map[point[1] .. '-' .. point[2]] then
         checkList[key].coast = 3
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then

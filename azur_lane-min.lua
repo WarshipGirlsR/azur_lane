@@ -44,54 +44,17 @@ local imgs = {\
   map = {\
     -- 我方舰队位置列表\
     myFleetList = {\
-      --  采集位置5-2\
       (function()\
         local leftTop = { 185, 155 }\
         local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 1356, 430, 0xa4494a }, { 1353, 411, 0xde8a42 },\
-          { 1363, 403, 0xe69e5a }, { 1388, 404, 0xef9652 },\
-          { 1396, 389, 0xe69652 }, { 1397, 378, 0xce7973 },\
-          { 1416, 423, 0x101410 },\
+          { 780, 502, 0x524d52 }, { 783, 502, 0xffffff }, { 782, 505, 0xffffff }, { 778, 505, 0x424142 },\
+          { 777, 507, 0x424142 }, { 782, 507, 0xffffff }, { 781, 510, 0xffffff }, { 777, 510, 0x3a393a },\
+          { 776, 513, 0x313131 }, { 780, 513, 0xffffff }, { 775, 516, 0x292d29 }, { 779, 516, 0xffffff },\
+          { 775, 519, 0x212421 }, { 778, 519, 0xffffff }, { 774, 521, 0x212021 }, { 777, 521, 0xffffff },\
+          { 774, 523, 0x192019 }, { 777, 523, 0xffffff }, { 772, 527, 0x191819 }, { 776, 527, 0xffffff },\
         })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
-      end)(),\
-      --  采集位置5-3\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBottom = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 752, 438, 0xad4d52 }, { 751, 421, 0xde8642 },\
-          { 763, 417, 0xe69663 }, { 771, 404, 0xde9e52 },\
-          { 795, 402, 0x422d29 }, { 798, 400, 0xce7173 },\
-          { 816, 430, 0x211c21 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
-      end)(),\
-      --  采集位置sp3\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBottom = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1030, 346, 0xce7173 }, { 1012, 329, 0xde8184 },\
-          { 1007, 338, 0xffffe6 }, { 998, 349, 0xefce8c },\
-          { 989, 364, 0xd68642 }, { 981, 369, 0xad5152 },\
-          { 999, 376, 0xde8e42 }, { 1016, 361, 0xce8142 },\
-          { 1039, 371, 0x191819 }, { 999, 366, 0xffffd6 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
-      end)(),\
-      --  采集位置 9-3\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBottom = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 383, 626, 0xde8a4a }, { 351, 622, 0xad5152 },\
-          { 356, 603, 0xfffbde }, { 368, 590, 0xfffbe6 },\
-          { 390, 585, 0xde9e5a }, { 397, 579, 0xd67d7b },\
-          { 422, 596, 0x424542 }, { 396, 615, 0xde9652 },\
-        })\
-        return { basePoint[3], posandcolor, 90, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -130,6 +93,19 @@ local imgs = {\
         })\
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
+      -- 小型 上框 蓝色地图\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1181, 245, 0xdeba10 }, { 1185, 245, 0xdeba10 },\
+          { 1188, 245, 0xdeba10 }, { 1192, 245, 0xceba10 },\
+          { 1194, 245, 0xbdba10 }, { 1197, 245, 0xceba10 },\
+          { 1200, 245, 0xdeba10 }, { 1203, 245, 0xdeba10 },\
+          { 1206, 245, 0xd6ba10 }, { 1209, 245, 0xdeba10 },\
+        })\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)(),\
       -- 小型 左框\
       (function()\
         local leftTop = { 185, 155 }\
@@ -140,6 +116,19 @@ local imgs = {\
           { 701, 464, 0xdeba10 }, { 701, 466, 0xdeba10 },\
           { 701, 469, 0xdeba10 }, { 701, 472, 0xdeba10 },\
           { 701, 475, 0xdeba10 }, { 701, 479, 0xdeba10 },\
+        })\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)(),\
+      -- 小型 左框 蓝色地图\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1177, 251, 0xcebe19 }, { 1177, 255, 0xcebe19 },\
+          { 1177, 258, 0xceba19 }, { 1177, 261, 0xcebe19 },\
+          { 1177, 264, 0xceba19 }, { 1177, 267, 0xcebe19 },\
+          { 1177, 270, 0xceba19 }, { 1177, 273, 0xcebe19 },\
+          { 1177, 275, 0xcebe21 }, { 1177, 278, 0xceba29 },\
         })\
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
@@ -156,7 +145,7 @@ local imgs = {\
           { 928, 319, 0xdea200 }, { 931, 319, 0xe6a600 },\
           { 934, 319, 0xdeaa00 }, { 937, 319, 0xdeaa00 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 中型 左框\
       (function()\
@@ -169,7 +158,7 @@ local imgs = {\
           { 900, 342, 0xdeaa00 }, { 900, 345, 0xdeaa00 },\
           { 900, 348, 0xdeaa00 }, { 900, 351, 0xd6aa00 },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 92, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     enemyList3 = {\
@@ -593,7 +582,37 @@ return utils\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imgygxdxq-sp3.lua"] = { path = "./meta-operation/maps-options/imgygxdxq-sp3.lua", name = "./meta-operation/maps-options/imgygxdxq-sp3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./utils/img-tools.lua"] = { path = "./utils/img-tools.lua", name = "./utils/img-tools.lua", source = "local imageTools = {}\
+\
+imageTools.toPoint = function(tab)\
+  -- 由于这里的tab可能很长，所以使用一些特殊方法防止内存耗尽\
+  local newTab = {}\
+  for key = 1, #tab do\
+    newTab[key] = { tab[key].x, tab[key].y }\
+    tab[key] = nil\
+  end\
+  return newTab\
+end\
+\
+imageTools.transRelativePoint = function(tab, base)\
+  if not base then\
+    base = tab[1]\
+    table.remove(tab, 1)\
+  end\
+  local newTab = {}\
+  for key = 1, #tab do\
+    local value = tab[key]\
+    newTab[key] = string.format('%d|%d|0x%06X', value[1] - base[1], value[2] - base[2], value[3])\
+  end\
+  return base, table.concat(newTab, ',')\
+end\
+\
+return imageTools\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-a3.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a3.lua", name = "./meta-operation/maps-options/imggyydywzh-a3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -628,7 +647,42 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imgygxdxq-sp2.lua"] = { path = "./meta-operation/maps-options/imgygxdxq-sp2.lua", name = "./meta-operation/maps-options/imgygxdxq-sp2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-a2.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a2.lua", name = "./meta-operation/maps-options/imggyydywzh-a2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = imgBase.map.bossPointList,\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-a1.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a1.lua", name = "./meta-operation/maps-options/imggyydywzh-a1.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -2537,8 +2591,8 @@ local map = {}\
 -- 舰队坐标修正向量\
 local myFleetListCorrectionValue = (function()\
   local point = {\
-    { 1328, 343, 0xd68142 },\
-    { 1277, 528, 0xb5b6b5 },\
+    { 742, 367, 0xffffff },\
+    { 617, 601, 0x529eb5 },\
   }\
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
 end)()\
@@ -2957,8 +3011,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果左边集合小于50个点，则认为做边黑线不存在\
-  if #leftLineAdjacentMaxList < 50 then\
+  -- 如果左边集合小于50个点，或者高差小于20个像素，则认为左边黑线不存在\
+  if #leftLineAdjacentMaxList < 50\
+    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 20) then\
     leftLinePointList = {}\
   end\
   -- 右边黑线进行精简，使其变成宽度为1的细线\
@@ -2999,8 +3054,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果右边集合小于50个点，则认为做边黑线不存在\
-  if #rightLineAdjacentMaxList < 50 then\
+  -- 如果右边集合小于50个点，或者高差小于20个像素，则认为右边黑线不存在\
+  if #rightLineAdjacentMaxList < 50\
+    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 20) then\
     rightLinePointList = {}\
   end\
 \
@@ -3265,8 +3321,8 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
     local res = {}\
     for key, item in ipairs(myFleetList) do\
       if oldMap[(item[1] + 1) .. '-' .. item[2]]\
-          or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]\
-          or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then\
+        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]\
+        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then\
         table.insert(res, item)\
       end\
     end\
@@ -3411,7 +3467,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
   local canUseList = {}\
   for key, point in ipairs(checkList) do\
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height\
-        and not obstacleMap[point[1] .. '-' .. point[2]] then\
+      and not obstacleMap[point[1] .. '-' .. point[2]] then\
       if enemyList3Map[point[1] .. '-' .. point[2]] then\
         checkList[key].coast = 3\
       elseif enemyList2Map[point[1] .. '-' .. point[2]] then\
@@ -4129,6 +4185,7 @@ package.sourceCode = package.sourceCode or {}
 package.sourceCode["./meta-operation/battle.lua"] = { path = "./meta-operation/battle.lua", name = "./meta-operation/battle.lua", source = "local co = require '../lib/co'\
 local c = coroutine\
 local sleepPromise = require '../utils/sleep-promise'\
+local imgTools = require '../utils/img-tools'\
 \
 \
 local battle = {}\
@@ -4177,34 +4234,40 @@ end\
 battle.isNormalMode = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },\
-    { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },\
-  }\
-  local list2 = {\
-    { 72, 973, 0xffffff }, { 152, 991, 0xbd0408 },\
-    { 164, 1005, 0xbd0408 }, { 261, 1025, 0x631010 },\
-  }\
-  local result = multiColorS(list) or multiColorS(list2)\
+\
+  local position = { { 12, 898 }, { 876, 1067 }, }\
+  local basePoint, posandcolor = imgTools.transRelativePoint({\
+    { 53, 960, 0xffffff }, { 126, 942, 0xfff7f7 }, { 168, 985, 0xad5d63 }, { 286, 984, 0xb56163 },\
+    { 291, 1010, 0xbd0c10 }, { 171, 1009, 0xc50c10 }, { 151, 1043, 0x631010 }, { 289, 1046, 0x84454a },\
+    { 97, 1040, 0xf7f7f7 }, { 119, 999, 0xff5908 }, { 56, 1006, 0xff1019 }, { 78, 994, 0xffffff },\
+    { 175, 1020, 0x631010 }, { 200, 1016, 0xf7efef }, { 205, 1016, 0xf7f7f7 }, { 264, 1014, 0xce0c19 },\
+    { 295, 994, 0x420408 }, { 198, 993, 0x420000 }, { 228, 1019, 0xeff3ef }, { 263, 1037, 0x631010 },\
+  })\
+\
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2]))\
+  console.log(result)\
   if not __keepScreenState then keepScreen(false) end\
-  return result\
+  return #result > 0\
 end\
 \
 --  是否在困难模式\
 battle.isHardMode = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
-  local list = {\
-    { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },\
-    { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },\
-  }\
-  local list2 = {\
-    { 109, 985, 0xdedbde }, { 189, 994, 0x001029 },\
-    { 281, 1004, 0x103984 }, { 284, 1032, 0x21284a },\
-  }\
-  local result = multiColorS(list) or multiColorS(list2)\
+\
+  local position = { { 12, 898 }, { 876, 1067 }, }\
+  local basePoint, posandcolor = imgTools.transRelativePoint({\
+    { 56, 969, 0xd6d7d6 }, { 87, 972, 0xd6dbd6 }, { 120, 997, 0xd6d7d6 }, { 171, 988, 0x5a6d8c },\
+    { 203, 989, 0x4a5973 }, { 264, 993, 0x31414a }, { 286, 1012, 0x102852 }, { 287, 1034, 0x102042 },\
+    { 216, 1042, 0x102442 }, { 154, 1043, 0x081c3a }, { 202, 1017, 0xeff3ef }, { 236, 1014, 0xf7f7f7 },\
+    { 254, 1023, 0xf7f3f7 }, { 264, 1020, 0x102442 }, { 281, 1012, 0x08357b }, { 180, 1019, 0x08203a },\
+    { 92, 1044, 0x212429 }, { 92, 1013, 0x212829 }, { 119, 1008, 0xd6dbde }, { 147, 1006, 0xdee3de },\
+  })\
+\
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2]))\
+  console.log(result)\
   if not __keepScreenState then keepScreen(false) end\
-  return result\
+  return #result > 0\
 end\
 \
 -- 切换困难模式按钮\
@@ -4366,6 +4429,12 @@ battle.clickChapter = function(chapterObj)\
     RTap({ 568, 808 }, 100)\
   elseif chapterObj.name == 'ygxdxq-sp3' then\
     RTap({ 1243, 590 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-a1' then\
+    RTap({ 328, 329 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-a2' then\
+    RTap({ 1213, 360 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-a3' then\
+    RTap({ 750, 663 }, 100)\
   end\
   if not __keepScreenState then keepScreen(false) end\
 end\
@@ -4462,20 +4531,8 @@ battle.checkChapter = function(chapterObj)\
       { 75, 154, 0x192429 }, { 84, 155, 0xdea229 },\
       { 83, 164, 0x292408 }, { 87, 168, 0xf7c229 },\
     },\
-    event = {\
-      { 48, 147, 0xffffff }, { 61, 147, 0xffffff },\
-      { 55, 149, 0x10283a }, { 62, 154, 0x102031 },\
-      { 47, 161, 0x082029 }, { 54, 159, 0xffffff },\
-      { 55, 169, 0x082031 }, { 55, 176, 0xffffff },\
-      { 62, 168, 0xffffff }, { 64, 177, 0x082029 },\
-      { 72, 150, 0x102431 }, { 79, 149, 0xffffff },\
-      { 86, 151, 0x19313a }, { 94, 151, 0xffffff },\
-      { 88, 164, 0x102431 }, { 80, 174, 0xffffff },\
-      { 89, 174, 0x082031 }, { 98, 175, 0xffffff },\
-    },\
   }\
   local result = nil\
-  console.log(multiColorS(list[cha]))\
   if not list[cha] or multiColorS(list[cha]) then\
     result = true\
   end\
@@ -5348,8 +5405,9 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapygxdxq-sp3.lua"] = { path = "./meta-operation/maps-options/mapygxdxq-sp3.lua", name = "./meta-operation/maps-options/mapygxdxq-sp3.lua", source = "local mapBase = require './map'\
-local imgEvent = require './imgygxdxq-sp3'\
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a3.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a3.lua", name = "./meta-operation/maps-options/mapgyydywzh-a3.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-a3'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -5368,45 +5426,78 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = { 554, 561 },\
+      leftTop = { 431, 521 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 554, 561, 0x101821 }, false, false, false, false, false, false, { 1652, 561, 0x191829 }, },\
-        { { 539, 677, 0x000000 }, false, false, false, false, false, false, { 1678, 677, 0x846d9c }, },\
-        { { 523, 801, 0x000000 }, false, false, false, false, false, false, { 1706, 801, 0x000000 }, },\
-        { { 505, 936, 0x000000 }, false, false, false, false, false, false, { 1737, 936, 0xbd815a }, },\
+        { { 431, 521, 0x213942 }, false, false, false, false, false, false, false, { 1730, 521, 0x19353a }, },\
+        { { 416, 645, 0x000000 }, false, false, false, false, false, false, false, { 1752, 645, 0x295d6b }, },\
+        { { 399, 776, 0x000000 }, false, false, false, false, false, false, false, { 1776, 776, 0x426173 }, },\
+        { { 382, 915, 0x000000 }, false, false, false, false, false, false, false, { 1801, 915, 0x213131 }, }\
       },\
       pointMap = {},\
     },\
     {\
-      leftTop = { 304, 540 },\
+      leftTop = nil,\
+      rightTop = { 1621, 520 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, false, false, { 319, 520, 0x293131 }, false, false, false, false, false, false, false, { 1621, 520, 0x193142 }, },\
+        { false, false, false, { 300, 643, 0x216163 }, false, false, false, false, false, false, false, { 1640, 643, 0x000000 }, },\
+        { false, false, false, { 281, 774, 0x3a6973 }, false, false, false, false, false, false, false, { 1660, 774, 0x000000 }, },\
+        { false, false, false, { 260, 913, 0x316973 }, false, false, false, false, false, false, false, { 1682, 913, 0x000000 }, }\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1589, 259 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { false, false, false, { 268, 375, 0x216163 }, false, false, false, false, false, false, false, { 1607, 375, 0x000000 }, },\
+        { false, false, false, { 247, 498, 0x3a6973 }, false, false, false, false, false, false, false, { 1626, 498, 0x000000 }, },\
+        { false, false, false, { 225, 629, 0x42697b }, false, false, false, false, false, false, false, { 1647, 629, 0x000000 }, },\
+        { false, false, false, { 202, 768, 0x527984 }, false, false, false, false, false, false, false, { 1669, 768, 0x000000 }, },\
+        { false, false, false, { 177, 916, 0x42616b }, false, false, false, false, false, false, false, { 1692, 916, 0x101010 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 515, 258 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 304, 540, 0x101821 }, false, false, false, false, false, false, false, false, { 1718, 540, 0x191829 }, },\
-        { { 280, 655, 0x000000 }, false, false, false, false, false, false, false, false, { 1747, 655, 0x846d9c }, },\
-        { { 253, 779, 0x000000 }, false, false, false, false, false, false, false, false, { 1777, 779, 0x000000 }, },\
-        { { 224, 913, 0x000000 }, false, false, false, false, false, false, false, false, { 1811, 913, 0xbd815a }, },\
+        false,\
+        { { 502, 374, 0x000000 }, false, false, false, false, false, false, false, { 1671, 374, 0x315d6b }, },\
+        { { 488, 497, 0x000000 }, false, false, false, false, false, false, false, { 1692, 497, 0x31616b }, },\
+        { { 474, 627, 0x000000 }, false, false, false, false, false, false, false, { 1715, 627, 0x3a697b }, },\
+        { { 459, 766, 0x000000 }, false, false, false, false, false, false, false, { 1739, 766, 0x426d73 }, },\
+        { { 442, 914, 0x000000 }, false, false, false, false, false, false, false, { 1764, 914, 0x293d42 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBottom = { 462, 936 },\
+      leftBottom = { 550, 912 },\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { { 522, 513, 0x000000 }, false, false, false, false, { 1401, 513, 0x211c3a }, },\
-        { { 504, 641, 0x000000 }, false, false, false, false, { 1420, 641, 0x191429 }, },\
-        { { 484, 781, 0x000000 }, false, false, false, false, { 1440, 781, 0x191421 }, },\
-        { { 462, 936, 0x000000 }, false, false, false, false, { 1463, 934, 0x292429 }, },\
+        { { 601, 337, 0x000000 }, false, false, false, false, false, { 1664, 337, 0x3a6973 }, },\
+        { { 589, 467, 0x000000 }, false, false, false, false, false, { 1687, 467, 0x3a5d7b }, },\
+        { { 577, 605, 0x000000 }, false, false, false, false, false, { 1711, 605, 0x3a5d7b }, },\
+        { { 564, 752, 0x000000 }, false, false, false, false, false, { 1736, 752, 0x425173 }, },\
+        { { 550, 912, 0x000000 }, false, false, false, false, false, { 1763, 912, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -5414,14 +5505,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1630, 943 },\
+      rightBottom = { 1737, 910 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false,\
-        { false, false, false, false, { 666, 519, 0x101021 }, false, false, false, false, { 1548, 519, 0x000000 }, },\
-        { false, false, false, false, { 653, 648, 0x191831 }, false, false, false, false, { 1573, 648, 0x000000 }, },\
-        { false, false, false, false, { 640, 788, 0x211c42 }, false, false, false, false, { 1600, 788, 0x000000 }, },\
-        { false, false, false, false, { 624, 943, 0x000000 }, false, false, false, false, { 1630, 943, 0x080c08 }, },\
+        { false, false, false, false, { 396, 335, 0xf7f79c }, false, false, false, false, false, false, { 1641, 335, 0x000000 }, },\
+        { false, false, false, false, { 379, 464, 0x426973 }, false, false, false, false, false, false, { 1663, 464, 0x000000 }, },\
+        { false, false, false, false, { 359, 602, 0x426973 }, false, false, false, false, false, false, { 1686, 602, 0x000000 }, },\
+        { false, false, false, false, { 339, 750, 0x426173 }, false, false, false, false, false, false, { 1711, 750, 0x000000 }, },\
+        { false, false, false, false, { 317, 910, 0x000000 }, false, false, false, false, false, false, { 1737, 910, 0x000000 }, }\
       },\
       pointMap = {},\
     },\
@@ -5432,16 +5524,17 @@ end\
 -- 获取地图棋盘和相关数据\
 mapEvent.getMapChessboard = function()\
   return {\
-    width = 9,\
-    height = 6,\
+    width = 11,\
+    height = 7,\
     obstacle = {\
-      { 1, 1 }, { 1, 8 }, { 1, 9 },\
-      { 2, 5 }, { 2, 8 }, { 2, 9 },\
-      { 4, 1 }, { 4, 2 }, { 4, 3 }, { 4, 8 },\
-      { 5, 6 },\
-      { 6, 6 },\
+      { 1, 2 }, { 1, 3 }, { 1, 4 },\
+      { 2, 8 },\
+      { 3, 3 }, { 3, 9 }, { 3, 10 },\
+      { 4, 6 }, { 4, 10 },\
+      { 6, 3 }, { 6, 4 }, { 6, 9 }, { 6, 10 }, { 6, 11 },\
+      { 7, 3 }, { 7, 4 },\
     },\
-    waitForBossPosition = { { 1, 2 }, { 2, 1 }, { 3, 1 }, { 5, 1 } },\
+    waitForBossPosition = { { 1, 11 }, { 4, 9 }, { 7, 11 }, },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -5457,8 +5550,9 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapygxdxq-sp2.lua"] = { path = "./meta-operation/maps-options/mapygxdxq-sp2.lua", name = "./meta-operation/maps-options/mapygxdxq-sp2.lua", source = "local mapBase = require './map'\
-local imgEvent = require './imgygxdxq-sp2'\
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a2.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a2.lua", name = "./meta-operation/maps-options/mapgyydywzh-a2.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-a2'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -5477,31 +5571,46 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = nil,\
-      rightTop = { 1578, 538 },\
+      leftTop = { 541, 498 },\
+      rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 478, 538, 0x100c21 }, false, false, false, false, false, false, { 1578, 538, 0x101021 }, },\
-        { { 460, 653, 0x000000 }, false, false, false, false, false, false, { 1601, 653, 0x000000 }, },\
-        { { 441, 777, 0x000000 }, false, false, false, false, false, false, { 1626, 777, 0x000000 }, },\
-        { { 420, 911, 0x000000 }, false, false, false, false, false, false, { 1653, 911, 0x000000 }, },\
+        { { 541, 498, 0x730808 }, false, false, false, false, false, false, { 1737, 498, 0x214152 }, },\
+        { { 524, 622, 0x000000 }, false, false, false, false, false, false, { 1772, 622, 0x425d5a }, },\
+        { { 504, 757, 0x000000 }, false, false, false, false, false, false, { 1810, 757, 0x316163 }, },\
+        { { 481, 907, 0x000000 }, false, false, false, false, false, false, { 1852, 907, 0x3a6d73 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1564, 293 },\
+      rightTop = { 1573, 497 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
+        { false, false, false, { 375, 497, 0x292d3a }, false, false, false, false, false, false, { 1573, 497, 0x192d42 }, },\
+        { false, false, false, { 349, 620, 0x427973 }, false, false, false, false, false, false, { 1600, 620, 0x000000 }, },\
+        { false, false, false, { 320, 756, 0x42697b }, false, false, false, false, false, false, { 1630, 756, 0x000000 }, },\
+        { false, false, false, { 288, 906, 0x426d84 }, false, false, false, false, false, false, { 1664, 906, 0x000000 }, }\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 389, 910 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
         false, false,\
-        { { 426, 513, 0x212042 }, false, false, false, false, false, false, { 1611, 513, 0x000000 }, },\
-        { { 404, 636, 0x000000 }, false, false, false, false, false, false, { 1637, 636, 0x000000 }, },\
-        { { 381, 769, 0x211c3a }, false, false, false, false, false, false, { 1666, 769, 0x000000 }, },\
-        { { 355, 915, 0x000000 }, false, false, false, false, false, false, { 1697, 915, 0x080c08 }, },\
+        { { 497, 310, 0x000000 }, false, false, false, false, false, { 1617, 310, 0x528694 }, },\
+        { { 474, 437, 0x000000 }, false, false, false, false, false, { 1650, 437, 0x31616b }, },\
+        { { 449, 577, 0x000000 }, false, false, false, false, false, { 1686, 577, 0x315163 }, },\
+        { { 421, 733, 0x000000 }, false, false, false, false, false, { 1727, 733, 0x3a556b }, },\
+        { { 389, 910, 0x000000 }, false, false, false, false, false, { 1772, 910, 0x000000 }, }\
       },\
       pointMap = {},\
     },\
@@ -5509,14 +5618,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1768, 894 },\
+      rightBottom = { 1665, 910 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false, false, false,\
-        { { 381, 458, 0x211c3a }, false, false, false, false, false, false, { 1666, 458, 0x000000 }, },\
-        { { 355, 590, 0x000000 }, false, false, false, false, false, false, { 1697, 590, 0x000000 }, },\
-        { { 327, 734, 0x000000 }, false, false, false, false, false, false, { 1731, 734, 0x000000 }, },\
-        { { 296, 894, 0x000000 }, false, false, false, false, false, false, { 1769, 894, 0x000000 }, },\
+        false, false,\
+        { false, false, false, false, { 405, 310, 0x847dad }, false, false, false, false, false, { 1531, 310, 0x000000 }, },\
+        { false, false, false, false, { 380, 437, 0x42717b }, false, false, false, false, false, { 1560, 437, 0x000000 }, },\
+        { false, false, false, false, { 350, 577, 0x315d6b }, false, false, false, false, false, { 1591, 577, 0x000000 }, },\
+        { false, false, false, false, { 316, 733, 0x3a616b }, false, false, false, false, false, { 1626, 733, 0x000000 }, },\
+        { false, false, false, false, { 278, 910, 0x000000 }, false, false, false, false, false, { 1665, 910, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -5527,18 +5637,125 @@ end\
 -- 获取地图棋盘和相关数据\
 mapEvent.getMapChessboard = function()\
   return {\
-    width = 7,\
-    height = 7,\
+    width = 10,\
+    height = 6,\
     obstacle = {\
-      { 1, 1 }, { 1, 2 },\
-      { 2, 2 },\
-      { 3, 5 }, { 3, 6 }, { 3, 7 },\
-      { 4, 1 }, { 4, 2 }, { 4, 3 }, { 4, 8 },\
-      { 5, 3 }, { 5, 5 },\
-      { 6, 5 },\
-      { 7, 1 },\
+      { 2, 7 },\
+      { 3, 1 }, { 3, 2 }, { 3, 3 }, { 3, 7 }, { 3, 10 },\
+      { 6, 1 }, { 6, 5 },\
     },\
-    waitForBossPosition = { { 1, 7 }, { 4, 7 } },\
+    waitForBossPosition = { { 1, 10 }, { 6, 10 }, },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a1.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a1.lua", name = "./meta-operation/maps-options/mapgyydywzh-a1.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-a1'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = { 668, 494 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 668, 494, 0x314142 }, false, false, false, false, false, { 1691, 494, 0x3a3d42 }, },\
+        { { 655, 618, 0x000000 }, false, false, false, false, false, { 1724, 618, 0x3a616b }, },\
+        { { 640, 754, 0x000000 }, false, false, false, false, false, { 1760, 754, 0x427184 }, },\
+        { { 625, 903, 0x000000 }, false, false, false, false, false, { 1800, 903, 0x31616b }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1634, 497 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, false, { 436, 497, 0x213142 }, false, false, false, false, false, false, { 1634, 497, 0x212831 }, },\
+        { false, false, { 413, 620, 0x426d73 }, false, false, false, false, false, false, { 1664, 620, 0x000000 }, },\
+        { false, false, { 387, 756, 0x295973 }, false, false, false, false, false, false, { 1697, 756, 0x000000 }, },\
+        { false, false, { 358, 905, 0x42797b }, false, false, false, false, false, false, { 1734, 905, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 592, 904 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { { 659, 332, 0x000000 }, false, false, false, false, false, { 1728, 332, 0x426173 }, },\
+        { { 644, 454, 0x000000 }, false, false, false, false, false, { 1764, 454, 0x427184 }, },\
+        { { 629, 589, 0x000000 }, false, false, false, false, false, { 1805, 589, 0x3a697b }, },\
+        { { 611, 737, 0x000000 }, false, false, false, false, false, { 1848, 737, 0x31596b }, },\
+        { { 592, 904, 0x000000 }, false, false, false, false, false, { 1899, 904, 0x000000 }, }\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = { 1743, 904 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { false, false, { 350, 332, 0x427584 }, false, false, false, false, false, false, { 1601, 332, 0x000000 }, },\
+        { false, false, { 321, 454, 0x31be6b }, false, false, false, false, false, false, { 1631, 454, 0x000000 }, },\
+        { false, false, { 290, 589, 0x292d4a }, false, false, false, false, false, false, { 1665, 589, 0x000000 }, },\
+        { false, false, { 252, 737, 0x292d42 }, false, false, false, false, false, false, { 1702, 737, 0x000000 }, },\
+        { false, false, { 215, 904, 0x000000 }, false, false, false, false, false, false, { 1743, 904, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 9,\
+    height = 5,\
+    obstacle = {\
+      { 1, 3 }, { 1, 7 }, { 1, 8 },\
+      { 2, 8 },\
+      { 4, 5 },\
+      { 5, 5 },\
+    },\
+    waitForBossPosition = { { 1, 9 }, { 5, 9 }, { 5, 6 }, },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -13296,7 +13513,6 @@ local battle = function(action)\
 \
       -- 点击章节\
       o.battle.clickChapter(settings.battleChapter)\
-\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_MOVE_TO_CHAPTER', o.battle.isBattleChapterPage, 2000 },\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel },\
@@ -13693,8 +13909,9 @@ local map11_2 = require './map11-2'\
 local map11_3 = require './map11-3'\
 local map11_4 = require './map11-4'\
 local map12_1 = require './map12-1'\
-local mapygxdxq_sp2 = require './mapygxdxq-sp2'\
-local mapygxdxq_sp3 = require './mapygxdxq-sp3'\
+local mapgyydywzh_a1 = require './mapgyydywzh-a1'\
+local mapgyydywzh_a2 = require './mapgyydywzh-a2'\
+local mapgyydywzh_a3 = require './mapgyydywzh-a3'\
 \
 return {\
   ['map1-1'] = map1_1,\
@@ -13750,8 +13967,9 @@ return {\
   ['map11-3'] = map11_3,\
   ['map11-4'] = map11_4,\
   ['map12-1'] = map12_1,\
-  ['mapygxdxq-sp2'] = mapygxdxq_sp2,\
-  ['mapygxdxq-sp3'] = mapygxdxq_sp3,\
+  ['mapgyydywzh-a1'] = mapgyydywzh_a1,\
+  ['mapgyydywzh-a2'] = mapgyydywzh_a2,\
+  ['mapgyydywzh-a3'] = mapgyydywzh_a3,\
 }\
 " }
 
@@ -14580,7 +14798,7 @@ return function()\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
               .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
               .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-              .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',\
+              .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3',\
           ['select'] = '0',\
         },\
         {\
@@ -14607,7 +14825,7 @@ return function()\
           ['id'] = 'battleAssistantMode',\
           ['type'] = 'RadioGroup',\
           ['list'] = '手动过地图,自动过地图',\
-          ['select'] = '0',\
+          ['select'] = '1',\
         },\
         {\
           ['type'] = 'Label',\
@@ -14627,7 +14845,7 @@ return function()\
           ['id'] = 'battleFleetOnWay',\
           ['type'] = 'RadioGroup',\
           ['list'] = '1队,2队,3队,4队,无',\
-          ['select'] = '2',\
+          ['select'] = '0',\
         },\
         {\
           ['type'] = 'Label',\
@@ -14640,7 +14858,7 @@ return function()\
           ['id'] = 'battleFleetBoss',\
           ['type'] = 'RadioGroup',\
           ['list'] = '1队,2队,3队,4队',\
-          ['select'] = '0',\
+          ['select'] = '1',\
         },\
         {\
           ['type'] = 'Label',\
@@ -15048,9 +15266,9 @@ return function()\
         { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },\
         { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },\
         { name = '12-3', chapter = 12, section = '3' }, { name = '12-4', chapter = 12, section = '4' },\
-        { name = 'ygxdxq-sp1', chapter = 1, section = 'sp1', type = 'event' },\
-        { name = 'ygxdxq-sp2', chapter = 1, section = 'sp2', type = 'event' },\
-        { name = 'ygxdxq-sp3', chapter = 1, section = 'sp3', type = 'event' },\
+        { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },\
+        { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },\
+        { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },\
       })\
       return list[battleChapter] or '0'\
     end)(settings.battleChapter)\
