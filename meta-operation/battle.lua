@@ -1,6 +1,7 @@
 local co = require '../lib/co'
 local c = coroutine
 local sleepPromise = require '../utils/sleep-promise'
+local imgTools = require '../utils/img-tools'
 
 
 local battle = {}
@@ -49,34 +50,38 @@ end
 battle.isNormalMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-  local list = {
-    { 170, 1004, 0xc50808 }, { 201, 1008, 0xf7f7f7 },
-    { 230, 1021, 0xeff3ef }, { 281, 1034, 0x5a0c08 },
-  }
-  local list2 = {
-    { 72, 973, 0xffffff }, { 152, 991, 0xbd0408 },
-    { 164, 1005, 0xbd0408 }, { 261, 1025, 0x631010 },
-  }
-  local result = multiColorS(list) or multiColorS(list2)
+
+  local position = { { 12, 898 }, { 876, 1067 }, }
+  local basePoint, posandcolor = imgTools.transRelativePoint({
+    { 53, 960, 0xffffff }, { 126, 942, 0xfff7f7 }, { 168, 985, 0xad5d63 }, { 286, 984, 0xb56163 },
+    { 291, 1010, 0xbd0c10 }, { 171, 1009, 0xc50c10 }, { 151, 1043, 0x631010 }, { 289, 1046, 0x84454a },
+    { 97, 1040, 0xf7f7f7 }, { 119, 999, 0xff5908 }, { 56, 1006, 0xff1019 }, { 78, 994, 0xffffff },
+    { 175, 1020, 0x631010 }, { 200, 1016, 0xf7efef }, { 205, 1016, 0xf7f7f7 }, { 264, 1014, 0xce0c19 },
+    { 295, 994, 0x420408 }, { 198, 993, 0x420000 }, { 228, 1019, 0xeff3ef }, { 263, 1037, 0x631010 },
+  })
+
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2])))
   if not __keepScreenState then keepScreen(false) end
-  return result
+  return result or #result > 0
 end
 
 --  是否在困难模式
 battle.isHardMode = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
-  local list = {
-    { 180, 1007, 0x002d6b }, { 207, 1009, 0xf7f7f7 },
-    { 244, 1021, 0xf7f3f7 }, { 277, 1033, 0x102042 },
-  }
-  local list2 = {
-    { 109, 985, 0xdedbde }, { 189, 994, 0x001029 },
-    { 281, 1004, 0x103984 }, { 284, 1032, 0x21284a },
-  }
-  local result = multiColorS(list) or multiColorS(list2)
+
+  local position = { { 12, 898 }, { 876, 1067 }, }
+  local basePoint, posandcolor = imgTools.transRelativePoint({
+    { 56, 969, 0xd6d7d6 }, { 87, 972, 0xd6dbd6 }, { 120, 997, 0xd6d7d6 }, { 171, 988, 0x5a6d8c },
+    { 203, 989, 0x4a5973 }, { 264, 993, 0x31414a }, { 286, 1012, 0x102852 }, { 287, 1034, 0x102042 },
+    { 216, 1042, 0x102442 }, { 154, 1043, 0x081c3a }, { 202, 1017, 0xeff3ef }, { 236, 1014, 0xf7f7f7 },
+    { 254, 1023, 0xf7f3f7 }, { 264, 1020, 0x102442 }, { 281, 1012, 0x08357b }, { 180, 1019, 0x08203a },
+    { 92, 1044, 0x212429 }, { 92, 1013, 0x212829 }, { 119, 1008, 0xd6dbde }, { 147, 1006, 0xdee3de },
+  })
+
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2])))
   if not __keepScreenState then keepScreen(false) end
-  return result
+  return result or #result > 0
 end
 
 -- 切换困难模式按钮
