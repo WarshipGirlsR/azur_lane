@@ -60,9 +60,10 @@ battle.isNormalMode = function()
     { 295, 994, 0x420408 }, { 198, 993, 0x420000 }, { 228, 1019, 0xeff3ef }, { 263, 1037, 0x631010 },
   })
 
-  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2])))
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2]))
+  console.log(result)
   if not __keepScreenState then keepScreen(false) end
-  return result or #result > 0
+  return #result > 0
 end
 
 --  是否在困难模式
@@ -79,9 +80,10 @@ battle.isHardMode = function()
     { 92, 1044, 0x212429 }, { 92, 1013, 0x212829 }, { 119, 1008, 0xd6dbde }, { 147, 1006, 0xdee3de },
   })
 
-  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2])))
+  local result = imgTools.toPoint(findMultiColorInRegionFuzzyExt(basePoint[3], posandcolor, 95, position[1][1], position[1][2], position[2][1], position[2][2]))
+  console.log(result)
   if not __keepScreenState then keepScreen(false) end
-  return result or #result > 0
+  return #result > 0
 end
 
 -- 切换困难模式按钮
