@@ -93,7 +93,7 @@ local battle = function(action)
         end
 
         if (settings.battleMode == 'normal' and o.battle.isHardMode())
-          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
           o.battle.clickSwitchHardModeBtn()
           c.yield(sleepPromise(500))
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -419,6 +419,10 @@ local battle = function(action)
       return makeAction(newstateTypes)
 
     elseif action.type == 'BATTLE_LOCK_NEW_SHIP_PANEL' then
+
+      if settings.battleStopWhenGetNewShip then
+        lua_exit()
+      end
 
       stepLabel.setStepLabelContent('2.23.锁定新船面板点击继续')
       o.battle.lockNewShipPanelClickNext()

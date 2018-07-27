@@ -141,9 +141,9 @@ return function()
           ['id'] = 'battleChapter',
           ['type'] = 'RadioGroup',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
-            .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
-            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-            .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',
+              .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
+              .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
+              .. '月光下的序曲-sp1,月光下的序曲-sp2,月光下的序曲-sp3',
           ['select'] = '0',
         },
         {
@@ -294,6 +294,19 @@ return function()
           ['id'] = 'battleStepLength',
           ['type'] = 'RadioGroup',
           ['list'] = '不限制,1,2,3,4,5,6,7,8',
+          ['select'] = '0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '捞到新船就停止(方便截图)',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'battleStopWhenGetNewShip',
+          ['type'] = 'RadioGroup',
+          ['list'] = '是,否',
           ['select'] = '0',
         },
         {
@@ -669,6 +682,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[battleAlertWhenManual] or false
     end)(settings.battleAlertWhenManual)
+    -- 捞到新船就停止
+    settings.battleStopWhenGetNewShip = (function(battleStopWhenGetNewShip)
+      local list = transStrToTable({ true, false, })
+      return list[battleStopWhenGetNewShip] or false
+    end)(settings.battleStopWhenGetNewShip)
     -- 限制步长
     settings.battleStepLength = (function(battleStepLength)
       local list = transStrToTable({ 0, 1, 2, 3, 4, 5, 6, 7, 8 })
