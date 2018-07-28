@@ -54,6 +54,9 @@ local map12_1 = require './map12-1'
 local mapgyydywzh_a1 = require './mapgyydywzh-a1'
 local mapgyydywzh_a2 = require './mapgyydywzh-a2'
 local mapgyydywzh_a3 = require './mapgyydywzh-a3'
+local mapgyydywzh_b1 = require './mapgyydywzh-b1'
+local mapgyydywzh_b2 = require './mapgyydywzh-b2'
+local mapgyydywzh_b3 = require './mapgyydywzh-b3'
 
 return {
   ['map1-1'] = map1_1,
@@ -112,4 +115,7 @@ return {
   ['mapgyydywzh-a1'] = mapgyydywzh_a1,
   ['mapgyydywzh-a2'] = mapgyydywzh_a2,
   ['mapgyydywzh-a3'] = mapgyydywzh_a3,
+  ['mapgyydywzh-b1'] = mapgyydywzh_b1,
+  ['mapgyydywzh-b2'] = mapgyydywzh_b2,
+  ['mapgyydywzh-b3'] = mapgyydywzh_b3,
 }

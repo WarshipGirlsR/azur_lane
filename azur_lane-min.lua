@@ -48,13 +48,22 @@ local imgs = {\
         local leftTop = { 185, 155 }\
         local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 780, 502, 0x524d52 }, { 783, 502, 0xffffff }, { 782, 505, 0xffffff }, { 778, 505, 0x424142 },\
-          { 777, 507, 0x424142 }, { 782, 507, 0xffffff }, { 781, 510, 0xffffff }, { 777, 510, 0x3a393a },\
-          { 776, 513, 0x313131 }, { 780, 513, 0xffffff }, { 775, 516, 0x292d29 }, { 779, 516, 0xffffff },\
-          { 775, 519, 0x212421 }, { 778, 519, 0xffffff }, { 774, 521, 0x212021 }, { 777, 521, 0xffffff },\
-          { 774, 523, 0x192019 }, { 777, 523, 0xffffff }, { 772, 527, 0x191819 }, { 776, 527, 0xffffff },\
+          { 925, 190, 0x424542 }, { 928, 190, 0xffffff }, { 924, 193, 0x424142 }, { 927, 193, 0xffffff },\
+          { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },\
+          { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },\
         })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)(),\
+      -- 空弹变红字\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1567, 190, 0x424542 }, { 1569, 190, 0xd63519 }, { 1566, 194, 0x424142 }, { 1568, 194, 0xce4121 },\
+          { 1565, 196, 0x3a3d3a }, { 1568, 196, 0xd63d21 }, { 1565, 198, 0x313931 }, { 1567, 198, 0xd63519 },\
+          { 1564, 201, 0x293129 }, { 1566, 201, 0xc53519 }, { 1564, 201, 0x293129 }, { 1566, 202, 0xd63d21 },\
+        })\
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -510,9 +519,9 @@ utils.unionList = function(...)\
     local set = sets[key]\
     for key2 = 1, #set do\
       local point = set[key2]\
-      if not setMap[point[1] .. '-' .. point[2]] then\
+      if not setMap[point[1] .. ',' .. point[2]] then\
         table.insert(result, point)\
-        setMap[point[1] .. '-' .. point[2]] = point\
+        setMap[point[1] .. ',' .. point[2]] = point\
       end\
     end\
   end\
@@ -530,7 +539,7 @@ utils.intersectionList = function(...)\
     local set = sets[key]\
     for key2 = 1, #set do\
       local point = set[key2]\
-      local pointIndex = point[1] .. '-' .. point[2]\
+      local pointIndex = point[1] .. ',' .. point[2]\
       if not setCountMap[pointIndex] then\
         setCountMap[pointIndex] = 0\
       end\
@@ -541,7 +550,7 @@ utils.intersectionList = function(...)\
     local set = sets[key]\
     for key2 = 1, #set do\
       local point = set[key2]\
-      local pointIndex = point[1] .. '-' .. point[2]\
+      local pointIndex = point[1] .. ',' .. point[2]\
       if setCountMap[pointIndex] and setCountMap[pointIndex] >= setsLength then\
         table.insert(result, point)\
         setCountMap[pointIndex] = nil\
@@ -559,18 +568,18 @@ utils.subtractionList = function(target, ...)\
   local setMap = {}\
   for key = 1, #target do\
     local point = target[key]\
-    setMap[point[1] .. '-' .. point[2]] = point\
+    setMap[point[1] .. ',' .. point[2]] = point\
   end\
   for key = 1, #sets do\
     local set = sets[key]\
     for key2 = 1, #set do\
       local point = set[key2]\
-      setMap[point[1] .. '-' .. point[2]] = nil\
+      setMap[point[1] .. ',' .. point[2]] = nil\
     end\
   end\
   for key = 1, #target do\
     local point = target[key]\
-    if setMap[point[1] .. '-' .. point[2]] then\
+    if setMap[point[1] .. ',' .. point[2]] then\
       table.insert(result, point)\
     end\
   end\
@@ -609,6 +618,124 @@ end\
 \
 return imageTools\
 " }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-b3.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b3.lua", name = "./meta-operation/maps-options/imggyydywzh-b3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = imgBase.map.bossPointList,\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-b2.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b2.lua", name = "./meta-operation/maps-options/imggyydywzh-b2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = imgBase.map.bossPointList,\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/imggyydywzh-b1.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b1.lua", name = "./meta-operation/maps-options/imggyydywzh-b1.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+local imgBase = require './img'\
+\
+local transRelativePoint = imgBase.transRelativePoint\
+\
+return {\
+  transRelativePoint = transRelativePoint,\
+  -- 基本方法\
+  toPoint = imgBase.toPoint,\
+  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
+  filterNoUsePoint = imgBase.filterNoUsePoint,\
+  -- 图片数据\
+  -- 地图扫描\
+  map = {\
+    -- 我方舰队位置\
+    myFleetList = imgBase.map.myFleetList,\
+    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
+    selectedArrow = imgBase.map.selectedArrow,\
+    -- 敌方舰队位置(小型舰队)\
+    enemyList1 = imgBase.map.enemyList1,\
+    -- 敌方舰队位置(中型舰队)\
+    enemyList2 = imgBase.map.enemyList2,\
+    -- 敌方舰队位置(大型舰队)\
+    enemyList3 = imgBase.map.enemyList3,\
+    -- boss位置\
+    bossPointList = table.merge({}, imgBase.map.bossPointList, {\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 1567, 797, 0x3a2429 }, { 1567, 758, 0x292421 },\
+          { 1537, 749, 0x312d29 }, { 1599, 753, 0x291c21 },\
+          { 1539, 806, 0xf74d52 }, { 1596, 803, 0xf74d4a },\
+          { 1550, 810, 0xff4d52 }, { 1585, 811, 0xf74d52 },\
+          { 1558, 830, 0x6b0c21 }, { 1573, 829, 0x631019 },\
+        })\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)()\
+    }),\
+    -- 战斗中的位置\
+    inBattleList = imgBase.map.inBattleList,\
+    -- 奖励箱的位置\
+    rewardBoxList = imgBase.map.rewardBoxList,\
+  },\
+}" }
 
 
 package.sourceCode = package.sourceCode or {}
@@ -2651,7 +2778,7 @@ end\
 local function transListToMap(list)\
   local result = {}\
   for _, item in pairs(list) do\
-    result[item[1] .. '-' .. item[2]] = item\
+    result[item[1] .. ',' .. item[2]] = item\
   end\
   return result\
 end\
@@ -2664,41 +2791,41 @@ local function listAdjacentGroups(list)\
   while #theList > 0 do\
     local groupItem = {}\
     table.insert(groupItem, theList[1])\
-    theListMap[theList[1][1] .. '-' .. theList[1][2]] = nil\
+    theListMap[theList[1][1] .. ',' .. theList[1][2]] = nil\
     local theIndex = 1\
     while theIndex <= #groupItem do\
       local item = groupItem[theIndex]\
       -- 将相邻的点都加入队列\
-      if theListMap[(item[1] + 1) .. '-' .. item[2]] then\
-        local index = (item[1] + 1) .. '-' .. item[2]\
+      if theListMap[(item[1] + 1) .. ',' .. item[2]] then\
+        local index = (item[1] + 1) .. ',' .. item[2]\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. '-' .. item[2]] then\
-        local index = (item[1] - 1) .. '-' .. item[2]\
+      elseif theListMap[(item[1] - 1) .. ',' .. item[2]] then\
+        local index = (item[1] - 1) .. ',' .. item[2]\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[item[1] .. '-' .. (item[2] + 1)] then\
-        local index = item[1] .. '-' .. (item[2] + 1)\
+      elseif theListMap[item[1] .. ',' .. (item[2] + 1)] then\
+        local index = item[1] .. ',' .. (item[2] + 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[item[1] .. '-' .. (item[2] - 1)] then\
-        local index = item[1] .. '-' .. (item[2] - 1)\
+      elseif theListMap[item[1] .. ',' .. (item[2] - 1)] then\
+        local index = item[1] .. ',' .. (item[2] - 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] - 1)] then\
-        local index = (item[1] - 1) .. '-' .. (item[2] - 1)\
+      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] - 1)] then\
+        local index = (item[1] - 1) .. ',' .. (item[2] - 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] - 1)] then\
-        local index = (item[1] + 1) .. '-' .. (item[2] - 1)\
+      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] - 1)] then\
+        local index = (item[1] + 1) .. ',' .. (item[2] - 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] + 1)] then\
-        local index = (item[1] - 1) .. '-' .. (item[2] + 1)\
+      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] + 1)] then\
+        local index = (item[1] - 1) .. ',' .. (item[2] + 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
-      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] + 1)] then\
-        local index = (item[1] + 1) .. '-' .. (item[2] + 1)\
+      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] + 1)] then\
+        local index = (item[1] + 1) .. ',' .. (item[2] + 1)\
         table.insert(groupItem, theListMap[index])\
         theListMap[index] = nil\
       end\
@@ -2842,7 +2969,7 @@ local function makePointMap(list)\
   local theMap = {}\
   for key = 1, #list do\
     local point = list[key]\
-    theMap[point[1] .. '-' .. point[2]] = point\
+    theMap[point[1] .. ',' .. point[2]] = point\
   end\
   return theMap\
 end\
@@ -2900,7 +3027,7 @@ map.calCheckpositionList = function(list)\
       if rol and positionMap[rowNum + 1] then\
         for colNum, col in ipairs(rol) do\
           if col and rol[colNum + 1] then\
-            list[key].pointMap[rowNum .. '-' .. colNum] = col\
+            list[key].pointMap[rowNum .. ',' .. colNum] = col\
           end\
         end\
       end\
@@ -2986,8 +3113,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     local leftLineMap = makePointMap(leftLineAdjacentMaxList)\
     local point = leftTopPoint\
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do\
-      if leftLineMap[key .. '-' .. leftTopPoint[2]] then\
-        point = leftLineMap[key .. '-' .. leftTopPoint[2]]\
+      if leftLineMap[key .. ',' .. leftTopPoint[2]] then\
+        point = leftLineMap[key .. ',' .. leftTopPoint[2]]\
       else\
         break\
       end\
@@ -2998,8 +3125,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       local _ = (function()\
         for theY = (point[2] + 1), point[2] + 20 do\
           for theX = point[1], (point[1] - 10), -1 do\
-            if leftLineMap[theX .. '-' .. theY] then\
-              point = leftLineMap[theX .. '-' .. theY]\
+            if leftLineMap[theX .. ',' .. theY] then\
+              point = leftLineMap[theX .. ',' .. theY]\
               table.insert(leftLinePointList, point)\
               return\
             end\
@@ -3029,8 +3156,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     local rightLineMap = makePointMap(rightLineList)\
     local point = rightTopPoint\
     for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do\
-      if rightLineMap[key .. '-' .. rightTopPoint[2]] then\
-        point = rightLineMap[key .. '-' .. rightTopPoint[2]]\
+      if rightLineMap[key .. ',' .. rightTopPoint[2]] then\
+        point = rightLineMap[key .. ',' .. rightTopPoint[2]]\
       else\
         break\
       end\
@@ -3041,8 +3168,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       local _ = (function()\
         for theY = (point[2] + 1), point[2] + 20 do\
           for theX = point[1], (point[1] + 10) do\
-            if rightLineMap[theX .. '-' .. theY] then\
-              point = rightLineMap[theX .. '-' .. theY]\
+            if rightLineMap[theX .. ',' .. theY] then\
+              point = rightLineMap[theX .. ',' .. theY]\
               table.insert(rightLinePointList, point)\
               return\
             end\
@@ -3277,7 +3404,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   local inBattleMap = makePointMap(inBattleList)\
   for key = 1, #myFleetList do\
     local point = myFleetList[key]\
-    if inBattleMap[(point[1] - 1) .. '-' .. point[2]] then\
+    if inBattleMap[(point[1] - 1) .. ',' .. point[2]] then\
       myFleetList[key][1] = point[1] - 1\
     end\
   end\
@@ -3320,9 +3447,9 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
   function findMyFleetTopRightEnemy(myFleetList, oldMap)\
     local res = {}\
     for key, item in ipairs(myFleetList) do\
-      if oldMap[(item[1] + 1) .. '-' .. item[2]]\
-        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]\
-        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then\
+      if oldMap[(item[1] + 1) .. ',' .. item[2]]\
+        or oldMap[(item[1] + 1) .. ',' .. (item[2] - 1)]\
+        or oldMap[(item[1]) .. ',' .. (item[2] - 1)] then\
         table.insert(res, item)\
       end\
     end\
@@ -3377,7 +3504,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
     for key = 1, #thePath do\
       local p = thePath[key]\
       table.insert(targetPath, p)\
-      if enemyPositionMap[p[1] .. '-' .. p[2]] then\
+      if enemyPositionMap[p[1] .. ',' .. p[2]] then\
         return p, targetPath, thePath\
       end\
     end\
@@ -3408,7 +3535,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
   local enemyPositionMap = {}\
   for key = 1, #enemyPositionList do\
     local value = enemyPositionList[key]\
-    enemyPositionMap[value[1] .. '-' .. value[2]] = value\
+    enemyPositionMap[value[1] .. ',' .. value[2]] = value\
   end\
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)\
 \
@@ -3435,7 +3562,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
           minCoastPath = thePath\
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上\
           for _, value in ipairs(thePath) do\
-            if enemyPositionMap[value[1] .. '-' .. value[2]] then\
+            if enemyPositionMap[value[1] .. ',' .. value[2]] then\
               minCoastEnemy = value\
               break\
             end\
@@ -3467,12 +3594,12 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
   local canUseList = {}\
   for key, point in ipairs(checkList) do\
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height\
-      and not obstacleMap[point[1] .. '-' .. point[2]] then\
-      if enemyList3Map[point[1] .. '-' .. point[2]] then\
+      and not obstacleMap[point[1] .. ',' .. point[2]] then\
+      if enemyList3Map[point[1] .. ',' .. point[2]] then\
         checkList[key].coast = 3\
-      elseif enemyList2Map[point[1] .. '-' .. point[2]] then\
+      elseif enemyList2Map[point[1] .. ',' .. point[2]] then\
         checkList[key].coast = 2\
-      elseif enemyList1Map[point[1] .. '-' .. point[2]] then\
+      elseif enemyList1Map[point[1] .. ',' .. point[2]] then\
         checkList[key].coast = 1\
       end\
       table.insert(canUseList, checkList[key])\
@@ -3643,8 +3770,8 @@ exercise.checkMyHPRemain = function()\
     { 630, 47, 0xe64d3a },\
     { 631, 47, 0xf74d42 },\
   })\
-  local pointList1 = toPoint(findMultiColorInRegionFuzzyExt(baseColor[3], posandcolor, 80, 70, 42, 791, 65))\
-  local pointList2 = toPoint(findMultiColorInRegionFuzzyExt(baseColor2[3], posandcolor2, 80, 70, 42, 791, 65))\
+  local pointList1 = toPoint(findMultiColorInRegionFuzzyExt(baseColor[3], posandcolor, 90, 70, 42, 791, 65))\
+  local pointList2 = toPoint(findMultiColorInRegionFuzzyExt(baseColor2[3], posandcolor2, 90, 70, 42, 791, 65))\
   local pointList = table.merge({}, pointList1, pointList2)\
   local percentPoint = math.minTable(pointList, function(item) return item[1] end)\
   local result = 1\
@@ -4435,6 +4562,12 @@ battle.clickChapter = function(chapterObj)\
     RTap({ 1213, 360 }, 100)\
   elseif chapterObj.name == 'gyydywzh-a3' then\
     RTap({ 750, 663 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-b1' then\
+    RTap({ 459, 353 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-b2' then\
+    RTap({ 623, 801 }, 100)\
+  elseif chapterObj.name == 'gyydywzh-b3' then\
+    RTap({ 1085, 547 }, 100)\
   end\
   if not __keepScreenState then keepScreen(false) end\
 end\
@@ -5153,8 +5286,8 @@ battle.isVictoryPanel = function()\
   }\
   local result = false\
   if multiColorS(list) or multiColorS(list2)\
-      or multiColorS(list3) or multiColorS(list4)\
-      or multiColorS(list5) or multiColorS(list6) then\
+    or multiColorS(list3) or multiColorS(list4)\
+    or multiColorS(list5) or multiColorS(list6) then\
     result = true\
   end\
   if not __keepScreenState then keepScreen(false) end\
@@ -5402,6 +5535,400 @@ return {\
   makeAction = makeAction,\
 }\
 " }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b3.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b3.lua", name = "./meta-operation/maps-options/mapgyydywzh-b3.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-b3'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = { 730, 331 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 730, 331, 0x080000 }, false, false, false, false, false, { 1716, 331, 0x10283a }, },\
+        { { 724, 457, 0x000000 }, false, false, false, false, false, { 1737, 457, 0x29415a }, },\
+        { { 717, 592, 0x000000 }, false, false, false, false, false, { 1761, 592, 0x293d52 }, },\
+        { { 709, 735, 0x000000 }, false, false, false, false, false, { 1785, 735, 0x31455a }, },\
+        { { 701, 887, 0x000000 }, false, false, false, false, false, { 1811, 887, 0x31455a }, }\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1686, 331 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, { 368, 331, 0x10283a }, false, false, false, false, false, false, false, { 1686, 331, 0x102842 }, },\
+        { false, { 351, 457, 0x525563 }, false, false, false, false, false, false, false, { 1707, 457, 0x000000 }, },\
+        { false, { 333, 592, 0x42495a }, false, false, false, false, false, false, false, { 1729, 592, 0x000000 }, },\
+        { false, { 314, 735, 0x314152 }, false, false, false, false, false, false, false, { 1752, 735, 0x000000 }, },\
+        { false, { 294, 887, 0x31415a }, false, false, false, false, false, false, false, { 1778, 887, 0x31494a }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 638, 216 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 638, 216, 0x293531 }, false, false, false, false, false, { 1624, 216, 0x293d4a }, },\
+        { { 629, 339, 0x000000 }, false, false, false, false, false, { 1643, 339, 0x29415a }, },\
+        { { 619, 470, 0x000000 }, false, false, false, false, false, { 1663, 470, 0x293d52 }, },\
+        { { 608, 610, 0x211800 }, false, false, false, false, false, { 1685, 610, 0x29455a }, },\
+        { { 598, 758, 0x000000 }, false, false, false, false, false, { 1708, 758, 0x3a4563 }, },\
+        { { 586, 915, 0x000000 }, false, false, false, false, false, { 1732, 915, 0x101c21 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1616, 219 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, { 298, 219, 0x10283a }, false, false, false, false, false, false, false, { 1616, 219, 0x19313a }, },\
+        { false, { 279, 342, 0x525563 }, false, false, false, false, false, false, false, { 1634, 342, 0x000000 }, },\
+        { false, { 259, 474, 0x42495a }, false, false, false, false, false, false, false, { 1654, 474, 0x000000 }, },\
+        { false, { 237, 613, 0x42455a }, false, false, false, false, false, false, false, { 1676, 613, 0x000000 }, },\
+        { false, { 215, 761, 0x3a4563 }, false, false, false, false, false, false, false, { 1700, 761, 0x314d52 }, },\
+        { false, { 190, 919, 0x524d5a }, false, false, false, false, false, false, false, { 1722, 919, 0x212421 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 550, 912 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false,\
+        { { 526, 166, 0x000000 }, false, false, false, false, false, { 1635, 166, 0x31455a }, },\
+        { { 512, 304, 0x000000 }, false, false, false, false, false, { 1657, 304, 0x293d5a }, },\
+        { { 496, 452, 0x000000 }, false, false, false, false, false, { 1681, 452, 0x313d5a }, },\
+        { { 479, 610, 0xdeb673 }, false, false, false, false, false, { 1706, 610, 0x313d63 }, },\
+        { { 463, 779, 0x8c0c10 }, false, false, false, false, false, { 1733, 779, 0x212d5a }, },\
+        { { 444, 964, 0x000000 }, false, false, false, false, false, { 1764, 964, 0xd67921 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = { 1711, 974 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false, false,\
+        { false, false, { 294, 174, 0x636173 }, false, false, false, false, false, false, { 1594, 174, 0x314952 }, },\
+        { false, false, { 271, 312, 0xce9e9c }, false, false, false, false, false, false, { 1613, 312, 0x000000 }, },\
+        { false, false, { 249, 460, 0x424563 }, false, false, false, false, false, false, { 1635, 460, 0x000000 }, },\
+        { false, false, { 224, 619, 0x3a415a }, false, false, false, false, false, false, { 1658, 619, 0x000000 }, },\
+        { false, false, { 198, 788, 0x313d63 }, false, false, false, false, false, false, { 1684, 788, 0x000000 }, },\
+        { false, false, { 169, 974, 0x000000 }, false, false, false, false, false, false, { 1711, 974, 0xde7508 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 9,\
+    height = 9,\
+    obstacle = {\
+      { 1, 3 }, { 1, 4 },\
+      { 2, 3 }, { 2, 4 },\
+      { 4, 7 }, { 4, 8 }, { 4, 9 },\
+      { 5, 3 }, { 5, 9 },\
+      { 6, 3 }, { 6, 7 }, { 6, 8 }, { 6, 9 },\
+      { 7, 5 },\
+      { 8, 5 },\
+      { 9, 6 },\
+    },\
+    waitForBossPosition = { { 5, 8 }, },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b2.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b2.lua", name = "./meta-operation/maps-options/mapgyydywzh-b2.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-b2'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = { 586, 505 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 586, 505, 0x29313a }, false, false, false, false, false, false, { 1769, 505, 0x212d42 }, },\
+        { { 571, 628, 0x000000 }, false, false, false, false, false, false, { 1802, 628, 0x29415a }, },\
+        { { 554, 762, 0x000000 }, false, false, false, false, false, false, { 1838, 762, 0x294163 }, },\
+        { { 536, 907, 0x000000 }, false, false, false, false, false, false, { 1876, 907, 0x21414a }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1595, 503 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, false, { 408, 503, 0x3a4542 }, false, false, false, false, false, false, { 1595, 503, 0x524142 }, },\
+        { false, false, { 386, 626, 0x42455a }, false, false, false, false, false, false, { 1620, 626, 0x000000 }, },\
+        { false, false, { 361, 759, 0x4a4d5a }, false, false, false, false, false, false, { 1648, 759, 0x000000 }, },\
+        { false, false, { 335, 904, 0x42495a }, false, false, false, false, false, false, { 1678, 904, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1609, 370 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { false, false, { 422, 370, 0x313d42 }, false, false, false, false, false, false, { 1609, 370, 0x191821 }, },\
+        { false, false, { 401, 487, 0x3a455a }, false, false, false, false, false, false, { 1635, 487, 0x000000 }, },\
+        { false, false, { 377, 615, 0x4a495a }, false, false, false, false, false, false, { 1664, 615, 0x000000 }, },\
+        { false, false, { 348, 753, 0xd6d2ef }, false, false, false, false, false, false, { 1695, 753, 0x000000 }, },\
+        { false, false, { 323, 905, 0x4a4d63 }, false, false, false, false, false, false, { 1729, 905, 0x000000 }, }\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 615, 237 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { { 601, 349, 0x000000 }, false, false, false, false, false, { 1656, 349, 0x21354a }, },\
+        { { 586, 471, 0x000000 }, false, false, false, false, false, { 1686, 471, 0x213952 }, },\
+        { { 570, 603, 0x000000 }, false, false, false, false, false, { 1718, 603, 0x294152 }, },\
+        { { 552, 748, 0x000010 }, false, false, false, false, false, { 1752, 748, 0x42415a }, },\
+        { { 532, 906, 0x000000 }, false, false, false, false, false, { 1789, 906, 0xadae84 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 538, 903 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { { 612, 296, 0x000000 }, false, false, false, false, { 1569, 296, 0x524d52 }, },\
+        { { 596, 426, 0x000000 }, false, false, false, false, { 1597, 426, 0x29395a }, },\
+        { { 579, 569, 0x000000 }, false, false, false, false, { 1628, 569, 0x212d52 }, },\
+        { { 560, 726, 0x000000 }, false, false, false, false, { 1662, 726, 0x29285a }, },\
+        { { 538, 903, 0x000000 }, false, false, false, false, { 1701, 903, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = { 1706, 899 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { false, false, false, { 422, 292, 0x3a414a }, false, false, false, false, false, { 1574, 292, 0x000000 }, },\
+        { false, false, false, { 396, 422, 0x29243a }, false, false, false, false, false, { 1602, 422, 0x000000 }, },\
+        { false, false, false, { 371, 565, 0x312d42 }, false, false, false, false, false, { 1633, 565, 0x21285a }, },\
+        { false, false, false, { 340, 722, 0x42456b }, false, false, false, false, false, { 1668, 722, 0x000000 }, },\
+        { false, false, false, { 306, 899, 0x000000 }, false, false, false, false, false, { 1706, 899, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 9,\
+    height = 7,\
+    obstacle = {\
+      { 1, 8 },\
+      { 2, 8 },\
+      { 3, 4 }, { 3, 5 }, { 3, 6 },\
+      { 5, 4 }, { 5, 5 }, { 5, 6 },\
+      { 6, 8 },\
+      { 7, 8 },\
+    },\
+    waitForBossPosition = { { 1, 9 }, { 7, 9 }, },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
+
+
+package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b1.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b1.lua", name = "./meta-operation/maps-options/mapgyydywzh-b1.lua", source = "-- 光与影的鸢尾之华\
+local mapBase = require './map'\
+local imgEvent = require './imggyydywzh-b1'\
+local mapEvent = {}\
+\
+-- 从mapBase继承方法\
+mapEvent = table.assign(mapEvent, mapBase)\
+for key, value in pairs(mapBase) do\
+  if type(value) == 'function' then\
+    mapEvent[key] = function(...)\
+      return value(imgEvent, ...)\
+    end\
+  end\
+end\
+\
+-- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
+-- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
+-- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
+mapEvent.getCheckpositionList = function()\
+  local list = mapBase.calCheckpositionList({\
+    {\
+      leftTop = { 363, 526 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 363, 526, 0x21283a }, false, false, false, false, false, false, false, { 1673, 526, 0x4a494a }, },\
+        { { 338, 646, 0x000000 }, false, false, false, false, false, false, false, { 1704, 646, 0x000000 }, },\
+        { { 310, 777, 0x000000 }, false, false, false, false, false, false, false, { 1738, 777, 0x000000 }, },\
+        { { 279, 920, 0x841419 }, false, false, false, false, false, false, false, { 1775, 920, 0x313531 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 629, 907 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { { 701, 223, 0x000000 }, false, false, false, false, { 1553, 223, 0x29415a }, },\
+        { { 690, 335, 0x4a4910 }, false, false, false, false, { 1580, 335, 0x314152 }, },\
+        { { 676, 457, 0x941c21 }, false, false, false, false, { 1611, 457, 0x191819 }, },\
+        { { 662, 591, 0x000000 }, false, false, false, false, { 1642, 591, 0x213152 }, },\
+        { { 646, 740, 0xe6ba7b }, false, false, false, false, { 1678, 740, 0x293963 }, },\
+        { { 629, 907, 0x000000 }, false, false, false, false, { 1717, 907, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = { 1709, 906 },\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { false, false, { 520, 222, 0x424d63 }, false, false, false, false, false, { 1546, 222, 0x000000 }, },\
+        { false, false, { 501, 333, 0x42495a }, false, false, false, false, false, { 1573, 333, 0x000000 }, },\
+        { false, false, { 479, 456, 0x5a5963 }, false, false, false, false, false, { 1602, 456, 0x000000 }, },\
+        { false, false, { 455, 590, 0x42455a }, false, false, false, false, false, { 1634, 590, 0x000000 }, },\
+        { false, false, { 428, 739, 0x31415a }, false, false, false, false, false, { 1670, 739, 0x000000 }, },\
+        { false, false, { 399, 906, 0x000000 }, false, false, false, false, false, { 1709, 906, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+  })\
+  return list\
+end\
+\
+-- 获取地图棋盘和相关数据\
+mapEvent.getMapChessboard = function()\
+  return {\
+    width = 8,\
+    height = 6,\
+    obstacle = {\
+      { 1, 1 }, { 1, 2 }, { 1, 3 },\
+      { 2, 8 },\
+      { 3, 4 }, { 3, 5 },\
+      { 4, 4 }, { 4, 5 },\
+    },\
+    waitForBossPosition = { { 1, 8 }, { 6, 8 } },\
+    bossPosition = {},\
+    myFleetList = {},\
+    enemyPositionList1 = {},\
+    enemyPositionList2 = {},\
+    enemyPositionList3 = {},\
+    inBattleList = {},\
+    selectedArrowList = {},\
+    rewardBoxList = {},\
+  }\
+end\
+\
+return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
@@ -11239,7 +11766,7 @@ local mapsType2 = function(action)\
       for _, targetPosition in ipairs(store.mapType4.checkpositionListForMove) do\
         local nextRowNum = store.mapType4.nextStepPoint[1]\
         local nextColNum = store.mapType4.nextStepPoint[2]\
-        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+        if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
           store.mapType4.checkpositionListForMove = { targetPosition }\
           break;\
         end\
@@ -11346,7 +11873,7 @@ local mapsType2 = function(action)\
       local nextRowNum = store.mapType4.nextStepPoint[1]\
       local nextColNum = store.mapType4.nextStepPoint[2]\
       console.log(store.mapType4.nextStepPoint)\
-      if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+      if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
         mapProxy.moveToPoint(targetPosition, store.mapType4.nextStepPoint)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType4.checkpositionListForMove > 0 then\
@@ -11623,7 +12150,7 @@ local mapsType2 = function(action)\
       for _, targetPosition in ipairs(store.mapType3.checkpositionListForMove) do\
         local nextRowNum = store.mapType3.nextStepPoint[1]\
         local nextColNum = store.mapType3.nextStepPoint[2]\
-        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+        if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
           store.mapType3.checkpositionListForMove = { targetPosition }\
           break;\
         end\
@@ -11730,7 +12257,7 @@ local mapsType2 = function(action)\
       local nextRowNum = store.mapType3.nextStepPoint[1]\
       local nextColNum = store.mapType3.nextStepPoint[2]\
       console.log(store.mapType3.nextStepPoint)\
-      if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+      if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
         mapProxy.moveToPoint(targetPosition, store.mapType3.nextStepPoint)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType3.checkpositionListForMove > 0 then\
@@ -12101,7 +12628,7 @@ local mapsType2 = function(action)\
       for _, targetPosition in ipairs(store.mapType2.checkpositionListForMove) do\
         local nextRowNum = store.mapType2.nextStepPoint[1]\
         local nextColNum = store.mapType2.nextStepPoint[2]\
-        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+        if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
           store.mapType2.checkpositionListForMove = { targetPosition }\
           break;\
         end\
@@ -12261,7 +12788,7 @@ local mapsType2 = function(action)\
       local nextRowNum = store.mapType2.nextStepPoint[1]\
       local nextColNum = store.mapType2.nextStepPoint[2]\
       console.log(store.mapType2.nextStepPoint)\
-      if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+      if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
         mapProxy.moveToPoint(targetPosition, store.mapType2.nextStepPoint, store.mapType2.moveVectorForAStep)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType2.checkpositionListForMove > 0 then\
@@ -12579,7 +13106,7 @@ local mapsType1 = function(action)\
       for _, targetPosition in ipairs(store.mapType1.checkpositionListForMove) do\
         local nextRowNum = store.mapType1.nextStepPoint[1]\
         local nextColNum = store.mapType1.nextStepPoint[2]\
-        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+        if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
           store.mapType1.checkpositionListForMove = { targetPosition }\
           break;\
         end\
@@ -12677,7 +13204,7 @@ local mapsType1 = function(action)\
       local targetPosition = store.mapType1.checkpositionListForMove[1]\
       local nextRowNum = store.mapType1.nextStepPoint[1]\
       local nextColNum = store.mapType1.nextStepPoint[2]\
-      if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then\
+      if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then\
         mapProxy.moveToPoint(targetPosition, store.mapType1.nextStepPoint)\
         o.battle.clickAttackBtn()\
       elseif #store.mapType1.checkpositionListForMove > 0 then\
@@ -12853,9 +13380,8 @@ local exercise = function(action)\
 \
     elseif action.type == 'EXERCISE_IN_BATTLE_PAGE' then\
 \
-      stepLabel.setStepLabelContent('5.16.战斗中，检测血量')\
       local remainHp = o.exercise.checkMyHPRemain()\
-      stepLabel.setStepLabelContent('5.16.剩余血量' .. string.format(\"%0.2f\", remainHp * 100))\
+      stepLabel.setStepLabelContent('5.16.战斗中，剩余血量' .. string.format(\"%0.2f\", remainHp * 100))\
       if remainHp < settings.exerciseLowerHPRestart then\
         stepLabel.setStepLabelContent('5.16.当前血量为' .. string.format(\"%0.2f\", remainHp * 100) .. ',小于' .. (settings.exerciseLowerHPRestart * 100) .. ',退出')\
         local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
@@ -12866,7 +13392,7 @@ local exercise = function(action)\
       end\
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {\
         { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
-        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 500 },\
+        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 200 },\
       }))\
       return makeAction(newstateTypes)\
 \
@@ -13912,6 +14438,9 @@ local map12_1 = require './map12-1'\
 local mapgyydywzh_a1 = require './mapgyydywzh-a1'\
 local mapgyydywzh_a2 = require './mapgyydywzh-a2'\
 local mapgyydywzh_a3 = require './mapgyydywzh-a3'\
+local mapgyydywzh_b1 = require './mapgyydywzh-b1'\
+local mapgyydywzh_b2 = require './mapgyydywzh-b2'\
+local mapgyydywzh_b3 = require './mapgyydywzh-b3'\
 \
 return {\
   ['map1-1'] = map1_1,\
@@ -13970,6 +14499,9 @@ return {\
   ['mapgyydywzh-a1'] = mapgyydywzh_a1,\
   ['mapgyydywzh-a2'] = mapgyydywzh_a2,\
   ['mapgyydywzh-a3'] = mapgyydywzh_a3,\
+  ['mapgyydywzh-b1'] = mapgyydywzh_b1,\
+  ['mapgyydywzh-b2'] = mapgyydywzh_b2,\
+  ['mapgyydywzh-b3'] = mapgyydywzh_b3,\
 }\
 " }
 
@@ -14796,9 +15328,10 @@ return function()\
           ['id'] = 'battleChapter',\
           ['type'] = 'RadioGroup',\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
-              .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
-              .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-              .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3',\
+            .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
+            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'\
+            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',\
           ['select'] = '0',\
         },\
         {\
@@ -15269,6 +15802,9 @@ return function()\
         { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },\
         { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },\
         { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },\
+        { name = 'gyydywzh-b1', chapter = 2, section = 'b1', type = 'event' },\
+        { name = 'gyydywzh-b2', chapter = 2, section = 'b2', type = 'event' },\
+        { name = 'gyydywzh-b3', chapter = 2, section = 'b3', type = 'event' },\
       })\
       return list[battleChapter] or '0'\
     end)(settings.battleChapter)\
@@ -16541,11 +17077,11 @@ local function runTable(tab, space)\
   return resultStrList\
 end\
 \
-myTable.length = myTable.length or function(tab)\
+myTable.length = function(tab)\
   return #tab\
 end\
 \
-myTable.isArray = myTable.isArray or function(tab)\
+myTable.isArray = function(tab)\
   if (type(tab) ~= 'table') then\
     return false\
   end\
@@ -16560,7 +17096,7 @@ end\
 \
 myTable.unpack = myTable.unpack or unpack\
 \
-myTable.slice = myTable.slice or function(tab, startIndex, endIndex)\
+myTable.slice = function(tab, startIndex, endIndex)\
   local length = myTable.length(tab)\
   if ((type(endIndex) == 'nil') or (endIndex == 0)) then\
     endIndex = length\
@@ -16577,7 +17113,7 @@ myTable.slice = myTable.slice or function(tab, startIndex, endIndex)\
   return newTab\
 end\
 \
-myTable.merge = myTable.merge or function(tab, ...)\
+myTable.merge = function(tab, ...)\
   local args = { ... }\
   for k = 1, #args do\
     local tabelement = args[k]\
@@ -16601,7 +17137,7 @@ myTable.merge = myTable.merge or function(tab, ...)\
   return tab\
 end\
 \
-myTable.assign = myTable.assign or function(target, ...)\
+myTable.assign = function(target, ...)\
   local sources = { ... }\
   if (type(target) ~= 'table') then\
     target = {}\
@@ -16615,7 +17151,7 @@ myTable.assign = myTable.assign or function(target, ...)\
   return target\
 end\
 \
-myTable.reverse = myTable.reverse or function(target)\
+myTable.reverse = function(target)\
   local result = {}\
   local theLength = myTable.length(target)\
   for key = 1, #target do\
@@ -16625,7 +17161,7 @@ myTable.reverse = myTable.reverse or function(target)\
   return result\
 end\
 \
-myTable.filter = myTable.filter or function(target, func)\
+myTable.filter = function(target, func)\
   local result = {}\
   local theLength = myTable.length(target)\
   for key = 1, #target do\
@@ -16637,7 +17173,7 @@ myTable.filter = myTable.filter or function(target, func)\
   return result\
 end\
 \
-myTable.unique = myTable.unique or function(target, path)\
+myTable.unique = function(target, path)\
   local theMap = {}\
   local result = {}\
   local pathType = type(path)\
@@ -16670,7 +17206,7 @@ myTable.unique = myTable.unique or function(target, path)\
 end\
 \
 -- 后覆盖前的unique\
-myTable.uniqueLast = myTable.uniqueLast or function(target, path)\
+myTable.uniqueLast = function(target, path)\
   local theMap = {}\
   local result = {}\
   local pathType = type(path)\
@@ -16717,7 +17253,7 @@ myTable.uniqueLast = myTable.uniqueLast or function(target, path)\
   return result\
 end\
 \
-myTable.map = myTable.map or function(tab, callback)\
+myTable.map = function(tab, callback)\
   local values = {}\
   for k, v in ipairs(tab) do\
     local value = callback(v, k, tab)\
@@ -16726,7 +17262,7 @@ myTable.map = myTable.map or function(tab, callback)\
   return values\
 end\
 \
-myTable.values = myTable.values or function(tab)\
+myTable.values = function(tab)\
   local values = {}\
   for k, v in pairs(tab) do\
     myTable.insert(values, v)\
@@ -16734,7 +17270,7 @@ myTable.values = myTable.values or function(tab)\
   return values\
 end\
 \
-myTable.keys = myTable.keys or function(tab)\
+myTable.keys = function(tab)\
   local keys = {}\
   for k in pairs(tab) do\
     myTable.insert(keys, k)\
@@ -16743,7 +17279,7 @@ myTable.keys = myTable.keys or function(tab)\
 end\
 \
 -- 对key排序后放入数组中再返回，结果类似entries\
-myTable.sortByKey = myTable.sortByKey or function(tab, call)\
+myTable.sortByKey = function(tab, call)\
   local keys = myTable.keys(tab)\
   if (type(call) == 'function') then\
     myTable.sort(keys, call)\
@@ -16759,7 +17295,7 @@ myTable.sortByKey = myTable.sortByKey or function(tab, call)\
 end\
 \
 -- 对数字和字符串的数组同时排序，数字会从小到大放在前面，之后字符串按照字典排序\
-myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)\
+myTable.sortNumAndStr = function(tab)\
   local numTab = {}\
   local strTab = {}\
   for k = 1, #tab do\
@@ -16781,7 +17317,7 @@ myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)\
   return result\
 end\
 \
-myTable.findIndex = myTable.findIndex or function(tab, call)\
+myTable.findIndex = function(tab, call)\
   local index = -1\
   if type(call) == 'function' then\
     if myTable.isArray(tab) then\
@@ -16819,7 +17355,7 @@ myTable.findIndex = myTable.findIndex or function(tab, call)\
   return index\
 end\
 \
-myTable.find = myTable.find or function(tab, call)\
+myTable.find = function(tab, call)\
   local result\
   if type(call) == 'function' then\
     if myTable.isArray(tab) then\
@@ -16855,16 +17391,71 @@ myTable.find = myTable.find or function(tab, call)\
   return result\
 end\
 \
-myTable.toString = myTable.toString or function(tab)\
+myTable.newSet = function(tab)\
+  local result = {}\
+  for k, v in ipairs(tab) do\
+    result[v] = v\
+  end\
+  return result\
+end\
+\
+myTable.intersect = function(...)\
+  local args = { ... }\
+  local result = myTable.assign({}, args[1])\
+  table.remove(args, 1)\
+  for _, v in ipairs(args) do\
+    local newRes = {}\
+    local theSet = myTable.newSet(v)\
+    for _, v2 in ipairs(result) do\
+      if type(theSet[v2]) ~= 'nil' then\
+        table.insert(newRes, v2)\
+      end\
+    end\
+    result = newRes\
+  end\
+  return result\
+end\
+\
+myTable.subtract = function(...)\
+  local args = { ... }\
+  local result = myTable.assign({}, args[1])\
+  table.remove(args, 1)\
+  for _, v in ipairs(args) do\
+    local newRes = {}\
+    local theSet = myTable.newSet(v)\
+    for _, v2 in ipairs(result) do\
+      if type(theSet[v2]) == 'nil' then\
+        table.insert(newRes, v2)\
+      end\
+    end\
+    result = newRes\
+  end\
+  return result\
+end\
+\
+myTable.union = function(...)\
+  local args = { ... }\
+  local result = {}\
+  local resultSet = {}\
+  for _, v in ipairs(args) do\
+    if type(resultSet[v]) == 'nil' then\
+      table.insert(result, v)\
+      resultSet[v] = v\
+    end\
+  end\
+  return result\
+end\
+\
+myTable.toString = function(tab)\
   return myTable.concat(runTable(tab), '')\
 end\
 \
-myTable.from = myTable.from or function(target)\
+myTable.from = function(target)\
   if (type(target) ~= 'function') then\
     return target\
   end\
   local result = {}\
-  for k, v in target do\
+  for k, v in ipairs(target) do\
     result[k] = v\
   end\
   return result\
@@ -16981,7 +17572,7 @@ do\
   end\
 end\
 \
-myString.split = myString.split or function(str, d)\
+myString.split = function(str, d)\
   if str == '' and d ~= '' then\
     return { str }\
   elseif str ~= '' and d == '' then\
@@ -17011,7 +17602,7 @@ myString.split = myString.split or function(str, d)\
   end\
 end\
 \
-myString.startWith = myString.startWith or function(str, pattern)\
+myString.startWith = function(str, pattern)\
   if type(str) ~= 'myString' then\
     return false\
   end\
@@ -17024,7 +17615,7 @@ myString.startWith = myString.startWith or function(str, pattern)\
   return false\
 end\
 \
-myString.endWith = myString.endWith or function(str, pattern)\
+myString.endWith = function(str, pattern)\
   if type(str) ~= 'string' then\
     return false\
   end\

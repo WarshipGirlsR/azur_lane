@@ -46,13 +46,22 @@ local imgs = {
         local leftTop = { 185, 155 }
         local rightBottom = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 780, 502, 0x524d52 }, { 783, 502, 0xffffff }, { 782, 505, 0xffffff }, { 778, 505, 0x424142 },
-          { 777, 507, 0x424142 }, { 782, 507, 0xffffff }, { 781, 510, 0xffffff }, { 777, 510, 0x3a393a },
-          { 776, 513, 0x313131 }, { 780, 513, 0xffffff }, { 775, 516, 0x292d29 }, { 779, 516, 0xffffff },
-          { 775, 519, 0x212421 }, { 778, 519, 0xffffff }, { 774, 521, 0x212021 }, { 777, 521, 0xffffff },
-          { 774, 523, 0x192019 }, { 777, 523, 0xffffff }, { 772, 527, 0x191819 }, { 776, 527, 0xffffff },
+          { 925, 190, 0x424542 }, { 928, 190, 0xffffff }, { 924, 193, 0x424142 }, { 927, 193, 0xffffff },
+          { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },
+          { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },
         })
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+      end)(),
+      -- 空弹变红字
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBottom = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 1567, 190, 0x424542 }, { 1569, 190, 0xd63519 }, { 1566, 194, 0x424142 }, { 1568, 194, 0xce4121 },
+          { 1565, 196, 0x3a3d3a }, { 1568, 196, 0xd63d21 }, { 1565, 198, 0x313931 }, { 1567, 198, 0xd63519 },
+          { 1564, 201, 0x293129 }, { 1566, 201, 0xc53519 }, { 1564, 201, 0x293129 }, { 1566, 202, 0xd63d21 },
+        })
+        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置

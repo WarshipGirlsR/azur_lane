@@ -148,9 +148,8 @@ local exercise = function(action)
 
     elseif action.type == 'EXERCISE_IN_BATTLE_PAGE' then
 
-      stepLabel.setStepLabelContent('5.16.战斗中，检测血量')
       local remainHp = o.exercise.checkMyHPRemain()
-      stepLabel.setStepLabelContent('5.16.剩余血量' .. string.format("%0.2f", remainHp * 100))
+      stepLabel.setStepLabelContent('5.16.战斗中，剩余血量' .. string.format("%0.2f", remainHp * 100))
       if remainHp < settings.exerciseLowerHPRestart then
         stepLabel.setStepLabelContent('5.16.当前血量为' .. string.format("%0.2f", remainHp * 100) .. ',小于' .. (settings.exerciseLowerHPRestart * 100) .. ',退出')
         local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
@@ -161,7 +160,7 @@ local exercise = function(action)
       end
       local newstateTypes = c.yield(setScreenListeners(exerciseListenerList, {
         { 'EXERCISE_READY_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
-        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 500 },
+        { 'EXERCISE_IN_BATTLE_PAGE', o.exercise.isInBattlePage, 200 },
       }))
       return makeAction(newstateTypes)
 

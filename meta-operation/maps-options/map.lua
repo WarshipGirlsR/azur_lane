@@ -70,7 +70,7 @@ end
 local function transListToMap(list)
   local result = {}
   for _, item in pairs(list) do
-    result[item[1] .. '-' .. item[2]] = item
+    result[item[1] .. ',' .. item[2]] = item
   end
   return result
 end
@@ -83,41 +83,41 @@ local function listAdjacentGroups(list)
   while #theList > 0 do
     local groupItem = {}
     table.insert(groupItem, theList[1])
-    theListMap[theList[1][1] .. '-' .. theList[1][2]] = nil
+    theListMap[theList[1][1] .. ',' .. theList[1][2]] = nil
     local theIndex = 1
     while theIndex <= #groupItem do
       local item = groupItem[theIndex]
       -- 将相邻的点都加入队列
-      if theListMap[(item[1] + 1) .. '-' .. item[2]] then
-        local index = (item[1] + 1) .. '-' .. item[2]
+      if theListMap[(item[1] + 1) .. ',' .. item[2]] then
+        local index = (item[1] + 1) .. ',' .. item[2]
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. '-' .. item[2]] then
-        local index = (item[1] - 1) .. '-' .. item[2]
+      elseif theListMap[(item[1] - 1) .. ',' .. item[2]] then
+        local index = (item[1] - 1) .. ',' .. item[2]
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[item[1] .. '-' .. (item[2] + 1)] then
-        local index = item[1] .. '-' .. (item[2] + 1)
+      elseif theListMap[item[1] .. ',' .. (item[2] + 1)] then
+        local index = item[1] .. ',' .. (item[2] + 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[item[1] .. '-' .. (item[2] - 1)] then
-        local index = item[1] .. '-' .. (item[2] - 1)
+      elseif theListMap[item[1] .. ',' .. (item[2] - 1)] then
+        local index = item[1] .. ',' .. (item[2] - 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] - 1)] then
-        local index = (item[1] - 1) .. '-' .. (item[2] - 1)
+      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] - 1)] then
+        local index = (item[1] - 1) .. ',' .. (item[2] - 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] - 1)] then
-        local index = (item[1] + 1) .. '-' .. (item[2] - 1)
+      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] - 1)] then
+        local index = (item[1] + 1) .. ',' .. (item[2] - 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. '-' .. (item[2] + 1)] then
-        local index = (item[1] - 1) .. '-' .. (item[2] + 1)
+      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] + 1)] then
+        local index = (item[1] - 1) .. ',' .. (item[2] + 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
-      elseif theListMap[(item[1] + 1) .. '-' .. (item[2] + 1)] then
-        local index = (item[1] + 1) .. '-' .. (item[2] + 1)
+      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] + 1)] then
+        local index = (item[1] + 1) .. ',' .. (item[2] + 1)
         table.insert(groupItem, theListMap[index])
         theListMap[index] = nil
       end
@@ -261,7 +261,7 @@ local function makePointMap(list)
   local theMap = {}
   for key = 1, #list do
     local point = list[key]
-    theMap[point[1] .. '-' .. point[2]] = point
+    theMap[point[1] .. ',' .. point[2]] = point
   end
   return theMap
 end
@@ -319,7 +319,7 @@ map.calCheckpositionList = function(list)
       if rol and positionMap[rowNum + 1] then
         for colNum, col in ipairs(rol) do
           if col and rol[colNum + 1] then
-            list[key].pointMap[rowNum .. '-' .. colNum] = col
+            list[key].pointMap[rowNum .. ',' .. colNum] = col
           end
         end
       end
@@ -405,8 +405,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     local leftLineMap = makePointMap(leftLineAdjacentMaxList)
     local point = leftTopPoint
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do
-      if leftLineMap[key .. '-' .. leftTopPoint[2]] then
-        point = leftLineMap[key .. '-' .. leftTopPoint[2]]
+      if leftLineMap[key .. ',' .. leftTopPoint[2]] then
+        point = leftLineMap[key .. ',' .. leftTopPoint[2]]
       else
         break
       end
@@ -417,8 +417,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       local _ = (function()
         for theY = (point[2] + 1), point[2] + 20 do
           for theX = point[1], (point[1] - 10), -1 do
-            if leftLineMap[theX .. '-' .. theY] then
-              point = leftLineMap[theX .. '-' .. theY]
+            if leftLineMap[theX .. ',' .. theY] then
+              point = leftLineMap[theX .. ',' .. theY]
               table.insert(leftLinePointList, point)
               return
             end
@@ -448,8 +448,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     local rightLineMap = makePointMap(rightLineList)
     local point = rightTopPoint
     for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do
-      if rightLineMap[key .. '-' .. rightTopPoint[2]] then
-        point = rightLineMap[key .. '-' .. rightTopPoint[2]]
+      if rightLineMap[key .. ',' .. rightTopPoint[2]] then
+        point = rightLineMap[key .. ',' .. rightTopPoint[2]]
       else
         break
       end
@@ -460,8 +460,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       local _ = (function()
         for theY = (point[2] + 1), point[2] + 20 do
           for theX = point[1], (point[1] + 10) do
-            if rightLineMap[theX .. '-' .. theY] then
-              point = rightLineMap[theX .. '-' .. theY]
+            if rightLineMap[theX .. ',' .. theY] then
+              point = rightLineMap[theX .. ',' .. theY]
               table.insert(rightLinePointList, point)
               return
             end
@@ -696,7 +696,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   local inBattleMap = makePointMap(inBattleList)
   for key = 1, #myFleetList do
     local point = myFleetList[key]
-    if inBattleMap[(point[1] - 1) .. '-' .. point[2]] then
+    if inBattleMap[(point[1] - 1) .. ',' .. point[2]] then
       myFleetList[key][1] = point[1] - 1
     end
   end
@@ -739,9 +739,9 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
   function findMyFleetTopRightEnemy(myFleetList, oldMap)
     local res = {}
     for key, item in ipairs(myFleetList) do
-      if oldMap[(item[1] + 1) .. '-' .. item[2]]
-        or oldMap[(item[1] + 1) .. '-' .. (item[2] - 1)]
-        or oldMap[(item[1]) .. '-' .. (item[2] - 1)] then
+      if oldMap[(item[1] + 1) .. ',' .. item[2]]
+        or oldMap[(item[1] + 1) .. ',' .. (item[2] - 1)]
+        or oldMap[(item[1]) .. ',' .. (item[2] - 1)] then
         table.insert(res, item)
       end
     end
@@ -796,7 +796,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     for key = 1, #thePath do
       local p = thePath[key]
       table.insert(targetPath, p)
-      if enemyPositionMap[p[1] .. '-' .. p[2]] then
+      if enemyPositionMap[p[1] .. ',' .. p[2]] then
         return p, targetPath, thePath
       end
     end
@@ -827,7 +827,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
   local enemyPositionMap = {}
   for key = 1, #enemyPositionList do
     local value = enemyPositionList[key]
-    enemyPositionMap[value[1] .. '-' .. value[2]] = value
+    enemyPositionMap[value[1] .. ',' .. value[2]] = value
   end
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
@@ -854,7 +854,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
           minCoastPath = thePath
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上
           for _, value in ipairs(thePath) do
-            if enemyPositionMap[value[1] .. '-' .. value[2]] then
+            if enemyPositionMap[value[1] .. ',' .. value[2]] then
               minCoastEnemy = value
               break
             end
@@ -886,12 +886,12 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-      and not obstacleMap[point[1] .. '-' .. point[2]] then
-      if enemyList3Map[point[1] .. '-' .. point[2]] then
+      and not obstacleMap[point[1] .. ',' .. point[2]] then
+      if enemyList3Map[point[1] .. ',' .. point[2]] then
         checkList[key].coast = 3
-      elseif enemyList2Map[point[1] .. '-' .. point[2]] then
+      elseif enemyList2Map[point[1] .. ',' .. point[2]] then
         checkList[key].coast = 2
-      elseif enemyList1Map[point[1] .. '-' .. point[2]] then
+      elseif enemyList1Map[point[1] .. ',' .. point[2]] then
         checkList[key].coast = 1
       end
       table.insert(canUseList, checkList[key])

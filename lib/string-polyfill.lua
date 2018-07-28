@@ -5,7 +5,7 @@ do
   end
 end
 
-myString.split = myString.split or function(str, d)
+myString.split = function(str, d)
   if str == '' and d ~= '' then
     return { str }
   elseif str ~= '' and d == '' then
@@ -35,7 +35,7 @@ myString.split = myString.split or function(str, d)
   end
 end
 
-myString.startWith = myString.startWith or function(str, pattern)
+myString.startWith = function(str, pattern)
   if type(str) ~= 'myString' then
     return false
   end
@@ -48,7 +48,7 @@ myString.startWith = myString.startWith or function(str, pattern)
   return false
 end
 
-myString.endWith = myString.endWith or function(str, pattern)
+myString.endWith = function(str, pattern)
   if type(str) ~= 'string' then
     return false
   end

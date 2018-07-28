@@ -142,8 +142,8 @@ exercise.checkMyHPRemain = function()
     { 630, 47, 0xe64d3a },
     { 631, 47, 0xf74d42 },
   })
-  local pointList1 = toPoint(findMultiColorInRegionFuzzyExt(baseColor[3], posandcolor, 80, 70, 42, 791, 65))
-  local pointList2 = toPoint(findMultiColorInRegionFuzzyExt(baseColor2[3], posandcolor2, 80, 70, 42, 791, 65))
+  local pointList1 = toPoint(findMultiColorInRegionFuzzyExt(baseColor[3], posandcolor, 90, 70, 42, 791, 65))
+  local pointList2 = toPoint(findMultiColorInRegionFuzzyExt(baseColor2[3], posandcolor2, 90, 70, 42, 791, 65))
   local pointList = table.merge({}, pointList1, pointList2)
   local percentPoint = math.minTable(pointList, function(item) return item[1] end)
   local result = 1

@@ -141,9 +141,10 @@ return function()
           ['id'] = 'battleChapter',
           ['type'] = 'RadioGroup',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
-              .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
-              .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
-              .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3',
+            .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
+            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'
+            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',
           ['select'] = '0',
         },
         {
@@ -614,6 +615,9 @@ return function()
         { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },
         { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },
         { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },
+        { name = 'gyydywzh-b1', chapter = 2, section = 'b1', type = 'event' },
+        { name = 'gyydywzh-b2', chapter = 2, section = 'b2', type = 'event' },
+        { name = 'gyydywzh-b3', chapter = 2, section = 'b3', type = 'event' },
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

@@ -99,11 +99,11 @@ local function runTable(tab, space)
   return resultStrList
 end
 
-myTable.length = myTable.length or function(tab)
+myTable.length = function(tab)
   return #tab
 end
 
-myTable.isArray = myTable.isArray or function(tab)
+myTable.isArray = function(tab)
   if (type(tab) ~= 'table') then
     return false
   end
@@ -118,7 +118,7 @@ end
 
 myTable.unpack = myTable.unpack or unpack
 
-myTable.slice = myTable.slice or function(tab, startIndex, endIndex)
+myTable.slice = function(tab, startIndex, endIndex)
   local length = myTable.length(tab)
   if ((type(endIndex) == 'nil') or (endIndex == 0)) then
     endIndex = length
@@ -135,7 +135,7 @@ myTable.slice = myTable.slice or function(tab, startIndex, endIndex)
   return newTab
 end
 
-myTable.merge = myTable.merge or function(tab, ...)
+myTable.merge = function(tab, ...)
   local args = { ... }
   for k = 1, #args do
     local tabelement = args[k]
@@ -159,7 +159,7 @@ myTable.merge = myTable.merge or function(tab, ...)
   return tab
 end
 
-myTable.assign = myTable.assign or function(target, ...)
+myTable.assign = function(target, ...)
   local sources = { ... }
   if (type(target) ~= 'table') then
     target = {}
@@ -173,7 +173,7 @@ myTable.assign = myTable.assign or function(target, ...)
   return target
 end
 
-myTable.reverse = myTable.reverse or function(target)
+myTable.reverse = function(target)
   local result = {}
   local theLength = myTable.length(target)
   for key = 1, #target do
@@ -183,7 +183,7 @@ myTable.reverse = myTable.reverse or function(target)
   return result
 end
 
-myTable.filter = myTable.filter or function(target, func)
+myTable.filter = function(target, func)
   local result = {}
   local theLength = myTable.length(target)
   for key = 1, #target do
@@ -195,7 +195,7 @@ myTable.filter = myTable.filter or function(target, func)
   return result
 end
 
-myTable.unique = myTable.unique or function(target, path)
+myTable.unique = function(target, path)
   local theMap = {}
   local result = {}
   local pathType = type(path)
@@ -228,7 +228,7 @@ myTable.unique = myTable.unique or function(target, path)
 end
 
 -- 后覆盖前的unique
-myTable.uniqueLast = myTable.uniqueLast or function(target, path)
+myTable.uniqueLast = function(target, path)
   local theMap = {}
   local result = {}
   local pathType = type(path)
@@ -275,7 +275,7 @@ myTable.uniqueLast = myTable.uniqueLast or function(target, path)
   return result
 end
 
-myTable.map = myTable.map or function(tab, callback)
+myTable.map = function(tab, callback)
   local values = {}
   for k, v in ipairs(tab) do
     local value = callback(v, k, tab)
@@ -284,7 +284,7 @@ myTable.map = myTable.map or function(tab, callback)
   return values
 end
 
-myTable.values = myTable.values or function(tab)
+myTable.values = function(tab)
   local values = {}
   for k, v in pairs(tab) do
     myTable.insert(values, v)
@@ -292,7 +292,7 @@ myTable.values = myTable.values or function(tab)
   return values
 end
 
-myTable.keys = myTable.keys or function(tab)
+myTable.keys = function(tab)
   local keys = {}
   for k in pairs(tab) do
     myTable.insert(keys, k)
@@ -301,7 +301,7 @@ myTable.keys = myTable.keys or function(tab)
 end
 
 -- 对key排序后放入数组中再返回，结果类似entries
-myTable.sortByKey = myTable.sortByKey or function(tab, call)
+myTable.sortByKey = function(tab, call)
   local keys = myTable.keys(tab)
   if (type(call) == 'function') then
     myTable.sort(keys, call)
@@ -317,7 +317,7 @@ myTable.sortByKey = myTable.sortByKey or function(tab, call)
 end
 
 -- 对数字和字符串的数组同时排序，数字会从小到大放在前面，之后字符串按照字典排序
-myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)
+myTable.sortNumAndStr = function(tab)
   local numTab = {}
   local strTab = {}
   for k = 1, #tab do
@@ -339,7 +339,7 @@ myTable.sortNumAndStr = myTable.sortNumAndStr or function(tab)
   return result
 end
 
-myTable.findIndex = myTable.findIndex or function(tab, call)
+myTable.findIndex = function(tab, call)
   local index = -1
   if type(call) == 'function' then
     if myTable.isArray(tab) then
@@ -377,7 +377,7 @@ myTable.findIndex = myTable.findIndex or function(tab, call)
   return index
 end
 
-myTable.find = myTable.find or function(tab, call)
+myTable.find = function(tab, call)
   local result
   if type(call) == 'function' then
     if myTable.isArray(tab) then
@@ -413,16 +413,71 @@ myTable.find = myTable.find or function(tab, call)
   return result
 end
 
-myTable.toString = myTable.toString or function(tab)
+myTable.newSet = function(tab)
+  local result = {}
+  for k, v in ipairs(tab) do
+    result[v] = v
+  end
+  return result
+end
+
+myTable.intersect = function(...)
+  local args = { ... }
+  local result = myTable.assign({}, args[1])
+  table.remove(args, 1)
+  for _, v in ipairs(args) do
+    local newRes = {}
+    local theSet = myTable.newSet(v)
+    for _, v2 in ipairs(result) do
+      if type(theSet[v2]) ~= 'nil' then
+        table.insert(newRes, v2)
+      end
+    end
+    result = newRes
+  end
+  return result
+end
+
+myTable.subtract = function(...)
+  local args = { ... }
+  local result = myTable.assign({}, args[1])
+  table.remove(args, 1)
+  for _, v in ipairs(args) do
+    local newRes = {}
+    local theSet = myTable.newSet(v)
+    for _, v2 in ipairs(result) do
+      if type(theSet[v2]) == 'nil' then
+        table.insert(newRes, v2)
+      end
+    end
+    result = newRes
+  end
+  return result
+end
+
+myTable.union = function(...)
+  local args = { ... }
+  local result = {}
+  local resultSet = {}
+  for _, v in ipairs(args) do
+    if type(resultSet[v]) == 'nil' then
+      table.insert(result, v)
+      resultSet[v] = v
+    end
+  end
+  return result
+end
+
+myTable.toString = function(tab)
   return myTable.concat(runTable(tab), '')
 end
 
-myTable.from = myTable.from or function(target)
+myTable.from = function(target)
   if (type(target) ~= 'function') then
     return target
   end
   local result = {}
-  for k, v in target do
+  for k, v in ipairs(target) do
     result[k] = v
   end
   return result

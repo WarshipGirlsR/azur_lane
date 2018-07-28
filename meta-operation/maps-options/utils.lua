@@ -9,9 +9,9 @@ utils.unionList = function(...)
     local set = sets[key]
     for key2 = 1, #set do
       local point = set[key2]
-      if not setMap[point[1] .. '-' .. point[2]] then
+      if not setMap[point[1] .. ',' .. point[2]] then
         table.insert(result, point)
-        setMap[point[1] .. '-' .. point[2]] = point
+        setMap[point[1] .. ',' .. point[2]] = point
       end
     end
   end
@@ -29,7 +29,7 @@ utils.intersectionList = function(...)
     local set = sets[key]
     for key2 = 1, #set do
       local point = set[key2]
-      local pointIndex = point[1] .. '-' .. point[2]
+      local pointIndex = point[1] .. ',' .. point[2]
       if not setCountMap[pointIndex] then
         setCountMap[pointIndex] = 0
       end
@@ -40,7 +40,7 @@ utils.intersectionList = function(...)
     local set = sets[key]
     for key2 = 1, #set do
       local point = set[key2]
-      local pointIndex = point[1] .. '-' .. point[2]
+      local pointIndex = point[1] .. ',' .. point[2]
       if setCountMap[pointIndex] and setCountMap[pointIndex] >= setsLength then
         table.insert(result, point)
         setCountMap[pointIndex] = nil
@@ -58,18 +58,18 @@ utils.subtractionList = function(target, ...)
   local setMap = {}
   for key = 1, #target do
     local point = target[key]
-    setMap[point[1] .. '-' .. point[2]] = point
+    setMap[point[1] .. ',' .. point[2]] = point
   end
   for key = 1, #sets do
     local set = sets[key]
     for key2 = 1, #set do
       local point = set[key2]
-      setMap[point[1] .. '-' .. point[2]] = nil
+      setMap[point[1] .. ',' .. point[2]] = nil
     end
   end
   for key = 1, #target do
     local point = target[key]
-    if setMap[point[1] .. '-' .. point[2]] then
+    if setMap[point[1] .. ',' .. point[2]] then
       table.insert(result, point)
     end
   end

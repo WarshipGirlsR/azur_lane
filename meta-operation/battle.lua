@@ -251,6 +251,12 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1213, 360 }, 100)
   elseif chapterObj.name == 'gyydywzh-a3' then
     RTap({ 750, 663 }, 100)
+  elseif chapterObj.name == 'gyydywzh-b1' then
+    RTap({ 459, 353 }, 100)
+  elseif chapterObj.name == 'gyydywzh-b2' then
+    RTap({ 623, 801 }, 100)
+  elseif chapterObj.name == 'gyydywzh-b3' then
+    RTap({ 1085, 547 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -969,8 +975,8 @@ battle.isVictoryPanel = function()
   }
   local result = false
   if multiColorS(list) or multiColorS(list2)
-      or multiColorS(list3) or multiColorS(list4)
-      or multiColorS(list5) or multiColorS(list6) then
+    or multiColorS(list3) or multiColorS(list4)
+    or multiColorS(list5) or multiColorS(list6) then
     result = true
   end
   if not __keepScreenState then keepScreen(false) end

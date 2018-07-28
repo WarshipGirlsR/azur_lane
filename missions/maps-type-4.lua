@@ -168,7 +168,7 @@ local mapsType2 = function(action)
       for _, targetPosition in ipairs(store.mapType4.checkpositionListForMove) do
         local nextRowNum = store.mapType4.nextStepPoint[1]
         local nextColNum = store.mapType4.nextStepPoint[2]
-        if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
+        if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then
           store.mapType4.checkpositionListForMove = { targetPosition }
           break;
         end
@@ -275,7 +275,7 @@ local mapsType2 = function(action)
       local nextRowNum = store.mapType4.nextStepPoint[1]
       local nextColNum = store.mapType4.nextStepPoint[2]
       console.log(store.mapType4.nextStepPoint)
-      if targetPosition.pointMap[nextRowNum .. '-' .. nextColNum] then
+      if targetPosition.pointMap[nextRowNum .. ',' .. nextColNum] then
         mapProxy.moveToPoint(targetPosition, store.mapType4.nextStepPoint)
         o.battle.clickAttackBtn()
       elseif #store.mapType4.checkpositionListForMove > 0 then
