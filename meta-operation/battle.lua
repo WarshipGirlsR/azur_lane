@@ -839,11 +839,11 @@ battle.isInBattlePage = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 91, 78, 0x313942 }, { 131, 51, 0x4a5963 },
-    { 307, 61, 0x4a5963 }, { 344, 47, 0xbdced6 },
-    { 312, 109, 0x313d42 }, { 1818, 40, 0xdedfde },
-    { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },
-    { 1860, 56, 0x292d29 },
+    { 1815, 38, 0xdedfde }, { 1838, 39, 0xdedbd6 }, { 1870, 43, 0xdedbd6 }, { 1878, 97, 0xdedfde },
+    { 1861, 70, 0x313531 }, { 1833, 72, 0x3a393a }, { 1832, 88, 0x423d42 }, { 1831, 101, 0xe6dfde },
+    { 1845, 80, 0xdedbde }, { 1845, 52, 0xdedbde }, { 1869, 480, 0x636163 }, { 1882, 475, 0x525552 },
+    { 1896, 468, 0x4a4d52 }, { 1906, 611, 0x3a3d42 }, { 1871, 591, 0x636163 }, { 1858, 544, 0xefebef },
+    { 1872, 540, 0xdedfde }, { 1883, 541, 0xd6d2d6 }, { 1886, 532, 0x52555a }, { 1884, 550, 0x52555a },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
@@ -864,7 +864,7 @@ battle.isNotAutoBattle = function()
     { 188, 83, 0xeff3ef }, { 188, 88, 0xffffff },
     { 207, 88, 0xffffff }, { 205, 71, 0xffffff },
   }
-  local result = multiColorS(list)
+  local result = multiColorS(list, 85)
   if not __keepScreenState then keepScreen(false) end
   return result
 end

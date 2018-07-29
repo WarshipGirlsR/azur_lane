@@ -52,7 +52,7 @@ local imgs = {\
           { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },\
           { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },\
         })\
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 空弹变红字\
       (function()\
@@ -63,7 +63,7 @@ local imgs = {\
           { 1409, 367, 0x3a393a }, { 1413, 367, 0xd63521 }, { 1408, 369, 0x313131 }, { 1413, 369, 0xd63521 },\
           { 1407, 373, 0x292829 }, { 1411, 373, 0xd63521 },\
         })\
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -3394,17 +3394,24 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   -- 寻找最靠下的一个组\
   topLinePointList = math.minTable(topHorizontalLineGroup, function(item) return item[1][2] end)\
   -- 白字下方13像素才是上边界\
-  local topLinePoint = { -1, -1 }\
-  if topLinePointList and #topLinePointList > 0 then\
-    topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }\
+  if topLinePointList then\
+    topLinePointList = table.map(topLinePointList, function(item) return { item[1], item[2] + 13 } end)\
   end\
-  local bottomLinePoint = bottomLinePointList[1] or { -1, -1 }\
+\
+  local topLinePoint\
+  if topLinePointList and #topLinePointList > 0 then\
+    topLinePoint = topLinePointList[1]\
+  end\
+  local bottomLinePoint\
+  if bottomLinePointList and #bottomLinePointList > 0 then\
+    bottomLinePoint = bottomLinePointList[1]\
+  end\
 \
   function getTopAndBottomPoint(topLinePoint, bottomLinePoint, pointList)\
     -- 获取左右边界的上下两点(就是算四个叫的坐标)\
     -- 这个函数求一条斜边的上点和下点，需要2次才能计算出四个角\
     -- 结果第一个是上点，第二个是下点\
-    local result = { false, false }\
+    local result = {}\
     if pointList and #pointList > 0 then\
       local point1 = math.minTable(pointList, 2) or { -1, -1 }\
       local point2 = math.maxTable(pointList, 2) or { -1, -1 }\
@@ -3434,10 +3441,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   local rightPoint = getTopAndBottomPoint(topLinePoint, bottomLinePoint, rightLinePointList)\
   if not __keepScreenState then keepScreen(false) end\
   return {\
-    leftTop = leftPoint[1],\
-    rightTop = rightPoint[1],\
-    leftBottom = leftPoint[2],\
-    rightBottom = rightPoint[2],\
+    leftTop = leftPoint[1] or false,\
+    rightTop = rightPoint[1] or false,\
+    leftBottom = leftPoint[2] or false,\
+    rightBottom = rightPoint[2] or false,\
+    top = topLinePoint or false,\
+    bottom = bottomLinePoint or false,\
   }\
 end\
 \
@@ -3452,36 +3461,64 @@ map.getMoveVector = function(ImgInfo, currentPosition, targetPosition)\
   local moveVector = { 0, 0 }\
   local effectiveStep = false\
   if targetPosition.leftTop then\
-    if not currentPosition.leftTop then\
-      moveVector = { sWidth / 3, sHeight / 3 }\
-    else\
+    if currentPosition.leftTop then\
       effectiveStep = true\
-      moveVector[1] = targetPosition.leftTop[1] - currentPosition.leftTop[1]\
-      moveVector[2] = targetPosition.leftTop[2] - currentPosition.leftTop[2]\
+      moveVector = {\
+        targetPosition.leftTop[1] - currentPosition.leftTop[1],\
+        targetPosition.leftTop[2] - currentPosition.leftTop[2],\
+      }\
+    elseif currentPosition.top then\
+      moveVector = {\
+        sWidth / 3,\
+        targetPosition.leftTop[2] - currentPosition.top[2],\
+      }\
+    else\
+      moveVector = { sWidth / 3, sHeight / 3 }\
     end\
   elseif targetPosition.rightTop then\
-    if not currentPosition.rightTop then\
-      moveVector = { (0 - sWidth) / 3, sHeight / 3 }\
-    else\
+    if currentPosition.rightTop then\
       effectiveStep = true\
-      moveVector[1] = targetPosition.rightTop[1] - currentPosition.rightTop[1]\
-      moveVector[2] = targetPosition.rightTop[2] - currentPosition.rightTop[2]\
+      moveVector = {\
+        targetPosition.rightTop[1] - currentPosition.rightTop[1],\
+        targetPosition.rightTop[2] - currentPosition.rightTop[2],\
+      }\
+    elseif currentPosition.top then\
+      moveVector = {\
+        (0 - sWidth) / 3,\
+        targetPosition.rightTop[2] - currentPosition.top[2],\
+      }\
+    else\
+      moveVector = { (0 - sWidth) / 3, sHeight / 3 }\
     end\
   elseif targetPosition.leftBottom then\
-    if not currentPosition.leftBottom then\
-      moveVector = { sWidth / 3, (0 - sHeight) / 3 }\
-    else\
+    if currentPosition.leftBottom then\
       effectiveStep = true\
-      moveVector[1] = targetPosition.leftBottom[1] - currentPosition.leftBottom[1]\
-      moveVector[2] = targetPosition.leftBottom[2] - currentPosition.leftBottom[2]\
+      moveVector = {\
+        targetPosition.leftBottom[1] - currentPosition.leftBottom[1],\
+        targetPosition.leftBottom[2] - currentPosition.leftBottom[2],\
+      }\
+    elseif currentPosition.bottom then\
+      moveVector = {\
+        sWidth / 3,\
+        targetPosition.leftBottom[2] - currentPosition.bottom[2],\
+      }\
+    else\
+      moveVector = { sWidth / 3, (0 - sHeight) / 3 }\
     end\
   elseif targetPosition.rightBottom then\
-    if not currentPosition.rightBottom then\
-      moveVector = { (0 - sWidth) / 3, (0 - sHeight) / 3 }\
-    else\
+    if currentPosition.rightBottom then\
       effectiveStep = true\
-      moveVector[1] = targetPosition.rightBottom[1] - currentPosition.rightBottom[1]\
-      moveVector[2] = targetPosition.rightBottom[2] - currentPosition.rightBottom[2]\
+      moveVector = {\
+        targetPosition.rightBottom[1] - currentPosition.rightBottom[1],\
+        targetPosition.rightBottom[2] - currentPosition.rightBottom[2],\
+      }\
+    elseif currentPosition.bottom then\
+      moveVector = {\
+        (0 - sWidth) / 3,\
+        targetPosition.rightBottom[2] - currentPosition.bottom[2],\
+      }\
+    else\
+      moveVector = { (0 - sWidth) / 3, (0 - sHeight) / 3 }\
     end\
   end\
 \
@@ -5311,11 +5348,11 @@ battle.isInBattlePage = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 91, 78, 0x313942 }, { 131, 51, 0x4a5963 },\
-    { 307, 61, 0x4a5963 }, { 344, 47, 0xbdced6 },\
-    { 312, 109, 0x313d42 }, { 1818, 40, 0xdedfde },\
-    { 1835, 66, 0x3a353a }, { 1875, 92, 0xdedfd6 },\
-    { 1860, 56, 0x292d29 },\
+    { 1815, 38, 0xdedfde }, { 1838, 39, 0xdedbd6 }, { 1870, 43, 0xdedbd6 }, { 1878, 97, 0xdedfde },\
+    { 1861, 70, 0x313531 }, { 1833, 72, 0x3a393a }, { 1832, 88, 0x423d42 }, { 1831, 101, 0xe6dfde },\
+    { 1845, 80, 0xdedbde }, { 1845, 52, 0xdedbde }, { 1869, 480, 0x636163 }, { 1882, 475, 0x525552 },\
+    { 1896, 468, 0x4a4d52 }, { 1906, 611, 0x3a3d42 }, { 1871, 591, 0x636163 }, { 1858, 544, 0xefebef },\
+    { 1872, 540, 0xdedfde }, { 1883, 541, 0xd6d2d6 }, { 1886, 532, 0x52555a }, { 1884, 550, 0x52555a },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -5336,7 +5373,7 @@ battle.isNotAutoBattle = function()\
     { 188, 83, 0xeff3ef }, { 188, 88, 0xffffff },\
     { 207, 88, 0xffffff }, { 205, 71, 0xffffff },\
   }\
-  local result = multiColorS(list)\
+  local result = multiColorS(list, 85)\
   if not __keepScreenState then keepScreen(false) end\
   return result\
 end\

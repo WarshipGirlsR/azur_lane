@@ -50,7 +50,7 @@ local imgs = {
           { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },
           { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
       -- 空弹变红字
       (function()
@@ -61,7 +61,7 @@ local imgs = {
           { 1409, 367, 0x3a393a }, { 1413, 367, 0xd63521 }, { 1408, 369, 0x313131 }, { 1413, 369, 0xd63521 },
           { 1407, 373, 0x292829 }, { 1411, 373, 0xd63521 },
         })
-        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 80, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
