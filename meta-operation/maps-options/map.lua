@@ -31,6 +31,14 @@ local enemyListCorrectionValue = (function()
   }
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
+-- 可移动敌人坐标修正向量
+local movableEnemyListCorrectionValue = (function()
+  local point = {
+    { 926, 656, 0xffff94 },
+    { 926, 743, 0xe6e3de },
+  }
+  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
+end)()
 -- 奖励点坐标修正向量
 local rewardBoxListCorrectionValue = (function()
   local point = {
@@ -684,6 +692,8 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))
   enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)
+  local movableEnemyList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.movableEnemyList))
+  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue, deviation)
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
   rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
@@ -704,8 +714,9 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))
   local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))
   local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))
+  local movableEnemyPositionList = utils.unionList(mapChessboard.movableEnemyPositionList, transPointListToChessboardPointList(positionMap, movableEnemyList))
   local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))
-  local enemyPositionList = utils.unionList(enemyPositionList1, enemyPositionList2, enemyPositionList3)
+  local enemyPositionList = utils.unionList(enemyPositionList1, enemyPositionList2, enemyPositionList3, movableEnemyPositionList)
   local bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossPointList))
   -- 只有一个boss，如果出现多个boss的情况取最后一个
   bossPosition = #bossPosition > 1 and { bossPosition[#bossPosition] } or bossPosition
@@ -716,6 +727,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   enemyPositionList1 = utils.subtractionList(enemyPositionList1, myFleetListNotInBattle)
   enemyPositionList2 = utils.subtractionList(enemyPositionList2, myFleetListNotInBattle)
   enemyPositionList3 = utils.subtractionList(enemyPositionList3, myFleetListNotInBattle)
+  movableEnemyPositionList = utils.subtractionList(movableEnemyPositionList, myFleetListNotInBattle)
 
   local newMapChessboard = table.assign({}, mapChessboard, {
     inBattleList = inBattleList,
@@ -725,6 +737,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
     enemyPositionList1 = enemyPositionList1,
     enemyPositionList2 = enemyPositionList2,
     enemyPositionList3 = enemyPositionList3,
+    movableEnemyPositionList = movableEnemyPositionList,
     bossPosition = bossPosition,
   })
 
@@ -753,6 +766,7 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList1)),
     enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList2)),
     enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList3)),
+    movableEnemyPositionList = utils.unionList(newMapChessboard.movableEnemyPositionList, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.movableEnemyPositionList)),
     bossPosition = utils.unionList(newMapChessboard.bossPosition, mapChessboard.bossPosition),
   })
   return theMapChessBoard
@@ -771,7 +785,7 @@ map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)
 end
 
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
-  local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)
+  local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3, mapChessboard.movableEnemyPositionList)
   local enemyPositionListExceptTarget = utils.subtractionList(enemyPositionList, { target })
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionListExceptTarget)
   local thePath = AStart(start, target, {
@@ -814,16 +828,19 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
     return table.assign({}, enemy, { weight = 0 })
   end)
   local enemyPositionList1 = table.map(mapChessboard.enemyPositionList1, function(enemy)
-    return table.assign({}, enemy, { weight = 5 })
+    return table.assign({}, enemy, { weight = 4 })
   end)
   local enemyPositionList2 = table.map(mapChessboard.enemyPositionList2, function(enemy)
-    return table.assign({}, enemy, { weight = 7 })
+    return table.assign({}, enemy, { weight = 6 })
   end)
   local enemyPositionList3 = table.map(mapChessboard.enemyPositionList3, function(enemy)
-    return table.assign({}, enemy, { weight = 10 })
+    return table.assign({}, enemy, { weight = 8 })
+  end)
+  local movableEnemyPositionList = table.map(mapChessboard.movableEnemyPositionList, function(enemy)
+    return table.assign({}, enemy, { weight = 2 })
   end)
   -- 所有敌人的列表
-  local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3)
+  local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3, movableEnemyPositionList)
   local enemyPositionMap = {}
   for key = 1, #enemyPositionList do
     local value = enemyPositionList[key]
@@ -876,6 +893,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local enemyList1Map = transListToMap(mapChessboard.enemyPositionList1)
   local enemyList2Map = transListToMap(mapChessboard.enemyPositionList2)
   local enemyList3Map = transListToMap(mapChessboard.enemyPositionList3)
+  local movableEnemyListMap = transListToMap(mapChessboard.movableEnemyPositionList)
   local obstacleMap = transListToMap(mapChessboard.obstacle)
   local checkList = {
     { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint
@@ -888,10 +906,12 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
       and not obstacleMap[point[1] .. ',' .. point[2]] then
       if enemyList3Map[point[1] .. ',' .. point[2]] then
-        checkList[key].coast = 3
+        checkList[key].coast = 4
       elseif enemyList2Map[point[1] .. ',' .. point[2]] then
-        checkList[key].coast = 2
+        checkList[key].coast = 3
       elseif enemyList1Map[point[1] .. ',' .. point[2]] then
+        checkList[key].coast = 2
+      elseif movableEnemyListMap[point[1] .. ',' .. point[2]] then
         checkList[key].coast = 1
       end
       table.insert(canUseList, checkList[key])

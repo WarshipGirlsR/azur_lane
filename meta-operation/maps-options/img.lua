@@ -50,18 +50,18 @@ local imgs = {
           { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },
           { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
       -- 空弹变红字
       (function()
         local leftTop = { 185, 155 }
         local rightBottom = { 1899, 1022, }
         local basePoint, posandcolor = transRelativePoint({
-          { 1567, 190, 0x424542 }, { 1569, 190, 0xd63519 }, { 1566, 194, 0x424142 }, { 1568, 194, 0xce4121 },
-          { 1565, 196, 0x3a3d3a }, { 1568, 196, 0xd63d21 }, { 1565, 198, 0x313931 }, { 1567, 198, 0xd63519 },
-          { 1564, 201, 0x293129 }, { 1566, 201, 0xc53519 }, { 1564, 201, 0x293129 }, { 1566, 202, 0xd63d21 },
+          { 1410, 360, 0x4a454a }, { 1415, 360, 0xd63519 }, { 1409, 364, 0x3a3d3a }, { 1414, 364, 0xd63d21 },
+          { 1409, 367, 0x3a393a }, { 1413, 367, 0xd63521 }, { 1408, 369, 0x313131 }, { 1413, 369, 0xd63521 },
+          { 1407, 373, 0x292829 }, { 1411, 373, 0xd63521 },
         })
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),
     },
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置
@@ -199,6 +199,31 @@ local imgs = {
           { 1346, 797, 0xbd3500 }, { 1357, 797, 0xbd3500 },
           { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },
           { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },
+        })
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+      end)(),
+    },
+    -- 可移动敌人舰队位置
+    movableEnemyList = {
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBottom = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 917, 719, 0xc5863a }, { 918, 719, 0xbd7d31 },
+          { 919, 719, 0xc58131 }, { 919, 722, 0xffff94 },
+          { 918, 722, 0xffff94 }, { 920, 722, 0xffff94 },
+          { 873, 715, 0xc58131 }, { 874, 715, 0xbd7d31 },
+          { 875, 715, 0xc58131 }, { 876, 721, 0xfffb94 },
+        })
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
+      end)(),
+      (function()
+        local leftTop = { 185, 155 }
+        local rightBottom = { 1899, 1022, }
+        local basePoint, posandcolor = transRelativePoint({
+          { 410, 575, 0xc5813a }, { 410, 574, 0xce8642 },
+          { 410, 573, 0xbd8131 }, { 410, 579, 0xfffb94 },
+          { 410, 580, 0xffff94 }, { 410, 581, 0xfffb94 },
         })
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }
       end)(),

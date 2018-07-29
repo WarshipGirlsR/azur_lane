@@ -52,18 +52,18 @@ local imgs = {\
           { 924, 197, 0x3a393a }, { 926, 197, 0xffffff }, { 923, 200, 0x313531 }, { 925, 200, 0xffffff },\
           { 922, 204, 0x313d31 }, { 924, 204, 0xffffff }, { 921, 202, 0x292d29 }, { 924, 202, 0xfffbff },\
         })\
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
       -- 空弹变红字\
       (function()\
         local leftTop = { 185, 155 }\
         local rightBottom = { 1899, 1022, }\
         local basePoint, posandcolor = transRelativePoint({\
-          { 1567, 190, 0x424542 }, { 1569, 190, 0xd63519 }, { 1566, 194, 0x424142 }, { 1568, 194, 0xce4121 },\
-          { 1565, 196, 0x3a3d3a }, { 1568, 196, 0xd63d21 }, { 1565, 198, 0x313931 }, { 1567, 198, 0xd63519 },\
-          { 1564, 201, 0x293129 }, { 1566, 201, 0xc53519 }, { 1564, 201, 0x293129 }, { 1566, 202, 0xd63d21 },\
+          { 1410, 360, 0x4a454a }, { 1415, 360, 0xd63519 }, { 1409, 364, 0x3a3d3a }, { 1414, 364, 0xd63d21 },\
+          { 1409, 367, 0x3a393a }, { 1413, 367, 0xd63521 }, { 1408, 369, 0x313131 }, { 1413, 369, 0xd63521 },\
+          { 1407, 373, 0x292829 }, { 1411, 373, 0xd63521 },\
         })\
-        return { basePoint[3], posandcolor, 88, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+        return { basePoint[3], posandcolor, 85, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
     },\
     -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
@@ -201,6 +201,31 @@ local imgs = {\
           { 1346, 797, 0xbd3500 }, { 1357, 797, 0xbd3500 },\
           { 1366, 797, 0xbd3500 }, { 1345, 790, 0xbd3500 },\
           { 1377, 792, 0xbd3500 }, { 1366, 790, 0xbd3d00 },\
+        })\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)(),\
+    },\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = {\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 917, 719, 0xc5863a }, { 918, 719, 0xbd7d31 },\
+          { 919, 719, 0xc58131 }, { 919, 722, 0xffff94 },\
+          { 918, 722, 0xffff94 }, { 920, 722, 0xffff94 },\
+          { 873, 715, 0xc58131 }, { 874, 715, 0xbd7d31 },\
+          { 875, 715, 0xc58131 }, { 876, 721, 0xfffb94 },\
+        })\
+        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
+      end)(),\
+      (function()\
+        local leftTop = { 185, 155 }\
+        local rightBottom = { 1899, 1022, }\
+        local basePoint, posandcolor = transRelativePoint({\
+          { 410, 575, 0xc5813a }, { 410, 574, 0xce8642 },\
+          { 410, 573, 0xbd8131 }, { 410, 579, 0xfffb94 },\
+          { 410, 580, 0xffff94 }, { 410, 581, 0xfffb94 },\
         })\
         return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
       end)(),\
@@ -645,6 +670,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -680,6 +707,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -715,6 +744,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = table.merge({}, imgBase.map.bossPointList, {\
       (function()\
@@ -763,6 +794,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -798,6 +831,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -833,6 +868,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -868,6 +905,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -903,6 +942,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -938,6 +979,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -973,6 +1016,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1008,6 +1053,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1043,6 +1090,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1078,6 +1127,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1113,6 +1164,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1148,6 +1201,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1183,6 +1238,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1218,6 +1275,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1253,6 +1312,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1288,6 +1349,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1323,6 +1386,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1358,6 +1423,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1393,6 +1460,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1428,6 +1497,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1463,6 +1534,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1498,6 +1571,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1533,6 +1608,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1568,6 +1645,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1603,6 +1682,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1638,6 +1719,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1673,6 +1756,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = table.merge(--\
     -- 我方舰队不和boss重叠 3-8\
@@ -1724,6 +1809,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1759,6 +1846,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1794,6 +1883,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1829,6 +1920,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1864,6 +1957,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1899,6 +1994,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1934,6 +2031,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1969,6 +2068,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2004,6 +2105,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2039,6 +2142,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2074,6 +2179,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2109,6 +2216,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2144,6 +2253,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2179,6 +2290,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2214,6 +2327,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2249,6 +2364,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = table.merge({}, imgBase.map.bossPointList,\
       {\
@@ -2297,6 +2414,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = table.merge({}, imgBase.map.bossPointList,\
       {\
@@ -2345,6 +2464,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2380,6 +2501,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2415,6 +2538,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2450,6 +2575,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2485,6 +2612,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2520,6 +2649,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2555,6 +2686,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2590,6 +2723,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2625,6 +2760,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2660,6 +2797,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2695,6 +2834,8 @@ return {\
     enemyList2 = imgBase.map.enemyList2,\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
+    -- 可移动敌人舰队位置\
+    movableEnemyList = imgBase.map.movableEnemyList,\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2736,6 +2877,14 @@ local enemyListCorrectionValue = (function()\
   local point = {\
     { 846, 438, 0xdeaa00 },\
     { 899, 500, 0xcebe94 },\
+  }\
+  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
+end)()\
+-- 可移动敌人坐标修正向量\
+local movableEnemyListCorrectionValue = (function()\
+  local point = {\
+    { 926, 656, 0xffff94 },\
+    { 926, 743, 0xe6e3de },\
   }\
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
 end)()\
@@ -3392,6 +3541,8 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)\
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))\
   enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)\
+  local movableEnemyList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.movableEnemyList))\
+  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue, deviation)\
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))\
   rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)\
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))\
@@ -3412,8 +3563,9 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   local enemyPositionList1 = utils.unionList(mapChessboard.enemyPositionList1, transPointListToChessboardPointList(positionMap, enemyList1))\
   local enemyPositionList2 = utils.unionList(mapChessboard.enemyPositionList2, transPointListToChessboardPointList(positionMap, enemyList2))\
   local enemyPositionList3 = utils.unionList(mapChessboard.enemyPositionList3, transPointListToChessboardPointList(positionMap, enemyList3))\
+  local movableEnemyPositionList = utils.unionList(mapChessboard.movableEnemyPositionList, transPointListToChessboardPointList(positionMap, movableEnemyList))\
   local rewardBoxList = utils.unionList(mapChessboard.rewardBoxList, transPointListToChessboardPointList(positionMap, rewardBoxPointList))\
-  local enemyPositionList = utils.unionList(enemyPositionList1, enemyPositionList2, enemyPositionList3)\
+  local enemyPositionList = utils.unionList(enemyPositionList1, enemyPositionList2, enemyPositionList3, movableEnemyPositionList)\
   local bossPosition = utils.unionList(mapChessboard.bossPosition, transPointListToChessboardPointList(positionMap, bossPointList))\
   -- 只有一个boss，如果出现多个boss的情况取最后一个\
   bossPosition = #bossPosition > 1 and { bossPosition[#bossPosition] } or bossPosition\
@@ -3424,6 +3576,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   enemyPositionList1 = utils.subtractionList(enemyPositionList1, myFleetListNotInBattle)\
   enemyPositionList2 = utils.subtractionList(enemyPositionList2, myFleetListNotInBattle)\
   enemyPositionList3 = utils.subtractionList(enemyPositionList3, myFleetListNotInBattle)\
+  movableEnemyPositionList = utils.subtractionList(movableEnemyPositionList, myFleetListNotInBattle)\
 \
   local newMapChessboard = table.assign({}, mapChessboard, {\
     inBattleList = inBattleList,\
@@ -3433,6 +3586,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
     enemyPositionList1 = enemyPositionList1,\
     enemyPositionList2 = enemyPositionList2,\
     enemyPositionList3 = enemyPositionList3,\
+    movableEnemyPositionList = movableEnemyPositionList,\
     bossPosition = bossPosition,\
   })\
 \
@@ -3461,6 +3615,7 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
     enemyPositionList1 = utils.unionList(newMapChessboard.enemyPositionList1, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList1)),\
     enemyPositionList2 = utils.unionList(newMapChessboard.enemyPositionList2, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList2)),\
     enemyPositionList3 = utils.unionList(newMapChessboard.enemyPositionList3, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.enemyPositionList3)),\
+    movableEnemyPositionList = utils.unionList(newMapChessboard.movableEnemyPositionList, findMyFleetTopRightEnemy(checkMyFleetList, mapChessboard.movableEnemyPositionList)),\
     bossPosition = utils.unionList(newMapChessboard.bossPosition, mapChessboard.bossPosition),\
   })\
   return theMapChessBoard\
@@ -3479,7 +3634,7 @@ map.moveToPoint = function(ImgInfo, targetPosition, point, deviation)\
 end\
 \
 map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
-  local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3)\
+  local enemyPositionList = utils.unionList(mapChessboard.enemyPositionList1, mapChessboard.enemyPositionList2, mapChessboard.enemyPositionList3, mapChessboard.movableEnemyPositionList)\
   local enemyPositionListExceptTarget = utils.subtractionList(enemyPositionList, { target })\
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionListExceptTarget)\
   local thePath = AStart(start, target, {\
@@ -3522,16 +3677,19 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
     return table.assign({}, enemy, { weight = 0 })\
   end)\
   local enemyPositionList1 = table.map(mapChessboard.enemyPositionList1, function(enemy)\
-    return table.assign({}, enemy, { weight = 5 })\
+    return table.assign({}, enemy, { weight = 4 })\
   end)\
   local enemyPositionList2 = table.map(mapChessboard.enemyPositionList2, function(enemy)\
-    return table.assign({}, enemy, { weight = 7 })\
+    return table.assign({}, enemy, { weight = 6 })\
   end)\
   local enemyPositionList3 = table.map(mapChessboard.enemyPositionList3, function(enemy)\
-    return table.assign({}, enemy, { weight = 10 })\
+    return table.assign({}, enemy, { weight = 8 })\
+  end)\
+  local movableEnemyPositionList = table.map(mapChessboard.movableEnemyPositionList, function(enemy)\
+    return table.assign({}, enemy, { weight = 2 })\
   end)\
   -- 所有敌人的列表\
-  local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3)\
+  local enemyPositionList = utils.unionList(rewardBoxList, enemyPositionList1, enemyPositionList2, enemyPositionList3, movableEnemyPositionList)\
   local enemyPositionMap = {}\
   for key = 1, #enemyPositionList do\
     local value = enemyPositionList[key]\
@@ -3584,6 +3742,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
   local enemyList1Map = transListToMap(mapChessboard.enemyPositionList1)\
   local enemyList2Map = transListToMap(mapChessboard.enemyPositionList2)\
   local enemyList3Map = transListToMap(mapChessboard.enemyPositionList3)\
+  local movableEnemyListMap = transListToMap(mapChessboard.movableEnemyPositionList)\
   local obstacleMap = transListToMap(mapChessboard.obstacle)\
   local checkList = {\
     { myFleet[1] - 1, myFleet[2], coast = nil }, -- topPoint\
@@ -3596,10 +3755,12 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height\
       and not obstacleMap[point[1] .. ',' .. point[2]] then\
       if enemyList3Map[point[1] .. ',' .. point[2]] then\
-        checkList[key].coast = 3\
+        checkList[key].coast = 4\
       elseif enemyList2Map[point[1] .. ',' .. point[2]] then\
-        checkList[key].coast = 2\
+        checkList[key].coast = 3\
       elseif enemyList1Map[point[1] .. ',' .. point[2]] then\
+        checkList[key].coast = 2\
+      elseif movableEnemyListMap[point[1] .. ',' .. point[2]] then\
         checkList[key].coast = 1\
       end\
       table.insert(canUseList, checkList[key])\
@@ -5166,10 +5327,13 @@ battle.isNotAutoBattle = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 144, 68, 0xffffff }, { 154, 67, 0xffffff },\
-    { 154, 76, 0xe6e6e6 }, { 161, 84, 0xffffff },\
-    { 168, 91, 0xffffff }, { 180, 68, 0xffffff },\
-    { 180, 86, 0xffffff }, { 195, 78, 0xffffff },\
+    { 145, 67, 0xffffff }, { 160, 75, 0xd6dbd6 },\
+    { 168, 84, 0xffffff }, { 143, 91, 0xffffff },\
+    { 181, 67, 0xffffff }, { 195, 77, 0xffffff },\
+    { 207, 88, 0xffffff }, { 220, 77, 0xf7fbf7 },\
+    { 235, 71, 0xffffff }, { 236, 86, 0xffffff },\
+    { 180, 80, 0xffffff }, { 188, 77, 0xf7f7f7 },\
+    { 188, 83, 0xeff3ef }, { 188, 88, 0xffffff },\
     { 207, 88, 0xffffff }, { 205, 71, 0xffffff },\
   }\
   local result = multiColorS(list)\
@@ -5679,6 +5843,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -5823,6 +5988,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -5922,6 +6088,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6067,6 +6234,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6177,6 +6345,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6288,6 +6457,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6394,6 +6564,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6538,6 +6709,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6675,6 +6847,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6785,6 +6958,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -6894,6 +7068,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7023,6 +7198,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7147,6 +7323,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7282,6 +7459,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7392,6 +7570,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7473,6 +7652,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7601,6 +7781,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7711,6 +7892,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7804,6 +7986,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7897,6 +8080,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -7990,6 +8174,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8122,6 +8307,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8268,6 +8454,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8362,6 +8549,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8454,6 +8642,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8531,6 +8720,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8643,6 +8833,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8748,6 +8939,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8854,6 +9046,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8932,6 +9125,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -8995,6 +9189,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9107,6 +9302,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9201,6 +9397,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9288,6 +9485,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9383,6 +9581,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9473,6 +9672,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9584,6 +9784,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9675,6 +9876,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9748,6 +9950,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9839,6 +10042,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -9932,6 +10136,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10077,6 +10282,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10172,6 +10378,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10247,6 +10454,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10325,6 +10533,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10403,6 +10612,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10514,6 +10724,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10607,6 +10818,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10684,6 +10896,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10760,6 +10973,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10835,6 +11049,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10910,6 +11125,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -10988,6 +11204,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11064,6 +11281,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11140,6 +11358,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11203,6 +11422,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11262,6 +11482,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11321,6 +11542,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\
@@ -11378,6 +11600,7 @@ mapEvent.getMapChessboard = function()\
     enemyPositionList1 = {},\
     enemyPositionList2 = {},\
     enemyPositionList3 = {},\
+    movableEnemyPositionList = {},\
     inBattleList = {},\
     selectedArrowList = {},\
     rewardBoxList = {},\

@@ -45,6 +45,7 @@ mapEvent.getMapChessboard = function()
     enemyPositionList1 = {},
     enemyPositionList2 = {},
     enemyPositionList3 = {},
+    movableEnemyPositionList = {},
     inBattleList = {},
     selectedArrowList = {},
     rewardBoxList = {},

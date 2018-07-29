@@ -855,10 +855,13 @@ battle.isNotAutoBattle = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 144, 68, 0xffffff }, { 154, 67, 0xffffff },
-    { 154, 76, 0xe6e6e6 }, { 161, 84, 0xffffff },
-    { 168, 91, 0xffffff }, { 180, 68, 0xffffff },
-    { 180, 86, 0xffffff }, { 195, 78, 0xffffff },
+    { 145, 67, 0xffffff }, { 160, 75, 0xd6dbd6 },
+    { 168, 84, 0xffffff }, { 143, 91, 0xffffff },
+    { 181, 67, 0xffffff }, { 195, 77, 0xffffff },
+    { 207, 88, 0xffffff }, { 220, 77, 0xf7fbf7 },
+    { 235, 71, 0xffffff }, { 236, 86, 0xffffff },
+    { 180, 80, 0xffffff }, { 188, 77, 0xf7f7f7 },
+    { 188, 83, 0xeff3ef }, { 188, 88, 0xffffff },
     { 207, 88, 0xffffff }, { 205, 71, 0xffffff },
   }
   local result = multiColorS(list)
