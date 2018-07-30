@@ -48,17 +48,20 @@ local rewardBoxListCorrectionValue = (function()
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
 end)()
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里
-local corrected = function(list, deviationValue, deviation)
+local corrected = function(list, ...)
   local deviationX = 0
   local deviationY = 0
-  if type(deviation) == 'table' then
-    deviationX = deviation[1] or 0
-    deviationY = deviation[2] or 0
+  local deviations = { ... }
+  for _, v in ipairs(deviations) do
+    if v then
+      deviationX = deviationX + v[1]
+      deviationY = deviationY + v[2]
+    end
   end
   local res = {}
   for key = 1, #list do
     local item = list[key]
-    table.insert(res, { item[1] + deviationValue[1] + deviationX, item[2] + deviationValue[2] + deviationY })
+    table.insert(res, { item[1] + deviationX, item[2] + deviationY })
   end
   return res
 end
@@ -88,52 +91,59 @@ local function listAdjacentGroups(list)
   local theList = table.assign({}, list)
   local theListMap = transListToMap(theList)
   local group = {}
-  while #theList > 0 do
+  while table.first(theListMap) do
     local groupItem = {}
-    table.insert(groupItem, theList[1])
-    theListMap[theList[1][1] .. ',' .. theList[1][2]] = nil
+    local theItem = table.first(theListMap)
+    table.insert(groupItem, theItem)
+    theListMap[theItem[1] .. ',' .. theItem[2]] = nil
     local theIndex = 1
     while theIndex <= #groupItem do
       local item = groupItem[theIndex]
       -- 将相邻的点都加入队列
-      if theListMap[(item[1] + 1) .. ',' .. item[2]] then
-        local index = (item[1] + 1) .. ',' .. item[2]
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. ',' .. item[2]] then
-        local index = (item[1] - 1) .. ',' .. item[2]
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[item[1] .. ',' .. (item[2] + 1)] then
-        local index = item[1] .. ',' .. (item[2] + 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[item[1] .. ',' .. (item[2] - 1)] then
-        local index = item[1] .. ',' .. (item[2] - 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] - 1)] then
-        local index = (item[1] - 1) .. ',' .. (item[2] - 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] - 1)] then
-        local index = (item[1] + 1) .. ',' .. (item[2] - 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] + 1)] then
-        local index = (item[1] - 1) .. ',' .. (item[2] + 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] + 1)] then
-        local index = (item[1] + 1) .. ',' .. (item[2] + 1)
-        table.insert(groupItem, theListMap[index])
-        theListMap[index] = nil
-      end
+      local rightItemIndex = (item[1] + 1) .. ',' .. item[2]
+      local leftItemIndex = (item[1] - 1) .. ',' .. item[2]
+      local bottomItemIndex = item[1] .. ',' .. (item[2] + 1)
+      local topItemIndex = item[1] .. ',' .. (item[2] - 1)
+      local leftTopItemIndex = (item[1] - 1) .. ',' .. (item[2] - 1)
+      local rightTopItemIndex = (item[1] + 1) .. ',' .. (item[2] - 1)
+      local leftBottomItemIndex = (item[1] - 1) .. ',' .. (item[2] + 1)
+      local rightBottomItemIndex = (item[1] + 1) .. ',' .. (item[2] + 1)
 
+      if theListMap[rightItemIndex] then
+        table.insert(groupItem, theListMap[rightItemIndex])
+        theListMap[rightItemIndex] = nil
+      end
+      if theListMap[leftItemIndex] then
+        table.insert(groupItem, theListMap[leftItemIndex])
+        theListMap[leftItemIndex] = nil
+      end
+      if theListMap[bottomItemIndex] then
+        table.insert(groupItem, theListMap[bottomItemIndex])
+        theListMap[bottomItemIndex] = nil
+      end
+      if theListMap[topItemIndex] then
+        table.insert(groupItem, theListMap[topItemIndex])
+        theListMap[topItemIndex] = nil
+      end
+      if theListMap[leftTopItemIndex] then
+        table.insert(groupItem, theListMap[leftTopItemIndex])
+        theListMap[leftTopItemIndex] = nil
+      end
+      if theListMap[rightTopItemIndex] then
+        table.insert(groupItem, theListMap[rightTopItemIndex])
+        theListMap[rightTopItemIndex] = nil
+      end
+      if theListMap[leftBottomItemIndex] then
+        table.insert(groupItem, theListMap[leftBottomItemIndex])
+        theListMap[leftBottomItemIndex] = nil
+      end
+      if theListMap[rightBottomItemIndex] then
+        table.insert(groupItem, theListMap[rightBottomItemIndex])
+        theListMap[rightBottomItemIndex] = nil
+      end
       theIndex = theIndex + 1
     end
     table.insert(group, groupItem)
-    theList = table.values(theListMap)
   end
   return group
 end
@@ -374,7 +384,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
 
   bottomLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}
-
   -- 寻找左右纵向黑线的坐标
   -- 将横向黑线移除
   local tmpGroup = table.assign({}, blackLineGroup)
@@ -438,11 +447,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果左边集合小于50个点，或者高差小于20个像素，则认为左边黑线不存在
+  -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在
   if #leftLineAdjacentMaxList < 50
-    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 20) then
+    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
     leftLinePointList = {}
   end
+
   -- 右边黑线进行精简，使其变成宽度为1的细线
   -- 左边黑线的集合，相邻的点集合最大的一组，用于识别一组点数量是否够多，排除角色上黑点的干扰
   local rightLineAdjacentMaxList = {}
@@ -481,9 +491,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果右边集合小于50个点，或者高差小于20个像素，则认为右边黑线不存在
+  -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在
   if #rightLineAdjacentMaxList < 50
-    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 20) then
+    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
     rightLinePointList = {}
   end
 
@@ -544,14 +554,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
   -- 寻找最靠下的一个组
   topLinePointList = math.minTable(topHorizontalLineGroup, function(item) return item[1][2] end)
-  -- 白字下方13像素才是上边界
-  if topLinePointList then
-    topLinePointList = table.map(topLinePointList, function(item) return { item[1], item[2] + 13 } end)
-  end
 
   local topLinePoint
   if topLinePointList and #topLinePointList > 0 then
-    topLinePoint = topLinePointList[1]
+    -- 白字下方13像素才是上边界
+    topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }
   end
   local bottomLinePoint
   if bottomLinePointList and #bottomLinePointList > 0 then

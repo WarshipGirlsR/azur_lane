@@ -103,6 +103,34 @@ myTable.length = function(tab)
   return #tab
 end
 
+myTable.keyLength = function(tab)
+  local length = 0
+  for k in pairs(tab) do
+    length = length + 1
+  end
+  return length
+end
+
+myTable.first = function(tab)
+  if #tab > 0 then
+    return tab[1]
+  end
+  for k, v in pairs(tab) do
+    return v
+  end
+  return nil
+end
+
+myTable.firstKey = function(tab)
+  if #tab > 0 then
+    return 1
+  end
+  for k, v in pairs(tab) do
+    return k
+  end
+  return nil
+end
+
 myTable.isArray = function(tab)
   if (type(tab) ~= 'table') then
     return false

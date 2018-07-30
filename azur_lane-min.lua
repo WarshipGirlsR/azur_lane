@@ -2897,17 +2897,20 @@ local rewardBoxListCorrectionValue = (function()\
   return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
 end)()\
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里\
-local corrected = function(list, deviationValue, deviation)\
+local corrected = function(list, ...)\
   local deviationX = 0\
   local deviationY = 0\
-  if type(deviation) == 'table' then\
-    deviationX = deviation[1] or 0\
-    deviationY = deviation[2] or 0\
+  local deviations = { ... }\
+  for _, v in ipairs(deviations) do\
+    if v then\
+      deviationX = deviationX + v[1]\
+      deviationY = deviationY + v[2]\
+    end\
   end\
   local res = {}\
   for key = 1, #list do\
     local item = list[key]\
-    table.insert(res, { item[1] + deviationValue[1] + deviationX, item[2] + deviationValue[2] + deviationY })\
+    table.insert(res, { item[1] + deviationX, item[2] + deviationY })\
   end\
   return res\
 end\
@@ -2937,52 +2940,59 @@ local function listAdjacentGroups(list)\
   local theList = table.assign({}, list)\
   local theListMap = transListToMap(theList)\
   local group = {}\
-  while #theList > 0 do\
+  while table.first(theListMap) do\
     local groupItem = {}\
-    table.insert(groupItem, theList[1])\
-    theListMap[theList[1][1] .. ',' .. theList[1][2]] = nil\
+    local theItem = table.first(theListMap)\
+    table.insert(groupItem, theItem)\
+    theListMap[theItem[1] .. ',' .. theItem[2]] = nil\
     local theIndex = 1\
     while theIndex <= #groupItem do\
       local item = groupItem[theIndex]\
       -- 将相邻的点都加入队列\
-      if theListMap[(item[1] + 1) .. ',' .. item[2]] then\
-        local index = (item[1] + 1) .. ',' .. item[2]\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. ',' .. item[2]] then\
-        local index = (item[1] - 1) .. ',' .. item[2]\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[item[1] .. ',' .. (item[2] + 1)] then\
-        local index = item[1] .. ',' .. (item[2] + 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[item[1] .. ',' .. (item[2] - 1)] then\
-        local index = item[1] .. ',' .. (item[2] - 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] - 1)] then\
-        local index = (item[1] - 1) .. ',' .. (item[2] - 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] - 1)] then\
-        local index = (item[1] + 1) .. ',' .. (item[2] - 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[(item[1] - 1) .. ',' .. (item[2] + 1)] then\
-        local index = (item[1] - 1) .. ',' .. (item[2] + 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      elseif theListMap[(item[1] + 1) .. ',' .. (item[2] + 1)] then\
-        local index = (item[1] + 1) .. ',' .. (item[2] + 1)\
-        table.insert(groupItem, theListMap[index])\
-        theListMap[index] = nil\
-      end\
+      local rightItemIndex = (item[1] + 1) .. ',' .. item[2]\
+      local leftItemIndex = (item[1] - 1) .. ',' .. item[2]\
+      local bottomItemIndex = item[1] .. ',' .. (item[2] + 1)\
+      local topItemIndex = item[1] .. ',' .. (item[2] - 1)\
+      local leftTopItemIndex = (item[1] - 1) .. ',' .. (item[2] - 1)\
+      local rightTopItemIndex = (item[1] + 1) .. ',' .. (item[2] - 1)\
+      local leftBottomItemIndex = (item[1] - 1) .. ',' .. (item[2] + 1)\
+      local rightBottomItemIndex = (item[1] + 1) .. ',' .. (item[2] + 1)\
 \
+      if theListMap[rightItemIndex] then\
+        table.insert(groupItem, theListMap[rightItemIndex])\
+        theListMap[rightItemIndex] = nil\
+      end\
+      if theListMap[leftItemIndex] then\
+        table.insert(groupItem, theListMap[leftItemIndex])\
+        theListMap[leftItemIndex] = nil\
+      end\
+      if theListMap[bottomItemIndex] then\
+        table.insert(groupItem, theListMap[bottomItemIndex])\
+        theListMap[bottomItemIndex] = nil\
+      end\
+      if theListMap[topItemIndex] then\
+        table.insert(groupItem, theListMap[topItemIndex])\
+        theListMap[topItemIndex] = nil\
+      end\
+      if theListMap[leftTopItemIndex] then\
+        table.insert(groupItem, theListMap[leftTopItemIndex])\
+        theListMap[leftTopItemIndex] = nil\
+      end\
+      if theListMap[rightTopItemIndex] then\
+        table.insert(groupItem, theListMap[rightTopItemIndex])\
+        theListMap[rightTopItemIndex] = nil\
+      end\
+      if theListMap[leftBottomItemIndex] then\
+        table.insert(groupItem, theListMap[leftBottomItemIndex])\
+        theListMap[leftBottomItemIndex] = nil\
+      end\
+      if theListMap[rightBottomItemIndex] then\
+        table.insert(groupItem, theListMap[rightBottomItemIndex])\
+        theListMap[rightBottomItemIndex] = nil\
+      end\
       theIndex = theIndex + 1\
     end\
     table.insert(group, groupItem)\
-    theList = table.values(theListMap)\
   end\
   return group\
 end\
@@ -3223,7 +3233,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   end\
 \
   bottomLinePointList = math.minTable(bottomHorizontalLineGroup, function(item) return item[1][2] end) or {}\
-\
   -- 寻找左右纵向黑线的坐标\
   -- 将横向黑线移除\
   local tmpGroup = table.assign({}, blackLineGroup)\
@@ -3287,11 +3296,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果左边集合小于50个点，或者高差小于20个像素，则认为左边黑线不存在\
+  -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在\
   if #leftLineAdjacentMaxList < 50\
-    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 20) then\
+    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then\
     leftLinePointList = {}\
   end\
+\
   -- 右边黑线进行精简，使其变成宽度为1的细线\
   -- 左边黑线的集合，相邻的点集合最大的一组，用于识别一组点数量是否够多，排除角色上黑点的干扰\
   local rightLineAdjacentMaxList = {}\
@@ -3330,9 +3340,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果右边集合小于50个点，或者高差小于20个像素，则认为右边黑线不存在\
+  -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在\
   if #rightLineAdjacentMaxList < 50\
-    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 20) then\
+    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then\
     rightLinePointList = {}\
   end\
 \
@@ -3393,14 +3403,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
   end\
   -- 寻找最靠下的一个组\
   topLinePointList = math.minTable(topHorizontalLineGroup, function(item) return item[1][2] end)\
-  -- 白字下方13像素才是上边界\
-  if topLinePointList then\
-    topLinePointList = table.map(topLinePointList, function(item) return { item[1], item[2] + 13 } end)\
-  end\
 \
   local topLinePoint\
   if topLinePointList and #topLinePointList > 0 then\
-    topLinePoint = topLinePointList[1]\
+    -- 白字下方13像素才是上边界\
+    topLinePoint = { topLinePointList[1][1], topLinePointList[1][2] + 13 }\
   end\
   local bottomLinePoint\
   if bottomLinePointList and #bottomLinePointList > 0 then\
@@ -5760,17 +5767,17 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = { 730, 331 },\
+      leftTop = { 669, 320 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 730, 331, 0x080000 }, false, false, false, false, false, { 1716, 331, 0x10283a }, },\
-        { { 724, 457, 0x000000 }, false, false, false, false, false, { 1737, 457, 0x29415a }, },\
-        { { 717, 592, 0x000000 }, false, false, false, false, false, { 1761, 592, 0x293d52 }, },\
-        { { 709, 735, 0x000000 }, false, false, false, false, false, { 1785, 735, 0x31455a }, },\
-        { { 701, 887, 0x000000 }, false, false, false, false, false, { 1811, 887, 0x31455a }, }\
+        { { 669, 320, 0x211821 }, false, false, false, false, false, { 1655, 320, 0x191c29 }, },\
+        { { 661, 447, 0x000000 }, false, false, false, false, false, { 1675, 447, 0x212431 }, },\
+        { { 652, 581, 0x000000 }, false, false, false, false, false, { 1696, 581, 0x081c29 }, },\
+        { { 643, 724, 0x312800 }, false, false, false, false, false, { 1718, 724, 0x213542 }, },\
+        { { 633, 875, 0x000000 }, false, false, false, false, false, { 1742, 875, 0x102431 }, },\
       },\
       pointMap = {},\
     },\
@@ -5790,22 +5797,6 @@ mapEvent.getCheckpositionList = function()\
       pointMap = {},\
     },\
     {\
-      leftTop = { 638, 216 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { { 638, 216, 0x293531 }, false, false, false, false, false, { 1624, 216, 0x293d4a }, },\
-        { { 629, 339, 0x000000 }, false, false, false, false, false, { 1643, 339, 0x29415a }, },\
-        { { 619, 470, 0x000000 }, false, false, false, false, false, { 1663, 470, 0x293d52 }, },\
-        { { 608, 610, 0x211800 }, false, false, false, false, false, { 1685, 610, 0x29455a }, },\
-        { { 598, 758, 0x000000 }, false, false, false, false, false, { 1708, 758, 0x3a4563 }, },\
-        { { 586, 915, 0x000000 }, false, false, false, false, false, { 1732, 915, 0x101c21 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
       leftTop = nil,\
       rightTop = { 1616, 219 },\
       leftBottom = nil,\
@@ -5818,6 +5809,22 @@ mapEvent.getCheckpositionList = function()\
         { false, { 237, 613, 0x42455a }, false, false, false, false, false, false, false, { 1676, 613, 0x000000 }, },\
         { false, { 215, 761, 0x3a4563 }, false, false, false, false, false, false, false, { 1700, 761, 0x314d52 }, },\
         { false, { 190, 919, 0x524d5a }, false, false, false, false, false, false, false, { 1722, 919, 0x212421 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 629, 203 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        { { 629, 203, 0x3a2429 }, false, false, false, false, false, false, { 1779, 203, 0x191419 }, },\
+        { { 620, 326, 0x000000 }, false, false, false, false, false, false, { 1803, 326, 0x082031 }, },\
+        { { 610, 457, 0x000000 }, false, false, false, false, false, false, { 1828, 457, 0x081c29 }, },\
+        { { 599, 596, 0x312808 }, false, false, false, false, false, false, { 1854, 596, 0x3a4152 }, },\
+        { { 588, 743, 0x000000 }, false, false, false, false, false, false, { 1883, 743, 0x212d3a }, },\
+        { { 575, 901, 0x000000 }, false, false, false, false, false, false, { 1912, 901, 0x102831 }, },\
       },\
       pointMap = {},\
     },\
@@ -17339,6 +17346,34 @@ end\
 \
 myTable.length = function(tab)\
   return #tab\
+end\
+\
+myTable.keyLength = function(tab)\
+  local length = 0\
+  for k in pairs(tab) do\
+    length = length + 1\
+  end\
+  return length\
+end\
+\
+myTable.first = function(tab)\
+  if #tab > 0 then\
+    return tab[1]\
+  end\
+  for k, v in pairs(tab) do\
+    return v\
+  end\
+  return nil\
+end\
+\
+myTable.firstKey = function(tab)\
+  if #tab > 0 then\
+    return 1\
+  end\
+  for k, v in pairs(tab) do\
+    return k\
+  end\
+  return nil\
 end\
 \
 myTable.isArray = function(tab)\
