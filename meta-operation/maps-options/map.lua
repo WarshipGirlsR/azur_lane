@@ -8,45 +8,60 @@ local map = {}
 
 
 -- 舰队坐标修正向量
-local myFleetListCorrectionValue = (function()
+local myFleetListCorrectionValue = function()
   local point = {
     { 742, 367, 0xffffff },
     { 617, 601, 0x529eb5 },
   }
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
-end)()
+  return {
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
+    chessBoard = { 1, 0 },
+  }
+end
 -- 选中的舰队头上的绿色箭头的坐标修正向量
-local selectedArrowCorrectionValue = (function()
+local selectedArrowCorrectionValue = function()
   local point = {
     { 455, 272, 0x3aff84 },
     { 456, 568, 0xa49ead },
   }
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
-end)()
+  return {
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
+    chessBoard = { 2, 0 },
+  }
+end
 -- 敌人坐标修正向量
-local enemyListCorrectionValue = (function()
+local enemyListCorrectionValue = function()
   local point = {
     { 846, 438, 0xdeaa00 },
     { 899, 500, 0xcebe94 },
   }
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
-end)()
+  return {
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
+    chessBoard = { 0, 0 },
+  }
+end
 -- 可移动敌人坐标修正向量
-local movableEnemyListCorrectionValue = (function()
+local movableEnemyListCorrectionValue = function()
   local point = {
     { 926, 656, 0xffff94 },
     { 926, 743, 0xe6e3de },
   }
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
-end)()
+  return {
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
+    chessBoard = { 0, 0 },
+  }
+end
 -- 奖励点坐标修正向量
-local rewardBoxListCorrectionValue = (function()
+local rewardBoxListCorrectionValue = function()
   local point = {
     { 1126, 859, 0x8cffef },
     { 1122, 939, 0x000810 },
   }
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }
-end)()
+  return {
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
+    chessBoard = { 0, 0 },
+  }
+end) ()
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里
 local corrected = function(list, ...)
   local deviationX = 0
@@ -168,7 +183,7 @@ local function checkPointPosition(checkPoint, topPoint, bottomPoint)
 end
 
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
-local function transPointListToChessboardPointList(positionMap, positionList)
+local function transPointListToChessboardPointList(positionMap, positionList, chessboardDeviation)
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
@@ -726,20 +741,20 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
 
   -- 扫描屏幕上的对象
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))
-  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue, deviation)
+  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue.point, deviation)
 
   local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))
-  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue, deviation)
+  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue.point, deviation)
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue, deviation)
+  enemyList1 = corrected(enemyList1, enemyListCorrectionValue.point, deviation)
   local enemyList2 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList2))
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)
+  enemyList2 = corrected(enemyList2, enemyListCorrectionValue.point, deviation)
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)
+  enemyList3 = corrected(enemyList3, enemyListCorrectionValue.point, deviation)
   local movableEnemyList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.movableEnemyList))
-  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue, deviation)
+  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue.point, deviation)
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))
-  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)
+  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue.point, deviation)
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))
   local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))
 
