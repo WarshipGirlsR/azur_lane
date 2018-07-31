@@ -8,14 +8,16 @@ local map = {}
 
 
 -- 舰队坐标修正向量
-local myFleetListCorrectionValue = function()
-  local point = {
+local myFleetListCorrectionValue = function(point)
+  local newPoint = {}
+  local vector = {
     { 742, 367, 0xffffff },
     { 617, 601, 0x529eb5 },
   }
+  local chessBoardVector = { 1, 0 }
   return {
-    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
-    chessBoard = { 1, 0 },
+    point[1],
+    point[2],
   }
 end
 -- 选中的舰队头上的绿色箭头的坐标修正向量
@@ -183,7 +185,9 @@ local function checkPointPosition(checkPoint, topPoint, bottomPoint)
 end
 
 -- 将屏幕坐标列表转换为地图棋盘坐标列表
-local function transPointListToChessboardPointList(positionMap, positionList, chessboardDeviation)
+local function transPointListToChessboardPointList(positionMap, positionList, deviation, chessboardDeviation)
+  deviation = deviation or { 0, 0 }
+  chessboardDeviation = chessboardDeviation or { 0, 0 }
   local result = {}
   -- 因为有可能有空的坐标，所以需要处理
   -- 计算出地图棋盘的宽度
@@ -465,7 +469,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
   -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在
   if #leftLineAdjacentMaxList < 50
-      or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
+    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
     leftLinePointList = {}
   end
 
@@ -509,7 +513,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
   -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在
   if #rightLineAdjacentMaxList < 50
-      or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
+    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
     rightLinePointList = {}
   end
 
@@ -813,8 +817,8 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
     local res = {}
     for key, item in ipairs(myFleetList) do
       if oldMap[utils.index(item, { 1, 0 })]
-          or oldMap[utils.index(item, { 1, -1 })]
-          or oldMap[utils.index(item, { 0, -1 })] then
+        or oldMap[utils.index(item, { 1, -1 })]
+        or oldMap[utils.index(item, { 0, -1 })] then
         table.insert(res, item)
       end
     end
@@ -964,7 +968,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-        and not obstacleMap[utils.index(point)] then
+      and not obstacleMap[utils.index(point)] then
       if enemyList3Map[utils.index(point)] then
         checkList[key].coast = 4
       elseif enemyList2Map[utils.index(point)] then

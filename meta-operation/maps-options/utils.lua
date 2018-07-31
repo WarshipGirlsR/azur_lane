@@ -1,5 +1,23 @@
 local utils = {}
 
+-- 点坐标向量相加
+utils.sumVector = function(...)
+  local pointList = { ... }
+  local result = { 0, 0 }
+  for _, v ipairs (pointList) do
+    if type(v) == 'table' and v[1] and v[2] then
+      result[1] = result[1] + v[1]
+      result[2] = result[2] + v[2]
+    end
+  end
+  return result
+end
+
+-- 将点转换为索引字符串
+utils.index = function(point)
+  return point[1] .. ',' .. point[2]
+end
+
 -- 点坐标的并集
 utils.unionList = function(...)
   local sets = { ... }
@@ -9,9 +27,10 @@ utils.unionList = function(...)
     local set = sets[key]
     for key2 = 1, #set do
       local point = set[key2]
-      if not setMap[point[1] .. ',' .. point[2]] then
+      local pointIndex = utils.index(point)
+      if not setMap[pointIndex] then
         table.insert(result, point)
-        setMap[point[1] .. ',' .. point[2]] = point
+        setMap[pointIndex] = point
       end
     end
   end
@@ -19,34 +38,10 @@ utils.unionList = function(...)
 end
 
 -- 点坐标的交集
-utils.intersectionList = function(...)
+utils.intersectionList = function(fSet, ...)
   local sets = { ... }
-  local setsLength = #sets
-  local setCountMap = {}
-  local pointCount = {}
+  local resultMap = table.assign({}, fSet)
   local result = {}
-  for key = 1, #sets do
-    local set = sets[key]
-    for key2 = 1, #set do
-      local point = set[key2]
-      local pointIndex = point[1] .. ',' .. point[2]
-      if not setCountMap[pointIndex] then
-        setCountMap[pointIndex] = 0
-      end
-      setCountMap[pointIndex] = setCountMap[pointIndex] + 1
-    end
-  end
-  for key = 1, #sets do
-    local set = sets[key]
-    for key2 = 1, #set do
-      local point = set[key2]
-      local pointIndex = point[1] .. ',' .. point[2]
-      if setCountMap[pointIndex] and setCountMap[pointIndex] >= setsLength then
-        table.insert(result, point)
-        setCountMap[pointIndex] = nil
-      end
-    end
-  end
 
   return result
 end
@@ -76,17 +71,4 @@ utils.subtractionList = function(target, ...)
   return result
 end
 
--- 将点转换为索引字符串，会将多个点向量相加，方便写偏移（否则就要自己加偏移很麻烦）
-utils.index = function(...)
-  local pointList = { ... }
-  local result = { 0, 0 }
-  for _, v ipairs (pointList) do
-    if type(v) == 'table' and v[1] and v[2] then
-      result[1] = result[1] + v[1]
-      result[2] = result[2] + v[2]
-    end
-  end
-  return result[1] .. ',' .. result[2]
-end
-
-return utils
+return table.assign({}, utils)
