@@ -76,4 +76,17 @@ utils.subtractionList = function(target, ...)
   return result
 end
 
+-- 将点转换为索引字符串，会将多个点向量相加，方便写偏移（否则就要自己加偏移很麻烦）
+utils.index = function(...)
+  local pointList = { ... }
+  local result = { 0, 0 }
+  for _, v ipairs (pointList) do
+    if type(v) == 'table' and v[1] and v[2] then
+      result[1] = result[1] + v[1]
+      result[2] = result[2] + v[2]
+    end
+  end
+  return result[1] .. ',' .. result[2]
+end
+
 return utils

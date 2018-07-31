@@ -96,7 +96,7 @@ end
 local function transListToMap(list)
   local result = {}
   for _, item in pairs(list) do
-    result[item[1] .. ',' .. item[2]] = item
+    result[utils.index(item)] = item
   end
   return result
 end
@@ -110,19 +110,19 @@ local function listAdjacentGroups(list)
     local groupItem = {}
     local theItem = table.first(theListMap)
     table.insert(groupItem, theItem)
-    theListMap[theItem[1] .. ',' .. theItem[2]] = nil
+    theListMap[utils.index(theItem)] = nil
     local theIndex = 1
     while theIndex <= #groupItem do
       local item = groupItem[theIndex]
       -- 将相邻的点都加入队列
-      local rightItemIndex = (item[1] + 1) .. ',' .. item[2]
-      local leftItemIndex = (item[1] - 1) .. ',' .. item[2]
-      local bottomItemIndex = item[1] .. ',' .. (item[2] + 1)
-      local topItemIndex = item[1] .. ',' .. (item[2] - 1)
-      local leftTopItemIndex = (item[1] - 1) .. ',' .. (item[2] - 1)
-      local rightTopItemIndex = (item[1] + 1) .. ',' .. (item[2] - 1)
-      local leftBottomItemIndex = (item[1] - 1) .. ',' .. (item[2] + 1)
-      local rightBottomItemIndex = (item[1] + 1) .. ',' .. (item[2] + 1)
+      local rightItemIndex = utils.index(item, { 1, 0 })
+      local leftItemIndex = utils.index(item, { -1, 0 })
+      local bottomItemIndex = utils.index(item, { 0, 1 })
+      local topItemIndex = utils.index(item, { 0, -1 })
+      local leftTopItemIndex = utils.index(item, { -1, -1 })
+      local rightTopItemIndex = utils.index(item, { 1, -1 })
+      local leftBottomItemIndex = utils.index(item, { -1, 1 })
+      local rightBottomItemIndex = utils.index(item, { 1, 1 })
 
       if theListMap[rightItemIndex] then
         table.insert(groupItem, theListMap[rightItemIndex])
@@ -294,7 +294,7 @@ local function makePointMap(list)
   local theMap = {}
   for key = 1, #list do
     local point = list[key]
-    theMap[point[1] .. ',' .. point[2]] = point
+    theMap[utils.index(point)] = point
   end
   return theMap
 end
@@ -352,7 +352,7 @@ map.calCheckpositionList = function(list)
       if rol and positionMap[rowNum + 1] then
         for colNum, col in ipairs(rol) do
           if col and rol[colNum + 1] then
-            list[key].pointMap[rowNum .. ',' .. colNum] = col
+            list[key].pointMap[utils.index({ rowNum, colNum })] = col
           end
         end
       end
@@ -437,8 +437,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     local leftLineMap = makePointMap(leftLineAdjacentMaxList)
     local point = leftTopPoint
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do
-      if leftLineMap[key .. ',' .. leftTopPoint[2]] then
-        point = leftLineMap[key .. ',' .. leftTopPoint[2]]
+      local pointIndex = utils.index({ key, leftTopPoint[2] })
+      if leftLineMap[pointIndex] then
+        point = leftLineMap[pointIndex]
       else
         break
       end
@@ -449,8 +450,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       local _ = (function()
         for theY = (point[2] + 1), point[2] + 20 do
           for theX = point[1], (point[1] - 10), -1 do
-            if leftLineMap[theX .. ',' .. theY] then
-              point = leftLineMap[theX .. ',' .. theY]
+            if leftLineMap[utils.index({ theX, theY })] then
+              point = leftLineMap[utils.index({ theX, theY })]
               table.insert(leftLinePointList, point)
               return
             end
@@ -464,7 +465,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
   -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在
   if #leftLineAdjacentMaxList < 50
-    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
+      or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
     leftLinePointList = {}
   end
 
@@ -481,8 +482,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
     local rightLineMap = makePointMap(rightLineList)
     local point = rightTopPoint
     for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do
-      if rightLineMap[key .. ',' .. rightTopPoint[2]] then
-        point = rightLineMap[key .. ',' .. rightTopPoint[2]]
+      if rightLineMap[utils.index({ key, rightTopPoint[2] })] then
+        point = rightLineMap[utils.index({ key, rightTopPoint[2] })]
       else
         break
       end
@@ -493,8 +494,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       local _ = (function()
         for theY = (point[2] + 1), point[2] + 20 do
           for theX = point[1], (point[1] + 10) do
-            if rightLineMap[theX .. ',' .. theY] then
-              point = rightLineMap[theX .. ',' .. theY]
+            if rightLineMap[utils.index({ theX, theY })] then
+              point = rightLineMap[utils.index({ theX, theY })]
               table.insert(rightLinePointList, point)
               return
             end
@@ -508,7 +509,7 @@ map.getMapPosition = function(ImgInfo, targetPosition)
   end
   -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在
   if #rightLineAdjacentMaxList < 50
-    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
+      or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
     rightLinePointList = {}
   end
 
@@ -765,7 +766,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)
   local inBattleMap = makePointMap(inBattleList)
   for key = 1, #myFleetList do
     local point = myFleetList[key]
-    if inBattleMap[(point[1] - 1) .. ',' .. point[2]] then
+    if inBattleMap[utils.index(point, { -1, 0 })] then
       myFleetList[key][1] = point[1] - 1
     end
   end
@@ -811,9 +812,9 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)
   function findMyFleetTopRightEnemy(myFleetList, oldMap)
     local res = {}
     for key, item in ipairs(myFleetList) do
-      if oldMap[(item[1] + 1) .. ',' .. item[2]]
-        or oldMap[(item[1] + 1) .. ',' .. (item[2] - 1)]
-        or oldMap[(item[1]) .. ',' .. (item[2] - 1)] then
+      if oldMap[utils.index(item, { 1, 0 })]
+          or oldMap[utils.index(item, { 1, -1 })]
+          or oldMap[utils.index(item, { 0, -1 })] then
         table.insert(res, item)
       end
     end
@@ -869,7 +870,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)
     for key = 1, #thePath do
       local p = thePath[key]
       table.insert(targetPath, p)
-      if enemyPositionMap[p[1] .. ',' .. p[2]] then
+      if enemyPositionMap[utils.index(p)] then
         return p, targetPath, thePath
       end
     end
@@ -903,7 +904,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
   local enemyPositionMap = {}
   for key = 1, #enemyPositionList do
     local value = enemyPositionList[key]
-    enemyPositionMap[value[1] .. ',' .. value[2]] = value
+    enemyPositionMap[utils.index(value)] = value
   end
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)
 
@@ -930,7 +931,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)
           minCoastPath = thePath
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上
           for _, value in ipairs(thePath) do
-            if enemyPositionMap[value[1] .. ',' .. value[2]] then
+            if enemyPositionMap[utils.index(value)] then
               minCoastEnemy = value
               break
             end
@@ -963,14 +964,14 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
   local canUseList = {}
   for key, point in ipairs(checkList) do
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height
-      and not obstacleMap[point[1] .. ',' .. point[2]] then
-      if enemyList3Map[point[1] .. ',' .. point[2]] then
+        and not obstacleMap[utils.index(point)] then
+      if enemyList3Map[utils.index(point)] then
         checkList[key].coast = 4
-      elseif enemyList2Map[point[1] .. ',' .. point[2]] then
+      elseif enemyList2Map[utils.index(point)] then
         checkList[key].coast = 3
-      elseif enemyList1Map[point[1] .. ',' .. point[2]] then
+      elseif enemyList1Map[utils.index(point)] then
         checkList[key].coast = 2
-      elseif movableEnemyListMap[point[1] .. ',' .. point[2]] then
+      elseif movableEnemyListMap[utils.index(point)] then
         checkList[key].coast = 1
       end
       table.insert(canUseList, checkList[key])
