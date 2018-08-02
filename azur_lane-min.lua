@@ -535,6 +535,24 @@ return AStart;\
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./meta-operation/maps-options/utils.lua"] = { path = "./meta-operation/maps-options/utils.lua", name = "./meta-operation/maps-options/utils.lua", source = "local utils = {}\
 \
+-- 点坐标向量相加\
+utils.sumVector = function(...)\
+  local pointList = { ... }\
+  local result = { 0, 0 }\
+  for _, v ipairs (pointList) do\
+    if type(v) == 'table' and v[1] and v[2] then\
+      result[1] = result[1] + v[1]\
+      result[2] = result[2] + v[2]\
+    end\
+  end\
+  return result\
+end\
+\
+-- 将点转换为索引字符串\
+utils.index = function(point)\
+  return point[1] .. ',' .. point[2]\
+end\
+\
 -- 点坐标的并集\
 utils.unionList = function(...)\
   local sets = { ... }\
@@ -544,9 +562,10 @@ utils.unionList = function(...)\
     local set = sets[key]\
     for key2 = 1, #set do\
       local point = set[key2]\
-      if not setMap[point[1] .. ',' .. point[2]] then\
+      local pointIndex = utils.index(point)\
+      if not setMap[pointIndex] then\
         table.insert(result, point)\
-        setMap[point[1] .. ',' .. point[2]] = point\
+        setMap[pointIndex] = point\
       end\
     end\
   end\
@@ -554,34 +573,10 @@ utils.unionList = function(...)\
 end\
 \
 -- 点坐标的交集\
-utils.intersectionList = function(...)\
+utils.intersectionList = function(fSet, ...)\
   local sets = { ... }\
-  local setsLength = #sets\
-  local setCountMap = {}\
-  local pointCount = {}\
+  local resultMap = table.assign({}, fSet)\
   local result = {}\
-  for key = 1, #sets do\
-    local set = sets[key]\
-    for key2 = 1, #set do\
-      local point = set[key2]\
-      local pointIndex = point[1] .. ',' .. point[2]\
-      if not setCountMap[pointIndex] then\
-        setCountMap[pointIndex] = 0\
-      end\
-      setCountMap[pointIndex] = setCountMap[pointIndex] + 1\
-    end\
-  end\
-  for key = 1, #sets do\
-    local set = sets[key]\
-    for key2 = 1, #set do\
-      local point = set[key2]\
-      local pointIndex = point[1] .. ',' .. point[2]\
-      if setCountMap[pointIndex] and setCountMap[pointIndex] >= setsLength then\
-        table.insert(result, point)\
-        setCountMap[pointIndex] = nil\
-      end\
-    end\
-  end\
 \
   return result\
 end\
@@ -611,7 +606,7 @@ utils.subtractionList = function(target, ...)\
   return result\
 end\
 \
-return utils\
+return table.assign({}, utils)\
 " }
 
 
@@ -2857,45 +2852,62 @@ local map = {}\
 \
 \
 -- 舰队坐标修正向量\
-local myFleetListCorrectionValue = (function()\
-  local point = {\
+local myFleetListCorrectionValue = function(point)\
+  local newPoint = {}\
+  local vector = {\
     { 742, 367, 0xffffff },\
     { 617, 601, 0x529eb5 },\
   }\
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
-end)()\
+  local chessBoardVector = { 1, 0 }\
+  return {\
+    point[1],\
+    point[2],\
+  }\
+end\
 -- 选中的舰队头上的绿色箭头的坐标修正向量\
-local selectedArrowCorrectionValue = (function()\
+local selectedArrowCorrectionValue = function()\
   local point = {\
     { 455, 272, 0x3aff84 },\
     { 456, 568, 0xa49ead },\
   }\
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
-end)()\
+  return {\
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
+    chessBoard = { 2, 0 },\
+  }\
+end\
 -- 敌人坐标修正向量\
-local enemyListCorrectionValue = (function()\
+local enemyListCorrectionValue = function()\
   local point = {\
     { 846, 438, 0xdeaa00 },\
     { 899, 500, 0xcebe94 },\
   }\
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
-end)()\
+  return {\
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
+    chessBoard = { 0, 0 },\
+  }\
+end\
 -- 可移动敌人坐标修正向量\
-local movableEnemyListCorrectionValue = (function()\
+local movableEnemyListCorrectionValue = function()\
   local point = {\
     { 926, 656, 0xffff94 },\
     { 926, 743, 0xe6e3de },\
   }\
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
-end)()\
+  return {\
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
+    chessBoard = { 0, 0 },\
+  }\
+end\
 -- 奖励点坐标修正向量\
-local rewardBoxListCorrectionValue = (function()\
+local rewardBoxListCorrectionValue = function()\
   local point = {\
     { 1126, 859, 0x8cffef },\
     { 1122, 939, 0x000810 },\
   }\
-  return { point[2][1] - point[1][1], point[2][2] - point[1][2] }\
-end)()\
+  return {\
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
+    chessBoard = { 0, 0 },\
+  }\
+end) ()\
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里\
 local corrected = function(list, ...)\
   local deviationX = 0\
@@ -2930,7 +2942,7 @@ end\
 local function transListToMap(list)\
   local result = {}\
   for _, item in pairs(list) do\
-    result[item[1] .. ',' .. item[2]] = item\
+    result[utils.index(item)] = item\
   end\
   return result\
 end\
@@ -2944,19 +2956,19 @@ local function listAdjacentGroups(list)\
     local groupItem = {}\
     local theItem = table.first(theListMap)\
     table.insert(groupItem, theItem)\
-    theListMap[theItem[1] .. ',' .. theItem[2]] = nil\
+    theListMap[utils.index(theItem)] = nil\
     local theIndex = 1\
     while theIndex <= #groupItem do\
       local item = groupItem[theIndex]\
       -- 将相邻的点都加入队列\
-      local rightItemIndex = (item[1] + 1) .. ',' .. item[2]\
-      local leftItemIndex = (item[1] - 1) .. ',' .. item[2]\
-      local bottomItemIndex = item[1] .. ',' .. (item[2] + 1)\
-      local topItemIndex = item[1] .. ',' .. (item[2] - 1)\
-      local leftTopItemIndex = (item[1] - 1) .. ',' .. (item[2] - 1)\
-      local rightTopItemIndex = (item[1] + 1) .. ',' .. (item[2] - 1)\
-      local leftBottomItemIndex = (item[1] - 1) .. ',' .. (item[2] + 1)\
-      local rightBottomItemIndex = (item[1] + 1) .. ',' .. (item[2] + 1)\
+      local rightItemIndex = utils.index(item, { 1, 0 })\
+      local leftItemIndex = utils.index(item, { -1, 0 })\
+      local bottomItemIndex = utils.index(item, { 0, 1 })\
+      local topItemIndex = utils.index(item, { 0, -1 })\
+      local leftTopItemIndex = utils.index(item, { -1, -1 })\
+      local rightTopItemIndex = utils.index(item, { 1, -1 })\
+      local leftBottomItemIndex = utils.index(item, { -1, 1 })\
+      local rightBottomItemIndex = utils.index(item, { 1, 1 })\
 \
       if theListMap[rightItemIndex] then\
         table.insert(groupItem, theListMap[rightItemIndex])\
@@ -3017,7 +3029,9 @@ local function checkPointPosition(checkPoint, topPoint, bottomPoint)\
 end\
 \
 -- 将屏幕坐标列表转换为地图棋盘坐标列表\
-local function transPointListToChessboardPointList(positionMap, positionList)\
+local function transPointListToChessboardPointList(positionMap, positionList, deviation, chessboardDeviation)\
+  deviation = deviation or { 0, 0 }\
+  chessboardDeviation = chessboardDeviation or { 0, 0 }\
   local result = {}\
   -- 因为有可能有空的坐标，所以需要处理\
   -- 计算出地图棋盘的宽度\
@@ -3128,7 +3142,7 @@ local function makePointMap(list)\
   local theMap = {}\
   for key = 1, #list do\
     local point = list[key]\
-    theMap[point[1] .. ',' .. point[2]] = point\
+    theMap[utils.index(point)] = point\
   end\
   return theMap\
 end\
@@ -3186,7 +3200,7 @@ map.calCheckpositionList = function(list)\
       if rol and positionMap[rowNum + 1] then\
         for colNum, col in ipairs(rol) do\
           if col and rol[colNum + 1] then\
-            list[key].pointMap[rowNum .. ',' .. colNum] = col\
+            list[key].pointMap[utils.index({ rowNum, colNum })] = col\
           end\
         end\
       end\
@@ -3271,8 +3285,9 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     local leftLineMap = makePointMap(leftLineAdjacentMaxList)\
     local point = leftTopPoint\
     for key = leftTopPoint[1], leftTopPoint[1] + 100 do\
-      if leftLineMap[key .. ',' .. leftTopPoint[2]] then\
-        point = leftLineMap[key .. ',' .. leftTopPoint[2]]\
+      local pointIndex = utils.index({ key, leftTopPoint[2] })\
+      if leftLineMap[pointIndex] then\
+        point = leftLineMap[pointIndex]\
       else\
         break\
       end\
@@ -3283,8 +3298,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       local _ = (function()\
         for theY = (point[2] + 1), point[2] + 20 do\
           for theX = point[1], (point[1] - 10), -1 do\
-            if leftLineMap[theX .. ',' .. theY] then\
-              point = leftLineMap[theX .. ',' .. theY]\
+            if leftLineMap[utils.index({ theX, theY })] then\
+              point = leftLineMap[utils.index({ theX, theY })]\
               table.insert(leftLinePointList, point)\
               return\
             end\
@@ -3315,8 +3330,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
     local rightLineMap = makePointMap(rightLineList)\
     local point = rightTopPoint\
     for key = rightTopPoint[1], rightTopPoint[1] - 100, -1 do\
-      if rightLineMap[key .. ',' .. rightTopPoint[2]] then\
-        point = rightLineMap[key .. ',' .. rightTopPoint[2]]\
+      if rightLineMap[utils.index({ key, rightTopPoint[2] })] then\
+        point = rightLineMap[utils.index({ key, rightTopPoint[2] })]\
       else\
         break\
       end\
@@ -3327,8 +3342,8 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       local _ = (function()\
         for theY = (point[2] + 1), point[2] + 20 do\
           for theX = point[1], (point[1] + 10) do\
-            if rightLineMap[theX .. ',' .. theY] then\
-              point = rightLineMap[theX .. ',' .. theY]\
+            if rightLineMap[utils.index({ theX, theY })] then\
+              point = rightLineMap[utils.index({ theX, theY })]\
               table.insert(rightLinePointList, point)\
               return\
             end\
@@ -3575,20 +3590,20 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
 \
   -- 扫描屏幕上的对象\
   local myFleetPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.myFleetList))\
-  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue, deviation)\
+  myFleetPositionList = corrected(myFleetPositionList, myFleetListCorrectionValue.point, deviation)\
 \
   local selectedArrowPositionList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.selectedArrow))\
-  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue, deviation)\
+  selectedArrowPositionList = corrected(selectedArrowPositionList, selectedArrowCorrectionValue.point, deviation)\
   local enemyList1 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList1))\
-  enemyList1 = corrected(enemyList1, enemyListCorrectionValue, deviation)\
+  enemyList1 = corrected(enemyList1, enemyListCorrectionValue.point, deviation)\
   local enemyList2 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList2))\
-  enemyList2 = corrected(enemyList2, enemyListCorrectionValue, deviation)\
+  enemyList2 = corrected(enemyList2, enemyListCorrectionValue.point, deviation)\
   local enemyList3 = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.enemyList3))\
-  enemyList3 = corrected(enemyList3, enemyListCorrectionValue, deviation)\
+  enemyList3 = corrected(enemyList3, enemyListCorrectionValue.point, deviation)\
   local movableEnemyList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.movableEnemyList))\
-  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue, deviation)\
+  movableEnemyList = corrected(movableEnemyList, movableEnemyListCorrectionValue.point, deviation)\
   local rewardBoxPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.rewardBoxList))\
-  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue, deviation)\
+  rewardBoxPointList = corrected(rewardBoxPointList, rewardBoxListCorrectionValue.point, deviation)\
   local bossPointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.bossPointList))\
   local inBattlePointList = ImgInfo.filterNoUsePoint(findMultiColorList(ImgInfo, ImgInfo.map.inBattleList))\
 \
@@ -3599,7 +3614,7 @@ map.scanMap = function(ImgInfo, targetPosition, mapChessboard, deviation)\
   local inBattleMap = makePointMap(inBattleList)\
   for key = 1, #myFleetList do\
     local point = myFleetList[key]\
-    if inBattleMap[(point[1] - 1) .. ',' .. point[2]] then\
+    if inBattleMap[utils.index(point, { -1, 0 })] then\
       myFleetList[key][1] = point[1] - 1\
     end\
   end\
@@ -3645,9 +3660,9 @@ map.assignMapChessboard = function(ImgInfo, mapChessboard, newMapChessboard)\
   function findMyFleetTopRightEnemy(myFleetList, oldMap)\
     local res = {}\
     for key, item in ipairs(myFleetList) do\
-      if oldMap[(item[1] + 1) .. ',' .. item[2]]\
-        or oldMap[(item[1] + 1) .. ',' .. (item[2] - 1)]\
-        or oldMap[(item[1]) .. ',' .. (item[2] - 1)] then\
+      if oldMap[utils.index(item, { 1, 0 })]\
+        or oldMap[utils.index(item, { 1, -1 })]\
+        or oldMap[utils.index(item, { 0, -1 })] then\
         table.insert(res, item)\
       end\
     end\
@@ -3703,7 +3718,7 @@ map.checkMoveToPointPath = function(ImgInfo, mapChessboard, start, target)\
     for key = 1, #thePath do\
       local p = thePath[key]\
       table.insert(targetPath, p)\
-      if enemyPositionMap[p[1] .. ',' .. p[2]] then\
+      if enemyPositionMap[utils.index(p)] then\
         return p, targetPath, thePath\
       end\
     end\
@@ -3737,7 +3752,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
   local enemyPositionMap = {}\
   for key = 1, #enemyPositionList do\
     local value = enemyPositionList[key]\
-    enemyPositionMap[value[1] .. ',' .. value[2]] = value\
+    enemyPositionMap[utils.index(value)] = value\
   end\
   local theObstacle = utils.unionList(mapChessboard.obstacle, enemyPositionList)\
 \
@@ -3764,7 +3779,7 @@ map.findClosestEnemy = function(ImgInfo, mapChessboard, myFleed, myFleed2)\
           minCoastPath = thePath\
           -- 如果此时路线还是穿过别的舰队了，说明穿过别的舰队是必经之路，所以我们先走到最近的一个敌人上\
           for _, value in ipairs(thePath) do\
-            if enemyPositionMap[value[1] .. ',' .. value[2]] then\
+            if enemyPositionMap[utils.index(value)] then\
               minCoastEnemy = value\
               break\
             end\
@@ -3797,14 +3812,14 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)\
   local canUseList = {}\
   for key, point in ipairs(checkList) do\
     if point[1] >= 1 and point[1] <= width and point[2] >= 1 and point[2] <= height\
-      and not obstacleMap[point[1] .. ',' .. point[2]] then\
-      if enemyList3Map[point[1] .. ',' .. point[2]] then\
+      and not obstacleMap[utils.index(point)] then\
+      if enemyList3Map[utils.index(point)] then\
         checkList[key].coast = 4\
-      elseif enemyList2Map[point[1] .. ',' .. point[2]] then\
+      elseif enemyList2Map[utils.index(point)] then\
         checkList[key].coast = 3\
-      elseif enemyList1Map[point[1] .. ',' .. point[2]] then\
+      elseif enemyList1Map[utils.index(point)] then\
         checkList[key].coast = 2\
-      elseif movableEnemyListMap[point[1] .. ',' .. point[2]] then\
+      elseif movableEnemyListMap[utils.index(point)] then\
         checkList[key].coast = 1\
       end\
       table.insert(canUseList, checkList[key])\
