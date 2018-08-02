@@ -4,7 +4,7 @@ local utils = {}
 utils.sumVector = function(...)
   local pointList = { ... }
   local result = { 0, 0 }
-  for _, v ipairs (pointList) do
+  for _, v in ipairs(pointList) do
     if type(v) == 'table' and v[1] and v[2] then
       result[1] = result[1] + v[1]
       result[2] = result[2] + v[2]

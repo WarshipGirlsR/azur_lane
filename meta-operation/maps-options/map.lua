@@ -32,7 +32,7 @@ local selectedArrowCorrectionValue = function()
   }
 end
 -- 敌人坐标修正向量
-local enemyListCorrectionValue = function()
+local enemyListCorrectionValue = (function()
   local point = {
     { 846, 438, 0xdeaa00 },
     { 899, 500, 0xcebe94 },
@@ -41,9 +41,9 @@ local enemyListCorrectionValue = function()
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
     chessBoard = { 0, 0 },
   }
-end
+end)()
 -- 可移动敌人坐标修正向量
-local movableEnemyListCorrectionValue = function()
+local movableEnemyListCorrectionValue = (function()
   local point = {
     { 926, 656, 0xffff94 },
     { 926, 743, 0xe6e3de },
@@ -52,9 +52,9 @@ local movableEnemyListCorrectionValue = function()
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
     chessBoard = { 0, 0 },
   }
-end
+end)()
 -- 奖励点坐标修正向量
-local rewardBoxListCorrectionValue = function()
+local rewardBoxListCorrectionValue = (function()
   local point = {
     { 1126, 859, 0x8cffef },
     { 1122, 939, 0x000810 },
@@ -63,7 +63,7 @@ local rewardBoxListCorrectionValue = function()
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },
     chessBoard = { 0, 0 },
   }
-end) ()
+end)()
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里
 local corrected = function(list, ...)
   local deviationX = 0

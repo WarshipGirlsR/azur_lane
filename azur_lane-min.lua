@@ -539,7 +539,7 @@ package.sourceCode["./meta-operation/maps-options/utils.lua"] = { path = "./meta
 utils.sumVector = function(...)\
   local pointList = { ... }\
   local result = { 0, 0 }\
-  for _, v ipairs (pointList) do\
+  for _, v in ipairs(pointList) do\
     if type(v) == 'table' and v[1] and v[2] then\
       result[1] = result[1] + v[1]\
       result[2] = result[2] + v[2]\
@@ -2876,7 +2876,7 @@ local selectedArrowCorrectionValue = function()\
   }\
 end\
 -- 敌人坐标修正向量\
-local enemyListCorrectionValue = function()\
+local enemyListCorrectionValue = (function()\
   local point = {\
     { 846, 438, 0xdeaa00 },\
     { 899, 500, 0xcebe94 },\
@@ -2885,9 +2885,9 @@ local enemyListCorrectionValue = function()\
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
     chessBoard = { 0, 0 },\
   }\
-end\
+end)()\
 -- 可移动敌人坐标修正向量\
-local movableEnemyListCorrectionValue = function()\
+local movableEnemyListCorrectionValue = (function()\
   local point = {\
     { 926, 656, 0xffff94 },\
     { 926, 743, 0xe6e3de },\
@@ -2896,9 +2896,9 @@ local movableEnemyListCorrectionValue = function()\
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
     chessBoard = { 0, 0 },\
   }\
-end\
+end)()\
 -- 奖励点坐标修正向量\
-local rewardBoxListCorrectionValue = function()\
+local rewardBoxListCorrectionValue = (function()\
   local point = {\
     { 1126, 859, 0x8cffef },\
     { 1122, 939, 0x000810 },\
@@ -2907,7 +2907,7 @@ local rewardBoxListCorrectionValue = function()\
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
     chessBoard = { 0, 0 },\
   }\
-end) ()\
+end)()\
 -- 坐标修正偏差方法，因为搜索的图像并不在它所在的棋盘格子里\
 local corrected = function(list, ...)\
   local deviationX = 0\
@@ -14288,7 +14288,7 @@ local battle = function(action)\
         end\
 \
         if (settings.battleMode == 'normal' and o.battle.isHardMode())\
-            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
+          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then\
           o.battle.clickSwitchHardModeBtn()\
           c.yield(sleepPromise(500))\
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
@@ -14545,6 +14545,8 @@ local battle = function(action)\
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },\
         { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
         { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage },\
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle },\
+        { 'BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
       }))\
       return makeAction(newstateTypes)\
 \

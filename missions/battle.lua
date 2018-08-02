@@ -93,7 +93,7 @@ local battle = function(action)
         end
 
         if (settings.battleMode == 'normal' and o.battle.isHardMode())
-            or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
+          or (settings.battleMode == 'hard' and o.battle.isNormalMode()) then
           o.battle.clickSwitchHardModeBtn()
           c.yield(sleepPromise(500))
           local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
@@ -350,6 +350,8 @@ local battle = function(action)
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
         { 'BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },
         { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage },
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle },
+        { 'BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },
       }))
       return makeAction(newstateTypes)
 
