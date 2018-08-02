@@ -549,7 +549,8 @@ utils.sumVector = function(...)\
 end\
 \
 -- 将点转换为索引字符串\
-utils.index = function(point)\
+utils.index = function(...)\
+  local point = utils.sumVector(...)\
   return point[1] .. ',' .. point[2]\
 end\
 \
@@ -2852,20 +2853,18 @@ local map = {}\
 \
 \
 -- 舰队坐标修正向量\
-local myFleetListCorrectionValue = function(point)\
-  local newPoint = {}\
-  local vector = {\
+local myFleetListCorrectionValue = (function(point)\
+  local point = {\
     { 742, 367, 0xffffff },\
     { 617, 601, 0x529eb5 },\
   }\
-  local chessBoardVector = { 1, 0 }\
   return {\
-    point[1],\
-    point[2],\
+    point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
+    chessBoard = { 1, 0 },\
   }\
-end\
+end)()\
 -- 选中的舰队头上的绿色箭头的坐标修正向量\
-local selectedArrowCorrectionValue = function()\
+local selectedArrowCorrectionValue = (function()\
   local point = {\
     { 455, 272, 0x3aff84 },\
     { 456, 568, 0xa49ead },\
@@ -2874,7 +2873,7 @@ local selectedArrowCorrectionValue = function()\
     point = { point[2][1] - point[1][1], point[2][2] - point[1][2] },\
     chessBoard = { 2, 0 },\
   }\
-end\
+end)()\
 -- 敌人坐标修正向量\
 local enemyListCorrectionValue = (function()\
   local point = {\
@@ -2969,7 +2968,6 @@ local function listAdjacentGroups(list)\
       local rightTopItemIndex = utils.index(item, { 1, -1 })\
       local leftBottomItemIndex = utils.index(item, { -1, 1 })\
       local rightBottomItemIndex = utils.index(item, { 1, 1 })\
-\
       if theListMap[rightItemIndex] then\
         table.insert(groupItem, theListMap[rightItemIndex])\
         theListMap[rightItemIndex] = nil\
@@ -3229,7 +3227,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
 \
   -- 地图3条边是黑色，上边是半透明色，所以先用黑色找到左右下边框\
   local blackLineList = ImgInfo.filterNoUsePoint(ImgInfo.toPoint(findMultiColorInRegionFuzzyExt(0x000000, '', 100, 184, 160, 1885, 1004)))\
-\
   -- 寻找底边\
   -- 按照y坐标分组\
   local blackLineGroup = {}\
@@ -3271,7 +3268,6 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       table.insert(rightLineList, value)\
     end\
   end\
-\
   -- 左边黑线进行精简，使其变成宽度为1的细线\
   -- 左边黑线的集合，相邻的点集合最大的一组，用于识别一组点数量是否够多，排除角色上黑点的干扰\
   local leftLineAdjacentMaxList = {}\

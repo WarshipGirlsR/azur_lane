@@ -14,7 +14,8 @@ utils.sumVector = function(...)
 end
 
 -- 将点转换为索引字符串
-utils.index = function(point)
+utils.index = function(...)
+  local point = utils.sumVector(...)
   return point[1] .. ',' .. point[2]
 end
 
