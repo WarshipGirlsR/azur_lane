@@ -1,47 +1,64 @@
-Object = (function()
-  local Object = {}
-  local proxyObject = {}
+local Object = {}
 
-  Object.bind = function(fn, self)
-    return function(...)
-      return fn(self, ...)
+Object.bind = function(fn, self)
+  return function(...)
+    return fn(self, ...)
+  end
+end
+
+Object.createClass = function(prototype, superClass)
+  if type(prototype) ~= 'table' then
+    error('Object.createClass param #1 prototype except \'table\', got \'' .. type(prototype) .. '\'')
+  end
+  if type(prototype.constructor) ~= 'function' then
+    error('Object.createClass param #1 prototype, prototype.constructor except \'function\', got \'' .. type(prototype) .. '\'')
+  end
+
+  local subClass = {
+    __prototype = {},
+  }
+  for key, value in pairs(prototype) do
+    if key == 'constructor' then
+    else
+      subClass.__prototype[key] = value
     end
   end
 
-  Object.createClass = function(subClass, superClass)
-    local subClass = {}
-    subClass.new = function()
-    end
+  if type(superClass) == 'table' then
     setmetatable(subClass, {
-      __index = function(_subClass, key)
+      __index = superClass,
+    })
+    if type(rawget(superClass, '__prototype') == 'table') then
+      setmetatable(rawget(subClass, '__prototype'), {
+        __index = rawget(superClass, '__prototype')
+      })
+    end
+  end
+
+  subClass.new = function(...)
+    local newObj = {}
+    setmetatable(newObj, {
+      __index = function(_newObj, key)
+        if type(subClass.__prototype[key]) == 'function' then
+          return Object.bind(subClass.__prototype[key], newObj)
+        end
+        return subClass.__prototype[key]
       end
     })
-    return subClass
+
+    local res = { prototype.constructor(newObj, ...) }
+    if #res > 0 then
+      return table.unpack(res)
+    end
+    return newObj
   end
 
-  -- 使用代理表+元表阻止Object原始方法被篡改
-  return setmetatable({}, {
-    __index = Object,
-    __newindex = function(_Object, key, value)
-      if type(Object[key]) ~= 'nil' then
-        error('Cannot call overwrite Object\'s methods', 2)
-      end
-      proxyObject[key] = value
-    end,
-    __pairs = function(_Object)
-      local mergeTable = {}
-      for k, v in next, _Object, nil do
-        mergeTable[k] = v
-      end
-      for k, v in next, Object, nil do
-        mergeTable[k] = v
-      end
-      return next, mergeTable, nil
-    end,
-  })
-end)()
-
-Object.test = 'test2'
-for k, v in pairs(Object) do
-  print(k, v)
+  return subClass
 end
+
+-- 使用代理表复制一份Object，保证Object内部在运行时不会使用替换过的方法。
+local proxyTable = {}
+for k, v in pairs(Object) do
+  proxyTable[k] = v
+end
+return proxyTable
