@@ -1,3 +1,8 @@
+------------------------------------------
+javascript api
+
+
+------------------------------------------
 local Object = {}
 
 Object.bind = function(fn, self)
