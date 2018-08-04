@@ -36,7 +36,7 @@ myString.split = function(str, d)
 end
 
 myString.startWith = function(str, pattern)
-  if type(str) ~= 'myString' then
+  if type(str) ~= 'string' then
     return false
   end
   if type(pattern) ~= 'string' then
