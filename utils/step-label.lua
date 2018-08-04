@@ -54,7 +54,7 @@ StepLable.setStepLabelContent = function(text, noNLog)
     if info.currentline then
       lineInfo = info.source .. ': ' .. info.currentline .. ':\n'
     end
-    nLog(lineInfo .. dateStr .. ' ' .. finalText .. '\n')
+    nLog(lineInfo .. '  ' .. dateStr .. ' ' .. finalText .. '\n')
   end
 end
 

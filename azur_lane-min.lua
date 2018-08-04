@@ -5693,7 +5693,6 @@ local setScreenListeners = function(...)\
     end\
     error(errorMsg, 2)\
   end\
-\
   local theArrUnique = table.uniqueLast(theArr, 2)\
   for key = 1, #theArrUnique do\
     local value = theArrUnique[key]\
@@ -15282,7 +15281,7 @@ StepLable.setStepLabelContent = function(text, noNLog)\
     if info.currentline then\
       lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
     end\
-    nLog(lineInfo .. dateStr .. ' ' .. finalText .. '\\n')\
+    nLog(lineInfo .. '  ' .. dateStr .. ' ' .. finalText .. '\\n')\
   end\
 end\
 \
@@ -15511,6 +15510,7 @@ return function()\
         {\
           ['id'] = 'battleEnable',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
         },\
@@ -15524,6 +15524,7 @@ return function()\
         {\
           ['id'] = 'exerciseEnable',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
         },\
@@ -15537,6 +15538,7 @@ return function()\
         {\
           ['id'] = 'dailyChallengesEnable',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
         },\
@@ -15550,6 +15552,7 @@ return function()\
         {\
           ['id'] = 'missionEnable',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
         },\
@@ -15607,6 +15610,7 @@ return function()\
         {\
           ['id'] = 'battleChapter',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
             .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
@@ -15624,6 +15628,7 @@ return function()\
         {\
           ['id'] = 'battleMode',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '普通,困难',\
           ['select'] = '0',\
         },\
@@ -15637,6 +15642,7 @@ return function()\
         {\
           ['id'] = 'battleAssistantMode',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '手动过地图,自动过地图',\
           ['select'] = '1',\
         },\
@@ -15657,6 +15663,7 @@ return function()\
         {\
           ['id'] = 'battleFleetOnWay',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队,无',\
           ['select'] = '0',\
         },\
@@ -15670,6 +15677,7 @@ return function()\
         {\
           ['id'] = 'battleFleetBoss',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队',\
           ['select'] = '1',\
         },\
@@ -15683,6 +15691,7 @@ return function()\
         {\
           ['id'] = 'battleFleetOnWayFormation',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '不设置,单纵,复纵,轮型',\
           ['select'] = '0',\
         },\
@@ -15696,6 +15705,7 @@ return function()\
         {\
           ['id'] = 'battleFleetBossFormation',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '不设置,单纵,复纵,轮型',\
           ['select'] = '0',\
         },\
@@ -15709,6 +15719,7 @@ return function()\
         {\
           ['id'] = 'battleRoundabout',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '是,否',\
           ['select'] = '0',\
         },\
@@ -15722,6 +15733,7 @@ return function()\
         {\
           ['id'] = 'mapsType',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '打boss,打全图,无限伏击',\
           ['select'] = '0',\
         },\
@@ -15735,6 +15747,7 @@ return function()\
         {\
           ['id'] = 'battleAlertWhenNoHp',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '是,否',\
           ['select'] = '0',\
         },\
@@ -15748,6 +15761,7 @@ return function()\
         {\
           ['id'] = 'battleAlertWhenManual',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '是,否',\
           ['select'] = '0',\
         },\
@@ -15761,6 +15775,7 @@ return function()\
         {\
           ['id'] = 'battleStepLength',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '不限制,1,2,3,4,5,6,7,8',\
           ['select'] = '0',\
         },\
@@ -15774,6 +15789,7 @@ return function()\
         {\
           ['id'] = 'battleStopWhenGetNewShip',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '是,否',\
           ['select'] = '0',\
         },\
@@ -15839,6 +15855,7 @@ return function()\
         {\
           ['id'] = 'exerciseSelectEnemy',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '手动,1,2,3,4',\
           ['select'] = '0',\
         },\
@@ -15852,6 +15869,7 @@ return function()\
         {\
           ['id'] = 'exerciseAlertWhenManualSelectEnemy',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '是,否',\
           ['select'] = '0',\
         },\
@@ -15865,6 +15883,7 @@ return function()\
         {\
           ['id'] = 'exerciseLowerHPRestart',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '95%,90%,85%,80%,75%,70%,65%,60%,50%,40%,30%,20%,10%',\
           ['select'] = '8',\
         },\
@@ -15901,6 +15920,7 @@ return function()\
         {\
           ['id'] = 'tacticalTrainingChapter',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1.战术研修(航空),2.战术研修(炮击),3.战术研修(雷击),',\
           ['select'] = '0',\
         },\
@@ -15914,6 +15934,7 @@ return function()\
         {\
           ['id'] = 'tacticalTrainingFleet',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
@@ -15927,6 +15948,7 @@ return function()\
         {\
           ['id'] = 'decapitationStrikeChapter',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1.,2.,3.,4.',\
           ['select'] = '0',\
         },\
@@ -15940,6 +15962,7 @@ return function()\
         {\
           ['id'] = 'decapitationStrikeFleet',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
@@ -15953,6 +15976,7 @@ return function()\
         {\
           ['id'] = 'merchantShipEscortChapter',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1.,2.,3.,4.',\
           ['select'] = '0',\
         },\
@@ -15966,6 +15990,7 @@ return function()\
         {\
           ['id'] = 'merchantShipEscortFleet',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
@@ -15979,6 +16004,7 @@ return function()\
         {\
           ['id'] = 'seaAreaBreakthroughChapter',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1.,2.,3.,4.',\
           ['select'] = '0',\
         },\
@@ -15992,6 +16018,7 @@ return function()\
         {\
           ['id'] = 'seaAreaBreakthroughFleet',\
           ['type'] = 'RadioGroup',\
+          ['countperline'] = 1,\
           ['list'] = '1队,2队,3队,4队,5队,6队',\
           ['select'] = '0',\
         },\
@@ -17366,7 +17393,7 @@ do\
     local args = {}\
     for k = 1, select('#', ...) do\
       local arg = select(k, ...)\
-      if type(arg) == 'table' do\
+      if type(arg) == 'table' then\
         table.insert(args, arg)\
       end\
     end\
@@ -17402,7 +17429,7 @@ do\
     local args = {}\
     for k = 1, select('#', ...) do\
       local arg = select(k, ...)\
-      if type(arg) == 'table' do\
+      if type(arg) == 'table' then\
         table.insert(args, arg)\
       end\
     end\
@@ -17503,7 +17530,7 @@ do\
      @param {function}/{string}/{number}/{nil} path - 过滤条件参照值\
      @return {table} - 过滤后的数组\
  --]]\
-  myTable.uniqueLast = function(target, path)\
+  myTable.uniqueLast = function(tab, path)\
     if type(tab) ~= 'table' then\
       error('table.uniqueLast param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
     end\
@@ -17538,7 +17565,7 @@ do\
       theMap[value] = key\
     end\
     for key = 1, myTable.length(tabPathList) do\
-      local value = tab[key]\
+      local value = tabPathList[key]\
       if key == theMap[value] then\
         myTable.insert(result, tab[key])\
       end\
@@ -17618,9 +17645,6 @@ do\
     if type(tab) ~= 'table' then\
       error('table.keys param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
     end\
-    if type(fn) ~= 'function' then\
-      error('table.keys param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
-    end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
       myTable.insert(result, key)\
@@ -17643,9 +17667,6 @@ do\
   myTable.values = function(tab)\
     if type(tab) ~= 'table' then\
       error('table.values param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
-    end\
-    if type(fn) ~= 'function' then\
-      error('table.values param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
     end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
@@ -17670,9 +17691,6 @@ do\
     if type(tab) ~= 'table' then\
       error('table.entries param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
     end\
-    if type(fn) ~= 'function' then\
-      error('table.entries param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
-    end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
       myTable.insert(result, { key, tab[key] })\
@@ -17696,9 +17714,6 @@ do\
   myTable.keysSort = function(tab)\
     if type(tab) ~= 'table' then\
       error('table.keysSort param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
-    end\
-    if type(fn) ~= 'function' then\
-      error('table.keysSort param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
     end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
@@ -17744,9 +17759,6 @@ do\
     if type(tab) ~= 'table' then\
       error('table.valuesSort param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
     end\
-    if type(fn) ~= 'function' then\
-      error('table.valuesSort param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
-    end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
       myTable.insert(result, tab[key])\
@@ -17789,10 +17801,7 @@ do\
   --]]\
   myTable.entriesSort = function(tab)\
     if type(tab) ~= 'table' then\
-      error('table.valuesSort param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
-    end\
-    if type(fn) ~= 'function' then\
-      error('table.valuesSort param #2 fn expect \\'function\\', got \\'' .. type(fn) .. '\\'', 2)\
+      error('table.entriesSort param #1 tab expect \\'table\\', got \\'' .. type(tab) .. '\\'', 2)\
     end\
     local result = {}\
     for key = 1, myTable.length(tab) do\
@@ -17893,10 +17902,10 @@ do\
     local stringList = {}\
     local otherList = {}\
     local length = myTable.length(tab)\
-    for key, value in pairs(tab) do\
-      if type(key) == 'number' then\
+    for _, value in pairs(tab) do\
+      if type(value) == 'number' then\
         table.insert(numberList, value)\
-      elseif type(key) == 'string' then\
+      elseif type(value) == 'string' then\
         table.insert(stringList, value)\
       else\
         table.insert(otherList, value)\
@@ -17905,7 +17914,7 @@ do\
     table.sort(numberList)\
     table.sort(stringList)\
     for key = 1, myTable.length(numberList) do\
-      table.insert(result,, tab[numberList[key]])\
+      table.insert(result, tab[numberList[key]])\
     end\
     for key = 1, myTable.length(stringList) do\
       table.insert(result, tab[stringList[key]])\
@@ -17931,7 +17940,7 @@ do\
     local args = {}\
     for k = 1, select('#', ...) do\
       local arg = select(k, ...)\
-      if type(arg) == 'table' do\
+      if type(arg) == 'table' then\
         table.insert(args, arg)\
       end\
     end\
@@ -17971,7 +17980,7 @@ do\
     local args = {}\
     for k = 1, select('#', ...) do\
       local arg = select(k, ...)\
-      if type(arg) == 'table' do\
+      if type(arg) == 'table' then\
         table.insert(args, arg)\
       end\
     end\
@@ -18006,7 +18015,7 @@ do\
     local args = {}\
     for k = 1, select('#', ...) do\
       local arg = select(k, ...)\
-      if type(arg) == 'table' do\
+      if type(arg) == 'table' then\
         table.insert(args, arg)\
       end\
     end\
@@ -18748,19 +18757,11 @@ math.mod = math.mod or function(m, n)\
   return m - a1 * n\
 end\
 \
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
 local isArray = table.isArray or function(tab)\
   if (type(tab) ~= \"table\") then\
     return false\
   end\
-  local length = getLength(tab)\
+  local length = #tab\
   for k, v in pairs(tab) do\
     if ((type(k) ~= \"number\") or (k > length)) then\
       return false\
@@ -18773,7 +18774,7 @@ local __console = console or {}\
 \
 local function runTable(tab, space)\
   if type(tab) == 'number' then\
-    return { tostring(tab) }\
+    return { tab }\
   end\
   if type(tab) == 'string' then\
     if string.len(tab) > 1000 then\
@@ -18789,7 +18790,7 @@ local function runTable(tab, space)\
     end\
   end\
   if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
+    return { '(' .. tostring(tab) .. ')' }\
   end\
   if type(space) == 'number' then\
     space = string.rep(' ', space)\
@@ -18800,33 +18801,48 @@ local function runTable(tab, space)\
 \
   local resultStrList = {}\
   local newTabPairs = {}\
-  local newTabPairsKeys = {}\
+  local newTabKeys = {}\
+  local newTabPairsKeysNumber = {}\
+  local newTabPairsKeysString = {}\
+  local newTabPairsKeysOther = {}\
   local tabIsArray = true\
-  local tabLength = 0\
+  local tabLength = #tab\
   local hasSubTab = false\
 \
   -- 将 table 的数组部分取出\
   for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
+    table.insert(newTabKeys, k)\
+  end\
+\
+  -- 将 table 的 map 部分取出，数字按照从小到大顺序排序，字符串按照字典顺序排序，其他按照pairs顺序排序\
+  for k, v in pairs(tab) do\
     if (type(v) == 'table') then\
       hasSubTab = true\
     end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
+    if type(k) ~= 'number' or k > tabLength or k < 1 or math.floor(k) ~= k then\
       tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
+      if type(k) == 'number' then\
+        table.insert(newTabPairsKeysNumber, k)\
+      elseif type(k) == 'string' then\
+        table.insert(newTabPairsKeysString, k)\
+      else\
+        table.insert(newTabPairsKeysOther, k)\
       end\
     end\
   end\
 \
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
+  table.sort(newTabPairsKeysNumber)\
+  table.sort(newTabPairsKeysString)\
+  for _, k in ipairs(newTabPairsKeysNumber) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabPairsKeysString) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabPairsKeysOther) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabKeys) do\
     table.insert(newTabPairs, { k, runTable(tab[k], space) })\
   end\
 \
@@ -18836,7 +18852,7 @@ local function runTable(tab, space)\
     if (hasSubTab) then\
       table.insert(resultStrList, '[')\
       for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
+        local v2Length = #v[2]\
         v[2][v2Length] = v[2][v2Length] .. ','\
         for k2, v2 in ipairs(v[2]) do\
           table.insert(resultStrList, space .. v2)\
@@ -18853,11 +18869,14 @@ local function runTable(tab, space)\
     end\
   else\
     local newTabArr = newTabPairs\
-\
     table.insert(resultStrList, '{')\
     for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
+      if type(v[1]) == 'string' or type(v[1]) == 'number' then\
+        v[2][1] = v[1] .. ': ' .. v[2][1]\
+      else\
+        v[2][1] = '(' .. tostring(v[1]) .. '): ' .. v[2][1]\
+      end\
+      local v2Length = #v[2]\
       v[2][v2Length] = v[2][v2Length] .. ','\
       for k2, v2 in ipairs(v[2]) do\
         table.insert(resultStrList, space .. v2 .. '')\
@@ -18878,19 +18897,23 @@ __console.log = __console.log or function(obj)\
   end\
 \
   if useNlog then\
-    nLog(lineInfo)\
-    local tmp = {}\
+    local tmp = lineInfo\
     local resLength = #res\
     for i = 1, resLength do\
-      table.insert(tmp, res[i])\
-      if math.mod(i, 10) == 0 or i == resLength then\
-        nLog(table.concat(tmp, \"\\n\"))\
-        tmp = {}\
+      tmp = tmp .. '\\n  ' .. res[i]\
+      if i >= resLength then\
+        nLog(tmp .. '\\n')\
+        tmp = ''\
+        break\
+      end\
+      if string.len(tmp) > 8640 then\
+        nLog(tmp)\
+        tmp = ''\
       end\
     end\
   end\
 \
-  wLog('azur_lane', lineInfo .. table.concat(res .. '\\n'))\
+  wLog('azur_lane', lineInfo .. table.concat(res, '\\n'))\
 end\
 \
 __console.getJsStr = function(obj)\
@@ -19180,19 +19203,11 @@ math.mod = math.mod or function(m, n)\
   return m - a1 * n\
 end\
 \
-local getLength = table.length or function(target)\
-  local length = 0\
-  for k, v in ipairs(target) do\
-    length = k\
-  end\
-  return length\
-end\
-\
 local isArray = table.isArray or function(tab)\
   if (type(tab) ~= \"table\") then\
     return false\
   end\
-  local length = getLength(tab)\
+  local length = #tab\
   for k, v in pairs(tab) do\
     if ((type(k) ~= \"number\") or (k > length)) then\
       return false\
@@ -19205,7 +19220,7 @@ local __console = console or {}\
 \
 local function runTable(tab, space)\
   if type(tab) == 'number' then\
-    return { tostring(tab) }\
+    return { tab }\
   end\
   if type(tab) == 'string' then\
     if string.len(tab) > 1000 then\
@@ -19221,7 +19236,7 @@ local function runTable(tab, space)\
     end\
   end\
   if type(tab) ~= 'table' then\
-    return { '(' .. type(tab) .. ')' }\
+    return { '(' .. tostring(tab) .. ')' }\
   end\
   if type(space) == 'number' then\
     space = string.rep(' ', space)\
@@ -19232,33 +19247,48 @@ local function runTable(tab, space)\
 \
   local resultStrList = {}\
   local newTabPairs = {}\
-  local newTabPairsKeys = {}\
+  local newTabKeys = {}\
+  local newTabPairsKeysNumber = {}\
+  local newTabPairsKeysString = {}\
+  local newTabPairsKeysOther = {}\
   local tabIsArray = true\
-  local tabLength = 0\
+  local tabLength = #tab\
   local hasSubTab = false\
 \
   -- 将 table 的数组部分取出\
   for k, v in ipairs(tab) do\
-    tabLength = k\
-    table.insert(newTabPairs, { k, runTable(v, space) })\
+    table.insert(newTabKeys, k)\
+  end\
+\
+  -- 将 table 的 map 部分取出，数字按照从小到大顺序排序，字符串按照字典顺序排序，其他按照pairs顺序排序\
+  for k, v in pairs(tab) do\
     if (type(v) == 'table') then\
       hasSubTab = true\
     end\
-  end\
-\
-  -- 将 table 的 map 部分取出，并按照字典顺序排序\
-  for k, v in pairs(tab) do\
-    if type(k) ~= 'number' or k > tabLength or k <= 0 then\
+    if type(k) ~= 'number' or k > tabLength or k < 1 or math.floor(k) ~= k then\
       tabIsArray = false\
-      table.insert(newTabPairsKeys, k)\
-      if (type(v) == 'table') then\
-        hasSubTab = true\
+      if type(k) == 'number' then\
+        table.insert(newTabPairsKeysNumber, k)\
+      elseif type(k) == 'string' then\
+        table.insert(newTabPairsKeysString, k)\
+      else\
+        table.insert(newTabPairsKeysOther, k)\
       end\
     end\
   end\
 \
-  table.sort(newTabPairsKeys)\
-  for _, k in ipairs(newTabPairsKeys) do\
+  table.sort(newTabPairsKeysNumber)\
+  table.sort(newTabPairsKeysString)\
+  for _, k in ipairs(newTabPairsKeysNumber) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabPairsKeysString) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabPairsKeysOther) do\
+    table.insert(newTabKeys, k)\
+  end\
+  for _, k in ipairs(newTabKeys) do\
     table.insert(newTabPairs, { k, runTable(tab[k], space) })\
   end\
 \
@@ -19268,7 +19298,7 @@ local function runTable(tab, space)\
     if (hasSubTab) then\
       table.insert(resultStrList, '[')\
       for k, v in ipairs(newTabArr) do\
-        local v2Length = getLength(v[2])\
+        local v2Length = #v[2]\
         v[2][v2Length] = v[2][v2Length] .. ','\
         for k2, v2 in ipairs(v[2]) do\
           table.insert(resultStrList, space .. v2)\
@@ -19285,11 +19315,14 @@ local function runTable(tab, space)\
     end\
   else\
     local newTabArr = newTabPairs\
-\
     table.insert(resultStrList, '{')\
     for k, v in ipairs(newTabArr) do\
-      v[2][1] = v[1] .. ': ' .. v[2][1]\
-      local v2Length = getLength(v[2])\
+      if type(v[1]) == 'string' or type(v[1]) == 'number' then\
+        v[2][1] = v[1] .. ': ' .. v[2][1]\
+      else\
+        v[2][1] = '(' .. tostring(v[1]) .. '): ' .. v[2][1]\
+      end\
+      local v2Length = #v[2]\
       v[2][v2Length] = v[2][v2Length] .. ','\
       for k2, v2 in ipairs(v[2]) do\
         table.insert(resultStrList, space .. v2 .. '')\
@@ -19310,14 +19343,18 @@ __console.log = __console.log or function(obj)\
   end\
 \
   if useNlog then\
-    nLog(lineInfo)\
-    local tmp = {}\
+    local tmp = lineInfo\
     local resLength = #res\
     for i = 1, resLength do\
-      table.insert(tmp, res[i])\
-      if math.mod(i, 10) == 0 or i == resLength then\
-        nLog(table.concat(tmp, \"\\n\"))\
-        tmp = {}\
+      tmp = tmp .. '\\n  ' .. res[i]\
+      if i >= resLength then\
+        nLog(tmp .. '\\n')\
+        tmp = ''\
+        break\
+      end\
+      if string.len(tmp) > 8640 then\
+        nLog(tmp)\
+        tmp = ''\
       end\
     end\
   end\
@@ -19418,7 +19455,7 @@ local ret, settings = optionsLabel()\
 stepLabel.setStepLabelContent('正在载入...')\
 if (ret ~= 1) then\
   stepLabel.setStepLabelContent('取消运行')\
-  mSleep(100000)\
+  mSleep(5000)\
   lua_exit()\
 end\
 \
@@ -19435,7 +19472,6 @@ EventQuery.setButotnListener('stopbtn', function()\
     isPause = true\
   end\
 end)\
-\
 \
 \
 co(c.create(function()\

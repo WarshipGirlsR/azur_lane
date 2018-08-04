@@ -68,7 +68,7 @@ local ret, settings = optionsLabel()
 stepLabel.setStepLabelContent('正在载入...')
 if (ret ~= 1) then
   stepLabel.setStepLabelContent('取消运行')
-  mSleep(100000)
+  mSleep(5000)
   lua_exit()
 end
 
@@ -85,7 +85,6 @@ EventQuery.setButotnListener('stopbtn', function()
     isPause = true
   end
 end)
-
 
 
 co(c.create(function()

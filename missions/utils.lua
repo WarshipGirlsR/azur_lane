@@ -55,7 +55,6 @@ local setScreenListeners = function(...)
     end
     error(errorMsg, 2)
   end
-
   local theArrUnique = table.uniqueLast(theArr, 2)
   for key = 1, #theArrUnique do
     local value = theArrUnique[key]
