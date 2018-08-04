@@ -139,7 +139,7 @@ local mapsType2 = function(action)
       local inBattleList = mapChessboard.inBattleList
 
       local _ = (function()
-        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, mapChessboard.onWayFleet) end) > -1 then
+        if table.find(inBattleList, function(ele) return comparePoints(ele, mapChessboard.onWayFleet) end) then
           store.mapType3.missionStep = 'onWayFleetMoveToClosestEnemy'
           stepLabel.setStepLabelContent('3-7.道中队开始战斗')
           store.mapType3.nextStepFleed = 'onWay'
@@ -155,7 +155,7 @@ local mapsType2 = function(action)
           return
         end
 
-        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, mapChessboard.bossFleet) end) > -1 then
+        if table.find(inBattleList, function(ele) return comparePoints(ele, mapChessboard.bossFleet) end) then
           stepLabel.setStepLabelContent('3-8.boss队开始战斗')
           store.mapType3.missionStep = 'bossFleetMoveToBoss'
           store.mapType3.nextStepFleed = 'boss'

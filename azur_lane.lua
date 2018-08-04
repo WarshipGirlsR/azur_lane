@@ -31,9 +31,7 @@ end
 initLog('azur_lane', 1)
 --require './lib/console'
 require 'TSLib'
-require './lib/string-polyfill'
-require './lib/math-polyfill'
-require './lib/table-polyfill'
+require './lib/javascript-polyfill'
 require './utils/keep-screen-hock'
 require './utils/multi-color-hock'
 require './utils/device-orient-hock'

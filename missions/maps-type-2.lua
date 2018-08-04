@@ -137,7 +137,7 @@ local mapsType2 = function(action)
       local inBattleList = mapChessboard.inBattleList
 
       local _ = (function()
-        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, mapChessboard.bossFleet) end) > -1 then
+        if table.find(inBattleList, function(ele) return comparePoints(ele, mapChessboard.bossFleet) end) then
           stepLabel.setStepLabelContent('3-8.boss队开始战斗')
           store.mapType2.missionStep = 'bossFleetMoveToBoss'
           store.mapType2.nextStepFleed = 'boss'
@@ -145,7 +145,7 @@ local mapsType2 = function(action)
           return
         end
 
-        if table.findIndex(inBattleList, function(ele) return comparePoints(ele, mapChessboard.onWayFleet) end) > -1 then
+        if table.find(inBattleList, function(ele) return comparePoints(ele, mapChessboard.onWayFleet) end) then
           store.mapType2.missionStep = 'onWayFleetMoveToClosestEnemy'
           stepLabel.setStepLabelContent('3-7.开始战斗')
           store.mapType2.nextStepFleed = 'onWay'
@@ -153,7 +153,7 @@ local mapsType2 = function(action)
           return
         end
 
-        if table.findIndex(store.mapType2.missionStep, { 'randomMoveAStep' }) <= 0
+        if not table.find({ 'randomMoveAStep' }, store.mapType2.missionStep)
           and #mapChessboard.bossPosition > 0 then
           -- 判断boss队到boss中间能否通过
           local bossTo = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, mapChessboard.bossPosition[1])
@@ -176,11 +176,11 @@ local mapsType2 = function(action)
 
         -- 道中队清理路线上的敌人，保持boss队到各个boss点都是畅通的。
         -- 此处会计算出所有需要清理的敌人，并选中一个最近的敌人
-        if table.findIndex(store.mapType2.missionStep, {
+        if not table.find({
           'onWayFleetMoveToWaitBoss',
           'onWayFleetMoveToBossFleet',
           'onWayFleetMoveToClosestEnemy',
-        }) <= 0 then
+        }, store.mapType2.missionStep) then
           local needClearEnemyList = {}
           for _, waitForBossPositionItem in ipairs(mapChessboard.waitForBossPosition) do
             local bossFleetToWaitBoss = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.bossFleet, waitForBossPositionItem)

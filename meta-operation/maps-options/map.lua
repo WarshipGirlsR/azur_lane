@@ -108,7 +108,7 @@ local function listAdjacentGroups(list)
   local group = {}
   while table.first(theListMap) do
     local groupItem = {}
-    local theItem = table.first(theListMap)
+    local _, theItem = table.first(theListMap)
     table.insert(groupItem, theItem)
     theListMap[utils.index(theItem)] = nil
     local theIndex = 1
@@ -986,7 +986,7 @@ map.getRandomMoveAStep = function(ImgInfo, mapChessboard)
     end
   end
 
-  local resultPoint = table.find(canUseList, function(point)
+  local _, resultPoint = table.find(canUseList, function(point)
     return point.coast == minCoast
   end)
 

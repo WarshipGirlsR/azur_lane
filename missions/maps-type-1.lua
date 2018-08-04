@@ -117,7 +117,7 @@ local mapsType1 = function(action)
       -- 检查上次移动舰队时所在的位置，并将其提前。有利于提高扫描速度
       if #store.mapType1.checkpositionListForMove > 0 then
         local cForMove = store.mapType1.checkpositionListForMove[1]
-        local index = table.findIndex(store.mapType1.checkpositionListForCheck, function(cForCheck)
+        local index = table.find(store.mapType1.checkpositionListForCheck, function(cForCheck)
           if cForMove.leftTop and cForCheck.leftTop then
             return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]
           elseif cForMove.rightTop and cForCheck.rightTop then
@@ -128,7 +128,7 @@ local mapsType1 = function(action)
             return cForMove.rightBottom[1] == cForCheck.rightBottom[1] and cForMove.rightBottom[2] == cForCheck.rightBottom[2]
           end
         end)
-        if index > 0 then
+        if index then
           local cfm = store.mapType1.checkpositionListForCheck[index]
           table.remove(store.mapType1.checkpositionListForCheck, index)
           table.insert(store.mapType1.checkpositionListForCheck, 1, cfm)
@@ -215,14 +215,14 @@ local mapsType1 = function(action)
       if not waitForBossPosition then
         store.mapType1.missionStep = 'moveToClosestEnemy'
       end
-      if table.findIndex(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) > -1 then
+      if table.find(inBattleList, function(ele) return comparePoints(ele, myFleetList[1]) end) then
         stepLabel.setStepLabelContent('3-7.开始战斗')
         o.battle.clickAttackBtn()
       elseif #mapChessboard.bossPosition > 0 then
         stepLabel.setStepLabelContent('3-8.移动到boss位置')
         store.mapType1.missionStep = 'moveToBoss'
         store.mapType1.nextStepPoint = mapProxy.checkMoveToPointPath(mapChessboard, mapChessboard.myFleetList[1], mapChessboard.bossPosition[1])
-      elseif store.mapType1.missionStep == 'moveToWaitBoss' and table.findIndex(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) > -1 then
+      elseif store.mapType1.missionStep == 'moveToWaitBoss' and table.find(myFleetList, function(ele) return comparePoints(ele, waitForBossPosition) end) then
         store.mapType1.missionStep = 'moveToClosestEnemy'
         local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
           { 'MAPS_TYPE_1_GET_NEXT_STEP', o.battle.isMapPage },

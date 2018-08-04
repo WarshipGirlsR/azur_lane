@@ -95,7 +95,7 @@ local mapsType2 = function(action)
       -- 检查上次移动舰队时所在的位置，并将其提前。有利于提高扫描速度
       if #store.scanMapType1.checkpositionListForMove > 0 then
         local cForMove = store.scanMapType1.checkpositionListForMove[1]
-        local index = table.findIndex(store.scanMapType1.checkpositionListForCheck, function(cForCheck)
+        local index = table.find(store.scanMapType1.checkpositionListForCheck, function(cForCheck)
           if cForMove.leftTop and cForCheck.leftTop then
             return cForMove.leftTop[1] == cForCheck.leftTop[1] and cForMove.leftTop[2] == cForCheck.leftTop[2]
           elseif cForMove.rightTop and cForCheck.rightTop then
@@ -106,7 +106,7 @@ local mapsType2 = function(action)
             return cForMove.rightBottom[1] == cForCheck.rightBottom[1] and cForMove.rightBottom[2] == cForCheck.rightBottom[2]
           end
         end)
-        if index > 0 then
+        if index then
           local cfm = store.scanMapType1.checkpositionListForCheck[index]
           table.remove(store.scanMapType1.checkpositionListForCheck, index)
           table.insert(store.scanMapType1.checkpositionListForCheck, 1, cfm)
