@@ -1,23 +1,18 @@
 useNlog = true
 init(2)
 require 'console'
-require 'table-polyfill'
+require 'javascript-polyfill'
 mSleep(6000)
 
 keepScreen(false)
 keepScreen(true)
 local sideLength = 1080
 local list = {
-  { 1691, 414, 0x001029 },
-  { 1692, 438, 0x001029 },
-  { 1692, 443, 0xa4f342 },
-  { 1700, 438, 0xadf74a },
-  { 1695, 423, 0xadf74a },
-  { 1699, 413, 0xadf74a },
-  { 1683, 418, 0xa4f34a },
-  { 1687, 432, 0x9cf34a },
-  { 1684, 440, 0xadf74a },
-  { 1690, 439, 0xa4ef42 },
+  { 93, 9, 0xefaa00 }, { 102, 36, 0xe6ae08 }, { 89, 84, 0xefa600 }, { 23, 105, 0xefaa00 },
+  { 1188, 173, 0xffffff }, { 1313, 162, 0xffffff }, { 1426, 192, 0xffffff }, { 1657, 176, 0xfffbf7 },
+  { 1768, 177, 0xe6ebe6 }, { 1775, 197, 0xe6ebe6 }, { 1190, 560, 0x10a2ef }, { 1220, 592, 0x2196d6 },
+  { 1268, 575, 0xffffff }, { 1361, 585, 0x198ace }, { 1411, 596, 0x10a2ef }, { 1488, 586, 0xe6aa10 },
+  { 1611, 602, 0xe69e08 }, { 1589, 578, 0xffffff }, { 1706, 571, 0xffffff }, { 1785, 582, 0xdeb210 },
 }
 
 local resultStr = ''

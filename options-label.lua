@@ -44,7 +44,6 @@ return function()
         {
           ['id'] = 'battleEnable',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
@@ -58,7 +57,6 @@ return function()
         {
           ['id'] = 'exerciseEnable',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
@@ -72,7 +70,6 @@ return function()
         {
           ['id'] = 'dailyChallengesEnable',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
@@ -86,7 +83,6 @@ return function()
         {
           ['id'] = 'missionEnable',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
@@ -144,7 +140,6 @@ return function()
         {
           ['id'] = 'battleChapter',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
             .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
@@ -162,7 +157,6 @@ return function()
         {
           ['id'] = 'battleMode',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '普通,困难',
           ['select'] = '0',
         },
@@ -176,7 +170,6 @@ return function()
         {
           ['id'] = 'battleAssistantMode',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '手动过地图,自动过地图',
           ['select'] = '1',
         },
@@ -197,7 +190,6 @@ return function()
         {
           ['id'] = 'battleFleetOnWay',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队,无',
           ['select'] = '0',
         },
@@ -211,7 +203,6 @@ return function()
         {
           ['id'] = 'battleFleetBoss',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队',
           ['select'] = '1',
         },
@@ -225,7 +216,6 @@ return function()
         {
           ['id'] = 'battleFleetOnWayFormation',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '不设置,单纵,复纵,轮型',
           ['select'] = '0',
         },
@@ -239,7 +229,6 @@ return function()
         {
           ['id'] = 'battleFleetBossFormation',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '不设置,单纵,复纵,轮型',
           ['select'] = '0',
         },
@@ -253,7 +242,6 @@ return function()
         {
           ['id'] = 'battleRoundabout',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '是,否',
           ['select'] = '0',
         },
@@ -267,7 +255,6 @@ return function()
         {
           ['id'] = 'mapsType',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '打boss,打全图,无限伏击',
           ['select'] = '0',
         },
@@ -281,7 +268,6 @@ return function()
         {
           ['id'] = 'battleAlertWhenNoHp',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '是,否',
           ['select'] = '0',
         },
@@ -295,7 +281,6 @@ return function()
         {
           ['id'] = 'battleAlertWhenManual',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '是,否',
           ['select'] = '0',
         },
@@ -309,7 +294,6 @@ return function()
         {
           ['id'] = 'battleStepLength',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '不限制,1,2,3,4,5,6,7,8',
           ['select'] = '0',
         },
@@ -323,7 +307,6 @@ return function()
         {
           ['id'] = 'battleStopWhenGetNewShip',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '是,否',
           ['select'] = '0',
         },
@@ -389,9 +372,8 @@ return function()
         {
           ['id'] = 'exerciseSelectEnemy',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '手动,1,2,3,4',
-          ['select'] = '0',
+          ['select'] = '1',
         },
         {
           ['type'] = 'Label',
@@ -403,7 +385,6 @@ return function()
         {
           ['id'] = 'exerciseAlertWhenManualSelectEnemy',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '是,否',
           ['select'] = '0',
         },
@@ -417,9 +398,8 @@ return function()
         {
           ['id'] = 'exerciseLowerHPRestart',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '95%,90%,85%,80%,75%,70%,65%,60%,50%,40%,30%,20%,10%',
-          ['select'] = '8',
+          ['select'] = '11',
         },
         {
           ['type'] = 'Label',
@@ -454,7 +434,6 @@ return function()
         {
           ['id'] = 'tacticalTrainingChapter',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1.战术研修(航空),2.战术研修(炮击),3.战术研修(雷击),',
           ['select'] = '0',
         },
@@ -468,7 +447,6 @@ return function()
         {
           ['id'] = 'tacticalTrainingFleet',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队,5队,6队',
           ['select'] = '0',
         },
@@ -482,7 +460,6 @@ return function()
         {
           ['id'] = 'decapitationStrikeChapter',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1.,2.,3.,4.',
           ['select'] = '0',
         },
@@ -496,7 +473,6 @@ return function()
         {
           ['id'] = 'decapitationStrikeFleet',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队,5队,6队',
           ['select'] = '0',
         },
@@ -510,7 +486,6 @@ return function()
         {
           ['id'] = 'merchantShipEscortChapter',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1.,2.,3.,4.',
           ['select'] = '0',
         },
@@ -524,7 +499,6 @@ return function()
         {
           ['id'] = 'merchantShipEscortFleet',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队,5队,6队',
           ['select'] = '0',
         },
@@ -538,7 +512,6 @@ return function()
         {
           ['id'] = 'seaAreaBreakthroughChapter',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1.,2.,3.,4.',
           ['select'] = '0',
         },
@@ -552,7 +525,6 @@ return function()
         {
           ['id'] = 'seaAreaBreakthroughFleet',
           ['type'] = 'RadioGroup',
-          ['countperline'] = 1,
           ['list'] = '1队,2队,3队,4队,5队,6队',
           ['select'] = '0',
         },

@@ -5,16 +5,11 @@ home.isHome = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 139, 30, 0x101010 }, { 625, 24, 0x212021 },
-    { 963, 16, 0x292d3a }, { 1033, 67, 0x3a3d3a },
-    { 1058, 31, 0xe6efef }, { 1339, 47, 0xefba42 },
-    { 1369, 32, 0xefebef }, { 1652, 39, 0xf74163 },
-    { 1675, 65, 0xefefef }, { 1775, 184, 0xa4cede },
-    { 1162, 179, 0xa4cade }, { 1276, 189, 0xa4cade },
-    { 1201, 582, 0x109eef }, { 1383, 582, 0x199ae6 },
-    { 1290, 571, 0xffffff }, { 1498, 585, 0xdeae10 },
-    { 1744, 597, 0xe6aa10 }, { 1591, 580, 0xffffff },
-    { 112, 990, 0xffffff }, { 190, 974, 0xe6e7e6 },
+    { 93, 9, 0xefaa00 }, { 102, 36, 0xe6ae08 }, { 89, 84, 0xefa600 }, { 23, 105, 0xefaa00 },
+    { 1188, 173, 0xffffff }, { 1313, 162, 0xffffff }, { 1426, 192, 0xffffff }, { 1657, 176, 0xfffbf7 },
+    { 1768, 177, 0xe6ebe6 }, { 1775, 197, 0xe6ebe6 }, { 1190, 560, 0x10a2ef }, { 1220, 592, 0x2196d6 },
+    { 1268, 575, 0xffffff }, { 1361, 585, 0x198ace }, { 1411, 596, 0x10a2ef }, { 1488, 586, 0xe6aa10 },
+    { 1611, 602, 0xe69e08 }, { 1589, 578, 0xffffff }, { 1706, 571, 0xffffff }, { 1785, 582, 0xdeb210 },
   }
   local result = multiColorS(list)
   if (not __keepScreenState) then keepScreen(false) end
