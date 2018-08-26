@@ -88,7 +88,6 @@ local exercise = function(action)
       return makeAction(newstateTypes)
 
     elseif action.type == 'EXERCISE_EXERCISE_PAGE_START_EXERCISE' then
-
       c.yield(sleepPromise(1000))
       if not o.exercise.isExercisePageExerciseNumZero() then
         if settings.exerciseSelectEnemy ~= 'manual' and settings.exerciseSelectEnemy > 0 then

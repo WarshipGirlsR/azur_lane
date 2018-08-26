@@ -534,6 +534,8 @@ return function()
 
   local settingTableStr = json.encode(settingTable);
   local ret, settings = showUI(settingTableStr);
+  settings = table.assign({}, settings)
+  console.log(settings)
   -- --转换settings结果
   function transStrToTable(str)
     local list = {}
@@ -705,7 +707,7 @@ return function()
     -- 手动选择敌人时是否震动提醒
     settings.exerciseAlertWhenManualSelectEnemy = (function(exerciseAlertWhenManualSelectEnemy)
       local list = transStrToTable({ true, false })
-      return list[exerciseAlertWhenManualSelectEnemy] or 'manual'
+      return list[exerciseAlertWhenManualSelectEnemy] or true
     end)(settings.exerciseAlertWhenManualSelectEnemy)
     -- 血量低于某值则退出重新开始
     settings.exerciseLowerHPRestart = (function(exerciseLowerHPRestart)
@@ -759,3 +761,6 @@ return function()
 
   return ret, settings
 end
+
+
+
