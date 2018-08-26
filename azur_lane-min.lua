@@ -4637,24 +4637,12 @@ battle.clickChapter = function(chapterObj)\
     RTap({ 1335, 665 }, 100)\
   elseif chapterObj.name == '12-1' then\
     RTap({ 296, 362 }, 100)\
-  elseif chapterObj.name == 'ygxdxq-sp1' then\
-    RTap({ 405, 415 }, 100)\
-  elseif chapterObj.name == 'ygxdxq-sp2' then\
-    RTap({ 568, 808 }, 100)\
-  elseif chapterObj.name == 'ygxdxq-sp3' then\
-    RTap({ 1243, 590 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-a1' then\
-    RTap({ 328, 329 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-a2' then\
-    RTap({ 1213, 360 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-a3' then\
-    RTap({ 750, 663 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-b1' then\
-    RTap({ 459, 353 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-b2' then\
-    RTap({ 623, 801 }, 100)\
-  elseif chapterObj.name == 'gyydywzh-b3' then\
-    RTap({ 1085, 547 }, 100)\
+  elseif chapterObj.name == '12-2' then\
+    RTap({ 570, 727 }, 100)\
+  elseif chapterObj.name == '12-3' then\
+    RTap({ 1183, 396 }, 100)\
+  elseif chapterObj.name == '12-4' then\
+    RTap({ 1377, 774 }, 100)\
   end\
   if not __keepScreenState then keepScreen(false) end\
 end\
@@ -15145,9 +15133,9 @@ return function()\
           ['type'] = 'RadioGroup',\
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'\
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'\
-            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'\
-            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'\
-            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',\
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,',\
+          --            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'\
+          --            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',\
           ['select'] = '0',\
         },\
         {\
@@ -15617,12 +15605,12 @@ return function()\
         { name = '11-3', chapter = 11, section = '3' }, { name = '11-4', chapter = 11, section = '4' },\
         { name = '12-1', chapter = 12, section = '1' }, { name = '12-2', chapter = 12, section = '2' },\
         { name = '12-3', chapter = 12, section = '3' }, { name = '12-4', chapter = 12, section = '4' },\
-        { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },\
-        { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },\
-        { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },\
-        { name = 'gyydywzh-b1', chapter = 2, section = 'b1', type = 'event' },\
-        { name = 'gyydywzh-b2', chapter = 2, section = 'b2', type = 'event' },\
-        { name = 'gyydywzh-b3', chapter = 2, section = 'b3', type = 'event' },\
+        --        { name = 'gyydywzh-a1', chapter = 1, section = 'a1', type = 'event' },\
+        --        { name = 'gyydywzh-a2', chapter = 1, section = 'a2', type = 'event' },\
+        --        { name = 'gyydywzh-a3', chapter = 1, section = 'a3', type = 'event' },\
+        --        { name = 'gyydywzh-b1', chapter = 2, section = 'b1', type = 'event' },\
+        --        { name = 'gyydywzh-b2', chapter = 2, section = 'b2', type = 'event' },\
+        --        { name = 'gyydywzh-b3', chapter = 2, section = 'b3', type = 'event' },\
       })\
       return list[battleChapter] or '0'\
     end)(settings.battleChapter)\

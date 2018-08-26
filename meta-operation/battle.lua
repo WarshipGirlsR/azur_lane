@@ -239,24 +239,12 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1335, 665 }, 100)
   elseif chapterObj.name == '12-1' then
     RTap({ 296, 362 }, 100)
-  elseif chapterObj.name == 'ygxdxq-sp1' then
-    RTap({ 405, 415 }, 100)
-  elseif chapterObj.name == 'ygxdxq-sp2' then
-    RTap({ 568, 808 }, 100)
-  elseif chapterObj.name == 'ygxdxq-sp3' then
-    RTap({ 1243, 590 }, 100)
-  elseif chapterObj.name == 'gyydywzh-a1' then
-    RTap({ 328, 329 }, 100)
-  elseif chapterObj.name == 'gyydywzh-a2' then
-    RTap({ 1213, 360 }, 100)
-  elseif chapterObj.name == 'gyydywzh-a3' then
-    RTap({ 750, 663 }, 100)
-  elseif chapterObj.name == 'gyydywzh-b1' then
-    RTap({ 459, 353 }, 100)
-  elseif chapterObj.name == 'gyydywzh-b2' then
-    RTap({ 623, 801 }, 100)
-  elseif chapterObj.name == 'gyydywzh-b3' then
-    RTap({ 1085, 547 }, 100)
+  elseif chapterObj.name == '12-2' then
+    RTap({ 570, 727 }, 100)
+  elseif chapterObj.name == '12-3' then
+    RTap({ 1183, 396 }, 100)
+  elseif chapterObj.name == '12-4' then
+    RTap({ 1377, 774 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
