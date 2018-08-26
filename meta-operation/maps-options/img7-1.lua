@@ -23,7 +23,7 @@ return {
     -- 敌方舰队位置(大型舰队)
     enemyList3 = imgBase.map.enemyList3,
     -- 可移动敌人舰队位置
-    movableEnemyList = imgBase.map.movableEnemyList,
+    movableEnemyList = {},
     -- boss位置
     bossPointList = table.merge(--
     -- 我方舰队不和boss重叠 3-8

@@ -642,7 +642,7 @@ return imageTools\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-b3.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b3.lua", name = "./meta-operation/maps-options/imggyydywzh-b3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/img12-4.lua"] = { path = "./meta-operation/maps-options/img12-4.lua", name = "./meta-operation/maps-options/img12-4.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -667,7 +667,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -679,7 +679,7 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-b2.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b2.lua", name = "./meta-operation/maps-options/imggyydywzh-b2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/img12-3.lua"] = { path = "./meta-operation/maps-options/img12-3.lua", name = "./meta-operation/maps-options/img12-3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -704,7 +704,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -716,7 +716,7 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-b1.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-b1.lua", name = "./meta-operation/maps-options/imggyydywzh-b1.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
+package.sourceCode["./meta-operation/maps-options/img12-2.lua"] = { path = "./meta-operation/maps-options/img12-2.lua", name = "./meta-operation/maps-options/img12-2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
 local imgBase = require './img'\
 \
 local transRelativePoint = imgBase.transRelativePoint\
@@ -741,131 +741,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
-    -- boss位置\
-    bossPointList = table.merge({}, imgBase.map.bossPointList, {\
-      (function()\
-        local leftTop = { 185, 155 }\
-        local rightBottom = { 1899, 1022, }\
-        local basePoint, posandcolor = transRelativePoint({\
-          { 1567, 797, 0x3a2429 }, { 1567, 758, 0x292421 },\
-          { 1537, 749, 0x312d29 }, { 1599, 753, 0x291c21 },\
-          { 1539, 806, 0xf74d52 }, { 1596, 803, 0xf74d4a },\
-          { 1550, 810, 0xff4d52 }, { 1585, 811, 0xf74d52 },\
-          { 1558, 830, 0x6b0c21 }, { 1573, 829, 0x631019 },\
-        })\
-        return { basePoint[3], posandcolor, 95, leftTop[1], leftTop[2], rightBottom[1], rightBottom[2] }\
-      end)()\
-    }),\
-    -- 战斗中的位置\
-    inBattleList = imgBase.map.inBattleList,\
-    -- 奖励箱的位置\
-    rewardBoxList = imgBase.map.rewardBoxList,\
-  },\
-}" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-a3.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a3.lua", name = "./meta-operation/maps-options/imggyydywzh-a3.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
-local imgBase = require './img'\
-\
-local transRelativePoint = imgBase.transRelativePoint\
-\
-return {\
-  transRelativePoint = transRelativePoint,\
-  -- 基本方法\
-  toPoint = imgBase.toPoint,\
-  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
-  filterNoUsePoint = imgBase.filterNoUsePoint,\
-  -- 图片数据\
-  -- 地图扫描\
-  map = {\
-    -- 我方舰队位置\
-    myFleetList = imgBase.map.myFleetList,\
-    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
-    selectedArrow = imgBase.map.selectedArrow,\
-    -- 敌方舰队位置(小型舰队)\
-    enemyList1 = imgBase.map.enemyList1,\
-    -- 敌方舰队位置(中型舰队)\
-    enemyList2 = imgBase.map.enemyList2,\
-    -- 敌方舰队位置(大型舰队)\
-    enemyList3 = imgBase.map.enemyList3,\
-    -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
-    -- boss位置\
-    bossPointList = imgBase.map.bossPointList,\
-    -- 战斗中的位置\
-    inBattleList = imgBase.map.inBattleList,\
-    -- 奖励箱的位置\
-    rewardBoxList = imgBase.map.rewardBoxList,\
-  },\
-}" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-a2.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a2.lua", name = "./meta-operation/maps-options/imggyydywzh-a2.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
-local imgBase = require './img'\
-\
-local transRelativePoint = imgBase.transRelativePoint\
-\
-return {\
-  transRelativePoint = transRelativePoint,\
-  -- 基本方法\
-  toPoint = imgBase.toPoint,\
-  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
-  filterNoUsePoint = imgBase.filterNoUsePoint,\
-  -- 图片数据\
-  -- 地图扫描\
-  map = {\
-    -- 我方舰队位置\
-    myFleetList = imgBase.map.myFleetList,\
-    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
-    selectedArrow = imgBase.map.selectedArrow,\
-    -- 敌方舰队位置(小型舰队)\
-    enemyList1 = imgBase.map.enemyList1,\
-    -- 敌方舰队位置(中型舰队)\
-    enemyList2 = imgBase.map.enemyList2,\
-    -- 敌方舰队位置(大型舰队)\
-    enemyList3 = imgBase.map.enemyList3,\
-    -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
-    -- boss位置\
-    bossPointList = imgBase.map.bossPointList,\
-    -- 战斗中的位置\
-    inBattleList = imgBase.map.inBattleList,\
-    -- 奖励箱的位置\
-    rewardBoxList = imgBase.map.rewardBoxList,\
-  },\
-}" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/imggyydywzh-a1.lua"] = { path = "./meta-operation/maps-options/imggyydywzh-a1.lua", name = "./meta-operation/maps-options/imggyydywzh-a1.lua", source = "-- 存储图像信息，用于界面找色、找图。取代图片搜索，因为找色搜索的像素点更少\
-local imgBase = require './img'\
-\
-local transRelativePoint = imgBase.transRelativePoint\
-\
-return {\
-  transRelativePoint = transRelativePoint,\
-  -- 基本方法\
-  toPoint = imgBase.toPoint,\
-  -- 过滤被右下角按钮挡住的部分的点，因为右下角按钮也是黑色的容易与边界识别混淆\
-  filterNoUsePoint = imgBase.filterNoUsePoint,\
-  -- 图片数据\
-  -- 地图扫描\
-  map = {\
-    -- 我方舰队位置\
-    myFleetList = imgBase.map.myFleetList,\
-    -- 我放舰队被选中的舰队的绿色的选中箭头的位置\
-    selectedArrow = imgBase.map.selectedArrow,\
-    -- 敌方舰队位置(小型舰队)\
-    enemyList1 = imgBase.map.enemyList1,\
-    -- 敌方舰队位置(中型舰队)\
-    enemyList2 = imgBase.map.enemyList2,\
-    -- 敌方舰队位置(大型舰队)\
-    enemyList3 = imgBase.map.enemyList3,\
-    -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -902,7 +778,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -939,7 +815,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -976,7 +852,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1013,7 +889,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1050,7 +926,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1087,7 +963,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1124,7 +1000,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1161,7 +1037,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1198,7 +1074,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1235,7 +1111,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1272,7 +1148,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1309,7 +1185,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1346,7 +1222,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1383,7 +1259,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1420,7 +1296,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1457,7 +1333,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1494,7 +1370,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1531,7 +1407,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1568,7 +1444,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1605,7 +1481,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1642,7 +1518,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1679,7 +1555,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1716,7 +1592,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1753,7 +1629,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = table.merge(--\
     -- 我方舰队不和boss重叠 3-8\
@@ -1806,7 +1682,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1843,7 +1719,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1880,7 +1756,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1917,7 +1793,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1954,7 +1830,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -1991,7 +1867,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2028,7 +1904,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2065,7 +1941,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2102,7 +1978,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2139,7 +2015,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2176,7 +2052,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2213,7 +2089,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2250,7 +2126,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2287,7 +2163,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2324,7 +2200,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2361,7 +2237,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = table.merge({}, imgBase.map.bossPointList,\
       {\
@@ -2411,7 +2287,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = table.merge({}, imgBase.map.bossPointList,\
       {\
@@ -2461,7 +2337,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2498,7 +2374,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2535,7 +2411,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2572,7 +2448,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2609,7 +2485,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2646,7 +2522,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2683,7 +2559,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2720,7 +2596,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2757,7 +2633,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2794,7 +2670,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -2831,7 +2707,7 @@ return {\
     -- 敌方舰队位置(大型舰队)\
     enemyList3 = imgBase.map.enemyList3,\
     -- 可移动敌人舰队位置\
-    movableEnemyList = imgBase.map.movableEnemyList,\
+    movableEnemyList = {},\
     -- boss位置\
     bossPointList = imgBase.map.bossPointList,\
     -- 战斗中的位置\
@@ -5751,9 +5627,8 @@ return {\
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b3.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b3.lua", name = "./meta-operation/maps-options/mapgyydywzh-b3.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-b3'\
+package.sourceCode["./meta-operation/maps-options/map12-4.lua"] = { path = "./meta-operation/maps-options/map12-4.lua", name = "./meta-operation/maps-options/map12-4.lua", source = "local mapBase = require './map'\
+local imgEvent = require './img12-4'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -5772,81 +5647,80 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = { 669, 320 },\
+      leftTop = { 365, 399 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 669, 320, 0x211821 }, false, false, false, false, false, { 1655, 320, 0x191c29 }, },\
-        { { 661, 447, 0x000000 }, false, false, false, false, false, { 1675, 447, 0x212431 }, },\
-        { { 652, 581, 0x000000 }, false, false, false, false, false, { 1696, 581, 0x081c29 }, },\
-        { { 643, 724, 0x312800 }, false, false, false, false, false, { 1718, 724, 0x213542 }, },\
-        { { 633, 875, 0x000000 }, false, false, false, false, false, { 1742, 875, 0x102431 }, },\
+        { { 365, 399, 0x21243a }, false, false, false, false, false, false, false, { 1667, 399, 0x212442 }, },\
+        { { 342, 513, 0x000000 }, false, false, false, false, false, false, false, { 1694, 513, 0x197984 }, },\
+        { { 317, 637, 0x000000 }, false, false, false, false, false, false, false, { 1724, 637, 0x19758c }, },\
+        { { 290, 770, 0x000000 }, false, false, false, false, false, false, false, { 1756, 770, 0x217d9c }, },\
+        { { 260, 916, 0x000000 }, false, false, false, false, false, false, false, { 1792, 916, 0x212842 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1686, 331 },\
+      rightTop = { 1565, 407 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { false, { 368, 331, 0x10283a }, false, false, false, false, false, false, false, { 1686, 331, 0x102842 }, },\
-        { false, { 351, 457, 0x525563 }, false, false, false, false, false, false, false, { 1707, 457, 0x000000 }, },\
-        { false, { 333, 592, 0x42495a }, false, false, false, false, false, false, false, { 1729, 592, 0x000000 }, },\
-        { false, { 314, 735, 0x314152 }, false, false, false, false, false, false, false, { 1752, 735, 0x000000 }, },\
-        { false, { 294, 887, 0x31415a }, false, false, false, false, false, false, false, { 1778, 887, 0x31494a }, },\
+        { false, false, false, { 259, 407, 0x212442 }, false, false, false, false, false, false, false, { 1565, 407, 0x21243a }, },\
+        { false, false, false, { 232, 521, 0x19718c }, false, false, false, false, false, false, false, { 1588, 521, 0x000000 }, },\
+        { false, false, false, { 203, 644, 0x197d8c }, false, false, false, false, false, false, false, { 1613, 644, 0x000000 }, },\
+        { false, false, false, { 171, 778, 0x29798c }, false, false, false, false, false, false, false, { 1641, 778, 0x000000 }, },\
+        { false, false, false, { 136, 924, 0x427184 }, false, false, false, false, false, false, false, { 1671, 924, 0x313531 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1616, 219 },\
+      rightTop = { 1551, 266 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { false, { 298, 219, 0x10283a }, false, false, false, false, false, false, false, { 1616, 219, 0x19313a }, },\
-        { false, { 279, 342, 0x525563 }, false, false, false, false, false, false, false, { 1634, 342, 0x000000 }, },\
-        { false, { 259, 474, 0x42495a }, false, false, false, false, false, false, false, { 1654, 474, 0x000000 }, },\
-        { false, { 237, 613, 0x42455a }, false, false, false, false, false, false, false, { 1676, 613, 0x000000 }, },\
-        { false, { 215, 761, 0x3a4563 }, false, false, false, false, false, false, false, { 1700, 761, 0x314d52 }, },\
-        { false, { 190, 919, 0x524d5a }, false, false, false, false, false, false, false, { 1722, 919, 0x212421 }, },\
+        false,\
+        { false, false, false, { 218, 375, 0x19718c }, false, false, false, false, false, false, false, { 1574, 375, 0x000000 }, },\
+        { false, false, false, { 188, 492, 0x218194 }, false, false, false, false, false, false, false, { 1599, 492, 0x000000 }, },\
+        { false, false, false, { 154, 620, 0xefbe5a }, false, false, false, false, false, false, false, { 1626, 620, 0x000000 }, },\
+        { false, false, false, { 120, 759, 0x21656b }, false, false, false, false, false, false, false, { 1655, 759, 0x000000 }, },\
+        { false, false, false, { 80, 911, 0x31595a }, false, false, false, false, false, false, false, { 1687, 911, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
     {\
-      leftTop = { 629, 203 },\
+      leftTop = { 375, 274 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 629, 203, 0x3a2429 }, false, false, false, false, false, false, { 1779, 203, 0x191419 }, },\
-        { { 620, 326, 0x000000 }, false, false, false, false, false, false, { 1803, 326, 0x082031 }, },\
-        { { 610, 457, 0x000000 }, false, false, false, false, false, false, { 1828, 457, 0x081c29 }, },\
-        { { 599, 596, 0x312808 }, false, false, false, false, false, false, { 1854, 596, 0x3a4152 }, },\
-        { { 588, 743, 0x000000 }, false, false, false, false, false, false, { 1883, 743, 0x212d3a }, },\
-        { { 575, 901, 0x000000 }, false, false, false, false, false, false, { 1912, 901, 0x102831 }, },\
+        false,\
+        { { 353, 383, 0x000000 }, false, false, false, false, false, false, false, { 1705, 383, 0x21818c }, },\
+        { { 328, 501, 0x000000 }, false, false, false, false, false, false, false, { 1735, 501, 0x197594 }, },\
+        { { 302, 629, 0x000000 }, false, false, false, false, false, false, false, { 1768, 629, 0x19798c }, },\
+        { { 273, 768, 0x000000 }, false, false, false, false, false, false, false, { 1804, 768, 0x215d8c }, },\
+        { { 241, 921, 0x000000 }, false, false, false, false, false, false, false, { 1842, 921, 0x293942 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBottom = { 550, 912 },\
+      leftBottom = { 208, 904 },\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
-        { { 526, 166, 0x000000 }, false, false, false, false, false, { 1635, 166, 0x31455a }, },\
-        { { 512, 304, 0x000000 }, false, false, false, false, false, { 1657, 304, 0x293d5a }, },\
-        { { 496, 452, 0x000000 }, false, false, false, false, false, { 1681, 452, 0x313d5a }, },\
-        { { 479, 610, 0xdeb673 }, false, false, false, false, false, { 1706, 610, 0x313d63 }, },\
-        { { 463, 779, 0x8c0c10 }, false, false, false, false, false, { 1733, 779, 0x212d5a }, },\
-        { { 444, 964, 0x000000 }, false, false, false, false, false, { 1764, 964, 0xd67921 }, },\
+        { { 341, 296, 0x000000 }, false, false, false, false, false, false, { 1681, 296, 0x194d7b }, },\
+        { { 313, 426, 0x000000 }, false, false, false, false, false, false, { 1715, 426, 0x19497b }, },\
+        { { 281, 569, 0x100000 }, false, false, false, false, false, false, { 1751, 569, 0x10497b }, },\
+        { { 247, 727, 0x290000 }, false, false, false, false, false, false, { 1791, 727, 0x193d7b }, },\
+        { { 208, 904, 0x100000 }, false, false, false, false, false, false, { 1837, 904, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -5854,409 +5728,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1711, 974 },\
+      rightBottom = { 1615, 904 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false, false, false, false,\
-        { false, false, { 294, 174, 0x636173 }, false, false, false, false, false, false, { 1594, 174, 0x314952 }, },\
-        { false, false, { 271, 312, 0xce9e9c }, false, false, false, false, false, false, { 1613, 312, 0x000000 }, },\
-        { false, false, { 249, 460, 0x424563 }, false, false, false, false, false, false, { 1635, 460, 0x000000 }, },\
-        { false, false, { 224, 619, 0x3a415a }, false, false, false, false, false, false, { 1658, 619, 0x000000 }, },\
-        { false, false, { 198, 788, 0x313d63 }, false, false, false, false, false, false, { 1684, 788, 0x000000 }, },\
-        { false, false, { 169, 974, 0x000000 }, false, false, false, false, false, false, { 1711, 974, 0xde7508 }, },\
-      },\
-      pointMap = {},\
-    },\
-  })\
-  return list\
-end\
-\
--- 获取地图棋盘和相关数据\
-mapEvent.getMapChessboard = function()\
-  return {\
-    width = 9,\
-    height = 9,\
-    obstacle = {\
-      { 1, 3 }, { 1, 4 },\
-      { 2, 3 }, { 2, 4 },\
-      { 4, 7 }, { 4, 8 }, { 4, 9 },\
-      { 5, 3 }, { 5, 9 },\
-      { 6, 3 }, { 6, 7 }, { 6, 8 }, { 6, 9 },\
-      { 7, 5 },\
-      { 8, 5 },\
-      { 9, 6 },\
-    },\
-    waitForBossPosition = { { 5, 8 }, },\
-    bossPosition = {},\
-    myFleetList = {},\
-    enemyPositionList1 = {},\
-    enemyPositionList2 = {},\
-    enemyPositionList3 = {},\
-    movableEnemyPositionList = {},\
-    inBattleList = {},\
-    selectedArrowList = {},\
-    rewardBoxList = {},\
-  }\
-end\
-\
-return mapEvent" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b2.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b2.lua", name = "./meta-operation/maps-options/mapgyydywzh-b2.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-b2'\
-local mapEvent = {}\
-\
--- 从mapBase继承方法\
-mapEvent = table.assign(mapEvent, mapBase)\
-for key, value in pairs(mapBase) do\
-  if type(value) == 'function' then\
-    mapEvent[key] = function(...)\
-      return value(imgEvent, ...)\
-    end\
-  end\
-end\
-\
--- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
--- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
--- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
-mapEvent.getCheckpositionList = function()\
-  local list = mapBase.calCheckpositionList({\
-    {\
-      leftTop = { 586, 505 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { { 586, 505, 0x29313a }, false, false, false, false, false, false, { 1769, 505, 0x212d42 }, },\
-        { { 571, 628, 0x000000 }, false, false, false, false, false, false, { 1802, 628, 0x29415a }, },\
-        { { 554, 762, 0x000000 }, false, false, false, false, false, false, { 1838, 762, 0x294163 }, },\
-        { { 536, 907, 0x000000 }, false, false, false, false, false, false, { 1876, 907, 0x21414a }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = { 1595, 503 },\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { false, false, { 408, 503, 0x3a4542 }, false, false, false, false, false, false, { 1595, 503, 0x524142 }, },\
-        { false, false, { 386, 626, 0x42455a }, false, false, false, false, false, false, { 1620, 626, 0x000000 }, },\
-        { false, false, { 361, 759, 0x4a4d5a }, false, false, false, false, false, false, { 1648, 759, 0x000000 }, },\
-        { false, false, { 335, 904, 0x42495a }, false, false, false, false, false, false, { 1678, 904, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = { 1609, 370 },\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { false, false, { 422, 370, 0x313d42 }, false, false, false, false, false, false, { 1609, 370, 0x191821 }, },\
-        { false, false, { 401, 487, 0x3a455a }, false, false, false, false, false, false, { 1635, 487, 0x000000 }, },\
-        { false, false, { 377, 615, 0x4a495a }, false, false, false, false, false, false, { 1664, 615, 0x000000 }, },\
-        { false, false, { 348, 753, 0xd6d2ef }, false, false, false, false, false, false, { 1695, 753, 0x000000 }, },\
-        { false, false, { 323, 905, 0x4a4d63 }, false, false, false, false, false, false, { 1729, 905, 0x000000 }, }\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = { 615, 237 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false,\
-        { { 601, 349, 0x000000 }, false, false, false, false, false, { 1656, 349, 0x21354a }, },\
-        { { 586, 471, 0x000000 }, false, false, false, false, false, { 1686, 471, 0x213952 }, },\
-        { { 570, 603, 0x000000 }, false, false, false, false, false, { 1718, 603, 0x294152 }, },\
-        { { 552, 748, 0x000010 }, false, false, false, false, false, { 1752, 748, 0x42415a }, },\
-        { { 532, 906, 0x000000 }, false, false, false, false, false, { 1789, 906, 0xadae84 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = { 538, 903 },\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { { 612, 296, 0x000000 }, false, false, false, false, { 1569, 296, 0x524d52 }, },\
-        { { 596, 426, 0x000000 }, false, false, false, false, { 1597, 426, 0x29395a }, },\
-        { { 579, 569, 0x000000 }, false, false, false, false, { 1628, 569, 0x212d52 }, },\
-        { { 560, 726, 0x000000 }, false, false, false, false, { 1662, 726, 0x29285a }, },\
-        { { 538, 903, 0x000000 }, false, false, false, false, { 1701, 903, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = { 1706, 899 },\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { false, false, false, { 422, 292, 0x3a414a }, false, false, false, false, false, { 1574, 292, 0x000000 }, },\
-        { false, false, false, { 396, 422, 0x29243a }, false, false, false, false, false, { 1602, 422, 0x000000 }, },\
-        { false, false, false, { 371, 565, 0x312d42 }, false, false, false, false, false, { 1633, 565, 0x21285a }, },\
-        { false, false, false, { 340, 722, 0x42456b }, false, false, false, false, false, { 1668, 722, 0x000000 }, },\
-        { false, false, false, { 306, 899, 0x000000 }, false, false, false, false, false, { 1706, 899, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-  })\
-  return list\
-end\
-\
--- 获取地图棋盘和相关数据\
-mapEvent.getMapChessboard = function()\
-  return {\
-    width = 9,\
-    height = 7,\
-    obstacle = {\
-      { 1, 8 },\
-      { 2, 8 },\
-      { 3, 4 }, { 3, 5 }, { 3, 6 },\
-      { 5, 4 }, { 5, 5 }, { 5, 6 },\
-      { 6, 8 },\
-      { 7, 8 },\
-    },\
-    waitForBossPosition = { { 1, 9 }, { 7, 9 }, },\
-    bossPosition = {},\
-    myFleetList = {},\
-    enemyPositionList1 = {},\
-    enemyPositionList2 = {},\
-    enemyPositionList3 = {},\
-    movableEnemyPositionList = {},\
-    inBattleList = {},\
-    selectedArrowList = {},\
-    rewardBoxList = {},\
-  }\
-end\
-\
-return mapEvent" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-b1.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-b1.lua", name = "./meta-operation/maps-options/mapgyydywzh-b1.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-b1'\
-local mapEvent = {}\
-\
--- 从mapBase继承方法\
-mapEvent = table.assign(mapEvent, mapBase)\
-for key, value in pairs(mapBase) do\
-  if type(value) == 'function' then\
-    mapEvent[key] = function(...)\
-      return value(imgEvent, ...)\
-    end\
-  end\
-end\
-\
--- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
--- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
--- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
-mapEvent.getCheckpositionList = function()\
-  local list = mapBase.calCheckpositionList({\
-    {\
-      leftTop = { 363, 526 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { { 363, 526, 0x21283a }, false, false, false, false, false, false, false, { 1673, 526, 0x4a494a }, },\
-        { { 338, 646, 0x000000 }, false, false, false, false, false, false, false, { 1704, 646, 0x000000 }, },\
-        { { 310, 777, 0x000000 }, false, false, false, false, false, false, false, { 1738, 777, 0x000000 }, },\
-        { { 279, 920, 0x841419 }, false, false, false, false, false, false, false, { 1775, 920, 0x313531 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = { 629, 907 },\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false,\
-        { { 701, 223, 0x000000 }, false, false, false, false, { 1553, 223, 0x29415a }, },\
-        { { 690, 335, 0x4a4910 }, false, false, false, false, { 1580, 335, 0x314152 }, },\
-        { { 676, 457, 0x941c21 }, false, false, false, false, { 1611, 457, 0x191819 }, },\
-        { { 662, 591, 0x000000 }, false, false, false, false, { 1642, 591, 0x213152 }, },\
-        { { 646, 740, 0xe6ba7b }, false, false, false, false, { 1678, 740, 0x293963 }, },\
-        { { 629, 907, 0x000000 }, false, false, false, false, { 1717, 907, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = { 1709, 906 },\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false,\
-        { false, false, { 520, 222, 0x424d63 }, false, false, false, false, false, { 1546, 222, 0x000000 }, },\
-        { false, false, { 501, 333, 0x42495a }, false, false, false, false, false, { 1573, 333, 0x000000 }, },\
-        { false, false, { 479, 456, 0x5a5963 }, false, false, false, false, false, { 1602, 456, 0x000000 }, },\
-        { false, false, { 455, 590, 0x42455a }, false, false, false, false, false, { 1634, 590, 0x000000 }, },\
-        { false, false, { 428, 739, 0x31415a }, false, false, false, false, false, { 1670, 739, 0x000000 }, },\
-        { false, false, { 399, 906, 0x000000 }, false, false, false, false, false, { 1709, 906, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-  })\
-  return list\
-end\
-\
--- 获取地图棋盘和相关数据\
-mapEvent.getMapChessboard = function()\
-  return {\
-    width = 8,\
-    height = 6,\
-    obstacle = {\
-      { 1, 1 }, { 1, 2 }, { 1, 3 },\
-      { 2, 8 },\
-      { 3, 4 }, { 3, 5 },\
-      { 4, 4 }, { 4, 5 },\
-    },\
-    waitForBossPosition = { { 1, 8 }, { 6, 8 } },\
-    bossPosition = {},\
-    myFleetList = {},\
-    enemyPositionList1 = {},\
-    enemyPositionList2 = {},\
-    enemyPositionList3 = {},\
-    movableEnemyPositionList = {},\
-    inBattleList = {},\
-    selectedArrowList = {},\
-    rewardBoxList = {},\
-  }\
-end\
-\
-return mapEvent" }
-
-
-package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a3.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a3.lua", name = "./meta-operation/maps-options/mapgyydywzh-a3.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-a3'\
-local mapEvent = {}\
-\
--- 从mapBase继承方法\
-mapEvent = table.assign(mapEvent, mapBase)\
-for key, value in pairs(mapBase) do\
-  if type(value) == 'function' then\
-    mapEvent[key] = function(...)\
-      return value(imgEvent, ...)\
-    end\
-  end\
-end\
-\
--- 获取地图采样位置。由于地图可能超出一屏，所以这里可以定义多个采样位置。每次扫描都会对每个采样位置进行扫描\
--- 标志位为地图四个角。每个采样位置只需定义一个角的坐标即可。\
--- 还需要定义每个采样位置的地图矩阵与屏幕坐标的映射关系\
-mapEvent.getCheckpositionList = function()\
-  local list = mapBase.calCheckpositionList({\
-    {\
-      leftTop = { 431, 521 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { { 431, 521, 0x213942 }, false, false, false, false, false, false, false, { 1730, 521, 0x19353a }, },\
-        { { 416, 645, 0x000000 }, false, false, false, false, false, false, false, { 1752, 645, 0x295d6b }, },\
-        { { 399, 776, 0x000000 }, false, false, false, false, false, false, false, { 1776, 776, 0x426173 }, },\
-        { { 382, 915, 0x000000 }, false, false, false, false, false, false, false, { 1801, 915, 0x213131 }, }\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = { 1621, 520 },\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        { false, false, false, { 319, 520, 0x293131 }, false, false, false, false, false, false, false, { 1621, 520, 0x193142 }, },\
-        { false, false, false, { 300, 643, 0x216163 }, false, false, false, false, false, false, false, { 1640, 643, 0x000000 }, },\
-        { false, false, false, { 281, 774, 0x3a6973 }, false, false, false, false, false, false, false, { 1660, 774, 0x000000 }, },\
-        { false, false, false, { 260, 913, 0x316973 }, false, false, false, false, false, false, false, { 1682, 913, 0x000000 }, }\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = { 1589, 259 },\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false,\
-        { false, false, false, { 268, 375, 0x216163 }, false, false, false, false, false, false, false, { 1607, 375, 0x000000 }, },\
-        { false, false, false, { 247, 498, 0x3a6973 }, false, false, false, false, false, false, false, { 1626, 498, 0x000000 }, },\
-        { false, false, false, { 225, 629, 0x42697b }, false, false, false, false, false, false, false, { 1647, 629, 0x000000 }, },\
-        { false, false, false, { 202, 768, 0x527984 }, false, false, false, false, false, false, false, { 1669, 768, 0x000000 }, },\
-        { false, false, false, { 177, 916, 0x42616b }, false, false, false, false, false, false, false, { 1692, 916, 0x101010 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = { 515, 258 },\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false,\
-        { { 502, 374, 0x000000 }, false, false, false, false, false, false, false, { 1671, 374, 0x315d6b }, },\
-        { { 488, 497, 0x000000 }, false, false, false, false, false, false, false, { 1692, 497, 0x31616b }, },\
-        { { 474, 627, 0x000000 }, false, false, false, false, false, false, false, { 1715, 627, 0x3a697b }, },\
-        { { 459, 766, 0x000000 }, false, false, false, false, false, false, false, { 1739, 766, 0x426d73 }, },\
-        { { 442, 914, 0x000000 }, false, false, false, false, false, false, false, { 1764, 914, 0x293d42 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = { 550, 912 },\
-      rightBottom = nil,\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { { 601, 337, 0x000000 }, false, false, false, false, false, { 1664, 337, 0x3a6973 }, },\
-        { { 589, 467, 0x000000 }, false, false, false, false, false, { 1687, 467, 0x3a5d7b }, },\
-        { { 577, 605, 0x000000 }, false, false, false, false, false, { 1711, 605, 0x3a5d7b }, },\
-        { { 564, 752, 0x000000 }, false, false, false, false, false, { 1736, 752, 0x425173 }, },\
-        { { 550, 912, 0x000000 }, false, false, false, false, false, { 1763, 912, 0x000000 }, },\
-      },\
-      pointMap = {},\
-    },\
-    {\
-      leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = nil,\
-      rightBottom = { 1737, 910 },\
-      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
-      positionMap = {\
-        false, false, false,\
-        { false, false, false, false, { 396, 335, 0xf7f79c }, false, false, false, false, false, false, { 1641, 335, 0x000000 }, },\
-        { false, false, false, false, { 379, 464, 0x426973 }, false, false, false, false, false, false, { 1663, 464, 0x000000 }, },\
-        { false, false, false, false, { 359, 602, 0x426973 }, false, false, false, false, false, false, { 1686, 602, 0x000000 }, },\
-        { false, false, false, false, { 339, 750, 0x426173 }, false, false, false, false, false, false, { 1711, 750, 0x000000 }, },\
-        { false, false, false, false, { 317, 910, 0x000000 }, false, false, false, false, false, false, { 1737, 910, 0x000000 }, }\
+        { false, false, false, false, { 347, 296, 0x08597b }, false, false, false, false, false, { 1499, 296, 0x000000 }, },\
+        { false, false, false, false, { 319, 425, 0x21ae52 }, false, false, false, false, false, { 1524, 426, 0x000000 }, },\
+        { false, false, false, false, { 286, 569, 0x191819 }, false, false, false, false, false, { 1551, 569, 0x000000 }, },\
+        { false, false, false, false, { 252, 727, 0x7b8184 }, false, false, false, false, false, { 1582, 727, 0x000000 }, },\
+        { false, false, false, false, { 216, 904, 0x000000 }, false, false, false, false, false, { 1615, 904, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -6268,16 +5748,16 @@ end\
 mapEvent.getMapChessboard = function()\
   return {\
     width = 11,\
-    height = 7,\
+    height = 8,\
     obstacle = {\
-      { 1, 2 }, { 1, 3 }, { 1, 4 },\
-      { 2, 8 },\
-      { 3, 3 }, { 3, 9 }, { 3, 10 },\
-      { 4, 6 }, { 4, 10 },\
-      { 6, 3 }, { 6, 4 }, { 6, 9 }, { 6, 10 }, { 6, 11 },\
-      { 7, 3 }, { 7, 4 },\
+      { 1, 6 }, { 1, 7 }, { 1, 8 }, { 1, 11 },\
+      { 2, 2 }, { 2, 7 }, { 2, 8 }, { 2, 11 },\
+      { 4, 1 }, { 4, 4 }, { 4, 5 }, { 4, 9 }, { 4, 10 },\
+      { 5, 1 }, { 5, 10 },\
+      { 6, 1 }, { 6, 8 },\
+      { 8, 7 }, { 8, 8 }, { 8, 9 },\
     },\
-    waitForBossPosition = { { 4, 9 }, },\
+    waitForBossPosition = { { 1, 1 }, { 1, 2 }, { 1, 9 }, { 1, 10 }, },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -6294,9 +5774,8 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a2.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a2.lua", name = "./meta-operation/maps-options/mapgyydywzh-a2.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-a2'\
+package.sourceCode["./meta-operation/maps-options/map12-3.lua"] = { path = "./meta-operation/maps-options/map12-3.lua", name = "./meta-operation/maps-options/map12-3.lua", source = "local mapBase = require './map'\
+local imgEvent = require './img12-3'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -6315,46 +5794,78 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = { 541, 498 },\
+      leftTop = { 441, 488 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 541, 498, 0x730808 }, false, false, false, false, false, false, { 1737, 498, 0x214152 }, },\
-        { { 524, 622, 0x000000 }, false, false, false, false, false, false, { 1772, 622, 0x425d5a }, },\
-        { { 504, 757, 0x000000 }, false, false, false, false, false, false, { 1810, 757, 0x316163 }, },\
-        { { 481, 907, 0x000000 }, false, false, false, false, false, false, { 1852, 907, 0x3a6d73 }, },\
+        { { 441, 488, 0x212442 }, false, false, false, false, false, false, { 1625, 488, 0x191c31 }, },\
+        { { 421, 610, 0x080000 }, false, false, false, false, false, false, { 1652, 610, 0x298194 }, },\
+        { { 398, 742, 0x210000 }, false, false, false, false, false, false, { 1681, 742, 0x217d8c }, },\
+        { { 373, 886, 0x190000 }, false, false, false, false, false, false, { 1713, 886, 0x196184 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1573, 497 },\
+      rightTop = { 1558, 479 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { false, false, false, { 375, 497, 0x292d3a }, false, false, false, false, false, false, { 1573, 497, 0x192d42 }, },\
-        { false, false, false, { 349, 620, 0x427973 }, false, false, false, false, false, false, { 1600, 620, 0x000000 }, },\
-        { false, false, false, { 320, 756, 0x42697b }, false, false, false, false, false, false, { 1630, 756, 0x000000 }, },\
-        { false, false, false, { 288, 906, 0x426d84 }, false, false, false, false, false, false, { 1664, 906, 0x000000 }, }\
+        { false, false, false, { 371, 479, 0x293d52 }, false, false, false, false, false, false, { 1558, 479, 0x192031 }, },\
+        { false, false, false, { 347, 601, 0x191c19 }, false, false, false, false, false, false, { 1582, 601, 0x000000 }, },\
+        { false, false, false, { 322, 732, 0x5a6573 }, false, false, false, false, false, false, { 1608, 732, 0x000000 }, },\
+        { false, false, false, { 293, 877, 0x636973 }, false, false, false, false, false, false, { 1637, 877, 0x000000 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = { 1472, 269 },\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { false, false, false, { 258, 383, 0x197da4 }, false, false, false, false, false, false, { 1493, 383, 0x000000 }, },\
+        { false, false, false, { 228, 506, 0x5a6573 }, false, false, false, false, false, false, { 1515, 506, 0x000000 }, },\
+        { false, false, false, { 196, 640, 0x636d7b }, false, false, false, false, false, false, { 1540, 640, 0x000000 }, },\
+        { false, false, false, { 161, 786, 0x635963 }, false, false, false, false, false, false, { 1567, 786, 0x000000 }, },\
+        { false, false, false, { 122, 946, 0x84716b }, false, false, false, false, false, false, { 1596, 946, 0x101010 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 416, 254 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { { 394, 367, 0x100000 }, false, false, false, false, false, false, { 1625, 367, 0x21818c }, },\
+        { { 370, 489, 0x190000 }, false, false, false, false, false, false, { 1653, 489, 0x297d8c }, },\
+        { { 344, 622, 0x290000 }, false, false, false, false, false, false, { 1684, 622, 0x216184 }, },\
+        { { 315, 768, 0x100000 }, false, false, false, false, false, false, { 1717, 768, 0x21497b }, },\
+        { { 284, 927, 0x000000 }, false, false, false, false, false, false, { 1754, 927, 0x313d42 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
       rightTop = nil,\
-      leftBottom = { 389, 910 },\
+      leftBottom = { 235, 909 },\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false,\
-        { { 497, 310, 0x000000 }, false, false, false, false, false, { 1617, 310, 0x528694 }, },\
-        { { 474, 437, 0x000000 }, false, false, false, false, false, { 1650, 437, 0x31616b }, },\
-        { { 449, 577, 0x000000 }, false, false, false, false, false, { 1686, 577, 0x315163 }, },\
-        { { 421, 733, 0x000000 }, false, false, false, false, false, { 1727, 733, 0x3a556b }, },\
-        { { 389, 910, 0x000000 }, false, false, false, false, false, { 1772, 910, 0x000000 }, }\
+        false, false, false,\
+        { { 363, 300, 0x190000 }, false, false, false, false, false, false, { 1703, 300, 0x196184 }, },\
+        { { 336, 430, 0x100000 }, false, false, false, false, false, false, { 1738, 430, 0x294d8c }, },\
+        { { 305, 574, 0x000000 }, false, false, false, false, false, false, { 1776, 574, 0x214d84 }, },\
+        { { 272, 731, 0x000000 }, false, false, false, false, false, false, { 1817, 731, 0x10457b }, },\
+        { { 235, 909, 0x000000 }, false, false, false, false, false, false, { 1864, 909, 0x000000 }, },\
       },\
       pointMap = {},\
     },\
@@ -6362,15 +5873,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1665, 910 },\
+      rightBottom = { 1672, 924 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false, false,\
-        { false, false, false, false, { 405, 310, 0x847dad }, false, false, false, false, false, { 1531, 310, 0x000000 }, },\
-        { false, false, false, false, { 380, 437, 0x42717b }, false, false, false, false, false, { 1560, 437, 0x000000 }, },\
-        { false, false, false, false, { 350, 577, 0x315d6b }, false, false, false, false, false, { 1591, 577, 0x000000 }, },\
-        { false, false, false, false, { 316, 733, 0x3a616b }, false, false, false, false, false, { 1626, 733, 0x000000 }, },\
-        { false, false, false, false, { 278, 910, 0x000000 }, false, false, false, false, false, { 1665, 910, 0x000000 }, },\
+        false, false, false,\
+        { false, false, false, { 201, 312, 0x5a616b }, false, false, false, false, false, false, { 1545, 312, 0x000000 }, },\
+        { false, false, false, { 166, 443, 0x5a5563 }, false, false, false, false, false, false, { 1572, 443, 0x000000 }, },\
+        { false, false, false, { 128, 587, 0x425d5a }, false, false, false, false, false, false, { 1602, 587, 0x000000 }, },\
+        { false, false, false, { 86, 745, 0x085173 }, false, false, false, false, false, false, { 1634, 745, 0x000000 }, },\
+        { false, false, false, { 39, 924, 0x000000 }, false, false, false, false, false, false, { 1672, 924, 0x423d42 }, },\
       },\
       pointMap = {},\
     },\
@@ -6382,13 +5893,17 @@ end\
 mapEvent.getMapChessboard = function()\
   return {\
     width = 10,\
-    height = 6,\
+    height = 7,\
     obstacle = {\
-      { 2, 7 },\
-      { 3, 1 }, { 3, 2 }, { 3, 3 }, { 3, 7 }, { 3, 10 },\
-      { 6, 1 }, { 6, 5 },\
+      { 1, 2 }, { 1, 3 }, { 1, 4 },\
+      { 2, 9 },\
+      { 3, 4 }, { 3, 8 }, { 3, 9 },\
+      { 4, 6 }, { 4, 7 },\
+      { 5, 10 },\
+      { 6, 1 }, { 6, 6 }, { 6, 10 },\
+      { 7, 1 },\
     },\
-    waitForBossPosition = { { 1, 10 }, { 6, 10 }, },\
+    waitForBossPosition = { { 1, 1 }, { 1, 6 }, { 2, 1 }, { 2, 10 }, { 4, 1 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -6405,9 +5920,8 @@ return mapEvent" }
 
 
 package.sourceCode = package.sourceCode or {}
-package.sourceCode["./meta-operation/maps-options/mapgyydywzh-a1.lua"] = { path = "./meta-operation/maps-options/mapgyydywzh-a1.lua", name = "./meta-operation/maps-options/mapgyydywzh-a1.lua", source = "-- 光与影的鸢尾之华\
-local mapBase = require './map'\
-local imgEvent = require './imggyydywzh-a1'\
+package.sourceCode["./meta-operation/maps-options/map12-2.lua"] = { path = "./meta-operation/maps-options/map12-2.lua", name = "./meta-operation/maps-options/map12-2.lua", source = "local mapBase = require './map'\
+local imgEvent = require './img12-2'\
 local mapEvent = {}\
 \
 -- 从mapBase继承方法\
@@ -6426,46 +5940,78 @@ end\
 mapEvent.getCheckpositionList = function()\
   local list = mapBase.calCheckpositionList({\
     {\
-      leftTop = { 668, 494 },\
+      leftTop = { 393, 533 },\
       rightTop = nil,\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { { 668, 494, 0x314142 }, false, false, false, false, false, { 1691, 494, 0x3a3d42 }, },\
-        { { 655, 618, 0x000000 }, false, false, false, false, false, { 1724, 618, 0x3a616b }, },\
-        { { 640, 754, 0x000000 }, false, false, false, false, false, { 1760, 754, 0x427184 }, },\
-        { { 625, 903, 0x000000 }, false, false, false, false, false, { 1800, 903, 0x31616b }, },\
+        { { 393, 533, 0x313942 }, false, false, false, false, false, false, { 1577, 533, 0x31354a }, },\
+        { { 370, 656, 0x000000 }, false, false, false, false, false, false, { 1601, 656, 0x217d94 }, },\
+        { { 345, 791, 0x080000 }, false, false, false, false, false, false, { 1628, 791, 0x106d84 }, },\
+        { { 318, 937, 0x100000 }, false, false, false, false, false, false, { 1658, 937, 0x293d42 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = { 1634, 497 },\
+      rightTop = { 1556, 515 },\
       leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        { false, false, { 436, 497, 0x213142 }, false, false, false, false, false, false, { 1634, 497, 0x212831 }, },\
-        { false, false, { 413, 620, 0x426d73 }, false, false, false, false, false, false, { 1664, 620, 0x000000 }, },\
-        { false, false, { 387, 756, 0x295973 }, false, false, false, false, false, false, { 1697, 756, 0x000000 }, },\
-        { false, false, { 358, 905, 0x42797b }, false, false, false, false, false, false, { 1734, 905, 0x000000 }, },\
+        { false, false, false, { 538, 515, 0x293542 }, false, false, false, false, false, { 1556, 515, 0x213142 }, },\
+        { false, false, false, { 521, 638, 0x297984 }, false, false, false, false, false, { 1580, 638, 0x000000 }, },\
+        { false, false, false, { 503, 772, 0x316d73 }, false, false, false, false, false, { 1606, 772, 0x000000 }, },\
+        { false, false, false, { 483, 918, 0x315d73 }, false, false, false, false, false, { 1635, 918, 0x080c08 }, },\
       },\
       pointMap = {},\
     },\
     {\
       leftTop = nil,\
-      rightTop = nil,\
-      leftBottom = { 592, 904 },\
+      rightTop = { 1534, 268 },\
+      leftBottom = nil,\
       rightBottom = nil,\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
         false,\
-        { { 659, 332, 0x000000 }, false, false, false, false, false, { 1728, 332, 0x426173 }, },\
-        { { 644, 454, 0x000000 }, false, false, false, false, false, { 1764, 454, 0x427184 }, },\
-        { { 629, 589, 0x000000 }, false, false, false, false, false, { 1805, 589, 0x3a697b }, },\
-        { { 611, 737, 0x000000 }, false, false, false, false, false, { 1848, 737, 0x31596b }, },\
-        { { 592, 904, 0x000000 }, false, false, false, false, false, { 1899, 904, 0x000000 }, }\
+        { false, false, false, { 499, 381, 0x3a798c }, false, false, false, false, false, { 1557, 381, 0x000000 }, },\
+        { false, false, false, { 479, 504, 0x42656b }, false, false, false, false, false, { 1582, 504, 0x000000 }, },\
+        { false, false, false, { 458, 638, 0x5a617b }, false, false, false, false, false, { 1610, 638, 0x000000 }, },\
+        { false, false, false, { 435, 784, 0x5a4952 }, false, false, false, false, false, { 1640, 784, 0x000000 }, },\
+        { false, false, false, { 409, 945, 0x63456b }, false, false, false, false, false, { 1673, 945, 0x100c10 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = { 356, 257 },\
+      rightTop = nil,\
+      leftBottom = nil,\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false,\
+        { { 332, 369, 0x000000 }, false, false, false, false, false, false, { 1563, 369, 0x218194 }, },\
+        { { 305, 492, 0x080000 }, false, false, false, false, false, false, { 1588, 492, 0x21759c }, },\
+        { { 276, 626, 0x190000 }, false, false, false, false, false, false, { 1616, 626, 0x21698c }, },\
+        { { 244, 772, 0x100000 }, false, false, false, false, false, false, { 1647, 772, 0x215d84 }, },\
+        { { 210, 931, 0x080000 }, false, false, false, false, false, false, { 1679, 931, 0x211c21 }, },\
+      },\
+      pointMap = {},\
+    },\
+    {\
+      leftTop = nil,\
+      rightTop = nil,\
+      leftBottom = { 159, 924 },\
+      rightBottom = nil,\
+      -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
+      positionMap = {\
+        false, false, false,\
+        { { 301, 312, 0x290000 }, false, false, false, false, false, false, { 1641, 312, 0x19698c }, },\
+        { { 270, 443, 0x100000 }, false, false, false, false, false, false, { 1672, 443, 0x195d7b }, },\
+        { { 237, 587, 0x100000 }, false, false, false, false, false, false, { 1707, 587, 0x192842 }, },\
+        { { 200, 746, 0x190000 }, false, false, false, false, false, false, { 1745, 746, 0x104973 }, },\
+        { { 159, 924, 0x000000 }, false, false, false, false, false, false, { 1786, 924, 0x84868c }, },\
       },\
       pointMap = {},\
     },\
@@ -6473,15 +6019,15 @@ mapEvent.getCheckpositionList = function()\
       leftTop = nil,\
       rightTop = nil,\
       leftBottom = nil,\
-      rightBottom = { 1743, 904 },\
+      rightBottom = { 1648, 943 },\
       -- 地图棋盘映射到屏幕，后面的颜色没有用，只是取点的时候自动加上的\
       positionMap = {\
-        false,\
-        { false, false, { 350, 332, 0x427584 }, false, false, false, false, false, false, { 1601, 332, 0x000000 }, },\
-        { false, false, { 321, 454, 0x31be6b }, false, false, false, false, false, false, { 1631, 454, 0x000000 }, },\
-        { false, false, { 290, 589, 0x292d4a }, false, false, false, false, false, false, { 1665, 589, 0x000000 }, },\
-        { false, false, { 252, 737, 0x292d42 }, false, false, false, false, false, false, { 1702, 737, 0x000000 }, },\
-        { false, false, { 215, 904, 0x000000 }, false, false, false, false, false, false, { 1743, 904, 0x000000 }, },\
+        false, false, false,\
+        { false, false, false, { 374, 328, 0x3a6d94 }, false, false, false, false, false, { 1526, 328, 0x000000 }, },\
+        { false, false, false, { 347, 460, 0x315963 }, false, false, false, false, false, { 1552, 460, 0x000000 }, },\
+        { false, false, false, { 317, 605, 0x425584 }, false, false, false, false, false, { 1581, 605, 0x000000 }, },\
+        { false, false, false, { 285, 764, 0x215573 }, false, false, false, false, false, { 1613, 764, 0x000000 }, },\
+        { false, false, false, { 248, 943, 0x000000 }, false, false, false, false, false, { 1648, 943, 0x080c08 }, },\
       },\
       pointMap = {},\
     },\
@@ -6493,14 +6039,17 @@ end\
 mapEvent.getMapChessboard = function()\
   return {\
     width = 9,\
-    height = 5,\
+    height = 7,\
     obstacle = {\
-      { 1, 3 }, { 1, 7 }, { 1, 8 },\
-      { 2, 8 },\
-      { 4, 5 },\
-      { 5, 5 },\
+      { 1, 1 }, { 1, 5 },\
+      { 2, 1 }, { 2, 9 },\
+      { 3, 3 }, { 3, 9 },\
+      { 4, 6 }, { 4, 7 },\
+      { 5, 1 },\
+      { 6, 4 },\
+      { 7, 8 }, { 7, 9 },\
     },\
-    waitForBossPosition = { { 1, 9 }, { 5, 9 }, { 5, 6 }, },\
+    waitForBossPosition = { { 1, 2 }, { 3, 1 }, { 4, 1 } },\
     bossPosition = {},\
     myFleetList = {},\
     enemyPositionList1 = {},\
@@ -14708,12 +14257,9 @@ local map11_2 = require './map11-2'\
 local map11_3 = require './map11-3'\
 local map11_4 = require './map11-4'\
 local map12_1 = require './map12-1'\
-local mapgyydywzh_a1 = require './mapgyydywzh-a1'\
-local mapgyydywzh_a2 = require './mapgyydywzh-a2'\
-local mapgyydywzh_a3 = require './mapgyydywzh-a3'\
-local mapgyydywzh_b1 = require './mapgyydywzh-b1'\
-local mapgyydywzh_b2 = require './mapgyydywzh-b2'\
-local mapgyydywzh_b3 = require './mapgyydywzh-b3'\
+local map12_2 = require './map12-2'\
+local map12_3 = require './map12-3'\
+local map12_4 = require './map12-4'\
 \
 return {\
   ['map1-1'] = map1_1,\
@@ -14769,12 +14315,9 @@ return {\
   ['map11-3'] = map11_3,\
   ['map11-4'] = map11_4,\
   ['map12-1'] = map12_1,\
-  ['mapgyydywzh-a1'] = mapgyydywzh_a1,\
-  ['mapgyydywzh-a2'] = mapgyydywzh_a2,\
-  ['mapgyydywzh-a3'] = mapgyydywzh_a3,\
-  ['mapgyydywzh-b1'] = mapgyydywzh_b1,\
-  ['mapgyydywzh-b2'] = mapgyydywzh_b2,\
-  ['mapgyydywzh-b3'] = mapgyydywzh_b3,\
+  ['map12-2'] = map12_2,\
+  ['map12-3'] = map12_3,\
+  ['map12-4'] = map12_4,\
 }\
 " }
 
@@ -16221,6 +15764,9 @@ return function()\
 \
   return ret, settings\
 end\
+\
+\
+\
 " }
 
 
