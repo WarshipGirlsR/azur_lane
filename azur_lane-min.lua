@@ -13743,7 +13743,7 @@ local battleListenerList = {\
   { '', o.home.isHome, 2000 },\
   { 'BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
   { 'BATTLE_BATTLE_CHAPTER_PAGE_INFO_PANEL_CLICK_INTO', o.battle.isChapterInfoPanel, 2000 },\
-  { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },\
+  { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET', o.battle.isSelectFleetPanel, 2000 },\
   { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },\
   { 'BATTLE_MAP_PAGE_CLOSE_INFOMATION_MODAL', o.battle.isInfomationModal, 2000 },\
   { 'BATTLE_MAP_PAGE', o.battle.isMapPage, 2000 },\
@@ -13908,7 +13908,7 @@ local battle = function(action)\
       stepLabel.setStepLabelContent('2.10.点击进入章节')\
       o.battle.clickGotoMapBtn()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_FLEET', o.battle.isSelectFleetPanel, 2000 },\
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CANCEL_2_FLEET', o.battle.isSelectFleetPanel, 2000 },\
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },\
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },\
       }))\
