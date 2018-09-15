@@ -389,7 +389,14 @@ battle.isSelectFleetPanel = function()
     { 1574, 303, 0x733110 }, { 1549, 479, 0xffdb5a }, { 1657, 545, 0xd6d2d6 }, { 1714, 485, 0xd6dfde },
     { 1550, 509, 0x5a2d00 }, { 1677, 507, 0x313d3a },
   }
-  local result = multiColorS(list)
+  local list2 = {
+    { 157, 125, 0x292429 }, { 744, 119, 0xeff3f7 }, { 1480, 121, 0xeff3f7 },
+    { 1767, 120, 0x9caa9c }, { 1701, 955, 0xf7a210 }, { 1468, 954, 0xffaa19 }, { 1472, 888, 0xe6c252 },
+    { 1620, 905, 0xf7db4a }, { 1608, 927, 0xffffff }, { 1534, 285, 0xffdb52 }, { 1577, 309, 0x7b3510 },
+    { 1604, 328, 0xffa229 }, { 1654, 285, 0xdee3e6 }, { 1690, 306, 0xdedfe6 }, { 1724, 320, 0x848684 },
+    { 1553, 485, 0xffdb5a }, { 1587, 505, 0x733110 }, { 1686, 491, 0xdedfde }, { 1684, 513, 0x313542 },
+  }
+  local result = multiColorS(list) or multiColorS(list2)
   if not __keepScreenState then keepScreen(false) end
   return result
 end
