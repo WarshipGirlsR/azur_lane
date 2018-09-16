@@ -176,6 +176,7 @@ local battle = function(action)
         c.yield(o.battle.clickSelectFleetPanelCancel2Fleet())
       end
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {
+        { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_SELECT_1_FLEET', o.battle.isSelectFleetPanel, 1000 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isSelectFleetPanel, 500 },
         { 'BATTLE_BATTLE_CHAPTER_PAGE_HARD_SELECT_FLEET_PANEL_CLICK_INTO', o.battle.isHardSelectFleetPanel, 500 },
         { 'BATTLE_MAP_PAGE', o.battle.isMapPage },
