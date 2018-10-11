@@ -62,17 +62,30 @@ return function()
         },
         {
           ['type'] = 'Label',
-          ['text'] = '每日挑战',
+          ['text'] = '女仆活动',
           ['size'] = 15,
           ['align'] = 'left',
           ['color'] = '0,0,0',
         },
         {
-          ['id'] = 'dailyChallengesEnable',
+          ['id'] = 'maidBattleEnable',
           ['type'] = 'RadioGroup',
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
+        --        {
+        --          ['type'] = 'Label',
+        --          ['text'] = '每日挑战',
+        --          ['size'] = 15,
+        --          ['align'] = 'left',
+        --          ['color'] = '0,0,0',
+        --        },
+        --        {
+        --          ['id'] = 'dailyChallengesEnable',
+        --          ['type'] = 'RadioGroup',
+        --          ['list'] = '开启,关闭',
+        --          ['select'] = '0',
+        --        },
         {
           ['type'] = 'Label',
           ['text'] = '任务',
@@ -419,6 +432,28 @@ return function()
       {
         {
           ['type'] = 'Label',
+          ['text'] = '女仆活动',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['type'] = 'Label',
+          ['text'] = '关卡',
+          ['size'] = 15,
+          ['align'] = 'left',
+          ['color'] = '0,0,0',
+        },
+        {
+          ['id'] = 'maidBattleChapter',
+          ['type'] = 'RadioGroup',
+          ['list'] = '简单,普通,困难',
+          ['select'] = '2',
+        },
+      },
+      {
+        {
+          ['type'] = 'Label',
           ['text'] = '每日挑战',
           ['size'] = 15,
           ['align'] = 'left',
@@ -562,6 +597,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[exerciseEnable] or false
     end)(settings.exerciseEnable)
+    -- 女仆活动
+    settings.maidBattleEnable = (function(maidBattleEnable)
+      local list = transStrToTable({ true, false, })
+      return list[maidBattleEnable] or false
+    end)(settings.maidBattleEnable)
     -- 每日挑战
     settings.dailyChallengesEnable = (function(dailyChallengesEnable)
       local list = transStrToTable({ true, false, })
@@ -716,6 +756,12 @@ return function()
     end)(settings.exerciseLowerHPRestart)
     -- 检查演习间隔时间
     settings.exerciseInterval = tonumber(settings.exerciseInterval) or 0
+    -- 女仆活动
+    -- 女仆活动关卡
+    settings.maidBattleChapter = (function(maidBattleChapter)
+      local list = transStrToTable({ 1, 2, 3 })
+      return list[maidBattleChapter] or 1
+    end)(settings.maidBattleChapter)
     -- 每日挑战
     -- 战术研修关卡
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)

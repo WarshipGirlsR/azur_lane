@@ -1045,11 +1045,13 @@ battle.isGetExpPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 543, 279, 0x6b696b }, { 744, 280, 0x6b696b },
-    { 890, 276, 0x6b696b }, { 1247, 275, 0x6b696b },
-    { 1374, 275, 0x636563 }, { 1381, 308, 0x63656b },
-    { 540, 306, 0x6b696b }, { 555, 269, 0x8c8e94 },
-    { 949, 269, 0x948e94 }, { 1324, 269, 0x8c8a8c },
+    { 581, 287, 0x6b696b }, { 603, 287, 0x6b696b },
+    { 638, 286, 0x6b6973 }, { 711, 292, 0x6b696b },
+    { 784, 286, 0x6b696b }, { 856, 285, 0x63656b },
+    { 908, 288, 0x736973 }, { 960, 291, 0x63656b },
+    { 999, 287, 0x6b696b }, { 1039, 286, 0x6b696b },
+    { 1293, 886, 0xdee7de }, { 1427, 938, 0xc5bebd },
+    { 1555, 889, 0xe6e7e6 }, { 1792, 938, 0xc5c2c5 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end

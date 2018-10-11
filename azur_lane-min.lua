@@ -3183,9 +3183,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在\
+  -- 如果左边集合小于50个点，或者高差小于50个像素，则认为左边黑线不存在\
+  local leftTopPoint = math.minTable(leftLinePointList, function(item) return item[2] end)\
+  local leftBottomPoint = math.maxTable(leftLinePointList, function(item) return item[2] end)\
   if #leftLineAdjacentMaxList < 50\
-    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then\
+    or (leftLinePointList and #leftLinePointList >= 2 and leftBottomPoint[2] - leftTopPoint[2] < 50) then\
     leftLinePointList = {}\
   end\
 \
@@ -3227,9 +3229,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)\
       end\
     end\
   end\
-  -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在\
+  -- 如果右边集合小于50个点，或者高差小于50个像素，则认为右边黑线不存在\
+  local rightTopPoint = math.minTable(rightLinePointList, function(item) return item[2] end)\
+  local rightBottomPoint = math.maxTable(rightLinePointList, function(item) return item[2] end)\
   if #rightLineAdjacentMaxList < 50\
-    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then\
+    or (rightLinePointList and #rightLinePointList >= 2 and rightBottomPoint[2] - rightTopPoint[2] < 50) then\
     rightLinePointList = {}\
   end\
 \
@@ -4343,6 +4347,50 @@ return dailyChallenges\
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./meta-operation/maid-battle.lua"] = { path = "./meta-operation/maid-battle.lua", name = "./meta-operation/maid-battle.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local sleepPromise = require '../utils/sleep-promise'\
+local imgTools = require '../utils/img-tools'\
+\
+\
+local maidBattle = {}\
+\
+-- 点击活动\
+maidBattle.clickEventBtn = function()\
+  RTap({ 1028, 459 }, 100)\
+end\
+\
+-- 点击活动\
+maidBattle.clickChapterBtn = function(chapter)\
+  if chapter == 1 then\
+    RTap({ 331, 559 }, 100)\
+  elseif chapter == 2 then\
+    RTap({ 1040, 573 }, 100)\
+  elseif chapter == 3 then\
+    RTap({ 1712, 543 }, 100)\
+  end\
+end\
+\
+--  是否在选择关卡页面\
+maidBattle.isSelectChapterPage = function()\
+  local __keepScreenState = keepScreenState\
+  if not __keepScreenState then keepScreen(true) end\
+  local list = {\
+    { 13, 14, 0xdee3de }, { 22, 94, 0xffffff }, { 979, 78, 0xefefff }, { 1477, 99, 0xffffff },\
+    { 1886, 98, 0xf7ebf7 }, { 1834, 128, 0x000000 }, { 60, 318, 0xfff7ef }, { 1516, 225, 0xffffff },\
+    { 1863, 317, 0xefe7d6 }, { 1855, 456, 0xefe394 }, { 67, 699, 0xefebce }, { 345, 685, 0x8c8ea4 },\
+    { 696, 717, 0xffffff }, { 1016, 699, 0xd6d2ce }, { 1419, 708, 0xffffff }, { 1774, 662, 0x31355a },\
+    { 169, 928, 0xfffbff }, { 756, 927, 0xeff3ef }, { 1075, 926, 0xffffff }, { 1254, 1063, 0xffffff },\
+  }\
+  local result = multiColorS(list)\
+  if not __keepScreenState then keepScreen(false) end\
+  return result\
+end\
+\
+return maidBattle" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./utils/vibrator-promise.lua"] = { path = "./utils/vibrator-promise.lua", name = "./utils/vibrator-promise.lua", source = "if type(Promise) ~= 'table' then\
   error('SleepPromise need Promise module to work. Please require \\'Promise\\' as global variable.', 2)\
 end\
@@ -4381,11 +4429,11 @@ home.isHome = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 93, 9, 0xefaa00 }, { 102, 36, 0xe6ae08 }, { 89, 84, 0xefa600 }, { 23, 105, 0xefaa00 },\
-    { 1188, 173, 0xffffff }, { 1313, 162, 0xffffff }, { 1426, 192, 0xffffff }, { 1657, 176, 0xfffbf7 },\
-    { 1768, 177, 0xe6ebe6 }, { 1775, 197, 0xe6ebe6 }, { 1190, 560, 0x10a2ef }, { 1220, 592, 0x2196d6 },\
-    { 1268, 575, 0xffffff }, { 1361, 585, 0x198ace }, { 1411, 596, 0x10a2ef }, { 1488, 586, 0xe6aa10 },\
-    { 1611, 602, 0xe69e08 }, { 1589, 578, 0xffffff }, { 1706, 571, 0xffffff }, { 1785, 582, 0xdeb210 },\
+    { 1015, 33, 0x3a353a }, { 1038, 62, 0x423d42 }, { 1325, 32, 0xfff363 }, { 1350, 53, 0xf7ca5a },\
+    { 1639, 35, 0xff4573 }, { 1660, 60, 0xef416b }, { 1188, 173, 0xffffff }, { 1203, 584, 0x109eef },\
+    { 1388, 583, 0x198ece }, { 1479, 589, 0xe6aa10 }, { 46, 949, 0xffffff }, { 190, 984, 0xdedbde },\
+    { 299, 1004, 0x5a6d8c }, { 557, 1008, 0x3a393a }, { 784, 1007, 0x313131 }, { 1030, 1007, 0x313531 },\
+    { 1277, 1004, 0x424142 }, { 1523, 1006, 0xbd1010 }, { 1768, 1004, 0x424142 }, { 1776, 603, 0xde9a08 },\
   }\
   local result = multiColorS(list)\
   if (not __keepScreenState) then keepScreen(false) end\
@@ -5443,11 +5491,13 @@ battle.isGetExpPanel = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 543, 279, 0x6b696b }, { 744, 280, 0x6b696b },\
-    { 890, 276, 0x6b696b }, { 1247, 275, 0x6b696b },\
-    { 1374, 275, 0x636563 }, { 1381, 308, 0x63656b },\
-    { 540, 306, 0x6b696b }, { 555, 269, 0x8c8e94 },\
-    { 949, 269, 0x948e94 }, { 1324, 269, 0x8c8a8c },\
+    { 581, 287, 0x6b696b }, { 603, 287, 0x6b696b },\
+    { 638, 286, 0x6b6973 }, { 711, 292, 0x6b696b },\
+    { 784, 286, 0x6b696b }, { 856, 285, 0x63656b },\
+    { 908, 288, 0x736973 }, { 960, 291, 0x63656b },\
+    { 999, 287, 0x6b696b }, { 1039, 286, 0x6b696b },\
+    { 1293, 886, 0xdee7de }, { 1427, 938, 0xc5bebd },\
+    { 1555, 889, 0xe6e7e6 }, { 1792, 938, 0xc5c2c5 },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -13713,6 +13763,207 @@ return dailyChallenges\
 
 
 package.sourceCode = package.sourceCode or {}
+package.sourceCode["./missions/maid-battle.lua"] = { path = "./missions/maid-battle.lua", name = "./missions/maid-battle.lua", source = "local co = require '../lib/co'\
+local c = coroutine\
+local stepLabel = require '../utils/step-label'\
+local makeAction = (require './utils').makeAction\
+local sleepPromise = require '../utils/sleep-promise'\
+local moBattle = require '../meta-operation/battle'\
+local moMaidBattle = require '../meta-operation/maid-battle'\
+local moHome = require '../meta-operation/home'\
+local moMap = require '../meta-operation/maps-options/index'\
+local setScreenListeners = (require './utils').setScreenListeners\
+local store = require '../store'\
+local vibratorPromise = require '../utils/vibrator-promise'\
+\
+store.battle = store.battle or {}\
+\
+local o = {\
+  home = moHome,\
+  battle = moBattle,\
+  maidBattle = moMaidBattle,\
+  map = moMap,\
+}\
+\
+local battleListenerList = {\
+  { '', o.home.isHome, 2000 },\
+  { 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 2000 },\
+  { 'MAID_BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+  { 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.maidBattle.isSelectChapterPage, 2000 },\
+  { 'MAID_BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },\
+  { 'MAID_BATTLE_VICTORY_PAGE', o.battle.isVictoryPanel, 2000 },\
+  { 'MAID_BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },\
+  { 'MAID_BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+  { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+}\
+\
+local maidBattle = function(action)\
+  local settings = store.settings;\
+\
+  return co(c.create(function()\
+    if action.type == 'MAID_BATTLE_INIT' then\
+\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_START', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_START' then\
+\
+      stepLabel.setStepLabelContent('6.1.等待桌面')\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_HOME_CLICK_BATTLE' then\
+\
+      stepLabel.setStepLabelContent('6.2.点击出击')\
+      o.maidBattle.clickEventBtn()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
+        { 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE', o.maidBattle.isSelectChapterPage, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_SELECT_MODE' then\
+\
+      stepLabel.setStepLabelContent('6.3.选择章节界面')\
+      o.maidBattle.clickChapterBtn(settings.maidBattleChapter)\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE' then\
+\
+      stepLabel.setStepLabelContent('6.16.准备战斗')\
+      c.yield(sleepPromise(1000))\
+      o.battle.readyBattlePageClickBattle()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_READY_BATTLE_PAGE_CLICK_BATTLE', o.battle.isReadyBattlePage, 2000 },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_IN_BATTLE_PAGE' then\
+\
+      stepLabel.setStepLabelContent('6.17.战斗中检测是否自动战斗')\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 86400000 },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle, 2000 },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE' then\
+\
+      stepLabel.setStepLabelContent('6.18.点击自动战斗')\
+      c.yield(sleepPromise(500))\
+      o.battle.inBattlePageClickAutoBattle()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL' then\
+\
+      stepLabel.setStepLabelContent('6.19.自动战斗面板点击确认')\
+      o.battle.autoBattleConfirmPanelClickOk()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 2000 },\
+        { 'MAID_BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_VICTORY_PAGE' then\
+\
+      stepLabel.setStepLabelContent('6.21.胜利面板点击继续')\
+      o.battle.victoryPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_VICTORY_PAGE', o.battle.isGetPropsPanel, 2000 },\
+        { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'MAID_BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_GET_PROPS_PANEL' then\
+\
+      stepLabel.setStepLabelContent('6.22.获得道具面板点击继续')\
+      o.battle.getPropsPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },\
+        { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'MAID_BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_GET_NEW_SHIP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('6.23.获得新船面板点击继续')\
+      o.battle.getNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+        { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 1000 },\
+        { 'MAID_BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_LOCK_NEW_SHIP_PANEL' then\
+\
+      if settings.battleStopWhenGetNewShip then\
+        lua_exit()\
+      end\
+\
+      stepLabel.setStepLabelContent('6.23.锁定新船面板点击继续')\
+      o.battle.lockNewShipPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
+        { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'MAID_BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_GET_EXP_PANEL' then\
+\
+      stepLabel.setStepLabelContent('6.24.获得经验面板点击继续')\
+      o.battle.getExpPanelClickNext()\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'MAID_BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { '', o.home.isHome, 2000 },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME' then\
+\
+      if settings.battleChapter.name ~= '0' then\
+        o.battle.battlePageClickBackToHome()\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { '', o.home.isHome, 2000 },\
+        }))\
+        return makeAction(newstateTypes)\
+      else\
+        stepLabel.setStepLabelContent('6.25.等待用户操作')\
+        local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+          { 'MAID_BATTLE_BATTLE_CHAPTER_PAGE_BACK_TO_HOME', o.battle.isBattleChapterPage, 86400 },\
+          { '', o.home.isHome, 2000 },\
+        }))\
+        return makeAction(newstateTypes)\
+      end\
+    end\
+\
+    return nil\
+  end))\
+end\
+\
+return maidBattle\
+" }
+
+
+package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/battle.lua"] = { path = "./missions/battle.lua", name = "./missions/battle.lua", source = "local co = require '../lib/co'\
 local c = coroutine\
 local stepLabel = require '../utils/step-label'\
@@ -14838,6 +15089,7 @@ return sleepPromise\
 package.sourceCode = package.sourceCode or {}
 package.sourceCode["./missions/index.lua"] = { path = "./missions/index.lua", name = "./missions/index.lua", source = "local co = require '../lib/co'\
 local battle = require './battle'\
+local maidBattle = require './maid-battle'\
 local dailyChallenges = require './daily-challenges'\
 local mission = require './mission'\
 local exercise = require './exercise'\
@@ -14850,6 +15102,7 @@ local scanMapsType1 = require './scan-map-type-1'\
 -- 将分散在各个文件的任务集合到一起\
 local missions = {\
   battle,\
+  maidBattle,\
   dailyChallenges,\
   exercise,\
   mission,\
@@ -15048,17 +15301,30 @@ return function()\
         },\
         {\
           ['type'] = 'Label',\
-          ['text'] = '每日挑战',\
+          ['text'] = '女仆活动',\
           ['size'] = 15,\
           ['align'] = 'left',\
           ['color'] = '0,0,0',\
         },\
         {\
-          ['id'] = 'dailyChallengesEnable',\
+          ['id'] = 'maidBattleEnable',\
           ['type'] = 'RadioGroup',\
           ['list'] = '开启,关闭',\
           ['select'] = '0',\
         },\
+        --        {\
+        --          ['type'] = 'Label',\
+        --          ['text'] = '每日挑战',\
+        --          ['size'] = 15,\
+        --          ['align'] = 'left',\
+        --          ['color'] = '0,0,0',\
+        --        },\
+        --        {\
+        --          ['id'] = 'dailyChallengesEnable',\
+        --          ['type'] = 'RadioGroup',\
+        --          ['list'] = '开启,关闭',\
+        --          ['select'] = '0',\
+        --        },\
         {\
           ['type'] = 'Label',\
           ['text'] = '任务',\
@@ -15405,6 +15671,28 @@ return function()\
       {\
         {\
           ['type'] = 'Label',\
+          ['text'] = '女仆活动',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['type'] = 'Label',\
+          ['text'] = '关卡',\
+          ['size'] = 15,\
+          ['align'] = 'left',\
+          ['color'] = '0,0,0',\
+        },\
+        {\
+          ['id'] = 'maidBattleChapter',\
+          ['type'] = 'RadioGroup',\
+          ['list'] = '简单,普通,困难',\
+          ['select'] = '2',\
+        },\
+      },\
+      {\
+        {\
+          ['type'] = 'Label',\
           ['text'] = '每日挑战',\
           ['size'] = 15,\
           ['align'] = 'left',\
@@ -15548,6 +15836,11 @@ return function()\
       local list = transStrToTable({ true, false, })\
       return list[exerciseEnable] or false\
     end)(settings.exerciseEnable)\
+    -- 女仆活动\
+    settings.maidBattleEnable = (function(maidBattleEnable)\
+      local list = transStrToTable({ true, false, })\
+      return list[maidBattleEnable] or false\
+    end)(settings.maidBattleEnable)\
     -- 每日挑战\
     settings.dailyChallengesEnable = (function(dailyChallengesEnable)\
       local list = transStrToTable({ true, false, })\
@@ -15702,6 +15995,12 @@ return function()\
     end)(settings.exerciseLowerHPRestart)\
     -- 检查演习间隔时间\
     settings.exerciseInterval = tonumber(settings.exerciseInterval) or 0\
+    -- 女仆活动\
+    -- 女仆活动关卡\
+    settings.maidBattleChapter = (function(maidBattleChapter)\
+      local list = transStrToTable({ 1, 2, 3 })\
+      return list[maidBattleChapter] or 1\
+    end)(settings.maidBattleChapter)\
     -- 每日挑战\
     -- 战术研修关卡\
     settings.tacticalTrainingChapter = (function(tacticalTrainingChapter)\
@@ -18972,55 +19271,57 @@ end)\
 \
 \
 co(c.create(function()\
-  if (settings.battleEnable or settings.exerciseEnable or settings.missionEnable or settings.dailyChallengesEnable) then\
 \
-    local theMissionsQuery = {}\
-    -- 是否运行出征\
-    if (settings.battleEnable) then\
-      table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })\
-    end\
-    -- 是否运行任务\
-    if (settings.missionEnable) then\
-      table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })\
-    end\
-    -- 是否运行演习\
-    if (settings.exerciseEnable) then\
-      table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })\
-    end\
-    -- 是否运行每日挑战\
-    if (settings.dailyChallengesEnable) then\
-      table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })\
-    end\
+  local theMissionsQuery = {}\
+  -- 是否运行出征\
+  if (settings.battleEnable) then\
+    table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })\
+  end\
+  -- 是否运行任务\
+  if (settings.missionEnable) then\
+    table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })\
+  end\
+  -- 是否运行演习\
+  if (settings.exerciseEnable) then\
+    table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })\
+  end\
+  -- 是否运行女仆活动\
+  if (settings.maidBattleEnable) then\
+    table.insert(theMissionsQuery, { isBase = true, type = 'MAID_BATTLE_INIT' })\
+  end\
+  -- 是否运行每日挑战\
+  if (settings.dailyChallengesEnable) then\
+    table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })\
+  end\
 \
-    local theChain = createChain(missionsList)\
+  local theChain = createChain(missionsList)\
 \
-    -- 启动任务链\
-    c.yield(theChain.runMission({\
-      missionsQuery = theMissionsQuery,\
-      -- 在每次循环执行过 action 之后调用\
-      afterAction = function(res)\
-        local action = res.action\
-        local nextAction = res.nextAction\
-        local missionsQuery = res.missionsQuery\
-        local runStartTime = res.runStartTime\
+  -- 启动任务链\
+  c.yield(theChain.runMission({\
+    missionsQuery = theMissionsQuery,\
+    -- 在每次循环执行过 action 之后调用\
+    afterAction = function(res)\
+      local action = res.action\
+      local nextAction = res.nextAction\
+      local missionsQuery = res.missionsQuery\
+      local runStartTime = res.runStartTime\
 \
-        return co(c.create(function()\
-          if (action.isEnd) then\
-            local diffTime = (socket.gettime() * 1000) - runStartTime\
-            if (diffTime < (settings.missionsInterval * 1000)) then\
-              local remainTime = (settings.missionsInterval * 1000) - diffTime\
-              stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒')\
-              while (remainTime > 0) do\
-                stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒', true)\
-                c.yield(sleepPromise(1000))\
-                remainTime = remainTime - 1000\
-              end\
+      return co(c.create(function()\
+        if (action.isEnd) then\
+          local diffTime = (socket.gettime() * 1000) - runStartTime\
+          if (diffTime < (settings.missionsInterval * 1000)) then\
+            local remainTime = (settings.missionsInterval * 1000) - diffTime\
+            stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒')\
+            while (remainTime > 0) do\
+              stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒', true)\
+              c.yield(sleepPromise(1000))\
+              remainTime = remainTime - 1000\
             end\
           end\
-        end))\
-      end,\
-    }))\
-  end\
+        end\
+      end))\
+    end,\
+  }))\
 end)).catch(function(err)\
   wLog('azur_lane', '[DATE] ' .. err);\
   nLog(err)\

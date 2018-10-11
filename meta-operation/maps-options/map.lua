@@ -462,9 +462,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果左边集合小于50个点，或者高差小于80个像素，则认为左边黑线不存在
+  -- 如果左边集合小于50个点，或者高差小于50个像素，则认为左边黑线不存在
+  local leftTopPoint = math.minTable(leftLinePointList, function(item) return item[2] end)
+  local leftBottomPoint = math.maxTable(leftLinePointList, function(item) return item[2] end)
   if #leftLineAdjacentMaxList < 50
-    or (leftLinePointList and #leftLinePointList >= 2 and leftLinePointList[#leftLinePointList][2] - leftLinePointList[1][2] < 80) then
+    or (leftLinePointList and #leftLinePointList >= 2 and leftBottomPoint[2] - leftTopPoint[2] < 50) then
     leftLinePointList = {}
   end
 
@@ -506,9 +508,11 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       end
     end
   end
-  -- 如果右边集合小于50个点，或者高差小于80个像素，则认为右边黑线不存在
+  -- 如果右边集合小于50个点，或者高差小于50个像素，则认为右边黑线不存在
+  local rightTopPoint = math.minTable(rightLinePointList, function(item) return item[2] end)
+  local rightBottomPoint = math.maxTable(rightLinePointList, function(item) return item[2] end)
   if #rightLineAdjacentMaxList < 50
-    or (rightLinePointList and #rightLinePointList >= 2 and rightLinePointList[#rightLinePointList][2] - rightLinePointList[1][2] < 80) then
+    or (rightLinePointList and #rightLinePointList >= 2 and rightBottomPoint[2] - rightTopPoint[2] < 50) then
     rightLinePointList = {}
   end
 

@@ -88,55 +88,57 @@ end)
 
 
 co(c.create(function()
-  if (settings.battleEnable or settings.exerciseEnable or settings.missionEnable or settings.dailyChallengesEnable) then
 
-    local theMissionsQuery = {}
-    -- 是否运行出征
-    if (settings.battleEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })
-    end
-    -- 是否运行任务
-    if (settings.missionEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })
-    end
-    -- 是否运行演习
-    if (settings.exerciseEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })
-    end
-    -- 是否运行每日挑战
-    if (settings.dailyChallengesEnable) then
-      table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })
-    end
+  local theMissionsQuery = {}
+  -- 是否运行出征
+  if (settings.battleEnable) then
+    table.insert(theMissionsQuery, { isBase = true, type = 'BATTLE_INIT' })
+  end
+  -- 是否运行任务
+  if (settings.missionEnable) then
+    table.insert(theMissionsQuery, { isBase = true, type = 'MISSION_INIT' })
+  end
+  -- 是否运行演习
+  if (settings.exerciseEnable) then
+    table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })
+  end
+  -- 是否运行女仆活动
+  if (settings.maidBattleEnable) then
+    table.insert(theMissionsQuery, { isBase = true, type = 'MAID_BATTLE_INIT' })
+  end
+  -- 是否运行每日挑战
+  if (settings.dailyChallengesEnable) then
+    table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })
+  end
 
-    local theChain = createChain(missionsList)
+  local theChain = createChain(missionsList)
 
-    -- 启动任务链
-    c.yield(theChain.runMission({
-      missionsQuery = theMissionsQuery,
-      -- 在每次循环执行过 action 之后调用
-      afterAction = function(res)
-        local action = res.action
-        local nextAction = res.nextAction
-        local missionsQuery = res.missionsQuery
-        local runStartTime = res.runStartTime
+  -- 启动任务链
+  c.yield(theChain.runMission({
+    missionsQuery = theMissionsQuery,
+    -- 在每次循环执行过 action 之后调用
+    afterAction = function(res)
+      local action = res.action
+      local nextAction = res.nextAction
+      local missionsQuery = res.missionsQuery
+      local runStartTime = res.runStartTime
 
-        return co(c.create(function()
-          if (action.isEnd) then
-            local diffTime = (socket.gettime() * 1000) - runStartTime
-            if (diffTime < (settings.missionsInterval * 1000)) then
-              local remainTime = (settings.missionsInterval * 1000) - diffTime
-              stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒')
-              while (remainTime > 0) do
-                stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒', true)
-                c.yield(sleepPromise(1000))
-                remainTime = remainTime - 1000
-              end
+      return co(c.create(function()
+        if (action.isEnd) then
+          local diffTime = (socket.gettime() * 1000) - runStartTime
+          if (diffTime < (settings.missionsInterval * 1000)) then
+            local remainTime = (settings.missionsInterval * 1000) - diffTime
+            stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒')
+            while (remainTime > 0) do
+              stepLabel.setStepLabelContent('休息剩余时间' .. math.ceil(remainTime / 1000) .. '秒', true)
+              c.yield(sleepPromise(1000))
+              remainTime = remainTime - 1000
             end
           end
-        end))
-      end,
-    }))
-  end
+        end
+      end))
+    end,
+  }))
 end)).catch(function(err)
   wLog('azur_lane', '[DATE] ' .. err);
   nLog(err)
