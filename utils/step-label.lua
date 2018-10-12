@@ -14,9 +14,9 @@ if tsint >= 170 then
 end
 
 if tsint < 230 then
-  fwShowWnd('steplabel', 350, 50, 300, 100, 0)
+  fwShowWnd('steplabel', 370, 50, 300, 100, 0)
 else
-  fwShowWnd('steplabel', 350, 50, 650, 150, 0)
+  fwShowWnd('steplabel', 370, 50, 650, 150, 0)
 end
 
 StepLable.init = function(labelId)
