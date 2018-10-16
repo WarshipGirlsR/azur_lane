@@ -5323,6 +5323,11 @@ battle.inBattlePageClickAutoBattle = function()\
   RTap({ 208, 75 }, 100)\
 end\
 \
+-- 点击潜艇出击按钮\
+battle.inBattleClickSSAttack = function()\
+  RTap({ 1006, 912 }, 100)\
+end\
+\
 -- 检测是否胜利界面\
 battle.isVictoryPanel = function()\
   local __keepScreenState = keepScreenState\
@@ -5491,13 +5496,11 @@ battle.isGetExpPanel = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 581, 287, 0x6b696b }, { 603, 287, 0x6b696b },\
-    { 638, 286, 0x6b6973 }, { 711, 292, 0x6b696b },\
-    { 784, 286, 0x6b696b }, { 856, 285, 0x63656b },\
-    { 908, 288, 0x736973 }, { 960, 291, 0x63656b },\
-    { 999, 287, 0x6b696b }, { 1039, 286, 0x6b696b },\
-    { 1293, 886, 0xdee7de }, { 1427, 938, 0xc5bebd },\
-    { 1555, 889, 0xe6e7e6 }, { 1792, 938, 0xc5c2c5 },\
+    { 554, 287, 0x68686b }, { 590, 290, 0x69686e }, { 647, 287, 0x6b686b }, { 691, 287, 0x6b696b },\
+    { 750, 286, 0x68686e }, { 821, 285, 0x6a696b }, { 892, 288, 0x6b676f }, { 969, 286, 0x6b696b },\
+    { 1026, 286, 0x67676f }, { 1088, 286, 0x686868 }, { 599, 325, 0x69696c }, { 535, 325, 0x67686c },\
+    { 605, 325, 0x67696a }, { 696, 325, 0x66696d }, { 746, 325, 0x6a696a }, { 816, 325, 0x66686e },\
+    { 866, 325, 0x666869 }, { 916, 325, 0x66686e }, { 956, 325, 0x66686e }, { 1006, 325, 0x666869 },\
   }\
   local result = multiColorS(list)\
   if not __keepScreenState then keepScreen(false) end\
@@ -13976,7 +13979,9 @@ local setScreenListeners = (require './utils').setScreenListeners\
 local store = require '../store'\
 local vibratorPromise = require '../utils/vibrator-promise'\
 \
-store.battle = store.battle or {}\
+store.battle = store.battle or {\
+  inBattleLastClickSSAttackTime = nil,\
+}\
 \
 local o = {\
   home = moHome,\
@@ -14026,6 +14031,9 @@ local battle = function(action)\
     elseif action.type == 'BATTLE_START' then\
 \
       stepLabel.setStepLabelContent('2.1.等待桌面')\
+\
+      store.battle.inBattleLastClickSSAttackTime = nil\
+\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_HOME_CLICK_BATTLE', o.home.isHome, 2000 },\
       }))\
@@ -14324,9 +14332,24 @@ local battle = function(action)\
 \
     elseif action.type == 'BATTLE_IN_BATTLE_PAGE' then\
 \
-      stepLabel.setStepLabelContent('2.17.战斗中检测是否自动战斗')\
+      store.battle.inBattleLastClickSSAttackTime = os.time()\
+\
+      stepLabel.setStepLabelContent('2.17.战斗中')\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'BATTLE_IN_BATTLE_PAGE', o.battle.isInBattlePage, 86400000 },\
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_SS_ATTACK', o.battle.isInBattlePage, 5000 },\
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle, 2000 },\
+        { 'BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
+      }))\
+      return makeAction(newstateTypes)\
+\
+    elseif action.type == 'BATTLE_IN_BATTLE_PAGE_CLICK_SS_ATTACK' then\
+\
+      if os.time() - store.battle.inBattleLastClickSSAttackTime > 5 then\
+        o.battle.inBattleClickSSAttack()\
+        store.battle.inBattleLastClickSSAttackTime = os.time()\
+      end\
+      local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
+        { 'BATTLE_IN_BATTLE_PAGE_CLICK_SS_ATTACK', o.battle.isInBattlePage, 5000 },\
         { 'BATTLE_IN_BATTLE_PAGE_CLICK_AUTO_BATTLE', o.battle.isNotAutoBattle, 2000 },\
         { 'BATTLE_IN_BATTLE_PAGE_AUTO_BATTLE_CONFIRM_PANEL', o.battle.isAutoBattleConfirmPanel },\
       }))\
@@ -14358,8 +14381,8 @@ local battle = function(action)\
       stepLabel.setStepLabelContent('2.21.胜利面板点击继续')\
       o.battle.victoryPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'BATTLE_VICTORY_PAGE', o.battle.isGetPropsPanel, 2000 },\
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'BATTLE_VICTORY_PAGE', o.battle.isGetPropsPanel, 500 },\
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 500 },\
         { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel },\
       }))\
       return makeAction(newstateTypes)\
@@ -14369,8 +14392,8 @@ local battle = function(action)\
       stepLabel.setStepLabelContent('2.22.获得道具面板点击继续')\
       o.battle.getPropsPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
-        { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 2000 },\
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 2000 },\
+        { 'BATTLE_GET_PROPS_PANEL', o.battle.isGetPropsPanel, 500 },\
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 500 },\
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel },\
       }))\
       return makeAction(newstateTypes)\
@@ -14381,7 +14404,7 @@ local battle = function(action)\
       o.battle.getNewShipPanelClickNext()\
       local newstateTypes = c.yield(setScreenListeners(battleListenerList, {\
         { 'BATTLE_GET_NEW_SHIP_PANEL', o.battle.isGetNewShipPanel, 2000 },\
-        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 1000 },\
+        { 'BATTLE_GET_EXP_PANEL', o.battle.isGetExpPanel, 500 },\
         { 'BATTLE_LOCK_NEW_SHIP_PANEL', o.battle.isLockNewShipPanel, 1000 },\
       }))\
       return makeAction(newstateTypes)\

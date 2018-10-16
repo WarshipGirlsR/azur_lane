@@ -877,6 +877,11 @@ battle.inBattlePageClickAutoBattle = function()
   RTap({ 208, 75 }, 100)
 end
 
+-- 点击潜艇出击按钮
+battle.inBattleClickSSAttack = function()
+  RTap({ 1006, 912 }, 100)
+end
+
 -- 检测是否胜利界面
 battle.isVictoryPanel = function()
   local __keepScreenState = keepScreenState
@@ -1045,13 +1050,11 @@ battle.isGetExpPanel = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local list = {
-    { 581, 287, 0x6b696b }, { 603, 287, 0x6b696b },
-    { 638, 286, 0x6b6973 }, { 711, 292, 0x6b696b },
-    { 784, 286, 0x6b696b }, { 856, 285, 0x63656b },
-    { 908, 288, 0x736973 }, { 960, 291, 0x63656b },
-    { 999, 287, 0x6b696b }, { 1039, 286, 0x6b696b },
-    { 1293, 886, 0xdee7de }, { 1427, 938, 0xc5bebd },
-    { 1555, 889, 0xe6e7e6 }, { 1792, 938, 0xc5c2c5 },
+    { 554, 287, 0x68686b }, { 590, 290, 0x69686e }, { 647, 287, 0x6b686b }, { 691, 287, 0x6b696b },
+    { 750, 286, 0x68686e }, { 821, 285, 0x6a696b }, { 892, 288, 0x6b676f }, { 969, 286, 0x6b696b },
+    { 1026, 286, 0x67676f }, { 1088, 286, 0x686868 }, { 599, 325, 0x69696c }, { 535, 325, 0x67686c },
+    { 605, 325, 0x67696a }, { 696, 325, 0x66696d }, { 746, 325, 0x6a696a }, { 816, 325, 0x66686e },
+    { 866, 325, 0x666869 }, { 916, 325, 0x66686e }, { 956, 325, 0x66686e }, { 1006, 325, 0x666869 },
   }
   local result = multiColorS(list)
   if not __keepScreenState then keepScreen(false) end
