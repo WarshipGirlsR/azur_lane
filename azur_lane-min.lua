@@ -4468,19 +4468,11 @@ battle.isBattleChapterPage = function()\
   local __keepScreenState = keepScreenState\
   if not __keepScreenState then keepScreen(true) end\
   local list = {\
-    { 13, 11, 0xdedfe6 }, { 10, 54, 0xcecace },\
-    { 38, 36, 0xefce42 }, { 68, 31, 0xefce3a },\
-    { 125, 56, 0xc5c2c5 }, { 892, 51, 0xd6dbde },\
-    { 930, 7, 0xeff3f7 }, { 248, 23, 0xffe7ad },\
-    { 257, 24, 0x292829 }, { 276, 22, 0x211c21 },\
-    { 232, 45, 0x313131 }, { 256, 45, 0x313531 },\
-    { 264, 47, 0xffba00 }, { 273, 47, 0x3a353a },\
-    { 284, 47, 0xffba00 }, { 293, 45, 0x313131 },\
-    { 302, 45, 0xffba00 }, { 308, 45, 0x191819 },\
-    { 321, 43, 0xffbe10 }, { 332, 44, 0x424142 },\
-    { 426, 42, 0x000000 }, { 438, 42, 0xefefff },\
-    { 545, 42, 0xdee7f7 }, { 573, 45, 0x000000 },\
-    { 559, 45, 0xd6d2de }, { 394, 43, 0x3a393a },\
+    { 11, 10, 0xe6e7ef }, { 87, 10, 0xe6e3ef }, { 251, 21, 0xffefbd }, { 259, 27, 0x3a393a },\
+    { 256, 44, 0x423d42 }, { 246, 46, 0xffbe08 }, { 288, 23, 0xffe7ad }, { 291, 23, 0xffebad },\
+    { 324, 20, 0xfff3ce }, { 333, 42, 0x3a4142 }, { 473, 5, 0xeff3f7 }, { 681, 6, 0xeff3f7 },\
+    { 911, 10, 0xeff3f7 }, { 933, 6, 0xeff3f7 }, { 886, 53, 0xd6dbde }, { 68, 52, 0xd6ced6 },\
+    { 278, 25, 0x31393a }, { 315, 26, 0x101010 }, { 331, 26, 0x080c08 }, { 324, 28, 0xffdf84 },\
   }\
   local result = multiColorS(list, 85)\
   if not __keepScreenState then keepScreen(false) end\
