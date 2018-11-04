@@ -54,6 +54,8 @@ local map12_1 = require './map12-1'
 local map12_2 = require './map12-2'
 local map12_3 = require './map12-3'
 local map12_4 = require './map12-4'
+local mapzlzy_a1 = require './mapzlzy-a1'
+local mapzlzy_b1 = require './mapzlzy-b1'
 
 return {
   ['map1-1'] = map1_1,
@@ -112,4 +114,6 @@ return {
   ['map12-2'] = map12_2,
   ['map12-3'] = map12_3,
   ['map12-4'] = map12_4,
+  ['mapzlzy-a1'] = mapzlzy_a1,
+  ['mapzlzy-b1'] = mapzlzy_b1,
 }

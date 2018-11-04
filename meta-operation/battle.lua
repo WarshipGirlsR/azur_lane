@@ -14,7 +14,7 @@ end
 
 -- 点击活动
 battle.clickEventBtn = function()
-  RTap({ 1018, 249 }, 100)
+  RTap({ 1017, 236 }, 100)
 end
 
 --  是否在出击选择章节界面
@@ -237,6 +237,18 @@ battle.clickChapter = function(chapterObj)
     RTap({ 1183, 396 }, 100)
   elseif chapterObj.name == '12-4' then
     RTap({ 1377, 774 }, 100)
+  elseif chapterObj.name == 'zlzy-a1' then
+    RTap({ 500, 336 }, 100)
+  elseif chapterObj.name == 'zlzy-a2' then
+    RTap({ 754, 839 }, 100)
+  elseif chapterObj.name == 'zlzy-a3' then
+    RTap({ 1297, 412 }, 100)
+  elseif chapterObj.name == 'zlzy-b1' then
+    RTap({ 463, 584 }, 100)
+  elseif chapterObj.name == 'zlzy-b2' then
+    RTap({ 1052, 834 }, 100)
+  elseif chapterObj.name == 'zlzy-b3' then
+    RTap({ 1194, 359 }, 100)
   end
   if not __keepScreenState then keepScreen(false) end
 end
@@ -534,84 +546,48 @@ battle.isMapPage = function()
 end
 
 -- 检测是第几队
-battle.scanMapCheckFleetNum = function()
-  local __keepScreenState = keepScreenState
-  keepScreen(true)
-  local list1 = {
-    { 301, 101, 0x424542 }, { 321, 94, 0xf7efbd },
-    { 329, 111, 0x424142 }, { 318, 123, 0xf7c642 },
-    { 311, 139, 0x424142 }, { 319, 152, 0x424142 },
-    { 329, 137, 0x424131 }, { 324, 148, 0xffba00 },
-    { 312, 109, 0xf7e39c },
-  }
-  local list2 = {
-    { 305, 112, 0xefdf9c }, { 319, 105, 0x42453a },
-    { 320, 95, 0xf7ebb5 }, { 324, 107, 0xf7df94 },
-    { 334, 112, 0xffdf7b }, { 316, 126, 0xf7c24a },
-    { 322, 136, 0xdeae21 }, { 301, 146, 0x424142 },
-    { 324, 138, 0x424142 }, { 337, 144, 0x424142 },
-  }
-  local list3 = {
-    { 302, 110, 0x524531 }, { 320, 106, 0x424542 },
-    { 326, 108, 0xffe39c }, { 312, 118, 0x4a4d4a },
-    { 316, 120, 0xffd763 }, { 308, 126, 0x424542 },
-    { 306, 130, 0xefc242 }, { 320, 150, 0xffb600 },
-    { 320, 140, 0x424542 }, { 338, 139, 0x424142 },
-  }
-  local list4 = {
-    { 315, 90, 0x424142 }, { 332, 90, 0x424142 },
-    { 334, 126, 0x4a4942 }, { 334, 141, 0x4a4121 },
-    { 338, 134, 0x4a4942 }, { 315, 140, 0x424142 },
-    { 315, 127, 0x424542 }, { 316, 116, 0x6b5d4a },
-    { 299, 139, 0x4a4542 }, { 306, 107, 0x3a3d3a },
-    { 314, 94, 0xfff7c5 }, { 329, 94, 0xf7e7b5 },
-    { 302, 137, 0xe6be21 }, { 323, 148, 0xde9a08 },
-    { 335, 134, 0xefb219 }, { 329, 113, 0xffdb73 },
-  }
-  local result = 1
-  if multiColorS(list1) then
-    result = 1
-  elseif multiColorS(list2) then
-    result = 2
-  elseif multiColorS(list3) then
-    result = 3
-  elseif multiColorS(list4) then
-    result = 4
-  end
-  if not __keepScreenState then keepScreen(false) end
-  return result
-end
-
--- 是否选中指定舰队
 battle.getSelectedFleed = function()
   local __keepScreenState = keepScreenState
   if not __keepScreenState then keepScreen(true) end
   local result
   local list1 = {
-    { 301, 105, 0x424542 }, { 325, 90, 0x424142 }, { 318, 152, 0x424142 }, { 311, 134, 0x42453a },
-    { 329, 129, 0x4a4542 }, { 320, 146, 0xf7b210 }, { 318, 132, 0xf7c221 }, { 324, 111, 0xffe38c },
-    { 307, 107, 0xffdf9c }, { 325, 95, 0xffe3ad },
+    { 318, 95, 0xf7e7b5 }, { 325, 95, 0xffebbd }, { 325, 103, 0xefdf9c }, { 325, 108, 0xefdf94 },
+    { 325, 118, 0xefc663 }, { 325, 125, 0xefba42 }, { 325, 138, 0xdeba29 }, { 325, 146, 0xdeaa10 },
+    { 315, 146, 0xefaa10 }, { 315, 140, 0xf7b608 }, { 305, 104, 0xffe3a4 }, { 305, 106, 0xffe39c },
+    { 313, 106, 0xf7e39c }, { 316, 102, 0xffefad }, { 315, 118, 0xffc663 }, { 315, 126, 0xffc23a },
+    { 315, 134, 0xffbe10 }, { 321, 135, 0xf7be19 }, { 321, 127, 0xf7c631 }, { 321, 114, 0xf7d773 },
   }
   local list2 = {
-    { 302, 109, 0x4a4942 }, { 313, 115, 0x424542 }, { 319, 105, 0x423531 }, { 337, 147, 0x424142 },
-    { 301, 146, 0x424142 }, { 318, 153, 0x424142 }, { 313, 124, 0x42413a }, { 317, 117, 0x4a4542 },
-    { 331, 148, 0xf7ba08 }, { 309, 145, 0xf7ba08 }, { 324, 139, 0x424142 }, { 328, 139, 0x313531 },
-    { 329, 129, 0x4a393a }, { 323, 129, 0xf7c231 }, { 323, 115, 0xffdb7b }, { 323, 96, 0xffebb5 },
-    { 310, 110, 0xffe394 }, { 325, 114, 0xf7db7b },
+    { 306, 111, 0xffe39c }, { 313, 111, 0xffdf94 }, { 313, 107, 0xffe7a4 }, { 306, 107, 0xf7e39c },
+    { 309, 101, 0xffebad }, { 314, 96, 0xffebbd }, { 322, 95, 0xffefbd }, { 329, 97, 0xffebbd },
+    { 320, 99, 0xf7e7ad }, { 326, 104, 0xffe7ad }, { 332, 108, 0xffdf9c }, { 330, 118, 0xffd76b },
+    { 323, 115, 0xffdf7b }, { 319, 122, 0xefc652 }, { 328, 122, 0xffd25a }, { 325, 127, 0xf7c63a },
+    { 316, 127, 0xffca31 }, { 313, 133, 0xf7be21 }, { 321, 133, 0xefba21 }, { 318, 136, 0xf7c219 },
+    { 317, 142, 0xf7ba08 }, { 307, 150, 0xdea210 }, { 316, 150, 0xe6ae19 }, { 325, 149, 0xf7ba21 },
+    { 331, 149, 0xefba21 }, { 333, 143, 0xf7ba21 }, { 327, 143, 0xf7b608 }, { 321, 146, 0xf7ba00 },
+    { 313, 137, 0xf7be19 }, { 322, 126, 0xf7ca42 },
   }
   local list3 = {
-    { 305, 95, 0x4a493a }, { 336, 97, 0x4a4931 }, { 335, 118, 0x52493a }, { 339, 135, 0x524d42 },
-    { 332, 151, 0x424531 }, { 312, 153, 0x3a3529 }, { 303, 140, 0x525142 }, { 313, 126, 0x424142 },
-    { 312, 115, 0x424542 }, { 301, 110, 0x424142 }, { 307, 109, 0xffdf9c }, { 318, 120, 0xffce5a },
-    { 312, 132, 0xf7c229 }, { 327, 134, 0xf7be19 }, { 333, 124, 0xffc652 }, { 333, 111, 0xffdf8c },
-    { 320, 108, 0x4a4542 }, { 320, 136, 0x4a4142 }, { 320, 148, 0xf7be08 }, { 310, 140, 0xf7be10 },
+    { 306, 109, 0xf7df9c }, { 315, 109, 0xffdf9c }, { 315, 105, 0xffe7a4 }, { 306, 105, 0xf7e3a4 },
+    { 307, 99, 0xffefad }, { 318, 99, 0xf7e7ad }, { 315, 94, 0xf7e7c5 }, { 326, 95, 0xf7e7b5 },
+    { 325, 103, 0xffe7ad }, { 334, 103, 0xf7e7a4 }, { 333, 124, 0xffc652 }, { 326, 128, 0xf7c63a },
+    { 334, 132, 0xffc221 }, { 325, 135, 0xf7be19 }, { 335, 139, 0xf7be10 }, { 325, 143, 0xf7ba08 },
+    { 329, 148, 0xf7b608 }, { 316, 150, 0xf7b608 }, { 317, 144, 0xf7ba08 }, { 307, 142, 0xf7ba08 },
+    { 306, 130, 0xf7c24a }, { 316, 130, 0xf7c242 }, { 310, 136, 0xf7be19 }, { 312, 143, 0xefba00 },
+    { 318, 147, 0xefba00 }, { 329, 144, 0xf7ba08 }, { 329, 137, 0xf7be10 }, { 329, 126, 0xf7c23a },
+    { 324, 120, 0xf7d263 }, { 329, 109, 0xffe394 }, { 311, 106, 0xffe39c }, { 312, 98, 0xffebb5 },
+    { 319, 98, 0xffebb5 }, { 329, 100, 0xffe7ad }, { 331, 106, 0xf7e39c }, { 329, 111, 0xf7df8c },
+    { 326, 115, 0xf7d773 }, { 317, 123, 0xefbe4a }, { 327, 125, 0xf7ca42 }, { 332, 134, 0xf7c219 },
   }
   local list4 = {
-    { 308, 100, 0x524d42 }, { 320, 90, 0x424142 }, { 328, 94, 0xffebb5 }, { 315, 125, 0x5a4931 },
-    { 303, 136, 0xf7ba19 }, { 314, 140, 0x424542 }, { 325, 146, 0xf7ba00 }, { 329, 151, 0x424531 },
-    { 334, 133, 0xffba10 }, { 337, 136, 0x524d42 }, { 315, 141, 0x4a4931 }, { 322, 146, 0xffba08 },
-    { 322, 126, 0xf7c642 }, { 303, 129, 0xf7c23a }, { 316, 118, 0x63553a }, { 326, 110, 0xffdf8c },
-    { 324, 98, 0xffebb5 }, { 316, 105, 0xf7e39c }, { 309, 117, 0xf7d76b }, { 334, 125, 0x424531 },
+    { 316, 94, 0xffebb5 }, { 328, 96, 0xffebbd }, { 321, 93, 0xf7e3b5 }, { 313, 99, 0xffebb5 },
+    { 328, 97, 0xf7ebb5 }, { 328, 103, 0xf7df9c }, { 310, 104, 0xffe3a4 }, { 312, 109, 0xf7df8c },
+    { 307, 115, 0xf7d773 }, { 310, 120, 0xffd25a }, { 310, 132, 0xf7c221 }, { 303, 137, 0xf7b619 },
+    { 311, 137, 0xffba10 }, { 320, 135, 0xefba10 }, { 322, 106, 0xffe39c }, { 321, 102, 0xf7e79c },
+    { 330, 119, 0xffce4a }, { 320, 123, 0xf7c64a }, { 328, 130, 0xf7be29 }, { 334, 133, 0xffba10 },
+    { 320, 141, 0xffba10 }, { 329, 142, 0xf7ba08 }, { 329, 147, 0xffba00 }, { 320, 146, 0xffba00 },
+    { 324, 144, 0xf7ba08 }, { 324, 136, 0xf7be21 }, { 325, 124, 0xf7c23a }, { 323, 107, 0xffe394 },
+    { 313, 134, 0xf7be19 }, { 306, 132, 0xf7c221 },
   }
   local list5 = {
     { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },

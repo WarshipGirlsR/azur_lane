@@ -1,6 +1,6 @@
 local co = require '../lib/co'
 local battle = require './battle'
-local maidBattle = require './maid-battle'
+--local maidBattle = require './maid-battle'
 local dailyChallenges = require './daily-challenges'
 local mission = require './mission'
 local exercise = require './exercise'
@@ -13,7 +13,7 @@ local scanMapsType1 = require './scan-map-type-1'
 -- 将分散在各个文件的任务集合到一起
 local missions = {
   battle,
-  maidBattle,
+  --  maidBattle,
   dailyChallenges,
   exercise,
   mission,

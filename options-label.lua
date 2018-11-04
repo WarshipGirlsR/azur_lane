@@ -60,19 +60,19 @@ return function()
           ['list'] = '开启,关闭',
           ['select'] = '0',
         },
-        {
-          ['type'] = 'Label',
-          ['text'] = '女仆活动',
-          ['size'] = 15,
-          ['align'] = 'left',
-          ['color'] = '0,0,0',
-        },
-        {
-          ['id'] = 'maidBattleEnable',
-          ['type'] = 'RadioGroup',
-          ['list'] = '开启,关闭',
-          ['select'] = '0',
-        },
+        --        {
+        --          ['type'] = 'Label',
+        --          ['text'] = '女仆活动',
+        --          ['size'] = 15,
+        --          ['align'] = 'left',
+        --          ['color'] = '0,0,0',
+        --        },
+        --        {
+        --          ['id'] = 'maidBattleEnable',
+        --          ['type'] = 'RadioGroup',
+        --          ['list'] = '开启,关闭',
+        --          ['select'] = '0',
+        --        },
         --        {
         --          ['type'] = 'Label',
         --          ['text'] = '每日挑战',
@@ -155,9 +155,11 @@ return function()
           ['type'] = 'RadioGroup',
           ['list'] = '手动,1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,3-sos,4-1,4-2,4-3,4-4,4-sos,'
             .. '5-1,5-2,5-3,5-4,5-sos,6-1,6-2,6-3,6-4,6-sos,7-1,7-2,7-3,7-4,7-sos,8-1,8-2,8-3,8-4,8-sos,'
-            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,',
-          --            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'
-          --            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',
+            .. '9-1,9-2,9-3,9-4,9-sos,10-1,10-2,10-3,10-4,10-sos,11-1,11-2,11-3,11-4,12-1,12-2,12-3,12-4,'
+            --            .. '光与影的鸢尾之华-a1/c1,光与影的鸢尾之华-a2/c2,光与影的鸢尾之华-a3/c3,'
+            --            .. '光与影的鸢尾之华-b1/d1,光与影的鸢尾之华-b2/d2,光与影的鸢尾之华-b3/d3',
+            .. '坠落之翼-a1/c1,坠落之翼-a2/c2,坠落之翼-a3/c3,'
+            .. '坠落之翼-b1/d1,坠落之翼-b2/d2,坠落之翼-b3/d3',
           ['select'] = '0',
         },
         {
@@ -597,11 +599,11 @@ return function()
       local list = transStrToTable({ true, false, })
       return list[exerciseEnable] or false
     end)(settings.exerciseEnable)
-    -- 女仆活动
-    settings.maidBattleEnable = (function(maidBattleEnable)
-      local list = transStrToTable({ true, false, })
-      return list[maidBattleEnable] or false
-    end)(settings.maidBattleEnable)
+    --    -- 女仆活动
+    --    settings.maidBattleEnable = (function(maidBattleEnable)
+    --      local list = transStrToTable({ true, false, })
+    --      return list[maidBattleEnable] or false
+    --    end)(settings.maidBattleEnable)
     -- 每日挑战
     settings.dailyChallengesEnable = (function(dailyChallengesEnable)
       local list = transStrToTable({ true, false, })
@@ -660,6 +662,12 @@ return function()
         --        { name = 'gyydywzh-b1', chapter = 2, section = 'b1', type = 'event' },
         --        { name = 'gyydywzh-b2', chapter = 2, section = 'b2', type = 'event' },
         --        { name = 'gyydywzh-b3', chapter = 2, section = 'b3', type = 'event' },
+        { name = 'zlzy-a1', chapter = 1, section = 'a1', type = 'event' },
+        { name = 'zlzy-a2', chapter = 1, section = 'a2', type = 'event' },
+        { name = 'zlzy-a3', chapter = 1, section = 'a3', type = 'event' },
+        { name = 'zlzy-b1', chapter = 2, section = 'b1', type = 'event' },
+        { name = 'zlzy-b2', chapter = 2, section = 'b2', type = 'event' },
+        { name = 'zlzy-b3', chapter = 2, section = 'b3', type = 'event' },
       })
       return list[battleChapter] or '0'
     end)(settings.battleChapter)

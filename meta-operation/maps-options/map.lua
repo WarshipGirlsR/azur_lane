@@ -544,12 +544,12 @@ map.getMapPosition = function(ImgInfo, targetPosition)
       table.insert(topHorizontalLineGroupTmp2, value)
     end
   end
-  -- 横向宽度超过600的组
+  -- 横向宽度超过500的组
   local topHorizontalLineGroupTmp3 = {}
   for key, value in ipairs(topHorizontalLineGroupTmp2) do
     local leftPoint = math.minTable(value, 1)
     local rightPoint = math.maxTable(value, 1)
-    if rightPoint[1] - leftPoint[1] > 600 then
+    if rightPoint[1] - leftPoint[1] > 500 then
       table.insert(topHorizontalLineGroupTmp3, value)
     end
   end

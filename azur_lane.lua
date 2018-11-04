@@ -102,10 +102,10 @@ co(c.create(function()
   if (settings.exerciseEnable) then
     table.insert(theMissionsQuery, { isBase = true, type = 'EXERCISE_INIT' })
   end
-  -- 是否运行女仆活动
-  if (settings.maidBattleEnable) then
-    table.insert(theMissionsQuery, { isBase = true, type = 'MAID_BATTLE_INIT' })
-  end
+  --  -- 是否运行女仆活动
+  --  if (settings.maidBattleEnable) then
+  --    table.insert(theMissionsQuery, { isBase = true, type = 'MAID_BATTLE_INIT' })
+  --  end
   -- 是否运行每日挑战
   if (settings.dailyChallengesEnable) then
     table.insert(theMissionsQuery, { isBase = true, type = 'DAILY_CHALLENGES_INIT' })
