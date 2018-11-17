@@ -282,7 +282,8 @@ local function findMultiColorList(ImgInfo, list, simpleMode)
   local res = {}
   for key = 1, #list do
     local myFleet = list[key]
-    res = table.merge(res, findMultiColorInRegionFuzzyExt(table.unpack(myFleet)))
+    local tmp = findMultiColorInRegionFuzzyExt(table.unpack(myFleet))
+    res = table.merge(res, tmp)
     if simpleMode and #res > 0 then
       break
     end

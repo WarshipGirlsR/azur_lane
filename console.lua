@@ -145,7 +145,7 @@ __console.log = __console.log or function(obj)
   end
 
   if useNlog then
-    local tmp = lineInfo
+    local tmp = os.date('%Y-%m-%d %X') .. ' ' .. lineInfo
     local resLength = #res
     for i = 1, resLength do
       tmp = tmp .. '\n  ' .. res[i]

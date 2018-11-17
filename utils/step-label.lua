@@ -40,21 +40,16 @@ StepLable.setStepLabelContent = function(text, noNLog)
   local finalText = StepLable.prefix .. text
   fwShowButton('steplabel', StepLable.labelId, finalText, '90333333', '90FFFFFF', '', 7, 0, 0, 300, 100)
   local dateStr = os.date('%Y-%m-%d %X')
+  local info = debug.getinfo(2, 'Sl')
+  local lineInfo = ''
+  if info.currentline then
+    lineInfo = info.source .. ': ' .. info.currentline .. ':\n '
+  end
   if not noNLog then
-    local info = debug.getinfo(2, 'Sl')
-    local lineInfo = ''
-    if info.currentline then
-      lineInfo = info.source .. ': ' .. info.currentline .. ': '
-    end
     wLog('azur_lane', lineInfo .. finalText);
   end
   if useNlog then
-    local info = debug.getinfo(2, 'Sl')
-    local lineInfo = ''
-    if info.currentline then
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\n'
-    end
-    nLog(lineInfo .. '  ' .. dateStr .. ' ' .. finalText .. '\n')
+    nLog(dateStr .. ' ' .. lineInfo .. '  ' .. finalText .. '\n')
   end
 end
 

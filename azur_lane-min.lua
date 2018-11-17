@@ -3003,7 +3003,8 @@ local function findMultiColorList(ImgInfo, list, simpleMode)\
   local res = {}\
   for key = 1, #list do\
     local myFleet = list[key]\
-    res = table.merge(res, findMultiColorInRegionFuzzyExt(table.unpack(myFleet)))\
+    local tmp = findMultiColorInRegionFuzzyExt(table.unpack(myFleet))\
+    res = table.merge(res, tmp)\
     if simpleMode and #res > 0 then\
       break\
     end\
@@ -15053,21 +15054,16 @@ StepLable.setStepLabelContent = function(text, noNLog)\
   local finalText = StepLable.prefix .. text\
   fwShowButton('steplabel', StepLable.labelId, finalText, '90333333', '90FFFFFF', '', 7, 0, 0, 300, 100)\
   local dateStr = os.date('%Y-%m-%d %X')\
+  local info = debug.getinfo(2, 'Sl')\
+  local lineInfo = ''\
+  if info.currentline then\
+    lineInfo = info.source .. ': ' .. info.currentline .. ':\\n '\
+  end\
   if not noNLog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ': '\
-    end\
     wLog('azur_lane', lineInfo .. finalText);\
   end\
   if useNlog then\
-    local info = debug.getinfo(2, 'Sl')\
-    local lineInfo = ''\
-    if info.currentline then\
-      lineInfo = info.source .. ': ' .. info.currentline .. ':\\n'\
-    end\
-    nLog(lineInfo .. '  ' .. dateStr .. ' ' .. finalText .. '\\n')\
+    nLog(dateStr .. ' ' .. lineInfo .. '  ' .. finalText .. '\\n')\
   end\
 end\
 \
@@ -18708,7 +18704,7 @@ __console.log = __console.log or function(obj)\
   end\
 \
   if useNlog then\
-    local tmp = lineInfo\
+    local tmp = os.date('%Y-%m-%d %X') .. ' ' .. lineInfo\
     local resLength = #res\
     for i = 1, resLength do\
       tmp = tmp .. '\\n  ' .. res[i]\
@@ -19154,7 +19150,7 @@ __console.log = __console.log or function(obj)\
   end\
 \
   if useNlog then\
-    local tmp = lineInfo\
+    local tmp = os.date('%Y-%m-%d %X') .. ' ' .. lineInfo\
     local resLength = #res\
     for i = 1, resLength do\
       tmp = tmp .. '\\n  ' .. res[i]\
