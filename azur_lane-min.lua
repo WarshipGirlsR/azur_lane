@@ -5039,12 +5039,24 @@ battle.getSelectedFleed = function()\
     { 329, 129, 0x4a4542 }, { 320, 146, 0xf7b210 }, { 318, 132, 0xf7c221 }, { 324, 111, 0xffe38c },\
     { 307, 107, 0xffdf9c }, { 325, 95, 0xffe3ad },\
   }\
+  -- 3-4 采样\
+  local list12 = {\
+    { 322, 94, 0xf7e7b5 }, { 325, 98, 0xfff3ad }, { 316, 98, 0xffefad }, { 304, 105, 0xefd794 },\
+    { 314, 112, 0xffdf8c }, { 325, 112, 0xffe38c }, { 326, 125, 0xdeae3a }, { 326, 136, 0xdeae29 },\
+    { 325, 146, 0xdeaa10 }, { 315, 148, 0xefaa10 },\
+  }\
   local list2 = {\
     { 302, 109, 0x4a4942 }, { 313, 115, 0x424542 }, { 319, 105, 0x423531 }, { 337, 147, 0x424142 },\
     { 301, 146, 0x424142 }, { 318, 153, 0x424142 }, { 313, 124, 0x42413a }, { 317, 117, 0x4a4542 },\
     { 331, 148, 0xf7ba08 }, { 309, 145, 0xf7ba08 }, { 324, 139, 0x424142 }, { 328, 139, 0x313531 },\
     { 329, 129, 0x4a393a }, { 323, 129, 0xf7c231 }, { 323, 115, 0xffdb7b }, { 323, 96, 0xffebb5 },\
     { 310, 110, 0xffe394 }, { 325, 114, 0xf7db7b },\
+  }\
+  -- 3-4 采样\
+  local list22 = {\
+    { 305, 112, 0xf7df9c }, { 315, 112, 0xf7d794 }, { 306, 102, 0xf7e3a4 }, { 324, 110, 0xffe38c },\
+    { 335, 108, 0xf7d794 }, { 312, 131, 0xd6b229 }, { 324, 131, 0xefba21 }, { 305, 142, 0xf7ba21 },\
+    { 305, 150, 0xde9a10 }, { 333, 150, 0xdeaa21 },\
   }\
   local list3 = {\
     { 305, 95, 0x4a493a }, { 336, 97, 0x4a4931 }, { 335, 118, 0x52493a }, { 339, 135, 0x524d42 },\
@@ -5053,12 +5065,26 @@ battle.getSelectedFleed = function()\
     { 312, 132, 0xf7c229 }, { 327, 134, 0xf7be19 }, { 333, 124, 0xffc652 }, { 333, 111, 0xffdf8c },\
     { 320, 108, 0x4a4542 }, { 320, 136, 0x4a4142 }, { 320, 148, 0xf7be08 }, { 310, 140, 0xf7be10 },\
   }\
+  local list32 = {\
+    { 306, 109, 0xf7df9c }, { 316, 109, 0xffdb94 }, { 320, 99, 0xf7e7ad }, { 312, 95, 0xf7ebb5 },\
+    { 335, 107, 0xf7df9c }, { 325, 110, 0xf7df8c }, { 316, 120, 0xffce5a }, { 334, 123, 0xffca52 },\
+    { 325, 133, 0xffbe21 }, { 335, 141, 0xf7ba08 }, { 305, 130, 0xefc25a }, { 316, 130, 0xf7c242 },\
+    { 316, 135, 0xf7be19 }, { 308, 145, 0xefbe00 }, { 320, 150, 0xffb600 }, { 325, 142, 0xf7ba08 },\
+    { 316, 142, 0xf7ba08 }, { 332, 146, 0xefbe00 }, { 325, 134, 0xf7be19 }, { 335, 128, 0xf7be3a },\
+  }\
   local list4 = {\
     { 308, 100, 0x524d42 }, { 320, 90, 0x424142 }, { 328, 94, 0xffebb5 }, { 315, 125, 0x5a4931 },\
     { 303, 136, 0xf7ba19 }, { 314, 140, 0x424542 }, { 325, 146, 0xf7ba00 }, { 329, 151, 0x424531 },\
     { 334, 133, 0xffba10 }, { 337, 136, 0x524d42 }, { 315, 141, 0x4a4931 }, { 322, 146, 0xffba08 },\
     { 322, 126, 0xf7c642 }, { 303, 129, 0xf7c23a }, { 316, 118, 0x63553a }, { 326, 110, 0xffdf8c },\
     { 324, 98, 0xffebb5 }, { 316, 105, 0xf7e39c }, { 309, 117, 0xf7d76b }, { 334, 125, 0x424531 },\
+  }\
+  local list42 = {\
+    { 315, 94, 0xffebb5 }, { 329, 95, 0xffebb5 }, { 311, 104, 0xf7e39c }, { 329, 108, 0xffe38c },\
+    { 319, 118, 0xf7ce63 }, { 330, 125, 0xf7c23a }, { 305, 117, 0xf7d273 }, { 311, 123, 0xefbe4a },\
+    { 302, 136, 0xefb631 }, { 313, 138, 0xffba10 }, { 317, 130, 0xefba21 }, { 317, 138, 0xffba10 },\
+    { 319, 147, 0xffba00 }, { 330, 147, 0xf7b600 }, { 329, 140, 0xefba10 }, { 335, 138, 0xefb219 },\
+    { 335, 131, 0xefba21 }, { 330, 126, 0xffc642 }, { 324, 135, 0xf7ba10 }, { 324, 146, 0xf7ba08 },\
   }\
   local list5 = {\
     { 205, 149, 0x6392a4 }, { 210, 124, 0xfffbf7 },\
@@ -5072,13 +5098,13 @@ battle.getSelectedFleed = function()\
     { 235, 131, 0xfffbf7 }, { 247, 125, 0xf7fbf7 },\
     { 266, 122, 0xfffbf7 }, { 290, 120, 0xfffbf7 },\
   }\
-  if multiColorS(list1) then\
+  if multiColorS(list1) or multiColorS(list12) then\
     result = 1\
-  elseif multiColorS(list2) then\
+  elseif multiColorS(list2) or multiColorS(list22) then\
     result = 2\
-  elseif multiColorS(list3) then\
+  elseif multiColorS(list3) or multiColorS(list32) then\
     result = 3\
-  elseif multiColorS(list4) then\
+  elseif multiColorS(list4) or multiColorS(list42) then\
     result = 4\
   elseif multiColorS(list5) then\
     result = 5\
