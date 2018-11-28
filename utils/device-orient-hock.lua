@@ -32,10 +32,19 @@ local multiColorS = function(array, s)
 end
 
 -- 计算方向辅助界面，一像素宽度的白色边界，一像素宽的黑色边界，用于检测方向
+
 fwShowWnd("orientwid1", 0, 0, 2, m, 0)
-fwShowTextView("orientwid1", "text1", "", "center", "000000", "FEFEFE", 15, 0, 0, 0, 1, m, 1)
-fwShowTextView("orientwid1", "text2", "", "center", "000000", "010101", 15, 0, 1, 0, 2, m, 1)
-mSleep(100)
+function myShowView()
+  fwShowTextView("orientwid1", "text1", "", "center", "000000", "FEFEFE", 15, 0, 0, 0, 1, m, 1)
+  fwShowTextView("orientwid1", "text2", "", "center", "000000", "010101", 15, 0, 1, 0, 2, m, 1)
+  mSleep(60)
+end
+
+function myHideView()
+  fwCloseView("orientwid1", "text1")
+  fwCloseView("orientwid1", "text2")
+end
+
 
 -- 计算当前方向
 function calOrient(_orient)
@@ -63,18 +72,20 @@ function calOrient(_orient)
     { 1, math.floor(0.833 * sideLength), 0x010101 },
   }
 
-  -- 如果方向没变则不旋转
+  myShowView()
   if (multiColorS(checkPointList, 99)) then
-    return _orient
-  end
-  -- 如果方向变了则旋转
-  for k, v in ipairs(checkOrder) do
-    __init(v)
-    if (multiColorS(checkPointList, 99)) then
-      return v
+    -- 如果方向没变则不旋转
+  else
+    -- 如果方向变了则旋转
+    for k, v in ipairs(checkOrder) do
+      __init(v)
+      if (multiColorS(checkPointList, 99)) then
+        return v
+      end
     end
+    __init(_orient)
   end
-  __init(_orient)
+  myHideView()
   return _orient
 end
 

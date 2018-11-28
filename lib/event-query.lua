@@ -28,8 +28,8 @@ end
 local function tryCatch(cb)
   return xpcall(cb, function(e)
     return stackTraceback and
-      (e .. '\n' .. debug.traceback())
-      or (e)
+        (e .. '\n' .. debug.traceback())
+        or (e)
   end)
 end
 
@@ -238,7 +238,16 @@ function run()
     -- screenListenerQuery
     if #screenListenerQuery > 0 then
       keepScreen(false);
-      if type(getDeviceOrient) == 'function' then getDeviceOrient() end
+      if type(getDeviceOrient) == 'function' and getScreenScaleS() then
+        if type(getScreenScaleS) == 'function' then
+          local isScale, sW, sH = getScreenScaleS()
+          setScreenScaleS(false)
+          getDeviceOrient()
+          setScreenScaleS(true, sW, sH)
+        else
+          getDeviceOrient()
+        end
+      end
       local hasDropEvent = false
       continue = continue + 1
       sleepTime = math.min(sleepTime, 200)

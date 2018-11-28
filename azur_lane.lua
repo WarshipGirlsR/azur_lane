@@ -35,6 +35,7 @@ require './lib/javascript-polyfill'
 require './utils/keep-screen-hock'
 require './utils/multi-color-hock'
 require './utils/device-orient-hock'
+require './utils/screen-scale-hock'
 require './utils/clear-log'
 
 RTap = require './lib/norma-distribution-tap'
@@ -51,6 +52,9 @@ local store = require './store'
 
 local stepLabel = require './utils/step-label'
 stepLabel.init('stopbtn')
+
+setScreenScaleS(true, 1080, 1920)
+
 
 local c = coroutine
 console.log('version 20180718-0201')
