@@ -37,13 +37,14 @@ fwShowWnd("orientwid1", 0, 0, 2, m, 0)
 function myShowView()
   fwShowTextView("orientwid1", "text1", "", "center", "000000", "FEFEFE", 15, 0, 0, 0, 1, m, 1)
   fwShowTextView("orientwid1", "text2", "", "center", "000000", "010101", 15, 0, 1, 0, 2, m, 1)
-  mSleep(60)
+  mSleep(100)
 end
 
 function myHideView()
   fwCloseView("orientwid1", "text1")
   fwCloseView("orientwid1", "text2")
 end
+myShowView()
 
 
 -- 计算当前方向
@@ -72,21 +73,23 @@ function calOrient(_orient)
     { 1, math.floor(0.833 * sideLength), 0x010101 },
   }
 
-  myShowView()
   if (multiColorS(checkPointList, 99)) then
     -- 如果方向没变则不旋转
   else
     -- 如果方向变了则旋转
+    local targetOrigent
     for k, v in ipairs(checkOrder) do
       __init(v)
       if (multiColorS(checkPointList, 99)) then
-        return v
+        targetOrigent = v
+        break
       end
     end
-    __init(_orient)
+    if not targetOrigent then
+      __init(_orient)
+    end
   end
-  myHideView()
-  return _orient
+  return targetOrigent or _orient
 end
 
 local _orient = calOrient(orient)
